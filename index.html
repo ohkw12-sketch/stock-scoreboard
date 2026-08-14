@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>주식평가창</title>
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:dark;background:#07120f;color:#edf7f2}
+*{box-sizing:border-box} body{margin:0;background:linear-gradient(180deg,#07120f,#0d1714);color:#edf7f2}
+.wrap{max-width:1500px;margin:0 auto;padding:18px}
+.top{display:flex;gap:12px;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px}
+h1{font-size:28px;margin:0}.muted{color:#9fb0a8;font-size:13px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.tab{border:1px solid #2b4038;background:#101f1a;color:#dce8e2;padding:10px 16px;border-radius:999px;cursor:pointer}.tab.active{background:#1f6f50;border-color:#2f966f}.panel{display:none}.panel.active{display:block}.card{background:rgba(17,31,26,.92);border:1px solid #263b34;border-radius:16px;padding:14px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.tablewrap{overflow:auto;border-radius:12px}table{width:100%;border-collapse:collapse;min-width:1180px}th,td{padding:11px 10px;border-bottom:1px solid #22352e;text-align:right;white-space:nowrap;font-size:13px}th{position:sticky;top:0;background:#13241e;color:#a9bbb2;z-index:1}th:first-child,td:first-child{text-align:left}tbody tr:hover{background:#10241c}.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;border:1px solid #315346;background:#173126}.good{color:#8fe0ad}.warn{color:#ffd47f}.bad{color:#ff9c9c}.summary{margin:8px 0 14px;color:#c3d2ca}
+.empty{padding:30px;text-align:center;color:#9fb0a8}
+@media(max-width:700px){.wrap{padding:10px}h1{font-size:22px}.card{padding:8px}.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}table{min-width:1040px}th,td{padding:9px 8px;font-size:12px}th{position:static}.top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><div><h1>주식평가창</h1><div id="updated" class="muted">불러오는 중...</div></div><div id="note" class="muted"></div></div>
+  <div class="tabs">
+    <button class="tab active" data-tab="p1">프로젝트1</button>
+    <button class="tab" data-tab="p2">프로젝트2</button>
+    <button class="tab" data-tab="p3">프로젝트3</button>
+  </div>
+  <section id="p1" class="panel active"><div class="card"><div class="summary" id="p1status"></div><div class="empty">다음 예약 실행에서 프1 상위 10개가 표시됩니다.</div></div></section>
+  <section id="p2" class="panel"><div class="card"><div class="summary" id="p2status"></div><div class="empty">다음 예약 실행에서 프2 상위 10개가 표시됩니다.</div></div></section>
+  <section id="p3" class="panel"><div class="card"><div class="summary" id="p3status"></div><div class="tablewrap"><table><thead><tr><th>종목</th><th>코드</th><th>기준가</th><th>평균매입가</th><th>평단대비</th><th>Fwd PER</th><th>1M</th><th>3M</th><th>기업판정</th><th>가격판정</th><th>행동</th><th>기준일</th></tr></thead><tbody id="p3body"></tbody></table></div></div></section>
+</div>
+<script>
+const fmt=v=>v==null?'—':new Intl.NumberFormat('ko-KR').format(v);
+function actionClass(a){if(a.includes('추매'))return'good'; if(a.includes('축소')||a.includes('매도'))return'bad'; return'warn'}
+async function load(){
+  const r=await fetch('data.json?v='+Date.now(),{cache:'no-store'}); const d=await r.json();
+  document.getElementById('updated').textContent='업데이트 '+d.meta.updatedKST+' KST';
+  document.getElementById('note').textContent=d.meta.note||'';
+  ['p1','p2','p3'].forEach(k=>document.getElementById(k+'status').textContent=d[k].status||'');
+  const body=document.getElementById('p3body'); body.innerHTML='';
+  d.p3.rows.forEach(x=>{
+    const tr=document.createElement('tr');
+    tr.innerHTML=`<td>${x.name}</td><td>${x.code}</td><td>${fmt(x.price)}</td><td>${fmt(x.avg)}</td><td>${x.ret}</td><td>${x.fwdPer}</td><td>${x.m1}</td><td>${x.m3}</td><td>${x.company}</td><td>${x.priceView}</td><td><span class="badge ${actionClass(x.action)}">${x.action}</span></td><td>${x.basis}</td>`;
+    body.appendChild(tr);
+  });
+}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')});
+load().catch(e=>{document.getElementById('updated').textContent='데이터 로드 실패';console.error(e)});
+</script>
+</body>
+</html>
