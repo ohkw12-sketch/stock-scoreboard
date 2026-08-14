@@ -1,0 +1,36 @@
+{
+  "meta": {
+    "title": "주식평가창",
+    "updatedKST": "2026-08-15 00:40",
+    "note": "초기 고정 보드 연결본. 프1·프2는 다음 예약 실행부터 자동 갱신 예정이며, 프3은 최근 검증 스냅샷 기준입니다."
+  },
+  "p1": {
+    "status": "다음 예약 실행에서 갱신",
+    "rows": []
+  },
+  "p2": {
+    "status": "다음 예약 실행에서 갱신",
+    "rows": []
+  },
+  "p3": {
+    "status": "최근 검증 스냅샷",
+    "rows": [
+      {"name":"SK하이닉스","code":"000660","price":1420000,"avg":1716000,"ret":"-17.25%","fwdPer":3.47,"m1":"-34.86%","m3":"-15.78%","company":"매우 강함","priceView":"저평가","action":"눌림목추매","basis":"2026-08-10"},
+      {"name":"삼성전자","code":"005930","price":230000,"avg":245086,"ret":"-6.16%","fwdPer":3.81,"m1":"-19.30%","m3":"-14.34%","company":"매우 강함","priceView":"저평가","action":"적극추매","basis":"2026-08-10"},
+      {"name":"일진전기","code":"103590","price":58300,"avg":75600,"ret":"-22.88%","fwdPer":15.38,"m1":"-14.39%","m3":"-59.12%","company":"강함","priceView":"저평가~적정","action":"보유","basis":"2026-08-10"},
+      {"name":"이수페타시스","code":"007660","price":82300,"avg":null,"ret":"-","fwdPer":17.87,"m1":"-16.02%","m3":"-44.17%","company":"강함","priceView":"적정","action":"눌림목추매","basis":"2026-08-10"},
+      {"name":"테스","code":"095610","price":142600,"avg":null,"ret":"-","fwdPer":20.41,"m1":"-19.75%","m3":"+53.50%","company":"강함","priceView":"적정~프리미엄","action":"보유","basis":"2026-08-10"},
+      {"name":"효성중공업","code":"298040","price":2934000,"avg":null,"ret":"-","fwdPer":25.95,"m1":"+0.34%","m3":"-33.29%","company":"매우 강함","priceView":"프리미엄","action":"보유","basis":"2026-08-10"},
+      {"name":"한화오션","code":"042660","price":89400,"avg":null,"ret":"-","fwdPer":13.83,"m1":"-0.45%","m3":"-31.18%","company":"강함","priceView":"저평가~적정","action":"눌림목추매","basis":"2026-08-10"},
+      {"name":"LIG디펜스앤에어로스페이스","code":"079550","price":823000,"avg":null,"ret":"-","fwdPer":39.06,"m1":"+9.88%","m3":"-2.02%","company":"매우 강함","priceView":"고평가","action":"보유","basis":"2026-08-10"},
+      {"name":"피에스케이","code":"319660","price":118400,"avg":null,"ret":"-","fwdPer":19.26,"m1":"-26.82%","m3":"+11.17%","company":"강함","priceView":"적정","action":"보유","basis":"2026-08-10"},
+      {"name":"코리아써키트","code":"007810","price":55700,"avg":null,"ret":"-","fwdPer":9.76,"m1":"-19.16%","m3":"-45.50%","company":"강함","priceView":"저평가","action":"눌림목추매","basis":"2026-08-10"},
+      {"name":"LG이노텍","code":"011070","price":552000,"avg":null,"ret":"-","fwdPer":12.40,"m1":"-32.19%","m3":"-13.34%","company":"강함","priceView":"저평가","action":"눌림목추매","basis":"2026-08-10"},
+      {"name":"브이엠","code":"089970","price":60500,"avg":null,"ret":"-","fwdPer":14.17,"m1":"-30.62%","m3":"+3.42%","company":"개선 강함","priceView":"저평가~적정","action":"보유","basis":"2026-08-07"},
+      {"name":"유진테크","code":"084370","price":111200,"avg":null,"ret":"-","fwdPer":24.24,"m1":"-23.89%","m3":"-24.30%","company":"강함","priceView":"프리미엄","action":"보유","basis":"2026-08-10"},
+      {"name":"대덕전자","code":"353200","price":107600,"avg":null,"ret":"-","fwdPer":18.08,"m1":"-11.00%","m3":"-12.66%","company":"매우 강함","priceView":"적정","action":"눌림목추매","basis":"2026-08-10"},
+      {"name":"한화시스템","code":"272210","price":70700,"avg":null,"ret":"-","fwdPer":39.48,"m1":"+0.43%","m3":"-39.42%","company":"보통~개선","priceView":"고평가","action":"일부축소","basis":"2026-08-07"},
+      {"name":"엠앤씨솔루션","code":"484870","price":16000,"avg":null,"ret":"-","fwdPer":6.98,"m1":"-50.54%","m3":"-56.08%","company":"개선 확인 필요","priceView":"저평가","action":"보유","basis":"2026-08-07"}
+    ]
+  }
+}
