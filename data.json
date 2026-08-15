@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "주식평가창",
-    "updatedKST": "2026-08-15 18:18",
-    "note": "국내 8/14 종가·최근 60거래일 시세 확정. 프1-1 초기순환매 후보와 2열 대형섹터 순위 추가. 프1·프2·프3 기준은 유지.",
+    "updatedKST": "2026-08-15 18:53",
+    "note": "국내 8/14 종가·최근 60거래일 시세 확정. 프1-1은 대형섹터 순위를 유지하고 상위 3개 섹터의 비과열 진입 후보만 선별. 프1·프2·프3 기준은 유지.",
     "masterBasis": "가격 2026-08-14 / 컨센서스·재무 2026-08-15",
     "sourceSummary": "KRX·Naver Finance 종가, FnGuide 분기·연간 컨센서스 및 재무자료",
     "changeUntil": "2026-08-24"
@@ -28,7 +28,7 @@
     ]
   },
   "p11": {
-    "status": "프1-1(순환매50+가격위치20+펀더멘털30): 초기 진입을 우선하되 확산·과열·분산 단계에 가중치를 적용합니다. 세부 계산점수는 숨기고 최종 순위·시장상태·행동·핵심근거만 표시합니다.",
+    "status": "프1-1(순환매50+가격위치20+펀더멘털30): 대형섹터 순위는 전체를 표시하되 종목은 상위 3개 섹터(자동차·인터넷/AI·원전)에서만 선별합니다. 과열·분산·추격금지 후보는 제외하고 1차 분할진입과 눌림목 진입 후보만 표시합니다.",
     "sectors": [
       {"rank":1,"name":"자동차","stage":"초기"},
       {"rank":2,"name":"인터넷·AI","stage":"초기"},
@@ -41,21 +41,15 @@
       {"rank":9,"name":"로봇","stage":"과열·분산"}
     ],
     "rows": [
-      {"rank":1,"name":"실리콘투","sector":"K뷰티 유통","opGrowth":"+27.2% E","value":"9.99x","sectorMedian":"14.44x","premium":"-31%","marketState":"확산","marketDetail":"5D +9.0% / 20D +18.9% · 거래량 4.20배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"눌림목 진입","reason":"K뷰티 확산과 거래량 유입, 섹터 할인과 이익 성장 확인. 고점 근접으로 눌림 진입 우선"},
-      {"rank":2,"name":"현대모비스","sector":"자동차부품","opGrowth":"+12.6% E","value":"10.97x","sectorMedian":"9.80x","premium":"+12%","marketState":"초기","marketDetail":"5D +10.2% / 20D +13.5% · 거래량 0.75배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"자동차 순환매 초기와 60일 고점 대비 가격 여유, 안정적인 이익 가시성을 함께 반영"},
-      {"rank":3,"name":"NAVER","sector":"인터넷/AI 플랫폼","opGrowth":"+16.5% E","value":"16.46x","sectorMedian":"19.22x","premium":"-14%","marketState":"초기","marketDetail":"5D +8.6% / 20D +20.0% · 거래량 0.73배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"인터넷·AI로 순환매가 이동하는 초기 구간. 할인은 유효하나 AI 투자비 증가를 반영"},
-      {"rank":4,"name":"현대건설","sector":"원전/건설","opGrowth":"+30.3% E","value":"21.16x","sectorMedian":"35.10x","premium":"-40%","marketState":"초기","marketDetail":"5D +5.4% / 20D +17.0% · 거래량 0.81배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"원전 순환매 후발 유입과 섹터 할인. 건설 원가 및 해외수주 실현 여부는 추가 확인"},
-      {"rank":5,"name":"일진전기","sector":"변압기/전선","opGrowth":"+13.1% E","value":"18.21x","sectorMedian":"25.77x","premium":"-29%","marketState":"과열","marketDetail":"5D +27.4% / 20D +24.9% · 거래량 2.01배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"추격금지","reason":"북미 전력망 수요와 할인은 유효하지만 단기 수익률·거래량 동반 급증으로 눌림 대기"},
-      {"rank":6,"name":"한국콜마","sector":"화장품 ODM","opGrowth":"+18.5% E","value":"14.44x","sectorMedian":"14.44x","premium":"0%","marketState":"과열","marketDetail":"5D +28.1% / 20D +27.0% · 거래량 3.43배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"추격금지","reason":"K뷰티 ODM 실적과 수급은 강하지만 60일 고점 도달과 단기 급등으로 신규 추격 제한"},
-      {"rank":7,"name":"코스맥스","sector":"화장품 ODM","opGrowth":"+22.6% E","value":"14.39x","sectorMedian":"14.44x","premium":"0%","marketState":"과열","marketDetail":"5D +20.4% / 20D +36.7% · 거래량 2.70배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"추격금지","reason":"글로벌 ODM 성장과 가치부담은 양호하나 고점 근접·거래량 급증으로 진입 안전마진 축소"},
-      {"rank":8,"name":"유한양행","sector":"제약/바이오","opGrowth":"+59.7% E","value":"31.59x","sectorMedian":"27.60x","premium":"+14%","marketState":"확산","marketDetail":"5D +3.8% / 20D +18.2% · 거래량 1.19배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"눌림목 대기","reason":"이익 성장과 바이오 확산은 유효하지만 60일 고점 부근과 섹터 프리미엄을 반영"},
-      {"rank":9,"name":"한화시스템","sector":"방산전자/조선MRO","opGrowth":"+87.1% E","value":"44.85x","sectorMedian":"38.68x","premium":"+16%","marketState":"확산","marketDetail":"5D +13.6% / 20D +22.6% · 거래량 0.68배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"눌림목 대기","reason":"방산전자 이익 성장과 가격 여유는 있으나 거래량 확산과 높은 가치배수 확인 필요"},
-      {"rank":10,"name":"두산에너빌리티","sector":"원전 주기기","opGrowth":"+43.9% E","value":"109.54x","sectorMedian":"35.10x","premium":"+212%","marketState":"확산","marketDetail":"5D +7.1% / 20D +18.5% · 거래량 0.75배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"분할진입 관찰","reason":"원전 종목 동반 상승과 수주 기대는 유효하지만 현재 이익 대비 가치부담이 매우 높음"},
-      {"rank":11,"name":"삼성SDI","sector":"2차전지 셀","opGrowth":"+340.2% E","value":"39.83x","sectorMedian":"163.50x","premium":"-76%","marketState":"확산","marketDetail":"5D +12.4% / 20D +18.8% · 거래량 0.84배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"실적확인 후 진입","reason":"2차전지 동반 반등과 턴어라운드 기대가 반영됐으나 큰 기저효과와 실적 확인이 필요"},
-      {"rank":12,"name":"포스코퓨처엠","sector":"2차전지 소재","opGrowth":"+80.1% E","value":"267.37x","sectorMedian":"163.50x","premium":"+64%","marketState":"확산","marketDetail":"5D +9.4% / 20D +15.5% · 거래량 1.11배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"실적확인 후 진입","reason":"업종 반등과 거래량 회복은 확인되나 이익 대비 높은 가치배수로 실적 전환을 우선 확인"},
-      {"rank":13,"name":"한화에어로스페이스","sector":"지상방산/항공우주","opGrowth":"+23.3% E","value":"22.63x","sectorMedian":"38.68x","premium":"-41%","marketState":"분산","marketDetail":"5D +5.7% / 20D +23.0% · 거래량 0.98배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"신규 대기","reason":"펀더멘털은 강하지만 방산 내 종목별 흐름이 갈리는 분산 단계라 신규 진입은 확인 후"},
-      {"rank":14,"name":"로보티즈","sector":"액추에이터/로봇","opGrowth":"흑자 초기 E","value":"256.96x","sectorMedian":"256.96x","premium":"0%","marketState":"과열","marketDetail":"5D +22.0% / 20D +40.1% · 거래량 1.14배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"추격금지","reason":"로봇 순환매 강도는 최상위지만 이익 규모가 작고 가치배수가 높아 단기 추격 금지"},
-      {"rank":15,"name":"레인보우로보틱스","sector":"휴머노이드 로봇","opGrowth":"+200.0% E*","value":"378.68x","sectorMedian":"256.96x","premium":"+47%","marketState":"분산","marketDetail":"5D +7.7% / 20D +26.2% · 거래량 0.64배","change":"[신규] 프1-1 추가","changeUntil":"2026-08-24","signal":"관찰","reason":"로봇 테마는 강하지만 거래량 둔화·종목별 분산과 높은 가치배수를 반영. OP는 낮은 기저"}
+      {"rank":1,"name":"현대모비스","sector":"자동차부품","opGrowth":"+12.6% E","value":"10.97x","sectorMedian":"10.94x","premium":"0%","marketState":"초기","marketDetail":"5D +10.2% / 20D +13.5% · 거래량 0.75배","change":"[선별] 상위 3개 섹터","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"자동차 순환매 초기와 60일 고점 대비 가격 여유, 안정적인 이익 가시성을 함께 반영"},
+      {"rank":2,"name":"현대위아","sector":"자동차부품/기계","opGrowth":"+21.6% E","value":"10.45x","sectorMedian":"10.94x","premium":"-4%","marketState":"확산","marketDetail":"5D +8.5% / 20D +17.7% · 거래량 0.63배","change":"[신규선별] 자동차 확대","changeUntil":"2026-08-24","signal":"눌림목 진입","reason":"OP 성장·가치배수·가격위치가 균형적이며 자동차 내 확산이 확인됨"},
+      {"rank":3,"name":"NAVER","sector":"인터넷/AI 플랫폼","opGrowth":"+16.5% E","value":"16.46x","sectorMedian":"17.87x","premium":"-8%","marketState":"초기","marketDetail":"5D +8.6% / 20D +20.0% · 거래량 0.73배","change":"[선별] 상위 3개 섹터","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"인터넷·AI 순환매 초기와 섹터 할인. AI 투자비 증가에 따른 이익속도는 점검"},
+      {"rank":4,"name":"현대건설","sector":"원전/건설","opGrowth":"+30.3% E","value":"21.16x","sectorMedian":"17.77x","premium":"+19%","marketState":"초기","marketDetail":"5D +5.4% / 20D +17.0% · 거래량 0.81배","change":"[선별] 상위 3개 섹터","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"원전 순환매 후발 유입과 이익 성장. 건설 원가와 해외수주 실현 여부는 추가 확인"},
+      {"rank":5,"name":"한글과컴퓨터","sector":"AI 소프트웨어","opGrowth":"+20.4% E","value":"9.44x","sectorMedian":"17.87x","premium":"-47%","marketState":"초기","marketDetail":"5D +0.6% / 20D +12.3% · 거래량 1.03배","change":"[신규선별] 인터넷·AI 확대","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"AI 소프트웨어 성장과 큰 섹터 할인. 거래량이 과열되지 않은 초기 구간"},
+      {"rank":6,"name":"기아","sector":"완성차","opGrowth":"+11.2% E","value":"6.07x","sectorMedian":"10.94x","premium":"-45%","marketState":"초기","marketDetail":"5D +5.0% / 20D -5.3% · 거래량 0.75배","change":"[신규선별] 자동차 확대","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"자동차 내 가치매력이 가장 크고 단기 유입이 시작됐으나 20일 추세 회복은 추가 확인"},
+      {"rank":7,"name":"현대글로비스","sector":"물류/자동차","opGrowth":"+10.4% E","value":"8.65x","sectorMedian":"10.94x","premium":"-21%","marketState":"초기","marketDetail":"5D +1.7% / 20D +11.9% · 거래량 0.81배","change":"[신규선별] 자동차 확대","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"저평가와 20일 흐름 개선이 유효하며 단기 과열 없이 자동차 순환매에 편입"},
+      {"rank":8,"name":"한전KPS","sector":"원전 정비","opGrowth":"+9.4% E","value":"13.01x","sectorMedian":"17.77x","premium":"-27%","marketState":"초기","marketDetail":"5D -1.9% / 20D +6.4% · 거래량 1.25배","change":"[신규선별] 원전 확대","changeUntil":"2026-08-24","signal":"1차 분할진입","reason":"원전 정비 실적과 할인, 거래량 유입은 확인됐고 단기 조정 구간에서 초기 진입 후보"},
+      {"rank":9,"name":"카카오","sector":"인터넷 플랫폼","opGrowth":"+14.7% E","value":"21.97x","sectorMedian":"17.87x","premium":"+23%","marketState":"초기","marketDetail":"5D +0.3% / 20D +11.4% · 거래량 1.00배","change":"[신규선별] 인터넷·AI 확대","changeUntil":"2026-08-24","signal":"눌림목 진입","reason":"인터넷 순환매 초기 흐름은 유효하나 섹터 프리미엄으로 눌림 구간에서만 제한 진입"}
     ]
   },
   "p2": {
