@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "주식평가창",
-    "updatedKST": "2026-08-15 20:03",
+    "updatedKST": "2026-08-15 20:23",
     "note": "국내 8/14 종가·최근 60거래일 시세 확정. NEW·UP·OLD·RISK는 정보 표시 전용이며 순위·점수·행동 계산에는 반영하지 않습니다. 시장국면은 프1·프1-1에만 적용합니다.",
     "masterBasis": "가격 2026-08-14 / 컨센서스·재무 2026-08-15",
     "sourceSummary": "KRX·Naver Finance 종가, FnGuide 분기·연간 컨센서스 및 재무자료",
@@ -76,26 +76,26 @@
     ]
   },
   "p3": {
-    "status": "보유 16종목. 현재가는 내부 계산에만 사용하며 내 평단 수익률·NTM EV/OP 섹터비교·적정가 범위·최근 60거래일 고점 대비 낙폭으로 관리합니다.",
+    "status": "보유 16종목. 8/15 HTS 보유내역 2개의 수량·평균매입가를 합산 반영했으며, 중복 종목은 먼저 확인한 매입가를 적용했습니다. 현재가는 내부 계산에만 사용합니다.",
     "events": [],
     "valuationBasis": "NTM OP = 26년 3Q·4Q 컨센서스 + 2027E OP의 50%. 적정가 범위는 섹터 중앙 EV/OP 적용값의 ±10%이며 사업구조·순부채 차이로 실제 가치와 다를 수 있습니다.",
     "rows": [
-      {"name":"SK하이닉스","sector":"메모리","avg":1716000,"ret":"-4.14%","opGrowth":"+18.5% E","valuePosition":"3.31x / 섹터 3.20x (+3%)","fairRange":"1,433,000~1,752,000원","drawdown3m":"-43.65%","judgment":"가격: 적정범위","special":"","action":"눌림목추매","basis":"가격 8/14·추정 8/15"},
-      {"name":"삼성전자","sector":"메모리/파운드리","avg":245086,"ret":"+12.00%","opGrowth":"+26.0% E","valuePosition":"3.09x / 섹터 3.20x (-3%)","fairRange":"255,700~312,500원","drawdown3m":"-24.28%","judgment":"가격: 적정범위","special":"","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"일진전기","sector":"변압기/전선","avg":75600,"ret":"-1.72%","opGrowth":"+30.0% E","valuePosition":"13.70x / 섹터 19.25x (-29%)","fairRange":"94,500~115,500원","drawdown3m":"-37.62%","judgment":"가격: 적정범위 하단 미만","marks":["RISK"],"special":"","action":"눌림목추매","basis":"가격 8/14·추정 8/15"},
-      {"name":"이수페타시스","sector":"AI MLB","avg":83200,"ret":"+14.90%","opGrowth":"+41.9% E","valuePosition":"17.72x / 섹터 16.21x (+9%)","fairRange":"78,400~95,800원","drawdown3m":"-31.57%","judgment":"가격: 적정범위 상단","special":"","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"테스","sector":"반도체 전공정","avg":90700,"ret":"+62.62%","opGrowth":"+46.3% E","valuePosition":"22.36x / 섹터 18.94x (+18%)","fairRange":"112,600~137,600원","drawdown3m":"-32.18%","judgment":"가격: 적정범위 상단 초과","marks":["UP"],"special":"","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"효성중공업","sector":"변압기/건설","avg":2799000,"ret":"+5.54%","opGrowth":"+34.9% E","valuePosition":"19.36x / 섹터 19.25x (+1%)","fairRange":"2,642,500~3,229,800원","drawdown3m":"-26.28%","judgment":"가격: 적정범위","marks":["UP","RISK"],"special":"건설 부문 손실·내수 리스크를 OP에 차감 반영","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"한화오션","sector":"조선","avg":82500,"ret":"+16.12%","opGrowth":"+20.9% E","valuePosition":"15.79x / 섹터 9.53x (+66%)","fairRange":"43,100~52,600원","drawdown3m":"-28.98%","judgment":"가격: 섹터 대비 프리미엄","marks":["UP","RISK"],"special":"HD한국조선해양과 사업구조 차이로 적정가 범위 보수적","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"LIG넥스원","sector":"유도무기/방산","avg":772000,"ret":"+5.57%","opGrowth":"+24.5% E","valuePosition":"41.88x / 섹터 44.11x (-5%)","fairRange":"777,500~950,300원","drawdown3m":"-18.66%","judgment":"가격: 적정범위","special":"","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"피에스케이","sector":"반도체 전공정","avg":122200,"ret":"+9.74%","opGrowth":"+31.8% E","valuePosition":"18.94x / 섹터 18.94x (0%)","fairRange":"120,700~147,500원","drawdown3m":"-36.60%","judgment":"가격: 적정범위","special":"","action":"눌림목추매","basis":"가격 8/14·추정 8/15"},
-      {"name":"코리아써키트","sector":"PCB/패키지기판","avg":38250,"ret":"+64.97%","opGrowth":"+69.9% E","valuePosition":"10.47x / 섹터 16.21x (-35%)","fairRange":"98,500~120,400원","drawdown3m":"-55.53%","judgment":"가격: 적정범위 하단 미만","marks":["RISK"],"special":"높은 분기 변동성으로 적정가 범위 신중 적용","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"LG이노텍","sector":"광학/FC-BGA","avg":524500,"ret":"+24.69%","opGrowth":"+21.7% E","valuePosition":"11.21x / 섹터 16.21x (-31%)","fairRange":"868,000~1,060,900원","drawdown3m":"-57.25%","judgment":"가격: 적정범위 하단 미만","marks":["RISK"],"special":"북미 고객 의존과 광학사업 계절성 반영 필요","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"브이엠","sector":"반도체 식각장비","avg":46758,"ret":"+45.86%","opGrowth":"+73.0% E","valuePosition":"16.68x / 섹터 18.94x (-12%)","fairRange":"69,400~84,900원","drawdown3m":"-43.02%","judgment":"가격: 적정범위 하단 부근","special":"","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"유진테크","sector":"반도체 증착장비","avg":107500,"ret":"+21.95%","opGrowth":"+20.2% E","valuePosition":"22.64x / 섹터 18.94x (+20%)","fairRange":"98,900~120,900원","drawdown3m":"-36.51%","judgment":"가격: 적정범위 상단 초과","marks":["RISK"],"special":"","action":"일부축소","basis":"가격 8/14·추정 8/15"},
-      {"name":"대덕전자","sector":"AI PCB/패키지기판","avg":106800,"ret":"+11.52%","opGrowth":"+59.5% E","valuePosition":"16.21x / 섹터 16.21x (0%)","fairRange":"107,200~131,100원","drawdown3m":"-37.61%","judgment":"가격: 적정범위","marks":["UP"],"special":"","action":"보유","basis":"가격 8/14·추정 8/15"},
-      {"name":"한화시스템","sector":"방산전자/조선MRO","avg":79100,"ret":"+1.52%","opGrowth":"+27.5% E","valuePosition":"46.34x / 섹터 44.11x (+5%)","fairRange":"68,400~83,600원","drawdown3m":"-30.17%","judgment":"가격: 적정범위 상단","marks":["RISK"],"special":"우주 개발비와 필리조선소 손익 변동 확인 필요","action":"일부축소","basis":"가격 8/14·추정 8/15"},
-      {"name":"엠앤씨솔루션","sector":"방산 구동/제어","avg":15500,"ret":"+14.97%","opGrowth":"+49.1% E","valuePosition":"산정 보류 / 방산 44.11x","fairRange":"자료 확인 중","drawdown3m":"-49.94%","judgment":"가격: 비교자료 부족","marks":["RISK"],"special":"분기 컨센서스 부족으로 NTM 적정가 산정 보류","action":"보유","basis":"가격 8/14·추정 8/15"}
+      {"name":"SK하이닉스","sector":"메모리","qty":6,"avg":1716000,"ret":"-2.86%","opGrowth":"+18.5% E","valuePosition":"3.35x / 섹터 3.20x (+5%)","fairRange":"1,433,000~1,752,000원","drawdown3m":"-42.89%","judgment":"가격: 적정범위","special":"","action":"눌림목추매","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"삼성전자","sector":"메모리/파운드리","qty":23,"avg":245086,"ret":"+12.00%","opGrowth":"+26.0% E","valuePosition":"3.09x / 섹터 3.20x (-3%)","fairRange":"255,700~312,500원","drawdown3m":"-24.28%","judgment":"가격: 적정범위","special":"","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"이수페타시스","sector":"AI MLB","qty":45,"avg":89300,"ret":"+6.94%","opGrowth":"+41.9% E","valuePosition":"17.70x / 섹터 16.21x (+9%)","fairRange":"78,400~95,800원","drawdown3m":"-31.64%","judgment":"가격: 적정범위 상단","special":"","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"코리아써키트","sector":"PCB/패키지기판","qty":64,"avg":46250,"ret":"+34.49%","opGrowth":"+69.9% E","valuePosition":"10.32x / 섹터 16.21x (-36%)","fairRange":"98,500~120,400원","drawdown3m":"-56.16%","judgment":"가격: 적정범위 하단 미만","marks":["RISK"],"special":"높은 분기 변동성으로 적정가 범위 신중 적용","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"LG이노텍","sector":"광학/FC-BGA","qty":7,"avg":572500,"ret":"+17.38%","opGrowth":"+21.7% E","valuePosition":"11.51x / 섹터 16.21x (-29%)","fairRange":"868,000~1,060,900원","drawdown3m":"-56.08%","judgment":"가격: 적정범위 하단 미만","marks":["RISK"],"special":"북미 고객 의존과 광학사업 계절성 반영 필요","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"한화오션","sector":"조선","qty":14,"avg":93428,"ret":"+3.07%","opGrowth":"+20.9% E","valuePosition":"15.87x / 섹터 9.53x (+67%)","fairRange":"43,100~52,600원","drawdown3m":"-28.61%","judgment":"가격: 섹터 대비 프리미엄","marks":["UP","RISK"],"special":"HD한국조선해양과 사업구조 차이로 적정가 범위 보수적","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"일진전기","sector":"변압기/전선","qty":20,"avg":75600,"ret":"-1.85%","opGrowth":"+30.0% E","valuePosition":"13.68x / 섹터 19.25x (-29%)","fairRange":"94,500~115,500원","drawdown3m":"-37.70%","judgment":"가격: 적정범위 하단 미만","marks":["RISK"],"special":"","action":"눌림목추매","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"효성중공업","sector":"변압기/건설","qty":2,"avg":2552000,"ret":"+15.87%","opGrowth":"+34.9% E","valuePosition":"19.38x / 섹터 19.25x (+1%)","fairRange":"2,642,500~3,229,800원","drawdown3m":"-26.21%","judgment":"가격: 적정범위","marks":["UP","RISK"],"special":"건설 부문 손실·내수 리스크를 OP에 차감 반영","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"피에스케이","sector":"반도체 전공정","qty":31,"avg":156600,"ret":"-13.41%","opGrowth":"+31.8% E","valuePosition":"19.15x / 섹터 18.94x (+1%)","fairRange":"120,700~147,500원","drawdown3m":"-35.89%","judgment":"가격: 적정범위","special":"","action":"눌림목추매","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"대덕전자","sector":"AI PCB/패키지기판","qty":30,"avg":97000,"ret":"+22.78%","opGrowth":"+59.5% E","valuePosition":"16.21x / 섹터 16.21x (0%)","fairRange":"107,200~131,100원","drawdown3m":"-37.61%","judgment":"가격: 적정범위","marks":["UP"],"special":"","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"LIG넥스원","sector":"유도무기/방산","qty":3,"avg":967667,"ret":"-15.78%","opGrowth":"+24.5% E","valuePosition":"41.88x / 섹터 44.11x (-5%)","fairRange":"777,500~950,300원","drawdown3m":"-18.66%","judgment":"가격: 적정범위","special":"","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"유진테크","sector":"반도체 증착장비","qty":10,"avg":161700,"ret":"-18.99%","opGrowth":"+20.2% E","valuePosition":"22.62x / 섹터 18.94x (+19%)","fairRange":"98,900~120,900원","drawdown3m":"-36.56%","judgment":"가격: 적정범위 상단 초과","marks":["RISK"],"special":"","action":"일부축소","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"브이엠","sector":"반도체 식각장비","qty":48,"avg":89503,"ret":"-24.02%","opGrowth":"+73.0% E","valuePosition":"16.63x / 섹터 18.94x (-12%)","fairRange":"69,400~84,900원","drawdown3m":"-43.19%","judgment":"가격: 적정범위 하단 부근","special":"","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"테스","sector":"반도체 전공정","qty":18,"avg":175800,"ret":"-16.21%","opGrowth":"+46.3% E","valuePosition":"22.33x / 섹터 18.94x (+18%)","fairRange":"112,600~137,600원","drawdown3m":"-32.27%","judgment":"가격: 적정범위 상단 초과","marks":["UP"],"special":"","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"한화시스템","sector":"방산전자/조선MRO","qty":11,"avg":68800,"ret":"+17.15%","opGrowth":"+27.5% E","valuePosition":"46.51x / 섹터 44.11x (+5%)","fairRange":"68,400~83,600원","drawdown3m":"-29.91%","judgment":"가격: 적정범위 상단","marks":["RISK"],"special":"우주 개발비와 필리조선소 손익 변동 확인 필요","action":"일부축소","basis":"보유 8/15·가격 8/14·추정 8/15"},
+      {"name":"엠앤씨솔루션","sector":"방산 구동/제어","qty":185,"avg":28143,"ret":"-36.68%","opGrowth":"+49.1% E","valuePosition":"산정 보류 / 방산 44.11x","fairRange":"자료 확인 중","drawdown3m":"-49.94%","judgment":"가격: 비교자료 부족","marks":["RISK"],"special":"분기 컨센서스 부족으로 NTM 적정가 산정 보류","action":"보유","basis":"보유 8/15·가격 8/14·추정 8/15"}
     ]
   }
 }
