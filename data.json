@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "주식평가창",
-    "updatedKST": "2026-08-15 01:20",
+    "updatedKST": "2026-08-15 15:43",
     "note": "누락 데이터 복원본. 프1·프2는 8/13 종가 및 8/14 오전 시장자료 재검증 기준, 프3는 8/13 최신 보유목록 기준입니다."
   },
   "p1": {
@@ -20,18 +20,18 @@
     ]
   },
   "p2": {
-    "status": "펀더멘털 가치 후보 · 프1과 동일한 산식/시점 · 순위·판정 변경 시 업데이트 열에 표시",
+    "status": "펀더멘털 가치 후보 · 매출→OP→OPM 성장의 질과 현재가/OP를 함께 비교 · 변경 내용은 업데이트 열에 표시",
     "rows": [
-      {"rank":1,"name":"한국타이어앤테크놀로지","code":"161390","sector":"자동차·타이어","q3op":-10.2,"q3opm":-1.8,"q4op":5.7,"q4opm":0.1,"mcop26":4.1,"mcop27":3.6,"op27":12.1,"opm27":10.3,"consensus":"혼조","catalyst":"테네시 증설·판가 전가","signal":"기준선 1위","update":"변경 없음","score":95},
-      {"rank":2,"name":"HD한국조선해양","code":"009540","sector":"조선","q3op":61.8,"q3opm":6.1,"q4op":88.1,"q4opm":8.5,"mcop26":4.3,"mcop27":3.7,"op27":17.1,"opm27":19.0,"consensus":"상향","catalyst":"고선가 LNG선 매출 인식","signal":"추정치 상향","update":"변경 없음","score":94},
-      {"rank":3,"name":"SK하이닉스","code":"000660","sector":"메모리 반도체","q3op":null,"q3opm":null,"q4op":null,"q4opm":null,"mcop26":4.4,"mcop27":3.0,"op27":46.9,"opm27":78.4,"consensus":"상향","catalyst":"HBM4 장기공급·메모리 가격","signal":"저평가 성장","update":"변경 없음","score":93},
-      {"rank":4,"name":"삼성전자","code":"005930","sector":"종합 반도체","q3op":null,"q3opm":null,"q4op":null,"q4opm":null,"mcop26":4.0,"mcop27":2.9,"op27":39.3,"opm27":57.7,"consensus":"상향","catalyst":"HBM4·2나노·메모리 가격","signal":"이익 레벨업","update":"변경 없음","score":92},
-      {"rank":5,"name":"NHN","code":"181710","sector":"인터넷·클라우드","q3op":97.2,"q3opm":2.5,"q4op":18.6,"q4opm":-0.1,"mcop26":11.2,"mcop27":9.1,"op27":24.0,"opm27":7.4,"consensus":"상향","catalyst":"AI 데이터센터·GPUaaS","signal":"실적 서프라이즈","update":"변경 없음","score":89},
-      {"rank":6,"name":"일진전기","code":"103590","sector":"전력기기","q3op":66.9,"q3opm":2.6,"q4op":45.5,"q4opm":2.6,"mcop26":14.3,"mcop27":12.6,"op27":13.1,"opm27":10.8,"consensus":"상향","catalyst":"북미 변압기 수주·증설","signal":"마진 재평가","update":"변경 없음","score":88},
-      {"rank":7,"name":"코리아써키트","code":"007810","sector":"AI PCB","q3op":167.7,"q3opm":4.8,"q4op":10.2,"q4opm":0.6,"mcop26":10.9,"mcop27":7.1,"op27":51.9,"opm27":10.3,"consensus":"유지","catalyst":"SoCAMM·AI 패키지기판","signal":"가치 유지","update":"변경 없음","score":87},
-      {"rank":8,"name":"피에스케이","code":"319660","sector":"전공정 장비","q3op":124.0,"q3opm":8.0,"q4op":54.0,"q4opm":4.0,"mcop26":21.8,"mcop27":17.3,"op27":25.9,"opm27":27.2,"consensus":"상향","catalyst":"메모리 증설·Dry Strip","signal":"질적 성장","update":"변경 없음","score":86},
-      {"rank":9,"name":"테스","code":"095610","sector":"전공정 장비","q3op":279.0,"q3opm":14.0,"q4op":77.0,"q4opm":7.0,"mcop26":27.5,"mcop27":20.4,"op27":34.9,"opm27":23.0,"consensus":"상향","catalyst":"DRAM·NAND 전환 투자","signal":"저평가 회복","update":"변경 없음","score":84},
-      {"rank":10,"name":"한국콜마","code":"161890","sector":"화장품 ODM","q3op":56.3,"q3opm":2.7,"q4op":32.1,"q4opm":1.3,"mcop26":9.2,"mcop27":7.8,"op27":18.5,"opm27":11.4,"consensus":"상향","catalyst":"ODM 성장·해외법인 개선","signal":"상향 확인","update":"변경 없음","score":82}
+      {"rank":1,"name":"한국타이어앤테크놀로지","code":"161390","sector":"자동차·타이어","q3sales":5.4,"q4sales":1.5,"sales27":5.4,"q3op":-10.2,"q3opm":-1.8,"q4op":5.7,"q4opm":0.1,"mcop26":4.1,"mcop27":3.6,"op27":12.1,"opm27":10.3,"consensus":"혼조","catalyst":"테네시 증설·판가 전가","signal":"기준선 1위","update":"매출 성장률 추가","score":95},
+      {"rank":2,"name":"HD한국조선해양","code":"009540","sector":"조선","q3sales":8.8,"q4sales":4.9,"sales27":9.7,"q3op":61.8,"q3opm":6.1,"q4op":88.1,"q4opm":8.5,"mcop26":4.3,"mcop27":3.7,"op27":17.1,"opm27":19.0,"consensus":"상향","catalyst":"고선가 LNG선 매출 인식","signal":"추정치 상향","update":"매출 성장률 추가","score":94},
+      {"rank":3,"name":"SK하이닉스","code":"000660","sector":"메모리 반도체","q3sales":360.4,"q4sales":272.8,"sales27":45.0,"q3op":null,"q3opm":null,"q4op":null,"q4opm":null,"mcop26":4.4,"mcop27":3.0,"op27":46.9,"opm27":78.4,"consensus":"상향","catalyst":"HBM4 장기공급·메모리 가격","signal":"저평가 성장","update":"매출 성장률 추가","score":93},
+      {"rank":4,"name":"삼성전자","code":"005930","sector":"종합 반도체","q3sales":143.1,"q4sales":135.5,"sales27":29.0,"q3op":null,"q3opm":null,"q4op":null,"q4opm":null,"mcop26":4.0,"mcop27":2.9,"op27":39.3,"opm27":57.7,"consensus":"상향","catalyst":"HBM4·2나노·메모리 가격","signal":"이익 레벨업","update":"매출 성장률 추가","score":92},
+      {"rank":5,"name":"NHN","code":"181710","sector":"인터넷·클라우드","q3sales":16.5,"q4sales":11.5,"sales27":9.9,"q3op":97.2,"q3opm":2.5,"q4op":18.6,"q4opm":-0.1,"mcop26":11.2,"mcop27":9.1,"op27":24.0,"opm27":7.4,"consensus":"상향","catalyst":"AI 데이터센터·GPUaaS","signal":"실적 서프라이즈","update":"매출 성장률 추가","score":89},
+      {"rank":6,"name":"일진전기","code":"103590","sector":"전력기기","q3sales":37.3,"q4sales":3.6,"sales27":10.9,"q3op":66.9,"q3opm":2.6,"q4op":45.5,"q4opm":2.6,"mcop26":14.3,"mcop27":12.6,"op27":13.1,"opm27":10.8,"consensus":"상향","catalyst":"북미 변압기 수주·증설","signal":"마진 재평가","update":"매출 성장률 추가","score":88},
+      {"rank":7,"name":"코리아써키트","code":"007810","sector":"AI PCB","q3sales":29.6,"q4sales":17.0,"sales27":17.2,"q3op":167.7,"q3opm":4.8,"q4op":10.2,"q4opm":0.6,"mcop26":10.9,"mcop27":7.1,"op27":51.9,"opm27":10.3,"consensus":"유지","catalyst":"SoCAMM·AI 패키지기판","signal":"가치 유지","update":"매출 성장률 추가","score":87},
+      {"rank":8,"name":"피에스케이","code":"319660","sector":"전공정 장비","q3sales":53.1,"q4sales":19.8,"sales27":16.0,"q3op":124.0,"q3opm":8.0,"q4op":54.0,"q4opm":4.0,"mcop26":21.8,"mcop27":17.3,"op27":25.9,"opm27":27.2,"consensus":"상향","catalyst":"메모리 증설·Dry Strip","signal":"질적 성장","update":"매출 성장률 추가","score":86},
+      {"rank":9,"name":"테스","code":"095610","sector":"전공정 장비","q3sales":62.6,"q4sales":6.7,"sales27":14.8,"q3op":279.0,"q3opm":14.0,"q4op":77.0,"q4opm":7.0,"mcop26":27.5,"mcop27":20.4,"op27":34.9,"opm27":23.0,"consensus":"상향","catalyst":"DRAM·NAND 전환 투자","signal":"저평가 회복","update":"매출 성장률 추가","score":84},
+      {"rank":10,"name":"한국콜마","code":"161890","sector":"화장품 ODM","q3sales":18.0,"q4sales":14.3,"sales27":10.6,"q3op":56.3,"q3opm":2.7,"q4op":32.1,"q4opm":1.3,"mcop26":9.2,"mcop27":7.8,"op27":18.5,"opm27":11.4,"consensus":"상향","catalyst":"ODM 성장·해외법인 개선","signal":"상향 확인","update":"매출 성장률 추가","score":82}
     ]
   },
   "p3": {
