@@ -1,29 +1,29 @@
 {
   "meta": {
     "title": "주식평가창",
-    "updatedKST": "2026-08-26 08:57",
-    "note": "8/26 KRX 정규장 개장 전 오전 증분판. 가격·거래량·수급은 8/25 확정치를 유지하고, 밤사이 미국 기술주 반등·국내 공시·수주·컨센서스만 재확인했습니다. 신규 핵심 펀더멘털 자료가 없어 5개 영역의 순위·등급·보유판정은 변경하지 않았습니다.",
-    "masterBasis": "가격·거래량·수급 2026-08-25 KRX 정규장 확정 / 단타 ‘실적주 저점 순환반전’ 10종목·2행×6열 전환 완료값 유지 / 공시·수주·컨센서스·글로벌 업종 흐름 2026-08-26 08:57 증분 재확인",
-    "sourceSummary": "KRX 영업일 일정·8/25 확정 시세·DART·Reuters 미국시장·기업 공개자료",
+    "updatedKST": "2026-08-26 15:45",
+    "note": "8/26 KRX 정규장 확정치 기준 5개 영역 전체 재스크리닝. 진입·순환·가치·보유는 기존 산식을 유지했고, 단타는 ‘실적주 저점 순환반전’ 산식으로 전 섹터(제약·바이오·건설 제외)를 다시 평가했습니다.",
+    "masterBasis": "가격·거래량·수급 2026-08-26 KRX 정규장 확정 / 단타 최근20영업일 거래량·40영업일 고점·5/20일선·5/20일 수익률 전면 재계산 / 2Q26 실적·공시·컨센서스 2026-08-26 15:45 재확인",
+    "sourceSummary": "KRX·Naver Finance 확정 시세·DART·회사 2Q 실적발표·공개 증권사 컨센서스",
     "changeUntil": "2026-09-01",
-    "nextTradingDay": "2026-08-26",
+    "nextTradingDay": "2026-08-27",
     "audit": {
-      "checkedAtKST": "2026-08-26 08:57",
-      "changedInputs": 1,
-      "newFundamentalSources": 0,
+      "checkedAtKST": "2026-08-26 15:45",
+      "changedInputs": 65,
+      "newFundamentalSources": 1,
       "recheckFailures": 0,
-      "summary": "정상 영업일 확인. 미국 기술주 반등과 금리·유가 하락을 시장 참고값으로 갱신했으나, 국내 후보군에 적용할 신규 실적·정정공시·직접 컨센서스 변경·방산 대형 확정수주는 없음. 진입·순환·단타·가치 순위와 보유 15종목 판정 모두 유지.",
+      "summary": "KRX 정상 영업일. KOSPI 6,808.21(+0.97%), KOSDAQ 826.87(-0.03%). 5개 영역 전체 재검증. 진입 5개 순위변경, 순환 단계 변경, 단타 7개 편입·7개 편출, 가치 순위 유지, 보유 2개 가격판정 변경. 방산 신규 대형 확정수주 없음.",
       "sourceDate": "2026-08-26",
-      "source": "KRX·DART·Reuters",
+      "source": "KRX·Naver Finance·DART·회사 IR",
       "sources": [
-        "https://global.krx.co.kr/",
-        "https://dart.fss.or.kr/dsac001/mainAll.do",
-        "https://www.reuters.com/business/us-stock-futures-rise-tech-rebound-before-nvidia-inflation-tests-2026-08-25/"
+        "https://finance.naver.com/sise/sise_index.naver?code=KOSPI",
+        "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ",
+        "https://dart.fss.or.kr/dsac001/mainAll.do"
       ]
     }
   },
   "p1": {
-    "status": "오전 증분 확인: 미국 기술주 반등은 우호적이나 엔비디아 실적은 한국시간 8/27 오전 예정으로 아직 미확정입니다. 8/25 확정 가격·수급과 기존 펀더멘털을 유지하며 진입 순위·편입·퇴출 변경 없음.",
+    "status": "진입 전체 갱신: KOSPI +0.97%, KOSDAQ -0.03%. 기관은 코스피 +7,604억원, 외국인은 코스피 -1,162억원·코스닥 -918억원으로 대형주 중심 반등입니다. 전력기기 3종 동반 강세로 HD현대일렉트릭 2→1, 일진전기 7→5. 대덕전자 1→2, 테스·삼성전기는 한 계단 하락. 신규편입·편출 없음.",
     "events": [
       {
         "name": "SK하이닉스",
@@ -64,42 +64,42 @@
     "rows": [
       {
         "rank": 1,
+        "name": "HD현대일렉트릭",
+        "sector": "전력기기/변압기",
+        "opGrowth": "+23.6% E",
+        "value": "21.7x",
+        "sectorMedian": "22.0x",
+        "premium": "-1%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "전력기기 동반 강세",
+        "change": "2→1",
+        "changeUntil": "2026-09-01",
+        "signal": "2→1",
+        "marks": [
+          "OLD"
+        ],
+        "reason": "수주 가시성은 높으나 반도체 대형주로 수급 집중 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "733,000원(+1.95%)"
+      },
+      {
+        "rank": 2,
         "name": "대덕전자",
         "sector": "AI PCB/패키지기판",
         "opGrowth": "+59.5% E",
-        "value": "15.0x",
+        "value": "14.5x",
         "sectorMedian": "18.5x",
-        "premium": "-23%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "소부장 강세이나 당일 상승으로 신규 안전마진 축소",
-        "change": "1위 유지",
+        "premium": "-22%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
+        "change": "1→2",
         "changeUntil": "2026-09-01",
-        "signal": "눌림목 분할관찰",
+        "signal": "1→2",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "실적 성장·할인 유지. 반도체 주도 복귀는 긍정이나 추격보다 눌림 우선 · 8/25 종가·수급·가격위치 재평가",
-        "close": "110,800원(+5.93%)"
-      },
-      {
-        "rank": 2,
-        "name": "HD현대일렉트릭",
-        "sector": "전력기기/변압기",
-        "opGrowth": "+23.6% E",
-        "value": "21.2x",
-        "sectorMedian": "22.0x",
-        "premium": "-4%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
-        "change": "3→2",
-        "changeUntil": "2026-09-01",
-        "signal": "관찰",
-        "marks": [
-          "OLD"
-        ],
-        "reason": "수주 가시성은 높으나 반도체 대형주로 수급 집중 · 8/25 종가·수급·가격위치 재평가",
-        "close": "719,000원(-0.14%)"
+        "reason": "실적 성장·할인 유지. 반도체 주도 복귀는 긍정이나 추격보다 눌림 우선 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "107,000원(-3.43%)"
       },
       {
         "rank": 3,
@@ -108,137 +108,137 @@
         "opGrowth": "+21.7% E",
         "value": "11.7x",
         "sectorMedian": "16.5x",
-        "premium": "-33%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "소부장 강세이나 당일 상승으로 신규 안전마진 축소",
-        "change": "2→3",
+        "premium": "-29%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
+        "change": "3위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "눌림목 분할관찰",
+        "signal": "3위 유지",
         "marks": [
           "RISK"
         ],
-        "reason": "밸류 할인은 크지만 성장 속도는 상위 반도체 기판주보다 낮음 · 8/25 종가·수급·가격위치 재평가",
-        "close": "602,000원(+5.61%)"
+        "reason": "밸류 할인은 크지만 성장 속도는 상위 반도체 기판주보다 낮음 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "583,000원(-3.16%)"
       },
       {
         "rank": 4,
         "name": "효성중공업",
         "sector": "변압기/건설",
         "opGrowth": "+34.9% E",
-        "value": "23.2x",
+        "value": "24.2x",
         "sectorMedian": "22.0x",
-        "premium": "+7%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
+        "premium": "+10%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "전력기기 동반 강세",
         "change": "4위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "관찰",
+        "signal": "4위 유지",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "전력기기 성장 강함. 건설 손실 리스크 병존 · 8/25 종가·수급·가격위치 재평가",
-        "close": "2,755,000원(-1.33%)"
+        "reason": "전력기기 성장 강함. 건설 손실 리스크 병존 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "2,797,000원(+1.52%)"
       },
       {
         "rank": 5,
+        "name": "일진전기",
+        "sector": "변압기/전선",
+        "opGrowth": "+30.0% E",
+        "value": "19.5x",
+        "sectorMedian": "22.0x",
+        "premium": "-11%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "전력기기 동반 강세",
+        "change": "7→5",
+        "changeUntil": "2026-09-01",
+        "signal": "7→5",
+        "marks": [
+          "OLD",
+          "RISK"
+        ],
+        "reason": "북미 수주·할인 유효, 단기 가격 위치는 확인 필요 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "69,200원(+4.37%)"
+      },
+      {
+        "rank": 6,
         "name": "테스",
         "sector": "반도체 전공정",
         "opGrowth": "+46.3% E",
         "value": "20.4x",
         "sectorMedian": "21.0x",
-        "premium": "-7%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
-        "change": "5위 유지",
+        "premium": "-3%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
+        "change": "5→6",
         "changeUntil": "2026-09-01",
-        "signal": "눌림목 분할관찰",
+        "signal": "5→6",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "2Q 이후 메모리 투자 회복 기대 유지 · 8/25 종가·수급·가격위치 재평가",
-        "close": "139,000원(+4.20%)"
-      },
-      {
-        "rank": 6,
-        "name": "삼성전기",
-        "sector": "MLCC/FC-BGA",
-        "opGrowth": "+122.1% E",
-        "value": "27.3x",
-        "sectorMedian": "21.0x",
-        "premium": "+26%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
-        "change": "6위 유지",
-        "changeUntil": "2026-09-01",
-        "signal": "관찰",
-        "marks": [
-          "UP",
-          "RISK"
-        ],
-        "reason": "성장성 최상위지만 프리미엄과 급등 위험 반영 · 8/25 종가·수급·가격위치 재평가",
-        "close": "1,362,000원(+3.34%)"
+        "reason": "2Q 이후 메모리 투자 회복 기대 유지 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "138,100원(-0.65%)"
       },
       {
         "rank": 7,
-        "name": "일진전기",
-        "sector": "변압기/전선",
-        "opGrowth": "+30.0% E",
-        "value": "18.6x",
-        "sectorMedian": "22.0x",
-        "premium": "-16%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
-        "change": "8→7",
+        "name": "삼성전기",
+        "sector": "MLCC/FC-BGA",
+        "opGrowth": "+122.1% E",
+        "value": "26.7x",
+        "sectorMedian": "21.0x",
+        "premium": "+27%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
+        "change": "6→7",
         "changeUntil": "2026-09-01",
-        "signal": "눌림목 분할관찰",
+        "signal": "6→7",
         "marks": [
-          "OLD",
+          "UP",
           "RISK"
         ],
-        "reason": "북미 수주·할인 유효, 단기 가격 위치는 확인 필요 · 8/25 종가·수급·가격위치 재평가",
-        "close": "66,300원(+0.30%)"
+        "reason": "성장성 최상위지만 프리미엄과 급등 위험 반영 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "1,330,000원(-2.35%)"
       },
       {
         "rank": 8,
         "name": "티에스이",
         "sector": "반도체 테스트장비",
         "opGrowth": "+40.2% E",
-        "value": "17.3x",
+        "value": "19.4x",
         "sectorMedian": "22.0x",
-        "premium": "-22%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
-        "change": "7→8",
+        "premium": "-12%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
+        "change": "8위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "추격보다 눌림",
+        "signal": "8위 유지",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "성장·할인 우수하나 단기 추격 리스크 · 8/25 종가·수급·가격위치 재평가",
-        "close": "249,000원(+1.43%)"
+        "reason": "성장·할인 우수하나 단기 추격 리스크 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "251,500원(+1.00%)"
       },
       {
         "rank": 9,
         "name": "하나마이크론",
         "sector": "반도체 후공정",
         "opGrowth": "+27.9% E",
-        "value": "13.1x",
+        "value": "12.6x",
         "sectorMedian": "18.0x",
-        "premium": "-33%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "소부장 강세이나 당일 상승으로 신규 안전마진 축소",
+        "premium": "-30%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
         "change": "9위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "반등 확인",
+        "signal": "9위 유지",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "후공정 성장과 할인 매력 유지 · 8/25 종가·수급·가격위치 재평가",
-        "close": "37,600원(+8.99%)"
+        "reason": "후공정 성장과 할인 매력 유지 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "36,850원(-1.99%)"
       },
       {
         "rank": 10,
@@ -247,22 +247,22 @@
         "opGrowth": "+20.9% E",
         "value": "10.5x",
         "sectorMedian": "11.0x",
-        "premium": "-8%",
-        "marketState": "전약후강·코스닥 확산",
-        "marketDetail": "시장 반등 속 가격·수급 전면 재평가",
+        "premium": "-5%",
+        "marketState": "KOSPI +0.97%·KOSDAQ -0.03%",
+        "marketDetail": "기관 중심 대형주 반등·코스닥 확산 정체",
         "change": "10위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "관찰",
+        "signal": "10위 유지",
         "marks": [
           "RISK"
         ],
-        "reason": "실적개선은 유지되나 현재 시장 주도축은 반도체 · 8/25 종가·수급·가격위치 재평가",
-        "close": "86,600원(+3.84%)"
+        "reason": "실적개선은 유지되나 현재 시장 주도축은 반도체 · 8/26 확정 종가·수급·가격위치 재평가",
+        "close": "87,300원(+0.81%)"
       }
     ]
   },
   "p11": {
-    "status": "오전 증분 확인: 미국 기술주 반등을 참고 반영했지만 국내 섹터 수급은 개장 전 미확정입니다. 전일 확정 단계(반도체 소부장 재확산·로봇 초기 확산·2차전지 숨고르기 등)와 후보 순위를 유지합니다.",
+    "status": "순환 전체 갱신: 전력기기는 HD현대일렉트릭 +1.95%, 효성중공업 +1.52%, 일진전기 +4.37%로 초기반등→확산. 반도체 소부장은 종목별 혼조와 낮은 거래량으로 재확산→분산. 원전·유틸리티는 한국전력 +6.42%, 한전기술 +13.63%로 초기 확산이나 추정치 하향·과열은 주의.",
     "events": [
       {
         "name": "2차전지",
@@ -276,47 +276,47 @@
       {
         "rank": 1,
         "name": "반도체",
-        "stage": "소부장 재확산"
+        "stage": "소부장 재확산→분산"
       },
       {
         "rank": 2,
         "name": "자동차",
-        "stage": "인베스터데이 기대·로봇 확산"
+        "stage": "기대 소멸·분산"
       },
       {
         "rank": 3,
         "name": "2차전지",
-        "stage": "확산 후 숨고르기"
+        "stage": "숨고르기 유지"
       },
       {
         "rank": 4,
         "name": "조선",
-        "stage": "초기 반등"
+        "stage": "초기 반등 유지"
       },
       {
         "rank": 5,
         "name": "전력기기",
-        "stage": "초기 반등→혼조"
+        "stage": "초기 반등→확산"
       },
       {
         "rank": 6,
         "name": "인터넷·AI",
-        "stage": "초기 유지"
+        "stage": "초기→중립"
       },
       {
         "rank": 7,
         "name": "방산",
-        "stage": "종목별 반등·확산 미흡"
+        "stage": "종목별 혼조"
       },
       {
         "rank": 8,
         "name": "통신·보험·금융",
-        "stage": "분산"
+        "stage": "보험·유통 순환"
       },
       {
         "rank": 9,
         "name": "원전",
-        "stage": "중립"
+        "stage": "중립→초기 확산"
       }
     ],
     "rows": [
@@ -329,9 +329,9 @@
         "sectorMedian": "22.0x",
         "premium": "-4%",
         "marketState": "분산→초기 반등",
-        "marketDetail": "-0.14%, 8/25 종가 기준",
+        "marketDetail": "+1.95%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "분할관찰",
         "marks": [
           "UP"
@@ -347,9 +347,9 @@
         "sectorMedian": "22.0x",
         "premium": "-16%",
         "marketState": "분산→초기 반등",
-        "marketDetail": "+0.30%, 8/25 종가 기준",
+        "marketDetail": "+4.37%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "눌림목 진입",
         "marks": [
           "UP"
@@ -365,9 +365,9 @@
         "sectorMedian": "비교군 재확인",
         "premium": "재확인",
         "marketState": "소부장 재확산",
-        "marketDetail": "+4.16%, 8/25 종가 기준",
+        "marketDetail": "+1.22%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "분할관찰",
         "marks": [
           "UP",
@@ -384,9 +384,9 @@
         "sectorMedian": "16.5x",
         "premium": "-33%",
         "marketState": "소부장 재확산",
-        "marketDetail": "+5.61%, 8/25 종가 기준",
+        "marketDetail": "-3.16%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "눌림목 진입",
         "marks": [
           "UP"
@@ -402,9 +402,9 @@
         "sectorMedian": "17.87x",
         "premium": "-8%",
         "marketState": "초기",
-        "marketDetail": "-1.34%, 8/25 종가 기준",
+        "marketDetail": "-0.23%, 8/26 종가",
         "change": "4→5",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "눌림목 진입",
         "marks": [
           "OLD"
@@ -420,9 +420,9 @@
         "sectorMedian": "10.94x",
         "premium": "-45%",
         "marketState": "중립",
-        "marketDetail": "+2.59%, 8/25 종가 기준",
+        "marketDetail": "-2.59%, 8/26 종가",
         "change": "5→6",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "분할관찰",
         "marks": [
           "OLD"
@@ -438,9 +438,9 @@
         "sectorMedian": "비교군 재확인",
         "premium": "재확인",
         "marketState": "종목별 반등",
-        "marketDetail": "+0.14%, 8/25 종가 기준",
+        "marketDetail": "-1.11%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "눌림목 관찰",
         "marks": [
           "UP",
@@ -457,9 +457,9 @@
         "sectorMedian": "비교군 재확인",
         "premium": "재확인",
         "marketState": "초기→확산",
-        "marketDetail": "-1.81%, 8/25 종가 기준",
+        "marketDetail": "+0.54%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "추격금지",
         "marks": [
           "NEW",
@@ -476,9 +476,9 @@
         "sectorMedian": "비교군 재확인",
         "premium": "재확인",
         "marketState": "초기→확산",
-        "marketDetail": "-1.24%, 8/25 종가 기준",
+        "marketDetail": "+2.97%, 8/26 종가",
         "change": "신규",
-        "changeUntil": "2026-09-01",
+        "changeUntil": "2026-09-02",
         "signal": "관찰만",
         "marks": [
           "NEW",
@@ -489,62 +489,63 @@
     ]
   },
   "p12": {
-    "status": "오전 증분 확인: ‘실적주 저점 순환반전’ 전환은 8/25 완료됐습니다. 밤사이 10개 후보의 실적·공시·가이던스에 등급을 바꿀 신규자료가 없어 후보·등급·순위를 모두 유지하며, 8/25 확정 가격·20영업일 거래량을 재사용합니다.",
+    "status": "단타 전체 갱신: 매출 1,000억원·최신 실적 필터와 8/26 확정 종가/20영업일 거래량을 재적용했습니다. 대한유화·두산·컴투스·한국전력·삼성생명·대한항공·와이씨 신규편입, 에이블씨엔씨·하나마이크론·삼성전기·LG이노텍·테스·한국콜마·심텍 편출. 오늘 완전 A급은 없으며 실적·조정폭·거래량 중 하나 이상 미충족한 대기 후보입니다.",
     "method": "정렬: 매출·펀더멘털 필터 통과 → 기술 핵심조건 미충족 개수·유형으로 등급 → 같은 등급 내 총점. 거래량은 당일/직전20영업일 평균 1.5배 PASS, 2배 이상 A급. 최근5일 +20% 또는 20일 +35%, 바로 위 3~5% 대량 매물은 감점. ‘확정’은 공시·실적·공개 컨센서스, ‘미확정 기대’는 계약·실적 미반영 전망입니다.",
     "rows": [
       {
         "rank": 1,
-        "name": "풍산",
-        "sector": "비철/방산",
-        "close": "87,600원",
-        "score": 90,
-        "grade": "A",
+        "name": "대한유화",
+        "sector": "석유화학/유틸리티",
+        "close": "88,000원",
+        "score": 88,
+        "grade": "B+",
         "marks": [
           "NEW",
-          "UP"
+          "UP",
+          "RISK"
         ],
-        "priceCandle": "+6.57% 강한 양봉·고가권 마감",
-        "volume": "약 3배대 · 2.0배 A급",
-        "adjustmentLow": "최근 고점 대비 약 -24% 조정 후 저점 상향",
-        "trend": "5일선 회복·20일선 돌파",
-        "supplyBreakout": "횡보 상단 거래량 돌파·상단 10% 매물 부담 낮음",
-        "rotationHeat": "비철·방산 동반 반등·5/20일 과열 아님",
-        "scale": "최근 연간 매출 5조원대 · 1,000억 PASS",
-        "latestSales": "2Q26 1조4,703억 · YoY +13.6%",
-        "latestOP": "2Q26 1,252억 · YoY +33.8%",
-        "consensus": "2Q 실적 양호·26E 이익 추정 유지↑",
-        "futureValue": "확정: 26E 매출 6조1,752억(+22.3%), OP 4,266억(+43.4%)·PER 7.75배. 성장/방향: 방산·동 가격 수혜, 추정 유지↑. 미확정 기대: 추가 대형 방산수주.",
-        "final": "A · 진입관찰"
+        "priceCandle": "+7.32% 강한 양봉·고가권",
+        "volume": "1.48배 · 1.5배에 근소 미달",
+        "adjustmentLow": "40일 고점 대비 -25.0%·저점 형성",
+        "trend": "5일선·20일선 동시 회복",
+        "supplyBreakout": "상단 매물 소화 중·당일 고가권 89%",
+        "rotationHeat": "석화 구조조정 순환·5/20일 과열 없음",
+        "scale": "상반기 매출 1조8,034억 · PASS",
+        "latestSales": "1H26 1조8,034억 · 1Q YoY +14.2%",
+        "latestOP": "1H26 697억 · 흑자 유지",
+        "consensus": "26E OP 701~1,881억으로 편차 큼·목표가 하향 이력",
+        "futureValue": "확정: 1H OP 697억. 성장/방향: 발전자회사 기여 vs 석화 회복 지연·추정 혼조. 미확정 기대: 업계 구조조정·저유가 수혜.",
+        "final": "기술대기 · 거래량/추정편차"
       },
       {
         "rank": 2,
-        "name": "에이블씨엔씨",
-        "sector": "화장품",
-        "close": "12,280원",
+        "name": "두산",
+        "sector": "전자소재/지주",
+        "close": "1,180,000원",
         "score": 86,
-        "grade": "A-",
+        "grade": "B+",
         "marks": [
           "NEW",
           "UP"
         ],
-        "priceCandle": "+7.25% 강한 양봉·고가권",
-        "volume": "약 1.6배 · 기본 PASS",
-        "adjustmentLow": "약 -25% 조정 뒤 10,500원대 저점 형성",
-        "trend": "5일선 회복·20일선 상향 돌파",
-        "supplyBreakout": "박스 상단 돌파·바로 위 매물은 확인 필요",
-        "rotationHeat": "화장품 3종 이상 동반 상승·과열 아님",
-        "scale": "최근 연간 매출 2,000억대 · 1,000억 PASS",
-        "latestSales": "2Q26 652억 · YoY +4.8%",
-        "latestOP": "2Q26 104억 · YoY +52.9%",
-        "consensus": "26E OP 상향 흐름·기관수 제한",
-        "futureValue": "확정: 26E 매출 2,699억(+11.5%), OP 364억(+102%)·PER 9.73배. 성장/방향: 수익성 회복·추정 상향. 미확정 기대: 해외 채널 확대 가속.",
-        "final": "A- · 진입관찰"
+        "priceCandle": "+7.18% 양봉·고가권",
+        "volume": "1.01배 · 1.5배 미달",
+        "adjustmentLow": "40일 고점 대비 -27.3%·저점 반전",
+        "trend": "5일선·20일선 회복",
+        "supplyBreakout": "단기 박스 상단 접근·거래량 확인 필요",
+        "rotationHeat": "원전·AI소재 동반 강세·과열 아님",
+        "scale": "2Q 매출 5조5,861억 · PASS",
+        "latestSales": "2Q26 5조5,861억 · YoY +5%",
+        "latestOP": "2Q26 4,884억 · YoY +38%·컨센 +6.8%",
+        "consensus": "2Q 상회·본업 추정 유지↑",
+        "futureValue": "확정: 2Q OP 4,884억. 성장/방향: 전자소재·계열사 이익 개선, 추정 유지↑. 미확정 기대: AI용 소재 증설 매출화.",
+        "final": "기술대기 · 거래량"
       },
       {
         "rank": 3,
-        "name": "에이피알",
-        "sector": "화장품/뷰티디바이스",
-        "close": "440,500원",
+        "name": "컴투스",
+        "sector": "게임",
+        "close": "34,000원",
         "score": 84,
         "grade": "B+",
         "marks": [
@@ -552,246 +553,248 @@
           "UP",
           "RISK"
         ],
-        "priceCandle": "+7.57% 강한 양봉·고가권",
-        "volume": "약 1.42배 · 1.5배 미달",
-        "adjustmentLow": "385,000원대 저점 형성·조정폭 약 -19%",
-        "trend": "5일선 회복·20일선 재돌파",
-        "supplyBreakout": "52주 고점 473,000원까지 7%대 매물",
-        "rotationHeat": "화장품 동반 강세·최근5일 약 +14%로 미과열",
-        "scale": "최근 연간 매출 1조원 이상 · PASS",
-        "latestSales": "2Q26 7,675억 · YoY +134.2%",
-        "latestOP": "2Q26 1,906억 · YoY +134.4%",
-        "consensus": "26E 매출·OP 추정 상향",
-        "futureValue": "확정: 26E 매출 3조652억, OP 7,625억(+108.6%)·Fwd PER 28.0배. 성장/방향: 고성장·추정 상향. 미확정 기대: 신규 해외지역 매출 확대.",
-        "final": "기술대기 · 거래량"
+        "priceCandle": "+8.80% 강한 양봉",
+        "volume": "4.40배 · A급",
+        "adjustmentLow": "40일 고점 대비 -5.0%·충분한 조정 미달",
+        "trend": "5일선·20일선 돌파",
+        "supplyBreakout": "단기 고점권·상단 매물 확인",
+        "rotationHeat": "게임 순환·20일 +28.1%로 과열 전 단계",
+        "scale": "2Q 매출 1,570억 · PASS",
+        "latestSales": "2Q26 1,570억 · YoY -15.0%",
+        "latestOP": "2Q26 72억 · YoY +420.7%",
+        "consensus": "비용효율로 OP 개선·매출 추정은 보수적",
+        "futureValue": "확정: 2Q OP 72억(+421%). 성장/방향: 이익 정상화·매출 감소 병존. 미확정 기대: 8/26 출시 신작 흥행.",
+        "final": "기술대기 · 조정폭/매출"
       },
       {
         "rank": 4,
-        "name": "대덕전자",
-        "sector": "AI PCB/패키지기판",
-        "close": "110,800원",
-        "score": 82,
-        "grade": "B",
-        "marks": [
-          "NEW",
-          "UP"
-        ],
-        "priceCandle": "+5.93% 양봉·고가권",
-        "volume": "약 0.56배 · 1.5배 미달",
-        "adjustmentLow": "52주 고점 대비 약 -44%·신저가 중단",
-        "trend": "5일선 회복·20일선 재돌파 시도",
-        "supplyBreakout": "단기 박스 상단 접근·확정 돌파 대기",
-        "rotationHeat": "PCB·장비 동반 상승·20일 과열 아님",
-        "scale": "최근 연간 매출 1조원 이상 · PASS",
-        "latestSales": "2Q26 4,010억 · YoY +63.1%",
-        "latestOP": "2Q26 703억 · YoY 대폭 증가",
-        "consensus": "27E 매출·OP 추정 유지↑",
-        "futureValue": "확정: 27E 매출 +24.7%, OP +59.5%·27E OP배수 15.0배(섹터 중앙 18.5배). 성장/방향: AI기판 성장·추정 유지↑. 미확정 기대: 신규 고객 양산 확대.",
-        "final": "기술대기 · 거래량"
-      },
-      {
-        "rank": 5,
-        "name": "하나마이크론",
-        "sector": "반도체 후공정",
-        "close": "37,600원",
+        "name": "한국전력",
+        "sector": "전력/유틸리티",
+        "close": "34,800원",
         "score": 80,
         "grade": "B",
         "marks": [
           "NEW",
-          "UP",
           "RISK"
         ],
-        "priceCandle": "+8.99% 상단 양봉",
-        "volume": "약 0.81배 · 1.5배 미달",
-        "adjustmentLow": "최근 고점 대비 20%대 조정 후 저점 반전",
-        "trend": "5일선 회복·20일선 돌파",
-        "supplyBreakout": "박스 상단 돌파 시도·단기 매물 확인",
-        "rotationHeat": "후공정·장비 동반 상승·+9% 추격 주의",
-        "scale": "26E 매출 2조원대 · 1,000억 PASS",
-        "latestSales": "2Q26 6,832억 · 컨센서스 +13.4%",
-        "latestOP": "2Q26 1,423억 · 컨센서스 +64.9%",
-        "consensus": "8월 목표가 상향·26E 추정 상향",
-        "futureValue": "확정: 27E 매출 +14.8%, OP +27.9%·27E OP배수 12.9배(섹터 18.0배). 성장/방향: 후공정 가동률 개선·추정 상향. 미확정 기대: HBM 외주물량 추가 확대.",
-        "final": "눌림대기 · 거래량"
+        "priceCandle": "+6.42% 양봉",
+        "volume": "3.40배 · A급",
+        "adjustmentLow": "40일 고점 대비 -11.9%·조정폭 부족",
+        "trend": "5일선·20일선 회복",
+        "supplyBreakout": "박스 상단 거래량 돌파",
+        "rotationHeat": "원전·유틸리티 동반 상승·5일 +12.8%",
+        "scale": "연 매출 90조원대 · PASS",
+        "latestSales": "2Q 매출 성장 유지",
+        "latestOP": "2Q26 OP 약 1.8~1.9조 E·YoY 감소",
+        "consensus": "26E OP 10.56조·최근 -15.1% 하향",
+        "futureValue": "확정/추정: 26E OP 10.56조, 27E 12.64조. 성장/방향: 원전 모멘텀 vs 연료비로 하향. 미확정 기대: 유가 안정·요금 정상화.",
+        "final": "펀더멘털 경고 · 추정하향/조정폭"
+      },
+      {
+        "rank": 5,
+        "name": "삼성생명",
+        "sector": "생명보험",
+        "close": "309,500원",
+        "score": 78,
+        "grade": "B",
+        "marks": [
+          "NEW",
+          "RISK"
+        ],
+        "priceCandle": "+8.60% 강한 양봉·고가권",
+        "volume": "1.07배 · 미달",
+        "adjustmentLow": "40일 고점 대비 -24.3%",
+        "trend": "5일선·20일선 회복",
+        "supplyBreakout": "박스 상단 접근·거래량 부족",
+        "rotationHeat": "보험 순환·20일 과열 아님",
+        "scale": "보험영업수익 대형 · PASS",
+        "latestSales": "보험업 수익 기준·매출 비교 제한",
+        "latestOP": "2Q 지배순익 6,899억 · YoY -9.1%",
+        "consensus": "2Q 순익 컨센서스 9% 하회",
+        "futureValue": "확정: 2Q 순익 6,899억. 성장/방향: 자회사 효과 vs 투자손익 부진. 미확정 기대: 건강보험 CSM 확대.",
+        "final": "기술·실적대기 · 거래량/컨센하회"
       },
       {
         "rank": 6,
-        "name": "삼성전기",
-        "sector": "MLCC/FC-BGA",
-        "close": "1,362,000원",
-        "score": 78,
-        "grade": "B-",
+        "name": "대한항공",
+        "sector": "항공/화물",
+        "close": "28,150원",
+        "score": 76,
+        "grade": "B",
         "marks": [
           "NEW",
-          "UP",
           "RISK"
         ],
-        "priceCandle": "+3.34% 양봉·중상단 마감",
-        "volume": "약 0.62배 · 1.5배 미달",
-        "adjustmentLow": "최근 고점 대비 약 -44% 후 저점 형성",
-        "trend": "5일선 회복·20일선 상향 확인 중",
-        "supplyBreakout": "상단 10% 구간 매물 부담 존재",
-        "rotationHeat": "부품주 확산·장기 낙폭 크나 단기 추격 주의",
-        "scale": "최근 연간 매출 10조원 이상 · PASS",
-        "latestSales": "2Q26 3조4,572억 · YoY +24.2%",
-        "latestOP": "2Q26 4,404억 · YoY +106.8%",
-        "consensus": "27E 이익 추정 상향·다기관",
-        "futureValue": "확정: 27E 매출 +28.4%, OP +122.1%·27E OP배수 27.3배(섹터 21.0배). 성장/방향: MLCC·FC-BGA 레벨업, 추정 상향. 미확정 기대: AI 서버 고객 확대.",
-        "final": "기술대기 · 거래량/매물"
+        "priceCandle": "+7.03% 강한 양봉·고가권",
+        "volume": "2.59배 · A급",
+        "adjustmentLow": "40일 고점 대비 -5.2%·조정폭 부족",
+        "trend": "5일선·20일선 돌파",
+        "supplyBreakout": "단기 고점권·추격 매물 주의",
+        "rotationHeat": "항공 동반 반등·5일 +12.4%",
+        "scale": "2Q 매출 5조199억 · PASS",
+        "latestSales": "2Q26 5조199억 · 2Q 역대 최대",
+        "latestOP": "2Q26 2,618억 · YoY -1,371억",
+        "consensus": "유가·환율 부담으로 이익 추정 보수적",
+        "futureValue": "확정: 2Q 매출 5.02조·OP 2,618억. 성장/방향: 외형 성장·마진 둔화. 미확정 기대: 유가 하락·통합 시너지.",
+        "final": "펀더멘털대기 · 이익감소/조정폭"
       },
       {
         "rank": 7,
-        "name": "LG이노텍",
-        "sector": "광학/FC-BGA",
-        "close": "602,000원",
-        "score": 75,
-        "grade": "B-",
-        "marks": [
-          "NEW",
-          "UP"
-        ],
-        "priceCandle": "+5.61% 양봉·고가권",
-        "volume": "약 0.59배 · 1.5배 미달",
-        "adjustmentLow": "고점 대비 20%대 조정 후 저점 반등",
-        "trend": "5일선 회복·20일선 돌파",
-        "supplyBreakout": "단기 박스 상단·거래량 확인 필요",
-        "rotationHeat": "부품·기판 동반 상승·과열 아님",
-        "scale": "최근 연간 매출 20조원 이상 · PASS",
-        "latestSales": "2Q26 5조5,272억 · YoY +40.5%",
-        "latestOP": "2Q26 2,458억 · YoY +2,057%",
-        "consensus": "2Q 컨센서스 상회·연간 추정 상향",
-        "futureValue": "확정: 27E 매출 +5.4%, OP +21.7%·27E OP배수 12.1배(섹터 16.5배). 성장/방향: FC-BGA 가동률·광학 회복, 추정 상향. 미확정 기대: 피지컬AI·전장 신규 매출.",
-        "final": "기술대기 · 거래량"
-      },
-      {
-        "rank": 8,
-        "name": "테스",
-        "sector": "반도체 전공정",
-        "close": "139,000원",
-        "score": 73,
+        "name": "와이씨",
+        "sector": "반도체 검사장비",
+        "close": "12,220원",
+        "score": 74,
         "grade": "C+",
         "marks": [
           "NEW",
           "UP",
           "RISK"
         ],
-        "priceCandle": "+4.20% 양봉·고가권",
-        "volume": "약 0.39배 · 1.5배 미달",
-        "adjustmentLow": "최근 고점 대비 약 -22% 후 저점 반등",
-        "trend": "5일선 회복·20일선 재돌파 대기",
-        "supplyBreakout": "단기 매물대 아래·돌파 거래량 부족",
-        "rotationHeat": "장비주 동반 반등·20일 과열 아님",
-        "scale": "최근 연간 매출 3,000억 이상 · PASS",
-        "latestSales": "1Q26 972억 · 최신 확인 분기",
-        "latestOP": "1Q26 222억 · 수익성 개선",
-        "consensus": "26E OP 1,057억 수준·추정 유지↑",
-        "futureValue": "확정: 27E 매출 +29.5%, OP +46.3%·27E OP배수 20.5배(섹터 21.0배). 성장/방향: 메모리 CAPEX 회복·추정 유지↑. 미확정 기대: 고객 투자 일정 조기화.",
-        "final": "기술대기 · 거래량/추세"
+        "priceCandle": "+4.44% 양봉·고가권",
+        "volume": "2.49배 · A급",
+        "adjustmentLow": "40일 고점 대비 -14.6%·경계",
+        "trend": "5일선·20일선 돌파",
+        "supplyBreakout": "박스 돌파 후 단기 매물 부담",
+        "rotationHeat": "5일 +19.5%·20일 +49.4% 과열",
+        "scale": "최근 연 매출 1,000억 이상 · PASS",
+        "latestSales": "최신 2Q 원수치 공개 재확인 제한",
+        "latestOP": "최신 2Q 원수치 공개 재확인 제한",
+        "consensus": "기관 추정치 제한·강한 감점",
+        "futureValue": "확정: 매출 규모 필터 통과. 성장/방향: 검사장비 순환 강세. 미확정 기대: 메모리 투자 확대 수주.",
+        "final": "과열대기 · 20일/실적검증"
       },
       {
-        "rank": 9,
-        "name": "한국콜마",
-        "sector": "화장품 ODM",
-        "close": "150,000원",
+        "rank": 8,
+        "name": "풍산",
+        "sector": "비철/방산",
+        "close": "82,400원",
         "score": 72,
         "grade": "C",
         "marks": [
-          "NEW",
           "UP",
           "RISK"
         ],
-        "priceCandle": "+4.68% 양봉·고가권",
-        "volume": "약 0.98배 · 1.5배 미달",
-        "adjustmentLow": "저점 대비 급반등·충분한 재조정 미확인",
-        "trend": "5·20일선 상향이나 이격 확대",
-        "supplyBreakout": "고점권 진입·상단 매물 소화 필요",
-        "rotationHeat": "20일 +35% 초과 과열 감점",
-        "scale": "최근 연간 매출 2조원 이상 · PASS",
-        "latestSales": "2Q26 8,613억 · YoY +17.9%",
-        "latestOP": "2Q26 1,103억 · YoY +50.1%",
-        "consensus": "2Q 후 26E 추정 상향",
-        "futureValue": "확정: 26E 매출 3조1,894억(+17.2%), OP 3,451억(+44.0%)·Fwd PER 17.29배. 성장/방향: ODM 고성장·추정 상향. 미확정 기대: 해외법인 마진 추가 개선.",
-        "final": "과열대기 · 20일"
+        "priceCandle": "-5.94% 음봉·진입 양봉 상실",
+        "volume": "1.18배 · 미달",
+        "adjustmentLow": "40일 고점 대비 -9.5%·안전마진 축소",
+        "trend": "5일선·20일선 위",
+        "supplyBreakout": "전일 돌파 후 되밀림",
+        "rotationHeat": "3일 거래량 1.63배·20일 +37.1% 과열",
+        "scale": "최근 연 매출 5조원대 · PASS",
+        "latestSales": "2Q26 1조4,703억 · YoY +13.6%",
+        "latestOP": "2Q26 1,252억 · YoY +33.8%",
+        "consensus": "26E 이익 추정 유지↑",
+        "futureValue": "확정: 26E 매출 6조1,752억·OP 4,266억 E. 성장/방향: 실적 양호. 미확정 기대: 추가 방산수주.",
+        "final": "과열대기 · 음봉/20일"
       },
       {
-        "rank": 10,
-        "name": "심텍",
-        "sector": "반도체 PCB",
-        "close": "116,900원",
+        "rank": 9,
+        "name": "에이피알",
+        "sector": "화장품/뷰티디바이스",
+        "close": "442,000원",
         "score": 70,
         "grade": "C",
         "marks": [
-          "NEW",
           "UP",
           "RISK"
         ],
-        "priceCandle": "+11.12% · 허용 3~9% 초과",
-        "volume": "약 0.82배 · 1.5배 미달",
-        "adjustmentLow": "조정 뒤 반등했으나 재진입 안전마진 축소",
-        "trend": "5·20일선 상향·이격 확대",
-        "supplyBreakout": "박스 돌파 후 고점권·추격 매물 위험",
-        "rotationHeat": "20일 약 +41%·과열 감점",
-        "scale": "최근 연간 매출 1조원 이상 · PASS",
-        "latestSales": "2Q26 5,146억 · YoY +51.0%",
-        "latestOP": "2Q26 629억 · YoY 대폭 증가",
+        "priceCandle": "+0.34%·강한 양봉 미달",
+        "volume": "0.69배 · 미달",
+        "adjustmentLow": "40일 고점 대비 -2.4%·조정 부족",
+        "trend": "5일선·20일선 위",
+        "supplyBreakout": "고점 3% 이내 매물",
+        "rotationHeat": "5일 +15.3%·20일 +32.5%",
+        "scale": "최근 연 매출 1조원 이상 · PASS",
+        "latestSales": "2Q26 7,675억 · YoY +134.2%",
+        "latestOP": "2Q26 1,906억 · YoY +134.4%",
         "consensus": "26E 매출·OP 추정 상향",
-        "futureValue": "확정: 26E 매출 2조738억(+47.0%), OP 2,454억(+1,900%대), 8/25 설비투자 2,742억. 성장/방향: 기판 호황·추정 상향. 미확정 기대: 증설의 고객 매출 전환.",
-        "final": "과열대기 · 가격/거래량"
+        "futureValue": "확정: 26E 매출 3조652억·OP 7,625억 E. 성장/방향: 고성장. 미확정 기대: 신규 해외지역 확대.",
+        "final": "과열대기 · 조정/거래량"
+      },
+      {
+        "rank": 10,
+        "name": "대덕전자",
+        "sector": "AI PCB/패키지기판",
+        "close": "107,000원",
+        "score": 68,
+        "grade": "C",
+        "marks": [
+          "UP",
+          "RISK"
+        ],
+        "priceCandle": "-3.43% 음봉",
+        "volume": "0.74배 · 미달",
+        "adjustmentLow": "40일 고점 대비 -33.0%·충분",
+        "trend": "20일선 위·5일선 이탈",
+        "supplyBreakout": "박스 재돌파 대기",
+        "rotationHeat": "20일 +17.2%·과열 아님",
+        "scale": "최근 연 매출 1조원 이상 · PASS",
+        "latestSales": "2Q26 4,010억 · YoY +63.1%",
+        "latestOP": "2Q26 703억 · YoY 대폭 증가",
+        "consensus": "27E 추정 유지↑",
+        "futureValue": "확정: 27E 매출 +24.7%·OP +59.5% E. 성장/방향: AI기판 성장. 미확정 기대: 신규 고객 양산.",
+        "final": "눌림대기 · 양봉/거래량"
       }
     ],
     "nearRows": [
       {
-        "name": "다날",
-        "sector": "결제/플랫폼",
-        "missing": "펀더멘털 탈락",
-        "detail": "적자·미확인 이익 정상화로 실적주 조건 미충족"
+        "name": "에이블씨엔씨",
+        "sector": "화장품",
+        "missing": "기술 편출",
+        "detail": "-3.50% 음봉·거래량 0.64배로 전일 A- 신호 소멸"
       },
       {
-        "name": "카카오",
-        "sector": "인터넷 플랫폼",
-        "missing": "기술 탈락",
-        "detail": "당일 강한 양봉·저점 순환반전 핵심조건 부족"
+        "name": "하나마이크론",
+        "sector": "반도체 후공정",
+        "missing": "기술 편출",
+        "detail": "-1.99%·거래량 0.47배, 추세는 유지"
       },
       {
-        "name": "SK증권",
-        "sector": "증권",
-        "missing": "펀더멘털 탈락",
-        "detail": "최근 분기 이익·컨센서스 신뢰도가 상위 후보 대비 열위"
+        "name": "삼성전기",
+        "sector": "MLCC/FC-BGA",
+        "missing": "기술 편출",
+        "detail": "-2.35%·5일선 이탈·거래량 0.54배"
       },
       {
-        "name": "금호전기",
-        "sector": "조명/전기",
-        "missing": "펀더멘털 탈락",
-        "detail": "적자 지속으로 매출·이익 필터 미충족"
+        "name": "LG이노텍",
+        "sector": "광학/FC-BGA",
+        "missing": "기술 편출",
+        "detail": "-3.16%·거래량 0.40배"
       },
       {
-        "name": "SNT에너지",
-        "sector": "열교환/발전설비",
-        "missing": "최신 분기 감점",
-        "detail": "2Q26 매출 -23.2%, OP -22.3%로 성장 필터 미통과"
+        "name": "테스",
+        "sector": "전공정 장비",
+        "missing": "기술 편출",
+        "detail": "-0.65%·거래량 0.38배"
       },
       {
-        "name": "한전산업",
-        "sector": "발전정비",
-        "missing": "컨센서스 탈락",
-        "detail": "향후 추정치·상대가치 공개 검증 부족"
+        "name": "한국콜마",
+        "sector": "화장품 ODM",
+        "missing": "과열 편출",
+        "detail": "20일 +50.5%, 조정 없는 고점권"
+      },
+      {
+        "name": "심텍",
+        "sector": "PCB",
+        "missing": "과열 편출",
+        "detail": "20일 +49.3%·당일 저가권 음봉"
       },
       {
         "name": "제약·바이오",
         "sector": "업종 제외",
         "missing": "정책 제외",
-        "detail": "사용자 지정에 따라 전수 스캔 대상에서 제외"
+        "detail": "사용자 지정 제외"
       },
       {
         "name": "건설",
         "sector": "업종 제외",
         "missing": "정책 제외",
-        "detail": "사용자 지정에 따라 전수 스캔 대상에서 제외"
+        "detail": "사용자 지정 제외"
       }
     ]
   },
   "p2": {
-    "status": "오전 증분 확인: 신규 실적·직접 컨센서스 변경이 없어 가치 순위 1~10위와 펀더멘털 판정을 유지합니다. 미국 기술주 반등은 시장수급을 제외하는 가치 산식에 반영하지 않았습니다.",
+    "status": "가치 전체 갱신: 8/26 종가로 시총/27E OP배수를 전부 재산정했습니다. 신규 실적·직접 컨센서스 변경이 없어 펀더멘털 순위는 1~10위 모두 유지. 당일 시장수급은 가치 산식에서 제외했습니다.",
     "events": [],
     "rows": [
       {
@@ -802,17 +805,17 @@
         "salesQ4": "+33.9%",
         "sales27": "+28.4%",
         "opGrowth": "+122.1% E",
-        "value": "27.3x",
+        "value": "26.7x",
         "sectorMedian": "21.0x",
-        "premium": "+26%",
+        "premium": "+27%",
         "change": "1위 유지",
         "changeUntil": "2026-09-01",
         "signal": "1위 유지",
         "marks": [
           "UP"
         ],
-        "reason": "2027년 이익 레벨업 최상위 · 8/25 종가로 가치 전면 재산정",
-        "close": "1,362,000원"
+        "reason": "2027년 이익 레벨업 최상위 · 8/26 종가로 가치 전면 재산정",
+        "close": "1,330,000원"
       },
       {
         "rank": 2,
@@ -822,17 +825,17 @@
         "salesQ4": "+38.8%",
         "sales27": "+24.7%",
         "opGrowth": "+59.5% E",
-        "value": "15.0x",
+        "value": "14.5x",
         "sectorMedian": "18.5x",
-        "premium": "-23%",
+        "premium": "-22%",
         "change": "2위 유지",
         "changeUntil": "2026-09-01",
         "signal": "2위 유지",
         "marks": [
           "UP"
         ],
-        "reason": "성장과 할인 동시 확보 · 8/25 종가로 가치 전면 재산정",
-        "close": "110,800원"
+        "reason": "성장과 할인 동시 확보 · 8/26 종가로 가치 전면 재산정",
+        "close": "107,000원"
       },
       {
         "rank": 3,
@@ -842,17 +845,17 @@
         "salesQ4": "+7.0%",
         "sales27": "+5.4%",
         "opGrowth": "+21.7% E",
-        "value": "12.1x",
+        "value": "11.7x",
         "sectorMedian": "16.5x",
-        "premium": "-30%",
+        "premium": "-29%",
         "change": "3위 유지",
         "changeUntil": "2026-09-01",
         "signal": "3위 유지",
         "marks": [
           "RISK"
         ],
-        "reason": "저평가 강점 · 8/25 종가로 가치 전면 재산정",
-        "close": "602,000원"
+        "reason": "저평가 강점 · 8/26 종가로 가치 전면 재산정",
+        "close": "583,000원"
       },
       {
         "rank": 4,
@@ -862,17 +865,17 @@
         "salesQ4": "+14.0%",
         "sales27": "+18.4%",
         "opGrowth": "+23.6% E",
-        "value": "21.3x",
+        "value": "21.7x",
         "sectorMedian": "22.0x",
-        "premium": "-3%",
+        "premium": "-1%",
         "change": "4위 유지",
         "changeUntil": "2026-09-01",
         "signal": "4위 유지",
         "marks": [
           "UP"
         ],
-        "reason": "수주잔고와 데이터센터 전력수요 · 8/25 종가로 가치 전면 재산정",
-        "close": "719,000원"
+        "reason": "수주잔고와 데이터센터 전력수요 · 8/26 종가로 가치 전면 재산정",
+        "close": "733,000원"
       },
       {
         "rank": 5,
@@ -882,9 +885,9 @@
         "salesQ4": "+17.4%",
         "sales27": "+29.5%",
         "opGrowth": "+46.3% E",
-        "value": "20.5x",
+        "value": "20.4x",
         "sectorMedian": "21.0x",
-        "premium": "-6%",
+        "premium": "-3%",
         "change": "5위 유지",
         "changeUntil": "2026-09-01",
         "signal": "5위 유지",
@@ -892,8 +895,8 @@
           "UP",
           "RISK"
         ],
-        "reason": "메모리 CAPEX 회복 · 8/25 종가로 가치 전면 재산정",
-        "close": "139,000원"
+        "reason": "메모리 CAPEX 회복 · 8/26 종가로 가치 전면 재산정",
+        "close": "138,100원"
       },
       {
         "rank": 6,
@@ -903,18 +906,18 @@
         "salesQ4": "+29.0%",
         "sales27": "+26.0%",
         "opGrowth": "+40.2% E",
-        "value": "19.2x",
+        "value": "19.4x",
         "sectorMedian": "22.0x",
-        "premium": "-14%",
-        "change": "7→6",
+        "premium": "-12%",
+        "change": "6위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "7→6",
+        "signal": "6위 유지",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "성장·할인 양호 · 8/25 종가로 가치 전면 재산정",
-        "close": "249,000원"
+        "reason": "성장·할인 양호 · 8/26 종가로 가치 전면 재산정",
+        "close": "251,500원"
       },
       {
         "rank": 7,
@@ -924,18 +927,18 @@
         "salesQ4": "+44.0%",
         "sales27": "+14.8%",
         "opGrowth": "+27.9% E",
-        "value": "12.9x",
+        "value": "12.6x",
         "sectorMedian": "18.0x",
-        "premium": "-34%",
-        "change": "6→7",
+        "premium": "-30%",
+        "change": "7위 유지",
         "changeUntil": "2026-09-01",
-        "signal": "6→7",
+        "signal": "7위 유지",
         "marks": [
           "UP",
           "RISK"
         ],
-        "reason": "하반기 매출 성장 가속 · 8/25 종가로 가치 전면 재산정",
-        "close": "37,600원"
+        "reason": "하반기 매출 성장 가속 · 8/26 종가로 가치 전면 재산정",
+        "close": "36,850원"
       },
       {
         "rank": 8,
@@ -945,7 +948,7 @@
         "salesQ4": "+25.4%",
         "sales27": "+19.2%",
         "opGrowth": "+34.9% E",
-        "value": "23.8x",
+        "value": "24.2x",
         "sectorMedian": "22.0x",
         "premium": "+10%",
         "change": "8위 유지",
@@ -955,8 +958,8 @@
           "UP",
           "RISK"
         ],
-        "reason": "전력기기 성장 강함 · 8/25 종가로 가치 전면 재산정",
-        "close": "2,755,000원"
+        "reason": "전력기기 성장 강함 · 8/26 종가로 가치 전면 재산정",
+        "close": "2,797,000원"
       },
       {
         "rank": 9,
@@ -966,17 +969,17 @@
         "salesQ4": "+1.9%",
         "sales27": "+8.3%",
         "opGrowth": "+30.0% E",
-        "value": "18.7x",
+        "value": "19.5x",
         "sectorMedian": "22.0x",
-        "premium": "-15%",
+        "premium": "-11%",
         "change": "9위 유지",
         "changeUntil": "2026-09-01",
         "signal": "9위 유지",
         "marks": [
           "RISK"
         ],
-        "reason": "이익 성장·할인 · 8/25 종가로 가치 전면 재산정",
-        "close": "66,300원"
+        "reason": "이익 성장·할인 · 8/26 종가로 가치 전면 재산정",
+        "close": "69,200원"
       },
       {
         "rank": 10,
@@ -986,9 +989,9 @@
         "salesQ4": "+11.3%",
         "sales27": "-2.9%",
         "opGrowth": "+20.9% E",
-        "value": "10.4x",
+        "value": "10.5x",
         "sectorMedian": "11.0x",
-        "premium": "-9%",
+        "premium": "-5%",
         "change": "10위 유지",
         "changeUntil": "2026-09-01",
         "signal": "10위 유지",
@@ -996,13 +999,13 @@
           "UP",
           "RISK"
         ],
-        "reason": "하반기 개선 vs 2027 매출 둔화 · 8/25 종가로 가치 전면 재산정",
-        "close": "86,600원"
+        "reason": "하반기 개선 vs 2027 매출 둔화 · 8/26 종가로 가치 전면 재산정",
+        "close": "87,300원"
       }
     ]
   },
   "p3": {
-    "status": "오전 증분 확인: 보유 15종목 모두 신규 실적 훼손·정정공시·확정 대형수주가 없어 기업판정과 가격판정을 유지합니다. 가격은 8/25 확정 종가 기준이며 AI 직접 노출 81.8% 과밀 상태도 유지합니다.",
+    "status": "보유 전체 갱신: 최신 15종목을 8/26 종가로 모두 재평가했습니다. LG이노텍은 -3.16%, 대덕전자는 -3.43% 재눌림에도 실적 훼손이 없어 각각 눌림목추매로 변경. 나머지 13종목의 기업·가격판정은 유지. AI 직접 노출은 81.6%로 여전히 과밀합니다.",
     "events": [
       {
         "name": "SK하이닉스",
@@ -1053,7 +1056,7 @@
       "topAxes": [
         {
           "name": "AI 직접",
-          "weight": "81.8%",
+          "weight": "81.6%",
           "status": "과밀",
           "detail": "메모리·PCB·반도체 장비"
         },
@@ -1079,12 +1082,12 @@
       "sectors": [
         {
           "name": "PCB·기판·광학",
-          "weight": "29.9%",
+          "weight": "30.1%",
           "status": "과밀"
         },
         {
           "name": "메모리",
-          "weight": "28.3%",
+          "weight": "28.1%",
           "status": "과밀"
         },
         {
@@ -1099,12 +1102,12 @@
         },
         {
           "name": "방산",
-          "weight": "12.8%",
+          "weight": "12.7%",
           "status": "적정"
         },
         {
           "name": "조선",
-          "weight": "2.6%",
+          "weight": "2.7%",
           "status": "부족"
         },
         {
@@ -1118,7 +1121,7 @@
           "status": "부족"
         }
       ],
-      "basis": "고정 보유수량 × 2026-08-25 종가. 최신 보유 15종목 전부 재계산."
+      "basis": "고정 보유수량 × 2026-08-26 종가. 최신 보유 15종목 전부 재계산."
     },
     "rows": [
       {
@@ -1127,12 +1130,12 @@
         "qty": 4,
         "tag": "H",
         "avg": 1716000,
-        "ret": "-2.21%",
+        "ret": "-1.63%",
         "opGrowth": "+18.5% E",
         "valuePosition": "주주환원으로 하단 지지 강화",
         "fairRange": "재산정 유지",
         "drawdown3m": "변동",
-        "judgment": "기업: 매우 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 매우 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "NEW",
           "UP",
@@ -1140,8 +1143,8 @@
         ],
         "special": "40조원 자사주 취득·소각",
         "action": "보유·추매대기",
-        "basis": "2026-08-25 종가",
-        "close": 1678000,
+        "basis": "2026-08-26 종가",
+        "close": 1688000,
         "priceChange": "유지"
       },
       {
@@ -1150,12 +1153,12 @@
         "qty": 23,
         "tag": "H",
         "avg": 245086,
-        "ret": "+4.86%",
+        "ret": "+6.70%",
         "opGrowth": "+26.0% E",
         "valuePosition": "주주환원 기대 강화",
         "fairRange": "재산정 유지",
         "drawdown3m": "변동",
-        "judgment": "기업: 매우 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 매우 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "NEW",
           "UP",
@@ -1163,8 +1166,8 @@
         ],
         "special": "당일 -8.70%, 기업 추정치 훼손 아닌 대형주 수급 이탈",
         "action": "보유·추매대기",
-        "basis": "2026-08-25 종가",
-        "close": 257000,
+        "basis": "2026-08-26 종가",
+        "close": 261500,
         "priceChange": "유지"
       },
       {
@@ -1178,7 +1181,7 @@
         "valuePosition": "섹터 프리미엄",
         "fairRange": "재산정 중",
         "drawdown3m": "변동",
-        "judgment": "기업: 매우 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 매우 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "NEW",
           "UP",
@@ -1186,8 +1189,8 @@
         ],
         "special": "신규 보유 2주 반영·평균매입가 미입력",
         "action": "보유·추격금지",
-        "basis": "2026-08-25 종가",
-        "close": 1362000,
+        "basis": "2026-08-26 종가",
+        "close": 1330000,
         "priceChange": "유지"
       },
       {
@@ -1196,19 +1199,19 @@
         "qty": 64,
         "tag": "H",
         "avg": 46250,
-        "ret": "+24.54%",
+        "ret": "+26.05%",
         "opGrowth": "+69.9% E",
         "valuePosition": "섹터 대비 할인",
         "fairRange": "98,500~120,400원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "UP"
         ],
         "special": "반도체 주도 복귀 수혜 가능",
         "action": "눌림목추매",
-        "basis": "2026-08-25 종가",
-        "close": 57600,
+        "basis": "2026-08-26 종가",
+        "close": 58300,
         "priceChange": "유지"
       },
       {
@@ -1217,20 +1220,20 @@
         "qty": 7,
         "tag": "H",
         "avg": 572500,
-        "ret": "+5.15%",
+        "ret": "+1.83%",
         "opGrowth": "+21.7% E",
         "valuePosition": "할인",
         "fairRange": "868,000~1,060,900원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "RISK"
         ],
-        "special": "+5.61% 반등으로 당일 추격 대신 재눌림 대기",
-        "action": "보유·추매대기",
-        "basis": "2026-08-25 종가",
-        "close": 602000,
-        "priceChange": "눌림목추매→추매대기"
+        "special": "-3.16% 재눌림·기업 추정치 훼손 없음",
+        "action": "눌림목추매",
+        "basis": "2026-08-26 종가",
+        "close": 583000,
+        "priceChange": "추매대기→눌림목추매"
       },
       {
         "name": "한화오션",
@@ -1238,19 +1241,19 @@
         "qty": 14,
         "tag": "H",
         "avg": 93428,
-        "ret": "-7.31%",
+        "ret": "-6.56%",
         "opGrowth": "+20.9% E",
         "valuePosition": "섹터 프리미엄",
         "fairRange": "43,100~52,600원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "RISK"
         ],
         "special": "반도체 수급 쏠림으로 상대 모멘텀 약화",
         "action": "보유",
-        "basis": "2026-08-25 종가",
-        "close": 86600,
+        "basis": "2026-08-26 종가",
+        "close": 87300,
         "priceChange": "유지"
       },
       {
@@ -1259,19 +1262,19 @@
         "qty": 20,
         "tag": "H",
         "avg": 75600,
-        "ret": "-12.30%",
+        "ret": "-8.47%",
         "opGrowth": "+30.0% E",
         "valuePosition": "섹터 대비 할인",
         "fairRange": "94,500~115,500원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "UP"
         ],
         "special": "AI 데이터센터 전력수요 재부각",
         "action": "눌림목추매",
-        "basis": "2026-08-25 종가",
-        "close": 66300,
+        "basis": "2026-08-26 종가",
+        "close": 69200,
         "priceChange": "유지"
       },
       {
@@ -1280,19 +1283,19 @@
         "qty": 31,
         "tag": "H",
         "avg": 156600,
-        "ret": "-17.05%",
+        "ret": "-17.31%",
         "opGrowth": "+31.8% E",
         "valuePosition": "섹터 적정",
         "fairRange": "120,700~147,500원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "UP"
         ],
         "special": "반도체 주도 복귀",
         "action": "눌림목추매",
-        "basis": "2026-08-25 종가",
-        "close": 129900,
+        "basis": "2026-08-26 종가",
+        "close": 129500,
         "priceChange": "유지"
       },
       {
@@ -1301,20 +1304,20 @@
         "qty": 30,
         "tag": "H",
         "avg": 97000,
-        "ret": "+14.23%",
+        "ret": "+10.31%",
         "opGrowth": "+59.5% E",
         "valuePosition": "섹터 적정",
         "fairRange": "107,200~131,100원",
         "drawdown3m": "변동",
-        "judgment": "기업: 매우 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 매우 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "UP"
         ],
-        "special": "+5.93% 상승해 기존 적정범위 하단 진입",
-        "action": "보유",
-        "basis": "2026-08-25 종가",
-        "close": 110800,
-        "priceChange": "눌림목추매→보유"
+        "special": "-3.43%로 적정범위 하단 재진입·실적 훼손 없음",
+        "action": "눌림목추매",
+        "basis": "2026-08-26 종가",
+        "close": 107000,
+        "priceChange": "보유→눌림목추매"
       },
       {
         "name": "LIG넥스원",
@@ -1322,16 +1325,16 @@
         "qty": 3,
         "tag": "H",
         "avg": 967667,
-        "ret": "-25.80%",
+        "ret": "-26.63%",
         "opGrowth": "+24.5% E",
         "valuePosition": "방산 적정",
         "fairRange": "777,500~950,300원",
         "drawdown3m": "변동",
-        "judgment": "기업: 매우 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 매우 강함 · 가격: 8/26 종가 재평가",
         "special": "대규모 신규수주 발생 여부 계속 감시",
         "action": "눌림목추매",
-        "basis": "2026-08-25 종가",
-        "close": 718000,
+        "basis": "2026-08-26 종가",
+        "close": 710000,
         "priceChange": "유지"
       },
       {
@@ -1340,19 +1343,19 @@
         "qty": 10,
         "tag": "H",
         "avg": 161700,
-        "ret": "-14.53%",
+        "ret": "-17.07%",
         "opGrowth": "+20.2% E",
         "valuePosition": "섹터 프리미엄",
         "fairRange": "98,900~120,900원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "RISK"
         ],
         "special": "당일 +5.60% 반등, 기존 적정범위 상단 초과",
         "action": "일부축소 검토",
-        "basis": "2026-08-25 종가",
-        "close": 138200,
+        "basis": "2026-08-26 종가",
+        "close": 134100,
         "priceChange": "유지"
       },
       {
@@ -1361,19 +1364,19 @@
         "qty": 48,
         "tag": "H",
         "avg": 89503,
-        "ret": "-32.85%",
+        "ret": "-34.19%",
         "opGrowth": "+73.0% E",
         "valuePosition": "섹터 할인",
         "fairRange": "69,400~84,900원",
         "drawdown3m": "변동",
-        "judgment": "기업: 개선 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 개선 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "UP"
         ],
         "special": "반도체 주도 복귀 수혜 가능",
         "action": "보유",
-        "basis": "2026-08-25 종가",
-        "close": 60100,
+        "basis": "2026-08-26 종가",
+        "close": 58900,
         "priceChange": "유지"
       },
       {
@@ -1382,20 +1385,20 @@
         "qty": 18,
         "tag": "H",
         "avg": 175800,
-        "ret": "-20.93%",
+        "ret": "-21.44%",
         "opGrowth": "+46.3% E",
         "valuePosition": "섹터 프리미엄",
         "fairRange": "112,600~137,600원",
         "drawdown3m": "변동",
-        "judgment": "기업: 강함 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 강함 · 가격: 8/26 종가 재평가",
         "marks": [
           "UP"
         ],
         "special": "+4.20%로 기존 적정범위 상단 소폭 초과; 실적 훼손은 없음",
         "action": "보유·반등시축소",
-        "basis": "2026-08-25 종가",
-        "close": 139000,
-        "priceChange": "보유→반등시축소"
+        "basis": "2026-08-26 종가",
+        "close": 138100,
+        "priceChange": "유지"
       },
       {
         "name": "한화시스템",
@@ -1403,19 +1406,19 @@
         "qty": 11,
         "tag": "H",
         "avg": 68800,
-        "ret": "+5.67%",
+        "ret": "+6.69%",
         "opGrowth": "+27.5% E",
         "valuePosition": "방산 프리미엄",
         "fairRange": "68,400~83,600원",
         "drawdown3m": "변동",
-        "judgment": "기업: 보통~개선 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 보통~개선 · 가격: 8/26 종가 재평가",
         "marks": [
           "RISK"
         ],
         "special": "개발비·필리조선소 손익 변동",
         "action": "일부축소 유지",
-        "basis": "2026-08-25 종가",
-        "close": 72700,
+        "basis": "2026-08-26 종가",
+        "close": 73400,
         "priceChange": "유지"
       },
       {
@@ -1424,19 +1427,19 @@
         "qty": 185,
         "tag": "H",
         "avg": 28143,
-        "ret": "-45.53%",
+        "ret": "-45.85%",
         "opGrowth": "+49.1% E",
         "valuePosition": "산정 보류",
         "fairRange": "자료 확인 중",
         "drawdown3m": "변동",
-        "judgment": "기업: 개선 확인 필요 · 가격: 8/25 종가 재평가",
+        "judgment": "기업: 개선 확인 필요 · 가격: 8/26 종가 재평가",
         "marks": [
           "RISK"
         ],
         "special": "분기 컨센서스 부족",
         "action": "보유",
-        "basis": "2026-08-25 종가",
-        "close": 15330,
+        "basis": "2026-08-26 종가",
+        "close": 15240,
         "priceChange": "유지"
       }
     ]
