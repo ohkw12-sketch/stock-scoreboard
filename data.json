@@ -1,11 +1,11 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-08-28 10:59",
+      "checkedAtKST": "2026-08-28 11:14",
       "changedInputs": 3,
       "newFundamentalSources": 2,
       "recheckFailures": 0,
-      "summary": "순환 탭을 전체시장 엔진으로 교체. 종목코드 충돌 0건, KOSPI+KOSDAQ 2,633종목, 107개 섹터, 109영업일 검증. 다른 보드 영역은 유지.",
+      "summary": "진입 탭을 전체시장 순환 엔진 기준으로 재구성. 진입 가능·곧 진입 후보만 표시하고 추격금지·제외·단순관찰은 제외.",
       "sourceDate": "2026-08-28",
       "source": "KRX·DART·Reuters·AP",
       "sources": [
@@ -18,12 +18,12 @@
       ]
     },
     "changeUntil": "2026-09-04",
-    "masterBasis": "기존 보드 영역 유지 / 순환: 2026-08-28 KOSPI+KOSDAQ 전체시장 엔진 실데이터 반영",
+    "masterBasis": "진입 탭: 진입 가능·곧 진입만 표시 / 순환: KOSPI+KOSDAQ 전체시장 엔진",
     "nextTradingDay": "2026-08-28",
-    "note": "순환 탭에 전체시장 2,633종목·107개 섹터 엔진을 적용했습니다. 진입적합·눌림/분할·추격금지와 순환 위치·리스크를 함께 표시합니다.",
+    "note": "진입 탭에는 진입 가능·곧 진입 후보만 표시합니다. 추격금지·제외·단순관찰은 순환 탭에서만 확인할 수 있습니다.",
     "sourceSummary": "기존 KRX·DART·Reuters·AP·회사 실적 + 순환 엔진 FinanceDataReader·Yahoo Finance",
     "title": "주식평가창",
-    "updatedKST": "2026-08-28 10:59"
+    "updatedKST": "2026-08-28 11:14"
   },
   "p1": {
     "events": [
@@ -1934,3 +1934,4 @@
     "valuationBasis": "NTM OP = 26년 3Q·4Q + 2027E OP의 50%. 2026-08-27 확정 종가 적용."
   }
 }
+
