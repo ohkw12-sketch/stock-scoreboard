@@ -1,7 +1,7 @@
-"""KOSPI+KOSDAQ whole-market rotation screener.
+"""KOSPI+KOSDAQ whole-market scoreboard engine.
 
-The program never writes to data.json. It emits replaceable p11 data and a
-full-board test copy under test_output/.
+The program never writes to data.json or deploys. It emits a test board with
+independent rotation (p11), actionable entry (p1), and value (p2) results.
 """
 from __future__ import annotations
 
@@ -39,17 +39,22 @@ DEFAULTS = {
     "minimum_sector_members": 3,
     "top_sector_count": 15,
     "top_stock_count": 20,
+    "top_entry_count": 20,
+    "top_value_count": 15,
     "cache_dir": "cache",
     "output_dir": "test_output",
     "base_data_file": "data.json",
     "primary_source": "pykrx",
     "fallback_sources": ["cache", "yfinance"],
-    "cache_max_age_hours": 36,
+    "cache_max_age_hours": 30,
     "request_retries": 3,
     "request_pause_seconds": 0.35,
     "yfinance_chunk_size": 80,
     "default_cycle_days": 25,
     "sector_overrides_file": "sector_overrides.example.csv",
+    "fundamentals_file": "consensus_cache.csv",
+    "maximum_unclassified_ratio": 0.08,
+    "minimum_latest_coverage_ratio": 0.98,
 }
 
 
@@ -64,7 +69,7 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
             config.update(json.load(handle))
     if mode_override:
         config["mode"] = mode_override
-    for key in ("cache_dir", "output_dir", "base_data_file", "sector_overrides_file"):
+    for key in ("cache_dir", "output_dir", "base_data_file", "sector_overrides_file", "fundamentals_file"):
         candidate = Path(config[key])
         config[key] = candidate if candidate.is_absolute() else ROOT / candidate
     if not 20 <= int(config["rotation_scan_min_days"]) <= int(config["rotation_scan_max_days"]) <= 40:
@@ -113,6 +118,50 @@ def normalize_prices(frame: pd.DataFrame) -> pd.DataFrame:
     return renamed.sort_values(["ticker", "date"]).reset_index(drop=True)
 
 
+def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
+    """Audit the last session without treating partial failure as unchanged data."""
+    latest = prices["date"].max()
+    latest_rows = prices[prices["date"].eq(latest)]
+    all_tickers = set(prices["ticker"].unique())
+    latest_tickers = set(latest_rows["ticker"].unique())
+    missing = sorted(all_tickers - latest_tickers)
+    last_identity = prices.sort_values("date").groupby("ticker").tail(1).set_index("ticker")
+    missing_stocks = [{
+        "ticker": ticker, "name": str(last_identity.loc[ticker, "name"]),
+        "market": str(last_identity.loc[ticker, "market"]),
+        "sector": str(last_identity.loc[ticker, "sector"]),
+        "lastPriceDate": pd.Timestamp(last_identity.loc[ticker, "date"]).strftime("%Y-%m-%d"),
+    } for ticker in missing]
+    coverage = len(latest_tickers) / max(1, len(all_tickers))
+    unclassified = float(latest_rows["sector"].eq("미분류").mean()) if len(latest_rows) else 1.0
+    market_counts = {
+        market: int(latest_rows.loc[latest_rows["market"].eq(market), "ticker"].nunique())
+        for market in ("KOSPI", "KOSDAQ")
+    }
+    previous_dates = sorted(prices.loc[prices["date"].lt(latest), "date"].unique())
+    previous_rows = prices[prices["date"].eq(previous_dates[-1])] if previous_dates else prices.iloc[0:0]
+    previous_market_counts = {
+        market: int(previous_rows.loc[previous_rows["market"].eq(market), "ticker"].nunique())
+        for market in ("KOSPI", "KOSDAQ")
+    }
+    problems = []
+    if coverage < float(config["minimum_latest_coverage_ratio"]):
+        problems.append(f"최신 가격 종목 커버리지 {coverage:.2%} (기준 미달)")
+    if unclassified > float(config["maximum_unclassified_ratio"]):
+        problems.append(f"미분류 비율 {unclassified:.2%} (기준 초과)")
+    return {
+        "source": source, "checkedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
+        "latestPriceDate": pd.Timestamp(latest).strftime("%Y-%m-%d"),
+        "historicalTickerCount": len(all_tickers), "latestTickerCount": len(latest_tickers),
+        "latestCoverageRatio": round(coverage, 4), "marketCounts": market_counts,
+        "previousMarketCounts": previous_market_counts,
+        "unclassifiedRatio": round(unclassified, 4), "missingTickers": missing,
+        "missingStocks": missing_stocks,
+        "qualityStatus": "정상" if not problems else "부분실패",
+        "problems": problems,
+    }
+
+
 def read_overrides(path: Path) -> dict[str, str]:
     if not path.exists():
         return {}
@@ -154,6 +203,7 @@ class MarketDataLoader:
         self.config = config
         self.cache_dir: Path = config["cache_dir"]
         self.cache_dir.mkdir(parents=True, exist_ok=True)
+        self.report: dict = {"attempts": [], "unresolved": []}
 
     @property
     def cache_file(self) -> Path:
@@ -165,34 +215,68 @@ class MarketDataLoader:
 
     def load(self) -> tuple[pd.DataFrame, str]:
         if self.config["mode"] == "sample":
-            return generate_sample_market(), "deterministic-sample"
+            frame = generate_sample_market()
+            self.report = audit_market_data(frame, self.config, "deterministic-sample")
+            return frame, "deterministic-sample"
         sources = [self.config["primary_source"], *self.config["fallback_sources"]]
         seen: set[str] = set()
         errors: list[str] = []
+        recovery_frames: list[pd.DataFrame] = []
+        try:
+            recovery_frames.append(self._cache(require_fresh=True))
+        except Exception as exc:
+            errors.append(f"recovery cache: {exc}")
         for source in sources:
             if source in seen:
                 continue
             seen.add(source)
             try:
                 if source == "pykrx":
-                    return self._pykrx(), "pykrx"
-                if source == "cache":
-                    return self._cache(require_fresh=False), "cache"
-                if source == "yfinance":
-                    return self._yfinance(), "yfinance+FinanceDataReader"
-                raise ValueError(f"unknown data source: {source}")
+                    frame = self._pykrx()
+                    label = "pykrx"
+                elif source == "cache":
+                    frame = self._cache(require_fresh=True)
+                    label = "fresh-cache"
+                elif source == "yfinance":
+                    frame = self._yfinance()
+                    label = "yfinance+FinanceDataReader"
+                else:
+                    raise ValueError(f"unknown data source: {source}")
+                merged = self._merge_recovery(frame, recovery_frames)
+                report = audit_market_data(merged, self.config, label) | {"attempts": list(errors)}
+                recovery_frames.append(frame)
+                if report["qualityStatus"] == "정상":
+                    self.report = report
+                    return merged, label if len(recovery_frames) == 1 else f"{label}+gap-recovery"
+                errors.extend(report["problems"])
+                log(f"{label} quality incomplete; attempting alternate source")
             except Exception as exc:
                 errors.append(f"{source}: {exc}")
                 log(f"source unavailable, trying next: {source}")
+        if recovery_frames:
+            merged = self._merge_recovery(recovery_frames[-1], recovery_frames[:-1])
+            self.report = audit_market_data(merged, self.config, "partial-recovery") | {
+                "attempts": errors,
+                "physicalLimitation": "모든 무료 가격원과 신선 캐시를 재시도했지만 일부 종목을 복구하지 못함",
+            }
+            return merged, "partial-recovery"
         raise RuntimeError("all market data sources failed\n- " + "\n- ".join(errors))
+
+    @staticmethod
+    def _merge_recovery(primary: pd.DataFrame, fallbacks: list[pd.DataFrame]) -> pd.DataFrame:
+        parts = [primary, *fallbacks]
+        merged = pd.concat(parts, ignore_index=True)
+        # Primary values win; fallbacks only fill absent ticker/date observations.
+        merged = merged.drop_duplicates(["ticker", "date"], keep="first")
+        return normalize_prices(merged)
 
     def _cache(self, require_fresh: bool) -> pd.DataFrame:
         if not self.cache_file.exists():
             raise FileNotFoundError(f"cache not found: {self.cache_file}")
-        age_hours = (time.time() - self.cache_file.stat().st_mtime) / 3600
-        if require_fresh and age_hours > float(self.config["cache_max_age_hours"]):
-            raise RuntimeError(f"cache is {age_hours:.1f} hours old")
         frame = normalize_prices(pd.read_csv(self.cache_file))
+        business_days_old = int(np.busday_count(frame["date"].max().date(), datetime.now(KST).date()))
+        if require_fresh and business_days_old > 1:
+            raise RuntimeError(f"cache latest price is {business_days_old} business days old")
         identity_conflicts = frame.groupby("ticker").agg(names=("name", "nunique"), markets=("market", "nunique"))
         if ((identity_conflicts["names"] > 1) | (identity_conflicts["markets"] > 1)).any():
             raise RuntimeError("cached universe contains duplicate ticker identities")
@@ -223,6 +307,10 @@ class MarketDataLoader:
         return normalize_prices(enriched)
 
     def _save_cache(self, frame: pd.DataFrame) -> None:
+        report = audit_market_data(frame, self.config, "cache-write-check")
+        if report["qualityStatus"] != "정상":
+            log("cache not replaced because collection validation is incomplete")
+            return
         frame.to_csv(self.cache_file, index=False, encoding="utf-8-sig", compression="gzip")
 
     def _pykrx(self) -> pd.DataFrame:
@@ -313,6 +401,9 @@ class MarketDataLoader:
             import yfinance as yf
         except ImportError as exc:
             raise RuntimeError("fallback packages missing; run setup_windows.bat") from exc
+        yf_cache = self.cache_dir / "yfinance"
+        yf_cache.mkdir(parents=True, exist_ok=True)
+        yf.set_tz_cache_location(str(yf_cache))
         if self.listing_cache_file.exists():
             listing = pd.read_csv(self.listing_cache_file, dtype={"Code": str})
         else:
@@ -351,6 +442,8 @@ class MarketDataLoader:
             for _, item in chunk.iterrows():
                 try:
                     stock_frame = raw[item["yf"]].copy() if isinstance(raw.columns, pd.MultiIndex) else raw.copy()
+                    if stock_frame.empty or "Close" not in stock_frame.columns:
+                        continue
                     stock_frame = stock_frame.reset_index()
                     stock_frame["ticker"], stock_frame["name"] = item["ticker"], item["name"]
                     stock_frame["market"], stock_frame["sector"] = item["market"], item.get("sector", "미분류")
@@ -438,9 +531,22 @@ def trailing_return(group: pd.DataFrame, days: int) -> float:
 
 def build_daily_features(prices: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     work = prices.copy()
+    by_ticker = work.groupby("ticker", group_keys=False)
+    work["prev_close"] = by_ticker["close"].shift(1)
     work["ret1"] = work.groupby("ticker")["close"].pct_change()
     work["ret3"] = work.groupby("ticker")["close"].pct_change(3)
     work["ret5"] = work.groupby("ticker")["close"].pct_change(5)
+    work["ma5"] = by_ticker["close"].transform(lambda s: s.rolling(5).mean())
+    work["ma20"] = by_ticker["close"].transform(lambda s: s.rolling(20).mean())
+    work["volume_ma20"] = by_ticker["volume"].transform(lambda s: s.rolling(20).mean())
+    work["volume_ratio"] = work["volume"] / work["volume_ma20"]
+    true_range = pd.concat([
+        work["high"] - work["low"],
+        (work["high"] - work["prev_close"]).abs(),
+        (work["low"] - work["prev_close"]).abs(),
+    ], axis=1).max(axis=1)
+    work["atr14"] = true_range.groupby(work["ticker"]).transform(lambda s: s.rolling(14).mean())
+    work["high20_prev"] = by_ticker["high"].transform(lambda s: s.shift(1).rolling(20).max())
     market = work.groupby("date").agg(market_ret1=("ret1", "mean")).sort_index()
     market["market_index"] = (1 + market["market_ret1"].fillna(0)).cumprod()
     market["market_ret3"] = market["market_index"].pct_change(3)
@@ -535,20 +641,19 @@ def classify_stage(latest: pd.Series, previous: pd.Series, elapsed: int, cycle: 
     return "③주도", "주도"
 
 
-def stock_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: int) -> list[dict]:
+def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: int) -> list[dict]:
     latest_date = stock_data["date"].max()
     current = stock_data[stock_data["date"].eq(latest_date)].copy()
     sector_map = sector_results.set_index("name")
-    active_sectors = sector_results.loc[sector_results["entryFit"].ne("제외/관찰"), "name"]
-    current = current[current["sector"].isin(active_sectors)].copy()
+    current = current[current["sector"].isin(sector_results["name"])].copy()
     current["sector_ret3"] = current["sector"].map(sector_map["raw_ret3"])
     current["sector_ret5"] = current["sector"].map(sector_map["raw_ret5"])
     current["stock_excess3"] = current["ret3"] - current["sector_ret3"]
     current["stock_excess5"] = current["ret5"] - current["sector_ret5"]
-    current["sector_entry_score"] = current["sector"].map(sector_map["entryScore"])
+    current["sector_rotation_score"] = current["sector"].map(sector_map["score"])
     current["overheated"] = (current["ret1"] > 0.10) | (current["ret3"] > 0.15) | (current["ret5"] > 0.25)
     current["stock_score"] = (
-        current["sector_entry_score"].fillna(0) +
+        current["sector_rotation_score"].fillna(0) +
         current["stock_excess3"].fillna(0).clip(-0.08, 0.08) * 120 -
         current["overheated"].astype(int) * 32
     )
@@ -564,18 +669,13 @@ def stock_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: in
         overheated = bool(item.overheated)
         stage = sector["stage"]
         signal = {
-            "①초기": "관찰", "②확산": "눌림목관찰", "③주도": "분할관찰",
-            "④눌림": "눌림대기", "⑤재반등": "기술대기", "⑥후반": "추격금지",
-            "X조기이탈": "제외", "X종료": "제외",
+            "①초기": "순환 초기", "②확산": "확산 진행", "③주도": "주도 지속",
+            "④눌림": "순환 눌림", "⑤재반등": "순환 재반등", "⑥후반": "순환 후반",
+            "X조기이탈": "순환 조기이탈", "X종료": "순환 종료",
         }[stage]
-        if sector.get("entryFit") == "진입적합":
-            signal = "진입관찰"
-        if overheated:
-            signal = "추격금지"
         marks = ["UP"] if relation == "선행" else ["OLD"] if relation == "후행" else []
         if float(sector["riskGauge"]) >= 70 or overheated:
             marks.append("RISK")
-        row_entry_fit = "추격금지" if overheated else sector.get("entryFit", "관찰")
         market_state = f"{sector['rotationType']} · {stage}"
         rows.append({
             "rank": rank, "name": item.name, "ticker": item.ticker, "sector": item.sector,
@@ -587,11 +687,160 @@ def stock_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: in
             "marketDetail": f"3일 {float(item.ret3) * 100:+.2f}% · 5일 {float(item.ret5) * 100:+.2f}%",
             "change": "엔진 신규", "changeUntil": (latest_date + pd.offsets.BDay(5)).strftime("%Y-%m-%d"),
             "marks": marks, "signal": signal,
-            "entryFit": row_entry_fit, "overheated": overheated,
+            "entryFit": sector.get("entryFit", "관찰"), "overheated": overheated,
             "stockEntryScore": round(float(item.stock_score), 1),
-            "reason": f"{row_entry_fit}{' · 단기과열' if overheated else ''} · 섹터 대비 {relation}; 3일 초과수익 {excess * 100:+.2f}%p",
+            "reason": f"순환 단계 {stage} · 섹터 대비 {relation}; 3일 초과수익 {excess * 100:+.2f}%p",
         })
     return rows
+
+
+def generate_sample_fundamentals(prices: pd.DataFrame) -> pd.DataFrame:
+    latest = prices.sort_values("date").groupby("ticker").tail(1)
+    rows = []
+    for number, item in enumerate(latest.itertuples(), 1):
+        seed = int(item.ticker) * 17
+        rows.append({
+            "ticker": item.ticker, "name": item.name, "sector": item.sector,
+            "as_of": "2026-08-27", "sales_q3_growth": 8 + seed % 37,
+            "sales_q4_growth": 6 + seed % 41, "sales_1y_growth": 10 + seed % 55,
+            "op_1y_growth": -5 + seed % 80, "forward_pe": 7 + (seed % 310) / 10,
+            "consensus_change_1d": ((seed % 9) - 3) / 10,
+            "consensus_change_5d": ((seed % 19) - 5) / 10,
+            "consensus_change_20d": ((seed % 31) - 8) / 10,
+            "analyst_count": 2 + seed % 15, "source": "deterministic-sample", "status": "정상",
+        })
+    return pd.DataFrame(rows)
+
+
+def load_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame, dict]:
+    required = {"ticker", "as_of", "sales_1y_growth", "op_1y_growth", "forward_pe",
+                "consensus_change_1d", "consensus_change_5d", "consensus_change_20d", "analyst_count"}
+    if config["mode"] == "sample":
+        frame = generate_sample_fundamentals(prices)
+        return frame, {"status": "정상", "source": "deterministic-sample", "asOfDate": "2026-08-27"}
+    path: Path = config["fundamentals_file"]
+    if not path.exists():
+        return pd.DataFrame(), {"status": "자료없음", "source": None, "asOfDate": None,
+                                "problem": "컨센서스 공급원/API 또는 최신 consensus_cache.csv가 없음"}
+    frame = pd.read_csv(path, dtype={"ticker": str})
+    missing = required - set(frame.columns)
+    if missing:
+        return pd.DataFrame(), {"status": "부분실패", "source": str(path), "asOfDate": None,
+                                "problem": f"컨센서스 파일 필수 열 누락: {sorted(missing)}"}
+    frame["ticker"] = frame["ticker"].str.zfill(6)
+    frame["as_of"] = pd.to_datetime(frame["as_of"], errors="coerce")
+    frame = frame.sort_values("as_of").drop_duplicates("ticker", keep="last")
+    latest = frame["as_of"].max()
+    stale_days = (pd.Timestamp.now().normalize() - latest).days if pd.notna(latest) else 999
+    status = "정상" if stale_days <= 7 else "오래된자료"
+    return frame, {"status": status, "source": str(path),
+                   "asOfDate": latest.strftime("%Y-%m-%d") if pd.notna(latest) else None,
+                   "problem": None if status == "정상" else f"컨센서스 기준일이 {stale_days}일 경과"}
+
+
+def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict) -> dict:
+    if fundamentals.empty:
+        return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}", "rows": [], "dataStatus": status}
+    data = fundamentals.copy()
+    for column in ("sales_1y_growth", "op_1y_growth", "forward_pe", "consensus_change_1d",
+                   "consensus_change_5d", "consensus_change_20d", "analyst_count"):
+        data[column] = pd.to_numeric(data[column], errors="coerce")
+    data["sector_median_pe"] = data.groupby("sector")["forward_pe"].transform("median")
+    data["discount"] = data["sector_median_pe"] / data["forward_pe"] - 1
+    data["score"] = (rank_percentile(data["sales_1y_growth"]) * 22 +
+                     rank_percentile(data["op_1y_growth"]) * 28 +
+                     rank_percentile(data["consensus_change_20d"]) * 24 +
+                     rank_percentile(data["discount"]) * 20 +
+                     rank_percentile(data["analyst_count"]) * 6)
+    data = data.dropna(subset=["forward_pe", "op_1y_growth"]).sort_values("score", ascending=False)
+    rows = []
+    for rank, item in enumerate(data.head(int(config["top_value_count"])).itertuples(), 1):
+        premium = (item.forward_pe / item.sector_median_pe - 1) * 100 if item.sector_median_pe else np.nan
+        rows.append({
+            "rank": rank, "ticker": item.ticker, "name": item.name, "sector": item.sector,
+            "sales27": f"{item.sales_1y_growth:+.1f}%", "opGrowth": f"{item.op_1y_growth:+.1f}%",
+            "growth1Y": round(float(item.op_1y_growth), 1), "value": f"예상PER {item.forward_pe:.1f}배",
+            "forwardPER": round(float(item.forward_pe), 1), "sectorMedian": f"{item.sector_median_pe:.1f}배",
+            "sectorMedianPER": round(float(item.sector_median_pe), 1), "premium": f"{premium:+.1f}%",
+            "consensus1D": round(float(item.consensus_change_1d), 1),
+            "consensus5D": round(float(item.consensus_change_5d), 1),
+            "consensus20D": round(float(item.consensus_change_20d), 1),
+            "consensusDate": str(item.as_of)[:10], "signal": "가치 상위",
+            "reason": f"1년 영업이익 {item.op_1y_growth:+.1f}% · 20일 컨센서스 {item.consensus_change_20d:+.1f}%",
+        })
+    return {"status": f"전체시장 가치 엔진 {len(data):,}종목 비교 · 컨센서스 기준 {status.get('asOfDate')}",
+            "rows": rows, "dataStatus": status}
+
+
+def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamentals: pd.DataFrame,
+                      config: dict) -> dict:
+    """Select only immediately actionable or near-entry stocks from the entire universe."""
+    stock_data, _ = build_daily_features(prices)
+    latest_date = stock_data["date"].max()
+    current = stock_data[stock_data["date"].eq(latest_date)].copy()
+    sectors = pd.DataFrame(all_sectors).set_index("name")
+    current = current[current["sector"].isin(sectors.index)].copy()
+    for field in ("stage", "rotationType", "riskGauge", "score", "raw_ret3", "raw_ret5"):
+        current[f"sector_{field}"] = current["sector"].map(sectors[field])
+    current["excess3"] = current["ret3"] - current["sector_raw_ret3"]
+    current["overheated"] = (current["ret1"] > .10) | (current["ret3"] > .15) | (current["ret5"] > .25)
+    current["zone_low"] = np.minimum(current["ma5"], current["ma20"]) - current["atr14"] * .25
+    current["zone_high"] = np.maximum(current["ma5"], current["ma20"]) + current["atr14"] * .35
+    current["distance"] = np.where(
+        current["close"] < current["zone_low"], current["zone_low"] / current["close"] - 1,
+        np.where(current["close"] > current["zone_high"], current["close"] / current["zone_high"] - 1, 0),
+    )
+    current["trend_ok"] = (current["ma5"] >= current["ma20"] * .98) & (current["close"] >= current["ma20"] * .96)
+    current["confirm"] = (current["ret1"] > 0) & (current["close"] >= current["ma5"]) & (current["volume_ratio"] >= .85)
+    allowed = ~current["sector_stage"].isin(["⑥후반", "X조기이탈", "X종료"])
+    liquid = current["value"] >= 100_000_000
+    valid = allowed & liquid & current["trend_ok"] & ~current["overheated"] & current["ret5"].notna()
+    current["entryState"] = ""
+    inside = current["distance"].eq(0)
+    current.loc[valid & inside & current["confirm"], "entryState"] = "진입가능"
+    current.loc[valid & current["entryState"].eq("") & (current["distance"] <= .03), "entryState"] = "곧진입"
+    current = current[current["entryState"].ne("")].copy()
+    current["entry_score"] = (current["sector_score"] + current["excess3"].clip(-.05, .05) * 160 +
+                              current["confirm"].astype(int) * 12 - current["distance"] * 200)
+    current["entry_priority"] = current["entryState"].map({"진입가능": 0, "곧진입": 1})
+    current = current.sort_values(["entry_priority", "entry_score", "value"], ascending=[True, False, False])
+    current = current[current.groupby("sector").cumcount() < 4].head(int(config["top_entry_count"]))
+    fundamental_map = fundamentals.set_index("ticker") if not fundamentals.empty else pd.DataFrame()
+    rows = []
+    for rank, item in enumerate(current.itertuples(), 1):
+        relation = "선행" if item.excess3 >= .015 else "후행" if item.excess3 <= -.015 else "동행"
+        if item.sector_stage == "⑤재반등":
+            signal = "재반등 진입"
+        elif item.sector_stage == "④눌림":
+            signal = "눌림 반등" if item.confirm else "진입가격 접근 중"
+        elif pd.notna(item.high20_prev) and item.close >= item.high20_prev * .98:
+            signal = "돌파 후 지지"
+        else:
+            signal = "1차 분할진입" if item.entryState == "진입가능" else "진입가격 접근 중"
+        invalidation = min(item.zone_low, item.ma20) - item.atr14 * .7
+        stop_pct = (invalidation / item.close - 1) * 100
+        growth = consensus = value_text = "자료없음"
+        consensus_date = None
+        if not fundamentals.empty and item.ticker in fundamental_map.index:
+            f = fundamental_map.loc[item.ticker]
+            growth = f"{float(f['op_1y_growth']):+.1f}%"
+            consensus = f"20일 {float(f['consensus_change_20d']):+.1f}%"
+            sector_median = fundamentals.loc[fundamentals["sector"].eq(item.sector), "forward_pe"].median()
+            value_text = f"예상PER {float(f['forward_pe']):.1f}배 / 섹터 {sector_median:.1f}배"
+            consensus_date = str(f["as_of"])[:10]
+        rows.append({
+            "rank": rank, "ticker": item.ticker, "name": item.name, "sector": item.sector,
+            "entryState": item.entryState, "signal": signal, "currentPrice": int(round(item.close)),
+            "entryZone": f"{int(round(item.zone_low)):,}~{int(round(item.zone_high)):,}원",
+            "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+            "invalidationPrice": int(round(invalidation)), "stopPct": round(float(stop_pct), 1),
+            "relation": relation, "marketState": f"{item.sector_rotationType} · {item.sector_stage}",
+            "growth1Y": growth, "consensus": consensus, "consensusDate": consensus_date,
+            "valueMultiple": value_text, "entryScore": round(float(item.entry_score), 1),
+            "reason": f"전체시장 진입필터 통과 · 섹터 대비 {relation} · 과열 아님",
+        })
+    return {"status": f"전체 {prices['ticker'].nunique():,}종목에서 진입가능/곧진입만 선별 · 기준일 {latest_date:%Y-%m-%d}",
+            "rows": rows, "selectionRule": "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"}
 
 
 def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
@@ -657,19 +906,18 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
             "memberCount": int(latest["members"]), "drawdownPct": round(drawdown * 100, 2),
             "raw_ret3": float(latest["ret3"]), "raw_ret5": float(latest["ret5"]),
         })
-    sector_results = pd.DataFrame(results).sort_values(["entryScore", "score"], ascending=False).reset_index(drop=True)
+    sector_results = pd.DataFrame(results).sort_values(["score", "rs5Pct", "leaderStrengthPct"], ascending=False).reset_index(drop=True)
     sector_results["rank"] = np.arange(1, len(sector_results) + 1)
     top = sector_results.head(int(config["top_sector_count"])).copy()
-    rows = stock_rows(stock_data, top, int(config["top_stock_count"]))
+    rows = rotation_rows(stock_data, top, int(config["top_stock_count"]))
     public_sectors = top.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
     stage_counts = top["stage"].value_counts().to_dict()
-    entry_count = int((top["entryFit"] == "진입적합").sum())
     status = (
         f"전체시장 엔진: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
-        f"확산형과 선도주 견인형을 함께 반영했으며 신규 진입 적합 {entry_count}개, 단계 분포 {stage_counts}."
+        f"진입 위치와 무관하게 확산형과 선도주 견인형을 함께 반영했으며 단계 분포 {stage_counts}."
     )
-    return {
+    result = {
         "status": status,
         "engine": {
             "version": "1.0.0", "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
@@ -686,22 +934,48 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
             "tone": "정보", "impact": "자동 산출 결과이며 투자 판단·주문 신호가 아닙니다.",
         }],
     }
+    result["_allSectors"] = sector_results.to_dict("records")
+    return result
 
 
-def write_outputs(p11: dict, config: dict) -> tuple[Path, Path]:
+def write_outputs(p1: dict, p11: dict, p2: dict, report: dict, config: dict) -> tuple[Path, Path, Path]:
     output_dir: Path = config["output_dir"]
     output_dir.mkdir(parents=True, exist_ok=True)
     p11_path = output_dir / "p11.test.json"
     data_path = output_dir / "data.test.json"
-    p11_path.write_text(json.dumps({"p11": p11}, ensure_ascii=False, indent=2), encoding="utf-8")
+    report_path = output_dir / "collection_report.test.json"
+    public_p11 = {key: value for key, value in p11.items() if not key.startswith("_")}
+    p11_path.write_text(json.dumps({"p11": public_p11}, ensure_ascii=False, indent=2), encoding="utf-8")
     base_path: Path = config["base_data_file"]
     if base_path.exists():
         board = json.loads(base_path.read_text(encoding="utf-8-sig"))
     else:
         board = {"meta": {"title": "주식 허브 테스트"}}
-    board["p11"] = p11
+    board.setdefault("meta", {})
+    board["meta"]["updatedKST"] = datetime.now(KST).strftime("%Y-%m-%d %H:%M")
+    board["meta"]["masterBasis"] = f"{report.get('latestPriceDate', '기준일 미확인')} KRX 마감 전체시장 엔진"
+    board["meta"]["note"] = "순환은 진입 위치와 무관한 전체시장 순환 강도, 진입은 진입가능·곧진입만 표시합니다. 단타 탭은 제거했습니다."
+    board["meta"]["sourceSummary"] = (
+        f"가격 {report.get('source', '자료원 미확인')} · 커버리지 {float(report.get('latestCoverageRatio', 0)):.2%} · "
+        f"컨센서스 {report.get('fundamentals', {}).get('status', '상태 미확인')}"
+    )
+    board["p1"], board["p11"] = p1, public_p11
+    if p2.get("rows"):
+        board["p2"] = p2
+    else:
+        retained = board.get("p2", {"rows": []})
+        previous_status = retained.get("status", "기존 검증값")
+        retained["status"] = f"{p2.get('status', '가치 엔진 미갱신')} · 기존 검증값 유지: {previous_status}"
+        retained["dataStatus"] = p2.get("dataStatus", {})
+        board["p2"] = retained
+    board.pop("p12", None)
     data_path.write_text(json.dumps(board, ensure_ascii=False, indent=2), encoding="utf-8")
-    return p11_path, data_path
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    missing_path = output_dir / "missing_stocks.test.json"
+    missing_path.write_text(json.dumps({"asOfDate": report.get("latestPriceDate"),
+                                        "stocks": report.get("missingStocks", [])},
+                                       ensure_ascii=False, indent=2), encoding="utf-8")
+    return p11_path, data_path, report_path
 
 
 def parse_args(argv: Iterable[str] | None = None) -> argparse.Namespace:
@@ -718,15 +992,26 @@ def main(argv: Iterable[str] | None = None) -> int:
         base_path: Path = config["base_data_file"]
         before = sha256(base_path) if base_path.exists() else None
         log(f"mode={config['mode']}; loading KOSPI+KOSDAQ market data")
-        prices, source = MarketDataLoader(config).load()
+        loader = MarketDataLoader(config)
+        prices, source = loader.load()
         log(f"loaded {prices['ticker'].nunique():,} stocks, {prices['date'].nunique()} trading days from {source}")
         p11 = run_engine(prices, config, source)
-        p11_path, data_path = write_outputs(p11, config)
+        fundamentals, fundamental_status = load_fundamentals(prices, config)
+        p1 = build_entry_board(prices, p11["_allSectors"], fundamentals, config)
+        p2 = build_value_board(fundamentals, config, fundamental_status)
+        report = dict(loader.report)
+        report["fundamentals"] = fundamental_status
+        report["recoveryPolicy"] = [
+            "누락 종목만 재시도", "대체 가격원 사용", "1영업일 이내 캐시로 빈칸만 보완",
+            "미분류 재매핑", "실패 영역은 기준일과 실패 사유 표시", "다음 실행에서 자동 재시도",
+        ]
+        p11_path, data_path, report_path = write_outputs(p1, p11, p2, report, config)
         after = sha256(base_path) if base_path.exists() else None
         if before != after:
             raise RuntimeError("safety check failed: base data.json changed")
         log(f"p11 output: {p11_path}")
         log(f"board test output: {data_path}")
+        log(f"collection report: {report_path}")
         log("safety check: original data.json unchanged")
         return 0
     except Exception as exc:

@@ -6,7 +6,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
-from rotation_screener import canonical_sector, generate_sample_market, load_config, run_engine
+from rotation_screener import (
+    audit_market_data, build_entry_board, build_value_board, canonical_sector,
+    generate_sample_fundamentals, generate_sample_market, load_config, run_engine,
+)
 
 
 class RotationEngineTest(unittest.TestCase):
@@ -15,6 +18,10 @@ class RotationEngineTest(unittest.TestCase):
         cls.config = load_config(None, "sample")
         cls.prices = generate_sample_market()
         cls.p11 = run_engine(cls.prices, cls.config, "unit-test-sample")
+        cls.fundamentals = generate_sample_fundamentals(cls.prices)
+        cls.p1 = build_entry_board(cls.prices, cls.p11["_allSectors"], cls.fundamentals, cls.config)
+        cls.p2 = build_value_board(cls.fundamentals, cls.config,
+                                   {"status": "정상", "asOfDate": "2026-08-27"})
 
     def test_whole_market_shape(self):
         self.assertEqual(self.prices["market"].nunique(), 2)
@@ -46,6 +53,25 @@ class RotationEngineTest(unittest.TestCase):
 
     def test_json_serializable(self):
         json.dumps(self.p11, ensure_ascii=False)
+
+    def test_entry_is_independent_and_actionable_only(self):
+        self.assertGreater(len(self.p1["rows"]), 0)
+        self.assertTrue(all(row["entryState"] in {"진입가능", "곧진입"} for row in self.p1["rows"]))
+        self.assertTrue(all("추격금지" not in row["signal"] for row in self.p1["rows"]))
+        required = {"currentPrice", "entryZone", "confirmation", "invalidationPrice", "stopPct",
+                    "growth1Y", "consensus", "valueMultiple"}
+        self.assertTrue(required.issubset(self.p1["rows"][0]))
+
+    def test_value_engine_uses_whole_fundamental_universe(self):
+        self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
+        self.assertGreater(len(self.p2["rows"]), 0)
+        self.assertTrue({"forwardPER", "sectorMedianPER", "consensus20D"}.issubset(self.p2["rows"][0]))
+
+    def test_collection_audit(self):
+        report = audit_market_data(self.prices, self.config, "sample")
+        self.assertEqual(report["qualityStatus"], "정상")
+        self.assertEqual(report["latestCoverageRatio"], 1.0)
+        self.assertEqual(report["missingTickers"], [])
 
     def test_theme_sector_mapping(self):
         self.assertEqual(canonical_sector("달바글로벌", "기타 화학제품 제조업", "기초 화장품"), "화장품")

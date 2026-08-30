@@ -6,17 +6,22 @@
   "minimum_sector_members": 3,
   "top_sector_count": 15,
   "top_stock_count": 20,
+  "top_entry_count": 20,
+  "top_value_count": 15,
   "cache_dir": "cache",
   "output_dir": "test_output",
   "base_data_file": "data.json",
   "primary_source": "pykrx",
   "fallback_sources": ["cache", "yfinance"],
-  "cache_max_age_hours": 36,
+  "cache_max_age_hours": 30,
   "request_retries": 3,
   "request_pause_seconds": 0.35,
   "yfinance_chunk_size": 80,
   "default_cycle_days": 25,
-  "sector_overrides_file": "sector_overrides.example.csv"
+  "sector_overrides_file": "sector_overrides.example.csv",
+  "fundamentals_file": "consensus_cache.csv",
+  "minimum_latest_coverage_ratio": 0.98,
+  "maximum_unclassified_ratio": 0.08
 }
 
 
