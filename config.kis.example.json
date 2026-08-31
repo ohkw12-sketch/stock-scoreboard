@@ -21,7 +21,7 @@
   "sector_overrides_file": "sector_overrides.example.csv",
   "fundamentals_file": "consensus_cache.csv",
   "fundamentals_provider": "auto",
-  "consensus_provider": "file",
+  "consensus_provider": "kis",
   "dart_cache_max_age_hours": 24,
   "dart_workers": 2,
   "dart_pause_seconds": 0.20,
@@ -33,5 +33,3 @@
   "minimum_latest_coverage_ratio": 0.98,
   "maximum_unclassified_ratio": 0.08
 }
-
-

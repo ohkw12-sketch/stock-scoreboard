@@ -3,6 +3,9 @@ import sys
 import unittest
 from pathlib import Path
 
+import numpy as np
+import pandas as pd
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
@@ -66,6 +69,31 @@ class RotationEngineTest(unittest.TestCase):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
         self.assertTrue({"forwardPER", "sectorMedianPER", "consensus20D"}.issubset(self.p2["rows"][0]))
+
+    def test_value_consensus_is_bounded_supplement_and_missing_is_neutral(self):
+        frame = pd.DataFrame([
+            {"ticker": "000001", "name": "상향", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 20, "op_1y_growth": 30, "forward_pe": 10,
+             "consensus_op_1y_growth": 80, "consensus_growth_delta": 50,
+             "consensus_as_of": "2026-06-30", "consensus_change_1d": np.nan,
+             "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": 0},
+            {"ticker": "000002", "name": "하향", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 20, "op_1y_growth": 30, "forward_pe": 10,
+             "consensus_op_1y_growth": -20, "consensus_growth_delta": -50,
+             "consensus_as_of": "2026-06-30", "consensus_change_1d": np.nan,
+             "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": 0},
+            {"ticker": "000003", "name": "미제공", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 20, "op_1y_growth": 30, "forward_pe": np.nan,
+             "consensus_op_1y_growth": np.nan, "consensus_growth_delta": np.nan,
+             "consensus_as_of": np.nan, "consensus_change_1d": np.nan,
+             "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": np.nan},
+        ])
+        board = build_value_board(frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"})
+        rows = {row["name"]: row for row in board["rows"]}
+        self.assertGreater(rows["상향"]["consensusAdjustment"], 0)
+        self.assertLess(rows["하향"]["consensusAdjustment"], 0)
+        self.assertEqual(rows["미제공"]["consensusAdjustment"], 0)
+        self.assertLessEqual(max(abs(row["consensusAdjustment"]) for row in board["rows"]), 10)
 
     def test_collection_audit(self):
         report = audit_market_data(self.prices, self.config, "sample")

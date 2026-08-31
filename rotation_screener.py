@@ -22,6 +22,9 @@ from typing import Callable, Iterable
 import numpy as np
 import pandas as pd
 
+from dart_fundamentals import collect_dart_fundamentals
+from kis_consensus import collect_kis_consensus
+
 
 ROOT = Path(__file__).resolve().parent
 KST = timezone(timedelta(hours=9))
@@ -53,6 +56,16 @@ DEFAULTS = {
     "default_cycle_days": 25,
     "sector_overrides_file": "sector_overrides.example.csv",
     "fundamentals_file": "consensus_cache.csv",
+    "fundamentals_provider": "auto",
+    "consensus_provider": "file",
+    "dart_cache_max_age_hours": 24,
+    "dart_workers": 2,
+    "dart_pause_seconds": 0.20,
+    "dart_retry_batch_size": 300,
+    "minimum_dart_fundamental_coverage_ratio": 0.65,
+    "kis_consensus_batch_size": 250,
+    "kis_consensus_priority_count": 120,
+    "kis_consensus_pause_seconds": 0.12,
     "maximum_unclassified_ratio": 0.08,
     "minimum_latest_coverage_ratio": 0.98,
 }
@@ -519,6 +532,14 @@ def rank_percentile(series: pd.Series) -> pd.Series:
     return series.rank(pct=True).fillna(0.5)
 
 
+def symmetric_rank(series: pd.Series) -> pd.Series:
+    """Map valid values symmetrically to 0..1 while leaving missing values neutral."""
+    valid_count = int(series.notna().sum())
+    if valid_count <= 1:
+        return pd.Series(0.5, index=series.index)
+    return ((series.rank(method="average") - 1) / (valid_count - 1)).fillna(0.5)
+
+
 def bounded(value: float, low: float = 0.0, high: float = 100.0) -> float:
     return float(max(low, min(high, value)))
 
@@ -712,12 +733,93 @@ def generate_sample_fundamentals(prices: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+def merge_fundamental_sources(dart: pd.DataFrame, consensus: pd.DataFrame,
+                              dart_status: dict, consensus_status: dict) -> tuple[pd.DataFrame, dict]:
+    """Keep DART reported growth as the base and add KIS fields without excluding missing rows."""
+    if dart.empty:
+        fallback = consensus.copy()
+        return fallback, {
+            "status": consensus_status.get("status", "부분실패"),
+            "source": consensus_status.get("source"),
+            "asOfDate": consensus_status.get("asOfDate"),
+            "consensusAsOfDate": consensus_status.get("asOfDate"),
+            "problem": "DART 기본 성장률 없음; KIS 제공 종목만 임시 사용",
+            "dart": dart_status, "consensus": consensus_status,
+        }
+    merged = dart.copy()
+    if not consensus.empty:
+        supplement = consensus[[
+            "ticker", "as_of", "sales_1y_growth", "op_1y_growth", "forward_pe",
+            "consensus_change_1d", "consensus_change_5d", "consensus_change_20d",
+            "analyst_count",
+        ]].copy().rename(columns={
+            "as_of": "consensus_as_of",
+            "sales_1y_growth": "consensus_sales_1y_growth",
+            "op_1y_growth": "consensus_op_1y_growth",
+            "forward_pe": "kis_forward_pe",
+            "analyst_count": "kis_analyst_count",
+        })
+        merged = merged.drop(columns=[
+            "consensus_change_1d", "consensus_change_5d", "consensus_change_20d",
+        ], errors="ignore").merge(supplement, on="ticker", how="left")
+        merged["forward_pe"] = merged["kis_forward_pe"]
+        merged["analyst_count"] = merged["kis_analyst_count"]
+        merged["consensus_growth_delta"] = (
+            merged["consensus_op_1y_growth"] - merged["op_1y_growth"]
+        )
+    else:
+        for column in (
+            "consensus_as_of", "consensus_sales_1y_growth", "consensus_op_1y_growth",
+            "consensus_growth_delta", "consensus_change_1d", "consensus_change_5d",
+            "consensus_change_20d",
+        ):
+            merged[column] = np.nan
+    merged["source"] = np.where(
+        merged["consensus_op_1y_growth"].notna(),
+        "OpenDART 공시실적 + KIS Developers 컨센서스", "OpenDART 공시실적",
+    )
+    dart_ok = dart_status.get("status") == "정상"
+    consensus_ok = consensus_status.get("status") in {"정상", "부분수집", "캐시유지"}
+    return merged, {
+        "status": "정상" if dart_ok and consensus_ok else "부분수집",
+        "source": "OpenDART 기본 성장률 + KIS 컨센서스 보정",
+        "asOfDate": dart_status.get("asOfDate"),
+        "consensusAsOfDate": consensus_status.get("asOfDate"),
+        "requested": dart_status.get("requested"),
+        "collected": dart_status.get("collected", len(dart)),
+        "coverageRatio": dart_status.get("coverageRatio"),
+        "consensusCoverage": int(consensus["ticker"].nunique()) if not consensus.empty else 0,
+        "problem": None if dart_ok and consensus_ok else "DART 또는 KIS가 목표 커버리지에 미달",
+        "dart": dart_status, "consensus": consensus_status,
+    }
+
+
 def load_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame, dict]:
     required = {"ticker", "as_of", "sales_1y_growth", "op_1y_growth", "forward_pe",
                 "consensus_change_1d", "consensus_change_5d", "consensus_change_20d", "analyst_count"}
     if config["mode"] == "sample":
         frame = generate_sample_fundamentals(prices)
         return frame, {"status": "정상", "source": "deterministic-sample", "asOfDate": "2026-08-27"}
+    provider = str(config.get("fundamentals_provider", "auto")).lower()
+    dart_frame, dart_status = pd.DataFrame(), {
+        "status": "자료없음", "source": "OpenDART", "asOfDate": None, "problem": "DART 미설정",
+    }
+    dart_available = provider == "dart" or (provider == "auto" and bool(__import__("os").getenv("DART_API_KEY")))
+    if provider == "auto" and __import__("os").name == "nt":
+        try:
+            import winreg
+            with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as handle:
+                winreg.QueryValueEx(handle, "DART_API_KEY")
+            dart_available = True
+        except OSError:
+            pass
+    if dart_available:
+        dart_frame, dart_status = collect_dart_fundamentals(prices, config)
+    if str(config.get("consensus_provider", "file")).lower() == "kis":
+        consensus_frame, consensus_status = collect_kis_consensus(prices, config)
+        return merge_fundamental_sources(dart_frame, consensus_frame, dart_status, consensus_status)
+    if not dart_frame.empty:
+        return dart_frame, dart_status
     path: Path = config["fundamentals_file"]
     if not path.exists():
         return pd.DataFrame(), {"status": "자료없음", "source": None, "asOfDate": None,
@@ -747,28 +849,64 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict) ->
         data[column] = pd.to_numeric(data[column], errors="coerce")
     data["sector_median_pe"] = data.groupby("sector")["forward_pe"].transform("median")
     data["discount"] = data["sector_median_pe"] / data["forward_pe"] - 1
-    data["score"] = (rank_percentile(data["sales_1y_growth"]) * 22 +
-                     rank_percentile(data["op_1y_growth"]) * 28 +
-                     rank_percentile(data["consensus_change_20d"]) * 24 +
-                     rank_percentile(data["discount"]) * 20 +
-                     rank_percentile(data["analyst_count"]) * 6)
-    data = data.dropna(subset=["forward_pe", "op_1y_growth"]).sort_values("score", ascending=False)
+    data = data.dropna(subset=["op_1y_growth", "sales_1y_growth"]).copy()
+    # Base rule stays explicit: operating-profit growth first, sales growth second.
+    data["base_score"] = (rank_percentile(data["op_1y_growth"]) * 70 +
+                          rank_percentile(data["sales_1y_growth"]) * 30)
+    # Consensus revisions are a bounded supplement. 20d/5d/1d retain their
+    # explicit weights; missing history is neutral, never exclusion or penalty.
+    revision_weights = {"consensus_change_20d": 0.60, "consensus_change_5d": 0.25,
+                        "consensus_change_1d": 0.15}
+    revision_total = sum(data[column].fillna(0) * weight for column, weight in revision_weights.items())
+    available_weight = sum(data[column].notna().astype(float) * weight for column, weight in revision_weights.items())
+    data["consensus_signal"] = revision_total.div(available_weight.replace(0, np.nan))
+    revision_rank = symmetric_rank(data["consensus_signal"])
+    if "consensus_growth_delta" in data:
+        forecast_rank = symmetric_rank(data["consensus_growth_delta"])
+        has_forecast = data["consensus_growth_delta"].notna()
+    else:
+        forecast_rank = pd.Series(0.5, index=data.index)
+        has_forecast = pd.Series(False, index=data.index)
+    has_revision = data["consensus_signal"].notna()
+    combined_rank = np.where(
+        has_forecast & has_revision, forecast_rank * 0.5 + revision_rank * 0.5,
+        np.where(has_forecast, forecast_rank, np.where(has_revision, revision_rank, 0.5)),
+    )
+    data["consensus_adjustment"] = np.where(
+        has_forecast | has_revision, (combined_rank - 0.5) * 20, 0.0
+    )
+    data["score"] = data["base_score"] + data["consensus_adjustment"]
+    data = data.sort_values(["score", "op_1y_growth", "sales_1y_growth"], ascending=False)
     rows = []
     for rank, item in enumerate(data.head(int(config["top_value_count"])).itertuples(), 1):
-        premium = (item.forward_pe / item.sector_median_pe - 1) * 100 if item.sector_median_pe else np.nan
+        has_pe = np.isfinite(item.forward_pe) and np.isfinite(item.sector_median_pe) and item.sector_median_pe != 0
+        premium = (item.forward_pe / item.sector_median_pe - 1) * 100 if has_pe else np.nan
+        has_consensus = np.isfinite(item.consensus_op_1y_growth) if hasattr(item, "consensus_op_1y_growth") else False
+        has_revision = np.isfinite(item.consensus_signal)
         rows.append({
             "rank": rank, "ticker": item.ticker, "name": item.name, "sector": item.sector,
             "sales27": f"{item.sales_1y_growth:+.1f}%", "opGrowth": f"{item.op_1y_growth:+.1f}%",
-            "growth1Y": round(float(item.op_1y_growth), 1), "value": f"예상PER {item.forward_pe:.1f}배",
-            "forwardPER": round(float(item.forward_pe), 1), "sectorMedian": f"{item.sector_median_pe:.1f}배",
-            "sectorMedianPER": round(float(item.sector_median_pe), 1), "premium": f"{premium:+.1f}%",
-            "consensus1D": round(float(item.consensus_change_1d), 1),
-            "consensus5D": round(float(item.consensus_change_5d), 1),
-            "consensus20D": round(float(item.consensus_change_20d), 1),
-            "consensusDate": str(item.as_of)[:10], "signal": "가치 상위",
-            "reason": f"1년 영업이익 {item.op_1y_growth:+.1f}% · 20일 컨센서스 {item.consensus_change_20d:+.1f}%",
+            "growth1Y": round(float(item.op_1y_growth), 1),
+            "value": f"예상PER {item.forward_pe:.1f}배" if has_pe else "가치배수 미제공",
+            "forwardPER": round(float(item.forward_pe), 1) if np.isfinite(item.forward_pe) else None,
+            "sectorMedian": f"{item.sector_median_pe:.1f}배" if np.isfinite(item.sector_median_pe) else "미제공",
+            "sectorMedianPER": round(float(item.sector_median_pe), 1) if np.isfinite(item.sector_median_pe) else None,
+            "premium": f"{premium:+.1f}%" if np.isfinite(premium) else "미제공",
+            "consensus1D": round(float(item.consensus_change_1d), 1) if np.isfinite(item.consensus_change_1d) else None,
+            "consensus5D": round(float(item.consensus_change_5d), 1) if np.isfinite(item.consensus_change_5d) else None,
+            "consensus20D": round(float(item.consensus_change_20d), 1) if np.isfinite(item.consensus_change_20d) else None,
+            "consensusGrowth1Y": round(float(item.consensus_op_1y_growth), 1) if has_consensus else None,
+            "consensusGrowthDelta": round(float(item.consensus_growth_delta), 1) if has_consensus else None,
+            "consensusDate": str(item.consensus_as_of)[:10] if has_consensus else None,
+            "consensusStatus": "반영" if has_consensus else "미제공·기본 성장순위 유지",
+            "baseGrowthScore": round(float(item.base_score), 2),
+            "consensusAdjustment": round(float(item.consensus_adjustment), 2),
+            "signal": "가치 상위",
+            "reason": (f"영업이익 성장 {item.op_1y_growth:+.1f}% · 매출 성장 {item.sales_1y_growth:+.1f}%" +
+                       (f" · 예상 영업이익 성장 {item.consensus_op_1y_growth:+.1f}%" if has_consensus else " · 컨센서스 미제공(감점 없음)") +
+                       (f" · 변경신호 {item.consensus_signal:+.1f}%" if has_revision else "")),
         })
-    return {"status": f"전체시장 가치 엔진 {len(data):,}종목 비교 · 컨센서스 기준 {status.get('asOfDate')}",
+    return {"status": f"전체시장 가치 엔진 {len(data):,}종목 비교 · 성장률 기준 {status.get('asOfDate')}",
             "rows": rows, "dataStatus": status}
 
 
