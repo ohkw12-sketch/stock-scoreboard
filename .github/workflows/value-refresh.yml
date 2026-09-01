@@ -1,5 +1,6 @@
 name: Refresh P+T Value Board
 
+# Server-side P+T refresh trigger.
 on:
   workflow_dispatch:
   push:
