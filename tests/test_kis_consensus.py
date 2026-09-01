@@ -1,6 +1,9 @@
 import unittest
 
-from kis_consensus import parse_estimate_payload
+import numpy as np
+import pandas as pd
+
+from kis_consensus import _revision, parse_estimate_payload
 
 
 class KisConsensusParserTests(unittest.TestCase):
@@ -26,8 +29,13 @@ class KisConsensusParserTests(unittest.TestCase):
         self.assertEqual(row["ticker"], "005930")
         self.assertEqual(row["estimate_period"], "202512E")
         self.assertEqual(row["sales_1y_growth"], 10.0)
-        self.assertEqual(row["op_1y_growth"], 25.0)
+        self.assertEqual(row["op_1y_growth"], 100.0)
+        self.assertEqual(row["provider_op_growth"], 25.0)
         self.assertEqual(row["forward_pe"], 8.0)
+        self.assertEqual(row["prior_op"], 10.0)
+        self.assertEqual(row["forward_op"], 20.0)
+        self.assertEqual(row["next_op"], 30.0)
+        self.assertEqual(row["future_op_basis"], "증가율")
         self.assertEqual(row["as_of"], "2026-08-01")
 
     def test_rejects_failed_payload(self):
@@ -59,6 +67,36 @@ class KisConsensusParserTests(unittest.TestCase):
         self.assertEqual(row["op_1y_growth"], 764.1)
         self.assertEqual(row["forward_eps"], 44361.7)
         self.assertEqual(row["forward_pe"], 6.1)
+
+    def test_detects_future_turnaround_from_estimate_amounts(self):
+        payload = {
+            "rt_cd": "0",
+            "output1": {"item_kor_nm": "미래전환", "estdate": "20260801"},
+            "output2": [
+                {"data1": "100", "data2": "110", "data3": "120"},
+                {"data1": "0", "data2": "10", "data3": "9"},
+                {"data1": "-10", "data2": "20", "data3": "30"},
+                {"data1": "0", "data2": "300", "data3": "50"},
+            ],
+            "output3": [
+                {"data1": "1", "data2": "2", "data3": "3"},
+                {"data1": "100", "data2": "200", "data3": "300"},
+                {"data1": "1", "data2": "2", "data3": "3"},
+                {"data1": "100", "data2": "80", "data3": "70"},
+            ],
+            "output4": [{"dt": "2025.12"}, {"dt": "2026.12E"}, {"dt": "2027.12E"}],
+        }
+        row = parse_estimate_payload(payload, "1")
+        self.assertEqual(row["future_op_basis"], "흑자전환")
+        self.assertEqual(row["prior_op"], -10.0)
+        self.assertEqual(row["next_op"], 30.0)
+
+    def test_revision_accepts_timezone_aware_history(self):
+        history = pd.DataFrame({
+            "fetched_at": [pd.Timestamp.now(tz="Asia/Seoul") - pd.offsets.BDay(3)],
+            "forward_eps": [100.0],
+        })
+        self.assertTrue(np.isclose(_revision(110.0, history, 1), 10.0))
 
 
 if __name__ == "__main__":

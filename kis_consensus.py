@@ -67,10 +67,32 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
     estimate_indexes = [i for i, period in enumerate(periods[:5]) if "E" in period.upper()]
     target = estimate_indexes[0] if estimate_indexes else len(periods[:5]) - 1
     key = f"data{target + 1}"
-    # estimate-perform encodes percentage/ratio fields and EPS with one
-    # implied decimal place (for example 1122 means 112.2%).
-    sales_growth = _one_decimal(income[1].get(key))
-    op_growth = _one_decimal(income[3].get(key))
+    prior_key = f"data{target}" if target > 0 else None
+    next_key = f"data{target + 2}" if target + 1 < min(len(periods), 5) else None
+    # Keep the provider's displayed growth fields for audit.  The engine uses
+    # the change between adjacent amount rows whenever possible, which removes
+    # any dependency on an undocumented percentage display scale.
+    provider_sales_growth = _one_decimal(income[1].get(key))
+    provider_op_growth = _one_decimal(income[3].get(key))
+    # Amount rows are preserved as provider-native figures for audit/display.
+    # Valuation uses EPS/PER, whose units are explicitly documented by KIS.
+    forward_sales = _number(income[0].get(key))
+    forward_op = _number(income[2].get(key))
+    prior_sales = _number(income[0].get(prior_key)) if prior_key else np.nan
+    prior_op = _number(income[2].get(prior_key)) if prior_key else np.nan
+    next_sales = _number(income[0].get(next_key)) if next_key else np.nan
+    next_op = _number(income[2].get(next_key)) if next_key else np.nan
+    sales_growth = (
+        round((forward_sales / prior_sales - 1) * 100, 4)
+        if np.isfinite(prior_sales) and prior_sales > 0 and np.isfinite(forward_sales)
+        else provider_sales_growth
+    )
+    if np.isfinite(prior_op) and prior_op > 0 and np.isfinite(forward_op):
+        op_growth = round((forward_op / prior_op - 1) * 100, 4)
+    elif np.isfinite(prior_op) and np.isfinite(forward_op) and prior_op <= 0 < forward_op:
+        op_growth = 999.0
+    else:
+        op_growth = provider_op_growth
     eps = _one_decimal(indicators[1].get(key))
     forward_pe = _one_decimal(indicators[3].get(key))
     if np.isnan(op_growth) or np.isnan(forward_pe):
@@ -81,8 +103,19 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
         "sector": sector or "미분류",
         "as_of": _date_text(summary.get("estdate")),
         "estimate_period": periods[target],
+        "prior_period": periods[target - 1] if target > 0 else None,
+        "next_estimate_period": periods[target + 1] if target + 1 < len(periods) else None,
         "sales_1y_growth": sales_growth,
         "op_1y_growth": op_growth,
+        "provider_sales_growth": provider_sales_growth,
+        "provider_op_growth": provider_op_growth,
+        "prior_sales": prior_sales,
+        "prior_op": prior_op,
+        "forward_sales": forward_sales,
+        "forward_op": forward_op,
+        "next_sales": next_sales,
+        "next_op": next_op,
+        "future_op_basis": "흑자전환" if np.isfinite(prior_op) and np.isfinite(forward_op) and prior_op <= 0 < forward_op else "증가율",
         "forward_pe": forward_pe,
         "forward_eps": eps,
         "analyst_count": 0,
@@ -102,6 +135,16 @@ class KisConsensusClient:
     def from_environment(cls) -> "KisConsensusClient | None":
         key = os.getenv("KIS_APP_KEY", "").strip()
         secret = os.getenv("KIS_APP_SECRET", "").strip()
+        if os.name == "nt" and (not key or not secret):
+            try:
+                import winreg
+                with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment") as handle:
+                    if not key:
+                        key = str(winreg.QueryValueEx(handle, "KIS_APP_KEY")[0]).strip()
+                    if not secret:
+                        secret = str(winreg.QueryValueEx(handle, "KIS_APP_SECRET")[0]).strip()
+            except OSError:
+                pass
         return cls(key, secret) if key and secret else None
 
     def authenticate(self) -> None:
@@ -140,7 +183,12 @@ def _revision(current: float, history: pd.DataFrame, days: int) -> float:
     if np.isnan(current) or history.empty:
         return np.nan
     cutoff = pd.Timestamp.now(tz=KST).tz_localize(None).normalize() - pd.offsets.BDay(days)
-    old = history[history["fetched_at"] <= cutoff]
+    # CSV history can contain +09:00 timestamps while older test/cache rows are
+    # timezone-naive.  Compare one normalized representation so a valid KIS
+    # response is not discarded with "Cannot compare tz-naive and tz-aware".
+    fetched_at = pd.to_datetime(history["fetched_at"], errors="coerce", utc=True)
+    fetched_at = fetched_at.dt.tz_convert(KST).dt.tz_localize(None)
+    old = history[fetched_at <= cutoff]
     if old.empty:
         return np.nan
     previous = pd.to_numeric(old.iloc[-1]["forward_eps"], errors="coerce")

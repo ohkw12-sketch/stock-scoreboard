@@ -1,6 +1,7 @@
 import json
 import sys
 import unittest
+from datetime import datetime
 from pathlib import Path
 
 import numpy as np
@@ -10,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from rotation_screener import (
-    audit_market_data, build_entry_board, build_value_board, canonical_sector,
+    align_to_verified_session, attach_market_snapshot, audit_market_data, build_entry_board, build_value_board, canonical_sector,
     generate_sample_fundamentals, generate_sample_market, load_config, run_engine,
 )
 
@@ -20,11 +21,12 @@ class RotationEngineTest(unittest.TestCase):
     def setUpClass(cls):
         cls.config = load_config(None, "sample")
         cls.prices = generate_sample_market()
+        cls.prices, cls.market_status = attach_market_snapshot(cls.prices, cls.config)
         cls.p11 = run_engine(cls.prices, cls.config, "unit-test-sample")
         cls.fundamentals = generate_sample_fundamentals(cls.prices)
         cls.p1 = build_entry_board(cls.prices, cls.p11["_allSectors"], cls.fundamentals, cls.config)
         cls.p2 = build_value_board(cls.fundamentals, cls.config,
-                                   {"status": "정상", "asOfDate": "2026-08-27"})
+                                   {"status": "정상", "asOfDate": "2026-08-27"}, cls.prices)
 
     def test_whole_market_shape(self):
         self.assertEqual(self.prices["market"].nunique(), 2)
@@ -64,42 +66,99 @@ class RotationEngineTest(unittest.TestCase):
         required = {"currentPrice", "entryZone", "confirmation", "invalidationPrice", "stopPct",
                     "growth1Y", "consensus", "valueMultiple"}
         self.assertTrue(required.issubset(self.p1["rows"][0]))
+        self.assertTrue(all(
+            "nan" not in " ".join(str(row[field]).lower() for field in ("growth1Y", "consensus", "valueMultiple"))
+            for row in self.p1["rows"]
+        ))
+        self.assertTrue(all(row["growth1Y"] not in {"+999.0%", "-999.0%"} for row in self.p1["rows"]))
 
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
-        self.assertTrue({"forwardPER", "sectorMedianPER", "consensus20D"}.issubset(self.p2["rows"][0]))
+        required = {"futureType", "currentEvaluation", "priceEvaluation", "futureEvaluation",
+                    "impliedRequiredGrowth", "upside12M", "confidence"}
+        self.assertTrue(required.issubset(self.p2["rows"][0]))
+        self.assertTrue(all(row["futureType"] in {"A", "T+"} for row in self.p2["rows"]))
 
-    def test_value_consensus_is_bounded_supplement_and_missing_is_neutral(self):
+    def test_value_engine_filters_future_a_and_verified_t_plus(self):
         frame = pd.DataFrame([
-            {"ticker": "000001", "name": "상향", "sector": "테스트", "as_of": "2026-06-30",
-             "sales_1y_growth": 20, "op_1y_growth": 30, "forward_pe": 10,
-             "consensus_op_1y_growth": 80, "consensus_growth_delta": 50,
+            {"ticker": "000001", "name": "미래A", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 20, "op_1y_growth": 30, "sales_current": 1200e8,
+             "sales_previous": 1000e8, "op_current": 180e8, "op_previous": 100e8,
+             "op_growth_basis": "증가율", "report_code": "11012", "forward_pe": 10, "forward_eps": 5000,
+             "estimate_period": "2027.12E", "consensus_sales_1y_growth": 20, "consensus_op_1y_growth": 45,
              "consensus_as_of": "2026-06-30", "consensus_change_1d": np.nan,
              "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": 0},
-            {"ticker": "000002", "name": "하향", "sector": "테스트", "as_of": "2026-06-30",
-             "sales_1y_growth": 20, "op_1y_growth": 30, "forward_pe": 10,
-             "consensus_op_1y_growth": -20, "consensus_growth_delta": -50,
+            {"ticker": "000002", "name": "미래T", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 20, "op_1y_growth": 999, "sales_current": 600e8,
+             "sales_previous": 500e8, "op_current": -5e8, "op_previous": -20e8,
+             "op_growth_basis": "적자축소", "report_code": "11012", "forward_pe": 12, "forward_eps": 3000,
+             "estimate_period": "2027.12E", "consensus_sales_1y_growth": 15, "consensus_op_1y_growth": 60,
+             "future_op_basis": "흑자전환", "consensus_prior_op": -10, "consensus_forward_op": 20,
+             "consensus_next_op": 30, "consensus_next_sales": 700,
              "consensus_as_of": "2026-06-30", "consensus_change_1d": np.nan,
              "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": 0},
-            {"ticker": "000003", "name": "미제공", "sector": "테스트", "as_of": "2026-06-30",
-             "sales_1y_growth": 20, "op_1y_growth": 30, "forward_pe": np.nan,
-             "consensus_op_1y_growth": np.nan, "consensus_growth_delta": np.nan,
+            {"ticker": "000003", "name": "미래B", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 20, "op_1y_growth": 30, "sales_current": 1200e8,
+             "sales_previous": 1000e8, "op_current": 120e8, "op_previous": 100e8,
+             "op_growth_basis": "증가율", "report_code": "11012", "forward_pe": 10, "forward_eps": 4000,
+             "estimate_period": "2027.12E", "consensus_sales_1y_growth": 30, "consensus_op_1y_growth": 20,
+             "consensus_as_of": np.nan, "consensus_change_1d": np.nan,
+             "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": np.nan},
+            {"ticker": "000004", "name": "고배수제외", "sector": "테스트", "as_of": "2026-06-30",
+             "sales_1y_growth": 5, "op_1y_growth": 5, "sales_current": 1050e8,
+             "sales_previous": 1000e8, "op_current": 105e8, "op_previous": 100e8,
+             "op_growth_basis": "증가율", "report_code": "11012", "forward_pe": 20, "forward_eps": 2000,
+             "estimate_period": "2027.12E", "consensus_sales_1y_growth": -5, "consensus_op_1y_growth": -5,
              "consensus_as_of": np.nan, "consensus_change_1d": np.nan,
              "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": np.nan},
         ])
-        board = build_value_board(frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"})
+        price_rows = pd.DataFrame([
+            {"ticker": "000001", "date": "2026-08-28", "close": 40000, "market_cap": 9000e8, "shares": 22_500_000},
+            {"ticker": "000002", "date": "2026-08-28", "close": 24000, "market_cap": 3000e8, "shares": 12_500_000},
+            {"ticker": "000003", "date": "2026-08-28", "close": 40000, "market_cap": 5000e8, "shares": 12_500_000},
+            {"ticker": "000004", "date": "2026-08-28", "close": 40000, "market_cap": 4000e8, "shares": 10_000_000},
+        ])
+        board = build_value_board(frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows)
         rows = {row["name"]: row for row in board["rows"]}
-        self.assertGreater(rows["상향"]["consensusAdjustment"], 0)
-        self.assertLess(rows["하향"]["consensusAdjustment"], 0)
-        self.assertEqual(rows["미제공"]["consensusAdjustment"], 0)
-        self.assertLessEqual(max(abs(row["consensusAdjustment"]) for row in board["rows"]), 10)
+        self.assertEqual(rows["미래A"]["futureType"], "A")
+        self.assertEqual(rows["미래T"]["futureType"], "T+")
+        self.assertEqual(rows["미래T"]["futureGapLabel"], "흑자→차기 흑자")
+        self.assertIsNone(rows["미래T"]["futureGapPct"])
+        self.assertNotIn("미래B", rows)
+        self.assertEqual(rows["미래A"]["impliedRequiredGrowth"], rows["미래A"]["pricePremiumPct"])
+
+    def test_market_snapshot_aligns_cap_to_verified_close(self):
+        latest = self.prices.sort_values("date").groupby("ticker").tail(1)
+        self.assertEqual(self.market_status["status"], "정상")
+        self.assertTrue(np.allclose(latest["market_cap"], latest["close"] * latest["shares"]))
 
     def test_collection_audit(self):
         report = audit_market_data(self.prices, self.config, "sample")
         self.assertEqual(report["qualityStatus"], "정상")
         self.assertEqual(report["latestCoverageRatio"], 1.0)
         self.assertEqual(report["missingTickers"], [])
+
+    def test_sparse_future_quotes_do_not_become_whole_market_session(self):
+        base = self.prices.copy()
+        sparse = base.sort_values("date").groupby("ticker").tail(1).head(2).copy()
+        sparse["date"] = sparse["date"].max() + pd.offsets.BDay(1)
+        aligned, details = align_to_verified_session(pd.concat([base, sparse], ignore_index=True), self.config)
+        self.assertEqual(aligned["date"].max(), base["date"].max())
+        self.assertEqual(details["ignoredSparseTickers"], 2)
+
+    def test_intraday_whole_market_rows_are_not_treated_as_close(self):
+        base = self.prices.copy()
+        prior_close = base.sort_values("date").groupby("ticker").tail(1).copy()
+        prior_close["date"] = pd.Timestamp("2026-08-31")
+        intraday = prior_close.copy()
+        intraday["date"] = pd.Timestamp("2026-09-01")
+        combined = pd.concat([base, prior_close, intraday], ignore_index=True)
+        aligned, details = align_to_verified_session(
+            combined, self.config, datetime.fromisoformat("2026-09-01T09:30:00+09:00")
+        )
+        self.assertEqual(aligned["date"].max(), pd.Timestamp("2026-08-31"))
+        self.assertEqual(details["rawLatestPriceDate"], "2026-09-01")
 
     def test_theme_sector_mapping(self):
         self.assertEqual(canonical_sector("달바글로벌", "기타 화학제품 제조업", "기초 화장품"), "화장품")

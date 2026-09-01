@@ -44,11 +44,13 @@ DEFAULTS = {
     "top_stock_count": 20,
     "top_entry_count": 20,
     "top_value_count": 15,
+    "minimum_value_sector_peers": 2,
+    "market_snapshot_cache_max_days": 7,
     "cache_dir": "cache",
     "output_dir": "test_output",
     "base_data_file": "data.json",
     "primary_source": "pykrx",
-    "fallback_sources": ["cache", "yfinance"],
+    "fallback_sources": ["yfinance", "cache"],
     "cache_max_age_hours": 30,
     "request_retries": 3,
     "request_pause_seconds": 0.35,
@@ -123,12 +125,130 @@ def normalize_prices(frame: pd.DataFrame) -> pd.DataFrame:
     renamed["date"] = pd.to_datetime(renamed["date"]).dt.normalize()
     ticker_text = renamed["ticker"].astype(str).str.strip()
     renamed["ticker"] = ticker_text.where(ticker_text.str.fullmatch(r"\d{1,6}")).str.zfill(6)
-    for column in ("open", "high", "low", "close", "volume", "value"):
+    for column in ("open", "high", "low", "close", "volume", "value", "market_cap", "shares"):
+        if column not in renamed:
+            continue
         renamed[column] = pd.to_numeric(renamed[column], errors="coerce")
     renamed["sector"] = renamed["sector"].fillna("미분류").replace("", "미분류")
     renamed = renamed.dropna(subset=["date", "ticker", "close"])
     renamed = renamed[renamed["close"] > 0]
     return renamed.sort_values(["ticker", "date"]).reset_index(drop=True)
+
+
+def attach_market_snapshot(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame, dict]:
+    """Attach listed shares and price-date-aligned market cap without changing OHLC data.
+
+    FinanceDataReader's KRX listing is used only for the latest listed-share count.
+    Market cap is recomputed with the engine's verified closing price so the price and
+    valuation dates cannot silently diverge.
+    """
+    latest_date = pd.Timestamp(prices["date"].max()).normalize()
+    latest = prices.sort_values("date").groupby("ticker").tail(1)[["ticker", "close"]].copy()
+    if config.get("mode") == "sample":
+        latest["shares"] = latest["ticker"].astype(int).mod(90_000_000).add(10_000_000)
+        latest["market_cap"] = latest["close"] * latest["shares"]
+        source = "deterministic-sample"
+    else:
+        cache_path = Path(config["cache_dir"]) / "krx_market_snapshot.csv"
+        snapshot = pd.DataFrame()
+        errors = []
+        try:
+            import FinanceDataReader as fdr
+            raw = fdr.StockListing("KRX")
+            snapshot = raw.rename(columns={"Code": "ticker", "Stocks": "shares"})[["ticker", "shares"]].copy()
+            snapshot["ticker"] = snapshot["ticker"].astype(str).str.zfill(6)
+            snapshot["shares"] = pd.to_numeric(snapshot["shares"], errors="coerce")
+            snapshot["fetched_at"] = datetime.now(KST).isoformat(timespec="seconds")
+            snapshot.to_csv(cache_path, index=False, encoding="utf-8-sig")
+            source = "KRX listing via FinanceDataReader"
+        except Exception as exc:
+            errors.append(f"live snapshot: {type(exc).__name__}")
+            if cache_path.exists():
+                snapshot = pd.read_csv(cache_path, dtype={"ticker": str})
+                fetched = pd.to_datetime(snapshot.get("fetched_at"), errors="coerce", utc=True).max()
+                if pd.notna(fetched):
+                    fetched_local = fetched.tz_convert(KST).tz_localize(None).normalize()
+                    now_local = pd.Timestamp.now(tz=KST).tz_localize(None).normalize()
+                    age = (now_local - fetched_local).days
+                else:
+                    age = 999
+                if age > int(config.get("market_snapshot_cache_max_days", 7)):
+                    snapshot = pd.DataFrame()
+                    errors.append(f"share cache age {age} days")
+                source = "verified share-count cache"
+            else:
+                source = None
+        if snapshot.empty:
+            return prices.copy(), {
+                "status": "자료없음", "source": source, "asOfDate": latest_date.strftime("%Y-%m-%d"),
+                "coverageRatio": 0.0, "problem": "; ".join(errors) or "상장주식 수 자료 없음",
+            }
+        snapshot = snapshot[["ticker", "shares"]].drop_duplicates("ticker", keep="last")
+        latest = latest.merge(snapshot, on="ticker", how="left")
+        latest["market_cap"] = latest["close"] * latest["shares"]
+    values = latest[["ticker", "shares", "market_cap"]].drop_duplicates("ticker")
+    enriched = prices.drop(columns=["shares", "market_cap"], errors="ignore").merge(values, on="ticker", how="left")
+    coverage = float(values["market_cap"].notna().mean()) if len(values) else 0.0
+    return enriched, {
+        "status": "정상" if coverage >= 0.98 else "부분수집", "source": source,
+        "asOfDate": latest_date.strftime("%Y-%m-%d"), "coverageRatio": round(coverage, 4),
+        "problem": None if coverage >= 0.98 else f"시가총액 커버리지 {coverage:.2%}",
+    }
+
+
+def _expected_completed_business_day(now: datetime | None = None) -> date:
+    """Return the most recent weekday whose Korean close should be available.
+
+    Before 18:00 KST the current session is not treated as complete.  This
+    deliberately uses a weekday calendar: exchange holidays can make the
+    result conservative, but can never make stale data look newer than it is.
+    """
+    current = now.astimezone(KST) if now is not None else datetime.now(KST)
+    candidate = current.date()
+    if current.hour < 18:
+        candidate -= timedelta(days=1)
+    while candidate.weekday() >= 5:
+        candidate -= timedelta(days=1)
+    return candidate
+
+
+def _business_session_lag(price_date: date, now: datetime | None = None) -> int:
+    expected = _expected_completed_business_day(now)
+    if price_date >= expected:
+        return 0
+    return int(np.busday_count(price_date, expected))
+
+
+def align_to_verified_session(prices: pd.DataFrame, config: dict,
+                              now: datetime | None = None) -> tuple[pd.DataFrame, dict]:
+    """Discard stray later quotes and select the newest whole-market session.
+
+    Free feeds sometimes publish a new date for a handful of securities before
+    the complete KRX session is available.  Using the raw maximum date would
+    reduce a 2,600-stock universe to those few rows.  A session is accepted only
+    when it covers the same configured whole-market threshold used by the audit.
+    """
+    frame = normalize_prices(prices)
+    raw_latest = pd.Timestamp(frame["date"].max()).normalize()
+    universe_count = int(frame["ticker"].nunique())
+    daily_counts = frame.groupby("date")["ticker"].nunique().sort_index()
+    minimum_count = math.ceil(universe_count * float(config["minimum_latest_coverage_ratio"]))
+    completed_through = pd.Timestamp(_expected_completed_business_day(now))
+    eligible = daily_counts[(daily_counts >= minimum_count) & (daily_counts.index <= completed_through)]
+    if eligible.empty:
+        anchor = raw_latest
+    else:
+        anchor = pd.Timestamp(eligible.index.max()).normalize()
+    aligned = frame[frame["date"].le(anchor)].copy()
+    ignored_rows = int(frame["date"].gt(anchor).sum())
+    ignored_tickers = int(frame.loc[frame["date"].gt(anchor), "ticker"].nunique())
+    return aligned, {
+        "rawLatestPriceDate": raw_latest.strftime("%Y-%m-%d"),
+        "verifiedSessionDate": anchor.strftime("%Y-%m-%d"),
+        "priceBusinessSessionLag": _business_session_lag(anchor.date(), now),
+        "ignoredSparseRows": ignored_rows,
+        "ignoredSparseTickers": ignored_tickers,
+    }
 
 
 def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
@@ -162,6 +282,9 @@ def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
         problems.append(f"최신 가격 종목 커버리지 {coverage:.2%} (기준 미달)")
     if unclassified > float(config["maximum_unclassified_ratio"]):
         problems.append(f"미분류 비율 {unclassified:.2%} (기준 초과)")
+    session_lag = _business_session_lag(pd.Timestamp(latest).date())
+    if config.get("mode") != "sample" and session_lag > 1:
+        problems.append(f"가격 기준일이 완료 세션보다 {session_lag}영업일 지연 (1영업일 초과)")
     return {
         "source": source, "checkedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
         "latestPriceDate": pd.Timestamp(latest).strftime("%Y-%m-%d"),
@@ -170,6 +293,7 @@ def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
         "previousMarketCounts": previous_market_counts,
         "unclassifiedRatio": round(unclassified, 4), "missingTickers": missing,
         "missingStocks": missing_stocks,
+        "priceBusinessSessionLag": session_lag,
         "qualityStatus": "정상" if not problems else "부분실패",
         "problems": problems,
     }
@@ -256,7 +380,8 @@ class MarketDataLoader:
                 else:
                     raise ValueError(f"unknown data source: {source}")
                 merged = self._merge_recovery(frame, recovery_frames)
-                report = audit_market_data(merged, self.config, label) | {"attempts": list(errors)}
+                merged, session_meta = align_to_verified_session(merged, self.config)
+                report = audit_market_data(merged, self.config, label) | session_meta | {"attempts": list(errors)}
                 recovery_frames.append(frame)
                 if report["qualityStatus"] == "정상":
                     self.report = report
@@ -268,7 +393,8 @@ class MarketDataLoader:
                 log(f"source unavailable, trying next: {source}")
         if recovery_frames:
             merged = self._merge_recovery(recovery_frames[-1], recovery_frames[:-1])
-            self.report = audit_market_data(merged, self.config, "partial-recovery") | {
+            merged, session_meta = align_to_verified_session(merged, self.config)
+            self.report = audit_market_data(merged, self.config, "partial-recovery") | session_meta | {
                 "attempts": errors,
                 "physicalLimitation": "모든 무료 가격원과 신선 캐시를 재시도했지만 일부 종목을 복구하지 못함",
             }
@@ -287,7 +413,8 @@ class MarketDataLoader:
         if not self.cache_file.exists():
             raise FileNotFoundError(f"cache not found: {self.cache_file}")
         frame = normalize_prices(pd.read_csv(self.cache_file))
-        business_days_old = int(np.busday_count(frame["date"].max().date(), datetime.now(KST).date()))
+        frame, _ = align_to_verified_session(frame, self.config)
+        business_days_old = _business_session_lag(frame["date"].max().date())
         if require_fresh and business_days_old > 1:
             raise RuntimeError(f"cache latest price is {business_days_old} business days old")
         identity_conflicts = frame.groupby("ticker").agg(names=("name", "nunique"), markets=("market", "nunique"))
@@ -320,6 +447,7 @@ class MarketDataLoader:
         return normalize_prices(enriched)
 
     def _save_cache(self, frame: pd.DataFrame) -> None:
+        frame, _ = align_to_verified_session(frame, self.config)
         report = audit_market_data(frame, self.config, "cache-write-check")
         if report["qualityStatus"] != "정상":
             log("cache not replaced because collection validation is incomplete")
@@ -720,11 +848,40 @@ def generate_sample_fundamentals(prices: pd.DataFrame) -> pd.DataFrame:
     rows = []
     for number, item in enumerate(latest.itertuples(), 1):
         seed = int(item.ticker) * 17
+        sales_previous = float(100_000_000_000 + (seed % 500) * 1_000_000_000)
+        sales_growth = float(10 + seed % 55)
+        sales_current = sales_previous * (1 + sales_growth / 100)
+        turnaround = number % 9 == 0
+        op_previous = -5_000_000_000.0 if turnaround else sales_previous * (0.04 + (seed % 7) / 100)
+        op_growth = 999.0 if turnaround else float(-5 + seed % 80)
+        op_current = sales_current * (0.07 + (seed % 9) / 100) if turnaround else op_previous * (1 + op_growth / 100)
+        future_sales_growth = float(8 + seed % 37)
+        future_op_growth = float(15 + seed % 90)
+        future_turnaround = number % 11 == 0
+        consensus_prior_op = -float(40 + seed % 90) if future_turnaround else float(100 + seed % 800)
+        consensus_forward_op = float(60 + seed % 250) if future_turnaround else consensus_prior_op * (1 + future_op_growth / 100)
+        consensus_next_op = consensus_forward_op * (1.15 + (seed % 10) / 100)
         rows.append({
             "ticker": item.ticker, "name": item.name, "sector": item.sector,
             "as_of": "2026-08-27", "sales_q3_growth": 8 + seed % 37,
-            "sales_q4_growth": 6 + seed % 41, "sales_1y_growth": 10 + seed % 55,
-            "op_1y_growth": -5 + seed % 80, "forward_pe": 7 + (seed % 310) / 10,
+            "sales_q4_growth": 6 + seed % 41, "sales_1y_growth": sales_growth,
+            "op_1y_growth": op_growth, "sales_current": sales_current, "sales_previous": sales_previous,
+            "op_current": op_current, "op_previous": op_previous,
+            "sales_growth_basis": "증가율", "op_growth_basis": "흑자전환" if turnaround else "증가율",
+            "report_code": "11012", "fs_div": "CFS",
+            "forward_pe": 7 + (seed % 310) / 10,
+            "forward_eps": 500 + seed % 7000, "estimate_period": "2027.12E",
+            "consensus_sales_1y_growth": future_sales_growth,
+            "consensus_op_1y_growth": future_op_growth,
+            "consensus_prior_sales": float(500 + seed % 1200),
+            "consensus_prior_op": consensus_prior_op,
+            "consensus_forward_sales": float(500 + seed % 1200) * (1 + future_sales_growth / 100),
+            "consensus_forward_op": consensus_forward_op,
+            "consensus_next_sales": float(500 + seed % 1200) * (1 + future_sales_growth / 100) * 1.08,
+            "consensus_next_op": consensus_next_op,
+            "future_op_basis": "흑자전환" if future_turnaround else "증가율",
+            "prior_period": "2026.12", "next_estimate_period": "2028.12E",
+            "consensus_as_of": "2026-08-27",
             "consensus_change_1d": ((seed % 9) - 3) / 10,
             "consensus_change_5d": ((seed % 19) - 5) / 10,
             "consensus_change_20d": ((seed % 31) - 8) / 10,
@@ -748,14 +905,30 @@ def merge_fundamental_sources(dart: pd.DataFrame, consensus: pd.DataFrame,
         }
     merged = dart.copy()
     if not consensus.empty:
+        consensus = consensus.copy()
+        for column in (
+            "estimate_period", "prior_period", "next_estimate_period", "prior_sales", "prior_op",
+            "forward_sales", "forward_op", "next_sales", "next_op", "future_op_basis", "forward_eps",
+        ):
+            if column not in consensus:
+                consensus[column] = np.nan
         supplement = consensus[[
-            "ticker", "as_of", "sales_1y_growth", "op_1y_growth", "forward_pe",
+            "ticker", "as_of", "estimate_period", "prior_period", "next_estimate_period",
+            "sales_1y_growth", "op_1y_growth", "prior_sales", "prior_op",
+            "forward_sales", "forward_op", "next_sales", "next_op", "future_op_basis",
+            "forward_pe", "forward_eps",
             "consensus_change_1d", "consensus_change_5d", "consensus_change_20d",
             "analyst_count",
         ]].copy().rename(columns={
             "as_of": "consensus_as_of",
             "sales_1y_growth": "consensus_sales_1y_growth",
             "op_1y_growth": "consensus_op_1y_growth",
+            "prior_sales": "consensus_prior_sales",
+            "prior_op": "consensus_prior_op",
+            "forward_sales": "consensus_forward_sales",
+            "forward_op": "consensus_forward_op",
+            "next_sales": "consensus_next_sales",
+            "next_op": "consensus_next_op",
             "forward_pe": "kis_forward_pe",
             "analyst_count": "kis_analyst_count",
         })
@@ -769,7 +942,10 @@ def merge_fundamental_sources(dart: pd.DataFrame, consensus: pd.DataFrame,
         )
     else:
         for column in (
-            "consensus_as_of", "consensus_sales_1y_growth", "consensus_op_1y_growth",
+            "consensus_as_of", "estimate_period", "prior_period", "next_estimate_period",
+            "consensus_sales_1y_growth", "consensus_op_1y_growth", "consensus_prior_sales",
+            "consensus_prior_op", "consensus_forward_sales", "consensus_forward_op",
+            "consensus_next_sales", "consensus_next_op", "future_op_basis", "forward_eps",
             "consensus_growth_delta", "consensus_change_1d", "consensus_change_5d",
             "consensus_change_20d",
         ):
@@ -840,74 +1016,270 @@ def load_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame,
                    "problem": None if status == "정상" else f"컨센서스 기준일이 {stale_days}일 경과"}
 
 
-def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict) -> dict:
+def _annualized_amount(amount: pd.Series, report_code: pd.Series) -> pd.Series:
+    factors = report_code.astype(str).map({"11013": 4.0, "11012": 2.0, "11014": 4.0 / 3.0, "11011": 1.0}).fillna(1.0)
+    return pd.to_numeric(amount, errors="coerce") * factors
+
+
+def _amount_text(value: float) -> str:
+    if not np.isfinite(value):
+        return "자료없음"
+    eok = value / 100_000_000
+    if abs(eok) >= 10_000:
+        return f"{eok / 10_000:,.2f}조원"
+    return f"{eok:,.0f}억원"
+
+
+def _pct(value: float, suffix: str = "%") -> str:
+    return f"{value:+.1f}{suffix}" if np.isfinite(value) else "자료없음"
+
+
+def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
+                      prices: pd.DataFrame | None = None) -> dict:
+    """Build a forward-first one-year value board.
+
+    Selection is limited to future A (sales, OP, and margin all improving) and
+    verified T+ (forecast turnaround with positive next-period continuation). Reported
+    results validate the forecast; they no longer create a 70/30 ranking score.
+    Sector-relative price burden and implied required growth are two views of
+    the same datum and are therefore never added as separate score components.
+    """
     if fundamentals.empty:
         return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}", "rows": [], "dataStatus": status}
     data = fundamentals.copy()
-    for column in ("sales_1y_growth", "op_1y_growth", "forward_pe", "consensus_change_1d",
-                   "consensus_change_5d", "consensus_change_20d", "analyst_count"):
+    numeric_columns = (
+        "sales_1y_growth", "op_1y_growth", "sales_current", "sales_previous", "op_current", "op_previous",
+        "consensus_sales_1y_growth", "consensus_op_1y_growth", "forward_pe", "forward_eps",
+        "consensus_prior_sales", "consensus_prior_op", "consensus_forward_sales", "consensus_forward_op",
+        "consensus_next_sales", "consensus_next_op",
+        "consensus_change_1d", "consensus_change_5d", "consensus_change_20d", "analyst_count",
+    )
+    for column in numeric_columns:
+        if column not in data:
+            data[column] = np.nan
         data[column] = pd.to_numeric(data[column], errors="coerce")
-    data["sector_median_pe"] = data.groupby("sector")["forward_pe"].transform("median")
-    data["discount"] = data["sector_median_pe"] / data["forward_pe"] - 1
-    data = data.dropna(subset=["op_1y_growth", "sales_1y_growth"]).copy()
-    # Base rule stays explicit: operating-profit growth first, sales growth second.
-    data["base_score"] = (rank_percentile(data["op_1y_growth"]) * 70 +
-                          rank_percentile(data["sales_1y_growth"]) * 30)
-    # Consensus revisions are a bounded supplement. 20d/5d/1d retain their
-    # explicit weights; missing history is neutral, never exclusion or penalty.
+    if "report_code" not in data:
+        data["report_code"] = "11011"
+    if "op_growth_basis" not in data:
+        data["op_growth_basis"] = "증가율"
+    if "estimate_period" not in data:
+        data["estimate_period"] = np.nan
+    if "consensus_as_of" not in data:
+        data["consensus_as_of"] = np.nan
+    if "future_op_basis" not in data:
+        data["future_op_basis"] = np.nan
+    if "next_estimate_period" not in data:
+        data["next_estimate_period"] = np.nan
+
+    if prices is not None and not prices.empty:
+        latest = prices.sort_values("date").groupby("ticker").tail(1)
+        keep = [column for column in ("ticker", "date", "close", "market_cap", "shares") if column in latest]
+        latest = latest[keep].rename(columns={"date": "price_date", "close": "current_price"})
+        data = data.merge(latest, on="ticker", how="left")
+    else:
+        data["price_date"], data["current_price"], data["market_cap"], data["shares"] = np.nan, np.nan, np.nan, np.nan
+    for column in ("current_price", "market_cap", "shares"):
+        if column not in data:
+            data[column] = np.nan
+        data[column] = pd.to_numeric(data[column], errors="coerce")
+
+    data["annualized_sales"] = _annualized_amount(data["sales_current"], data["report_code"])
+    data["annualized_op"] = _annualized_amount(data["op_current"], data["report_code"])
+    data["op_margin"] = data["op_current"].div(data["sales_current"].replace(0, np.nan)) * 100
+    data["previous_op_margin"] = data["op_previous"].div(data["sales_previous"].replace(0, np.nan)) * 100
+    data["margin_delta"] = data["op_margin"] - data["previous_op_margin"]
+    data["current_pop"] = data["market_cap"].div(data["annualized_op"].where(data["annualized_op"] > 0))
+
+    valid_current = data["current_pop"].replace([np.inf, -np.inf], np.nan).notna() & data["current_pop"].between(0.1, 200)
+    sector_stats = data[valid_current].groupby("sector")["current_pop"].agg(["median", "count"])
+    data["sector_median_pop"] = data["sector"].map(sector_stats["median"] if not sector_stats.empty else {})
+    data["sector_peer_count"] = data["sector"].map(sector_stats["count"] if not sector_stats.empty else {}).fillna(0)
+    market_median_pop = float(data.loc[valid_current, "current_pop"].median()) if valid_current.any() else np.nan
+    too_small = data["sector_peer_count"] < int(config.get("minimum_value_sector_peers", 2))
+    data.loc[too_small, "sector_median_pop"] = market_median_pop
+    data["multiple_basis"] = np.where(too_small, "시장 중앙", "섹터 중앙")
+    data["price_premium_pct"] = (data["current_pop"].div(data["sector_median_pop"]) - 1) * 100
+    # This is intentionally the same relative-price datum as premium/discount.
+    data["implied_required_growth"] = data["price_premium_pct"]
+
+    data["forward_pe_live"] = data["current_price"].div(data["forward_eps"].where(data["forward_eps"] > 0))
+    valid_forward = data["forward_pe_live"].replace([np.inf, -np.inf], np.nan).notna() & data["forward_pe_live"].between(0.1, 200)
+    forward_stats = data[valid_forward].groupby("sector")["forward_pe_live"].agg(["median", "count"])
+    data["sector_forward_pe"] = data["sector"].map(forward_stats["median"] if not forward_stats.empty else {})
+    data["forward_peer_count"] = data["sector"].map(forward_stats["count"] if not forward_stats.empty else {}).fillna(0)
+    market_forward_pe = float(data.loc[valid_forward, "forward_pe_live"].median()) if valid_forward.any() else np.nan
+    forward_small = data["forward_peer_count"] < int(config.get("minimum_value_sector_peers", 2))
+    data.loc[forward_small, "sector_forward_pe"] = market_forward_pe
+    data["future_target_price"] = data["forward_eps"] * data["sector_forward_pe"]
+    data["upside_12m"] = (data["future_target_price"].div(data["current_price"]) - 1) * 100
+    data["forward_price_premium_pct"] = (data["forward_pe_live"].div(data["sector_forward_pe"]) - 1) * 100
+
     revision_weights = {"consensus_change_20d": 0.60, "consensus_change_5d": 0.25,
                         "consensus_change_1d": 0.15}
     revision_total = sum(data[column].fillna(0) * weight for column, weight in revision_weights.items())
     available_weight = sum(data[column].notna().astype(float) * weight for column, weight in revision_weights.items())
     data["consensus_signal"] = revision_total.div(available_weight.replace(0, np.nan))
-    revision_rank = symmetric_rank(data["consensus_signal"])
-    if "consensus_growth_delta" in data:
-        forecast_rank = symmetric_rank(data["consensus_growth_delta"])
-        has_forecast = data["consensus_growth_delta"].notna()
+
+    actual_available = data[["sales_current", "sales_previous", "op_current", "op_previous"]].notna().all(axis=1)
+    future_available = data["consensus_sales_1y_growth"].notna() & data["consensus_op_1y_growth"].notna()
+    actual_turnaround = data["op_growth_basis"].eq("흑자전환") | ((data["op_previous"] < 0) & (data["op_current"] > 0))
+    future_turnaround = data["future_op_basis"].eq("흑자전환") | (
+        (data["consensus_prior_op"] <= 0) & (data["consensus_forward_op"] > 0)
+    ) | (
+        data["consensus_prior_op"].isna() & data["consensus_forward_op"].isna() &
+        (data["consensus_op_1y_growth"] >= 900)
+    )
+    continuation_verified = (data["consensus_next_op"] > 0) & (
+        data["consensus_next_sales"].isna() | (data["consensus_next_sales"] > 0)
+    )
+    positive_12m_case = data["upside_12m"] > 0
+    future_t = actual_available & valid_forward & positive_12m_case & future_turnaround & future_available & continuation_verified & (
+        data["consensus_sales_1y_growth"] > 0
+    )
+    future_a = actual_available & valid_current & valid_forward & positive_12m_case & (~future_turnaround) & future_available & (data["consensus_sales_1y_growth"] > 0) & (
+        data["consensus_op_1y_growth"] > data["consensus_sales_1y_growth"]
+    )
+    data["future_type"] = np.select([future_t, future_a], ["T+", "A"], default="제외")
+    data = data[data["future_type"].isin(["A", "T+"])].copy()
+
+    actual_turnaround = actual_turnaround.loc[data.index]
+    actual_a = (data["sales_1y_growth"] > 0) & (data["op_1y_growth"].between(0, 998)) & (data["margin_delta"] > 0)
+    actual_t_progress = (data["sales_1y_growth"] > 0) & (data["op_current"] > data["op_previous"])
+    revision_positive = data["consensus_signal"].fillna(0) >= 0
+    data["confidence"] = np.select(
+        [data["future_type"].eq("T+") & actual_t_progress & revision_positive,
+         data["future_type"].eq("A") & actual_a & revision_positive,
+         revision_positive],
+        ["A", "A", "B"], default="C",
+    )
+    data["confidence_rank"] = data["confidence"].map({"A": 3, "B": 2, "C": 1}).fillna(0)
+    data["price_burden_pct"] = np.where(
+        data["future_type"].eq("T+"), data["forward_price_premium_pct"], data["price_premium_pct"],
+    )
+    data["implied_required_growth"] = data["price_burden_pct"]
+    data["future_gap"] = np.where(
+        data["future_type"].eq("A"),
+        data["consensus_op_1y_growth"] - data["implied_required_growth"],
+        np.nan,
+    )
+    a_ranked = data[data["future_type"].eq("A")].sort_values(
+        ["future_gap", "confidence_rank", "upside_12m", "consensus_op_1y_growth"],
+        ascending=[False, False, False, False], na_position="last",
+    ).copy()
+    t_ranked = data[data["future_type"].eq("T+")].sort_values(
+        ["confidence_rank", "upside_12m", "consensus_op_1y_growth", "consensus_next_op"],
+        ascending=[False, False, False, False], na_position="last",
+    ).copy()
+    a_ranked["type_rank"] = np.arange(1, len(a_ranked) + 1)
+    t_ranked["type_rank"] = np.arange(1, len(t_ranked) + 1)
+    top_count = int(config["top_value_count"])
+    if len(a_ranked) and len(t_ranked):
+        a_slots, t_slots = (top_count + 1) // 2, top_count // 2
+        if len(a_ranked) < a_slots:
+            t_slots += a_slots - len(a_ranked)
+        if len(t_ranked) < t_slots:
+            a_slots += t_slots - len(t_ranked)
+        selected_a, selected_t = a_ranked.head(a_slots), t_ranked.head(t_slots)
+        selected_rows = []
+        for offset in range(max(len(selected_a), len(selected_t))):
+            if offset < len(selected_a):
+                selected_rows.append(selected_a.iloc[offset])
+            if offset < len(selected_t):
+                selected_rows.append(selected_t.iloc[offset])
+        selected = pd.DataFrame(selected_rows)
     else:
-        forecast_rank = pd.Series(0.5, index=data.index)
-        has_forecast = pd.Series(False, index=data.index)
-    has_revision = data["consensus_signal"].notna()
-    combined_rank = np.where(
-        has_forecast & has_revision, forecast_rank * 0.5 + revision_rank * 0.5,
-        np.where(has_forecast, forecast_rank, np.where(has_revision, revision_rank, 0.5)),
-    )
-    data["consensus_adjustment"] = np.where(
-        has_forecast | has_revision, (combined_rank - 0.5) * 20, 0.0
-    )
-    data["score"] = data["base_score"] + data["consensus_adjustment"]
-    data = data.sort_values(["score", "op_1y_growth", "sales_1y_growth"], ascending=False)
+        selected = (a_ranked if len(a_ranked) else t_ranked).head(top_count)
     rows = []
-    for rank, item in enumerate(data.head(int(config["top_value_count"])).itertuples(), 1):
-        has_pe = np.isfinite(item.forward_pe) and np.isfinite(item.sector_median_pe) and item.sector_median_pe != 0
-        premium = (item.forward_pe / item.sector_median_pe - 1) * 100 if has_pe else np.nan
-        has_consensus = np.isfinite(item.consensus_op_1y_growth) if hasattr(item, "consensus_op_1y_growth") else False
+    for rank, item in enumerate(selected.itertuples(), 1):
+        price_premium = float(item.price_burden_pct) if np.isfinite(item.price_burden_pct) else np.nan
+        price_label = "할인" if np.isfinite(price_premium) and price_premium <= -10 else "프리미엄" if np.isfinite(price_premium) and price_premium >= 10 else "섹터수준"
+        actual_period = {"11013": "1분기 누적", "11012": "상반기 누적", "11014": "3분기 누적", "11011": "연간"}.get(str(item.report_code), "최근 공시")
         has_revision = np.isfinite(item.consensus_signal)
+        reported_op_text = "흑자전환" if str(item.op_growth_basis) == "흑자전환" else _pct(float(item.op_1y_growth))
+        future_op_text = "흑자전환" if item.future_type == "T+" else _pct(float(item.consensus_op_1y_growth))
+        current_text = (
+            f"{actual_period} · 매출 {_amount_text(float(item.sales_current))}({_pct(float(item.sales_1y_growth))}) · "
+            f"OP {_amount_text(float(item.op_current))}({reported_op_text}) · "
+            f"마진 {_pct(float(item.op_margin))}({_pct(float(item.margin_delta), '%p')})"
+        )
+        if item.future_type == "T+":
+            price_text = (
+                f"예상 PER {_pct(float(item.forward_pe_live), '배').replace('+', '')} · "
+                f"{'시장 중앙' if bool(item.forward_peer_count < int(config.get('minimum_value_sector_peers', 2))) else '섹터 중앙'} "
+                f"{_pct(float(item.sector_forward_pe), '배').replace('+', '')} · {price_label} {_pct(price_premium)}"
+            )
+        else:
+            price_text = (
+                f"단순연율 P/OP {_pct(float(item.current_pop), '배').replace('+', '')} · {item.multiple_basis} "
+                f"{_pct(float(item.sector_median_pop), '배').replace('+', '')} · {price_label} {_pct(price_premium)}"
+            )
+        future_text = (
+            f"{item.estimate_period if pd.notna(item.estimate_period) else '향후 1년'} · 예상 매출 {_pct(float(item.consensus_sales_1y_growth))} · "
+            f"예상 OP {future_op_text} · 가격부담 {_pct(float(item.implied_required_growth))}" +
+            (f" · {item.next_estimate_period} 흑자 지속" if item.future_type == "T+" and pd.notna(item.next_estimate_period) else "")
+        )
         rows.append({
             "rank": rank, "ticker": item.ticker, "name": item.name, "sector": item.sector,
-            "sales27": f"{item.sales_1y_growth:+.1f}%", "opGrowth": f"{item.op_1y_growth:+.1f}%",
-            "growth1Y": round(float(item.op_1y_growth), 1),
-            "value": f"예상PER {item.forward_pe:.1f}배" if has_pe else "가치배수 미제공",
-            "forwardPER": round(float(item.forward_pe), 1) if np.isfinite(item.forward_pe) else None,
-            "sectorMedian": f"{item.sector_median_pe:.1f}배" if np.isfinite(item.sector_median_pe) else "미제공",
-            "sectorMedianPER": round(float(item.sector_median_pe), 1) if np.isfinite(item.sector_median_pe) else None,
-            "premium": f"{premium:+.1f}%" if np.isfinite(premium) else "미제공",
+            "futureType": item.future_type, "typeRank": int(item.type_rank), "confidence": item.confidence,
+            "actualPeriod": actual_period, "actualDate": str(item.as_of)[:10],
+            "salesAmount": _amount_text(float(item.sales_current)), "salesGrowth": round(float(item.sales_1y_growth), 1),
+            "opAmount": _amount_text(float(item.op_current)),
+            "reportedOpGrowth": None if str(item.op_growth_basis) == "흑자전환" else round(float(item.op_1y_growth), 1),
+            "opMargin": round(float(item.op_margin), 1) if np.isfinite(item.op_margin) else None,
+            "opMarginDelta": round(float(item.margin_delta), 1) if np.isfinite(item.margin_delta) else None,
+            "currentEvaluation": current_text,
+            "currentPrice": round(float(item.current_price)) if np.isfinite(item.current_price) else None,
+            "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
+            "companyCurrentPOP": round(float(item.current_pop), 1) if np.isfinite(item.current_pop) else None,
+            "sectorMedianPOP": round(float(item.sector_median_pop), 1) if np.isfinite(item.sector_median_pop) else None,
+            "sectorPeerCount": int(item.forward_peer_count if item.future_type == "T+" else item.sector_peer_count),
+            "multipleBasis": item.multiple_basis,
+            "pricePremiumPct": round(price_premium, 1) if np.isfinite(price_premium) else None,
+            "priceEvaluation": price_text,
+            "impliedRequiredGrowth": round(float(item.implied_required_growth), 1) if np.isfinite(item.implied_required_growth) else None,
+            "futurePeriod": str(item.estimate_period) if pd.notna(item.estimate_period) else None,
+            "nextFuturePeriod": str(item.next_estimate_period) if pd.notna(item.next_estimate_period) else None,
+            "futureSalesGrowth": round(float(item.consensus_sales_1y_growth), 1),
+            "futureOpGrowth": round(float(item.consensus_op_1y_growth), 1),
+            "futureOpDisplay": future_op_text,
+            "futureEvaluation": future_text,
+            "futureGapPct": round(float(item.future_gap), 1) if np.isfinite(item.future_gap) else None,
+            "futureGapLabel": _pct(float(item.future_gap)) if np.isfinite(item.future_gap) else "흑자→차기 흑자",
+            "companyForwardPE": round(float(item.forward_pe_live), 1) if np.isfinite(item.forward_pe_live) else None,
+            "futureMultipleBasis": "시장 중앙" if bool(item.forward_peer_count < int(config.get("minimum_value_sector_peers", 2))) else "섹터 중앙",
+            "futurePeerCount": int(item.forward_peer_count),
+            "targetPrice12M": round(float(item.future_target_price)) if np.isfinite(item.future_target_price) else None,
+            "upside12M": round(float(item.upside_12m), 1) if np.isfinite(item.upside_12m) else None,
+            "sales27": f"{item.sales_1y_growth:+.1f}%", "opGrowth": reported_op_text,
+            "growth1Y": "흑자전환" if str(item.op_growth_basis) == "흑자전환" else round(float(item.op_1y_growth), 1),
+            "value": f"P/OP {item.current_pop:.1f}배" if np.isfinite(item.current_pop) else "현재배수 산출불가",
+            "forwardPER": round(float(item.forward_pe_live), 1) if np.isfinite(item.forward_pe_live) else None,
+            "sectorMedian": f"{item.sector_median_pop:.1f}배" if np.isfinite(item.sector_median_pop) else "산출불가",
+            "sectorMedianPER": round(float(item.sector_forward_pe), 1) if np.isfinite(item.sector_forward_pe) else None,
+            "premium": f"{price_premium:+.1f}%" if np.isfinite(price_premium) else "산출불가",
             "consensus1D": round(float(item.consensus_change_1d), 1) if np.isfinite(item.consensus_change_1d) else None,
             "consensus5D": round(float(item.consensus_change_5d), 1) if np.isfinite(item.consensus_change_5d) else None,
             "consensus20D": round(float(item.consensus_change_20d), 1) if np.isfinite(item.consensus_change_20d) else None,
-            "consensusGrowth1Y": round(float(item.consensus_op_1y_growth), 1) if has_consensus else None,
-            "consensusGrowthDelta": round(float(item.consensus_growth_delta), 1) if has_consensus else None,
-            "consensusDate": str(item.consensus_as_of)[:10] if has_consensus else None,
-            "consensusStatus": "반영" if has_consensus else "미제공·기본 성장순위 유지",
-            "baseGrowthScore": round(float(item.base_score), 2),
-            "consensusAdjustment": round(float(item.consensus_adjustment), 2),
-            "signal": "가치 상위",
-            "reason": (f"영업이익 성장 {item.op_1y_growth:+.1f}% · 매출 성장 {item.sales_1y_growth:+.1f}%" +
-                       (f" · 예상 영업이익 성장 {item.consensus_op_1y_growth:+.1f}%" if has_consensus else " · 컨센서스 미제공(감점 없음)") +
-                       (f" · 변경신호 {item.consensus_signal:+.1f}%" if has_revision else "")),
+            "consensusGrowth1Y": round(float(item.consensus_op_1y_growth), 1),
+            "consensusGrowthDelta": round(float(item.future_gap), 1) if np.isfinite(item.future_gap) else None,
+            "consensusDate": str(item.consensus_as_of)[:10] if pd.notna(item.consensus_as_of) else None,
+            "consensusStatus": "미래 A·T+ 선별 반영",
+            "signal": "핵심 A" if item.future_type == "A" else "고수익 T+",
+            "reason": (f"{current_text} · {future_text}" +
+                       (f" · 추정치 변경 {item.consensus_signal:+.1f}%" if has_revision else " · 변경이력 없음")),
         })
-    return {"status": f"전체시장 가치 엔진 {len(data):,}종목 비교 · 성장률 기준 {status.get('asOfDate')}",
-            "rows": rows, "dataStatus": status}
+    a_count = int(len(a_ranked))
+    t_count = int(len(t_ranked))
+    return {
+        "status": f"미래 A·T+ 선별 · A {a_count}개 · T+ {t_count}개 · 상위 {len(rows)}개",
+        "method": "미래 A와 미래 T+를 별도 선별·순위화 → 현재실적 검증 → 섹터 배수를 시장 출발선으로 비교 → 12개월 상승여력",
+        "rows": rows,
+        "events": [{
+            "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"), "event": "70:30 성장점수와 흑자전환 999점 순위를 폐기하고 미래 A·T+ 단계형 평가로 교체",
+            "tone": "정보", "impact": "섹터 프리미엄과 필요성장률은 같은 가격정보이므로 점수에 중복 반영하지 않음",
+        }],
+        "dataStatus": status | {"futureCandidateCount": len(data), "futureACount": a_count, "futureTPlusCount": t_count},
+    }
 
 
 def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamentals: pd.DataFrame,
@@ -961,11 +1333,31 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
         consensus_date = None
         if not fundamentals.empty and item.ticker in fundamental_map.index:
             f = fundamental_map.loc[item.ticker]
-            growth = f"{float(f['op_1y_growth']):+.1f}%"
-            consensus = f"20일 {float(f['consensus_change_20d']):+.1f}%"
-            sector_median = fundamentals.loc[fundamentals["sector"].eq(item.sector), "forward_pe"].median()
-            value_text = f"예상PER {float(f['forward_pe']):.1f}배 / 섹터 {sector_median:.1f}배"
-            consensus_date = str(f["as_of"])[:10]
+            op_growth = pd.to_numeric(f.get("op_1y_growth"), errors="coerce")
+            if pd.notna(op_growth) and np.isfinite(float(op_growth)):
+                growth_basis = str(f.get("op_growth_basis", ""))
+                if growth_basis == "흑자전환" or float(op_growth) >= 900:
+                    growth = "흑자전환"
+                elif growth_basis == "적자전환" or float(op_growth) <= -900:
+                    growth = "적자전환"
+                else:
+                    growth = f"{float(op_growth):+.1f}%"
+            revision_20d = pd.to_numeric(f.get("consensus_change_20d"), errors="coerce")
+            consensus_as_of = f.get("consensus_as_of")
+            has_consensus = pd.notna(consensus_as_of)
+            if pd.notna(revision_20d) and np.isfinite(float(revision_20d)):
+                consensus = f"20일 {float(revision_20d):+.1f}%"
+            elif has_consensus:
+                consensus = "변경이력 없음"
+            forward_pe = pd.to_numeric(f.get("forward_pe"), errors="coerce")
+            sector_values = pd.to_numeric(
+                fundamentals.loc[fundamentals["sector"].eq(item.sector), "forward_pe"], errors="coerce"
+            ).replace([np.inf, -np.inf], np.nan).dropna()
+            sector_median = float(sector_values.median()) if not sector_values.empty else np.nan
+            if pd.notna(forward_pe) and np.isfinite(float(forward_pe)):
+                peer_text = f"{sector_median:.1f}배" if np.isfinite(sector_median) else "자료없음"
+                value_text = f"예상PER {float(forward_pe):.1f}배 / 섹터 {peer_text}"
+            consensus_date = str(consensus_as_of)[:10] if has_consensus else None
         rows.append({
             "rank": rank, "ticker": item.ticker, "name": item.name, "sector": item.sector,
             "entryState": item.entryState, "signal": signal, "currentPrice": int(round(item.close)),
@@ -1132,13 +1524,15 @@ def main(argv: Iterable[str] | None = None) -> int:
         log(f"mode={config['mode']}; loading KOSPI+KOSDAQ market data")
         loader = MarketDataLoader(config)
         prices, source = loader.load()
+        prices, market_snapshot_status = attach_market_snapshot(prices, config)
         log(f"loaded {prices['ticker'].nunique():,} stocks, {prices['date'].nunique()} trading days from {source}")
         p11 = run_engine(prices, config, source)
         fundamentals, fundamental_status = load_fundamentals(prices, config)
         p1 = build_entry_board(prices, p11["_allSectors"], fundamentals, config)
-        p2 = build_value_board(fundamentals, config, fundamental_status)
+        p2 = build_value_board(fundamentals, config, fundamental_status, prices)
         report = dict(loader.report)
         report["fundamentals"] = fundamental_status
+        report["marketSnapshot"] = market_snapshot_status
         report["recoveryPolicy"] = [
             "누락 종목만 재시도", "대체 가격원 사용", "1영업일 이내 캐시로 빈칸만 보완",
             "미분류 재매핑", "실패 영역은 기준일과 실패 사유 표시", "다음 실행에서 자동 재시도",
