@@ -76,9 +76,14 @@ class RotationEngineTest(unittest.TestCase):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
         required = {"futureType", "currentEvaluation", "priceEvaluation", "futureEvaluation",
-                    "impliedRequiredGrowth", "upside12M", "confidence"}
+                    "futurePriceEvaluation", "currentResult", "futureResult", "upside12M", "confidence"}
         self.assertTrue(required.issubset(self.p2["rows"][0]))
-        self.assertTrue(all(row["futureType"] in {"A", "T+"} for row in self.p2["rows"]))
+        self.assertTrue(all(row["futureType"] in {"A", "B"} for row in self.p2["rows"]))
+        self.assertIn("turnaroundRows", self.p2)
+        self.assertFalse(
+            {row["ticker"] for row in self.p2["rows"]} &
+            {row["ticker"] for row in self.p2["turnaroundRows"]}
+        )
 
     def test_value_engine_filters_future_a_and_verified_t_plus(self):
         frame = pd.DataFrame([
@@ -121,12 +126,12 @@ class RotationEngineTest(unittest.TestCase):
         ])
         board = build_value_board(frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows)
         rows = {row["name"]: row for row in board["rows"]}
+        turnaround = {row["name"]: row for row in board["turnaroundRows"]}
         self.assertEqual(rows["미래A"]["futureType"], "A")
-        self.assertEqual(rows["미래T"]["futureType"], "T+")
-        self.assertEqual(rows["미래T"]["futureGapLabel"], "흑자→차기 흑자")
-        self.assertIsNone(rows["미래T"]["futureGapPct"])
-        self.assertNotIn("미래B", rows)
-        self.assertEqual(rows["미래A"]["impliedRequiredGrowth"], rows["미래A"]["pricePremiumPct"])
+        self.assertEqual(turnaround["미래T"]["futureType"], "T+")
+        self.assertIn("1Q·2Q 흑자 지속", turnaround["미래T"]["result"])
+        self.assertNotIn("기대 여유", rows["미래A"]["result"])
+        self.assertEqual(rows["미래A"]["actualPeriod"], "2026 2Q")
 
     def test_market_snapshot_aligns_cap_to_verified_close(self):
         latest = self.prices.sort_values("date").groupby("ticker").tail(1)
@@ -146,6 +151,19 @@ class RotationEngineTest(unittest.TestCase):
         aligned, details = align_to_verified_session(pd.concat([base, sparse], ignore_index=True), self.config)
         self.assertEqual(aligned["date"].max(), base["date"].max())
         self.assertEqual(details["ignoredSparseTickers"], 2)
+
+    def test_latest_coverage_uses_prior_session_count_not_union(self):
+        base = self.prices.copy()
+        latest = base.sort_values("date").groupby("ticker").tail(1).head(62).copy()
+        latest["date"] = pd.Timestamp("2026-09-01")
+        newcomer = latest.iloc[[0]].copy()
+        newcomer["ticker"], newcomer["name"] = "999999", "신규상장"
+        combined = pd.concat([base, latest, newcomer], ignore_index=True)
+        aligned, details = align_to_verified_session(
+            combined, self.config, datetime.fromisoformat("2026-09-01T18:30:00+09:00")
+        )
+        self.assertEqual(aligned["date"].max(), pd.Timestamp("2026-09-01"))
+        self.assertEqual(details["ignoredSparseTickers"], 0)
 
     def test_intraday_whole_market_rows_are_not_treated_as_close(self):
         base = self.prices.copy()

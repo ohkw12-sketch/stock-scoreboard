@@ -16,6 +16,8 @@ class DartFundamentalsTest(unittest.TestCase):
         row = parse_financial_payload(payload, "005930", "삼성전자", "반도체", 2026, "11012", "CFS")
         self.assertEqual(row["sales_1y_growth"], 20.0)
         self.assertEqual(row["op_1y_growth"], 25.0)
+        self.assertEqual(row["sales_quarter_current"], 120000.0)
+        self.assertEqual(row["op_quarter_current"], 25000.0)
         self.assertEqual(row["as_of"], "2026-06-30")
 
     def test_turnaround_is_rankable(self):
@@ -37,6 +39,8 @@ class DartFundamentalsTest(unittest.TestCase):
         row = parse_financial_payload(payload, "000002", "반기", "테스트", 2026, "11012", "CFS")
         self.assertEqual(row["sales_1y_growth"], 20.0)
         self.assertEqual(row["op_1y_growth"], 25.0)
+        self.assertEqual(row["sales_quarter_current"], 60.0)
+        self.assertEqual(row["op_quarter_current"], 15.0)
 
 
 if __name__ == "__main__":

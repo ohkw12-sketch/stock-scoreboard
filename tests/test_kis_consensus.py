@@ -35,6 +35,11 @@ class KisConsensusParserTests(unittest.TestCase):
         self.assertEqual(row["prior_op"], 10.0)
         self.assertEqual(row["forward_op"], 20.0)
         self.assertEqual(row["next_op"], 30.0)
+        self.assertEqual(row["sales_2026"], 120.0)
+        self.assertEqual(row["op_2026"], 30.0)
+        self.assertEqual(row["sales_2027"], 130.0)
+        self.assertEqual(row["op_2027"], 40.0)
+        self.assertEqual(row["amount_unit"], "억원")
         self.assertEqual(row["future_op_basis"], "증가율")
         self.assertEqual(row["as_of"], "2026-08-01")
 

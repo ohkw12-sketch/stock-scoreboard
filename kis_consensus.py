@@ -23,6 +23,8 @@ KST = timezone(timedelta(hours=9))
 TOKEN_URL = "https://openapi.koreainvestment.com:9443/oauth2/tokenP"
 ESTIMATE_URL = "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/estimate-perform"
 ESTIMATE_TR_ID = "HHKST668300C0"
+PRICE_URL = "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-price"
+PRICE_TR_ID = "FHKST01010100"
 
 
 def _number(value) -> float:
@@ -48,6 +50,38 @@ def _date_text(value) -> str:
     if len(digits) >= 6:
         return f"{digits[:4]}-{digits[4:6]}-01"
     return datetime.now(KST).strftime("%Y-%m-%d")
+
+
+def _period_year(period: str) -> int | None:
+    digits = "".join(ch for ch in str(period or "") if ch.isdigit())
+    return int(digits[:4]) if len(digits) >= 4 else None
+
+
+def _add_exact_year_fields(frame: pd.DataFrame) -> pd.DataFrame:
+    """Backfill exact 2026E/2027E fields in caches written by older versions."""
+    if frame.empty:
+        return frame
+    result = frame.copy()
+    for column in ("sales_2026", "op_2026", "sales_2027", "op_2027"):
+        if column not in result:
+            result[column] = np.nan
+    for idx, row in result.iterrows():
+        target_year = _period_year(row.get("estimate_period"))
+        next_year = _period_year(row.get("next_estimate_period"))
+        if target_year == 2026:
+            result.at[idx, "sales_2026"] = row.get("forward_sales")
+            result.at[idx, "op_2026"] = row.get("forward_op")
+        elif target_year == 2027:
+            result.at[idx, "sales_2027"] = row.get("forward_sales")
+            result.at[idx, "op_2027"] = row.get("forward_op")
+        if next_year == 2026:
+            result.at[idx, "sales_2026"] = row.get("next_sales")
+            result.at[idx, "op_2026"] = row.get("next_op")
+        elif next_year == 2027:
+            result.at[idx, "sales_2027"] = row.get("next_sales")
+            result.at[idx, "op_2027"] = row.get("next_op")
+    result["amount_unit"] = "억원"
+    return result
 
 
 def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류") -> dict | None:
@@ -82,6 +116,13 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
     prior_op = _number(income[2].get(prior_key)) if prior_key else np.nan
     next_sales = _number(income[0].get(next_key)) if next_key else np.nan
     next_op = _number(income[2].get(next_key)) if next_key else np.nan
+    annual_amounts = {}
+    for index, period in enumerate(periods[:5]):
+        year = _period_year(period)
+        if year in {2026, 2027}:
+            period_key = f"data{index + 1}"
+            annual_amounts[f"sales_{year}"] = _number(income[0].get(period_key))
+            annual_amounts[f"op_{year}"] = _number(income[2].get(period_key))
     sales_growth = (
         round((forward_sales / prior_sales - 1) * 100, 4)
         if np.isfinite(prior_sales) and prior_sales > 0 and np.isfinite(forward_sales)
@@ -95,7 +136,7 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
         op_growth = provider_op_growth
     eps = _one_decimal(indicators[1].get(key))
     forward_pe = _one_decimal(indicators[3].get(key))
-    if np.isnan(op_growth) or np.isnan(forward_pe):
+    if np.isnan(forward_op):
         return None
     return {
         "ticker": str(ticker).zfill(6),
@@ -115,6 +156,11 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
         "forward_op": forward_op,
         "next_sales": next_sales,
         "next_op": next_op,
+        "sales_2026": annual_amounts.get("sales_2026", np.nan),
+        "op_2026": annual_amounts.get("op_2026", np.nan),
+        "sales_2027": annual_amounts.get("sales_2027", np.nan),
+        "op_2027": annual_amounts.get("op_2027", np.nan),
+        "amount_unit": "억원",
         "future_op_basis": "흑자전환" if np.isfinite(prior_op) and np.isfinite(forward_op) and prior_op <= 0 < forward_op else "증가율",
         "forward_pe": forward_pe,
         "forward_eps": eps,
@@ -178,6 +224,26 @@ class KisConsensusClient:
                 self.access_token = None
             raise
 
+    def fetch_price(self, ticker: str) -> dict:
+        """Fetch a read-only domestic quote; no account or trading scope is used."""
+        if not self.access_token:
+            self.authenticate()
+        query = urllib.parse.urlencode({
+            "FID_COND_MRKT_DIV_CODE": "J", "FID_INPUT_ISCD": str(ticker).zfill(6),
+        })
+        request = urllib.request.Request(f"{PRICE_URL}?{query}", headers={
+            "content-type": "application/json", "authorization": f"Bearer {self.access_token}",
+            "appkey": self.app_key, "appsecret": self.app_secret,
+            "tr_id": PRICE_TR_ID, "custtype": "P",
+        })
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as exc:
+            if exc.code == 401:
+                self.access_token = None
+            raise
+
 
 def _revision(current: float, history: pd.DataFrame, days: int) -> float:
     if np.isnan(current) or history.empty:
@@ -213,6 +279,7 @@ def collect_kis_consensus(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFr
         }
 
     cached = pd.read_csv(cache_path, dtype={"ticker": str}) if cache_path.exists() else pd.DataFrame()
+    cached = _add_exact_year_fields(cached)
     history = pd.read_csv(history_path, dtype={"ticker": str}, parse_dates=["fetched_at"]) if history_path.exists() else pd.DataFrame()
     latest = prices.sort_values("date").groupby("ticker").tail(1).copy()
     latest["ticker"] = latest["ticker"].astype(str).str.zfill(6)
@@ -265,7 +332,7 @@ def collect_kis_consensus(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFr
             failures.append({"ticker": ticker, "name": latest.set_index("ticker").at[ticker, "name"], "reason": f"호출실패: {type(exc).__name__}"})
         time.sleep(float(config.get("kis_consensus_pause_seconds", 0.12)))
 
-    fresh = pd.DataFrame(rows)
+    fresh = _add_exact_year_fields(pd.DataFrame(rows))
     now_text = datetime.now(KST).isoformat(timespec="seconds")
     if not fresh.empty:
         snapshots = fresh[["ticker", "forward_eps"]].copy()

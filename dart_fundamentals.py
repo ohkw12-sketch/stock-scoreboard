@@ -161,6 +161,13 @@ def parse_financial_payload(payload: dict, ticker: str, name: str, sector: str,
     sales_prev = _amount(sales.get("frmtrm_add_amount") or sales.get("frmtrm_amount"))
     op_now = _amount(operating.get("thstrm_add_amount") or operating.get("thstrm_amount"))
     op_prev = _amount(operating.get("frmtrm_add_amount") or operating.get("frmtrm_amount"))
+    # For interim income statements DART also exposes the standalone quarter.
+    # Keep it next to the cumulative value; the value board must use Q2 alone,
+    # never the H1 cumulative amount, for its current valuation.
+    sales_quarter_now = _amount(sales.get("thstrm_amount"))
+    sales_quarter_prev = _amount(sales.get("frmtrm_q_amount") or sales.get("frmtrm_amount"))
+    op_quarter_now = _amount(operating.get("thstrm_amount"))
+    op_quarter_prev = _amount(operating.get("frmtrm_q_amount") or operating.get("frmtrm_amount"))
     sales_growth, sales_basis = _growth(sales_now, sales_prev)
     op_growth, op_basis = _growth(op_now, op_prev)
     if not np.isfinite(sales_growth) or not np.isfinite(op_growth):
@@ -174,6 +181,8 @@ def parse_financial_payload(payload: dict, ticker: str, name: str, sector: str,
         "sales_1y_growth": round(sales_growth, 4), "op_1y_growth": round(op_growth, 4),
         "sales_current": sales_now, "sales_previous": sales_prev,
         "op_current": op_now, "op_previous": op_prev,
+        "sales_quarter_current": sales_quarter_now, "sales_quarter_previous": sales_quarter_prev,
+        "op_quarter_current": op_quarter_now, "op_quarter_previous": op_quarter_prev,
         "sales_growth_basis": sales_basis, "op_growth_basis": op_basis,
         "report_year": report_year, "report_code": report_code, "fs_div": fs_div,
         "forward_pe": np.nan, "consensus_change_1d": np.nan,
@@ -181,6 +190,65 @@ def parse_financial_payload(payload: dict, ticker: str, name: str, sector: str,
         "analyst_count": np.nan, "source": "OpenDART 공시실적", "status": "정상",
         "collected_at": datetime.now(KST).isoformat(timespec="seconds"),
     }
+
+
+def _parse_multi_account_rows(rows: list[dict], universe: pd.DataFrame,
+                              report_year: int, report_code: str) -> pd.DataFrame:
+    """Parse fnlttMultiAcnt rows, preferring consolidated statements per stock."""
+    if not rows:
+        return pd.DataFrame()
+    lookup = universe.set_index("ticker")[["name", "sector"]].to_dict("index")
+    grouped: dict[str, list[dict]] = {}
+    for row in rows:
+        ticker = str(row.get("stock_code") or "").strip().zfill(6)
+        if ticker in lookup:
+            grouped.setdefault(ticker, []).append(row)
+    parsed = []
+    for ticker, stock_rows in grouped.items():
+        preferred = [row for row in stock_rows if str(row.get("fs_div", "")).upper() == "CFS"]
+        selected = preferred or [row for row in stock_rows if str(row.get("fs_div", "")).upper() == "OFS"] or stock_rows
+        payload = {"status": "000", "list": selected}
+        info = lookup[ticker]
+        result = parse_financial_payload(
+            payload, ticker, info["name"], info["sector"], report_year, report_code,
+            str(selected[0].get("fs_div") or "CFS"),
+        )
+        if result:
+            result["quarter_as_of"] = result["as_of"]
+            parsed.append(result)
+    return pd.DataFrame(parsed)
+
+
+def _collect_bulk_quarter_values(universe: pd.DataFrame, key: str, config: dict) -> tuple[pd.DataFrame, list[dict]]:
+    """Collect the latest Q2 standalone figures for the whole market in <=100-company calls."""
+    candidates = _report_candidates(datetime.now(KST))
+    interim = next(((year, code) for year, code in candidates if code == "11012"), None)
+    if not interim:
+        return pd.DataFrame(), []
+    report_year, report_code = interim
+    eligible = universe[universe["corp_code"].notna()].copy()
+    rows, failures = [], []
+    retries = int(config.get("request_retries", 3))
+    pause = float(config.get("dart_pause_seconds", 0.08))
+    chunk_size = max(1, min(100, int(config.get("dart_multi_company_chunk_size", 100))))
+    for start in range(0, len(eligible), chunk_size):
+        chunk = eligible.iloc[start:start + chunk_size]
+        try:
+            payload = _request_json("fnlttMultiAcnt.json", {
+                "crtfc_key": key,
+                "corp_code": ",".join(chunk["corp_code"].astype(str)),
+                "bsns_year": report_year,
+                "reprt_code": report_code,
+            }, retries, pause)
+            if payload.get("status") == "000":
+                parsed = _parse_multi_account_rows(payload.get("list") or [], chunk, report_year, report_code)
+                if not parsed.empty:
+                    rows.append(parsed)
+            elif payload.get("status") != "013":
+                failures.append({"ticker": "묶음", "name": f"{start + 1}~{start + len(chunk)}", "reason": f"DART {payload.get('status')}: {payload.get('message')}"})
+        except Exception as exc:
+            failures.append({"ticker": "묶음", "name": f"{start + 1}~{start + len(chunk)}", "reason": f"호출 실패: {type(exc).__name__}"})
+    return (pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()), failures
 
 
 def _report_candidates(now: datetime) -> list[tuple[int, str]]:
@@ -277,10 +345,26 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
                 failures.append({"ticker": item.ticker, "name": item.name, "reason": problem})
 
     collected = pd.DataFrame(rows)
-    combined = pd.concat([fresh, collected], ignore_index=True) if not fresh.empty else collected
+    # Reported statements do not change merely because the fetch timestamp is
+    # older than one day. Retain every previously verified disclosure row and
+    # replace only tickers successfully refreshed in this run.
+    combined = pd.concat([cached, collected], ignore_index=True) if not cached.empty else collected
+    # The multi-company endpoint is cheap enough to scan the complete market
+    # and repairs the historical cache with Q2 standalone values in one run.
+    quarter_frame, quarter_failures = _collect_bulk_quarter_values(universe, key, config)
+    failures.extend(quarter_failures)
     if not combined.empty:
         combined["collected_at"] = pd.to_datetime(combined["collected_at"], errors="coerce", utc=True)
         combined = combined.sort_values("collected_at").drop_duplicates("ticker", keep="last")
+        if not quarter_frame.empty:
+            quarter_columns = [
+                "ticker", "sales_quarter_current", "sales_quarter_previous",
+                "op_quarter_current", "op_quarter_previous", "quarter_as_of",
+            ]
+            quarter_values = quarter_frame[quarter_columns].drop_duplicates("ticker", keep="last")
+            combined = combined.drop(columns=quarter_columns[1:], errors="ignore").merge(
+                quarter_values, on="ticker", how="left",
+            )
         combined.to_csv(cache_path, index=False, encoding="utf-8-sig")
         combined = latest.merge(combined.drop(columns=["name", "sector"], errors="ignore"), on="ticker", how="inner")
     (output_dir / "dart_failures.test.json").write_text(
@@ -288,11 +372,15 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
     )
     coverage = len(combined) / max(1, len(universe))
     as_of = pd.to_datetime(combined["as_of"], errors="coerce").max() if not combined.empty else pd.NaT
+    quarter_collected = int(combined.get("op_quarter_current", pd.Series(dtype=float)).notna().sum()) if not combined.empty else 0
+    quarter_coverage = quarter_collected / max(1, len(universe))
     status = "정상" if coverage >= float(config.get("minimum_dart_fundamental_coverage_ratio", 0.65)) else "부분실패"
     return combined, {
         "status": status, "source": "OpenDART 공시실적",
         "asOfDate": as_of.strftime("%Y-%m-%d") if pd.notna(as_of) else None,
         "requested": len(universe), "collected": len(combined), "coverageRatio": round(coverage, 4),
+        "quarterRequested": len(universe), "quarterCollected": quarter_collected,
+        "quarterCoverageRatio": round(quarter_coverage, 4),
         "attemptedThisRun": len(targets), "failed": len(failures),
         "problem": None if status == "정상" else "공시실적 수집 커버리지 기준 미달",
     }
