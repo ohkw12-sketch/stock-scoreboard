@@ -1,33 +1,30 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-08-31 15:49",
-      "changedInputs": 54,
-      "newFundamentalSources": 2,
+      "checkedAtKST": "2026-09-01 09:04",
+      "changedInputs": 4,
+      "newFundamentalSources": 0,
       "recheckFailures": 0,
-      "summary": "전체시장 마감 재평가. 전자제품·전자장비·화학·전기제품 확산, 화장품·전력기기 약화. AI 기판 상대강도 회복. 보유 엠앤씨솔루션 자사주 150억원 매입·전량소각 반영.",
-      "sourceDate": "2026-08-31",
-      "source": "KRX·네이버금융·DART·KIND",
+      "summary": "KRX 정상 개장 확인. 브렌트유 90.49달러·미 10년물 4.758%·미국 증시 약세 반영. S-Oil 수혜 강화, 고밸류 성장주 시초가 RISK. 국내 신규 실적·컨센서스·가이던스·대형 방산수주 없음.",
+      "sourceDate": "2026-09-01",
+      "source": "KRX 실시간·네이버금융·Reuters·DART",
       "sources": [
         "https://finance.naver.com/sise/sise_index.naver?code=KOSPI",
         "https://finance.naver.com/sise/sise_index.naver?code=KOSDAQ",
-        "https://finance.naver.com/sise/sise_group.naver?type=upjong",
-        "https://finance.naver.com/sise/sise_rise.naver",
-        "https://finance.naver.com/sise/sise_rise.naver?sosok=1",
-        "https://dart.fss.or.kr/dsac001/mainAll.do",
-        "https://www.news2day.co.kr/article/20260831500097"
+        "https://www.reuters.com/world/china/global-markets-global-markets-2026-08-31/",
+        "https://dart.fss.or.kr/dsac001/mainAll.do"
       ]
     },
     "changeUntil": "2026-09-04",
-    "masterBasis": "2026-08-31 KRX 마감 전체시장 재스크리닝",
+    "masterBasis": "2026-08-31 KRX 마감 확정본 기반 09:04 증분 점검",
     "nextTradingDay": "2026-09-01",
-    "note": "단타 탭 제거 상태 유지. 진입·순환·가치·실제계좌 9종목을 8/31 마감값으로 전면 갱신.",
+    "note": "단타 탭 제거 상태 유지. 전일 확정 가격·거래량과 순위는 보존하고 밤사이 유가·금리·미국시장 변화만 증분 반영.",
     "sourceSummary": "가격 2026-08-28 · 2,631종목 99.96% · DART 2,235종목(84.95%) · KIS 105종목(2026-06-30)",
     "title": "주식평가창",
-    "updatedKST": "2026-08-31 23:00"
+    "updatedKST": "2026-09-01 09:04"
   },
   "p1": {
-    "status": "전체시장 마감 재선별 · 진입가능 4개·곧진입 6개 · AI 기판 V반등 상위",
+    "status": "전일 확정 후보·순위 유지 · S-Oil 유가 수혜 강화 · 반도체·기판은 금리·시초가 RISK",
     "rows": [
       {
         "rank": 1,
@@ -206,10 +203,10 @@
         "name": "S-Oil",
         "sector": "정유·석유가스",
         "entryState": "곧진입",
-        "signal": "급등 후 지지",
+        "signal": "유가 상승 수혜·눌림확인",
         "currentPrice": 150100,
         "entryZone": "145,000~149,500원",
-        "confirmation": "149,000원 지지·정제마진 강세 지속",
+        "confirmation": "149,000원 지지·브렌트 90달러대 유지",
         "invalidationPrice": 141000,
         "stopPct": -6.1,
         "growth1Y": "2Q 흑자전환",
@@ -217,13 +214,13 @@
         "consensusDate": "2026-08-28",
         "valueMultiple": "추정 PER 확인",
         "entryScore": 75.1,
-        "reason": "금요일 +9.14% 뒤 +0.60%로 버팀. 거래량은 늘었지만 추격보다 눌림."
+        "reason": "브렌트유 90.49달러(+2.71%)로 정유 업황 수혜 강화. 전일 가격·순위는 유지하고 시초가 급등 시 추격 금지."
       }
     ],
     "selectionRule": "건설·바이오 제외, 최신 2Q·시장국면·가격위치·과대낙폭·당일 저점 회복 반영"
   },
   "p11": {
-    "status": "전체시장 2,631종목 마감 교차검증 · 전자제품 초기·전자장비 확산·반도체 재반등·화장품 눌림",
+    "status": "전일 섹터 순위·단계 유지 · 석유·가스 우호 · 고금리로 고밸류 성장주 변동성 RISK",
     "engine": {
       "version": "1.0.0",
       "generatedAtKST": "2026-08-31T15:49:00+09:00",
@@ -1095,6 +1092,13 @@
     ],
     "events": [
       {
+        "name": "글로벌 시장",
+        "date": "2026-09-01",
+        "event": "브렌트유 90.49달러(+2.71%), 미 10년물 4.758%, S&P500 -0.33%·나스닥 -0.12%",
+        "tone": "혼합",
+        "impact": "석유·가스 수혜 강화. 반도체·AI 기판은 기업 훼손 없이 시초가 변동성만 상향"
+      },
+      {
         "name": "엠앤씨솔루션",
         "date": "2026-08-31",
         "event": "150억원 자사주 취득 신탁·취득주식 전량소각 추진",
@@ -1118,7 +1122,7 @@
     ]
   },
   "p2": {
-    "status": "전체시장 가치 엔진 2,235종목 비교 · 성장률 기준 2026-06-30",
+    "status": "전체시장 가치 엔진 2,235종목 비교 · 신규 종목별 컨센서스·가이던스 없음 · 전일 순위 유지",
     "rows": [
       {
         "rank": 1,
@@ -1141,7 +1145,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 99.39,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +2886.6% · 매출 성장 +406.6% · 컨센서스 미제공(감점 없음)"
       },
@@ -1166,7 +1170,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 99.18,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +2251.3% · 매출 성장 +372.7% · 컨센서스 미제공(감점 없음)"
       },
@@ -1191,7 +1195,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 98.7,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +1047.3% · 매출 성장 +346.0% · 컨센서스 미제공(감점 없음)"
       },
@@ -1216,7 +1220,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 98.6,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +1305.3% · 매출 성장 +205.0% · 컨센서스 미제공(감점 없음)"
       },
@@ -1227,7 +1231,7 @@
         "sector": "반도체",
         "sales27": "+109.6%",
         "opGrowth": "+5254.0%",
-        "growth1Y": 5254.0,
+        "growth1Y": 5254,
         "value": "가치배수 미제공",
         "forwardPER": null,
         "sectorMedian": "44.8배",
@@ -1241,7 +1245,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 98.36,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +5254.0% · 매출 성장 +109.6% · 컨센서스 미제공(감점 없음)"
       },
@@ -1266,7 +1270,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 98.26,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +1098.7% · 매출 성장 +190.8% · 컨센서스 미제공(감점 없음)"
       },
@@ -1291,7 +1295,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 98.03,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +1036.5% · 매출 성장 +160.1% · 컨센서스 미제공(감점 없음)"
       },
@@ -1316,7 +1320,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 97.94,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +1625.8% · 매출 성장 +108.9% · 컨센서스 미제공(감점 없음)"
       },
@@ -1341,7 +1345,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 97.84,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +3008.3% · 매출 성장 +86.3% · 컨센서스 미제공(감점 없음)"
       },
@@ -1352,7 +1356,7 @@
         "sector": "석유 정제품 제조업",
         "sales27": "+31.5%",
         "opGrowth": "+999.0%",
-        "growth1Y": 999.0,
+        "growth1Y": 999,
         "value": "예상PER 17.6배",
         "forwardPER": 17.6,
         "sectorMedian": "11.2배",
@@ -1391,7 +1395,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 97.23,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +1314.6% · 매출 성장 +78.8% · 컨센서스 미제공(감점 없음)"
       },
@@ -1416,7 +1420,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 95.92,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +6220.8% · 매출 성장 +49.3% · 컨센서스 미제공(감점 없음)"
       },
@@ -1441,7 +1445,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 95.51,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +2370.9% · 매출 성장 +47.9% · 컨센서스 미제공(감점 없음)"
       },
@@ -1452,7 +1456,7 @@
         "sector": "자연과학 및 공학 연구개발업",
         "sales27": "+29300.7%",
         "opGrowth": "+999.0%",
-        "growth1Y": 999.0,
+        "growth1Y": 999,
         "value": "가치배수 미제공",
         "forwardPER": null,
         "sectorMedian": "미제공",
@@ -1466,7 +1470,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 95.49,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +999.0% · 매출 성장 +29300.7% · 컨센서스 미제공(감점 없음)"
       },
@@ -1477,7 +1481,7 @@
         "sector": "무점포 소매업",
         "sales27": "+6131.7%",
         "opGrowth": "+999.0%",
-        "growth1Y": 999.0,
+        "growth1Y": 999,
         "value": "가치배수 미제공",
         "forwardPER": null,
         "sectorMedian": "미제공",
@@ -1491,7 +1495,7 @@
         "consensusDate": null,
         "consensusStatus": "미제공·기본 성장순위 유지",
         "baseGrowthScore": 95.47,
-        "consensusAdjustment": 0.0,
+        "consensusAdjustment": 0,
         "signal": "가치 상위",
         "reason": "영업이익 성장 +999.0% · 매출 성장 +6131.7% · 컨센서스 미제공(감점 없음)"
       }
@@ -1824,7 +1828,7 @@
         "valuePosition": "재산정 필요"
       }
     ],
-    "status": "실제계좌 9종목 마감 재평가 · LG이노텍·HD현대일렉트릭·대덕전자·엠앤씨솔루션 가격판정 변경 · 총수익률 -17.96%",
+    "status": "실제계좌 9종목 · 기업판정·가격판정 변경 없음 · 반도체·기판은 금리 RISK, 전력·방산은 전일 판정 유지",
     "valuationBasis": "보유수량·평균매입가는 2026-08-28 실제계좌, 현재가는 2026-08-31 KRX 종가. 총매입 24,241,360원·총평가 19,888,550원."
   }
 }
