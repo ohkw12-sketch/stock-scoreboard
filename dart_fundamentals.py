@@ -219,13 +219,9 @@ def _parse_multi_account_rows(rows: list[dict], universe: pd.DataFrame,
     return pd.DataFrame(parsed)
 
 
-def _collect_bulk_quarter_values(universe: pd.DataFrame, key: str, config: dict) -> tuple[pd.DataFrame, list[dict]]:
-    """Collect the latest Q2 standalone figures for the whole market in <=100-company calls."""
-    candidates = _report_candidates(datetime.now(KST))
-    interim = next(((year, code) for year, code in candidates if code == "11012"), None)
-    if not interim:
-        return pd.DataFrame(), []
-    report_year, report_code = interim
+def _collect_bulk_period_values(universe: pd.DataFrame, key: str, config: dict,
+                                report_year: int, report_code: str) -> tuple[pd.DataFrame, list[dict]]:
+    """Collect one reported period for the whole market in <=100-company calls."""
     eligible = universe[universe["corp_code"].notna()].copy()
     rows, failures = [], []
     retries = int(config.get("request_retries", 3))
@@ -249,6 +245,81 @@ def _collect_bulk_quarter_values(universe: pd.DataFrame, key: str, config: dict)
         except Exception as exc:
             failures.append({"ticker": "묶음", "name": f"{start + 1}~{start + len(chunk)}", "reason": f"호출 실패: {type(exc).__name__}"})
     return (pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()), failures
+
+
+def _collect_bulk_quarter_values(universe: pd.DataFrame, key: str, config: dict) -> tuple[pd.DataFrame, list[dict]]:
+    """Collect the latest Q2 standalone figures for the whole market in <=100-company calls."""
+    candidates = _report_candidates(datetime.now(KST))
+    interim = next(((year, code) for year, code in candidates if code == "11012"), None)
+    if not interim:
+        return pd.DataFrame(), []
+    return _collect_bulk_period_values(universe, key, config, *interim)
+
+
+def _attach_normalized_ttm(combined: pd.DataFrame, universe: pd.DataFrame, key: str,
+                           config: dict) -> tuple[pd.DataFrame, list[dict]]:
+    """Attach the latest four directly reconstructed quarters (Q3, Q4, Q1, Q2).
+
+    The current Q1 is H1 less standalone Q2. Prior-year Q4 is annual less Q3
+    cumulative. This avoids treating one unusually strong quarter as a full-year
+    run rate. Existing verified normalized values are reused on later runs.
+    """
+    required = {
+        "normalized_sales_q3", "normalized_sales_q4", "normalized_sales_q1", "normalized_sales_q2",
+        "normalized_op_q3", "normalized_op_q4", "normalized_op_q1", "normalized_op_q2",
+        "normalized_ttm_sales", "normalized_ttm_op", "normalized_quarter_count", "normalization_as_of",
+    }
+    if required.issubset(combined.columns):
+        coverage = pd.to_numeric(combined["normalized_quarter_count"], errors="coerce").eq(4).mean()
+        if coverage >= float(config.get("minimum_dart_fundamental_coverage_ratio", 0.65)):
+            return combined, []
+
+    candidates = _report_candidates(datetime.now(KST))
+    interim = next(((year, code) for year, code in candidates if code == "11012"), None)
+    if not interim:
+        return combined, [{"ticker": "묶음", "name": "정상화 TTM", "reason": "최신 반기보고서 기간을 결정할 수 없음"}]
+    current_year, _ = interim
+    prior_year = current_year - 1
+    q3, q3_failures = _collect_bulk_period_values(universe, key, config, prior_year, "11014")
+    annual, annual_failures = _collect_bulk_period_values(universe, key, config, prior_year, "11011")
+    failures = q3_failures + annual_failures
+    if q3.empty or annual.empty:
+        failures.append({"ticker": "묶음", "name": "정상화 TTM", "reason": "전년도 3분기 또는 연간 공시 수집 실패"})
+        return combined, failures
+
+    q3 = q3[[
+        "ticker", "sales_current", "op_current", "sales_quarter_current", "op_quarter_current",
+    ]].rename(columns={
+        "sales_current": "prior_q3_ytd_sales", "op_current": "prior_q3_ytd_op",
+        "sales_quarter_current": "normalized_sales_q3", "op_quarter_current": "normalized_op_q3",
+    })
+    annual = annual[["ticker", "sales_current", "op_current"]].rename(columns={
+        "sales_current": "prior_annual_sales", "op_current": "prior_annual_op",
+    })
+    history = q3.merge(annual, on="ticker", how="inner")
+    history["normalized_sales_q4"] = history["prior_annual_sales"] - history["prior_q3_ytd_sales"]
+    history["normalized_op_q4"] = history["prior_annual_op"] - history["prior_q3_ytd_op"]
+
+    current = combined[[
+        "ticker", "sales_current", "op_current", "sales_quarter_current", "op_quarter_current",
+    ]].copy()
+    current["normalized_sales_q1"] = current["sales_current"] - current["sales_quarter_current"]
+    current["normalized_op_q1"] = current["op_current"] - current["op_quarter_current"]
+    current["normalized_sales_q2"] = current["sales_quarter_current"]
+    current["normalized_op_q2"] = current["op_quarter_current"]
+    normalized = history.merge(current[[
+        "ticker", "normalized_sales_q1", "normalized_op_q1", "normalized_sales_q2", "normalized_op_q2",
+    ]], on="ticker", how="inner")
+    sales_columns = [f"normalized_sales_q{quarter}" for quarter in (3, 4, 1, 2)]
+    op_columns = [f"normalized_op_q{quarter}" for quarter in (3, 4, 1, 2)]
+    normalized["normalized_quarter_count"] = normalized[op_columns].notna().sum(axis=1)
+    normalized["normalized_ttm_sales"] = normalized[sales_columns].sum(axis=1, min_count=4)
+    normalized["normalized_ttm_op"] = normalized[op_columns].sum(axis=1, min_count=4)
+    normalized["normalization_as_of"] = f"{current_year}-06-30"
+    keep = ["ticker", *sales_columns, *op_columns, "normalized_ttm_sales", "normalized_ttm_op",
+            "normalized_quarter_count", "normalization_as_of"]
+    combined = combined.drop(columns=[column for column in keep[1:] if column in combined], errors="ignore")
+    return combined.merge(normalized[keep], on="ticker", how="left"), failures
 
 
 def _report_candidates(now: datetime) -> list[tuple[int, str]]:
@@ -365,6 +436,8 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
             combined = combined.drop(columns=quarter_columns[1:], errors="ignore").merge(
                 quarter_values, on="ticker", how="left",
             )
+        combined, normalization_failures = _attach_normalized_ttm(combined, universe, key, config)
+        failures.extend(normalization_failures)
         combined.to_csv(cache_path, index=False, encoding="utf-8-sig")
         combined = latest.merge(combined.drop(columns=["name", "sector"], errors="ignore"), on="ticker", how="inner")
     (output_dir / "dart_failures.test.json").write_text(
@@ -374,6 +447,9 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
     as_of = pd.to_datetime(combined["as_of"], errors="coerce").max() if not combined.empty else pd.NaT
     quarter_collected = int(combined.get("op_quarter_current", pd.Series(dtype=float)).notna().sum()) if not combined.empty else 0
     quarter_coverage = quarter_collected / max(1, len(universe))
+    normalized_collected = int(pd.to_numeric(
+        combined.get("normalized_quarter_count", pd.Series(dtype=float)), errors="coerce",
+    ).eq(4).sum()) if not combined.empty else 0
     status = "정상" if coverage >= float(config.get("minimum_dart_fundamental_coverage_ratio", 0.65)) else "부분실패"
     return combined, {
         "status": status, "source": "OpenDART 공시실적",
@@ -381,6 +457,8 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
         "requested": len(universe), "collected": len(combined), "coverageRatio": round(coverage, 4),
         "quarterRequested": len(universe), "quarterCollected": quarter_collected,
         "quarterCoverageRatio": round(quarter_coverage, 4),
+        "normalizedRequested": len(universe), "normalizedCollected": normalized_collected,
+        "normalizedCoverageRatio": round(normalized_collected / max(1, len(universe)), 4),
         "attemptedThisRun": len(targets), "failed": len(failures),
         "problem": None if status == "정상" else "공시실적 수집 커버리지 기준 미달",
     }

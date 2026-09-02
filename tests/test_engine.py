@@ -76,7 +76,9 @@ class RotationEngineTest(unittest.TestCase):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
         required = {"futureType", "currentEvaluation", "priceEvaluation", "futureEvaluation",
-                    "futurePriceEvaluation", "currentResult", "futureResult", "upside12M", "confidence"}
+                    "futurePriceEvaluation", "currentResult", "futureResult", "upside12M", "confidence",
+                    "normalizedPOP", "normalizationQuality", "absoluteValueScore", "sectorValueScore",
+                    "growthPriceScore", "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct"}
         self.assertTrue(required.issubset(self.p2["rows"][0]))
         self.assertTrue(all(row["futureType"] in {"A", "B"} for row in self.p2["rows"]))
         self.assertIn("turnaroundRows", self.p2)
@@ -132,6 +134,89 @@ class RotationEngineTest(unittest.TestCase):
         self.assertIn("1Q·2Q 흑자 지속", turnaround["미래T"]["result"])
         self.assertNotIn("기대 여유", rows["미래A"]["result"])
         self.assertEqual(rows["미래A"]["actualPeriod"], "2026 2Q")
+        self.assertIn("26년 3Q·4Q 평균", rows["미래A"]["futureEvaluation"])
+        self.assertIn("27년 1Q·2Q 평균", rows["미래A"]["futureEvaluation"])
+        self.assertNotIn("26 3Q 매출", rows["미래A"]["futureEvaluation"])
+
+    def test_current_value_rank_uses_discount_to_each_sector_median(self):
+        def fundamental(ticker, name, sector):
+            return {
+                "ticker": ticker, "name": name, "sector": sector, "as_of": "2026-06-30",
+                "quarter_as_of": "2026-06-30", "sales_1y_growth": 20, "op_1y_growth": 30,
+                "sales_current": 200e8, "sales_previous": 180e8,
+                "op_current": 20e8, "op_previous": 18e8,
+                "sales_quarter_current": 100e8, "sales_quarter_previous": 90e8,
+                "op_quarter_current": 10e8, "op_quarter_previous": 9e8,
+                "op_growth_basis": "증가율", "report_code": "11012",
+                "consensus_sales_2026": 400, "consensus_op_2026": 40,
+                "consensus_sales_2027": 500, "consensus_op_2027": 60,
+                "consensus_as_of": "2026-06-30", "consensus_change_1d": np.nan,
+                "consensus_change_5d": np.nan, "consensus_change_20d": np.nan,
+                "analyst_count": 0,
+            }
+
+        frame = pd.DataFrame([
+            fundamental("100001", "저배수50할인", "저배수섹터"),
+            fundamental("100002", "저배수50프리미엄", "저배수섹터"),
+            fundamental("200001", "고배수9할인", "고배수섹터"),
+            fundamental("200002", "고배수9프리미엄", "고배수섹터"),
+        ])
+        # Current P/OP: 5, 15, 50, 60. Ranking must not compare these raw
+        # multiples across sectors. It compares -50%, +50%, -9.1%, +9.1%.
+        market_caps = [200e8, 600e8, 2000e8, 2400e8]
+        price_rows = pd.DataFrame([
+            {"ticker": ticker, "date": "2026-09-01", "close": 10000,
+             "market_cap": market_cap, "shares": market_cap / 10000}
+            for ticker, market_cap in zip(frame["ticker"], market_caps)
+        ])
+        board = build_value_board(
+            frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows,
+        )
+        rows = {row["name"]: row for row in board["rows"]}
+        self.assertEqual(rows["저배수50할인"]["currentRank"], 1)
+        self.assertEqual(rows["고배수9할인"]["currentRank"], 2)
+        self.assertEqual(rows["고배수9프리미엄"]["currentRank"], 3)
+        self.assertEqual(rows["저배수50프리미엄"]["currentRank"], 4)
+        self.assertIn("현재 1위(50.0% 할인)", rows["저배수50할인"]["currentResult"])
+        self.assertEqual(rows["저배수50할인"]["currentSectorRank"], 1)
+        self.assertEqual(rows["고배수9할인"]["currentSectorRank"], 1)
+
+    def test_normalized_value_beats_extreme_growth_at_a_high_price(self):
+        def fundamental(ticker, name, op_2027):
+            return {
+                "ticker": ticker, "name": name, "sector": "테스트", "as_of": "2026-06-30",
+                "quarter_as_of": "2026-06-30", "sales_1y_growth": 10, "op_1y_growth": 10,
+                "sales_current": 200e8, "sales_previous": 180e8,
+                "op_current": 20e8, "op_previous": 18e8,
+                "sales_quarter_current": 100e8, "sales_quarter_previous": 90e8,
+                "op_quarter_current": 10e8, "op_quarter_previous": 9e8,
+                "normalized_sales_q3": 90e8, "normalized_sales_q4": 95e8,
+                "normalized_sales_q1": 100e8, "normalized_sales_q2": 100e8,
+                "normalized_op_q3": 8e8, "normalized_op_q4": 9e8,
+                "normalized_op_q1": 10e8, "normalized_op_q2": 10e8,
+                "normalized_ttm_sales": 385e8, "normalized_ttm_op": 37e8,
+                "normalized_quarter_count": 4, "normalization_as_of": "2026-06-30",
+                "op_growth_basis": "증가율", "report_code": "11012",
+                "consensus_sales_2026": 440, "consensus_op_2026": 44,
+                "consensus_sales_2027": 480, "consensus_op_2027": op_2027,
+                "consensus_as_of": "2026-06-30", "consensus_change_1d": 0,
+                "consensus_change_5d": 0, "consensus_change_20d": 0, "analyst_count": 3,
+            }
+
+        frame = pd.DataFrame([
+            fundamental("300001", "정상화저평가", 48),
+            fundamental("300002", "고평가고성장", 200),
+        ])
+        prices = pd.DataFrame([
+            {"ticker": "300001", "date": "2026-09-01", "close": 10000,
+             "market_cap": 300e8, "shares": 3_000_000},
+            {"ticker": "300002", "date": "2026-09-01", "close": 10000,
+             "market_cap": 3000e8, "shares": 30_000_000},
+        ])
+        board = build_value_board(frame, self.config, {"status": "정상"}, prices)
+        self.assertEqual(board["rows"][0]["name"], "정상화저평가")
+        self.assertGreater(board["rows"][0]["valueScore"], board["rows"][1]["valueScore"])
+        self.assertEqual(board["rows"][0]["normalizedQuarterCount"], 4)
 
     def test_market_snapshot_aligns_cap_to_verified_close(self):
         latest = self.prices.sort_values("date").groupby("ticker").tail(1)

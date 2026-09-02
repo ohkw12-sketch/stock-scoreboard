@@ -1,6 +1,9 @@
 import unittest
+from unittest.mock import patch
 
-from dart_fundamentals import parse_financial_payload
+import pandas as pd
+
+from dart_fundamentals import _attach_normalized_ttm, parse_financial_payload
 
 
 class DartFundamentalsTest(unittest.TestCase):
@@ -41,6 +44,35 @@ class DartFundamentalsTest(unittest.TestCase):
         self.assertEqual(row["op_1y_growth"], 25.0)
         self.assertEqual(row["sales_quarter_current"], 60.0)
         self.assertEqual(row["op_quarter_current"], 15.0)
+
+    def test_normalized_ttm_reconstructs_q1_and_q4(self):
+        combined = pd.DataFrame([{
+            "ticker": "000001", "sales_current": 220.0, "op_current": 22.0,
+            "sales_quarter_current": 120.0, "op_quarter_current": 12.0,
+        }])
+        universe = pd.DataFrame([{"ticker": "000001", "corp_code": "12345678"}])
+        q3 = pd.DataFrame([{
+            "ticker": "000001", "sales_current": 300.0, "op_current": 30.0,
+            "sales_quarter_current": 110.0, "op_quarter_current": 11.0,
+        }])
+        annual = pd.DataFrame([{"ticker": "000001", "sales_current": 430.0, "op_current": 45.0}])
+
+        def period_values(_universe, _key, _config, _year, report_code):
+            return (q3, []) if report_code == "11014" else (annual, [])
+
+        with patch("dart_fundamentals._report_candidates", return_value=[(2026, "11012")]), patch(
+            "dart_fundamentals._collect_bulk_period_values", side_effect=period_values,
+        ):
+            normalized, failures = _attach_normalized_ttm(combined, universe, "x" * 40, {})
+
+        row = normalized.iloc[0]
+        self.assertFalse(failures)
+        self.assertEqual(row["normalized_op_q1"], 10.0)
+        self.assertEqual(row["normalized_op_q2"], 12.0)
+        self.assertEqual(row["normalized_op_q3"], 11.0)
+        self.assertEqual(row["normalized_op_q4"], 15.0)
+        self.assertEqual(row["normalized_ttm_op"], 48.0)
+        self.assertEqual(row["normalized_quarter_count"], 4)
 
 
 if __name__ == "__main__":
