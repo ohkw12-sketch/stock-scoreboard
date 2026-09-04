@@ -14,9 +14,15 @@ from rotation_screener import (
     align_to_verified_session, attach_market_snapshot, audit_market_data, build_entry_board, build_value_board, canonical_sector,
     generate_sample_fundamentals, generate_sample_market, load_config, run_engine,
 )
+from rotation_screener import normalize_prices
 
 
 class RotationEngineTest(unittest.TestCase):
+    def test_alphanumeric_krx_ticker_is_preserved(self):
+        frame=pd.DataFrame([dict(Date='2026-09-04',Code='00104K',Name='우선주',Market='KOSPI',Sector='금융',
+                                 Open=1,High=1,Low=1,Close=1,Volume=1,Value=1)])
+        self.assertEqual(normalize_prices(frame).iloc[0].ticker,'00104K')
+
     @classmethod
     def setUpClass(cls):
         cls.config = load_config(None, "sample")
@@ -81,13 +87,10 @@ class RotationEngineTest(unittest.TestCase):
                     "growthPriceScore", "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct"}
         self.assertTrue(required.issubset(self.p2["rows"][0]))
         self.assertTrue(all(row["futureType"] in {"A", "B"} for row in self.p2["rows"]))
-        self.assertIn("turnaroundRows", self.p2)
-        self.assertFalse(
-            {row["ticker"] for row in self.p2["rows"]} &
-            {row["ticker"] for row in self.p2["turnaroundRows"]}
-        )
+        self.assertNotIn("turnaroundRows", self.p2)
+        self.assertNotIn("T+", self.p2["status"])
 
-    def test_value_engine_filters_future_a_and_verified_t_plus(self):
+    def test_value_engine_keeps_future_a_and_retires_t_plus(self):
         frame = pd.DataFrame([
             {"ticker": "000001", "name": "미래A", "sector": "테스트", "as_of": "2026-06-30",
              "sales_1y_growth": 20, "op_1y_growth": 30, "sales_current": 1200e8,
@@ -128,10 +131,9 @@ class RotationEngineTest(unittest.TestCase):
         ])
         board = build_value_board(frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows)
         rows = {row["name"]: row for row in board["rows"]}
-        turnaround = {row["name"]: row for row in board["turnaroundRows"]}
         self.assertEqual(rows["미래A"]["futureType"], "A")
-        self.assertEqual(turnaround["미래T"]["futureType"], "T+")
-        self.assertIn("1Q·2Q 흑자 지속", turnaround["미래T"]["result"])
+        self.assertNotIn("turnaroundRows", board)
+        self.assertNotIn("미래T", rows)
         self.assertNotIn("기대 여유", rows["미래A"]["result"])
         self.assertEqual(rows["미래A"]["actualPeriod"], "2026 2Q")
         self.assertIn("26년 3Q·4Q 평균", rows["미래A"]["futureEvaluation"])

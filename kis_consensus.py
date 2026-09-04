@@ -244,6 +244,20 @@ class KisConsensusClient:
                 self.access_token = None
             raise
 
+    def fetch_daily_prices(self, ticker: str, start: str, end: str, adjusted: bool = True) -> dict:
+        """Dated historical quotes; never infer a trade date from a live quote."""
+        if not self.access_token:
+            self.authenticate()
+        params = {'FID_COND_MRKT_DIV_CODE': 'J', 'FID_INPUT_ISCD': str(ticker).zfill(6),
+                  'FID_INPUT_DATE_1': start.replace('-', ''), 'FID_INPUT_DATE_2': end.replace('-', ''),
+                  'FID_PERIOD_DIV_CODE': 'D', 'FID_ORG_ADJ_PRC': '0' if adjusted else '1'}
+        url = 'https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice'
+        request = urllib.request.Request(url + '?' + urllib.parse.urlencode(params), headers={
+            'content-type': 'application/json', 'authorization': f'Bearer {self.access_token}',
+            'appkey': self.app_key, 'appsecret': self.app_secret, 'tr_id': 'FHKST03010100', 'custtype': 'P'})
+        with urllib.request.urlopen(request, timeout=self.timeout) as response:
+            return json.load(response)
+
 
 def _revision(current: float, history: pd.DataFrame, days: int) -> float:
     if np.isnan(current) or history.empty:
@@ -355,5 +369,6 @@ def collect_kis_consensus(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFr
         "source": "KIS Developers 종목추정실적(월초 기준)",
         "asOfDate": as_of.strftime("%Y-%m-%d") if pd.notna(as_of) else None,
         "attempted": len(targets), "collected": len(fresh), "cachedCoverage": int(combined["ticker"].nunique()),
+        "freshTickers": fresh["ticker"].tolist() if not fresh.empty else [],
         "failed": len(failures), "problem": None if not failures else "일부 종목은 KIS 추정실적 비대상 또는 호출 실패",
     }

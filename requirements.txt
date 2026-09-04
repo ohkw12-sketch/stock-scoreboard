@@ -3,4 +3,5 @@ numpy>=1.26,<3
 pykrx>=1.0.48
 finance-datareader>=0.9.96
 yfinance>=0.2.54
+beautifulsoup4>=4.12,<5
 

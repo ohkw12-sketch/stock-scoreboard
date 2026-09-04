@@ -16,7 +16,7 @@ if "%KIS_APP_SECRET%"=="" (
   pause
   exit /b 1
 )
-".venv\Scripts\python.exe" rotation_screener.py --config config.kis.example.json
+".venv\Scripts\python.exe" refresh_all.py --config config.kis.example.json
 if errorlevel 1 (
   echo.
   echo Screening failed. Check test_output\consensus_failures.test.json and the message above.

@@ -1,23 +1,21 @@
-name: Refresh P+T Value Board
+name: Refresh Whole Stock Scoreboard
 
-# Server-side P+T refresh trigger.
+# Manual full refresh; a code push must not start a second expensive run.
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/value-refresh.yml'
 
 permissions:
   contents: write
 
 jobs:
-  refresh-value:
+  refresh-all:
     runs-on: ubuntu-latest
     env:
       DART_API_KEY: ${{ secrets.DART_API_KEY }}
       KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
       KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
+      NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+      NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,42 +24,34 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Verify P+T credentials
+      - name: Verify required credentials
         shell: bash
         run: |
           test -n "$DART_API_KEY" || { echo 'DART_API_KEY secret is missing'; exit 2; }
           test -n "$KIS_APP_KEY" || { echo 'KIS_APP_KEY secret is missing'; exit 2; }
           test -n "$KIS_APP_SECRET" || { echo 'KIS_APP_SECRET secret is missing'; exit 2; }
-      - name: Run whole-market P+T engine
-        run: python rotation_screener.py --config config.kis.example.json
-      - name: Apply only P2 to live board
+      - name: Run and validate all boards
+        run: python refresh_all.py --config config.kis.example.json
+      - name: Promote validated board files
         run: |
           python - <<'PY'
-          import json
-          from datetime import datetime
-          from zoneinfo import ZoneInfo
+          import json, shutil
           from pathlib import Path
-
-          live_path = Path('data.json')
-          test_path = Path('test_output/data.test.json')
-          live = json.loads(live_path.read_text(encoding='utf-8'))
-          test = json.loads(test_path.read_text(encoding='utf-8'))
-          live['p2'] = test['p2']
-          now = datetime.now(ZoneInfo('Asia/Seoul'))
-          live.setdefault('meta', {})['updatedKST'] = now.strftime('%Y-%m-%d %H:%M')
-          live['meta']['masterBasis'] = 'P+T 가치 전체시장 재스크리닝'
-          live['meta']['note'] = '오늘 오전 확정한 P+T 가치엔진을 전체시장에 재실행하고 P2만 갱신.'
-          live_path.write_text(json.dumps(live, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+          report=json.loads(Path('test_output/collection_report.test.json').read_text('utf-8'))
+          if report.get('qualityStatus') != '정상': raise SystemExit('price validation failed')
+          shutil.copy2('test_output/data.test.json','data.json')
+          if Path('test_output/youtube-market.test.json').exists():
+              shutil.copy2('test_output/youtube-market.test.json','youtube-market.json')
           PY
-      - name: Commit refreshed P2
+      - name: Commit refreshed boards
         shell: bash
         run: |
-          if git diff --quiet -- data.json; then
-            echo 'No P2 changes to commit.'
+          if git diff --quiet -- data.json youtube-market.json; then
+            echo 'No board changes to commit.'
             exit 0
           fi
           git config user.name 'stock-scoreboard-bot'
           git config user.email 'stock-scoreboard-bot@users.noreply.github.com'
-          git add data.json
-          git commit -m 'Refresh P+T value screening'
+          git add data.json youtube-market.json
+          git commit -m 'Refresh whole stock scoreboard'
           git push
