@@ -1,0 +1,33 @@
+{
+  "version": "2026-09-05.1",
+  "description": "사용자가 확정한 주식평가창 제목·순서·표시형식 계약. 명시적인 화면 변경 요청 없이는 수정하지 않는다.",
+  "tables": {
+    "p1": {
+      "tbodyId": "p1body",
+      "headers": ["순위", "종목", "진입구분", "신호", "현재가", "진입구간", "확인조건", "무효화/손절", "1년 OP성장", "컨센서스", "가치배수", "핵심근거"]
+    },
+    "p11": {
+      "tbodyId": "p11body",
+      "headers": ["순위", "종목", "섹터관계", "순환단계", "상대강도", "순환상태", "신호", "핵심근거"]
+    },
+    "p2": {
+      "tbodyId": "p2body",
+      "headers": ["순위", "종목", "가치점수", "정상화 P/OP", "섹터 중앙", "섹터 할인", "미래 P/OP", "미래 할인", "정상화 조정률", "신뢰도"],
+      "fields": ["typeRank", "name", "valueScore", "normalizedPOP", "sectorNormalizedPOP", "normalizedPremiumPct", "companyFuturePOP", "futurePremiumPct", "normalizationAdjustmentPct", "confidence"],
+      "formats": ["정수", "종목명·섹터", "최대 소수점 1자리 점수", "최대 소수점 1자리 배수", "최대 소수점 1자리 배수", "할인·비쌈 백분율", "최대 소수점 1자리 배수", "할인·비쌈 백분율", "부호 포함 백분율", "등급·자료출처"],
+      "renderTokens": ["${x.typeRank}", "${stock(x)}", "${x.valueScore??'—'}", "${multiple(x.normalizedPOP)}", "${multiple(x.sectorNormalizedPOP)}", "${discount(x.normalizedPremiumPct)}", "${multiple(x.companyFuturePOP)}", "${discount(x.futurePremiumPct)}", "${signed(x.normalizationAdjustmentPct)}", "${x.confidence}"]
+    },
+    "growthSectors": {
+      "tbodyId": "growthsectors",
+      "headers": ["순위", "섹터", "신뢰도", "추천종목"]
+    },
+    "growthStocks": {
+      "tbodyId": "growthbody",
+      "headers": ["순위", "종목", "성장률", "펀더멘털", "주가 반영 판단", "신뢰도"]
+    },
+    "p3": {
+      "tbodyId": "p3body",
+      "headers": ["종목", "태그", "수량", "평균매입가", "내 평단 수익률", "1년 OP성장", "섹터대비 가치", "적정가 범위", "3개월 고점 대비", "핵심판단", "행동", "기준일"]
+    }
+  }
+}

@@ -28,3 +28,11 @@
 - Re-run failed tickers through configured alternative sources before accepting a partial result.
 - Never label stale, cached, missing, or failed data as current or unchanged.
 - Run the relevant tests before any authorized deployment and preserve the previous verified board section when an affected section still fails validation.
+
+## Locked display contract
+
+- `ui_contract.json` is the user-approved source of truth for table titles, column order, and value display formats. Do not change it unless the user explicitly requests a display change.
+- Run `python board_contract.py` before deployment. A contract mismatch is a deployment blocker, not an automatic migration opportunity.
+- Generate candidates in `test_output/sections/` and promote only the explicitly requested sections with `promote_sections.py`. Never replace the whole live `data.json` for a one-section request.
+- Treat `p1`, `p11`, `p2`, `growth`, `p3`, and `meta` as separately promotable sections. A growth-engine change must not change value, entry, rotation, holdings, or global metadata unless those sections were also explicitly requested.
+- `p3` quantities and average purchase prices are immutable user inputs. Its judgment, action, fair-range, and display labels are not automatic-refresh outputs.

@@ -30,19 +30,14 @@ jobs:
           test -n "$DART_API_KEY" || { echo 'DART_API_KEY secret is missing'; exit 2; }
           test -n "$KIS_APP_KEY" || { echo 'KIS_APP_KEY secret is missing'; exit 2; }
           test -n "$KIS_APP_SECRET" || { echo 'KIS_APP_SECRET secret is missing'; exit 2; }
+      - name: Run regression tests
+        run: python -m unittest discover -s tests -v
       - name: Run and validate all boards
         run: python refresh_all.py --config config.kis.example.json
       - name: Promote validated board files
-        run: |
-          python - <<'PY'
-          import json, shutil
-          from pathlib import Path
-          report=json.loads(Path('test_output/collection_report.test.json').read_text('utf-8'))
-          if report.get('qualityStatus') != '정상': raise SystemExit('price validation failed')
-          shutil.copy2('test_output/data.test.json','data.json')
-          if Path('test_output/youtube-market.test.json').exists():
-              shutil.copy2('test_output/youtube-market.test.json','youtube-market.json')
-          PY
+        run: python promote_sections.py --sections p1 p11 p2 growth p3 meta --youtube
+      - name: Verify display contract
+        run: python board_contract.py
       - name: Commit refreshed boards
         shell: bash
         run: |

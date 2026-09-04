@@ -8,8 +8,9 @@ from pathlib import Path
 import pandas as pd
 
 from growth_discovery import (KST, build_growth_board, collect_disclosures, collect_news_hints,
-                              fundamental_profile, json_write, number)
+                              json_write, number)
 from growth_sources import collect_trade_evidence, consensus_evidence, product_exposure
+from board_contract import load_contract
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
                               build_value_board, load_config, load_fundamentals, run_engine, write_outputs)
 
@@ -39,8 +40,13 @@ def refresh_holdings(previous, prices, fundamentals):
             continue
         old = {k: row.get(k) for k in ('judgment', 'action', 'fairRange', 'valuePosition', 'basis')}
         row.setdefault('previousAssessment', old)
+        # Presentation judgments are user-owned display fields. Restore and preserve them;
+        # only objective prices, returns, dates and ratios are refreshed automatically.
+        locked = row.get('previousAssessment') or old
+        judgment = locked.get('judgment', row.get('judgment'))
+        action = locked.get('action', row.get('action'))
+        fair_range = locked.get('fairRange', row.get('fairRange'))
         f = financials.get(stock['ticker'], {})
-        profile = fundamental_profile(f)
         op, prev_op = number(f.get('op_current')), number(f.get('op_previous'))
         if op is not None and prev_op is not None and prev_op > 0 and op >= 0:
             op_text = f'{(op/prev_op-1)*100:+.1f}% 실제'
@@ -58,14 +64,10 @@ def refresh_holdings(previous, prices, fundamentals):
         median = number(medians.get(sector))
         premium = (pop/median-1)*100 if pop and median and median > 0 else None
         value_text = f'{abs(premium):.1f}% ' + ('할인' if premium < 0 else '프리미엄') if premium is not None else '산출불가'
-        ret20 = (close/float(history.close.iloc[-21])-1)*100 if len(history) >= 21 else None
-        quality = profile['fundamentalScore']
-        corporate = '실제 수익성 양호' if quality is not None and quality >= 70 else '실제 수익성 점검'
-        trend = '20일 추세 상승' if ret20 is not None and ret20 > 0 else '20일 추세 약세'
         row.update(ticker=stock['ticker'], close=close, ret=f'{(close/avg-1)*100:+.2f}%',
                    drawdown3m=f'{drawdown:.2f}%' if drawdown is not None else '자료없음',
-                   opGrowth=op_text, valuePosition=value_text, fairRange='산출하지 않음',
-                   judgment=f'{corporate} · {trend}', action='보유·재점검', marks=[],
+                   opGrowth=op_text, valuePosition=value_text, fairRange=fair_range,
+                   judgment=judgment, action=action,
                    special=f"실적 {str(f.get('as_of', '미수집'))[:10]} · 종가 {close:,.0f}원",
                    basis=f'{price_date} 검증 종가', priceChange='가격·공시 수치 재계산')
         values[row['name']] = close * quantity
@@ -171,6 +173,7 @@ def main():
     board['growth'] = growth
     board['p3'] = refresh_holdings(board.get('p3',{}), prices, fundamentals)
     board['meta']['sourceSummary'] = f"가격 {report['latestPriceDate']} · 공시 {report['fundamentals'].get('asOfDate')} · 컨센서스 {report['fundamentals'].get('consensusAsOfDate')} · 성장: 수주·컨센서스·수출통계 {trade_status.get('latestPeriod') or '미수집'}"
+    board['meta']['uiContractVersion'] = load_contract()['version']
     board['meta']['audit'] = {'checkedAtKST': datetime.now(KST).strftime('%Y-%m-%d %H:%M'), 'sourceDate': report['latestPriceDate'],
                             'summary':'전 종목 가격·재무 재계산, 성장 공시 전수 탐색, 보유수량·평단 보존'}
     next_day = pd.Timestamp(report['latestPriceDate']).date() + timedelta(days=1)
@@ -179,6 +182,9 @@ def main():
     board['meta']['nextTradingDay'] = next_day.isoformat()
     board['meta']['note'] = '성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.'
     json_write(board_path, board)
+    section_dir = out / 'sections'
+    for section in ('p1', 'p11', 'p2', 'growth', 'p3', 'meta'):
+        json_write(section_dir / f'{section}.test.json', board[section])
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
     if youtube_path.exists():
         youtube = refresh_youtube_prices(json.loads(youtube_path.read_text('utf-8-sig')), prices)
