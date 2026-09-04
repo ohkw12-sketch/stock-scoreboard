@@ -81,16 +81,17 @@ class RotationEngineTest(unittest.TestCase):
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
-        required = {"futureType", "currentEvaluation", "priceEvaluation", "futureEvaluation",
-                    "futurePriceEvaluation", "currentResult", "futureResult", "upside12M", "confidence",
-                    "normalizedPOP", "normalizationQuality", "absoluteValueScore", "sectorValueScore",
-                    "growthPriceScore", "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct"}
+        required = {"confidence", "normalizedPOP", "sectorNormalizedPOP", "normalizedPremiumPct",
+                    "normalizationQuality", "absoluteValueScore", "sectorValueScore",
+                    "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct"}
         self.assertTrue(required.issubset(self.p2["rows"][0]))
-        self.assertTrue(all(row["futureType"] in {"A", "B"} for row in self.p2["rows"]))
+        self.assertTrue(all(not any(key.lower().startswith("future") for key in row) for row in self.p2["rows"]))
+        self.assertTrue(all("consensus" not in key.lower() for row in self.p2["rows"] for key in row))
         self.assertNotIn("turnaroundRows", self.p2)
         self.assertNotIn("T+", self.p2["status"])
+        self.assertFalse(self.p2["dataStatus"]["forwardEstimateUsed"])
 
-    def test_value_engine_keeps_future_a_and_retires_t_plus(self):
+    def test_value_engine_removes_every_future_and_t_plus_output(self):
         frame = pd.DataFrame([
             {"ticker": "000001", "name": "미래A", "sector": "테스트", "as_of": "2026-06-30",
              "sales_1y_growth": 20, "op_1y_growth": 30, "sales_current": 1200e8,
@@ -131,14 +132,11 @@ class RotationEngineTest(unittest.TestCase):
         ])
         board = build_value_board(frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows)
         rows = {row["name"]: row for row in board["rows"]}
-        self.assertEqual(rows["미래A"]["futureType"], "A")
         self.assertNotIn("turnaroundRows", board)
         self.assertNotIn("미래T", rows)
-        self.assertNotIn("기대 여유", rows["미래A"]["result"])
-        self.assertEqual(rows["미래A"]["actualPeriod"], "2026 2Q")
-        self.assertIn("26년 3Q·4Q 평균", rows["미래A"]["futureEvaluation"])
-        self.assertIn("27년 1Q·2Q 평균", rows["미래A"]["futureEvaluation"])
-        self.assertNotIn("26 3Q 매출", rows["미래A"]["futureEvaluation"])
+        self.assertFalse(any(key.lower().startswith("future") for key in rows["미래A"]))
+        self.assertNotIn("성장 대비", board["method"])
+        self.assertIn("미래 추정치 미사용", board["method"])
 
     def test_current_value_rank_uses_discount_to_each_sector_median(self):
         def fundamental(ticker, name, sector):
@@ -175,13 +173,10 @@ class RotationEngineTest(unittest.TestCase):
             frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows,
         )
         rows = {row["name"]: row for row in board["rows"]}
-        self.assertEqual(rows["저배수50할인"]["currentRank"], 1)
-        self.assertEqual(rows["고배수9할인"]["currentRank"], 2)
-        self.assertEqual(rows["고배수9프리미엄"]["currentRank"], 3)
-        self.assertEqual(rows["저배수50프리미엄"]["currentRank"], 4)
-        self.assertIn("현재 1위(50.0% 할인)", rows["저배수50할인"]["currentResult"])
-        self.assertEqual(rows["저배수50할인"]["currentSectorRank"], 1)
-        self.assertEqual(rows["고배수9할인"]["currentSectorRank"], 1)
+        self.assertEqual(rows["저배수50할인"]["normalizedResult"], "정상화 1위(50.0% 할인)")
+        self.assertEqual(rows["고배수9할인"]["normalizedResult"], "정상화 2위(9.1% 할인)")
+        self.assertEqual(rows["고배수9프리미엄"]["normalizedResult"], "정상화 3위(9.1% 프리미엄)")
+        self.assertEqual(rows["저배수50프리미엄"]["normalizedResult"], "정상화 4위(50.0% 프리미엄)")
 
     def test_normalized_value_beats_extreme_growth_at_a_high_price(self):
         def fundamental(ticker, name, op_2027):

@@ -1107,181 +1107,8 @@ def load_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame,
                    "problem": None if status == "정상" else f"컨센서스 기준일이 {stale_days}일 경과"}
 
 
-def _annualized_amount(amount: pd.Series, report_code: pd.Series) -> pd.Series:
-    factors = report_code.astype(str).map({"11013": 4.0, "11012": 2.0, "11014": 4.0 / 3.0, "11011": 1.0}).fillna(1.0)
-    return pd.to_numeric(amount, errors="coerce") * factors
-
-
-def _amount_text(value: float) -> str:
-    if not np.isfinite(value):
-        return "자료없음"
-    eok = value / 100_000_000
-    if abs(eok) >= 10_000:
-        return f"{eok / 10_000:,.2f}조원"
-    return f"{eok:,.0f}억원"
-
-
-def _pct(value: float, suffix: str = "%") -> str:
-    return f"{value:+.1f}{suffix}" if np.isfinite(value) else "자료없음"
-
-
-def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
-                      prices: pd.DataFrame | None = None) -> dict:
-    """Build normalized-value A/B rankings; growth discovery is a separate board.
-
-    A/B ordering combines absolute and sector-relative valuation using trailing
-    four-quarter normalized operating profit, then applies earnings-quality and
-    source-confidence controls. Growth discovery uses independently verified evidence.
-    """
-    if fundamentals.empty:
-        return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}",
-                "rows": [], "dataStatus": status}
-    data = fundamentals.copy()
-    numeric_columns = (
-        "sales_1y_growth", "op_1y_growth", "sales_current", "sales_previous", "op_current", "op_previous",
-        "sales_quarter_current", "sales_quarter_previous", "op_quarter_current", "op_quarter_previous",
-        "consensus_prior_sales", "consensus_prior_op", "consensus_forward_sales", "consensus_forward_op",
-        "consensus_next_sales", "consensus_next_op", "consensus_sales_2026", "consensus_op_2026",
-        "consensus_sales_2027", "consensus_op_2027", "consensus_change_1d",
-        "consensus_change_5d", "consensus_change_20d", "analyst_count",
-        "normalized_sales_q3", "normalized_sales_q4", "normalized_sales_q1", "normalized_sales_q2",
-        "normalized_op_q3", "normalized_op_q4", "normalized_op_q1", "normalized_op_q2",
-        "normalized_ttm_sales", "normalized_ttm_op", "normalized_quarter_count",
-    )
-    for column in numeric_columns:
-        if column not in data:
-            data[column] = np.nan
-        data[column] = pd.to_numeric(data[column], errors="coerce")
-    for column in ("report_code", "op_growth_basis", "estimate_period", "prior_period",
-                   "next_estimate_period", "consensus_as_of", "quarter_as_of", "normalization_as_of"):
-        if column not in data:
-            data[column] = np.nan
-    data["ticker"] = data["ticker"].astype(str).str.zfill(6)
-
-    if prices is not None and not prices.empty:
-        latest = prices.copy()
-        latest["ticker"] = latest["ticker"].astype(str).str.zfill(6)
-        latest = latest.sort_values("date").groupby("ticker").tail(1)
-        keep = [column for column in ("ticker", "date", "close", "market_cap", "shares") if column in latest]
-        latest = latest[keep].rename(columns={"date": "price_date", "close": "current_price"})
-        data = data.merge(latest, on="ticker", how="left")
-    else:
-        data["price_date"], data["current_price"], data["market_cap"], data["shares"] = np.nan, np.nan, np.nan, np.nan
-    for column in ("current_price", "market_cap", "shares"):
-        if column not in data:
-            data[column] = np.nan
-        data[column] = pd.to_numeric(data[column], errors="coerce")
-
-    # Backfill exact annual fields from old KIS cache columns. No 2025 value is
-    # consumed by this calculation.
-    estimate_year = data["estimate_period"].astype(str).str.extract(r"(20\d{2})", expand=False)
-    prior_year = data["prior_period"].astype(str).str.extract(r"(20\d{2})", expand=False)
-    next_year = data["next_estimate_period"].astype(str).str.extract(r"(20\d{2})", expand=False)
-    for year in (2026, 2027):
-        sales_column, op_column = f"consensus_sales_{year}", f"consensus_op_{year}"
-        data.loc[data[sales_column].isna() & estimate_year.eq(str(year)), sales_column] = data["consensus_forward_sales"]
-        data.loc[data[op_column].isna() & estimate_year.eq(str(year)), op_column] = data["consensus_forward_op"]
-        data.loc[data[sales_column].isna() & prior_year.eq(str(year)), sales_column] = data["consensus_prior_sales"]
-        data.loc[data[op_column].isna() & prior_year.eq(str(year)), op_column] = data["consensus_prior_op"]
-        data.loc[data[sales_column].isna() & next_year.eq(str(year)), sales_column] = data["consensus_next_sales"]
-        data.loc[data[op_column].isna() & next_year.eq(str(year)), op_column] = data["consensus_next_op"]
-
-    data["direct_q2"] = data["sales_quarter_current"].notna() & data["op_quarter_current"].notna()
-    data["q2_sales"] = data["sales_quarter_current"].where(data["direct_q2"], data["sales_current"] / 2)
-    data["q2_op"] = data["op_quarter_current"].where(data["direct_q2"], data["op_current"] / 2)
-    data["q2_sales_previous"] = data["sales_quarter_previous"].where(
-        data["sales_quarter_previous"].notna(), data["sales_previous"] / 2,
-    )
-    data["q2_op_previous"] = data["op_quarter_previous"].where(
-        data["op_quarter_previous"].notna(), data["op_previous"] / 2,
-    )
-    data["q1_sales"] = data["sales_current"] - data["q2_sales"]
-    data["q1_op"] = data["op_current"] - data["q2_op"]
-    data["q2_margin"] = data["q2_op"].div(data["q2_sales"].replace(0, np.nan)) * 100
-    data["q2_sales_growth"] = (data["q2_sales"].div(data["q2_sales_previous"].replace(0, np.nan)) - 1) * 100
-    data["q2_op_growth"] = (data["q2_op"].div(data["q2_op_previous"].where(data["q2_op_previous"] > 0)) - 1) * 100
-
-    amount_scale = 100_000_000.0  # KIS amount rows are 억원.
-    data["direct_2026"] = data["consensus_sales_2026"].notna() & data["consensus_op_2026"].notna()
-    data["direct_2027"] = data["consensus_sales_2027"].notna() & data["consensus_op_2027"].notna()
-    data["sales_2026e"] = (data["consensus_sales_2026"] * amount_scale).where(
-        data["consensus_sales_2026"].notna(), data["sales_current"] * 2,
-    )
-    data["op_2026e"] = (data["consensus_op_2026"] * amount_scale).where(
-        data["consensus_op_2026"].notna(), data["op_current"] * 2,
-    )
-    sales_trend = data["sales_1y_growth"].clip(-20, 80).fillna(0)
-    op_trend = data["op_1y_growth"].where(data["op_1y_growth"].between(-20, 100), sales_trend).fillna(0)
-    data["sales_2027e"] = (data["consensus_sales_2027"] * amount_scale).where(
-        data["consensus_sales_2027"].notna(), data["sales_2026e"] * (1 + sales_trend / 100),
-    )
-    data["op_2027e"] = (data["consensus_op_2027"] * amount_scale).where(
-        data["consensus_op_2027"].notna(), data["op_2026e"] * (1 + op_trend / 100),
-    )
-    data["q3_sales"] = (data["sales_2026e"] - data["sales_current"]) / 2
-    data["q4_sales"] = data["q3_sales"]
-    data["q3_op"] = (data["op_2026e"] - data["op_current"]) / 2
-    data["q4_op"] = data["q3_op"]
-
-    op_ratio = data["q1_op"].abs().div(data["q2_op"].abs().replace(0, np.nan))
-    data["severe_base"] = (
-        (data["q1_op"] <= 0) | (data["q2_op"] <= 0) | op_ratio.gt(3) | op_ratio.lt(1 / 3) |
-        data["op_growth_basis"].astype(str).str.contains("전환", na=False)
-    )
-    sales_q1_share = data["q1_sales"].div(data["sales_2026e"].replace(0, np.nan))
-    sales_q2_share = data["q2_sales"].div(data["sales_2026e"].replace(0, np.nan))
-    op_q1_share = data["q1_op"].div(data["op_2026e"].replace(0, np.nan))
-    op_q2_share = data["q2_op"].div(data["op_2026e"].replace(0, np.nan))
-    data["q1_2027_sales"] = np.where(data["severe_base"], data["sales_2027e"] / 4,
-                                      data["sales_2027e"] * sales_q1_share)
-    data["q2_2027_sales"] = np.where(data["severe_base"], data["sales_2027e"] / 4,
-                                      data["sales_2027e"] * sales_q2_share)
-    data["q1_2027_op"] = np.where(data["severe_base"], data["op_2027e"] / 4,
-                                   data["op_2027e"] * op_q1_share)
-    data["q2_2027_op"] = np.where(data["severe_base"], data["op_2027e"] / 4,
-                                   data["op_2027e"] * op_q2_share)
-    invalid_alloc = (
-        (data[["q1_2027_sales", "q2_2027_sales"]] <= 0).any(axis=1) |
-        data[["q1_2027_sales", "q2_2027_sales", "q1_2027_op", "q2_2027_op"]].isna().any(axis=1)
-    )
-    data.loc[invalid_alloc, "severe_base"] = True
-    for column, annual in (("q1_2027_sales", "sales_2027e"), ("q2_2027_sales", "sales_2027e"),
-                           ("q1_2027_op", "op_2027e"), ("q2_2027_op", "op_2027e")):
-        data.loc[invalid_alloc, column] = data.loc[invalid_alloc, annual] / 4
-
-    data["future_avg_sales"] = data[["q3_sales", "q4_sales", "q1_2027_sales", "q2_2027_sales"]].mean(axis=1)
-    data["future_avg_op"] = data[["q3_op", "q4_op", "q1_2027_op", "q2_2027_op"]].mean(axis=1)
-    data["future_sales_growth"] = (data["future_avg_sales"].div(data["q2_sales"].where(data["q2_sales"] > 0)) - 1) * 100
-    data["future_op_growth"] = (data["future_avg_op"].div(data["q2_op"].where(data["q2_op"] > 0)) - 1) * 100
-    data["future_margin"] = data["future_avg_op"].div(data["future_avg_sales"].replace(0, np.nan)) * 100
-    data["future_margin_delta"] = data["future_margin"] - data["q2_margin"]
-
-    data["current_pop"] = data["market_cap"].div((data["q2_op"] * 4).where(data["q2_op"] > 0))
-    data["future_pop"] = data["market_cap"].div(data["op_2027e"].where(data["op_2027e"] > 0))
-    valid_current = data["current_pop"].replace([np.inf, -np.inf], np.nan).notna() & data["current_pop"].between(0.1, 300)
-    valid_future = data["future_pop"].replace([np.inf, -np.inf], np.nan).notna() & data["future_pop"].between(0.1, 300)
-    current_stats = data[valid_current].groupby("sector")["current_pop"].agg(["median", "count"])
-    future_stats = data[valid_future].groupby("sector")["future_pop"].agg(["median", "count"])
-    data["sector_median_pop"] = data["sector"].map(current_stats["median"] if not current_stats.empty else {})
-    data["sector_peer_count"] = data["sector"].map(current_stats["count"] if not current_stats.empty else {}).fillna(0)
-    data["sector_future_pop"] = data["sector"].map(future_stats["median"] if not future_stats.empty else {})
-    data["future_peer_count"] = data["sector"].map(future_stats["count"] if not future_stats.empty else {}).fillna(0)
-    minimum_peers = int(config.get("minimum_value_sector_peers", 2))
-    current_sparse = data["sector_peer_count"] < minimum_peers
-    future_sparse = data["future_peer_count"] < minimum_peers
-    data.loc[current_sparse, "sector_median_pop"] = np.nan
-    data.loc[future_sparse, "sector_future_pop"] = np.nan
-    data["current_basis"] = np.where(current_sparse, "섹터 표본부족", "섹터 중앙")
-    data["future_basis"] = np.where(future_sparse, "섹터 표본부족", "섹터 중앙")
-    data["current_premium_pct"] = (data["current_pop"].div(data["sector_median_pop"]) - 1) * 100
-    data["future_premium_pct"] = (data["future_pop"].div(data["sector_future_pop"]) - 1) * 100
-    data["current_sector_rank"] = data[valid_current].groupby("sector")["current_pop"].rank(method="min").reindex(data.index)
-    data["future_sector_rank"] = data[valid_future].groupby("sector")["future_pop"].rank(method="min").reindex(data.index)
-    data["future_target_price"] = (data["sector_future_pop"] * data["op_2027e"]).div(
-        data["shares"].where(data["shares"] > 0),
-    )
-    data["upside_12m"] = (data["future_target_price"].div(data["current_price"]) - 1) * 100
-
+def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -> dict:
+    """Rank value from reported profit only; no forward/T+ estimate is consumed."""
     normalized_op_columns = [f"normalized_op_q{quarter}" for quarter in (3, 4, 1, 2)]
     normalized_sales_columns = [f"normalized_sales_q{quarter}" for quarter in (3, 4, 1, 2)]
     reconstructed_count = data[normalized_op_columns].notna().sum(axis=1).astype(float)
@@ -1289,8 +1116,6 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
         data["normalized_quarter_count"].notna(), reconstructed_count,
     )
     data["normalized_complete"] = data["normalized_quarter_count"].eq(4)
-    # Incomplete histories retain the prior Q2 annualization only as a low-confidence
-    # fallback. Complete histories use reconstructed trailing-four-quarter profit.
     data["normalized_op"] = data["normalized_ttm_op"].where(
         data["normalized_complete"], data["q2_op"] * 4,
     )
@@ -1301,12 +1126,13 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
         data["normalized_ttm_op"].div((data["q2_op"] * 4).replace(0, np.nan)) - 1
     ).mul(100).where(data["normalized_complete"])
     data["normalized_pop"] = data["market_cap"].div(data["normalized_op"].where(data["normalized_op"] > 0))
-    valid_normalized = data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna() & data["normalized_pop"].between(0.1, 300)
-    normalized_stats = data[valid_normalized].groupby("sector")["normalized_pop"].agg(["median", "count"])
-    data["sector_normalized_pop"] = data["sector"].map(normalized_stats["median"] if not normalized_stats.empty else {})
-    data["normalized_peer_count"] = data["sector"].map(normalized_stats["count"] if not normalized_stats.empty else {}).fillna(0)
-    normalized_sparse = data["normalized_peer_count"] < minimum_peers
-    data.loc[normalized_sparse, "sector_normalized_pop"] = np.nan
+    valid = data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna() & data["normalized_pop"].between(0.1, 300)
+    minimum_peers = int(config.get("minimum_value_sector_peers", 2))
+    stats = data[valid].groupby("sector")["normalized_pop"].agg(["median", "count"])
+    data["sector_normalized_pop"] = data["sector"].map(stats["median"] if not stats.empty else {})
+    data["normalized_peer_count"] = data["sector"].map(stats["count"] if not stats.empty else {}).fillna(0)
+    sparse = data["normalized_peer_count"] < minimum_peers
+    data.loc[sparse, "sector_normalized_pop"] = np.nan
     data["normalized_premium_pct"] = (data["normalized_pop"].div(data["sector_normalized_pop"]) - 1) * 100
 
     op_quarters = data[normalized_op_columns]
@@ -1319,48 +1145,18 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
         + positive_ratio * 30
         + consistency * 0.30
     ).clip(0, 100)
-
-    revision_weights = {"consensus_change_20d": 0.60, "consensus_change_5d": 0.25,
-                        "consensus_change_1d": 0.15}
-    revision_total = sum(data[column].fillna(0) * weight for column, weight in revision_weights.items())
-    available_weight = sum(data[column].notna().astype(float) * weight for column, weight in revision_weights.items())
-    data["consensus_signal"] = revision_total.div(available_weight.replace(0, np.nan))
-    actual_available = data[["q2_sales", "q2_op", "sales_2026e", "op_2026e", "sales_2027e", "op_2027e"]].notna().all(axis=1)
-    # A/B is the continuing-profit population. Losses and tiny (<=1%) Q2
-    # margins belong only to the separate T+ evaluation, so the two tables can
-    # never show the same company.
-    improving = actual_available & (data["q2_sales"] > 0) & (data["q2_op"] > 0) & (data["q2_margin"] > 1) & (
-        data["future_sales_growth"] > 0
-    ) & (data["future_op_growth"] > 0)
-    future_a = improving & (data["future_margin_delta"] > 0)
-    future_b = improving & ~future_a
-    data["future_type"] = np.select([future_a, future_b], ["A", "B"], default="제외")
-    revision_positive = data["consensus_signal"].fillna(0) >= 0
+    broad_sector = data["normalized_peer_count"] >= 5
     data["confidence"] = np.select(
-        [data["normalized_complete"] & data["direct_2027"] & revision_positive,
-         data["normalized_complete"], data["direct_2027"]], ["A", "B", "C"], default="D",
+        [data["normalized_complete"] & broad_sector, data["normalized_complete"], broad_sector],
+        ["A", "B", "C"], default="D",
     )
-    candidates = data[data["future_type"].isin(["A", "B"])].copy()
-    candidates["absolute_value_score"] = (
-        absolute_multiple_score(candidates["normalized_pop"]) * 0.65
-        + absolute_multiple_score(candidates["future_pop"]) * 0.35
-    )
-    candidates["sector_value_score"] = (
-        relative_discount_score(candidates["normalized_premium_pct"]) * 0.65
-        + relative_discount_score(candidates["future_premium_pct"]) * 0.35
-    )
-    growth_signal = np.log1p(candidates["future_op_growth"].clip(lower=0, upper=300) / 100)
-    growth_for_price = growth_signal.div(candidates["future_pop"].where(candidates["future_pop"] > 0))
-    candidates["growth_price_score"] = growth_for_price.rank(method="average", pct=True).fillna(0) * 100
-    margin_level = candidates["future_margin"].rank(method="average", pct=True).fillna(0) * 100
-    margin_change = candidates["future_margin_delta"].rank(method="average", pct=True).fillna(0) * 100
-    candidates["margin_score"] = (margin_level + margin_change) / 2
+    candidates = data[valid & data["sector_normalized_pop"].notna()].copy()
+    candidates["absolute_value_score"] = absolute_multiple_score(candidates["normalized_pop"])
+    candidates["sector_value_score"] = relative_discount_score(candidates["normalized_premium_pct"])
     candidates["value_score_before_confidence"] = (
-        candidates["absolute_value_score"] * 0.30
-        + candidates["sector_value_score"] * 0.30
-        + candidates["normalization_quality"] * 0.25
-        + candidates["growth_price_score"] * 0.10
-        + candidates["margin_score"] * 0.05
+        candidates["absolute_value_score"] * 0.35
+        + candidates["sector_value_score"] * 0.35
+        + candidates["normalization_quality"] * 0.30
     )
     candidates["confidence_multiplier"] = candidates["confidence"].map(
         {"A": 1.00, "B": 0.92, "C": 0.82, "D": 0.70},
@@ -1381,163 +1177,134 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
         * candidates["confidence_multiplier"]
         * candidates["structure_multiplier"]
     )
-    # Sub-1x P/OP, especially when the future number is not direct consensus,
-    # is more likely to be a consolidation/unit artefact than a durable bargain.
-    extreme_multiple = (candidates["normalized_pop"] < 1) | (
-        (candidates["future_pop"] < 0.5) & ~candidates["direct_2027"]
-    )
+    extreme_multiple = candidates["normalized_pop"] < 1
     candidates.loc[extreme_multiple, "value_score"] = candidates.loc[extreme_multiple, "value_score"].clip(upper=69)
     candidates.loc[extreme_multiple & candidates["structure_warning"].eq(""), "structure_warning"] = "1배 미만 배수 검증필요"
-    candidates.loc[candidates["future_premium_pct"] > 20, "value_score"] = candidates.loc[
-        candidates["future_premium_pct"] > 20, "value_score"
-    ].clip(upper=69)
     ranked = candidates.sort_values(
-        ["value_score", "normalized_premium_pct", "future_premium_pct"],
+        ["value_score", "normalized_premium_pct", "normalized_pop"],
         ascending=[False, True, True], na_position="last",
     ).copy()
     ranked["type_rank"] = np.arange(1, len(ranked) + 1)
-    # Valuation ranks compare each company's discount/premium to its own
-    # sector median, then rank those relative percentages across the A/B
-    # candidate universe. The largest sector discount is current/future rank 1.
-    # Growth rank remains independent and continues to control table order.
-    ranked["current_value_rank"] = ranked["current_premium_pct"].rank(
-        method="min", ascending=True, na_option="keep",
-    )
-    ranked["future_value_rank"] = ranked["future_premium_pct"].rank(
-        method="min", ascending=True, na_option="keep",
-    )
     ranked["normalized_value_rank"] = ranked["normalized_premium_pct"].rank(
         method="min", ascending=True, na_option="keep",
     )
-
-    # Growth discovery is a separate evidence engine and never enters this table.
-    top_count = int(config["top_value_count"])
-    selected = ranked.head(top_count)
+    selected = ranked.head(int(config["top_value_count"]))
 
     def rounded(value):
         return round(float(value), 1) if np.isfinite(value) else None
 
-    def relative_result(rank_value, premium, peers, basis, prefix):
-        if not np.isfinite(premium) or not np.isfinite(rank_value):
-            return f"{prefix} 산출불가({basis} · {int(peers)}개)"
-        label = "할인" if premium < 0 else "프리미엄"
-        return f"{prefix} {int(rank_value)}위({abs(premium):.1f}% {label})"
-
-    def quarter_text(label, sales, op, q2_sales, q2_op):
-        sales_change = (sales / q2_sales - 1) * 100 if np.isfinite(sales) and q2_sales > 0 else np.nan
-        op_change = (op / q2_op - 1) * 100 if np.isfinite(op) and q2_op > 0 else np.nan
-        margin = op / sales * 100 if np.isfinite(op) and np.isfinite(sales) and sales else np.nan
-        op_display = _pct(op_change) if np.isfinite(op_change) else ("흑자" if np.isfinite(op) and op > 0 else "적자")
-        return f"{label} 매출 {_amount_text(sales)}({_pct(sales_change)}) · OP {_amount_text(op)}({op_display}) · 마진 {_pct(margin)}"
-
-    def period_average_text(label, sales_values, op_values, q2_sales, q2_op):
-        valid_sales = [float(value) for value in sales_values if np.isfinite(value)]
-        valid_op = [float(value) for value in op_values if np.isfinite(value)]
-        average_sales = float(np.mean(valid_sales)) if valid_sales else np.nan
-        average_op = float(np.mean(valid_op)) if valid_op else np.nan
-        return quarter_text(f"{label} 평균", average_sales, average_op, q2_sales, q2_op)
-
     def make_row(item):
-        current_result = relative_result(item.current_value_rank, item.current_premium_pct,
-                                         item.sector_peer_count, item.current_basis, "현재")
-        future_result = relative_result(item.future_value_rank, item.future_premium_pct,
-                                        item.future_peer_count, item.future_basis, "미래")
-        normalized_result = relative_result(item.normalized_value_rank, item.normalized_premium_pct,
-                                            item.normalized_peer_count, "섹터 중앙", "정상화")
-        q2_op_text = _pct(item.q2_op_growth) if np.isfinite(item.q2_op_growth) else (
-            "흑자전환" if item.q2_op > 0 >= item.q2_op_previous else "비교불가"
+        premium_label = "할인" if item.normalized_premium_pct < 0 else "프리미엄"
+        normalized_result = (
+            f"정상화 {int(item.normalized_value_rank)}위"
+            f"({abs(item.normalized_premium_pct):.1f}% {premium_label})"
         )
-        current_text = (
-            f"현재(2Q) · 매출 {_amount_text(item.q2_sales)}({_pct(item.q2_sales_growth)}) · "
-            f"OP {_amount_text(item.q2_op)}({q2_op_text}) · 마진 {_pct(item.q2_margin)}"
-        )
-        future_text = " · ".join([
-            period_average_text("26년 3Q·4Q", (item.q3_sales, item.q4_sales),
-                                (item.q3_op, item.q4_op), item.q2_sales, item.q2_op),
-            period_average_text("27년 1Q·2Q", (item.q1_2027_sales, item.q2_2027_sales),
-                                (item.q1_2027_op, item.q2_2027_op), item.q2_sales, item.q2_op),
-        ])
-        current_price_text = "적자·현재배수 산출불가" if not np.isfinite(item.current_pop) else (
-            f"종목 P/OP {_pct(item.current_pop, '배').replace('+', '')} · {item.current_basis} "
-            f"{_pct(item.sector_median_pop, '배').replace('+', '')} · {current_result}"
-        )
-        future_price_text = (
-            f"종목 2027 P/OP {_pct(item.future_pop, '배').replace('+', '')} · {item.future_basis} "
-            f"{_pct(item.sector_future_pop, '배').replace('+', '')} · {future_result}"
-        )
-        future_source = "KIS" if item.direct_2027 else "추정"
-        estimate_badge = "균등분배 추정" if item.severe_base else "분기비율 추정"
-        result = f"{current_result} · {future_result}"
-        actual_date = str(item.quarter_as_of)[:10] if pd.notna(item.quarter_as_of) else str(item.as_of)[:10]
         return {
-            "rank": int(item.type_rank), "ticker": item.ticker, "name": item.name, "sector": item.sector,
-            "futureType": item.future_type, "typeRank": int(item.type_rank),
-            "confidence": item.confidence, "actualPeriod": "2026 2Q", "actualDate": actual_date,
-            "actualSourceBadge": "DART Q2" if item.direct_q2 else "반기균등 추정",
-            "salesAmount": _amount_text(item.q2_sales), "salesGrowth": rounded(item.q2_sales_growth),
-            "opAmount": _amount_text(item.q2_op), "reportedOpGrowth": rounded(item.q2_op_growth),
-            "opMargin": rounded(item.q2_margin), "currentEvaluation": current_text,
-            "currentPrice": round(float(item.current_price)) if np.isfinite(item.current_price) else None,
-            "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
-            "companyCurrentPOP": rounded(item.current_pop), "sectorMedianPOP": rounded(item.sector_median_pop),
-            "sectorPeerCount": int(item.sector_peer_count), "multipleBasis": item.current_basis,
-            "pricePremiumPct": rounded(item.current_premium_pct), "priceEvaluation": current_price_text,
-            "currentRank": int(item.current_value_rank) if np.isfinite(item.current_value_rank) else None,
-            "currentSectorRank": int(item.current_sector_rank) if np.isfinite(item.current_sector_rank) else None,
-            "currentResult": current_result, "futurePeriod": "2026 3Q~2027 2Q",
-            "futureSalesGrowth": rounded(item.future_sales_growth), "futureOpGrowth": rounded(item.future_op_growth),
-            "futureMargin": rounded(item.future_margin), "futureMarginDelta": rounded(item.future_margin_delta),
-            "futureEvaluation": future_text, "futureSourceBadge": future_source,
-            "estimateBadge": estimate_badge, "companyFuturePOP": rounded(item.future_pop),
-            "sectorFuturePOP": rounded(item.sector_future_pop), "futurePeerCount": int(item.future_peer_count),
-            "futureMultipleBasis": item.future_basis, "futurePremiumPct": rounded(item.future_premium_pct),
-            "futureRank": int(item.future_value_rank) if np.isfinite(item.future_value_rank) else None,
-            "futureSectorRank": int(item.future_sector_rank) if np.isfinite(item.future_sector_rank) else None,
-            "futurePriceEvaluation": future_price_text, "futureResult": future_result, "result": result,
+            "rank": int(item.type_rank), "typeRank": int(item.type_rank),
+            "ticker": item.ticker, "name": item.name, "sector": item.sector,
+            "valueScore": rounded(item.value_score),
+            "normalizedPOP": rounded(item.normalized_pop),
+            "sectorNormalizedPOP": rounded(item.sector_normalized_pop),
+            "normalizedPremiumPct": rounded(item.normalized_premium_pct),
+            "normalizationAdjustmentPct": rounded(item.normalization_adjustment_pct),
+            "confidence": item.confidence,
+            "normalizationSourceBadge": "최근 4분기" if item.normalized_complete else "반기 연환산",
             "normalizedPeriod": str(item.normalization_as_of)[:10] if pd.notna(item.normalization_as_of) else None,
             "normalizedQuarterCount": int(item.normalized_quarter_count),
-            "normalizedPOP": rounded(item.normalized_pop), "sectorNormalizedPOP": rounded(item.sector_normalized_pop),
-            "normalizedPremiumPct": rounded(item.normalized_premium_pct), "normalizedResult": normalized_result,
-            "normalizationAdjustmentPct": rounded(item.normalization_adjustment_pct),
+            "normalizedPeerCount": int(item.normalized_peer_count),
             "normalizationQuality": rounded(item.normalization_quality),
+            "normalizedResult": normalized_result,
             "absoluteValueScore": rounded(item.absolute_value_score),
             "sectorValueScore": rounded(item.sector_value_score),
-            "growthPriceScore": rounded(item.growth_price_score), "marginScore": rounded(item.margin_score),
             "valueScoreBeforeConfidence": rounded(item.value_score_before_confidence),
-            "confidenceMultiplier": round(float(item.confidence_multiplier), 2) if np.isfinite(item.confidence_multiplier) else None,
-            "structureMultiplier": round(float(item.structure_multiplier), 2) if np.isfinite(item.structure_multiplier) else None,
-            "structureWarning": item.structure_warning, "valueScore": rounded(item.value_score),
-            "targetPrice12M": round(float(item.future_target_price)) if np.isfinite(item.future_target_price) else None,
-            "upside12M": rounded(item.upside_12m), "consensus1D": rounded(item.consensus_change_1d),
-            "consensus5D": rounded(item.consensus_change_5d), "consensus20D": rounded(item.consensus_change_20d),
-            "consensusDate": str(item.consensus_as_of)[:10] if pd.notna(item.consensus_as_of) else None,
-            "consensusStatus": "KIS 2026E·2027E" if future_source == "KIS" else "공시추세 추정",
-            "signal": ("핵심" if future_source == "KIS" and item.confidence == "A" else "관찰") +
-                      f" {item.future_type}",
-            "reason": f"{current_text} · {future_text} · {result}",
+            "confidenceMultiplier": round(float(item.confidence_multiplier), 2),
+            "structureMultiplier": round(float(item.structure_multiplier), 2),
+            "structureWarning": item.structure_warning,
+            "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
         }
 
     rows = [make_row(item) for item in selected.itertuples(index=False)]
-    ab_count = int(len(ranked))
-    price_dates = (pd.to_datetime(data["price_date"], errors="coerce").dropna()
-                   if "price_date" in data.columns else pd.Series(dtype="datetime64[ns]"))
+    candidate_count = int(len(ranked))
+    price_dates = pd.to_datetime(data["price_date"], errors="coerce").dropna()
     price_basis = price_dates.max().strftime("%Y-%m-%d") if not price_dates.empty else None
     price_basis_text = f" · 가격 기준 {price_basis}" if price_basis else ""
     return {
-        "status": f"정상화 가치 A·B {ab_count}개 중 상위 {len(rows)}개{price_basis_text}",
-        "method": "절대 저평가 30% + 섹터 상대 저평가 30% + 최근 4분기 정상화 품질 25% + 성장 대비 가격 10% + 미래 마진 5% · 신뢰도 및 금융·지주 구조 배수 적용",
+        "status": f"정상화 가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}",
+        "method": "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · 미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용",
         "rows": rows,
         "events": [{
             "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"),
-            "event": "최근 4분기 정상화 이익을 기준으로 절대·섹터 상대 저평가를 결합하고 자료 신뢰도 배수를 적용",
-            "tone": "정보", "impact": "일회성 분기 급증, 자체 추정 성장률, 금융·지주 연결실적이 가치 순위를 지배하지 못하도록 제한",
+            "event": "T+와 미래 실적 추정을 완전히 제외하고 확인된 최근 4분기 이익만으로 재평가",
+            "tone": "정보", "impact": "절대 저평가·섹터 상대 저평가·이익 정상화만 가치 순위에 반영",
         }],
-        "dataStatus": status | {"futureCandidateCount": len(data), "futureABCount": ab_count,
-                                "direct2027Count": int(data["direct_2027"].sum()),
-                                "directQ2Count": int(data["direct_q2"].sum()),
-                                "normalizedCompleteCount": int(data["normalized_complete"].sum())},
+        "dataStatus": status | {
+            "valueUniverseCount": len(data), "valueCandidateCount": candidate_count,
+            "directQ2Count": int(data["direct_q2"].sum()),
+            "normalizedCompleteCount": int(data["normalized_complete"].sum()),
+            "forwardEstimateUsed": False,
+        },
     }
 
+
+def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
+                      prices: pd.DataFrame | None = None) -> dict:
+    """Build normalized-value rankings from reported results; growth is separate.
+
+    Ordering combines absolute and sector-relative valuation using trailing
+    four-quarter normalized operating profit, then applies earnings-quality and
+    source-confidence controls. No forward estimate is read by this calculation.
+    """
+    if fundamentals.empty:
+        return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}",
+                "rows": [], "dataStatus": status}
+    data = fundamentals.copy()
+    numeric_columns = (
+        "sales_1y_growth", "op_1y_growth", "sales_current", "sales_previous", "op_current", "op_previous",
+        "sales_quarter_current", "sales_quarter_previous", "op_quarter_current", "op_quarter_previous",
+        "normalized_sales_q3", "normalized_sales_q4", "normalized_sales_q1", "normalized_sales_q2",
+        "normalized_op_q3", "normalized_op_q4", "normalized_op_q1", "normalized_op_q2",
+        "normalized_ttm_sales", "normalized_ttm_op", "normalized_quarter_count",
+    )
+    for column in numeric_columns:
+        if column not in data:
+            data[column] = np.nan
+        data[column] = pd.to_numeric(data[column], errors="coerce")
+    for column in ("quarter_as_of", "normalization_as_of"):
+        if column not in data:
+            data[column] = np.nan
+    data["ticker"] = data["ticker"].astype(str).str.zfill(6)
+
+    if prices is not None and not prices.empty:
+        latest = prices.copy()
+        latest["ticker"] = latest["ticker"].astype(str).str.zfill(6)
+        latest = latest.sort_values("date").groupby("ticker").tail(1)
+        keep = [column for column in ("ticker", "date", "close", "market_cap", "shares") if column in latest]
+        latest = latest[keep].rename(columns={"date": "price_date", "close": "current_price"})
+        data = data.merge(latest, on="ticker", how="left")
+    else:
+        data["price_date"], data["current_price"], data["market_cap"], data["shares"] = np.nan, np.nan, np.nan, np.nan
+    for column in ("current_price", "market_cap", "shares"):
+        if column not in data:
+            data[column] = np.nan
+        data[column] = pd.to_numeric(data[column], errors="coerce")
+
+    data["direct_q2"] = data["sales_quarter_current"].notna() & data["op_quarter_current"].notna()
+    data["q2_sales"] = data["sales_quarter_current"].where(data["direct_q2"], data["sales_current"] / 2)
+    data["q2_op"] = data["op_quarter_current"].where(data["direct_q2"], data["op_current"] / 2)
+    data["q2_sales_previous"] = data["sales_quarter_previous"].where(
+        data["sales_quarter_previous"].notna(), data["sales_previous"] / 2,
+    )
+    data["q2_op_previous"] = data["op_quarter_previous"].where(
+        data["op_quarter_previous"].notna(), data["op_previous"] / 2,
+    )
+    data["q1_sales"] = data["sales_current"] - data["q2_sales"]
+    data["q1_op"] = data["op_current"] - data["q2_op"]
+    data["q2_margin"] = data["q2_op"].div(data["q2_sales"].replace(0, np.nan)) * 100
+    data["q2_sales_growth"] = (data["q2_sales"].div(data["q2_sales_previous"].replace(0, np.nan)) - 1) * 100
+    data["q2_op_growth"] = (data["q2_op"].div(data["q2_op_previous"].where(data["q2_op_previous"] > 0)) - 1) * 100
+
+    # The value board stops at verified current/normalized profit.
+    return _build_current_value_board(data, config, status)
 
 def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamentals: pd.DataFrame,
                       config: dict) -> dict:

@@ -41,6 +41,9 @@ def validate_html(html_path: Path, contract: dict) -> list[str]:
         if position < 0:
             errors.append(f"p2: 값 표시형식/순서 변경 감지: {token}")
             break
+    for token in contract["tables"]["p2"]["forbiddenRenderTokens"]:
+        if token.lower() in renderer.lower():
+            errors.append(f"p2: 금지된 미래/T+ 표시 감지: {token}")
     return errors
 
 
@@ -60,6 +63,10 @@ def validate_board(board: dict, contract: dict) -> list[str]:
             value = row.get(field)
             if value is not None and (not isinstance(value, (int, float)) or round(float(value), 1) != float(value)):
                 errors.append(f"p2 {index}행 {field} 표시 정밀도 변경 감지: {value!r}")
+        prefixes = tuple(prefix.lower() for prefix in value_contract["forbiddenFieldPrefixes"])
+        forbidden = [key for key in row if key.lower().startswith(prefixes)]
+        if forbidden:
+            errors.append(f"p2 {index}행 미래/T+ 필드 감지: {', '.join(forbidden)}")
     return errors
 
 

@@ -36,3 +36,4 @@
 - Generate candidates in `test_output/sections/` and promote only the explicitly requested sections with `promote_sections.py`. Never replace the whole live `data.json` for a one-section request.
 - Treat `p1`, `p11`, `p2`, `growth`, `p3`, and `meta` as separately promotable sections. A growth-engine change must not change value, entry, rotation, holdings, or global metadata unless those sections were also explicitly requested.
 - `p3` quantities and average purchase prices are immutable user inputs. Its judgment, action, fair-range, and display labels are not automatic-refresh outputs.
+- Project 2 value ranking uses only absolute undervaluation, sector-relative undervaluation, and reported-profit normalization. Never add T+, forward earnings, consensus growth, future P/OP, future discounts, or growth-discovery evidence to its score or rows.

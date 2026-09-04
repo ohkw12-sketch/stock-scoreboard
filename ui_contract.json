@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-05.1",
+  "version": "2026-09-05.2",
   "description": "사용자가 확정한 주식평가창 제목·순서·표시형식 계약. 명시적인 화면 변경 요청 없이는 수정하지 않는다.",
   "tables": {
     "p1": {
@@ -12,10 +12,12 @@
     },
     "p2": {
       "tbodyId": "p2body",
-      "headers": ["순위", "종목", "가치점수", "정상화 P/OP", "섹터 중앙", "섹터 할인", "미래 P/OP", "미래 할인", "정상화 조정률", "신뢰도"],
-      "fields": ["typeRank", "name", "valueScore", "normalizedPOP", "sectorNormalizedPOP", "normalizedPremiumPct", "companyFuturePOP", "futurePremiumPct", "normalizationAdjustmentPct", "confidence"],
-      "formats": ["정수", "종목명·섹터", "최대 소수점 1자리 점수", "최대 소수점 1자리 배수", "최대 소수점 1자리 배수", "할인·비쌈 백분율", "최대 소수점 1자리 배수", "할인·비쌈 백분율", "부호 포함 백분율", "등급·자료출처"],
-      "renderTokens": ["${x.typeRank}", "${stock(x)}", "${x.valueScore??'—'}", "${multiple(x.normalizedPOP)}", "${multiple(x.sectorNormalizedPOP)}", "${discount(x.normalizedPremiumPct)}", "${multiple(x.companyFuturePOP)}", "${discount(x.futurePremiumPct)}", "${signed(x.normalizationAdjustmentPct)}", "${x.confidence}"]
+      "headers": ["순위", "종목", "가치점수", "정상화 P/OP", "섹터 중앙", "섹터 할인", "정상화 조정률", "신뢰도"],
+      "fields": ["typeRank", "name", "valueScore", "normalizedPOP", "sectorNormalizedPOP", "normalizedPremiumPct", "normalizationAdjustmentPct", "confidence"],
+      "formats": ["정수", "종목명·섹터", "최대 소수점 1자리 점수", "최대 소수점 1자리 배수", "최대 소수점 1자리 배수", "할인·비쌈 백분율", "부호 포함 백분율", "등급·자료출처"],
+      "renderTokens": ["${x.typeRank}", "${stock(x)}", "${x.valueScore??'—'}", "${multiple(x.normalizedPOP)}", "${multiple(x.sectorNormalizedPOP)}", "${discount(x.normalizedPremiumPct)}", "${signed(x.normalizationAdjustmentPct)}", "${x.confidence}"],
+      "forbiddenFieldPrefixes": ["future", "consensus", "targetPrice", "upside"],
+      "forbiddenRenderTokens": ["future", "consensus", "T+"]
     },
     "growthSectors": {
       "tbodyId": "growthsectors",
