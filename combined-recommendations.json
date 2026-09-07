@@ -5,8 +5,8 @@
   "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
   "generatedAt": "2026-09-07T14:01:00+09:00",
   "sourceDate": "2026-09-04",
-  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
-  "publicationState": "prepared",
+  "status": "공개 확인 완료 · 추천 기록 보존",
+  "publicationState": "confirmed",
   "notice": "실험 규칙입니다. 수익성이 검증된 전략이 아니며 곧진입은 관찰 후보입니다. 기존 가치·성장 점수는 변경하지 않습니다.",
   "rules": {
     "version": "combined-1.0",
@@ -241,5 +241,7 @@
     "p11": "계산완료",
     "p2": "계산완료",
     "growth": "계산완료"
-  }
+  },
+  "lastPublicationCheckedAt": "2026-09-07T14:56:37+09:00",
+  "observedPublishedAt": "2026-09-07T14:56:37+09:00"
 }

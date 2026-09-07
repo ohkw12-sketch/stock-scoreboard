@@ -115,6 +115,16 @@ class PublicationVerificationTests(unittest.TestCase):
         self.board = {"meta": {"runId": "run-1"}, "p1": {"rows": [{"ticker": "000001"}]}}
         self.combined = {"runId": "run-1", "publicationState": "prepared", "rows": [{"ticker": "000001"}]}
 
+    def test_remote_check_identifies_itself_and_bypasses_stale_cache(self):
+        with patch.object(publication.urllib.request, 'urlopen') as fetch:
+            fetch.return_value.__enter__.return_value = io.BytesIO(b'{"runId":"run-1"}')
+            self.assertEqual(publication.fetch_json('data.json'), {'runId': 'run-1'})
+        request = fetch.call_args.args[0]
+        self.assertEqual(request.get_header('User-agent'), 'stock-scoreboard-deploy-check')
+        self.assertEqual(request.get_header('Cache-control'), 'no-cache')
+        self.assertTrue(request.full_url.startswith(publication.SITE + 'data.json?verify='))
+        self.assertEqual(fetch.call_args.kwargs['timeout'], 30)
+
     def test_exact_remote_pair_is_verified(self):
         self.assertTrue(publication.verified_generation(self.board, self.combined,
                                                         copy.deepcopy(self.board), copy.deepcopy(self.combined)))

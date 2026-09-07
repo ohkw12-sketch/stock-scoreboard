@@ -19,7 +19,8 @@ SITE = 'https://stock-scoreboard.pages.dev/'
 
 def fetch_json(name):
     request = urllib.request.Request(SITE + name + '?verify=' + str(time.time_ns()),
-                                     headers={'Cache-Control': 'no-cache'})
+                                     headers={'Cache-Control': 'no-cache',
+                                              'User-Agent': 'stock-scoreboard-deploy-check'})
     with urllib.request.urlopen(request, timeout=30) as response:
         return json.load(response)
 
