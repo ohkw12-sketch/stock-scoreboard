@@ -35,7 +35,9 @@ class MarketRefreshTest(unittest.TestCase):
         self.assertEqual(self.loader._fetch_start(date(2026, 8, 31)), date(2026, 8, 22))
         self.assertEqual(self.loader.refresh_plan["mode"], "incremental-with-overlap")
         self.config["force_full_prices"] = True
-        self.assertLess(self.loader._fetch_start(date(2026, 8, 31)), date(2026, 8, 1))
+        repair_start = self.loader._fetch_start(date(2026, 8, 31))
+        self.assertLessEqual(repair_start, history["date"].min().date())
+        self.assertEqual(self.loader.refresh_plan["mode"], "targeted-full-history")
 
     def test_exact_requested_universe_detects_never_collected_stock(self):
         prices = generate_sample_market()

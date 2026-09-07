@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-1.0",
-  "generatedAt": "2026-09-07T14:56:37+09:00",
-  "priceDate": "2026-09-04",
+  "generatedAt": "2026-09-07T21:23:00+09:00",
+  "priceDate": "2026-09-07",
   "status": "공개 확인 추천을 추적 중",
   "recordCount": 90,
   "cohortCount": 5,
@@ -2121,7 +2121,11 @@
   "priceCollection": {
     "source": "추천 종목 Yahoo 공급자 수정주가",
     "requested": 77,
-    "status": "수정주가 수집 대기",
-    "networkRequests": 0
-  }
+    "status": "정상",
+    "covered": 77,
+    "missingTickers": [],
+    "priceDate": "2026-09-07",
+    "checkedAt": "2026-09-07T12:47:24.452284+00:00"
+  },
+  "priceSnapshotId": "d0e56882e13af6e84a64f20da2eda00a54ea4a6f60d8ff2cf68488e554af4dc4"
 }

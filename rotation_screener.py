@@ -568,7 +568,13 @@ class MarketDataLoader:
 
     def _fetch_start(self, end: date) -> date:
         full_start = end - timedelta(days=int(self.config["lookback_business_days"]) * 2)
-        if self._history is not None and not self._history.empty and not self.config.get("force_full_prices"):
+        if self._history is not None and not self._history.empty and self.config.get("force_full_prices"):
+            # Corporate-action restatements must replace every cached observation.
+            # Include a small buffer so holidays and provider date boundaries cannot
+            # leave the first cached session outside the repair download.
+            history_start = pd.Timestamp(self._history["date"].min()).date() - timedelta(days=7)
+            start, mode = min(full_start, history_start), "targeted-full-history"
+        elif self._history is not None and not self._history.empty:
             last = pd.Timestamp(self._history["date"].max()).date()
             start = max(full_start, last - timedelta(days=int(self.config["price_correction_overlap_days"])))
             mode = "incremental-with-overlap"
