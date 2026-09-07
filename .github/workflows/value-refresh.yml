@@ -3,9 +3,19 @@ name: Refresh Whole Stock Scoreboard
 # Manual full refresh; a code push must not start a second expensive run.
 on:
   workflow_dispatch:
+    inputs:
+      rebuild_cache:
+        description: '원자료 캐시가 없을 때 최초/복구 전수 수집 허용'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
+  actions: read
+
+concurrency:
+  group: stock-scoreboard-refresh
+  cancel-in-progress: false
 
 jobs:
   refresh-all:
@@ -24,6 +34,39 @@ jobs:
           cache: pip
       - name: Install dependencies
         run: pip install -r requirements.txt
+      - name: Find previous raw-data state
+        id: prior-state
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const all = await github.paginate(github.rest.actions.listArtifactsForRepo, {...context.repo, per_page: 100});
+            const artifacts = all.filter(a => a.name.startsWith('raw-state-v2-') && !a.expired && a.workflow_run?.head_branch === context.ref.replace('refs/heads/', '')).sort((a,b) => b.id-a.id);
+            core.setOutput('ids', artifacts.slice(0, 5).map(a => a.id).join(' '));
+      - name: Load or explicitly bootstrap cache
+        id: load-state
+        env:
+          PRIOR_IDS: ${{ steps.prior-state.outputs.ids }}
+          REBUILD_CACHE: ${{ inputs.rebuild_cache }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          mkdir -p restored-state
+          restored=false
+          for artifact_id in $PRIOR_IDS; do
+            if ! [[ "$artifact_id" =~ ^[0-9]+$ ]]; then exit 2; fi
+            if gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$artifact_id/zip" > "restored-state/$artifact_id.zip" &&
+               unzip -p "restored-state/$artifact_id.zip" raw-state.tar.gz > "restored-state/$artifact_id.tar.gz" &&
+               python ci_state.py restore --archive "restored-state/$artifact_id.tar.gz"; then
+              restored=true
+              break
+            fi
+            echo "원자료 아카이브 $artifact_id 검증 실패. 이전 후보를 확인합니다."
+          done
+          echo "restored=$restored" >> "$GITHUB_OUTPUT"
+          if [ "$restored" != 'true' ] && [ "$REBUILD_CACHE" != 'true' ]; then
+            echo '검증된 원자료 캐시 없음/만료. rebuild_cache를 선택해야 전수 재수집합니다. 90일 원자료 아카이브는 영구 DB가 아니며 추천 기록은 Git에 보존됩니다.'
+            exit 2
+          fi
       - name: Verify required credentials
         shell: bash
         run: |
@@ -32,21 +75,63 @@ jobs:
           test -n "$KIS_APP_SECRET" || { echo 'KIS_APP_SECRET secret is missing'; exit 2; }
       - name: Run regression tests
         run: python -m unittest discover -s tests -v
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify independent board rendering
+        run: node --test tests/test_ui_runtime.cjs
       - name: Run and validate all boards
+        id: refresh
         run: python refresh_all.py --config config.kis.example.json
       - name: Promote validated board files
-        run: python promote_sections.py --sections p1 p11 p2 growth p3 meta --youtube
+        run: python promote_sections.py --sections p1 p11 p2 growth p3 meta --youtube --research --allow-partial
       - name: Verify display contract
         run: python board_contract.py
       - name: Commit refreshed boards
         shell: bash
         run: |
-          if git diff --quiet -- data.json youtube-market.json; then
+          if git diff --quiet -- data.json youtube-market.json combined-recommendations.json recommendation-performance.json refresh-status.json; then
             echo 'No board changes to commit.'
             exit 0
           fi
           git config user.name 'stock-scoreboard-bot'
           git config user.email 'stock-scoreboard-bot@users.noreply.github.com'
-          git add data.json youtube-market.json
+          git add data.json youtube-market.json combined-recommendations.json recommendation-performance.json refresh-status.json
           git commit -m 'Refresh whole stock scoreboard'
           git push
+      - name: Record only the confirmed publication
+        run: python record_publication.py --attempts 30 --interval 20
+      - name: Persist recommendation history and performance
+        shell: bash
+        run: |
+          git add recommendation-history.json recommendation-performance.json combined-recommendations.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified recommendation publication and performance'
+            git push
+          fi
+      - name: Package reusable raw-data cache
+        id: pack-state
+        if: always() && (steps.load-state.outputs.restored == 'true' || steps.refresh.outcome == 'success')
+        run: python ci_state.py pack
+      - name: Preserve cache across runners (history lives in Git)
+        if: always() && steps.pack-state.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: raw-state-v2-${{ github.run_id }}-${{ github.run_attempt }}
+          path: test_output/raw-state.tar.gz
+          if-no-files-found: error
+          retention-days: 90
+      - name: Check audit artifacts for credentials
+        id: audit-check
+        if: always()
+        run: python ci_state.py audit
+      - name: Preserve validation audit
+        if: always() && steps.audit-check.outcome == 'success'
+        uses: actions/upload-artifact@v4
+        with:
+          name: refresh-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            test_output/*report*.json
+            test_output/full_candidates.json
+            test_output/combined_audit.test.json
+          retention-days: 90

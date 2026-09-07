@@ -1,6 +1,6 @@
 {
   "mode": "live",
-  "lookback_business_days": 80,
+  "lookback_business_days": 280,
   "rotation_scan_min_days": 20,
   "rotation_scan_max_days": 40,
   "minimum_sector_members": 3,
@@ -33,5 +33,6 @@
   "kis_consensus_priority_count": 120,
   "kis_consensus_pause_seconds": 0.12,
   "minimum_latest_coverage_ratio": 0.98,
-  "maximum_unclassified_ratio": 0.08
+  "maximum_unclassified_ratio": 0.08,
+  "performance_cost_bps": 0
 }

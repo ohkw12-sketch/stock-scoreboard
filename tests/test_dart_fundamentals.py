@@ -49,16 +49,23 @@ class DartFundamentalsTest(unittest.TestCase):
         combined = pd.DataFrame([{
             "ticker": "000001", "sales_current": 220.0, "op_current": 22.0,
             "sales_quarter_current": 120.0, "op_quarter_current": 12.0,
+            "report_year": 2026, "report_code": "11012", "fs_div": "CFS",
+            "quarter_value_verified": True,
         }])
         universe = pd.DataFrame([{"ticker": "000001", "corp_code": "12345678"}])
         q3 = pd.DataFrame([{
             "ticker": "000001", "sales_current": 300.0, "op_current": 30.0,
             "sales_quarter_current": 110.0, "op_quarter_current": 11.0,
+            "quarter_value_verified": True,
         }])
         annual = pd.DataFrame([{"ticker": "000001", "sales_current": 430.0, "op_current": 45.0}])
 
         def period_values(_universe, _key, _config, _year, report_code):
-            return (q3, []) if report_code == "11014" else (annual, [])
+            if _year == 2025 and report_code == "11014":
+                return q3, []
+            if _year == 2025 and report_code == "11011":
+                return annual, []
+            return pd.DataFrame(), []
 
         with patch("dart_fundamentals._report_candidates", return_value=[(2026, "11012")]), patch(
             "dart_fundamentals._collect_bulk_period_values", side_effect=period_values,

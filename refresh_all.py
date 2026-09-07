@@ -2,14 +2,20 @@
 import argparse
 import copy
 import json
-from datetime import datetime, timedelta
+from datetime import datetime
 from pathlib import Path
 
 import pandas as pd
 
-from growth_discovery import (KST, build_growth_board, collect_disclosures, collect_news_hints,
-                              json_write, number)
+from growth_discovery import KST, build_growth_board, collect_disclosures, collect_news_hints, number
 from growth_sources import collect_trade_evidence, consensus_evidence, product_exposure
+from growth_documents import collect_verified_documents
+from youtube_content import collect_youtube_content
+from refresh_store import (json_write, read_json, run_lock, snapshot_files, public_fields, digest,
+                           store_verified_frames, load_verified_frames)
+from combined_recommendations import build_combined
+from recommendation_performance import empty_ledger, evaluate
+from performance_prices import collect_performance_prices
 from board_contract import load_contract
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
                               build_value_board, load_config, load_fundamentals, run_engine, write_outputs)
@@ -116,85 +122,190 @@ def refresh_youtube_prices(source, prices):
     return result
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=Path, default=Path('config.kis.example.json'))
-    parser.add_argument('--reuse-snapshot', action='store_true')
-    parser.add_argument('--reuse-evidence', action='store_true')
-    args = parser.parse_args()
-    config = load_config(args.config, None)
+def isolated_section(name, build, previous, states, context):
+    try:
+        result = build()
+        if not isinstance(result, dict):
+            raise RuntimeError('평가 결과 형식 오류')
+        raw_status = result.get('dataStatus', {})
+        raw_status = raw_status.get('status', '') if isinstance(raw_status, dict) else ''
+        if result.get('status') in ('실패', '자료없음', '수집실패') or raw_status in ('실패', '자료없음', '수집실패'):
+            raise RuntimeError('필수 원자료를 확보하지 못했습니다.')
+        states[name] = {'status': '계산완료', **context}
+        result['refreshState'] = states[name]
+        return result
+    except Exception as exc:
+        states[name] = {'status': '실패·이전유지', 'error': type(exc).__name__ + ': 원자료 또는 계산 검증 실패',
+                        'attemptedAt': context['generatedAt']}
+        result = copy.deepcopy(previous.get(name, {}))
+        result['refreshState'] = {**result.get('refreshState', {}), **states[name]}
+        return result
+
+
+def rebuild(args, config):
     out = config['output_dir']
+    out.mkdir(parents=True, exist_ok=True)
+    previous = read_json(config['base_data_file'], {})
+    generated = datetime.now(KST).isoformat(timespec='seconds')
     if args.reuse_snapshot:
-        prices = pd.read_pickle(out/'verified_prices.pkl')
-        fundamentals = pd.read_pickle(out/'verified_fundamentals.pkl')
-        report = json.loads((out/'verified_report.json').read_text('utf-8'))
+        prices, fundamentals, report = load_verified_frames(out, config['cache_dir'])
     else:
-        config.update(lookback_business_days=280, dart_retry_batch_size=4000, kis_consensus_batch_size=4000,
-                      refresh_universe=True, dart_cache_max_age_hours=0, market_snapshot_cache_max_days=0)
+        config['lookback_business_days'] = max(280, config.get('lookback_business_days', 80))
+        if args.full_refresh:
+            config.update(refresh_universe=True, dart_cache_max_age_hours=0,
+                          market_snapshot_cache_max_days=0, force_refresh=True)
         loader = MarketDataLoader(config)
         prices, source = loader.load()
         prices, snapshot_status = attach_market_snapshot(prices, config)
         fundamentals, fundamental_status = load_fundamentals(prices, config)
         report = dict(loader.report, fundamentals=fundamental_status, marketSnapshot=snapshot_status, engineSource=source)
-        prices.to_pickle(out/'verified_prices.pkl')
-        fundamentals.to_pickle(out/'verified_fundamentals.pkl')
-        json_write(out/'verified_report.json', report)
+        if report.get('qualityStatus') != '정상':
+            json_write(out/'failed_collection_report.json', report)
+            raise RuntimeError('전체시장 가격 검증 실패 · 이전 검증 원자료와 게시 자료를 보존했습니다.')
+        required_financials = {'ticker', 'sector', 'normalized_ttm_op'}
+        financial_failed = (fundamentals.empty or not required_financials.issubset(fundamentals.columns)
+                            or fundamental_status.get('status') in ('실패', '자료없음', '수집실패'))
+        if financial_failed:
+            _, retained, retained_report = load_verified_frames(out, config['cache_dir'])
+            fundamentals = retained
+            report['fundamentals'] = dict(retained_report['fundamentals'],
+                retentionStatus='최신 수집 실패·원래 기준일 유지', failedAttemptAt=generated)
+        store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     if report.get('qualityStatus') != '정상':
         raise RuntimeError('Whole-market price validation incomplete; live data not overwritten')
-    growth_cache = config['cache_dir'] / 'growth'
-    if args.reuse_evidence:
-        events = json.loads((growth_cache/'event_ledger.json').read_text('utf-8'))
-        collection = json.loads((growth_cache/'collection_status.json').read_text('utf-8'))
+    if prices.empty or str(pd.to_datetime(prices.date).max().date()) != report.get('latestPriceDate'):
+        raise RuntimeError('가격 파일과 검증 보고서 기준일이 다릅니다.')
+    report['runMode'] = '저장자료 재계산' if args.reuse_snapshot else '증분 수집'
+    report['attemptedAt'] = generated
+    pointer = read_json(out/'verified_snapshot.json')
+    if pointer:
+        manifest = read_json(config['cache_dir']/'snapshots/manifests'/f"{pointer['snapshotId']}.json")
     else:
-        events, collection = collect_disclosures(config, set(prices.ticker))
-    hints, news_status = collect_news_hints(config, sorted(set(prices['name'])))
-    collection['news'] = news_status
-    sector_events, trade_status = collect_trade_evidence(config)
-    collection['industryStatistics'] = trade_status
-    collection['ir'] = {'status':'원문검증대기', 'indexed': collection.get('reviewOnlyCount',0), 'problem':'IR 개최 자체는 성장 근거로 가산하지 않음'}
-    consensus_status = report['fundamentals'].get('consensus',{})
-    forecasts = consensus_evidence(fundamentals, consensus_status)
-    events += forecasts
-    collection['consensus'] = {'status':consensus_status.get('status','미수집'),
-                               'asOfDate':consensus_status.get('asOfDate'),
-                               'evidenceCount':sum(e['status']=='유효' for e in forecasts)}
-    listing_path = config['cache_dir']/'krx_listing_desc.csv'
-    listing = pd.read_csv(listing_path,dtype={'Code':str}) if listing_path.exists() else pd.DataFrame()
-    links = {e['eventId']:product_exposure(listing,e) for e in sector_events}
-    growth = build_growth_board(prices, fundamentals, events, collection, sector_events=sector_events, sector_links=links)
-    json_write(out/'growth_audit.test.json', growth.pop('_audit'))
-    p11 = run_engine(prices, config, report.get('engineSource', 'verified-snapshot'))
-    p1 = build_entry_board(prices, p11['_allSectors'], fundamentals, config)
-    p2 = build_value_board(fundamentals, config, report['fundamentals'], prices)
+        manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
+    engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
+        'rotation_screener.py', 'growth_discovery.py', 'dart_fundamentals.py', 'kis_consensus.py',
+        'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py')})[:16]
+    context = {'generatedAt': generated, 'snapshotId': manifest['snapshotId'],
+               'sourceCutoff': report['latestPriceDate'], 'mode': report['runMode'], 'engineVersion': engine_version}
+    context['runId'] = digest(context)[:24]
+    states = {}
+    p11 = isolated_section('p11', lambda: run_engine(prices, config, report.get('engineSource', 'verified-snapshot')),
+                           previous, states, context)
+    def entry():
+        if states['p11']['status'] != '계산완료':
+            raise RuntimeError('순환 계산 실패로 진입 계산을 보류했습니다.')
+        return build_entry_board(prices, p11['_allSectors'], fundamentals, config)
+    p1 = isolated_section('p1', entry, previous, states, context)
+    p2 = isolated_section('p2', lambda: build_value_board(fundamentals, config, report['fundamentals'], prices),
+                          previous, states, context)
+    collection = {}
+    growth_candidates = []
+    def growth_section():
+        nonlocal collection, growth_candidates
+        events, collection = collect_disclosures(config, set(prices.ticker), reuse=args.reuse_evidence)
+        _, collection['news'] = collect_news_hints(config, sorted(set(prices['name'])), reuse=args.reuse_evidence)
+        sector_events, collection['industryStatistics'] = collect_trade_evidence(config, reuse=args.reuse_evidence)
+        documents, collection['verifiedDocuments'] = collect_verified_documents(config, set(prices.ticker), reuse=args.reuse_evidence)
+        collection['ir'] = collection['verifiedDocuments']
+        consensus_status = report['fundamentals'].get('consensus', {})
+        forecasts = consensus_evidence(fundamentals, consensus_status)
+        events = list(events) + forecasts + documents
+        collection['consensus'] = {'status': consensus_status.get('status', '미수집'),
+                                  'asOfDate': consensus_status.get('asOfDate'),
+                                  'evidenceCount': sum(e['status'] == '유효' for e in forecasts)}
+        listing_path = config['cache_dir']/'krx_listing_desc.csv'
+        listing = pd.read_csv(listing_path, dtype={'Code': str}) if listing_path.exists() else pd.DataFrame()
+        links = {e['eventId']: product_exposure(listing, e) for e in sector_events}
+        result = build_growth_board(prices, fundamentals, events, collection, sector_events=sector_events, sector_links=links)
+        growth_candidates = result.pop('_audit')
+        json_write(out/'growth_audit.test.json', growth_candidates)
+        portable_events = [{k: v for k, v in event.items() if not (
+            event.get('sourceType') in ('뉴스', 'IR') and k in ('excerpt', 'verifiedBy'))} for event in events]
+        json_write(out/'evidence_snapshot.json', {'events': portable_events, 'sectors': sector_events, 'collection': collection})
+        evidence_manifest = snapshot_files(config['cache_dir']/'snapshots', {'evidence': out/'evidence_snapshot.json'},
+            {'sourceCutoff': report['latestPriceDate'], 'firstStoredAt': generated})
+        context['evidenceSnapshotId'] = evidence_manifest['snapshotId']
+        return result
+    growth = isolated_section('growth', growth_section, previous, states, context)
     _, board_path, _ = write_outputs(p1, p11, p2, report, config)
-    board = json.loads(board_path.read_text('utf-8'))
+    board = read_json(board_path)
+    board['p2'] = public_fields(p2)
     board['p2'].pop('turnaroundRows', None)
     board['p2'].pop('turnaroundStatus', None)
     board['growth'] = growth
-    board['p3'] = refresh_holdings(board.get('p3',{}), prices, fundamentals)
-    board['meta']['sourceSummary'] = f"가격 {report['latestPriceDate']} · 공시 {report['fundamentals'].get('asOfDate')} · 컨센서스 {report['fundamentals'].get('consensusAsOfDate')} · 성장: 수주·컨센서스·수출통계 {trade_status.get('latestPeriod') or '미수집'}"
+    board['p3'] = isolated_section('p3', lambda: refresh_holdings(previous.get('p3', {}), prices, fundamentals),
+                                   previous, states, context)
+    board['meta']['sourceSummary'] = f"가격 {report['latestPriceDate']} · 공시 {report['fundamentals'].get('asOfDate') or '미확인'} · 컨센서스 {report['fundamentals'].get('consensusAsOfDate') or '공급일 미확인'} · {report['runMode']}"
     board['meta']['uiContractVersion'] = load_contract()['version']
     board['meta']['audit'] = {'checkedAtKST': datetime.now(KST).strftime('%Y-%m-%d %H:%M'), 'sourceDate': report['latestPriceDate'],
-                            'summary':'전 종목 가격·재무 재계산, 성장 공시 전수 탐색, 보유수량·평단 보존'}
-    next_day = pd.Timestamp(report['latestPriceDate']).date() + timedelta(days=1)
-    while next_day.weekday() >= 5:
-        next_day += timedelta(days=1)
-    board['meta']['nextTradingDay'] = next_day.isoformat()
+                            'summary': report['runMode'] + ' · 구역별 검증 · 보유수량·평단 보존'}
+    board['meta']['nextTradingDay'] = '거래소 개장일 확인 후 확정'
+    board['meta']['runId'] = context['runId']
+    board['meta']['refreshState'] = context
     board['meta']['note'] = '성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.'
-    json_write(board_path, board)
+    json_write(board_path, public_fields(board))
     section_dir = out / 'sections'
     for section in ('p1', 'p11', 'p2', 'growth', 'p3', 'meta'):
-        json_write(section_dir / f'{section}.test.json', board[section])
+        json_write(section_dir / f'{section}.test.json', public_fields(board[section]))
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
     if youtube_path.exists():
         youtube = refresh_youtube_prices(json.loads(youtube_path.read_text('utf-8-sig')), prices)
-        json_write(out/'youtube-market.test.json', youtube)
+        try:
+            content, content_status = collect_youtube_content(config, reuse=args.reuse_evidence)
+            youtube['contentStatus'] = content_status
+            youtube['verifiedContent'] = [{k: row.get(k) for k in ('videoId', 'url', 'title', 'channel', 'publishedAt', 'status')}
+                                           for row in content]
+            youtube['refreshStatus']['content'] = content_status
+        except Exception as exc:
+            youtube['contentStatus'] = {'status': '실패·기존 발언 유지', 'problem': type(exc).__name__ + ': 원문 검증 실패'}
+        json_write(out/'youtube-market.test.json', public_fields(youtube))
     report['growth'] = collection
-    report['holdings'] = board['p3']['refreshStatus']
+    report['holdings'] = board['p3'].get('refreshStatus', {})
+    def combination():
+        if states['p1']['status'] != '계산완료':
+            raise RuntimeError('새 진입 후보가 없어 종합추천을 보류했습니다.')
+        return build_combined(p1.get('_allRows', []), p2.get('_allRows', []) if states['p2']['status'] == '계산완료' else [],
+                              growth_candidates, p11.get('_allRows', []), source_date=report['latestPriceDate'],
+                              snapshot_id=manifest['snapshotId'], generated_at=generated)
+    combined = isolated_section('combined', combination,
+        {'combined': read_json(config['base_data_file'].parent/'combined-recommendations.json', {})}, states, context)
+    combined['runId'] = board['meta']['runId']
+    combined['sourceAvailability'] = {k: states[k]['status'] for k in ('p1', 'p11', 'p2', 'growth')}
+    json_write(out/'combined_audit.test.json', combined)
+    json_write(out/'combined-recommendations.test.json', public_fields(combined))
+    ledger = read_json(config['base_data_file'].parent/'recommendation-history.json', empty_ledger())
+    performance_prices, performance_price_status = collect_performance_prices(ledger, prices, config, reuse=args.reuse_snapshot)
+    performance = evaluate(ledger, performance_prices, generated_at=generated, cost_bps=config.get('performance_cost_bps', 0))
+    performance['priceCollection'] = performance_price_status
+    if (config['cache_dir']/'performance_prices.pkl.gz').exists():
+        perf_snapshot = snapshot_files(config['cache_dir']/'snapshots',
+            {'performancePrices': config['cache_dir']/'performance_prices.pkl.gz'},
+            {'sourceCutoff': performance.get('priceDate'), 'firstStoredAt': generated})
+        performance['priceSnapshotId'] = perf_snapshot['snapshotId']
+    json_write(out/'recommendation-performance.test.json', performance)
+    report['sectionStates'] = states
+    report['performancePrices'] = performance_price_status
+    report['snapshotId'] = manifest['snapshotId']
+    if states['growth']['status'] == '계산완료':
+        report['evidenceSnapshotId'] = context.get('evidenceSnapshotId')
     json_write(out/'collection_report.test.json', report)
+    json_write(out/'refresh-status.test.json', {'runId': context['runId'], 'attemptedAt': generated,
+        'sourceDate': report['latestPriceDate'], 'sections': states})
     print(json.dumps({'priceDate':report['latestPriceDate'], 'valueCount':len(p2.get('rows',[])),
-                      'growthSectors':len(growth['sectors']), 'growthStocks':len(growth['rows']),
-                      'growthCandidates':growth['dataStatus']['candidateCount']}, ensure_ascii=False))
+                      'growthSectors':len(growth.get('sectors', [])), 'growthStocks':len(growth.get('rows', [])),
+                      'combinedCount': len(combined.get('rows', [])), 'sections': states}, ensure_ascii=False))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--config', type=Path, default=Path('config.kis.example.json'))
+    parser.add_argument('--reuse-snapshot', action='store_true', help='저장된 가격·재무만 재사용')
+    parser.add_argument('--reuse-evidence', action='store_true', help='외부 근거 수집을 하지 않음')
+    parser.add_argument('--full-refresh', action='store_true', help='정기 전체 재확인; 기본은 증분 수집')
+    args = parser.parse_args()
+    config = load_config(args.config, None)
+    with run_lock(config['cache_dir']):
+        rebuild(args, config)
 
 
 if __name__ == '__main__':

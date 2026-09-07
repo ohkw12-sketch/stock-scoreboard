@@ -21,7 +21,7 @@
         "detail": "08.20–08.21 제외"
       }
     ],
-    "priceUpdatedKST": "2026-09-05 03:17"
+    "priceUpdatedKST": "2026-09-07 14:02"
   },
   "weeks": [
     {
@@ -398,6 +398,27 @@
   "refreshStatus": {
     "status": "부분갱신",
     "priceCount": 20,
-    "problem": "영상 원문·자막 미확보; 최신 발언으로 재표시하지 않음"
-  }
+    "problem": "영상 원문·자막 미확보; 최신 발언으로 재표시하지 않음",
+    "content": {
+      "source": "검증 유튜브 발언 원문",
+      "status": "미수집",
+      "cacheReadAt": "2026-09-07T14:02:21+09:00",
+      "cacheReason": "명시적 원자료 재사용",
+      "networkRequests": 0,
+      "reused": true,
+      "sourceStatus": "미수집",
+      "problem": "재사용할 검증 원자료 없음"
+    }
+  },
+  "contentStatus": {
+    "source": "검증 유튜브 발언 원문",
+    "status": "미수집",
+    "cacheReadAt": "2026-09-07T14:02:21+09:00",
+    "cacheReason": "명시적 원자료 재사용",
+    "networkRequests": 0,
+    "reused": true,
+    "sourceStatus": "미수집",
+    "problem": "재사용할 검증 원자료 없음"
+  },
+  "verifiedContent": []
 }

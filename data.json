@@ -1,18 +1,28 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-09-05 04:52",
+      "checkedAtKST": "2026-09-07 14:02",
       "sourceDate": "2026-09-04",
-      "summary": "전 종목 가격·재무 재계산, 성장 공시 전수 탐색, 보유수량·평단 보존"
+      "summary": "저장자료 재계산 · 구역별 검증 · 보유수량·평단 보존"
     },
     "changeUntil": "2026-09-09",
     "masterBasis": "2026-09-04 KRX 마감 전체시장 엔진",
-    "nextTradingDay": "2026-09-07",
+    "nextTradingDay": "거래소 개장일 확인 후 확정",
     "note": "성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.",
-    "sourceSummary": "가격 2026-09-04 · 공시 2026-06-30 · 컨센서스 2026-08-31 · 성장: 수주·컨센서스·수출통계 2026-08",
+    "sourceSummary": "가격 2026-09-04 · 공시 2026-06-30 · 컨센서스 2026-08-31 · 저장자료 재계산",
     "title": "주식평가창",
-    "updatedKST": "2026-09-05 04:52",
-    "uiContractVersion": "2026-09-05.2"
+    "updatedKST": "2026-09-07 14:02",
+    "uiContractVersion": "2026-09-05.2",
+    "runId": "ea18afa7f4a9a29c6d36d654",
+    "refreshState": {
+      "generatedAt": "2026-09-07T14:01:00+09:00",
+      "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+      "sourceCutoff": "2026-09-04",
+      "mode": "저장자료 재계산",
+      "engineVersion": "af65be78341aca63",
+      "runId": "ea18afa7f4a9a29c6d36d654",
+      "evidenceSnapshotId": "772ab7c4e7c87505c65570a517e64ac1a27f4b714b9a7bcab876f078ac010301"
+    }
   },
   "p1": {
     "status": "전체 2,765종목에서 진입가능/곧진입만 선별 · 기준일 2026-09-04",
@@ -36,6 +46,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 98.2,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -57,6 +68,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 98.1,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 동행 · 과열 아님"
       },
       {
@@ -78,6 +90,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 97.4,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 후행 · 과열 아님"
       },
       {
@@ -99,6 +112,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 96.7,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 동행 · 과열 아님"
       },
       {
@@ -120,6 +134,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 95.5,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -141,6 +156,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 89.4,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -162,6 +178,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 86.6,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 동행 · 과열 아님"
       },
       {
@@ -183,6 +200,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 84.6,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 후행 · 과열 아님"
       },
       {
@@ -204,6 +222,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 83.4,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -225,6 +244,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 83.3,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 동행 · 과열 아님"
       },
       {
@@ -246,6 +266,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 82.5,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -267,6 +288,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 80.9,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 동행 · 과열 아님"
       },
       {
@@ -288,6 +310,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 80.6,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -309,6 +332,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 79.8,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -330,6 +354,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 78.5,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -351,6 +376,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 77.6,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 후행 · 과열 아님"
       },
       {
@@ -372,6 +398,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 76.9,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 동행 · 과열 아님"
       },
       {
@@ -393,6 +420,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 76.3,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 후행 · 과열 아님"
       },
       {
@@ -414,6 +442,7 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 76.0,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       },
       {
@@ -435,16 +464,26 @@
         "consensusDate": null,
         "valueMultiple": "자료없음",
         "entryScore": 75.9,
+        "priceDate": "2026-09-04",
         "reason": "전체시장 진입필터 통과 · 섹터 대비 선행 · 과열 아님"
       }
     ],
-    "selectionRule": "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"
+    "selectionRule": "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내",
+    "refreshState": {
+      "status": "계산완료",
+      "generatedAt": "2026-09-07T14:01:00+09:00",
+      "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+      "sourceCutoff": "2026-09-04",
+      "mode": "저장자료 재계산",
+      "engineVersion": "af65be78341aca63",
+      "runId": "ea18afa7f4a9a29c6d36d654"
+    }
   },
   "p11": {
     "status": "전체시장 엔진: KOSPI+KOSDAQ 2,765종목, 108개 섹터 분석. 기준일 2026-09-04. 진입 위치와 무관하게 확산형과 선도주 견인형을 함께 반영했으며 단계 분포 {'②확산': 8, '①초기': 2, '⑥후반': 2, '③주도': 2, '⑤재반등': 1}.",
     "engine": {
       "version": "1.0.0",
-      "generatedAtKST": "2026-09-05T03:17:04+09:00",
+      "generatedAtKST": "2026-09-07T14:01:38+09:00",
       "asOfDate": "2026-09-04",
       "source": "Yahoo adjusted history + KIS dated quotes",
       "universe": [
@@ -831,6 +870,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 94.3,
+        "priceDate": "2026-09-04",
+        "currentPrice": 2555.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 선행; 3일 초과수익 +13.39%p"
       },
       {
@@ -857,6 +898,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 93.4,
+        "priceDate": "2026-09-04",
+        "currentPrice": 157300.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 선행; 3일 초과수익 +2.77%p"
       },
       {
@@ -883,6 +926,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 92.4,
+        "priceDate": "2026-09-04",
+        "currentPrice": 443000.0,
         "reason": "순환 단계 ⑤재반등 · 섹터 대비 선행; 3일 초과수익 +11.45%p"
       },
       {
@@ -909,6 +954,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 92.4,
+        "priceDate": "2026-09-04",
+        "currentPrice": 5150.0,
         "reason": "순환 단계 ⑤재반등 · 섹터 대비 선행; 3일 초과수익 +10.97%p"
       },
       {
@@ -935,6 +982,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 92.4,
+        "priceDate": "2026-09-04",
+        "currentPrice": 3845.0,
         "reason": "순환 단계 ⑤재반등 · 섹터 대비 선행; 3일 초과수익 +11.27%p"
       },
       {
@@ -961,6 +1010,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 92.0,
+        "priceDate": "2026-09-04",
+        "currentPrice": 7520.0,
         "reason": "순환 단계 ⑤재반등 · 섹터 대비 선행; 3일 초과수익 +7.68%p"
       },
       {
@@ -987,6 +1038,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 91.7,
+        "priceDate": "2026-09-04",
+        "currentPrice": 7250.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 선행; 3일 초과수익 +5.81%p"
       },
       {
@@ -1011,6 +1064,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 91.7,
+        "priceDate": "2026-09-04",
+        "currentPrice": 138300.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 +1.29%p"
       },
       {
@@ -1035,6 +1090,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 89.5,
+        "priceDate": "2026-09-04",
+        "currentPrice": 3245.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 -0.46%p"
       },
       {
@@ -1059,6 +1116,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 89.4,
+        "priceDate": "2026-09-04",
+        "currentPrice": 499500.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 -0.62%p"
       },
       {
@@ -1085,6 +1144,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 89.3,
+        "priceDate": "2026-09-04",
+        "currentPrice": 1110.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 선행; 3일 초과수익 +4.10%p"
       },
       {
@@ -1111,6 +1172,8 @@
         "entryFit": "눌림/분할",
         "overheated": false,
         "stockEntryScore": 89.3,
+        "priceDate": "2026-09-04",
+        "currentPrice": 3795.0,
         "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +7.09%p"
       },
       {
@@ -1137,6 +1200,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 88.7,
+        "priceDate": "2026-09-04",
+        "currentPrice": 2110.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 선행; 3일 초과수익 +9.34%p"
       },
       {
@@ -1163,6 +1228,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 88.5,
+        "priceDate": "2026-09-04",
+        "currentPrice": 6140.0,
         "reason": "순환 단계 ①초기 · 섹터 대비 선행; 3일 초과수익 +2.40%p"
       },
       {
@@ -1189,6 +1256,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 87.6,
+        "priceDate": "2026-09-04",
+        "currentPrice": 4715.0,
         "reason": "순환 단계 ①초기 · 섹터 대비 선행; 3일 초과수익 +1.66%p"
       },
       {
@@ -1215,6 +1284,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 87.5,
+        "priceDate": "2026-09-04",
+        "currentPrice": 30200.0,
         "reason": "순환 단계 ①초기 · 섹터 대비 선행; 3일 초과수익 +1.58%p"
       },
       {
@@ -1239,6 +1310,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 87.2,
+        "priceDate": "2026-09-04",
+        "currentPrice": 8080.0,
         "reason": "순환 단계 ①초기 · 섹터 대비 동행; 3일 초과수익 +1.34%p"
       },
       {
@@ -1263,6 +1336,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 86.6,
+        "priceDate": "2026-09-04",
+        "currentPrice": 16960.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 -1.32%p"
       },
       {
@@ -1289,6 +1364,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 86.1,
+        "priceDate": "2026-09-04",
+        "currentPrice": 16250.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 후행; 3일 초과수익 -1.75%p"
       },
       {
@@ -1315,6 +1392,8 @@
         "entryFit": "진입적합",
         "overheated": false,
         "stockEntryScore": 85.9,
+        "priceDate": "2026-09-04",
+        "currentPrice": 1058.0,
         "reason": "순환 단계 ②확산 · 섹터 대비 선행; 3일 초과수익 +5.69%p"
       }
     ],
@@ -1326,10 +1405,19 @@
         "tone": "정보",
         "impact": "자동 산출 결과이며 투자 판단·주문 신호가 아닙니다."
       }
-    ]
+    ],
+    "refreshState": {
+      "status": "계산완료",
+      "generatedAt": "2026-09-07T14:01:00+09:00",
+      "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+      "sourceCutoff": "2026-09-04",
+      "mode": "저장자료 재계산",
+      "engineVersion": "af65be78341aca63",
+      "runId": "ea18afa7f4a9a29c6d36d654"
+    }
   },
   "p2": {
-    "status": "정상화 가치 후보 1598개 중 상위 15개 · 가격 기준 2026-09-04",
+    "status": "정상화 가치 후보 1588개 중 상위 15개 · 가격 기준 2026-09-04",
     "method": "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · 미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용",
     "rows": [
       {
@@ -1349,7 +1437,7 @@
         "normalizedQuarterCount": 4,
         "normalizedPeerCount": 75,
         "normalizationQuality": 92.2,
-        "normalizedResult": "정상화 11위(90.5% 할인)",
+        "normalizedResult": "정상화 12위(90.5% 할인)",
         "absoluteValueScore": 100.0,
         "sectorValueScore": 95.3,
         "valueScoreBeforeConfidence": 96.0,
@@ -1496,18 +1584,18 @@
         "sector": "인터넷/소프트웨어",
         "valueScore": 95.2,
         "normalizedPOP": 2.0,
-        "sectorNormalizedPOP": 10.1,
-        "normalizedPremiumPct": -79.8,
+        "sectorNormalizedPOP": 10.0,
+        "normalizedPremiumPct": -79.6,
         "normalizationAdjustmentPct": 6.2,
         "confidence": "A",
         "normalizationSourceBadge": "최근 4분기",
         "normalizedPeriod": "2026-06-30",
         "normalizedQuarterCount": 4,
-        "normalizedPeerCount": 135,
+        "normalizedPeerCount": 134,
         "normalizationQuality": 95.8,
-        "normalizedResult": "정상화 47위(79.8% 할인)",
+        "normalizedResult": "정상화 46위(79.6% 할인)",
         "absoluteValueScore": 100.0,
-        "sectorValueScore": 89.9,
+        "sectorValueScore": 89.8,
         "valueScoreBeforeConfidence": 95.2,
         "confidenceMultiplier": 1.0,
         "structureMultiplier": 1.0,
@@ -1583,7 +1671,7 @@
         "normalizedQuarterCount": 4,
         "normalizedPeerCount": 17,
         "normalizationQuality": 95.5,
-        "normalizedResult": "정상화 53위(78.5% 할인)",
+        "normalizedResult": "정상화 54위(78.5% 할인)",
         "absoluteValueScore": 100.0,
         "sectorValueScore": 89.2,
         "valueScoreBeforeConfidence": 94.9,
@@ -1726,7 +1814,7 @@
     "events": [
       {
         "name": "가치 엔진",
-        "date": "2026-09-05",
+        "date": "2026-09-07",
         "event": "T+와 미래 실적 추정을 완전히 제외하고 확인된 최근 4분기 이익만으로 재평가",
         "tone": "정보",
         "impact": "절대 저평가·섹터 상대 저평가·이익 정상화만 가치 순위에 반영"
@@ -1912,10 +2000,19 @@
         "requested": 2765
       },
       "valueUniverseCount": 2555,
-      "valueCandidateCount": 1598,
+      "valueCandidateCount": 1588,
       "directQ2Count": 2465,
       "normalizedCompleteCount": 2395,
       "forwardEstimateUsed": false
+    },
+    "refreshState": {
+      "status": "계산완료",
+      "generatedAt": "2026-09-07T14:01:00+09:00",
+      "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+      "sourceCutoff": "2026-09-04",
+      "mode": "저장자료 재계산",
+      "engineVersion": "af65be78341aca63",
+      "runId": "ea18afa7f4a9a29c6d36d654"
     }
   },
   "p3": {
@@ -2244,6 +2341,16 @@
       "updated": 9,
       "missing": [],
       "assessment": "기존 주관적 목표가 대신 검증된 수치로 재평가; 매매 지시 아님"
+    },
+    "refreshState": {
+      "status": "계산완료",
+      "generatedAt": "2026-09-07T14:01:00+09:00",
+      "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+      "sourceCutoff": "2026-09-04",
+      "mode": "저장자료 재계산",
+      "engineVersion": "af65be78341aca63",
+      "runId": "ea18afa7f4a9a29c6d36d654",
+      "evidenceSnapshotId": "772ab7c4e7c87505c65570a517e64ac1a27f4b714b9a7bcab876f078ac010301"
     }
   },
   "growth": {
@@ -2252,8 +2359,8 @@
       {
         "sector": "반도체",
         "confidence": "높음",
-        "confidenceScore": 97.7,
-        "evidenceCount": 33,
+        "confidenceScore": 93.6,
+        "evidenceCount": 29,
         "growthCompanyCount": 69,
         "score": 98.94,
         "stocks": [
@@ -2367,80 +2474,11 @@
         "rank": 2
       },
       {
-        "sector": "인터넷/소프트웨어",
-        "confidence": "높음",
-        "confidenceScore": 76.4,
-        "evidenceCount": 114,
-        "growthCompanyCount": 63,
-        "score": 80.9,
-        "stocks": [
-          {
-            "ticker": "347700",
-            "name": "스피어",
-            "sector": "인터넷/소프트웨어",
-            "growthRate": 200.0,
-            "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
-            "fundamentalScore": 62.3,
-            "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
-            "confidence": "보통",
-            "evidenceCount": 5,
-            "confidenceScore": 62.5,
-            "priceReflection": "미반영 가능",
-            "score": 86.83,
-            "stage": "근거 확대",
-            "firstPublished": "2026-03-25",
-            "lastVerified": "2026-09-05T02:39:44+09:00",
-            "sourceDate": "2026-09-04",
-            "oldEvidenceCount": 2
-          },
-          {
-            "ticker": "036570",
-            "name": "NC",
-            "sector": "인터넷/소프트웨어",
-            "growthRate": 78.8,
-            "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
-            "fundamentalScore": 85.9,
-            "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
-            "confidence": "초기",
-            "evidenceCount": 1,
-            "confidenceScore": 25.0,
-            "priceReflection": "미반영 가능",
-            "score": 78.29,
-            "stage": "초기 포착",
-            "firstPublished": "2026-08-12",
-            "lastVerified": "2026-09-05T03:16:37+09:00",
-            "sourceDate": "2026-09-04",
-            "oldEvidenceCount": 0
-          },
-          {
-            "ticker": "259960",
-            "name": "크래프톤",
-            "sector": "인터넷/소프트웨어",
-            "growthRate": 73.3,
-            "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
-            "fundamentalScore": 100.0,
-            "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
-            "confidence": "초기",
-            "evidenceCount": 1,
-            "confidenceScore": 25.0,
-            "priceReflection": "미반영 가능",
-            "score": 77.59,
-            "stage": "초기 포착",
-            "firstPublished": "2026-07-30",
-            "lastVerified": "2026-09-05T03:16:37+09:00",
-            "sourceDate": "2026-09-04",
-            "oldEvidenceCount": 0
-          }
-        ],
-        "basis": "동일 섹터 복수 기업의 유효 수주 근거; 수출통계 검증과 구별",
-        "rank": 3
-      },
-      {
         "sector": "2차전지/ESS",
         "confidence": "보통",
-        "confidenceScore": 61.0,
-        "evidenceCount": 47,
-        "growthCompanyCount": 19,
+        "confidenceScore": 57.9,
+        "evidenceCount": 46,
+        "growthCompanyCount": 18,
         "score": 74.92,
         "stocks": [
           {
@@ -2502,13 +2540,13 @@
           }
         ],
         "basis": "동일 섹터 복수 기업의 유효 수주 근거; 수출통계 검증과 구별",
-        "rank": 4
+        "rank": 3
       },
       {
         "sector": "건물 건설업",
         "confidence": "보통",
-        "confidenceScore": 46.3,
-        "evidenceCount": 50,
+        "confidenceScore": 46.0,
+        "evidenceCount": 47,
         "growthCompanyCount": 16,
         "score": 73.57,
         "stocks": [
@@ -2565,6 +2603,75 @@
             "score": 68.66,
             "stage": "초기 포착",
             "firstPublished": "2025-12-03",
+            "lastVerified": "2026-09-05T02:39:44+09:00",
+            "sourceDate": "2026-09-04",
+            "oldEvidenceCount": 1
+          }
+        ],
+        "basis": "동일 섹터 복수 기업의 유효 수주 근거; 수출통계 검증과 구별",
+        "rank": 4
+      },
+      {
+        "sector": "인터넷/소프트웨어",
+        "confidence": "높음",
+        "confidenceScore": 73.3,
+        "evidenceCount": 109,
+        "growthCompanyCount": 60,
+        "score": 73.53,
+        "stocks": [
+          {
+            "ticker": "347700",
+            "name": "스피어",
+            "sector": "인터넷/소프트웨어",
+            "growthRate": 200.0,
+            "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+            "fundamentalScore": 62.3,
+            "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+            "confidence": "보통",
+            "evidenceCount": 4,
+            "confidenceScore": 57.1,
+            "priceReflection": "미반영 가능",
+            "score": 86.28,
+            "stage": "근거 확대",
+            "firstPublished": "2026-03-25",
+            "lastVerified": "2026-09-05T02:39:44+09:00",
+            "sourceDate": "2026-09-04",
+            "oldEvidenceCount": 2
+          },
+          {
+            "ticker": "0007C0",
+            "name": "아크릴",
+            "sector": "인터넷/소프트웨어",
+            "growthRate": 149.5,
+            "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+            "fundamentalScore": 12.1,
+            "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+            "confidence": "보통",
+            "evidenceCount": 3,
+            "confidenceScore": 50.0,
+            "priceReflection": "미반영 가능",
+            "score": 67.18,
+            "stage": "근거 확대",
+            "firstPublished": "2026-07-01",
+            "lastVerified": "2026-09-05T02:39:44+09:00",
+            "sourceDate": "2026-09-04",
+            "oldEvidenceCount": 0
+          },
+          {
+            "ticker": "417860",
+            "name": "오브젠",
+            "sector": "인터넷/소프트웨어",
+            "growthRate": 122.2,
+            "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+            "fundamentalScore": 41.3,
+            "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+            "confidence": "초기",
+            "evidenceCount": 1,
+            "confidenceScore": 25.0,
+            "priceReflection": "미반영 가능",
+            "score": 67.13,
+            "stage": "초기 포착",
+            "firstPublished": "2025-12-10",
             "lastVerified": "2026-09-05T02:39:44+09:00",
             "sourceDate": "2026-09-04",
             "oldEvidenceCount": 1
@@ -2684,10 +2791,10 @@
         "fundamentalScore": 62.3,
         "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
         "confidence": "보통",
-        "evidenceCount": 5,
-        "confidenceScore": 62.5,
+        "evidenceCount": 4,
+        "confidenceScore": 57.1,
         "priceReflection": "미반영 가능",
-        "score": 86.83,
+        "score": 86.28,
         "stage": "근거 확대",
         "firstPublished": "2026-03-25",
         "lastVerified": "2026-09-05T02:39:44+09:00",
@@ -2736,26 +2843,6 @@
         "rank": 8
       },
       {
-        "ticker": "005930",
-        "name": "삼성전자",
-        "sector": "반도체",
-        "growthRate": 98.7,
-        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
-        "fundamentalScore": 100.0,
-        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
-        "confidence": "초기",
-        "evidenceCount": 1,
-        "confidenceScore": 25.0,
-        "priceReflection": "일부 가격 반응",
-        "score": 84.8,
-        "stage": "초기 포착",
-        "firstPublished": "2026-07-30",
-        "lastVerified": "2026-09-05T03:16:37+09:00",
-        "sourceDate": "2026-09-04",
-        "oldEvidenceCount": 0,
-        "rank": 9
-      },
-      {
         "ticker": "420770",
         "name": "기가비스",
         "sector": "반도체",
@@ -2773,6 +2860,26 @@
         "lastVerified": "2026-09-05T02:39:44+09:00",
         "sourceDate": "2026-09-04",
         "oldEvidenceCount": 0,
+        "rank": 9
+      },
+      {
+        "ticker": "089970",
+        "name": "브이엠",
+        "sector": "특수 목적용 기계 제조업",
+        "growthRate": 182.2,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 100.0,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "큰 가격 반응",
+        "score": 83.69,
+        "stage": "초기 포착",
+        "firstPublished": "2026-06-23",
+        "lastVerified": "2026-09-05T02:39:44+09:00",
+        "sourceDate": "2026-09-04",
+        "oldEvidenceCount": 0,
         "rank": 10
       }
     ],
@@ -2780,7 +2887,7 @@
       "source": "OpenDART 공시 원문",
       "checkedAt": "2026-09-05T02:39:44+09:00",
       "status": "부분수집",
-      "requestedTickers": 2765,
+      "requestedTickers": 2717,
       "failures": [],
       "documentsFailed": [
         {
@@ -2796,10 +2903,20 @@
       "evidenceTickers": 590,
       "historyStart": "2025-08-01",
       "scannedThrough": "2026-09-05",
+      "cacheReadAt": "2026-09-07T14:02:07+09:00",
+      "cacheReason": "명시적 원자료 재사용",
+      "networkRequests": 0,
+      "reused": true,
+      "sourceStatus": "부분수집",
       "news": {
-        "status": "설정필요",
+        "status": "미수집",
         "source": "NAVER 뉴스",
-        "problem": "뉴스 검색 키 미설정; 뉴스 근거를 생성하지 않음"
+        "cacheReadAt": "2026-09-07T14:02:07+09:00",
+        "cacheReason": "명시적 원자료 재사용",
+        "networkRequests": 0,
+        "reused": true,
+        "sourceStatus": "미수집",
+        "problem": "재사용할 검증 원자료 없음"
       },
       "industryStatistics": {
         "status": "캐시유지",
@@ -2849,23 +2966,54 @@
           }
         ],
         "activeCount": 6,
-        "latestPeriod": "2026-08"
+        "latestPeriod": "2026-08",
+        "cacheReadAt": "2026-09-07T14:02:07+09:00",
+        "cacheReason": "명시적 원자료 재사용",
+        "networkRequests": 0,
+        "reused": true,
+        "sourceStatus": "정상"
+      },
+      "verifiedDocuments": {
+        "source": "검증 뉴스·IR 원문",
+        "status": "미수집",
+        "cacheReadAt": "2026-09-07T14:02:07+09:00",
+        "cacheReason": "명시적 원자료 재사용",
+        "networkRequests": 0,
+        "reused": true,
+        "sourceStatus": "미수집",
+        "problem": "재사용할 검증 원자료 없음"
       },
       "ir": {
-        "status": "원문검증대기",
-        "indexed": 5067,
-        "problem": "IR 개최 자체는 성장 근거로 가산하지 않음"
+        "source": "검증 뉴스·IR 원문",
+        "status": "미수집",
+        "cacheReadAt": "2026-09-07T14:02:07+09:00",
+        "cacheReason": "명시적 원자료 재사용",
+        "networkRequests": 0,
+        "reused": true,
+        "sourceStatus": "미수집",
+        "problem": "재사용할 검증 원자료 없음"
       },
       "consensus": {
         "status": "부분수집",
         "asOfDate": "2026-08-31",
-        "evidenceCount": 74
+        "evidenceCount": 0
       },
-      "candidateCount": 427,
-      "oldEvidenceUsed": 378
+      "candidateCount": 388,
+      "evaluatedTickers": 2765,
+      "oldEvidenceUsed": 381
     },
     "methodVersion": "growth-evidence-v1",
-    "updatedKST": "2026-09-05 03:16",
-    "notice": "신뢰도는 독립 근거 충실도이며 성공확률이 아닙니다. 수주·외부 컨센서스·공식 수출통계 사용 범위는 아래에 표시합니다."
+    "updatedKST": "2026-09-07 14:02",
+    "notice": "신뢰도는 독립 근거 충실도이며 성공확률이 아닙니다. 수주·외부 컨센서스·공식 수출통계 사용 범위는 아래에 표시합니다.",
+    "refreshState": {
+      "status": "계산완료",
+      "generatedAt": "2026-09-07T14:01:00+09:00",
+      "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+      "sourceCutoff": "2026-09-04",
+      "mode": "저장자료 재계산",
+      "engineVersion": "af65be78341aca63",
+      "runId": "ea18afa7f4a9a29c6d36d654",
+      "evidenceSnapshotId": "772ab7c4e7c87505c65570a517e64ac1a27f4b714b9a7bcab876f078ac010301"
+    }
   }
 }

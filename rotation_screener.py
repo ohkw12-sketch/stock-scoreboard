@@ -70,6 +70,8 @@ DEFAULTS = {
     "kis_consensus_pause_seconds": 0.12,
     "maximum_unclassified_ratio": 0.08,
     "minimum_latest_coverage_ratio": 0.98,
+    "price_correction_overlap_days": 5,
+    "universe_cache_max_age_hours": 24,
 }
 
 
@@ -134,6 +136,15 @@ def normalize_prices(frame: pd.DataFrame) -> pd.DataFrame:
     renamed["sector"] = renamed["sector"].fillna("미분류").replace("", "미분류")
     renamed = renamed.dropna(subset=["date", "ticker", "close"])
     renamed = renamed[renamed["close"] > 0]
+    # Unknown legacy fields remain unknown; do not relabel cached data as live.
+    for column in ("price_source", "price_basis", "adjusted_basis", "value_basis", "fetched_at"):
+        if column not in renamed:
+            renamed[column] = "unknown"
+        renamed[column] = renamed[column].fillna("unknown")
+    if "adjusted_close" not in renamed:
+        renamed["adjusted_close"] = pd.to_numeric(renamed.get("Adj Close", np.nan), errors="coerce")
+    else:
+        renamed["adjusted_close"] = pd.to_numeric(renamed["adjusted_close"], errors="coerce")
     return renamed.sort_values(["ticker", "date"]).reset_index(drop=True)
 
 
@@ -215,10 +226,29 @@ def _expected_completed_business_day(now: datetime | None = None) -> date:
 
 
 def _business_session_lag(price_date: date, now: datetime | None = None) -> int:
-    expected = _expected_completed_business_day(now)
+    info = completed_session_info(now)
+    expected = date.fromisoformat(info["expectedCompletedSession"])
     if price_date >= expected:
         return 0
+    if info["calendarStatus"] == "exchange-calendar":
+        import exchange_calendars as calendars
+        sessions = calendars.get_calendar("XKRX").sessions_in_range(pd.Timestamp(price_date), pd.Timestamp(expected))
+        return int(sum(pd.Timestamp(session).date() > price_date for session in sessions))
     return int(np.busday_count(price_date, expected))
+
+
+def completed_session_info(now: datetime | None = None) -> dict:
+    """Use the KRX calendar when installed; explicitly label weekday fallback."""
+    expected = _expected_completed_business_day(now)
+    try:
+        import exchange_calendars as calendars
+        calendar = calendars.get_calendar("XKRX")
+        session = calendar.date_to_session(pd.Timestamp(expected), direction="previous")
+        return {"expectedCompletedSession": session.strftime("%Y-%m-%d"),
+                "calendarStatus": "exchange-calendar", "calendarSource": "exchange_calendars:XKRX"}
+    except Exception as exc:
+        return {"expectedCompletedSession": str(expected), "calendarStatus": "unknown",
+                "calendarSource": "weekday-estimate", "calendarProblem": type(exc).__name__}
 
 
 def align_to_verified_session(prices: pd.DataFrame, config: dict,
@@ -239,7 +269,8 @@ def align_to_verified_session(prices: pd.DataFrame, config: dict,
     prior_counts = daily_counts[daily_counts.index < raw_latest].tail(5)
     reference_count = int(prior_counts.max()) if not prior_counts.empty else int(frame["ticker"].nunique())
     minimum_count = math.ceil(reference_count * float(config["minimum_latest_coverage_ratio"]))
-    completed_through = pd.Timestamp(_expected_completed_business_day(now))
+    calendar_meta = completed_session_info(now)
+    completed_through = pd.Timestamp(calendar_meta["expectedCompletedSession"])
     eligible = daily_counts[(daily_counts >= minimum_count) & (daily_counts.index <= completed_through)]
     if eligible.empty:
         anchor = raw_latest
@@ -249,6 +280,7 @@ def align_to_verified_session(prices: pd.DataFrame, config: dict,
     ignored_rows = int(frame["date"].gt(anchor).sum())
     ignored_tickers = int(frame.loc[frame["date"].gt(anchor), "ticker"].nunique())
     return aligned, {
+        **calendar_meta,
         "rawLatestPriceDate": raw_latest.strftime("%Y-%m-%d"),
         "verifiedSessionDate": anchor.strftime("%Y-%m-%d"),
         "priceBusinessSessionLag": _business_session_lag(anchor.date(), now),
@@ -271,6 +303,16 @@ def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
         "sector": str(last_identity.loc[ticker, "sector"]),
         "lastPriceDate": pd.Timestamp(last_identity.loc[ticker, "date"]).strftime("%Y-%m-%d"),
     } for ticker in missing]
+    requested = config.get("_requested_universe", [])
+    requested_map = {str(item["ticker"]).zfill(6): item for item in requested}
+    requested_missing = sorted(set(requested_map) - latest_tickers)
+    for ticker in requested_missing:
+        if ticker not in missing:
+            item = requested_map[ticker]
+            missing_stocks.append({"ticker": ticker, "name": item.get("name", ticker),
+                                   "market": item.get("market"), "sector": item.get("sector"),
+                                   "lastPriceDate": None, "reason": "대상 명단에는 있으나 최신 가격 수집 실패"})
+    missing = sorted(set(missing) | set(requested_missing))
     previous_dates = sorted(prices.loc[prices["date"].lt(latest), "date"].unique())
     recent_previous = prices[prices["date"].isin(previous_dates[-5:])] if previous_dates else prices.iloc[0:0]
     previous_reference_count = int(recent_previous.groupby("date")["ticker"].nunique().max()) if len(recent_previous) else len(all_tickers)
@@ -289,8 +331,23 @@ def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
     problems = []
     if coverage < float(config["minimum_latest_coverage_ratio"]):
         problems.append(f"최신 가격 종목 커버리지 {coverage:.2%} (기준 미달)")
+    requested_coverage = len(set(requested_map) & latest_tickers) / len(requested_map) if requested_map else None
+    if requested_coverage is not None and requested_coverage < float(config["minimum_latest_coverage_ratio"]):
+        problems.append(f"요청 대상 명단 대비 가격 커버리지 {requested_coverage:.2%} (기준 미달)")
     if unclassified > float(config["maximum_unclassified_ratio"]):
         problems.append(f"미분류 비율 {unclassified:.2%} (기준 초과)")
+    ohlc_invalid = (
+        latest_rows[["open", "high", "low", "close", "volume", "value"]].isna().any(axis=1)
+        | latest_rows["high"].lt(latest_rows["low"])
+        | latest_rows["close"].gt(latest_rows["high"]) | latest_rows["close"].lt(latest_rows["low"])
+        | latest_rows["volume"].lt(0) | latest_rows["value"].lt(0)
+    )
+    # A suspended quote can legitimately have OHLC zero while retaining the
+    # last close. It is classified separately rather than treated as a trade.
+    suspended = latest_rows[["open", "high", "low", "volume"]].eq(0).all(axis=1)
+    invalid_tickers = latest_rows.loc[ohlc_invalid & ~suspended, "ticker"].astype(str).tolist()
+    if invalid_tickers:
+        problems.append(f"최신 가격 OHLC·거래량 검증 실패 {len(invalid_tickers)}종목")
     session_lag = _business_session_lag(pd.Timestamp(latest).date())
     if config.get("mode") != "sample" and session_lag > 1:
         problems.append(f"가격 기준일이 완료 세션보다 {session_lag}영업일 지연 (1영업일 초과)")
@@ -303,6 +360,12 @@ def audit_market_data(prices: pd.DataFrame, config: dict, source: str) -> dict:
         "previousMarketCounts": previous_market_counts,
         "unclassifiedRatio": round(unclassified, 4), "missingTickers": missing,
         "missingStocks": missing_stocks,
+        "requestedUniverseCount": len(requested_map) if requested_map else None,
+        "requestedCoverageRatio": round(requested_coverage, 4) if requested_coverage is not None else None,
+        "requestedMissingTickers": requested_missing,
+        "invalidPriceTickers": invalid_tickers, "suspendedTickerCount": int(suspended.sum()),
+        "priceBasisCounts": latest_rows.get("price_basis", pd.Series("unknown", index=latest_rows.index)).value_counts().to_dict(),
+        "valueBasisCounts": latest_rows.get("value_basis", pd.Series("unknown", index=latest_rows.index)).value_counts().to_dict(),
         "priceBusinessSessionLag": session_lag,
         "qualityStatus": "정상" if not problems else "부분실패",
         "problems": problems,
@@ -351,6 +414,11 @@ class MarketDataLoader:
         self.cache_dir: Path = config["cache_dir"]
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.report: dict = {"attempts": [], "unresolved": []}
+        self._history: pd.DataFrame | None = None
+        self._requested_tickers: set[str] | None = None
+        self._history_repair_active = False
+        self._replaced_history_tickers: set[str] = set()
+        self.refresh_plan: dict = {}
 
     @property
     def cache_file(self) -> Path:
@@ -370,7 +438,9 @@ class MarketDataLoader:
         errors: list[str] = []
         recovery_frames: list[pd.DataFrame] = []
         try:
-            recovery_frames.append(self._cache(require_fresh=True))
+            # Old history is useful even when the last session needs updating.
+            self._history = self._cache(require_fresh=False)
+            recovery_frames.append(self._history)
         except Exception as exc:
             errors.append(f"recovery cache: {exc}")
         for source in sources:
@@ -389,25 +459,55 @@ class MarketDataLoader:
                     label = "yfinance+FinanceDataReader"
                 else:
                     raise ValueError(f"unknown data source: {source}")
-                merged = self._merge_recovery(frame, recovery_frames)
+                histories = [part[~part["ticker"].isin(self._replaced_history_tickers)] for part in recovery_frames]
+                merged = self._merge_recovery(frame, histories)
+                collected = merged
                 merged, session_meta = align_to_verified_session(merged, self.config)
-                report = audit_market_data(merged, self.config, label) | session_meta | {"attempts": list(errors)}
+                report = audit_market_data(merged, self.config, label) | session_meta | {
+                    "attempts": list(errors), "refreshPlan": dict(self.refresh_plan),
+                    "universeSourceStatus": getattr(self, "universe_status", "unknown"),
+                }
+                report["freshnessStatus"] = (
+                    "completed-session" if report["latestPriceDate"] == report["expectedCompletedSession"]
+                    else "older-session-calendar-unverified" if report["calendarStatus"] == "unknown" else "older-session"
+                )
+                if self.refresh_plan.get("unresolvedHistoryCorrections"):
+                    report["qualityStatus"] = "부분실패"
+                    report["problems"].append("수정주가 이력 변경을 발견했으나 종목별 전체 이력 복구 미완료")
                 recovery_frames.append(frame)
-                if report["qualityStatus"] == "정상":
+                if (report["qualityStatus"] == "정상" and not report["requestedMissingTickers"]
+                        and not report["ignoredSparseRows"]):
                     self.report = report
+                    self._save_cache(merged)
                     return merged, label if len(recovery_frames) == 1 else f"{label}+gap-recovery"
+                # If a nearly complete session exists, repair its exact missing
+                # ticker set rather than downloading a second whole universe.
+                target = pd.Timestamp(completed_session_info()["expectedCompletedSession"])
+                found = set(collected.loc[collected["date"].eq(target), "ticker"])
+                requested = {r["ticker"] for r in self.config.get("_requested_universe", [])}
+                if requested and len(found) >= len(requested) * .80:
+                    self._requested_tickers = requested - found
+                    self._history = collected
                 errors.extend(report["problems"])
                 log(f"{label} quality incomplete; attempting alternate source")
             except Exception as exc:
                 errors.append(f"{source}: {exc}")
                 log(f"source unavailable, trying next: {source}")
         if recovery_frames:
-            merged = self._merge_recovery(recovery_frames[-1], recovery_frames[:-1])
+            histories = [part[~part["ticker"].isin(self._replaced_history_tickers)] for part in recovery_frames[:-1]]
+            merged = self._merge_recovery(recovery_frames[-1], histories)
             merged, session_meta = align_to_verified_session(merged, self.config)
             self.report = audit_market_data(merged, self.config, "partial-recovery") | session_meta | {
                 "attempts": errors,
-                "physicalLimitation": "모든 무료 가격원과 신선 캐시를 재시도했지만 일부 종목을 복구하지 못함",
+                "refreshPlan": dict(self.refresh_plan),
+                "physicalLimitation": "설정된 가격원 재시도 후에도 미완료; 이전 자료는 원래 기준일로 보존",
             }
+            if self.refresh_plan.get("unresolvedHistoryCorrections"):
+                self.report["qualityStatus"] = "부분실패"
+                self.report["problems"].append("수정주가 이력 복구 미완료")
+            if self.report["ignoredSparseRows"]:
+                self.report["qualityStatus"] = "부분실패"
+                self.report["problems"].append("최근 일부 가격만 수집되어 이전 전체시장 세션 유지")
             return merged, "partial-recovery"
         raise RuntimeError("all market data sources failed\n- " + "\n- ".join(errors))
 
@@ -422,7 +522,7 @@ class MarketDataLoader:
     def _cache(self, require_fresh: bool) -> pd.DataFrame:
         if not self.cache_file.exists():
             raise FileNotFoundError(f"cache not found: {self.cache_file}")
-        frame = normalize_prices(pd.read_csv(self.cache_file))
+        frame = normalize_prices(pd.read_csv(self.cache_file, dtype={"ticker": str}))
         frame, _ = align_to_verified_session(frame, self.config)
         business_days_old = _business_session_lag(frame["date"].max().date())
         if require_fresh and business_days_old > 1:
@@ -462,15 +562,44 @@ class MarketDataLoader:
         if report["qualityStatus"] != "정상":
             log("cache not replaced because collection validation is incomplete")
             return
-        frame.to_csv(self.cache_file, index=False, encoding="utf-8-sig", compression="gzip")
+        pending = self.cache_file.with_name(self.cache_file.name + ".pending")
+        frame.to_csv(pending, index=False, encoding="utf-8-sig", compression="gzip")
+        pending.replace(self.cache_file)
+
+    def _fetch_start(self, end: date) -> date:
+        full_start = end - timedelta(days=int(self.config["lookback_business_days"]) * 2)
+        if self._history is not None and not self._history.empty and not self.config.get("force_full_prices"):
+            last = pd.Timestamp(self._history["date"].max()).date()
+            start = max(full_start, last - timedelta(days=int(self.config["price_correction_overlap_days"])))
+            mode = "incremental-with-overlap"
+        else:
+            start, mode = full_start, "initial-full-history"
+        self.refresh_plan.update({"mode": mode, "startDate": str(start), "endDate": str(end),
+                                  "overlapCalendarDays": int(self.config["price_correction_overlap_days"]),
+                                  "targetedFallbackTickers": sorted(self._requested_tickers or [])})
+        return start
+
+    def _record_universe(self, listing: pd.DataFrame, status: str) -> None:
+        self.config["_requested_universe"] = listing[["ticker", "name", "market", "sector"]].drop_duplicates("ticker").to_dict("records")
+        self.universe_status = status
+
+    def _correction_tickers(self, fresh: pd.DataFrame) -> set[str]:
+        """Find changed historical scales before concatenating old and new prices."""
+        if self._history is None or self._history.empty:
+            return set()
+        columns = ["ticker", "date", "close", "adjusted_close"]
+        old = normalize_prices(self._history)[columns]
+        joined = old.merge(normalize_prices(fresh)[columns], on=["ticker", "date"], suffixes=("_old", "_new"))
+        close_changed = (joined["close_new"] / joined["close_old"] - 1).abs() > .01
+        adjustment_changed = (joined["adjusted_close_new"] / joined["adjusted_close_old"] - 1).abs() > .0001
+        return set(joined.loc[close_changed | adjustment_changed, "ticker"])
 
     def _repair_close_with_kis(self, frame: pd.DataFrame, listing: pd.DataFrame) -> pd.DataFrame:
         """Fill only missing completed-session quotes through KIS read-only prices."""
-        target = pd.Timestamp(_expected_completed_business_day())
+        target = pd.Timestamp(completed_session_info()["expectedCompletedSession"])
         session_tickers = set(frame.loc[frame["date"].eq(target), "ticker"])
         all_tickers = set(listing["ticker"])
-        minimum = math.ceil(len(all_tickers) * float(self.config["minimum_latest_coverage_ratio"]))
-        if len(session_tickers) >= minimum:
+        if all_tickers.issubset(session_tickers):
             return frame
         client = KisConsensusClient.from_environment()
         if client is None:
@@ -506,7 +635,10 @@ class MarketDataLoader:
                     "high": high if high > 0 else close, "low": low if low > 0 else close,
                     "close": close, "volume": volume if np.isfinite(volume) else 0,
                     "value": value if np.isfinite(value) and value > 0 else close * max(volume, 0),
-                    "Adj Close": close, "price_date_verified": True,
+                    "price_date_verified": True, "adjusted_basis": "unknown",
+                    "price_source": "KIS", "price_basis": "unadjusted",
+                    "value_basis": "actual" if np.isfinite(value) and value > 0 else "close_times_volume",
+                    "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
                 })
             except Exception:
                 continue
@@ -522,12 +654,15 @@ class MarketDataLoader:
         except ImportError as exc:
             raise RuntimeError("pykrx is not installed; run setup_windows.bat") from exc
 
-        end = datetime.now(KST).date()
-        start = end - timedelta(days=int(self.config["lookback_business_days"]) * 2)
+        end = date.fromisoformat(completed_session_info()["expectedCompletedSession"])
+        start = self._fetch_start(end)
         trading_dates: list[date] = []
         cursor = end
         empty_streak = 0
         while cursor >= start and len(trading_dates) < int(self.config["lookback_business_days"]):
+            if cursor.weekday() >= 5:
+                cursor -= timedelta(days=1)
+                continue
             day = cursor.strftime("%Y%m%d")
             tickers = retry(
                 lambda d=day: stock.get_market_ticker_list(d, market="ALL"),
@@ -543,7 +678,7 @@ class MarketDataLoader:
                     raise RuntimeError("pykrx anonymous market access is unavailable")
             cursor -= timedelta(days=1)
         trading_dates.reverse()
-        if len(trading_dates) < 45:
+        if not trading_dates or (self._history is None and len(trading_dates) < 45):
             raise RuntimeError(f"only {len(trading_dates)} trading days found")
 
         latest = trading_dates[-1].strftime("%Y%m%d")
@@ -573,15 +708,20 @@ class MarketDataLoader:
                 part["name"] = part["ticker"].map(lambda t: stock.get_market_ticker_name(t))
             universe_parts.append(part)
         universe = pd.concat(universe_parts, ignore_index=True).drop_duplicates("ticker")
+        self._record_universe(universe, "live-pykrx")
 
         daily_parts = []
         for number, trading_date in enumerate(trading_dates, 1):
             day = trading_date.strftime("%Y%m%d")
-            daily = retry(
-                lambda d=day: stock.get_market_ohlcv_by_ticker(d, market="ALL"),
-                int(self.config["request_retries"]), float(self.config["request_pause_seconds"]),
-                f"pykrx prices {day}",
-            ).reset_index()
+            try:
+                daily = retry(
+                    lambda d=day: stock.get_market_ohlcv_by_ticker(d, market="ALL"),
+                    int(self.config["request_retries"]), float(self.config["request_pause_seconds"]),
+                    f"pykrx prices {day}",
+                ).reset_index()
+            except Exception as exc:
+                self.refresh_plan.setdefault("failedDates", []).append({"date": str(trading_date), "error": type(exc).__name__})
+                continue
             if daily.empty:
                 continue
             daily = daily.rename(columns={
@@ -593,9 +733,13 @@ class MarketDataLoader:
             if number % 10 == 0:
                 log(f"pykrx: {number}/{len(trading_dates)} trading days")
             time.sleep(float(self.config["request_pause_seconds"]))
+        if not daily_parts:
+            raise RuntimeError("pykrx returned no verified price rows")
         prices = pd.concat(daily_parts, ignore_index=True)
+        prices["price_source"], prices["price_basis"], prices["value_basis"] = "pykrx", "unadjusted", "actual"
+        prices["price_date_verified"] = prices["date"].le(pd.Timestamp(end))
+        prices["fetched_at"] = datetime.now(KST).isoformat(timespec="seconds")
         frame = self._enrich_sectors(normalize_prices(prices.merge(universe, on="ticker", how="inner")))
-        self._save_cache(frame)
         return frame
 
     def _yfinance(self) -> pd.DataFrame:
@@ -607,14 +751,27 @@ class MarketDataLoader:
         yf_cache = self.cache_dir / "yfinance"
         yf_cache.mkdir(parents=True, exist_ok=True)
         yf.set_tz_cache_location(str(yf_cache))
-        if self.listing_cache_file.exists() and not self.config.get("refresh_universe"):
+        listing_fresh = self.listing_cache_file.exists() and (
+            time.time() - self.listing_cache_file.stat().st_mtime
+        ) <= float(self.config["universe_cache_max_age_hours"]) * 3600
+        if listing_fresh and not self.config.get("refresh_universe"):
             listing = pd.read_csv(self.listing_cache_file, dtype={"Code": str})
+            listing_status = "cached-with-fetch-time"
         else:
-            listing = retry(
-                lambda: fdr.StockListing("KRX-DESC"), int(self.config["request_retries"]),
-                float(self.config["request_pause_seconds"]), "KRX descriptive listing",
-            )
-            listing.to_csv(self.listing_cache_file, index=False, encoding="utf-8-sig")
+            try:
+                listing = retry(
+                    lambda: fdr.StockListing("KRX-DESC"), int(self.config["request_retries"]),
+                    float(self.config["request_pause_seconds"]), "KRX descriptive listing",
+                )
+                if listing.empty or not {"Code", "Name", "Market"}.issubset(listing.columns):
+                    raise RuntimeError("KRX listing is empty or has invalid schema")
+                listing.to_csv(self.listing_cache_file, index=False, encoding="utf-8-sig")
+                listing_status = "live-FinanceDataReader"
+            except Exception:
+                if not self.listing_cache_file.exists():
+                    raise
+                listing = pd.read_csv(self.listing_cache_file, dtype={"Code": str})
+                listing_status = "stale-fallback-universe-unverified"
         listing = listing.rename(columns={
             "Code": "ticker", "Symbol": "ticker", "Name": "name", "Market": "market",
         })
@@ -630,19 +787,27 @@ class MarketDataLoader:
         listing["ticker"] = listing["ticker"].astype(str).str.strip()
         listing = listing[listing["ticker"].str.fullmatch(r"[0-9A-Z]{6}")].copy()
         listing = listing.drop_duplicates("ticker", keep=False)
+        self._record_universe(listing, listing_status)
         listing["yf"] = listing["ticker"] + np.where(listing["market"].eq("KOSPI"), ".KS", ".KQ")
-        end = datetime.now(KST).date() + timedelta(days=1)
-        start = end - timedelta(days=int(self.config["lookback_business_days"]) * 2)
-        chunks = np.array_split(listing, max(1, math.ceil(len(listing) / int(self.config["yfinance_chunk_size"]))))
+        end = date.fromisoformat(completed_session_info()["expectedCompletedSession"]) + timedelta(days=1)
+        start = self._fetch_start(end)
+        selected = listing if self._requested_tickers is None else listing[listing["ticker"].isin(self._requested_tickers)]
+        chunks = np.array_split(selected, max(1, math.ceil(len(selected) / int(self.config["yfinance_chunk_size"]))))
         parts = []
         for number, chunk in enumerate(chunks, 1):
             symbols = chunk["yf"].tolist()
-            raw = retry(
-                lambda s=symbols: yf.download(s, start=start, end=end, group_by="ticker", auto_adjust=False,
-                                               progress=False, threads=True),
-                int(self.config["request_retries"]), float(self.config["request_pause_seconds"]),
-                f"yfinance chunk {number}",
-            )
+            if not symbols:
+                continue
+            try:
+                raw = retry(
+                    lambda s=symbols: yf.download(s, start=start, end=end, group_by="ticker", auto_adjust=False,
+                                                   progress=False, threads=True),
+                    int(self.config["request_retries"]), float(self.config["request_pause_seconds"]),
+                    f"yfinance chunk {number}",
+                )
+            except Exception as exc:
+                self.refresh_plan.setdefault("failedChunks", []).append({"tickers": chunk["ticker"].tolist(), "error": type(exc).__name__})
+                continue
             for _, item in chunk.iterrows():
                 try:
                     stock_frame = raw[item["yf"]].copy() if isinstance(raw.columns, pd.MultiIndex) else raw.copy()
@@ -652,6 +817,15 @@ class MarketDataLoader:
                     stock_frame["ticker"], stock_frame["name"] = item["ticker"], item["name"]
                     stock_frame["market"], stock_frame["sector"] = item["market"], item.get("sector", "미분류")
                     stock_frame["value"] = pd.to_numeric(stock_frame["Close"], errors="coerce") * pd.to_numeric(stock_frame["Volume"], errors="coerce")
+                    stock_frame["price_source"] = "yfinance"
+                    stock_frame["price_basis"] = "provider_close_auto_adjust_false"
+                    stock_frame["adjusted_basis"] = np.where(
+                        pd.to_numeric(stock_frame.get("Adj Close", np.nan), errors="coerce") > 0,
+                        "provider_adjusted_close", "unknown")
+                    stock_frame["value_basis"] = "close_times_volume"
+                    stock_frame["fetched_at"] = datetime.now(KST).isoformat(timespec="seconds")
+                    date_column = "Date" if "Date" in stock_frame else "date"
+                    stock_frame["price_date_verified"] = pd.to_datetime(stock_frame[date_column]).dt.tz_localize(None).dt.normalize().lt(pd.Timestamp(end))
                     parts.append(stock_frame)
                 except (KeyError, TypeError):
                     continue
@@ -659,8 +833,32 @@ class MarketDataLoader:
         if not parts:
             raise RuntimeError("yfinance returned no KRX prices")
         frame = self._enrich_sectors(normalize_prices(pd.concat(parts, ignore_index=True)))
+        corrections = self._correction_tickers(frame) if not self._history_repair_active else set()
+        if corrections:
+            # A split/dividend restatement can change all earlier values. Only
+            # those tickers require full backfill, never the whole market.
+            prior_selection, prior_force = self._requested_tickers, self.config.get("force_full_prices", False)
+            self._requested_tickers, self.config["force_full_prices"] = corrections, True
+            self._history_repair_active = True
+            try:
+                repaired = self._yfinance()
+                for ticker in sorted(corrections):
+                    stock_repair = repaired[repaired["ticker"].eq(ticker)]
+                    old = self._history[self._history["ticker"].eq(ticker)]
+                    if (not stock_repair.empty and len(stock_repair) >= min(20, len(old))
+                            and stock_repair["date"].min() <= old["date"].min()):
+                        frame = pd.concat([frame[~frame["ticker"].eq(ticker)], stock_repair], ignore_index=True)
+                        self._replaced_history_tickers.add(ticker)
+                    else:
+                        self.refresh_plan.setdefault("unresolvedHistoryCorrections", []).append(ticker)
+                self.refresh_plan["fullHistoryCorrectionTickers"] = sorted(self._replaced_history_tickers)
+            except Exception as exc:
+                self.refresh_plan["unresolvedHistoryCorrections"] = sorted(corrections)
+                self.refresh_plan["historyCorrectionError"] = type(exc).__name__
+            finally:
+                self._requested_tickers, self.config["force_full_prices"] = prior_selection, prior_force
+                self._history_repair_active = False
         frame = self._repair_close_with_kis(frame, listing)
-        self._save_cache(frame)
         return frame
 
 
@@ -867,7 +1065,8 @@ def classify_stage(latest: pd.Series, previous: pd.Series, elapsed: int, cycle: 
     return "③주도", "주도"
 
 
-def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: int) -> list[dict]:
+def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: int,
+                  sector_cap: int | None = 4) -> list[dict]:
     latest_date = stock_data["date"].max()
     current = stock_data[stock_data["date"].eq(latest_date)].copy()
     sector_map = sector_results.set_index("name")
@@ -886,7 +1085,9 @@ def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit:
     current = current[current["ret5"].notna() & (current["value"] >= 100_000_000)]
     current = current.sort_values(["stock_score", "value"], ascending=False)
     # Avoid allowing one hot theme to occupy the entire candidate board.
-    current = current[current.groupby("sector").cumcount() < 4].head(limit)
+    if sector_cap is not None:
+        current = current[current.groupby("sector").cumcount() < sector_cap]
+    current = current.head(limit)
     rows = []
     for rank, item in enumerate(current.itertuples(), 1):
         sector = sector_map.loc[item.sector]
@@ -915,6 +1116,7 @@ def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit:
             "marks": marks, "signal": signal,
             "entryFit": sector.get("entryFit", "관찰"), "overheated": overheated,
             "stockEntryScore": round(float(item.stock_score), 1),
+            "priceDate": latest_date.strftime("%Y-%m-%d"), "currentPrice": float(item.close),
             "reason": f"순환 단계 {stage} · 섹터 대비 {relation}; 3일 초과수익 {excess * 100:+.2f}%p",
         })
     return rows
@@ -994,6 +1196,7 @@ def merge_fundamental_sources(dart: pd.DataFrame, consensus: pd.DataFrame,
             "estimate_period", "prior_period", "next_estimate_period", "prior_sales", "prior_op",
             "forward_sales", "forward_op", "next_sales", "next_op", "future_op_basis", "forward_eps",
             "sales_2026", "op_2026", "sales_2027", "op_2027", "amount_unit",
+            "as_of_precision", "provider_date_raw", "fetched_at", "status", "source",
         ):
             if column not in consensus:
                 consensus[column] = np.nan
@@ -1005,6 +1208,7 @@ def merge_fundamental_sources(dart: pd.DataFrame, consensus: pd.DataFrame,
             "forward_pe", "forward_eps",
             "consensus_change_1d", "consensus_change_5d", "consensus_change_20d",
             "analyst_count",
+            "as_of_precision", "provider_date_raw", "fetched_at", "status", "source",
         ]].copy().rename(columns={
             "as_of": "consensus_as_of",
             "sales_1y_growth": "consensus_sales_1y_growth",
@@ -1021,10 +1225,14 @@ def merge_fundamental_sources(dart: pd.DataFrame, consensus: pd.DataFrame,
             "op_2027": "consensus_op_2027",
             "forward_pe": "kis_forward_pe",
             "analyst_count": "kis_analyst_count",
+            "as_of_precision": "consensus_as_of_precision",
+            "provider_date_raw": "consensus_provider_date_raw",
+            "fetched_at": "consensus_fetched_at", "status": "consensus_status", "source": "consensus_source",
         })
-        merged = merged.drop(columns=[
-            "consensus_change_1d", "consensus_change_5d", "consensus_change_20d",
-        ], errors="ignore").merge(supplement, on="ticker", how="left")
+        # Reusing an already enriched frame must not produce _x/_y fields or
+        # retain stale provider metadata under the current consensus date.
+        merged = merged.drop(columns=[column for column in supplement if column != "ticker"],
+                             errors="ignore").merge(supplement, on="ticker", how="left")
         merged["forward_pe"] = merged["kis_forward_pe"]
         merged["analyst_count"] = merged["kis_analyst_count"]
         merged["consensus_growth_delta"] = (
@@ -1224,6 +1432,18 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         }
 
     rows = [make_row(item) for item in selected.itertuples(index=False)]
+    all_rows = [make_row(item) for item in ranked.itertuples(index=False)]
+    score_map = {row["ticker"]: row["valueScore"] for row in all_rows}
+    eligibility = [{
+        "ticker": item.ticker, "name": item.name, "sector": item.sector,
+        "eligible": item.ticker in score_map, "score": score_map.get(item.ticker),
+        "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
+        "reason": "가치 조건 통과" if item.ticker in score_map else (
+            "가격·시가총액 없음" if not np.isfinite(item.market_cap) else
+            "정상화 영업이익 양수 아님/없음" if not np.isfinite(item.normalized_op) or item.normalized_op <= 0 else
+            "비교 가능한 섹터 종목 부족" if not np.isfinite(item.sector_normalized_pop) else
+            "가치 배수 허용 범위 밖"),
+    } for item in data.itertuples(index=False)]
     candidate_count = int(len(ranked))
     price_dates = pd.to_datetime(data["price_date"], errors="coerce").dropna()
     price_basis = price_dates.max().strftime("%Y-%m-%d") if not price_dates.empty else None
@@ -1232,6 +1452,8 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "status": f"정상화 가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}",
         "method": "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · 미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용",
         "rows": rows,
+        "_allRows": all_rows, "_eligibility": eligibility,
+        "_meta": {"asOfDate": price_basis, "engineVersion": "normalized-value-1.0", "forwardEstimateUsed": False},
         "events": [{
             "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"),
             "event": "T+와 미래 실적 추정을 완전히 제외하고 확인된 최근 4분기 이익만으로 재평가",
@@ -1256,7 +1478,7 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
     """
     if fundamentals.empty:
         return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}",
-                "rows": [], "dataStatus": status}
+                "rows": [], "_allRows": [], "_eligibility": [], "dataStatus": status}
     data = fundamentals.copy()
     numeric_columns = (
         "sales_1y_growth", "op_1y_growth", "sales_current", "sales_previous", "op_current", "op_previous",
@@ -1289,8 +1511,17 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
         data[column] = pd.to_numeric(data[column], errors="coerce")
 
     data["direct_q2"] = data["sales_quarter_current"].notna() & data["op_quarter_current"].notna()
-    data["q2_sales"] = data["sales_quarter_current"].where(data["direct_q2"], data["sales_current"] / 2)
-    data["q2_op"] = data["op_quarter_current"].where(data["direct_q2"], data["op_current"] / 2)
+    if "quarter_value_verified" in data:
+        quarter_verified = data["quarter_value_verified"].astype(str).str.lower().isin(["true", "1", "1.0"])
+        data["direct_q2"] &= quarter_verified
+    reports = data.get("report_code", pd.Series("11012", index=data.index)).astype(str)
+    # Keep the historical half-year proxy where applicable; Q3/annual
+    # cumulative totals cannot be divided by two and called a quarter.
+    fallback_divisor = pd.Series(2.0, index=data.index)
+    fallback_divisor.loc[reports.eq("11013")] = 1.0
+    fallback_divisor.loc[reports.isin(["11014", "11011"])] = np.nan
+    data["q2_sales"] = data["sales_quarter_current"].where(data["direct_q2"], data["sales_current"] / fallback_divisor)
+    data["q2_op"] = data["op_quarter_current"].where(data["direct_q2"], data["op_current"] / fallback_divisor)
     data["q2_sales_previous"] = data["sales_quarter_previous"].where(
         data["sales_quarter_previous"].notna(), data["sales_previous"] / 2,
     )
@@ -1304,7 +1535,16 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
     data["q2_op_growth"] = (data["q2_op"].div(data["q2_op_previous"].where(data["q2_op_previous"] > 0)) - 1) * 100
 
     # The value board stops at verified current/normalized profit.
-    return _build_current_value_board(data, config, status)
+    result = _build_current_value_board(data, config, status)
+    if prices is not None and not prices.empty:
+        accounted = {row["ticker"] for row in result["_eligibility"]}
+        missing_financials = prices.sort_values("date").groupby("ticker").tail(1)
+        for item in missing_financials[~missing_financials["ticker"].isin(accounted)].itertuples():
+            result["_eligibility"].append({"ticker": item.ticker, "name": getattr(item, "name", item.ticker),
+                                           "sector": getattr(item, "sector", None), "eligible": False,
+                                           "score": None, "reason": "재무 원자료 없음",
+                                           "priceDate": str(item.date)[:10]})
+    return result
 
 def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamentals: pd.DataFrame,
                       config: dict) -> dict:
@@ -1312,6 +1552,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     stock_data, _ = build_daily_features(prices)
     latest_date = stock_data["date"].max()
     current = stock_data[stock_data["date"].eq(latest_date)].copy()
+    latest_universe = current[["ticker", "name", "sector"]].copy()
     sectors = pd.DataFrame(all_sectors).set_index("name")
     current = current[current["sector"].isin(sectors.index)].copy()
     for field in ("stage", "rotationType", "riskGauge", "score", "raw_ret3", "raw_ret5"):
@@ -1333,12 +1574,23 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     inside = current["distance"].eq(0)
     current.loc[valid & inside & current["confirm"], "entryState"] = "진입가능"
     current.loc[valid & current["entryState"].eq("") & (current["distance"] <= .03), "entryState"] = "곧진입"
+    eligibility_map = {item.ticker: {
+        "ticker": item.ticker, "name": item.name, "sector": item.sector,
+        "eligible": bool(item.entryState), "entryState": item.entryState or None,
+        "priceDate": latest_date.strftime("%Y-%m-%d"),
+        "reason": "진입 조건 통과" if item.entryState else (
+            "과열" if item.overheated else "거래대금 부족" if item.value < 100_000_000 else
+            "추세 조건 미충족" if not item.trend_ok else "진입 거리·순환 단계·가격 이력 조건 미충족"),
+    } for item in current.itertuples()}
+    for item in latest_universe.itertuples():
+        eligibility_map.setdefault(item.ticker, {"ticker": item.ticker, "name": item.name, "sector": item.sector,
+                                               "eligible": False, "score": None, "reason": "섹터 분석 조건 미충족",
+                                               "priceDate": latest_date.strftime("%Y-%m-%d")})
     current = current[current["entryState"].ne("")].copy()
     current["entry_score"] = (current["sector_score"] + current["excess3"].clip(-.05, .05) * 160 +
                               current["confirm"].astype(int) * 12 - current["distance"] * 200)
     current["entry_priority"] = current["entryState"].map({"진입가능": 0, "곧진입": 1})
     current = current.sort_values(["entry_priority", "entry_score", "value"], ascending=[True, False, False])
-    current = current[current.groupby("sector").cumcount() < 4].head(int(config["top_entry_count"]))
     fundamental_map = fundamentals.set_index("ticker") if not fundamentals.empty else pd.DataFrame()
     rows = []
     for rank, item in enumerate(current.itertuples(), 1):
@@ -1391,10 +1643,23 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
             "relation": relation, "marketState": f"{item.sector_rotationType} · {item.sector_stage}",
             "growth1Y": growth, "consensus": consensus, "consensusDate": consensus_date,
             "valueMultiple": value_text, "entryScore": round(float(item.entry_score), 1),
+            "priceDate": latest_date.strftime("%Y-%m-%d"),
             "reason": f"전체시장 진입필터 통과 · 섹터 대비 {relation} · 과열 아님",
         })
+    all_rows = rows
+    shown, sector_counts = [], {}
+    for row in all_rows:
+        eligibility_map[row["ticker"]]["score"] = row["entryScore"]
+        count = sector_counts.get(row["sector"], 0)
+        if count < 4 and len(shown) < int(config["top_entry_count"]):
+            shown.append(row | {"rank": len(shown) + 1})
+            sector_counts[row["sector"]] = count + 1
+    for record in eligibility_map.values():
+        record.setdefault("score", None)
     return {"status": f"전체 {prices['ticker'].nunique():,}종목에서 진입가능/곧진입만 선별 · 기준일 {latest_date:%Y-%m-%d}",
-            "rows": rows, "selectionRule": "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"}
+            "rows": shown, "_allRows": all_rows, "_eligibility": list(eligibility_map.values()),
+            "_meta": {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "entry-1.0"},
+            "selectionRule": "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"}
 
 
 def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
@@ -1489,6 +1754,16 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
         }],
     }
     result["_allSectors"] = sector_results.to_dict("records")
+    result["_allRows"] = rotation_rows(stock_data, sector_results, int(prices["ticker"].nunique()), sector_cap=None)
+    all_row_map = {row["ticker"]: row for row in result["_allRows"]}
+    result["_eligibility"] = [{
+        "ticker": item.ticker, "name": item.name, "sector": item.sector,
+        "eligible": item.ticker in all_row_map,
+        "score": all_row_map.get(item.ticker, {}).get("stockEntryScore"),
+        "priceDate": latest_date.strftime("%Y-%m-%d"),
+        "reason": "순환 후보 조건 통과" if item.ticker in all_row_map else "섹터·거래대금·가격 이력 조건 미충족",
+    } for item in stock_data[stock_data["date"].eq(latest_date)].itertuples()]
+    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-1.0"}
     return result
 
 
@@ -1498,7 +1773,21 @@ def write_outputs(p1: dict, p11: dict, p2: dict, report: dict, config: dict) -> 
     p11_path = output_dir / "p11.test.json"
     data_path = output_dir / "data.test.json"
     report_path = output_dir / "collection_report.test.json"
-    public_p11 = {key: value for key, value in p11.items() if not key.startswith("_")}
+    def public(value):
+        if isinstance(value, dict):
+            return {key: public(item) for key, item in value.items() if not key.startswith("_")}
+        if isinstance(value, list):
+            return [public(item) for item in value]
+        return value
+    full_candidates = {"schemaVersion": 1, "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
+                       "asOfDate": report.get("latestPriceDate"), "sections": {}}
+    for key, section in (("p1", p1), ("p11", p11), ("p2", p2)):
+        full_candidates["sections"][key] = {"rows": section.get("_allRows", []),
+                                             "eligibility": section.get("_eligibility", []),
+                                             "meta": section.get("_meta", {}),
+                                             "sectors": section.get("_allSectors", [])}
+    (output_dir / "full_candidates.json").write_text(json.dumps(full_candidates, ensure_ascii=False, indent=2), encoding="utf-8")
+    public_p11 = public(p11)
     p11_path.write_text(json.dumps({"p11": public_p11}, ensure_ascii=False, indent=2), encoding="utf-8")
     base_path: Path = config["base_data_file"]
     if base_path.exists():
@@ -1513,9 +1802,9 @@ def write_outputs(p1: dict, p11: dict, p2: dict, report: dict, config: dict) -> 
         f"가격 {report.get('source', '자료원 미확인')} · 커버리지 {float(report.get('latestCoverageRatio', 0)):.2%} · "
         f"컨센서스 {report.get('fundamentals', {}).get('status', '상태 미확인')}"
     )
-    board["p1"], board["p11"] = p1, public_p11
+    board["p1"], board["p11"] = public(p1), public_p11
     if p2.get("rows"):
-        board["p2"] = p2
+        board["p2"] = public(p2)
     else:
         retained = board.get("p2", {"rows": []})
         previous_status = retained.get("status", "기존 검증값")

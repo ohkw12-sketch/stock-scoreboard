@@ -5,6 +5,7 @@ Secrets are read from DART_API_KEY and are never written to cache or logs.
 from __future__ import annotations
 
 import io
+import hashlib
 import json
 import os
 import re
@@ -14,7 +15,6 @@ import urllib.parse
 import urllib.request
 import xml.etree.ElementTree as ET
 import zipfile
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -26,6 +26,26 @@ KST = timezone(timedelta(hours=9))
 API_ROOT = "https://opendart.fss.or.kr/api"
 _RATE_LOCK = threading.Lock()
 _LAST_REQUEST_AT = 0.0
+REPORT_QUARTERS = {"11013": 1, "11012": 2, "11014": 3, "11011": 4}
+QUARTER_REPORTS = {quarter: code for code, quarter in REPORT_QUARTERS.items()}
+
+
+def _json_save(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, ensure_ascii=False, allow_nan=False), encoding="utf-8")
+    temporary.replace(path)
+
+
+def _json_load(path: Path, default):
+    try:
+        return json.loads(path.read_text("utf-8"))
+    except (OSError, ValueError):
+        return default
+
+
+def _period_end(year: int, quarter: int) -> str:
+    return str(pd.Period(f"{year}Q{quarter}", freq="Q").end_time.date())
 
 
 def _api_key() -> str | None:
@@ -155,6 +175,15 @@ def parse_financial_payload(payload: dict, ticker: str, name: str, sector: str,
     operating = _pick_account(rows, "operating")
     if not sales or not operating:
         return None
+    selected = [sales, operating]
+    # Both accounts must describe the same report and statement basis.
+    for field, expected in (("fs_div", fs_div), ("bsns_year", str(report_year)),
+                            ("reprt_code", report_code)):
+        if any(str(row.get(field) or expected) != str(expected) for row in selected):
+            return None
+    receipts = {str(row.get("rcept_no")) for row in selected if row.get("rcept_no")}
+    if len(receipts) > 1:
+        return None
     # Interim income statements expose cumulative YTD values in *_add_amount.
     # Annual reports use the ordinary thstrm/frmtrm fields.
     sales_now = _amount(sales.get("thstrm_add_amount") or sales.get("thstrm_amount"))
@@ -170,12 +199,14 @@ def parse_financial_payload(payload: dict, ticker: str, name: str, sector: str,
     op_quarter_prev = _amount(operating.get("frmtrm_q_amount") or operating.get("frmtrm_amount"))
     sales_growth, sales_basis = _growth(sales_now, sales_prev)
     op_growth, op_basis = _growth(op_now, op_prev)
-    if not np.isfinite(sales_growth) or not np.isfinite(op_growth):
+    if not np.isfinite(sales_now) or not np.isfinite(op_now):
         return None
     period_text = str(sales.get("thstrm_dt") or operating.get("thstrm_dt") or "")
     dates = re.findall(r"\d{4}[.-]\d{2}[.-]\d{2}", period_text)
     report_month_day = {"11013": "03-31", "11012": "06-30", "11014": "09-30", "11011": "12-31"}
     as_of = dates[-1].replace(".", "-") if dates else f"{report_year}-{report_month_day.get(report_code, '12-31')}"
+    if as_of != _period_end(report_year, REPORT_QUARTERS[report_code]):
+        return None
     return {
         "ticker": ticker, "name": name, "sector": sector, "as_of": as_of,
         "sales_1y_growth": round(sales_growth, 4), "op_1y_growth": round(op_growth, 4),
@@ -185,6 +216,11 @@ def parse_financial_payload(payload: dict, ticker: str, name: str, sector: str,
         "op_quarter_current": op_quarter_now, "op_quarter_previous": op_quarter_prev,
         "sales_growth_basis": sales_basis, "op_growth_basis": op_basis,
         "report_year": report_year, "report_code": report_code, "fs_div": fs_div,
+        "receipt": next(iter(receipts), None),
+        "quarter_as_of": as_of,
+        "quarter_value_verified": report_code == "11013" or (
+            report_code != "11011" and all(str(row.get("thstrm_add_amount") or "").strip()
+                                          for row in selected)),
         "forward_pe": np.nan, "consensus_change_1d": np.nan,
         "consensus_change_5d": np.nan, "consensus_change_20d": np.nan,
         "analyst_count": np.nan, "source": "OpenDART 공시실적", "status": "정상",
@@ -205,14 +241,16 @@ def _parse_multi_account_rows(rows: list[dict], universe: pd.DataFrame,
             grouped.setdefault(ticker, []).append(row)
     parsed = []
     for ticker, stock_rows in grouped.items():
-        preferred = [row for row in stock_rows if str(row.get("fs_div", "")).upper() == "CFS"]
-        selected = preferred or [row for row in stock_rows if str(row.get("fs_div", "")).upper() == "OFS"] or stock_rows
-        payload = {"status": "000", "list": selected}
         info = lookup[ticker]
-        result = parse_financial_payload(
-            payload, ticker, info["name"], info["sector"], report_year, report_code,
-            str(selected[0].get("fs_div") or "CFS"),
-        )
+        result = None
+        for basis in ("CFS", "OFS"):
+            selected = [row for row in stock_rows if str(row.get("fs_div", "")).upper() == basis]
+            if not selected:
+                continue
+            result = parse_financial_payload({"status": "000", "list": selected}, ticker,
+                                             info["name"], info["sector"], report_year, report_code, basis)
+            if result:
+                break
         if result:
             result["quarter_as_of"] = result["as_of"]
             parsed.append(result)
@@ -221,119 +259,294 @@ def _parse_multi_account_rows(rows: list[dict], universe: pd.DataFrame,
 
 def _collect_bulk_period_values(universe: pd.DataFrame, key: str, config: dict,
                                 report_year: int, report_code: str) -> tuple[pd.DataFrame, list[dict]]:
-    """Collect one reported period for the whole market in <=100-company calls."""
+    """Refresh due companies only; retain versioned responses for each period."""
     eligible = universe[universe["corp_code"].notna()].copy()
-    rows, failures = [], []
+    eligible["ticker"] = eligible["ticker"].astype(str).str.zfill(6)
+    period_path = Path(config.get("cache_dir", "cache")) / "dart_periods" / f"{report_year}_{report_code}.json"
+    stored = _json_load(period_path, {"version": 1, "companies": {}})
+    companies = stored.get("companies", {})
+    now = pd.Timestamp.now(tz="UTC")
+    generations = config.get("_dart_receipt_generations", {})
+    ttl = pd.Timedelta(float(config.get("dart_period_cache_hours", 168)), unit="h")
+    refreshed = config.setdefault("_dart_refreshed_periods", [])
+    force = config.get("force_refresh") or config.get("force_full_refresh")
+    due = []
+    for ticker in eligible["ticker"]:
+        entry = companies.get(ticker, {})
+        checked = pd.to_datetime(entry.get("checkedAt"), errors="coerce", utc=True)
+        retry_at = pd.to_datetime(entry.get("nextRetryAt"), errors="coerce", utc=True)
+        changed = entry.get("generation") != generations.get(ticker)
+        new_change = changed and entry.get("lastAttemptGeneration") != generations.get(ticker)
+        forced = force and f"{report_year}/{report_code}/{ticker}" not in refreshed
+        if new_change or forced or (
+            (changed or pd.isna(checked) or now - checked >= ttl) and (pd.isna(retry_at) or now >= retry_at)
+        ):
+            due.append(ticker)
+    pending = eligible[eligible["ticker"].isin(due)]
+    failures = []
     retries = int(config.get("request_retries", 3))
     pause = float(config.get("dart_pause_seconds", 0.08))
     chunk_size = max(1, min(100, int(config.get("dart_multi_company_chunk_size", 100))))
-    for start in range(0, len(eligible), chunk_size):
-        chunk = eligible.iloc[start:start + chunk_size]
+    metrics = config.setdefault("_dart_period_metrics", {"httpRequests": 0, "companyPeriodsRequested": 0})
+    for start in range(0, len(pending), chunk_size):
+        chunk = pending.iloc[start:start + chunk_size]
+        refreshed.extend(f"{report_year}/{report_code}/{ticker}" for ticker in chunk["ticker"])
+        config.setdefault("_dart_requested_tickers", []).extend(chunk["ticker"].tolist())
         try:
+            metrics["httpRequests"] += 1
+            metrics["companyPeriodsRequested"] += len(chunk)
             payload = _request_json("fnlttMultiAcnt.json", {
                 "crtfc_key": key,
                 "corp_code": ",".join(chunk["corp_code"].astype(str)),
                 "bsns_year": report_year,
                 "reprt_code": report_code,
             }, retries, pause)
-            if payload.get("status") == "000":
-                parsed = _parse_multi_account_rows(payload.get("list") or [], chunk, report_year, report_code)
+            if payload.get("status") not in {"000", "013"}:
+                raise RuntimeError(f"DART {payload.get('status')}")
+            grouped = {}
+            for row in payload.get("list") or []:
+                ticker = str(row.get("stock_code") or "").strip().zfill(6)
+                grouped.setdefault(ticker, []).append(row)
+            for ticker in chunk["ticker"]:
+                previous = companies.get(ticker, {})
+                raw = grouped.get(ticker, [])
+                entry = dict(previous, lastAttemptAt=now.isoformat(), lastAttemptGeneration=generations.get(ticker))
+                stock_universe = chunk[chunk["ticker"].eq(ticker)]
+                parsed = _parse_multi_account_rows(raw, stock_universe, report_year, report_code)
+                if parsed.empty and config.get("_dart_single_fallback_used", 0) < int(config.get("dart_single_fallback_limit", 25)):
+                    config["_dart_single_fallback_used"] = config.get("_dart_single_fallback_used", 0) + 1
+                    item = stock_universe.iloc[0]
+                    for basis in ("CFS", "OFS"):
+                        try:
+                            metrics["httpRequests"] += 1
+                            fallback = _request_json("fnlttSinglAcntAll.json", {
+                                "crtfc_key": key, "corp_code": item["corp_code"], "bsns_year": report_year,
+                                "reprt_code": report_code, "fs_div": basis,
+                            }, retries, pause)
+                            candidate = parse_financial_payload(fallback, ticker, item["name"], item["sector"],
+                                                                report_year, report_code, basis)
+                            if candidate:
+                                raw = [dict(row, stock_code=ticker, fs_div=basis) for row in fallback["list"]]
+                                parsed = pd.DataFrame([candidate])
+                                break
+                        except Exception as exc:
+                            failures.append({"ticker": ticker, "name": item["name"],
+                                             "reason": f"상세계정 대체조회 호출 실패: {type(exc).__name__}"})
                 if not parsed.empty:
-                    rows.append(parsed)
-            elif payload.get("status") != "013":
-                failures.append({"ticker": "묶음", "name": f"{start + 1}~{start + len(chunk)}", "reason": f"DART {payload.get('status')}: {payload.get('message')}"})
+                    signature = hashlib.sha256(json.dumps(raw, sort_keys=True).encode()).hexdigest()
+                    entry.update(rows=raw, signature=signature, checkedAt=now.isoformat(),
+                                 collectedAt=previous.get("collectedAt", now.isoformat())
+                                 if signature == previous.get("signature") else now.isoformat(),
+                                 generation=generations.get(ticker), nextRetryAt=None, status="정상")
+                else:
+                    entry.update(nextRetryAt=(now + pd.Timedelta(float(
+                        config.get("dart_no_data_retry_hours", 24)), unit="h")).isoformat(), status="미제공")
+                    if not previous.get("rows"):
+                        entry.update(generation=generations.get(ticker))
+                    failures.append({"ticker": ticker, "name": "공시 기간", "reason":
+                                     f"{report_year}/{report_code} 미제공 또는 계정·기간 검증 실패; 기존 값 보존"})
+                companies[ticker] = entry
         except Exception as exc:
-            failures.append({"ticker": "묶음", "name": f"{start + 1}~{start + len(chunk)}", "reason": f"호출 실패: {type(exc).__name__}"})
+            for ticker in chunk["ticker"]:
+                entry = dict(companies.get(ticker, {}))
+                entry.update(lastAttemptAt=now.isoformat(), status="수집실패",
+                             lastAttemptGeneration=generations.get(ticker),
+                             nextRetryAt=(now + pd.Timedelta(float(
+                                 config.get("dart_failure_retry_minutes", 15)), unit="m")).isoformat())
+                companies[ticker] = entry
+                failures.append({"ticker": ticker, "name": "공시 기간", "reason": f"호출 실패: {type(exc).__name__}"})
+    if len(pending):
+        _json_save(period_path, {"version": 1, "companies": companies})
+    rows = []
+    for ticker in eligible["ticker"]:
+        entry = companies.get(ticker, {})
+        if not entry.get("rows"):
+            continue
+        parsed = _parse_multi_account_rows(entry["rows"], eligible[eligible["ticker"].eq(ticker)], report_year, report_code)
+        if not parsed.empty:
+            parsed["collected_at"] = entry.get("collectedAt")
+            parsed["last_verified_at"] = entry.get("checkedAt")
+            parsed["verification_status"] = entry.get("status", "캐시유지")
+            rows.append(parsed)
     return (pd.concat(rows, ignore_index=True) if rows else pd.DataFrame()), failures
 
 
 def _collect_bulk_quarter_values(universe: pd.DataFrame, key: str, config: dict) -> tuple[pd.DataFrame, list[dict]]:
-    """Collect the latest Q2 standalone figures for the whole market in <=100-company calls."""
+    """Compatibility wrapper for the most recent candidate reporting period."""
     candidates = _report_candidates(datetime.now(KST))
-    interim = next(((year, code) for year, code in candidates if code == "11012"), None)
-    if not interim:
+    if not candidates:
         return pd.DataFrame(), []
-    return _collect_bulk_period_values(universe, key, config, *interim)
+    return _collect_bulk_period_values(universe, key, config, *candidates[0])
 
 
 def _attach_normalized_ttm(combined: pd.DataFrame, universe: pd.DataFrame, key: str,
                            config: dict) -> tuple[pd.DataFrame, list[dict]]:
-    """Attach the latest four directly reconstructed quarters (Q3, Q4, Q1, Q2).
+    """Reconstruct four quarters ending at each company's actual latest report.
 
-    The current Q1 is H1 less standalone Q2. Prior-year Q4 is annual less Q3
-    cumulative. This avoids treating one unusually strong quarter as a full-year
-    run rate. Existing verified normalized values are reused on later runs.
+    The existing q1..q4 field names remain calendar-quarter labels. Every window
+    contains each label once; period provenance records the corresponding year.
+    Only source response caches are reused, so corrections always recompute TTM.
     """
-    required = {
-        "normalized_sales_q3", "normalized_sales_q4", "normalized_sales_q1", "normalized_sales_q2",
-        "normalized_op_q3", "normalized_op_q4", "normalized_op_q1", "normalized_op_q2",
-        "normalized_ttm_sales", "normalized_ttm_op", "normalized_quarter_count", "normalization_as_of",
-    }
-    if required.issubset(combined.columns):
-        coverage = pd.to_numeric(combined["normalized_quarter_count"], errors="coerce").eq(4).mean()
-        if coverage >= float(config.get("minimum_dart_fundamental_coverage_ratio", 0.65)):
-            return combined, []
+    if combined.empty:
+        return combined, []
+    result = combined.copy()
+    fallback_year, fallback_code = _report_candidates(datetime.now(KST))[0]
+    periods = {}
+    requested = {}
+    for index, row in result.iterrows():
+        year = int(row.get("report_year", fallback_year))
+        quarter = REPORT_QUARTERS.get(str(row.get("report_code", fallback_code)), 0)
+        if not quarter:
+            continue
+        end = pd.Period(f"{year}Q{quarter}", freq="Q")
+        periods[index] = [end - n for n in (3, 2, 1, 0)]
+        for period in periods[index]:
+            # Q2/Q3 can require the previous cumulative report; Q4 always does.
+            for q in (period.quarter, max(1, period.quarter - 1)):
+                requested.setdefault((period.year, QUARTER_REPORTS[q]), set()).add(row["ticker"])
+    lookup = {}
+    failures = []
+    for (year, code), tickers in sorted(requested.items()):
+        frame, errors = _collect_bulk_period_values(universe[universe["ticker"].isin(tickers)], key, config, year, code)
+        failures.extend(errors)
+        for row in frame.to_dict("records"):
+            lookup[(row["ticker"], year, REPORT_QUARTERS[code])] = row
+    # The chosen latest report is authoritative when its historical cache is absent.
+    for row in result.to_dict("records"):
+        year = int(row.get("report_year", fallback_year))
+        q = REPORT_QUARTERS.get(str(row.get("report_code", fallback_code)))
+        if q:
+            lookup.setdefault((row["ticker"], year, q), row)
 
-    candidates = _report_candidates(datetime.now(KST))
-    interim = next(((year, code) for year, code in candidates if code == "11012"), None)
-    if not interim:
-        return combined, [{"ticker": "묶음", "name": "정상화 TTM", "reason": "최신 반기보고서 기간을 결정할 수 없음"}]
-    current_year, _ = interim
-    prior_year = current_year - 1
-    q3, q3_failures = _collect_bulk_period_values(universe, key, config, prior_year, "11014")
-    annual, annual_failures = _collect_bulk_period_values(universe, key, config, prior_year, "11011")
-    failures = q3_failures + annual_failures
-    if q3.empty or annual.empty:
-        failures.append({"ticker": "묶음", "name": "정상화 TTM", "reason": "전년도 3분기 또는 연간 공시 수집 실패"})
-        return combined, failures
+    for index, window in periods.items():
+        stock = result.loc[index]
+        ticker = stock["ticker"]
+        basis = str(stock.get("fs_div", "CFS"))
+        values, provenance = {}, []
+        issue = None
+        for period in window:
+            current = lookup.get((ticker, period.year, period.quarter))
+            previous = lookup.get((ticker, period.year, period.quarter - 1))
+            # Q1 is also safely derivable from the same H1 report's cumulative
+            # and verified standalone Q2 values, including a corrected filing.
+            half = lookup.get((ticker, period.year, 2)) if period.quarter == 1 else None
+            def matches(source, expected_quarter):
+                if not source or str(source.get("fs_div", basis)) != basis:
+                    return False
+                date = source.get("as_of")
+                return not date or str(date) == _period_end(period.year, expected_quarter)
 
-    q3 = q3[[
-        "ticker", "sales_current", "op_current", "sales_quarter_current", "op_quarter_current",
-    ]].rename(columns={
-        "sales_current": "prior_q3_ytd_sales", "op_current": "prior_q3_ytd_op",
-        "sales_quarter_current": "normalized_sales_q3", "op_quarter_current": "normalized_op_q3",
-    })
-    annual = annual[["ticker", "sales_current", "op_current"]].rename(columns={
-        "sales_current": "prior_annual_sales", "op_current": "prior_annual_op",
-    })
-    history = q3.merge(annual, on="ticker", how="inner")
-    history["normalized_sales_q4"] = history["prior_annual_sales"] - history["prior_q3_ytd_sales"]
-    history["normalized_op_q4"] = history["prior_annual_op"] - history["prior_q3_ytd_op"]
-
-    current = combined[[
-        "ticker", "sales_current", "op_current", "sales_quarter_current", "op_quarter_current",
-    ]].copy()
-    current["normalized_sales_q1"] = current["sales_current"] - current["sales_quarter_current"]
-    current["normalized_op_q1"] = current["op_current"] - current["op_quarter_current"]
-    current["normalized_sales_q2"] = current["sales_quarter_current"]
-    current["normalized_op_q2"] = current["op_quarter_current"]
-    normalized = history.merge(current[[
-        "ticker", "normalized_sales_q1", "normalized_op_q1", "normalized_sales_q2", "normalized_op_q2",
-    ]], on="ticker", how="inner")
-    sales_columns = [f"normalized_sales_q{quarter}" for quarter in (3, 4, 1, 2)]
-    op_columns = [f"normalized_op_q{quarter}" for quarter in (3, 4, 1, 2)]
-    normalized["normalized_quarter_count"] = normalized[op_columns].notna().sum(axis=1)
-    normalized["normalized_ttm_sales"] = normalized[sales_columns].sum(axis=1, min_count=4)
-    normalized["normalized_ttm_op"] = normalized[op_columns].sum(axis=1, min_count=4)
-    normalized["normalization_as_of"] = f"{current_year}-06-30"
-    keep = ["ticker", *sales_columns, *op_columns, "normalized_ttm_sales", "normalized_ttm_op",
-            "normalized_quarter_count", "normalization_as_of"]
-    combined = combined.drop(columns=[column for column in keep[1:] if column in combined], errors="ignore")
-    return combined.merge(normalized[keep], on="ticker", how="left"), failures
+            if not matches(current, period.quarter):
+                current = None
+            if not matches(previous, period.quarter - 1):
+                previous = None
+            if not matches(half, 2):
+                half = None
+            sources = []
+            for kind in ("sales", "op"):
+                value = np.nan
+                if period.quarter == 1 and half and str(half.get("quarter_value_verified")) == "True":
+                    value = _amount(half.get(f"{kind}_current")) - _amount(half.get(f"{kind}_quarter_current"))
+                    sources = [half]
+                elif current:
+                    sources = [current]
+                    if period.quarter == 1:
+                        value = _amount(current.get(f"{kind}_current"))
+                    elif period.quarter != 4 and str(current.get("quarter_value_verified")) == "True":
+                        value = _amount(current.get(f"{kind}_quarter_current"))
+                    elif previous:
+                        value = _amount(current.get(f"{kind}_current")) - _amount(previous.get(f"{kind}_current"))
+                        sources = [previous, current]
+                if not np.isfinite(value):
+                    issue = "기간별 공시 또는 동일 연결/별도 자료 부족"
+                values[f"normalized_{kind}_q{period.quarter}"] = value
+            for source in sources:
+                provenance.append({"quarter": str(period), "receipt": source.get("receipt"),
+                                   "reportYear": source.get("report_year"), "reportCode": source.get("report_code"),
+                                   "fsDiv": source.get("fs_div", basis), "asOf": source.get("as_of"),
+                                   "verifiedAt": source.get("last_verified_at")})
+        if issue:
+            # Retain the previous complete window only with its original dates.
+            if _amount(stock.get("normalized_quarter_count")) == 4:
+                result.at[index, "normalization_status"] = "이전 검증값 유지 · 최신 기간 재구성 실패"
+            else:
+                for column, value in values.items():
+                    result.at[index, column] = value
+                result.at[index, "normalized_quarter_count"] = sum(np.isfinite(values[f"normalized_op_q{q}"]) for q in (1, 2, 3, 4))
+                result.at[index, "normalized_ttm_sales"] = np.nan
+                result.at[index, "normalized_ttm_op"] = np.nan
+                result.at[index, "normalization_status"] = "자료부족"
+            failures.append({"ticker": ticker, "name": str(stock.get("name", ticker)), "reason": issue})
+            continue
+        for column, value in values.items():
+            result.at[index, column] = value
+        result.at[index, "normalized_ttm_sales"] = sum(values[f"normalized_sales_q{q}"] for q in (1, 2, 3, 4))
+        result.at[index, "normalized_ttm_op"] = sum(values[f"normalized_op_q{q}"] for q in (1, 2, 3, 4))
+        result.at[index, "normalized_quarter_count"] = 4
+        result.at[index, "normalization_as_of"] = str(window[-1].end_time.date())
+        result.at[index, "normalization_periods"] = ",".join(str(p) for p in window)
+        result.at[index, "normalization_sources"] = json.dumps(provenance, ensure_ascii=False, default=str)
+        result.at[index, "normalization_status"] = "정상"
+        # Public legacy names mean the latest standalone quarter, not always Q2.
+        result.at[index, "sales_quarter_current"] = values[f"normalized_sales_q{window[-1].quarter}"]
+        result.at[index, "op_quarter_current"] = values[f"normalized_op_q{window[-1].quarter}"]
+        result.at[index, "quarter_value_verified"] = True
+        result.at[index, "quarter_as_of"] = str(window[-1].end_time.date())
+    return result, failures
 
 
 def _report_candidates(now: datetime) -> list[tuple[int, str]]:
-    year = now.year
-    if now.month >= 11:
-        candidates = [(year, "11014"), (year, "11012"), (year, "11013")]
-    elif now.month >= 8:
-        candidates = [(year, "11012"), (year, "11013")]
-    elif now.month >= 5:
-        candidates = [(year, "11013")]
-    else:
-        candidates = []
-    candidates.append((year - 1, "11011"))
-    return candidates
+    # Probe completed periods, including early filers; no-data cache bounds
+    # repeated queries before a company's filing becomes available.
+    latest = pd.Period(now.date(), freq="Q") - 1
+    return [(period.year, QUARTER_REPORTS[period.quarter])
+            for period in (latest - offset for offset in range(6))]
+
+
+def _scan_report_changes(universe: pd.DataFrame, key: str, config: dict) -> dict:
+    """Overlap disclosure-list scans detect corrections without refreshing all statements."""
+    path = Path(config["cache_dir"]) / "dart_disclosure_state.json"
+    state = _json_load(path, {"receipts": {}, "checkedThrough": None})
+    receipts = state.get("receipts", {})
+    today = datetime.now(KST).date()
+    previous = pd.to_datetime(state.get("checkedThrough"), errors="coerce")
+    overlap = max(1, min(30, int(config.get("dart_disclosure_overlap_days", 3))))
+    first = today - timedelta(days=overlap if pd.isna(previous) else 0)
+    if pd.notna(previous):
+        first = previous.date() - timedelta(days=overlap)
+    # A bounded three-month window avoids the all-company API's range limit.
+    first = max(first, today - timedelta(days=89))
+    page, changes = 1, 0
+    try:
+        while True:
+            response = _request_json("list.json", {
+                "crtfc_key": key, "bgn_de": first.strftime("%Y%m%d"),
+                "end_de": today.strftime("%Y%m%d"), "pblntf_ty": "A",
+                "last_reprt_at": "N", "page_no": page, "page_count": 100,
+            }, int(config.get("request_retries", 3)), float(config.get("dart_pause_seconds", .2)))
+            if response.get("status") == "013":
+                break
+            if response.get("status") != "000":
+                raise RuntimeError(f"DART list {response.get('status')}")
+            for filing in response.get("list") or []:
+                ticker = str(filing.get("stock_code") or "").strip().zfill(6)
+                receipt = str(filing.get("rcept_no") or "")
+                if ticker != "000000" and receipt > str(receipts.get(ticker, "")):
+                    receipts[ticker] = receipt
+                    changes += 1
+            if page >= int(response.get("total_page", 1)):
+                break
+            page += 1
+        _json_save(path, {"receipts": receipts, "checkedThrough": today.isoformat()})
+        scan = {"status": "정상", "checkedThrough": today.isoformat(), "changedCompanies": changes,
+                "overlapDays": overlap, "pages": page}
+    except Exception as exc:
+        # Do not advance the watermark on a partial scan. Receipt generations
+        # already observed are safe to use; the overlap is retried next time.
+        scan = {"status": "수집실패", "checkedThrough": state.get("checkedThrough"),
+                "problem": type(exc).__name__}
+    config["_dart_receipt_generations"] = receipts
+    return scan
 
 
 def _fetch_one(item: dict, key: str, config: dict) -> tuple[dict | None, str | None]:
@@ -369,73 +582,45 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
     universe = latest.merge(corp_codes[["ticker", "corp_code"]], on="ticker", how="left")
 
     cache_path = cache_dir / "dart_fundamentals_cache.csv"
-    cached = pd.read_csv(cache_path, dtype={"ticker": str}) if cache_path.exists() else pd.DataFrame()
-    if not cached.empty:
-        cached["ticker"] = cached["ticker"].astype(str).str.zfill(6)
-        cached["collected_at"] = pd.to_datetime(cached["collected_at"], errors="coerce", utc=True)
-        cutoff = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=float(config.get("dart_cache_max_age_hours", 24)))
-        fresh = cached[cached["collected_at"].ge(cutoff)].drop_duplicates("ticker", keep="last")
-    else:
-        fresh = pd.DataFrame()
-    fresh_tickers = set(fresh["ticker"]) if not fresh.empty else set()
-    pending = universe[~universe["ticker"].isin(fresh_tickers)].copy()
-    failures = []
-    missing_codes = pending[pending["corp_code"].isna()]
-    for item in missing_codes.itertuples():
-        failures.append({"ticker": item.ticker, "name": item.name, "reason": "DART corp_code 매핑 없음"})
-    pending = pending[pending["corp_code"].notna()]
-
-    # Retry a rotating slice instead of bursting every unresolved company at
-    # OpenDART. Successful rows leave the pending set on the next run, while
-    # the cursor advances through persistent failures and missing statements.
-    retry_batch_size = max(1, int(config.get("dart_retry_batch_size", 300)))
-    state_path = cache_dir / "dart_retry_state.json"
-    try:
-        state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {"cursor": 0}
-    except (OSError, ValueError):
-        state = {"cursor": 0}
-    pending = pending.sort_values("value", ascending=False).reset_index(drop=True)
-    cursor = int(state.get("cursor", 0)) % max(len(pending), 1)
-    targets = pd.concat([pending.iloc[cursor:], pending.iloc[:cursor]], ignore_index=True).head(retry_batch_size)
-    next_cursor = (cursor + len(targets)) % max(len(pending), 1)
-    state_path.write_text(json.dumps({"cursor": next_cursor}, indent=2), encoding="utf-8")
-
+    cached = pd.read_csv(cache_path, dtype={"ticker": str, "report_code": str, "receipt": str}) if cache_path.exists() else pd.DataFrame()
+    scan = _scan_report_changes(universe, key, config)
+    config["_dart_period_metrics"] = {"httpRequests": 0, "companyPeriodsRequested": 0}
+    config["_dart_refreshed_periods"] = []
+    config["_dart_requested_tickers"] = []
+    config["_dart_single_fallback_used"] = 0
+    failures = [{"ticker": item.ticker, "name": item.name, "reason": "DART corp_code 매핑 없음"}
+                for item in universe[universe["corp_code"].isna()].itertuples()]
     rows = []
-    workers = max(1, min(4, int(config.get("dart_workers", 2))))
-    with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = {pool.submit(_fetch_one, row._asdict(), key, config): row for row in targets.itertuples(index=False)}
-        for future in as_completed(futures):
-            item = futures[future]
-            try:
-                parsed, problem = future.result()
-            except Exception as exc:
-                parsed, problem = None, f"호출 실패: {type(exc).__name__}"
-            if parsed:
-                rows.append(parsed)
-            else:
-                failures.append({"ticker": item.ticker, "name": item.name, "reason": problem})
-
+    unresolved = universe[universe["corp_code"].notna()].copy()
+    for year, code in _report_candidates(datetime.now(KST)):
+        if unresolved.empty:
+            break
+        period, errors = _collect_bulk_period_values(unresolved, key, config, year, code)
+        failures.extend(errors)
+        if not period.empty:
+            rows.extend(period.to_dict("records"))
+            unresolved = unresolved[~unresolved["ticker"].isin(period["ticker"])]
     collected = pd.DataFrame(rows)
-    # Reported statements do not change merely because the fetch timestamp is
-    # older than one day. Retain every previously verified disclosure row and
-    # replace only tickers successfully refreshed in this run.
-    combined = pd.concat([cached, collected], ignore_index=True) if not cached.empty else collected
-    # The multi-company endpoint is cheap enough to scan the complete market
-    # and repairs the historical cache with Q2 standalone values in one run.
-    quarter_frame, quarter_failures = _collect_bulk_quarter_values(universe, key, config)
-    failures.extend(quarter_failures)
+    # Preserve whole verified rows on errors, and preserve an old complete TTM
+    # with its original window until a replacement has all required periods.
+    combined = cached.copy()
+    if not collected.empty:
+        old = {row["ticker"]: row for row in cached.to_dict("records")} if not cached.empty else {}
+        merged = []
+        for row in collected.to_dict("records"):
+            previous_row = old.pop(row["ticker"], {})
+            previous_date = pd.to_datetime(previous_row.get("as_of"), errors="coerce")
+            next_date = pd.to_datetime(row.get("as_of"), errors="coerce")
+            if pd.notna(previous_date) and pd.notna(next_date) and next_date < previous_date:
+                previous_row["verification_status"] = "캐시유지 · 최신 보고서 재확인 실패"
+                merged.append(previous_row)
+                continue
+            preserved = {k: v for k, v in previous_row.items() if k.startswith("normalized_") or k.startswith("normalization_")}
+            merged.append(dict(preserved, **row))
+        merged.extend(old.values())
+        combined = pd.DataFrame(merged)
     if not combined.empty:
-        combined["collected_at"] = pd.to_datetime(combined["collected_at"], errors="coerce", utc=True)
-        combined = combined.sort_values("collected_at").drop_duplicates("ticker", keep="last")
-        if not quarter_frame.empty:
-            quarter_columns = [
-                "ticker", "sales_quarter_current", "sales_quarter_previous",
-                "op_quarter_current", "op_quarter_previous", "quarter_as_of",
-            ]
-            quarter_values = quarter_frame[quarter_columns].drop_duplicates("ticker", keep="last")
-            combined = combined.drop(columns=quarter_columns[1:], errors="ignore").merge(
-                quarter_values, on="ticker", how="left",
-            )
+        combined = combined[combined["ticker"].isin(universe["ticker"])].copy()
         combined, normalization_failures = _attach_normalized_ttm(combined, universe, key, config)
         failures.extend(normalization_failures)
         combined.to_csv(cache_path, index=False, encoding="utf-8-sig")
@@ -450,7 +635,8 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
     normalized_collected = int(pd.to_numeric(
         combined.get("normalized_quarter_count", pd.Series(dtype=float)), errors="coerce",
     ).eq(4).sum()) if not combined.empty else 0
-    status = "정상" if coverage >= float(config.get("minimum_dart_fundamental_coverage_ratio", 0.65)) else "부분실패"
+    request_failed = any("호출 실패" in item["reason"] for item in failures)
+    status = "정상" if coverage >= float(config.get("minimum_dart_fundamental_coverage_ratio", 0.65)) and scan["status"] == "정상" and not request_failed else "부분실패"
     return combined, {
         "status": status, "source": "OpenDART 공시실적",
         "asOfDate": as_of.strftime("%Y-%m-%d") if pd.notna(as_of) else None,
@@ -459,6 +645,7 @@ def collect_dart_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.Da
         "quarterCoverageRatio": round(quarter_coverage, 4),
         "normalizedRequested": len(universe), "normalizedCollected": normalized_collected,
         "normalizedCoverageRatio": round(normalized_collected / max(1, len(universe)), 4),
-        "attemptedThisRun": len(targets), "failed": len(failures),
-        "problem": None if status == "정상" else "공시실적 수집 커버리지 기준 미달",
+        "attemptedThisRun": len(set(config["_dart_requested_tickers"])), "failed": len(failures),
+        "periodCache": config["_dart_period_metrics"], "disclosureScan": scan,
+        "problem": None if status == "정상" else "공시실적 커버리지 또는 변경공시 확인 미완료",
     }

@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 1,
+  "ruleVersion": "combined-1.0",
+  "rulesHash": "30df6f7babfd2b72bfd24b02dfe86415fc53a72b388a41872b51448b2d8f02f5",
+  "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+  "generatedAt": "2026-09-07T14:01:00+09:00",
+  "sourceDate": "2026-09-04",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "notice": "실험 규칙입니다. 수익성이 검증된 전략이 아니며 곧진입은 관찰 후보입니다. 기존 가치·성장 점수는 변경하지 않습니다.",
+  "rules": {
+    "version": "combined-1.0",
+    "topCount": 10,
+    "valueMaxPOP": 10,
+    "valueMinPOP": 1,
+    "valueMaxPremiumPct": 0,
+    "valueMinQuarters": 4,
+    "valueConfidence": [
+      "A",
+      "B"
+    ],
+    "growthMinEvidence": 2,
+    "growthMinScore": 30,
+    "growthPriceReflection": [
+      "미반영 가능",
+      "일부 가격 반응"
+    ]
+  },
+  "candidateCount": 158,
+  "rows": [
+    {
+      "ticker": "124500",
+      "name": "아이티센글로벌",
+      "sector": "인터넷/소프트웨어",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 35650,
+      "valueScore": 91.8,
+      "growthScore": null,
+      "sectorRelation": "선행",
+      "combinedScore": 87.6,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 1
+    },
+    {
+      "ticker": "030190",
+      "name": "NICE평가정보",
+      "sector": "기타 정보 서비스업",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 16250,
+      "valueScore": 71.7,
+      "growthScore": null,
+      "sectorRelation": "후행",
+      "combinedScore": 84.55,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 2
+    },
+    {
+      "ticker": "102260",
+      "name": "동성케미컬",
+      "sector": "합성고무 및 플라스틱 물질 제조업",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 3760,
+      "valueScore": 95.5,
+      "growthScore": null,
+      "sectorRelation": "동행",
+      "combinedScore": 84.0,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 3
+    },
+    {
+      "ticker": "093380",
+      "name": "풍강",
+      "sector": "기타 금속 가공제품 제조업",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 3145,
+      "valueScore": 68.8,
+      "growthScore": null,
+      "sectorRelation": "선행",
+      "combinedScore": 82.15,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 4
+    },
+    {
+      "ticker": "053300",
+      "name": "한국정보인증",
+      "sector": "인터넷/소프트웨어",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 5030,
+      "valueScore": 80.4,
+      "growthScore": null,
+      "sectorRelation": "동행",
+      "combinedScore": 78.7,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 5
+    },
+    {
+      "ticker": "286940",
+      "name": "롯데이노베이트",
+      "sector": "인터넷/소프트웨어",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 18710,
+      "valueScore": 76.5,
+      "growthScore": null,
+      "sectorRelation": "선행",
+      "combinedScore": 77.5,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 6
+    },
+    {
+      "ticker": "060590",
+      "name": "씨티씨바이오",
+      "sector": "바이오/제약",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 3110,
+      "valueScore": 79.2,
+      "growthScore": null,
+      "sectorRelation": "선행",
+      "combinedScore": 77.45,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 7
+    },
+    {
+      "ticker": "042500",
+      "name": "링네트",
+      "sector": "인터넷/소프트웨어",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 4460,
+      "valueScore": 76.8,
+      "growthScore": null,
+      "sectorRelation": "동행",
+      "combinedScore": 76.8,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 8
+    },
+    {
+      "ticker": "035760",
+      "name": "CJ ENM",
+      "sector": "텔레비전 방송업",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 33050,
+      "valueScore": 84.3,
+      "growthScore": null,
+      "sectorRelation": "후행",
+      "combinedScore": 74.95,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 9
+    },
+    {
+      "ticker": "216050",
+      "name": "인크로스",
+      "sector": "광고업",
+      "condition": "진입 + 가치",
+      "conditions": [
+        "진입",
+        "가치"
+      ],
+      "entryState": "진입가능",
+      "currentPrice": 5220,
+      "valueScore": 78.5,
+      "growthScore": null,
+      "sectorRelation": "동행",
+      "combinedScore": 73.7,
+      "sourceDate": "2026-09-04",
+      "actionable": true,
+      "rank": 10
+    }
+  ],
+  "inputCounts": {
+    "entry": 495,
+    "value": 1588,
+    "growth": 388,
+    "rotation": 1636
+  },
+  "refreshState": {
+    "status": "계산완료",
+    "generatedAt": "2026-09-07T14:01:00+09:00",
+    "snapshotId": "3e032aa366af0081c0addaffac7f3cb93d9132b470c9933b1b41e09f553a8020",
+    "sourceCutoff": "2026-09-04",
+    "mode": "저장자료 재계산",
+    "engineVersion": "af65be78341aca63",
+    "runId": "ea18afa7f4a9a29c6d36d654",
+    "evidenceSnapshotId": "772ab7c4e7c87505c65570a517e64ac1a27f4b714b9a7bcab876f078ac010301"
+  },
+  "runId": "ea18afa7f4a9a29c6d36d654",
+  "sourceAvailability": {
+    "p1": "계산완료",
+    "p11": "계산완료",
+    "p2": "계산완료",
+    "growth": "계산완료"
+  }
+}

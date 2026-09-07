@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 
 from board_contract import ROOT, assert_contract, load_contract
-from growth_discovery import json_write
+from refresh_store import json_write, read_json
 
 
 SECTIONS = ("p1", "p11", "p2", "growth", "p3", "meta")
@@ -56,6 +56,8 @@ def main() -> None:
     parser.add_argument("--candidate", type=Path, default=ROOT / "test_output" / "data.test.json")
     parser.add_argument("--html", type=Path, default=ROOT / "index.html")
     parser.add_argument("--youtube", action="store_true")
+    parser.add_argument("--research", action="store_true", help="별도 종합추천·성과검증 후보도 함께 반영")
+    parser.add_argument("--allow-partial", action="store_true", help="실패한 평가창은 이전 게시값 유지")
     args = parser.parse_args()
     quality_path = args.candidate.parent / "collection_report.test.json"
     quality = json.loads(quality_path.read_text("utf-8"))
@@ -63,16 +65,46 @@ def main() -> None:
         raise RuntimeError("전체시장 자료 검증 실패로 반영을 중단했습니다.")
     live = json.loads(args.live.read_text("utf-8-sig"))
     candidate = json.loads(args.candidate.read_text("utf-8-sig"))
-    result, report = promote(live, candidate, args.sections)
+    failed = [k for k in args.sections if quality.get('sectionStates', {}).get(k, {}).get('status') == '실패·이전유지']
+    if failed and not args.allow_partial:
+        raise RuntimeError(f"실패한 구역 반영을 중단했습니다: {failed}")
+    selected = [k for k in args.sections if k not in failed]
+    if args.research and not {'p1', 'p11', 'p2', 'growth'}.issubset(set(args.sections)):
+        raise RuntimeError('종합추천은 원본 진입·순환·가치·성장 갱신과 함께 반영해야 합니다.')
+    result, report = promote(live, candidate, selected)
+    report['retainedFailedSections'] = failed
     temp_path = args.candidate.parent / "promotion-candidate.json"
     json_write(temp_path, result)
     assert_contract(args.html, temp_path)
-    json_write(args.live, result)
-    json_write(args.candidate.parent / "promotion_report.json", report)
+    pending = {args.live: result}
     if args.youtube:
         youtube_candidate = args.candidate.parent / "youtube-market.test.json"
         if youtube_candidate.exists():
-            json_write(ROOT / "youtube-market.json", json.loads(youtube_candidate.read_text("utf-8-sig")))
+            pending[args.live.parent / 'youtube-market.json'] = read_json(youtube_candidate)
+    if args.research:
+        for name in ('combined-recommendations', 'recommendation-performance'):
+            data = read_json(args.candidate.parent / f'{name}.test.json')
+            if data is None:
+                raise RuntimeError(f'{name} 후보 없음')
+            if data.get('schemaVersion') != 1 or not isinstance(data.get('rows'), list):
+                raise RuntimeError(f'{name} 후보 형식 검증 실패')
+            if name == 'combined-recommendations':
+                if data.get('refreshState', {}).get('status') == '실패·이전유지':
+                    continue
+                data['publicationState'] = 'prepared'
+                data['status'] = '공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작'
+                if data.get('runId') != candidate.get('meta', {}).get('runId'):
+                    raise RuntimeError('종합추천과 원본 평가창의 계산 회차가 다릅니다.')
+            pending[args.live.parent / f'{name}.json'] = data
+        pending[args.live.parent / 'refresh-status.json'] = {
+            'runId': candidate['meta'].get('runId'), 'attemptedAt': quality.get('attemptedAt'),
+            'sourceDate': quality.get('latestPriceDate'), 'sections': quality.get('sectionStates', {})}
+    # All candidates validated before any live file mutation; Git publication is one complete commit.
+    for path, data in pending.items():
+        json.dumps(data, ensure_ascii=False, allow_nan=False)
+    for path, data in pending.items():
+        json_write(path, data)
+    json_write(args.candidate.parent / "promotion_report.json", report)
     print(json.dumps(report, ensure_ascii=False))
 
 

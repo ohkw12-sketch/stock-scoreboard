@@ -5,6 +5,7 @@ retains old evidence, while corrections and validity are checked on each live ru
 """
 from __future__ import annotations
 
+import copy
 import hashlib
 import io
 import json
@@ -27,6 +28,7 @@ from dart_fundamentals import _api_key, _request_bytes, _request_json
 
 KST = timezone(timedelta(hours=9))
 EVENT_NAMES = re.compile(r'단일판매|공급계약|신규시설투자|영업.*전망|장래사업|기업설명회|투자판단')
+DISCLOSURE_PARSER_VERSION = 'dart-growth-v3'
 
 
 def number(value):
@@ -60,6 +62,23 @@ def json_write(path, value):
     tmp.replace(path)
 
 
+def read_json(path, default):
+    path = Path(path)
+    return json.loads(path.read_text('utf-8-sig')) if path.exists() else copy.deepcopy(default)
+
+
+def cached_source_status(previous, now, available, reason='명시적 원자료 재사용'):
+    """Reading a cache is not a new verification of the source."""
+    result = dict(previous, cacheReadAt=now.isoformat(timespec='seconds'), cacheReason=reason,
+                  networkRequests=0, reused=True)
+    result['sourceStatus'] = previous.get('status', '미수집')
+    if not available:
+        result.update(status='미수집', problem='재사용할 검증 원자료 없음')
+    elif previous.get('status') in {'정상', '캐시유지'}:
+        result['status'] = '캐시유지'
+    return result
+
+
 def document_fields(markup):
     soup = BeautifulSoup(markup, 'html.parser')
     for element in soup(['script', 'style']):
@@ -87,7 +106,7 @@ def parse_disclosure(item, markup, checked_at):
         'ticker': str(item['stock_code']).zfill(6), 'title': title,
         'source': 'DART', 'sourceType': '공시', 'receipt': receipt,
         'url': f'https://dart.fss.or.kr/dsaf001/main.do?rcpNo={receipt}',
-        'firstPublished': original or published, 'publishedAt': published,
+        'firstPublished': original or published, 'publishedAt': published, 'originalPublished': original,
         'lastVerified': checked_at, 'fetchedAt': checked_at, 'correction': correction,
         'status': '검토필요', 'polarity': 'neutral', 'factType': '공시사실',
         'materiality': 0.0, 'kind': '기타', 'activeUntil': None,
@@ -110,7 +129,7 @@ def parse_disclosure(item, markup, checked_at):
                      recurring='해당' == field(r'동종계약\s*이행여부'))
         # Amendments share the first-publication date; transaction date and subject
         # separate multiple contracts on the same day without counting republications.
-        event['eventId'] = fingerprint(event['ticker'], '수주', signed or original or published, subject)
+        event['eventId'] = fingerprint(event['ticker'], '수주', signed or original or published, subject, customer)
         if '해지' in title or '취소' in title:
             event.update(status='무효', polarity='negative')
         elif subject and signed and end and amount is not None and amount > 0:
@@ -156,64 +175,145 @@ def merge_events(events):
             if prior is event or prior['ticker'] != event['ticker'] or prior['kind'] != event['kind']:
                 continue
             same_subject = prior.get('subject') and prior.get('subject') == event.get('subject')
+            same_customer = (not prior.get('customer') or not event.get('customer')
+                             or prior.get('customer') == event.get('customer'))
+            original_link = event.get('originalPublished') == prior.get('firstPublished')
             if same_subject and prior['publishedAt'] <= event['publishedAt']:
-                if prior.get('signedAt') == event.get('signedAt') or not event.get('signedAt'):
+                if original_link or (same_customer and (prior.get('signedAt') == event.get('signedAt') or not event.get('signedAt'))):
                     prior['status'] = '정정관계확인필요'
+    # A supplied original-source link can identify the same business event across
+    # a filing, IR document and news article. Cancellation of that event wins over
+    # an older positive republication, without treating other contracts as void.
+    first_dates = {}
+    for event in groups.values():
+        key = event.get('independentEventId', event['eventId'])
+        first_dates[key] = min(first_dates.get(key, event['firstPublished']), event['firstPublished'])
+    negatives = {}
+    for event in groups.values():
+        if event.get('polarity') == 'negative':
+            key = event.get('independentEventId', event['eventId'])
+            negatives[key] = max(negatives.get(key, ''), event.get('publishedAt', ''))
+    for event in groups.values():
+        key = event.get('independentEventId', event['eventId'])
+        event['firstPublished'] = first_dates[key]
+        if event.get('polarity') == 'positive' and negatives.get(key, '') >= event.get('publishedAt', ''):
+            event['status'] = '무효'
     return list(groups.values())
 
 
-def collect_disclosures(config, universe, now=None):
+def collect_disclosures(config, universe, now=None, *, reuse=False):
     now = now or datetime.now(KST)
     checked = now.isoformat(timespec='seconds')
     cache = Path(config['cache_dir']) / 'growth'
-    cache.mkdir(parents=True, exist_ok=True)
     ledger_path = cache / 'event_ledger.json'
-    prior = json.loads(ledger_path.read_text('utf-8')) if ledger_path.exists() else []
+    status_path = cache / 'collection_status.json'
+    prior = read_json(ledger_path, [])
+    old_status = read_json(status_path, {'source': 'OpenDART 공시 원문', 'status': '미수집'})
+    universe = {str(t).zfill(6) for t in universe}
+    if reuse:
+        return prior, cached_source_status(old_status, now, ledger_path.exists())
+    cache.mkdir(parents=True, exist_ok=True)
     status = {'source': 'OpenDART 공시 원문', 'checkedAt': checked, 'status': '정상',
-              'requestedTickers': len(universe), 'failures': [], 'documentsFailed': [], 'reviewOnlyCount': 0}
+              'requestedTickers': len(universe), 'requestedTickerSet': sorted(universe),
+              'universeVersion': fingerprint(*sorted(universe)),
+              'failures': [], 'documentsFailed': [], 'reviewOnlyCount': 0,
+              'documentsDownloaded': 0, 'documentsReparsed': 0, 'parsedCacheHits': 0}
     key = _api_key()
     if not key:
-        status.update(status='설정필요', problem='DART_API_KEY 없음')
+        status.update(status='설정필요', problem='DART_API_KEY 없음', completedTickers=0,
+                      missingTickers=sorted(universe), checkedAt=old_status.get('checkedAt'), attemptedAt=checked)
         return prior, status
     list_cache = cache / 'disclosure_index.json'
-    previous_index = json.loads(list_cache.read_text('utf-8')) if list_cache.exists() else {'items': [], 'scannedThrough': None}
-    start = now.date() - timedelta(days=int(config.get('growth_history_days', 400)))
-    if previous_index.get('scannedThrough'):
+    previous_index = read_json(list_cache, {'items': [], 'scannedThrough': None})
+    history_start = now.date() - timedelta(days=int(config.get('growth_history_days', 400)))
+    covered = set(previous_index.get('historyCoveredTickers', []))
+    # Legacy indexes did not record their requested universe: migrate with one
+    # market-wide history scan rather than claiming their old coverage was known.
+    initial = not previous_index.get('coverageVersion')
+    new_tickers = universe - covered
+    start = history_start
+    if not initial and previous_index.get('scannedThrough'):
         start = max(start, pd.Timestamp(previous_index['scannedThrough']).date() - timedelta(days=7))
-    cursor, items = start, list(previous_index['items'])
-    while cursor <= now.date():
-        end = min(now.date(), cursor + timedelta(days=75))
-        for cls in ('Y', 'K'):
+    items = list(previous_index.get('items', []))
+    market_by_ticker = dict(previous_index.get('marketByTicker', {}))
+    market_by_ticker.update({r['stock_code']: r['corp_cls'] for r in items if r.get('corp_cls') in {'Y', 'K'}})
+    market_by_ticker.update(config.get('growth_market_by_ticker', {}))
+
+    def scan(begin, finish, cls=None, ticker=None, corp_code=None):
+        cursor = begin
+        success = True
+        while cursor <= finish:
+            end = min(finish, cursor + timedelta(days=75))
             page = 1
             while True:
                 params = {'crtfc_key': key, 'bgn_de': cursor.strftime('%Y%m%d'),
-                          'end_de': end.strftime('%Y%m%d'), 'pblntf_ty': 'I', 'corp_cls': cls,
+                          'end_de': end.strftime('%Y%m%d'), 'pblntf_ty': 'I',
                           'page_count': '100', 'page_no': str(page), 'last_reprt_at': 'N'}
+                params.update({'corp_code': corp_code} if corp_code else {'corp_cls': cls})
                 try:
                     payload = _request_json('list.json', params, 3, 0.18)
                     if payload.get('status') == '013':
                         break
                     if payload.get('status') != '000':
                         raise RuntimeError('DART status ' + str(payload.get('status')))
-                    items.extend(r for r in payload.get('list', []) if r.get('stock_code') in universe and EVENT_NAMES.search(r.get('report_nm', '')))
+                    found = [r for r in payload.get('list', []) if r.get('stock_code') in universe
+                             and (ticker is None or r.get('stock_code') == ticker)
+                             and EVENT_NAMES.search(r.get('report_nm', ''))]
+                    items.extend(found)
+                    market_by_ticker.update({r['stock_code']: r.get('corp_cls', cls) for r in found
+                                             if r.get('corp_cls', cls) in {'Y', 'K'}})
                     if page >= int(payload.get('total_page', 1)):
                         break
                     page += 1
                 except Exception as exc:
-                    status['failures'].append({'period': [str(cursor), str(end)], 'market': cls, 'page': page, 'error': type(exc).__name__})
+                    status['failures'].append({'period': [str(cursor), str(end)], 'market': cls,
+                                              'ticker': ticker, 'page': page, 'error': type(exc).__name__})
+                    success = False
                     break
-        print(f'Growth disclosure scan: {end}', flush=True)
-        cursor = end + timedelta(days=1)
+            cursor = end + timedelta(days=1)
+        return success
+
+    market_success = {cls: scan(start, now.date(), cls=cls) for cls in ('Y', 'K')}
+    failed_scope = {t for t in universe if not market_success.get(market_by_ticker.get(t), all(market_success.values()))}
+    if initial:
+        covered.update(universe - failed_scope)
+    elif new_tickers:
+        corp_path = Path(config['cache_dir']) / 'dart_corp_codes.csv'
+        corp_frame = pd.read_csv(corp_path, dtype=str) if corp_path.exists() else pd.DataFrame()
+        corp_codes = dict(zip(corp_frame.get('ticker', []), corp_frame.get('corp_code', [])))
+        for ticker in sorted(new_tickers):
+            corp_code = corp_codes.get(ticker)
+            if not corp_code:
+                status['failures'].append({'ticker': ticker, 'period': [str(history_start), str(start)],
+                                          'error': 'DART 법인코드 매핑 없음; 신규 종목 과거 공시 미검증'})
+                failed_scope.add(ticker)
+            elif scan(history_start, start - timedelta(days=1), ticker=ticker, corp_code=corp_code):
+                covered.add(ticker)
+            else:
+                failed_scope.add(ticker)
+    status['backfillTickers'] = sorted(new_tickers)
+    for failure in status['failures']:
+        if failure.get('ticker'):
+            failed_scope.add(failure['ticker'])
     items = list({r['rcept_no']: r for r in items}.values())
-    json_write(list_cache, {'items': items, 'scannedThrough': str(now.date()) if not status['failures'] else previous_index.get('scannedThrough')})
+    through = str(now.date()) if all(market_success.values()) else previous_index.get('scannedThrough')
+    json_write(list_cache, {'items': items, 'scannedThrough': through, 'coverageVersion': 1,
+                           'historyCoveredTickers': sorted(covered), 'marketByTicker': market_by_ticker,
+                           'historyStart': str(history_start), 'universeVersion': status['universeVersion']})
     # Review-only IR schedules are indexed, but never counted as positive facts.
-    selected = [r for r in items if re.search('단일판매|공급계약|신규시설투자', r['report_nm'])]
-    status['reviewOnlyCount'] = len(items) - len(selected)
+    relevant_items = [r for r in items if r.get('stock_code') in universe]
+    selected = [r for r in relevant_items if re.search('단일판매|공급계약|신규시설투자', r['report_nm'])]
+    status['reviewOnlyCount'] = len(relevant_items) - len(selected)
     docs = cache / 'documents'
     docs.mkdir(exist_ok=True)
+    parsed_dir = cache / 'parsed_documents'
+    parsed_dir.mkdir(exist_ok=True)
+    prior_fetched = {receipt: e.get('fetchedAt') for e in prior
+                     for receipt in e.get('receipts', [e.get('receipt')]) if receipt}
     def fetch(item):
         path = docs / (item['rcept_no'] + '.html')
-        if path.exists():
+        downloaded = not path.exists()
+        if not downloaded:
             markup = path.read_text('utf-8')
         else:
             last = None
@@ -230,35 +330,66 @@ def collect_disclosures(config, universe, now=None):
             else:
                 raise RuntimeError(type(last).__name__)
             time.sleep(0.15)
-        return parse_disclosure(item, markup, checked)
+        raw_hash = hashlib.sha256(markup.encode('utf-8')).hexdigest()
+        parsed_path = parsed_dir / (item['rcept_no'] + '.json')
+        saved = read_json(parsed_path, {})
+        item_hash = fingerprint(item['report_nm'], item['rcept_dt'], item['stock_code'])
+        hit = (saved.get('rawHash') == raw_hash and saved.get('parserVersion') == DISCLOSURE_PARSER_VERSION
+               and saved.get('itemHash') == item_hash)
+        if hit:
+            parsed_event = saved['event']
+        else:
+            parsed_event = parse_disclosure(item, markup, checked)
+            parsed_event['fetchedAt'] = (checked if downloaded else
+                                        saved.get('event', {}).get('fetchedAt') or prior_fetched.get(item['rcept_no']))
+            parsed_event['parsedAt'] = checked
+            json_write(parsed_path, dict(rawHash=raw_hash, parserVersion=DISCLOSURE_PARSER_VERSION,
+                                         itemHash=item_hash, event=parsed_event))
+        return parsed_event, downloaded, hit
     parsed = []
     with ThreadPoolExecutor(max_workers=3) as pool:
         tasks = {pool.submit(fetch, r): r for r in selected}
         for idx, future in enumerate(as_completed(tasks), 1):
             item = tasks[future]
             try:
-                parsed.append(future.result())
+                parsed_event, downloaded, hit = future.result()
+                parsed.append(parsed_event)
+                status['documentsDownloaded'] += int(downloaded)
+                status['parsedCacheHits'] += int(hit)
+                status['documentsReparsed'] += int(not hit)
             except Exception as exc:
-                status['documentsFailed'].append({'ticker': item['stock_code'], 'receipt': item['rcept_no'], 'error': type(exc).__name__})
+                status['documentsFailed'].append({'ticker': item['stock_code'], 'receipt': item['rcept_no'],
+                                                  'correction': '정정' in item['report_nm'] or '해지' in item['report_nm'] or '취소' in item['report_nm'],
+                                                  'error': type(exc).__name__})
             if idx % 200 == 0:
                 print(f'Growth documents: {idx}/{len(selected)}', flush=True)
     # Failed correction retrieval makes the related company's old evidence unsafe.
     failed_tickers = {x['ticker'] for x in status['documentsFailed']}
-    events = merge_events(prior + parsed)
+    unsafe_tickers = failed_scope | {x['ticker'] for x in status['documentsFailed'] if x['correction']}
+    # Reparsed receipts replace old representations even after a parser upgrade.
+    parsed_receipts = {e['receipt'] for e in parsed}
+    events = merge_events([e for e in prior if e.get('receipt') not in parsed_receipts] + parsed)
     for e in events:
-        if e['ticker'] in failed_tickers or status['failures']:
+        if e['ticker'] in unsafe_tickers:
+            e['previousVerifiedStatus'] = e.get('previousVerifiedStatus', e['status'])
             e['status'] = '상태확인필요'
+            e['verificationIssue'] = '관련 정정 원문 또는 해당 공시 검색 범위 수집 미완료'
         elif e.get('activeUntil') and e['activeUntil'] < str(now.date()) and e['status'] == '유효':
             e['status'] = '상태확인필요'
-        elif e['status'] == '유효':
+        elif e['status'] == '유효' and e['ticker'] in universe:
             e['lastVerified'] = checked
-    status.update(indexedReports=len(items), parsedDocuments=len(parsed), ledgerCount=len(events),
+            e.pop('verificationIssue', None)
+    status.update(indexedReports=len(relevant_items), retainedIndexReports=len(items),
+                  parsedDocuments=len(parsed), ledgerCount=len(events),
                   evidenceTickers=len({e['ticker'] for e in events if e['status'] == '유효' and e['polarity'] == 'positive'}),
-                  historyStart=str(start), scannedThrough=str(now.date()))
+                  historyStart=str(history_start), incrementalStart=str(start), scannedThrough=through,
+                  completedTickers=len(universe - failed_scope - failed_tickers - (universe - covered)),
+                  completedTickerSet=sorted(universe - failed_scope - failed_tickers - (universe - covered)),
+                  missingTickers=sorted(failed_scope | failed_tickers | (universe - covered)))
     if status['failures'] or status['documentsFailed']:
         status['status'] = '부분수집'
     json_write(ledger_path, events)
-    json_write(cache / 'collection_status.json', status)
+    json_write(status_path, status)
     return events, status
 
 
@@ -275,29 +406,140 @@ def _windows_credential(name):
         return None
 
 
-def collect_news_hints(config, names):
+def collect_news_hints(config, names, now=None, *, reuse=False):
     """Discovery queue only. Search snippets are not verified business evidence."""
+    now = now or datetime.now(KST)
+    checked = now.isoformat(timespec='seconds')
+    cache = Path(config['cache_dir']) / 'growth'
+    queue_path, status_path = cache / 'news_queue.json', cache / 'news_status.json'
+    state_path = cache / 'news_search_state.json'
+    prior = read_json(queue_path, [])
+    previous_status = read_json(status_path, {'status': '미수집', 'source': 'NAVER 뉴스'})
+    if reuse:
+        return prior, cached_source_status(previous_status, now, queue_path.exists())
     key, secret = credential('NAVER_CLIENT_ID'), credential('NAVER_CLIENT_SECRET')
     if not key or not secret:
-        return [], {'status': '설정필요', 'source': 'NAVER 뉴스', 'problem': '뉴스 검색 키 미설정; 뉴스 근거를 생성하지 않음'}
-    hints, failures = [], []
-    for name in names:
-        query = urllib.parse.urlencode({'query': f'{name} 수주 성장 해외', 'sort': 'date', 'display': 10})
-        request = urllib.request.Request('https://openapi.naver.com/v1/search/news.json?' + query,
-                                        headers={'X-Naver-Client-Id': key, 'X-Naver-Client-Secret': secret})
+        return prior, {'status': '설정필요', 'source': 'NAVER 뉴스', 'checkedAt': previous_status.get('checkedAt'),
+                       'attemptedAt': checked, 'hints': len(prior),
+                       'problem': '뉴스 검색 키 미설정; 기존 검증대기 큐 보존, 신규 뉴스 근거 없음'}
+    state = read_json(state_path, {})
+    cache_hours = float(config.get('growth_news_cache_hours', 12))
+    max_pages = max(1, min(10, int(config.get('growth_news_max_pages', 3))))
+    page_size = 100
+    queue = {}
+    def add(row, entity=None):
+        url = row.get('originallink') or row.get('link') or row.get('canonicalUrl') or ''
+        parsed_url = urllib.parse.urlsplit(url)
+        # Preserve meaningful query parameters (many publishers identify articles
+        # there), but remove tracking tags. Prefer publisher URL over Naver mirror.
+        query = [(k, v) for k, v in urllib.parse.parse_qsl(parsed_url.query, keep_blank_values=True)
+                 if not k.lower().startswith('utm_')]
+        canonical = urllib.parse.urlunsplit((parsed_url.scheme.lower(), parsed_url.netloc.lower(),
+                                            parsed_url.path, urllib.parse.urlencode(sorted(query)), ''))
+        identity = fingerprint(canonical) if canonical else fingerprint(row.get('title'), row.get('pubDate'))
+        old = queue.get(identity, {})
+        entities = set(old.get('entities', [])) | set(row.get('entities', []))
+        if row.get('entity'):
+            entities.add(row['entity'])
+        if entity:
+            entities.add(entity)
+        merged = dict(old)
+        merged.update(row)
+        merged.update(hintId=identity, canonicalUrl=canonical, entities=sorted(entities))
+        merged['status'] = old.get('status', row.get('status', '원문검증대기'))
+        merged['firstSeenAt'] = old.get('firstSeenAt', row.get('firstSeenAt', checked))
+        merged['lastSeenAt'] = checked if entity else row.get('lastSeenAt', checked)
+        queue[identity] = merged
+    for row in prior:
+        add(row)
+    failures, attempted, skipped = [], 0, 0
+    for name in sorted(set(names)):
+        previous = state.get(name, {})
+        last = pd.to_datetime(previous.get('checkedAt'), errors='coerce', utc=True)
+        if pd.notna(last) and (now - last.to_pydatetime()).total_seconds() < cache_hours * 3600:
+            skipped += 1
+            continue
+        attempted += 1
+        cutoff = pd.to_datetime(previous.get('newestPublishedAt'), errors='coerce', utc=True)
+        pending_newest = pd.to_datetime(previous.get('pendingNewestPublishedAt'), errors='coerce', utc=True)
+        newest = max(value for value in (cutoff, pending_newest) if pd.notna(value)) if pd.notna(cutoff) or pd.notna(pending_newest) else None
+        complete = False
+        resume = int(previous.get('nextSearchStart', 1))
+        # While completing a bounded earlier batch, also inspect the head so new
+        # articles are not missed. Overlap one page after a restart for insertions.
+        starts = [1] if resume > 1 and max_pages > 1 else []
+        first_start = max(1, resume - page_size) if resume > 1 and max_pages >= 3 else resume
+        starts += list(range(first_start, first_start + (max_pages - len(starts)) * page_size, page_size))
+        starts = sorted(set(starts))
+        last_start = 1
         try:
-            with urllib.request.urlopen(request, timeout=15) as response:
-                result = json.load(response)
-            hints.extend(dict(row, entity=name, status='원문검증대기') for row in result.get('items', []))
+            for search_start in starts:
+                if search_start > 1000:
+                    break
+                last_start = search_start
+                query = urllib.parse.urlencode({'query': f'{name} 수주 성장 해외', 'sort': 'date',
+                                                'display': page_size, 'start': search_start})
+                request = urllib.request.Request('https://openapi.naver.com/v1/search/news.json?' + query,
+                                                headers={'X-Naver-Client-Id': key, 'X-Naver-Client-Secret': secret})
+                result = None
+                for attempt in range(3):
+                    try:
+                        with urllib.request.urlopen(request, timeout=15) as response:
+                            result = json.load(response)
+                        break
+                    except Exception:
+                        if attempt == 2:
+                            raise
+                        time.sleep(.3 * (attempt + 1))
+                rows = result.get('items', [])
+                if not isinstance(rows, list):
+                    raise ValueError('News items unavailable')
+                reached_prior = False
+                for row in rows:
+                    published = pd.to_datetime(row.get('pubDate'), errors='coerce', utc=True)
+                    if pd.notna(published):
+                        if pd.isna(newest) or published > newest:
+                            newest = published
+                        if pd.notna(cutoff) and published < cutoff:
+                            reached_prior = True
+                    add(dict(row, entity=name, status='원문검증대기'), name)
+                if len(rows) < page_size or reached_prior:
+                    complete = True
+                    break
+            if complete:
+                state[name] = {'checkedAt': checked, 'newestPublishedAt': newest.isoformat() if pd.notna(newest) else None,
+                               'historyGap': previous.get('historyGap')}
+            else:
+                # Never advance the watermark across an unexamined result range.
+                state[name] = dict(previous, nextSearchStart=last_start + page_size,
+                                   pendingNewestPublishedAt=newest.isoformat() if pd.notna(newest) else None)
+                if last_start + page_size > 1000:
+                    # The provider exposes only a bounded result range. Keep the
+                    # explicit history gap but move subsequent checks to new news.
+                    state[name] = dict(checkedAt=checked,
+                                       newestPublishedAt=newest.isoformat() if pd.notna(newest) else None,
+                                       historyGap='검색 API 과거 결과 범위 한도; 이보다 오래된 뉴스 미확인')
+                failures.append({'name': name, 'error': '검색 페이지 한도 도달; 이전 수집 지점 연결 미완료'})
         except Exception as exc:
             failures.append({'name': name, 'error': type(exc).__name__})
-    json_write(Path(config['cache_dir']) / 'growth/news_queue.json', hints)
-    return hints, {'status': '부분수집' if failures else '정상', 'source': 'NAVER 뉴스', 'hints': len(hints), 'failures': failures}
+    hints = sorted(queue.values(), key=lambda row: row['hintId'])
+    history_gaps = [{'name': name, 'reason': state.get(name, {}).get('historyGap')}
+                    for name in sorted(set(names)) if state.get(name, {}).get('historyGap')]
+    status = {'status': '부분수집' if failures or history_gaps else '정상' if attempted else '캐시유지',
+              'source': 'NAVER 뉴스', 'checkedAt': checked if attempted else previous_status.get('checkedAt'),
+              'cacheReadAt': checked, 'hints': len(hints), 'failures': failures,
+              'attemptedNames': attempted, 'cachedNames': skipped, 'requestedNames': len(set(names)),
+              'historyGaps': history_gaps,
+              'scope': '검색 결과 발견 큐; 원문 사실 검증 전에는 성장 근거로 가산하지 않음'}
+    json_write(queue_path, hints)
+    json_write(state_path, state)
+    json_write(status_path, status)
+    return hints, status
 
 
 def confidence(events):
-    positives = {e['eventId']: e for e in events if e['status'] == '유효' and e['polarity'] == 'positive'}
-    negatives = {e['eventId'] for e in events if e['polarity'] == 'negative'}
+    positives = {e.get('independentEventId', e['eventId']): e for e in events if e['status'] == '유효' and e['polarity'] == 'positive'}
+    negatives = {e.get('independentEventId', e['eventId']) for e in events if e['polarity'] == 'negative'}
     n = len(positives)
     sources = len({e.get('sourceType') for e in positives.values()})
     score = max(0, min(100, 100 * n / (n + 3) + max(0, sources - 1) * 3 - len(negatives) * 12))
@@ -494,7 +736,7 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
     stock_rows = [dict(r, rank=i+1) for i, r in enumerate(candidates[:10])]
     status = f"성장 섹터 {len(sector_rows)}개 · 개별 성장 {len(stock_rows)}개 · 전체 {len(latest):,}종목 평가 · 가격 {response.latest:%Y-%m-%d}"
     return {'status': status, 'sectors': sector_rows, 'rows': stock_rows,
-            'dataStatus': dict(source_status, candidateCount=len(candidates), requestedTickers=len(latest),
+            'dataStatus': dict(source_status, candidateCount=len(candidates), evaluatedTickers=len(latest),
                                oldEvidenceUsed=sum(r['oldEvidenceCount'] for r in candidates)),
             'methodVersion': 'growth-evidence-v1', 'updatedKST': now.strftime('%Y-%m-%d %H:%M'),
             'notice': '신뢰도는 독립 근거 충실도이며 성공확률이 아닙니다. 수주·외부 컨센서스·공식 수출통계 사용 범위는 아래에 표시합니다.',

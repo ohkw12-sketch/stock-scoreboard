@@ -1,4 +1,5 @@
 """Primary-source industry data and independently dated consensus evidence."""
+import hashlib
 import json
 import re
 import urllib.parse
@@ -9,7 +10,9 @@ from pathlib import Path
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from growth_discovery import KST, day, fingerprint, json_write, number
+from growth_discovery import KST, cached_source_status, day, fingerprint, json_write, number, read_json
+
+TRADE_PARSER_VERSION = 'motie-summary-v2'
 
 # Exact product links, not a catch-all theme mapping. These are exposure proxies,
 # not a claim that a particular company's export revenues have been measured.
@@ -79,21 +82,29 @@ def parse_trade_summary(markup, url, checked_at):
     return events
 
 
-def collect_trade_evidence(config, now=None):
+def collect_trade_evidence(config, now=None, *, reuse=False):
     now = now or datetime.now(KST)
     checked = now.isoformat(timespec='seconds')
     cache = Path(config['cache_dir']) / 'growth/trade_ledger.json'
     status_path = cache.with_name('trade_status.json')
-    previous = json.loads(cache.read_text('utf-8')) if cache.exists() else []
+    previous = read_json(cache, [])
+    prior_status = read_json(status_path, {'source': '산업통상부 월간 수출입 동향(KDI)', 'status': '미수집'})
+    if reuse:
+        return previous, cached_source_status(prior_status, now, cache.exists())
     if previous and status_path.exists():
-        prior_status = json.loads(status_path.read_text('utf-8'))
         prior_checked = pd.to_datetime(prior_status.get('checkedAt'),errors='coerce',utc=True)
         current = pd.Timestamp(now).tz_convert('UTC')
-        if pd.notna(prior_checked) and current-prior_checked <= pd.Timedelta(hours=float(config.get('trade_cache_hours',12))):
-            return previous, dict(prior_status, status='캐시유지')
+        if prior_status.get('status') == '정상' and pd.notna(prior_checked) and current-prior_checked <= pd.Timedelta(hours=float(config.get('trade_cache_hours',12))):
+            return previous, cached_source_status(prior_status, now, True, '월간 통계 확인 주기 내 재사용')
     status = {'status':'정상', 'source':'산업통상부 월간 수출입 동향(KDI)',
               'checkedAt':checked, 'failures':[], 'scope':'HTML 본문에 품목별 증가율이 명시된 통계만; 전 품목·전 지역 아님'}
     events = []
+    releases_path = cache.with_name('trade_release_cache.json')
+    releases = read_json(releases_path, {})
+    expected_period = (pd.Period(now.strftime('%Y-%m'), freq='M') - 1).strftime('%Y-%m')
+    latest_list_period = None
+    downloaded = 0
+    cache_hits = 0
     successful_urls = set()
     try:
         query = urllib.parse.urlencode({'search_txt':'수출입 동향', 'pp':100})
@@ -106,14 +117,41 @@ def collect_trade_evidence(config, now=None):
                 query_fields = urllib.parse.parse_qs(urllib.parse.urlsplit(link['href']).query)
                 identifier = query_fields.get('num', [''])[0]
                 if identifier.isdigit():
-                    links['https://eiec.kdi.re.kr/policy/materialView.do?num=' + identifier] = label
+                    matched_period = re.match(r'(20\d{2})년\s*(\d{1,2})월', label)
+                    period = f'{int(matched_period[1]):04}-{int(matched_period[2]):02}'
+                    links['https://eiec.kdi.re.kr/policy/materialView.do?num=' + identifier] = period
         if not links:
             raise ValueError('Monthly trade index empty')
-        for url in list(links)[:14]:
+        latest_list_period = max(links.values())
+        for url, period in sorted(links.items(), key=lambda pair: (pair[1], pair[0]), reverse=True)[:14]:
             try:
-                parsed = parse_trade_summary(fetch_html(url), url, checked)
+                saved = releases.get(url, {})
+                raw_path = cache.parent / 'trade_documents' / (fingerprint(url) + '.html')
+                # Completed historical releases are immutable cached inputs until
+                # a parser upgrade or an explicit correction recheck is requested.
+                recheck = period == latest_list_period or config.get('trade_recheck_history', False)
+                if saved.get('parserVersion') == TRADE_PARSER_VERSION and raw_path.exists() and not recheck:
+                    parsed = saved.get('events', [])
+                    cache_hits += 1
+                else:
+                    if raw_path.exists() and not recheck:
+                        markup = raw_path.read_text('utf-8')
+                    else:
+                        markup = fetch_html(url)
+                        downloaded += 1
+                        raw_path.parent.mkdir(parents=True, exist_ok=True)
+                        raw_path.write_text(markup, encoding='utf-8')
+                    raw_hash = hashlib.sha256(markup.encode('utf-8')).hexdigest()
+                    if saved.get('rawHash') == raw_hash and saved.get('parserVersion') == TRADE_PARSER_VERSION:
+                        parsed = [dict(e, lastVerified=checked) for e in saved.get('events', [])]
+                        cache_hits += 1
+                    else:
+                        parsed = parse_trade_summary(markup, url, checked)
+                    releases[url] = dict(parserVersion=TRADE_PARSER_VERSION, rawHash=raw_hash,
+                                         checkedAt=checked, period=period, events=parsed)
                 events.extend(parsed)
-                successful_urls.add(url)
+                if period == latest_list_period:
+                    successful_urls.add(url)
             except Exception as exc:
                 status['failures'].append({'url':url, 'error':type(exc).__name__})
     except Exception as exc:
@@ -124,16 +162,23 @@ def collect_trade_evidence(config, now=None):
     # observations are retained for audit, not stacked as independent evidence.
     for sector in {e['sector'] for e in combined}:
         members = [e for e in combined if e['sector']==sector]
-        newest = max(e['period'] for e in members)
+        newest = max(max(e['period'] for e in members), latest_list_period or '', expected_period)
         for e in members:
             if e['period'] != newest:
                 e['status'] = '후속통계로대체'
-            elif e.get('url') not in successful_urls:
+            elif e.get('url') not in successful_urls or e.get('publishedAt', '') > str(now.date()):
                 e['status'] = '상태확인필요'
+            else:
+                e['status'] = '유효'
     active_count = sum(e['status']=='유효' for e in combined)
-    status.update(status='정상' if active_count else '수집실패',
+    latest_products = {e['product'] for e in combined if e['status']=='유효'}
+    missing_products = sorted(set(PRODUCT_LINKS) - latest_products)
+    status.update(status='정상' if active_count and not missing_products else '부분수집' if active_count else '수집실패',
                   historyGaps=status.pop('failures'), activeCount=active_count,
-                  latestPeriod=max((e['period'] for e in events), default=None))
+                  latestPeriod=max((e['period'] for e in combined if e['status']=='유효'), default=None),
+                  expectedPeriod=expected_period, latestReleasePeriod=latest_list_period,
+                  missingProducts=missing_products, documentsDownloaded=downloaded, parsedCacheHits=cache_hits)
+    json_write(releases_path, releases)
     json_write(cache, combined)
     json_write(status_path, status)
     return combined, status
@@ -156,14 +201,24 @@ def consensus_evidence(fundamentals, status, now=None):
     A ticker/estimate-period snapshot counts once regardless of estimate fields.
     """
     now = now or datetime.now(KST)
-    checked = now.isoformat(timespec='seconds')
     events = []
     for row in fundamentals.to_dict('records'):
-        published = day(row.get('consensus_as_of'))
+        raw_value = row.get('consensus_as_of')
+        raw_date = str(raw_value) if pd.notna(raw_value) else ''
+        precision = row.get('consensus_as_of_precision', row.get('as_of_precision'))
+        # Month-only provider dates are useful financial metadata, but they do
+        # not identify the first public day required by the price-response test.
+        if precision in {'month', 'unknown'} or not re.fullmatch(r'20\d{2}[-./]?\d{2}[-./]?\d{2}', raw_date):
+            continue
+        published = day(raw_date)
         sales = number(row.get('consensus_sales_1y_growth'))
         op = number(row.get('consensus_op_1y_growth'))
         period = str(row.get('estimate_period',''))
-        future = day(period.replace('E','') + '.31')
+        period_match = re.fullmatch(r'(20\d{2})[.-](\d{2})E?', period)
+        try:
+            future = pd.Period('-'.join(period_match.groups()), freq='M').end_time.date().isoformat() if period_match else None
+        except ValueError:
+            future = None
         # Presence of raw amounts and provider date guards against synthetic fields.
         prior_sales, forward_sales = number(row.get('consensus_prior_sales')), number(row.get('consensus_forward_sales'))
         forward_op = number(row.get('consensus_forward_op'))
@@ -174,13 +229,17 @@ def consensus_evidence(fundamentals, status, now=None):
         polarity = 'positive' if sales>=10 and forward_op>0 and op is not None and op>=10 else 'negative' if sales<0 else 'neutral'
         if polarity=='neutral':
             continue
+        verified_raw = status.get('verifiedAtByTicker', {}).get(row['ticker'])
+        verified = pd.to_datetime(verified_raw, errors='coerce', utc=True)
+        verification_valid = pd.notna(verified) and verified <= pd.Timestamp(now).tz_convert('UTC')
+        verified_at = verified_raw if verification_valid else None
         events.append(dict(ticker=row['ticker'], eventId=fingerprint(row['ticker'],'KIS',period),
                            receipt=f"KIS-{row['ticker']}-{period}", kind='컨센서스',
                            source='KIS 종목추정실적',sourceType='컨센서스',
                            url='https://apiportal.koreainvestment.com/apiservice',
-                           firstPublished=published,publishedAt=published,lastVerified=checked,fetchedAt=checked,
-                           activeUntil=future,status='유효' if row['ticker'] in status.get('freshTickers',[]) else '상태확인필요',polarity=polarity,
+                           firstPublished=published,publishedAt=published,lastVerified=verified_at,fetchedAt=verified_at,
+                           activeUntil=future,status='유효' if verification_valid and row['ticker'] in status.get('freshTickers',[]) else '상태확인필요',polarity=polarity,
                            factType='외부기관전망',materiality=min(100,max(0,sales)*2),
                            salesGrowth=sales,opGrowth=op,estimatePeriod=period,
-                           dateCaveat='공급자 추정 기준일; 수집일을 최초공개일로 바꾸지 않음'))
+                           datePrecision='day', dateCaveat='공급자 일 단위 추정 기준일; 공급자 날짜·실제 수집확인 시각을 보존'))
     return events

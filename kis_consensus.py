@@ -43,13 +43,22 @@ def _one_decimal(value) -> float:
     return number / 10.0 if not np.isnan(number) else np.nan
 
 
-def _date_text(value) -> str:
+def _date_text(value) -> str | None:
     digits = "".join(ch for ch in str(value or "") if ch.isdigit())
     if len(digits) >= 8:
-        return f"{digits[:4]}-{digits[4:6]}-{digits[6:8]}"
+        text = f"{digits[:4]}-{digits[4:6]}-{digits[6:8]}"
+        try:
+            return datetime.strptime(text, "%Y-%m-%d").date().isoformat()
+        except ValueError:
+            return None
     if len(digits) >= 6:
-        return f"{digits[:4]}-{digits[4:6]}-01"
-    return datetime.now(KST).strftime("%Y-%m-%d")
+        text = f"{digits[:4]}-{digits[4:6]}"
+        try:
+            datetime.strptime(text, "%Y-%m")
+            return text
+        except ValueError:
+            return None
+    return None
 
 
 def _period_year(period: str) -> int | None:
@@ -138,11 +147,14 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
     forward_pe = _one_decimal(indicators[3].get(key))
     if np.isnan(forward_op):
         return None
+    provider_date = _date_text(summary.get("estdate"))
     return {
         "ticker": str(ticker).zfill(6),
         "name": summary.get("item_kor_nm") or str(ticker).zfill(6),
         "sector": sector or "미분류",
-        "as_of": _date_text(summary.get("estdate")),
+        "as_of": provider_date,
+        "as_of_precision": "day" if provider_date and len(provider_date) == 10 else "month" if provider_date else "unknown",
+        "provider_date_raw": summary.get("estdate"),
         "estimate_period": periods[target],
         "prior_period": periods[target - 1] if target > 0 else None,
         "next_estimate_period": periods[target + 1] if target + 1 < len(periods) else None,
@@ -166,16 +178,19 @@ def parse_estimate_payload(payload: dict, ticker: str, sector: str = "미분류"
         "forward_eps": eps,
         "analyst_count": 0,
         "source": "KIS Developers 종목추정실적",
-        "status": "정상",
+        "status": "정상" if provider_date else "공급자 기준일 미확인",
     }
 
 
 class KisConsensusClient:
+    _shared_clients = {}
+
     def __init__(self, app_key: str, app_secret: str, timeout: int = 15):
         self.app_key = app_key
         self.app_secret = app_secret
         self.timeout = timeout
         self.access_token: str | None = None
+        self.token_expires_at = 0.0
 
     @classmethod
     def from_environment(cls) -> "KisConsensusClient | None":
@@ -191,9 +206,16 @@ class KisConsensusClient:
                         secret = str(winreg.QueryValueEx(handle, "KIS_APP_SECRET")[0]).strip()
             except OSError:
                 pass
-        return cls(key, secret) if key and secret else None
+        if not key or not secret:
+            return None
+        identity = (key, secret)
+        if identity not in cls._shared_clients:
+            cls._shared_clients[identity] = cls(key, secret)
+        return cls._shared_clients[identity]
 
     def authenticate(self) -> None:
+        if self.access_token and time.monotonic() < self.token_expires_at - 60:
+            return
         body = json.dumps({
             "grant_type": "client_credentials",
             "appkey": self.app_key,
@@ -203,6 +225,7 @@ class KisConsensusClient:
         with urllib.request.urlopen(request, timeout=self.timeout) as response:
             payload = json.load(response)
         self.access_token = payload["access_token"]
+        self.token_expires_at = time.monotonic() + max(0, int(payload.get("expires_in") or 0))
 
     def fetch_estimate(self, ticker: str) -> dict:
         if not self.access_token:
@@ -259,16 +282,32 @@ class KisConsensusClient:
             return json.load(response)
 
 
-def _revision(current: float, history: pd.DataFrame, days: int) -> float:
+def _revision(current: float, history: pd.DataFrame, days: int,
+              estimate_period: str | None = None, trading_dates=None) -> float:
     if np.isnan(current) or history.empty:
         return np.nan
-    cutoff = pd.Timestamp.now(tz=KST).tz_localize(None).normalize() - pd.offsets.BDay(days)
+    if estimate_period is not None:
+        if "estimate_period" not in history:
+            return np.nan
+        canonical = lambda value: "".join(ch for ch in str(value) if ch.isdigit())
+        history = history[history["estimate_period"].map(canonical).eq(canonical(estimate_period))].copy()
+        if history.empty:
+            return np.nan
+    if trading_dates is not None:
+        sessions = sorted(set(pd.to_datetime(trading_dates).date))
+        if len(sessions) <= days:
+            return np.nan
+        cutoff = pd.Timestamp(sessions[-days - 1]) + pd.Timedelta(1, unit="d") - pd.Timedelta(1, unit="us")
+    else:
+        cutoff = pd.Timestamp.now(tz=KST).tz_localize(None).normalize() - pd.offsets.BDay(days)
     # CSV history can contain +09:00 timestamps while older test/cache rows are
     # timezone-naive.  Compare one normalized representation so a valid KIS
     # response is not discarded with "Cannot compare tz-naive and tz-aware".
     fetched_at = pd.to_datetime(history["fetched_at"], errors="coerce", utc=True)
     fetched_at = fetched_at.dt.tz_convert(KST).dt.tz_localize(None)
-    old = history[fetched_at <= cutoff]
+    old = history[fetched_at <= cutoff].copy()
+    old["_time"] = fetched_at[fetched_at <= cutoff]
+    old = old.sort_values("_time")
     if old.empty:
         return np.nan
     previous = pd.to_numeric(old.iloc[-1]["forward_eps"], errors="coerce")
@@ -285,13 +324,6 @@ def collect_kis_consensus(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFr
     history_path = cache_dir / "kis_consensus_history.csv"
     failures_path = Path(config["output_dir"]) / "consensus_failures.test.json"
     failures_path.parent.mkdir(parents=True, exist_ok=True)
-    client = KisConsensusClient.from_environment()
-    if client is None:
-        return pd.DataFrame(), {
-            "status": "설정필요", "source": "KIS Developers", "asOfDate": None,
-            "problem": "KIS_APP_KEY와 KIS_APP_SECRET 환경변수가 없음",
-        }
-
     cached = pd.read_csv(cache_path, dtype={"ticker": str}) if cache_path.exists() else pd.DataFrame()
     cached = _add_exact_year_fields(cached)
     history = pd.read_csv(history_path, dtype={"ticker": str}, parse_dates=["fetched_at"]) if history_path.exists() else pd.DataFrame()
@@ -300,7 +332,13 @@ def collect_kis_consensus(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFr
     latest = latest.sort_values("value", ascending=False)
     batch_size = int(config.get("kis_consensus_batch_size", 250))
     state_path = cache_dir / "kis_consensus_state.json"
-    state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {"cursor": 0}
+    try:
+        state = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {"cursor": 0}
+    except (OSError, ValueError):
+        state = {"cursor": 0}
+    checks = state.get("byTicker", {})
+    now = pd.Timestamp.now(tz="UTC")
+    now_text = now.tz_convert(KST).isoformat(timespec="seconds")
     tickers = latest["ticker"].tolist()
     cursor = int(state.get("cursor", 0)) % max(len(tickers), 1)
     discovery = tickers[cursor:cursor + batch_size]
@@ -308,67 +346,113 @@ def collect_kis_consensus(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFr
         discovery += tickers[:batch_size - len(discovery)]
     priority = latest.head(int(config.get("kis_consensus_priority_count", 120)))["ticker"].tolist()
     cached_tickers = cached["ticker"].astype(str).str.zfill(6).tolist() if not cached.empty else []
-    targets = list(dict.fromkeys(priority + cached_tickers + discovery))
+    force = config.get("force_refresh") or config.get("force_full_refresh")
+    due = tickers if force else list(dict.fromkeys(priority + cached_tickers + discovery))
+    targets = [ticker for ticker in due if ticker in tickers and (
+        force or pd.isna(pd.to_datetime(checks.get(ticker, {}).get("nextCheckAt"), errors="coerce", utc=True))
+        or pd.to_datetime(checks[ticker]["nextCheckAt"], utc=True) <= now
+    )][:(len(tickers) if force else max(1, int(config.get("kis_consensus_max_requests", 600))))]
     sector_map = latest.set_index("ticker")["sector"].to_dict()
+    name_map = latest.set_index("ticker")["name"].to_dict()
+    sessions = pd.to_datetime(prices["date"]).dropna().unique()
+    client = KisConsensusClient.from_environment() if targets else None
 
     try:
-        client.authenticate()
+        if targets:
+            if client is None:
+                raise RuntimeError("KIS credentials unavailable")
+            client.authenticate()
     except Exception as exc:
         if cached.empty:
             return pd.DataFrame(), {
                 "status": "수집실패", "source": "KIS Developers", "asOfDate": None,
                 "problem": f"KIS 인증 실패: {type(exc).__name__}",
             }
-        as_of = pd.to_datetime(cached["as_of"], errors="coerce").max()
+        provider_dates = [_date_text(value) for value in cached["as_of"]]
         return cached, {
             "status": "캐시유지", "source": "KIS Developers 종목추정실적(이전 검증값)",
-            "asOfDate": as_of.strftime("%Y-%m-%d") if pd.notna(as_of) else None,
+            "asOfDate": max((value for value in provider_dates if value), default=None),
             "attempted": 0, "collected": 0,
             "cachedCoverage": int(cached["ticker"].nunique()), "failed": len(targets),
             "problem": f"KIS 인증 실패로 이전 검증값 유지: {type(exc).__name__}",
         }
 
-    rows, failures = [], []
+    rows, failures, unavailable = [], [], []
     for ticker in targets:
         try:
-            payload = client.fetch_estimate(ticker)
+            retry_count = max(1, int(config.get("kis_consensus_request_retries", 2)))
+            for attempt in range(retry_count):
+                try:
+                    payload = client.fetch_estimate(ticker)
+                    if str(payload.get("rt_cd")) != "0":
+                        raise RuntimeError("KIS response failure")
+                    break
+                except Exception:
+                    if attempt + 1 == retry_count:
+                        raise
+                    time.sleep(float(config.get("kis_consensus_pause_seconds", .12)) * (attempt + 1))
             row = parse_estimate_payload(payload, ticker, sector_map.get(ticker, "미분류"))
             if row:
                 prior = history[history["ticker"].astype(str).str.zfill(6).eq(ticker)] if not history.empty else pd.DataFrame()
                 eps = float(row.get("forward_eps", np.nan))
-                row["consensus_change_1d"] = _revision(eps, prior, 1)
-                row["consensus_change_5d"] = _revision(eps, prior, 5)
-                row["consensus_change_20d"] = _revision(eps, prior, 20)
+                for days in (1, 5, 20):
+                    row[f"consensus_change_{days}d"] = _revision(eps, prior, days, row["estimate_period"], sessions)
+                row["last_verified_at"] = now_text
+                row["fetched_at"] = now_text
                 rows.append(row)
+                checks[ticker] = {"status": "제공", "lastAttemptAt": now_text,
+                                  "lastVerifiedAt": now_text, "nextCheckAt": (now + pd.Timedelta(
+                                      float(config.get("kis_consensus_refresh_hours", 24)), unit="h")).isoformat()}
             else:
-                failures.append({"ticker": ticker, "name": latest.set_index("ticker").at[ticker, "name"], "reason": "KIS 추정실적 미제공"})
+                unavailable.append({"ticker": ticker, "name": name_map[ticker], "reason": "KIS 추정실적 미제공"})
+                checks[ticker] = dict(checks.get(ticker, {}), status="미제공", lastAttemptAt=now_text,
+                                     nextCheckAt=(now + pd.Timedelta(float(
+                                         config.get("kis_consensus_no_data_retry_days", 7)), unit="d")).isoformat())
         except Exception as exc:
-            failures.append({"ticker": ticker, "name": latest.set_index("ticker").at[ticker, "name"], "reason": f"호출실패: {type(exc).__name__}"})
+            failures.append({"ticker": ticker, "name": name_map[ticker], "reason": f"호출실패: {type(exc).__name__}"})
+            checks[ticker] = dict(checks.get(ticker, {}), status="수집실패", lastAttemptAt=now_text,
+                                 nextCheckAt=(now + pd.Timedelta(float(
+                                     config.get("kis_consensus_failure_retry_minutes", 15)), unit="m")).isoformat())
         time.sleep(float(config.get("kis_consensus_pause_seconds", 0.12)))
 
     fresh = _add_exact_year_fields(pd.DataFrame(rows))
-    now_text = datetime.now(KST).isoformat(timespec="seconds")
     if not fresh.empty:
-        snapshots = fresh[["ticker", "forward_eps"]].copy()
+        snapshots = fresh[["ticker", "forward_eps", "estimate_period", "as_of", "as_of_precision"]].copy()
         snapshots["fetched_at"] = now_text
+        snapshots["observation_date"] = now.tz_convert(KST).date().isoformat()
         history = pd.concat([history, snapshots], ignore_index=True) if not history.empty else snapshots
+        identified = history["estimate_period"].notna() & history["observation_date"].notna()
+        # Legacy observations lack forecast-year identity: retain them for audit,
+        # but _revision never combines them with a newly identified forecast.
+        history = pd.concat([history[~identified], history[identified].drop_duplicates(
+            ["ticker", "estimate_period", "observation_date"], keep="last")], ignore_index=True)
         history.to_csv(history_path, index=False, encoding="utf-8-sig")
         combined = pd.concat([cached, fresh], ignore_index=True) if not cached.empty else fresh
         combined = combined.drop_duplicates("ticker", keep="last")
         combined.to_csv(cache_path, index=False, encoding="utf-8-sig")
     else:
         combined = cached
-    state_path.write_text(json.dumps({"cursor": (cursor + batch_size) % max(len(tickers), 1)}, ensure_ascii=False, indent=2), encoding="utf-8")
-    failures_path.write_text(json.dumps({"attemptedAt": now_text, "stocks": failures}, ensure_ascii=False, indent=2), encoding="utf-8")
+    state_path.write_text(json.dumps({"cursor": (cursor + batch_size) % max(len(tickers), 1),
+                                     "byTicker": checks}, ensure_ascii=False, indent=2), encoding="utf-8")
+    failures_path.write_text(json.dumps({"attemptedAt": now_text, "stocks": failures,
+                                        "unavailable": unavailable}, ensure_ascii=False, indent=2), encoding="utf-8")
     if combined.empty:
         return pd.DataFrame(), {"status": "수집실패", "source": "KIS Developers", "asOfDate": None,
                                 "problem": f"{len(targets)}종목 시도했으나 추정실적 확보 0종목"}
-    as_of = pd.to_datetime(combined["as_of"], errors="coerce").max()
+    combined = combined[combined["ticker"].astype(str).str.zfill(6).isin(tickers)].copy()
+    provider_dates = [_date_text(value) for value in combined["as_of"]]
+    verified = [ticker for ticker in combined["ticker"] if checks.get(ticker, {}).get("status") == "제공"
+                and pd.to_datetime(checks[ticker].get("nextCheckAt"), errors="coerce", utc=True) > now]
     return combined, {
-        "status": "정상" if not failures else "부분수집",
-        "source": "KIS Developers 종목추정실적(월초 기준)",
-        "asOfDate": as_of.strftime("%Y-%m-%d") if pd.notna(as_of) else None,
+        "status": "정상" if not failures and len(verified) == len(combined) else "부분수집",
+        "source": "KIS Developers 종목추정실적(공급자 기준일)",
+        "asOfDate": max((value for value in provider_dates if value), default=None),
         "attempted": len(targets), "collected": len(fresh), "cachedCoverage": int(combined["ticker"].nunique()),
-        "freshTickers": fresh["ticker"].tolist() if not fresh.empty else [],
-        "failed": len(failures), "problem": None if not failures else "일부 종목은 KIS 추정실적 비대상 또는 호출 실패",
+        "freshTickers": verified,
+        "newlyFetchedTickers": fresh["ticker"].tolist() if not fresh.empty else [],
+        "verifiedAtByTicker": {ticker: checks[ticker].get("lastVerifiedAt") for ticker in verified},
+        "unknownProviderDateCount": sum(value is None for value in provider_dates),
+        "monthPrecisionCount": sum(value is not None and len(value) == 7 for value in provider_dates),
+        "unavailable": len(unavailable), "deferred": len(due) - len(targets),
+        "failed": len(failures), "problem": None if not failures else "일부 종목 호출 실패; 이전 검증값·원래 날짜 유지",
     }
