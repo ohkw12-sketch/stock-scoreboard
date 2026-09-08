@@ -114,10 +114,8 @@ def refresh_youtube_prices(source, prices):
             row[6] = f'{float(stock["close"]):,.0f}원 · {price_date} 종가 / 발언 내용은 원래 날짜 기준'
             count += 1
     result['meta']['priceBasis'] = f'일치 종목 {count}개 가격 {price_date} 갱신 · 영상 발언은 기존 공개일 기준'
-    result['meta']['status'] = '가격 갱신 · 신규 영상 내용 검증 미완료(기존 발언 보존)'
     result['meta']['priceUpdatedKST'] = datetime.now(KST).strftime('%Y-%m-%d %H:%M')
-    result['refreshStatus'] = {'status': '부분갱신', 'priceCount': count,
-                               'problem': '영상 원문·자막 미확보; 최신 발언으로 재표시하지 않음'}
+    result.setdefault('refreshStatus', {})['prices'] = {'status': '가격갱신', 'priceCount': count}
     return result
 
 
@@ -249,14 +247,7 @@ def rebuild(args, config):
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
     if youtube_path.exists():
         youtube = refresh_youtube_prices(json.loads(youtube_path.read_text('utf-8-sig')), prices)
-        try:
-            content, content_status = collect_youtube_content(config, reuse=args.reuse_evidence)
-            youtube['contentStatus'] = content_status
-            youtube['verifiedContent'] = [{k: row.get(k) for k in ('videoId', 'url', 'title', 'channel', 'publishedAt', 'status')}
-                                           for row in content]
-            youtube['refreshStatus']['content'] = content_status
-        except Exception as exc:
-            youtube['contentStatus'] = {'status': '실패·기존 발언 유지', 'problem': type(exc).__name__ + ': 원문 검증 실패'}
+        # Morning captions, summaries and their verification dates remain intact.
         json_write(out/'youtube-market.test.json', public_fields(youtube))
     report['growth'] = collection
     report['holdings'] = board['p3'].get('refreshStatus', {})

@@ -57,9 +57,21 @@ def main() -> None:
     parser.add_argument("--candidate", type=Path, default=ROOT / "test_output" / "data.test.json")
     parser.add_argument("--html", type=Path, default=ROOT / "index.html")
     parser.add_argument("--youtube", action="store_true")
+    parser.add_argument('--youtube-only', action='store_true')
     parser.add_argument("--research", action="store_true", help="별도 종합추천·성과검증 후보도 함께 반영")
     parser.add_argument("--allow-partial", action="store_true", help="실패한 평가창은 이전 게시값 유지")
     args = parser.parse_args()
+    if args.youtube_only:
+        if args.sections or args.research or args.research_only or args.youtube:
+            raise RuntimeError('유튜브 전용 반영에 다른 구역 변경을 섞을 수 없습니다.')
+        from youtube_refresh import validate_board
+        board = read_json(args.candidate.parent / 'youtube-market.test.json')
+        validate_board(board)
+        assert_contract(args.html, args.live)
+        json.dumps(board, allow_nan=False)
+        json_write(args.live.parent / 'youtube-market.json', board)
+        print('유튜브 시황만 반영')
+        return
     if args.research_only:
         if args.sections or args.youtube:
             raise RuntimeError('연구 전용 반영에 원본 구역 변경을 섞을 수 없습니다.')

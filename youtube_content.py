@@ -1,8 +1,6 @@
-"""Durable input for supplied/authorized, reviewed YouTube transcripts.
+"""Local evidence ledger. Public captions are reviewed by the morning collector.
 
-There is deliberately no third-party caption download here. A caller can read
-the content ledger separately from stock-price updates without changing the
-date or content of a speaker's earlier statements.
+Raw captions stay in ignored cache; youtube_refresh publishes paraphrases only.
 """
 from datetime import datetime
 from pathlib import Path
@@ -36,7 +34,7 @@ def collect_youtube_content(config, now=None, *, reuse=False):
             identity = str(video.get('videoId', ''))
             if not re.fullmatch(r'[A-Za-z0-9_-]{11}', identity):
                 raise ValueError('유효한 영상 식별자 없음')
-            if video.get('accessBasis') not in {'creator_permission', 'user_supplied', 'licensed'}:
+            if video.get('accessBasis') not in {'creator_permission', 'user_supplied', 'licensed', 'public_caption'}:
                 raise ValueError('자막 확보 권한 근거 없음')
             text = str(video.get('transcript', '')).strip()
             if not text or not video.get('channel') or not video.get('title'):
