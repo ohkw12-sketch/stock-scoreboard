@@ -1,6 +1,6 @@
 # 유튜브시황1 · 삼프로 당일 시황
 
-공식 원문을 읽고 짧게 재서술한다. 매일 KST 오전 10:30 예약은 사용자 명시 승인 대기 상태이며 아직 생성되지 않았다.
+매일 KST 오후 3시 45분 전체 평가창 갱신 작업에서 공식 원문을 읽고 짧게 재서술한다. 별도 오전 예약 없이 기존 유튜브 시황과 함께 갱신·배포한다.
 대상은 https://apps.3protv.com/news/list/1 의 당일 뉴스3+ 뉴스레터와 주요 방송 요약이다.
 기사의 정확한 게시일과 본문을 실제로 읽는다. 검색 제목만으로 작성하지 않는다.
 이날 모든 방송을 확인했다고 주장하지 않는다. 출연자별 견해가 다르면 함께 표시한다.
@@ -25,7 +25,7 @@ node --check sampro.js
 node --test tests/test_ui_runtime.cjs
 ```
 
-검증 성공 후 sampro-market.json만 커밋·기존 main에 푸시한다.
+검증 성공 후 sampro-market.json을 전체 갱신의 검증된 결과와 함께 커밋·기존 main에 푸시한다.
 사용자는 실제 스코어보드 반영·배포를 승인했다. 대상은 ohkw12-sketch/stock-scoreboard와
 https://stock-scoreboard.pages.dev/ 뿐이다. 다른 평가 결과와 기존 유튜브 시황을 변경하지 않는다.
 실제 공개 sampro-market.json과 확정본이 일치하는지 확인한다.

@@ -132,12 +132,12 @@ def main():
     parser.add_argument('--input', type=Path, default=ROOT/'cache/youtube/verified_transcripts_input.json')
     parser.add_argument('--live', type=Path, default=ROOT/'youtube-market.json')
     parser.add_argument('--output', type=Path, default=ROOT/'test_output/youtube-market.test.json')
-    parser.add_argument('--force', action='store_true', help='수동 복구 시 오전·동일일 제한 해제')
+    parser.add_argument('--force', action='store_true', help='수동 복구 시 갱신 시각·동일일 제한 해제')
     args = parser.parse_args()
     now = datetime.now(KST)
     prior = read_json(args.live, {})
-    if not args.force and (now.hour != 8 or prior.get('contentStatus', {}).get('checkedAt', '').startswith(str(now.date()))):
-        print('오전 갱신 시간 외 또는 오늘 처리 완료 · 게시 파일 유지')
+    if not args.force and ((now.hour, now.minute) < (15, 45) or prior.get('contentStatus', {}).get('checkedAt', '').startswith(str(now.date()))):
+        print('오후 3시 45분 이전 또는 오늘 처리 완료 · 게시 파일 유지')
         return
     payload = read_json(args.input, {})
     ledger, status = collect_youtube_content({'cache_dir': ROOT/'cache', 'youtube_verified_transcripts_file': args.input}, now)

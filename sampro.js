@@ -7,7 +7,7 @@
   fetch('sampro-market.json', {cache:'no-store'}).then(r => {if(!r.ok) throw new Error('load');return r.json();}).then(data => {
     const editions = [...data.editions].sort((a,b)=>b.date.localeCompare(a.date));
     const today = new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Seoul'}).format(new Date());
-    status.textContent = `삼프로TV · 자료 기준 ${editions[0].date} · ${data.status} · 당일 주요 이슈와 관점` + (editions[0].date < today ? ' · 오늘 새 원문 미반영, 이전 기준일 자료입니다.' : '');
+    status.textContent = `삼프로TV · 자료 기준 ${editions[0].date} · ${data.status} · 매일 오후 3시 45분 전체 평가창과 함께 갱신` + (editions[0].date < today ? ' · 오늘 새 원문 미반영, 이전 기준일 자료입니다.' : '');
     body.innerHTML = `<div class="sp-wrap"><div class="sp-toolbar"><label>날짜별 시황 <select id="samprodate">${editions.map(d=>`<option value="${e(d.date)}">${e(d.date)}</option>`).join('')}</select></label><a href="https://apps.3protv.com/news/list/1" target="_blank" rel="noopener noreferrer">삼프로 공식 뉴스룸 ↗</a></div><p class="sp-note">공식 뉴스레터·방송 요약에서 확인한 내용을 짧게 정리합니다. ‘앞으로 확인할 점’과 종합 정리는 편집 해석이며, 출연자 의견은 이름을 표시합니다.</p><div id="samproedition"></div></div>`;
     const draw = () => {
       const d=editions.find(x=>x.date===document.getElementById('samprodate').value);
