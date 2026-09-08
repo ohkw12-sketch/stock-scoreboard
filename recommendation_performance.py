@@ -67,7 +67,7 @@ def record_publication(ledger, board, combined, universe, *, observed_at, engine
                 continue
             seen.add(identity)
             records.append({'ticker': row['ticker'], 'name': row['name'], 'group': group,
-                            'rank': row.get('rank'), 'sector': row.get('sector'),
+                            'rank': row.get('rank', row.get('typeRank')), 'sector': row.get('sector'),
                             'signal': row.get('entryState') or row.get('signal'),
                             'sourceRow': row})
         # Retries of the same generation cannot change the first observed time or duplicate records.
@@ -143,7 +143,7 @@ class PriceBook:
         return result
 
 
-def evaluate(ledger, prices, *, generated_at=None, cost_bps=0, trading_sessions=None):
+def evaluate_legacy(ledger, prices, *, generated_at=None, cost_bps=0, trading_sessions=None):
     if cost_bps < 0:
         raise ValueError('비용은 음수일 수 없습니다.')
     generated_at = generated_at or datetime.now(KST).isoformat(timespec='seconds')
@@ -269,6 +269,11 @@ def evaluate(ledger, prices, *, generated_at=None, cost_bps=0, trading_sessions=
             'benchmarkRule': '추천 당시 전체시장 동일비중; 구성종목 가격 누락 시 초과수익 미표시',
             'notice': '모든 공개회차를 보존하되 같은 평가창·버전·추천일은 최종 공개 확인본만 집계합니다. 미도래·누락은 성공률 분모에서 제외하고 별도 표시합니다. 같은 종목의 반복 추천은 독립 표본이 아닙니다. 비용은 왕복 합산이며 기본 0bp입니다.',
             'horizons': list(HORIZONS), 'summaries': summaries, 'rows': rows}
+
+
+def evaluate(ledger, prices, **kwargs):
+    from performance_feedback import evaluate_first_recommendations
+    return evaluate_first_recommendations(ledger, prices, **kwargs)
 
 
 def main():

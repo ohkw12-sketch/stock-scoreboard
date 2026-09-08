@@ -77,6 +77,16 @@ class PerformancePriceTest(unittest.TestCase):
         self.assertFalse((self.config['cache_dir']/'performance_prices.pkl.gz').exists())
         pd.testing.assert_frame_equal(result, self.base)
 
+    def test_many_same_date_rows_always_prefer_verified_supplement(self):
+        base=pd.concat([self.base.assign(ticker=str(i).zfill(6)) for i in range(100)],ignore_index=True).drop_duplicates(['ticker','date'])
+        fresh=base.copy()
+        fresh['adjusted_basis']='provider_adjusted_close'
+        fresh['adjusted_close']=55.
+        fresh.to_pickle(self.config['cache_dir']/'performance_prices.pkl.gz')
+        ledger={'cohorts':[{'records':[{'ticker':t} for t in fresh.ticker]}]}
+        result,_=collect_performance_prices(ledger,base,self.config,reuse=True)
+        self.assertTrue(result.adjusted_basis.eq('provider_adjusted_close').all())
+
 
 if __name__ == '__main__':
     unittest.main()

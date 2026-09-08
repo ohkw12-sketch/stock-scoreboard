@@ -11,7 +11,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from combined_recommendations import build_combined
-from recommendation_performance import PriceBook, empty_ledger, evaluate, record_publication
+from recommendation_performance import PriceBook, empty_ledger, evaluate_legacy as evaluate, record_publication
 from refresh_store import (json_write, read_json, run_lock, snapshot_files,
                            load_verified_frames, store_verified_frames)
 

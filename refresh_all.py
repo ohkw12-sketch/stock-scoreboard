@@ -13,7 +13,6 @@ from growth_documents import collect_verified_documents
 from youtube_content import collect_youtube_content
 from refresh_store import (json_write, read_json, run_lock, snapshot_files, public_fields, digest,
                            store_verified_frames, load_verified_frames)
-from combined_recommendations import build_combined
 from recommendation_performance import empty_ledger, evaluate
 from performance_prices import collect_performance_prices
 from board_contract import load_contract
@@ -184,7 +183,7 @@ def rebuild(args, config):
         manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
         'rotation_screener.py', 'growth_discovery.py', 'dart_fundamentals.py', 'kis_consensus.py',
-        'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py')})[:16]
+        'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py', 'performance_feedback.py')})[:16]
     context = {'generatedAt': generated, 'snapshotId': manifest['snapshotId'],
                'sourceCutoff': report['latestPriceDate'], 'mode': report['runMode'], 'engineVersion': engine_version}
     context['runId'] = digest(context)[:24]
@@ -261,22 +260,19 @@ def rebuild(args, config):
         json_write(out/'youtube-market.test.json', public_fields(youtube))
     report['growth'] = collection
     report['holdings'] = board['p3'].get('refreshStatus', {})
-    def combination():
-        if states['p1']['status'] != '계산완료':
-            raise RuntimeError('새 진입 후보가 없어 종합추천을 보류했습니다.')
-        return build_combined(p1.get('_allRows', []), p2.get('_allRows', []) if states['p2']['status'] == '계산완료' else [],
-                              growth_candidates, p11.get('_allRows', []), source_date=report['latestPriceDate'],
-                              snapshot_id=manifest['snapshotId'], generated_at=generated)
-    combined = isolated_section('combined', combination,
-        {'combined': read_json(config['base_data_file'].parent/'combined-recommendations.json', {})}, states, context)
-    combined['runId'] = board['meta']['runId']
-    combined['sourceAvailability'] = {k: states[k]['status'] for k in ('p1', 'p11', 'p2', 'growth')}
-    json_write(out/'combined_audit.test.json', combined)
-    json_write(out/'combined-recommendations.test.json', public_fields(combined))
     ledger = read_json(config['base_data_file'].parent/'recommendation-history.json', empty_ledger())
     performance_prices, performance_price_status = collect_performance_prices(ledger, prices, config, reuse=args.reuse_snapshot)
     performance = evaluate(ledger, performance_prices, generated_at=generated, cost_bps=config.get('performance_cost_bps', 0))
     performance['priceCollection'] = performance_price_status
+    from performance_feedback import rank_recent
+    combined = rank_recent(board, performance, source_date=report['latestPriceDate'],
+                           generated_at=generated, snapshot_id=manifest['snapshotId'])
+    combined['refreshState'] = dict(context, status='계산완료')
+    combined['runId'] = context['runId']
+    states['combined'] = combined['refreshState']
+    json_write(out/'combined_audit.test.json', combined)
+    json_write(out/'combined-recommendations.test.json', combined)
+    performance['feedback'] = combined['feedback']
     if (config['cache_dir']/'performance_prices.pkl.gz').exists():
         perf_snapshot = snapshot_files(config['cache_dir']/'snapshots',
             {'performancePrices': config['cache_dir']/'performance_prices.pkl.gz'},

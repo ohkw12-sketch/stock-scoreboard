@@ -864,7 +864,7 @@ class MarketDataLoader:
             finally:
                 self._requested_tickers, self.config["force_full_prices"] = prior_selection, prior_force
                 self._history_repair_active = False
-        frame = self._repair_close_with_kis(frame, listing)
+        frame = self._repair_close_with_kis(frame, selected)
         return frame
 
 

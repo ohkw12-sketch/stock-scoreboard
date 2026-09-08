@@ -57,7 +57,7 @@ def main():
         raise RuntimeError('공개 자료와 성과 가격 스냅샷 기준일이 다릅니다.')
     version = digest({name: hashlib.sha256((ROOT/name).read_bytes()).hexdigest() for name in (
         'rotation_screener.py', 'growth_discovery.py', 'dart_fundamentals.py', 'kis_consensus.py',
-        'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py')})[:16]
+        'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py', 'performance_feedback.py')})[:16]
     with run_lock(ROOT/'cache/publication'):
         ledger = record_publication(read_json(ROOT/'recommendation-history.json', empty_ledger()),
                                     board, combined, set(prices.ticker), observed_at=observed, engine_version=version)
@@ -65,6 +65,7 @@ def main():
         evaluation_prices, price_status = collect_performance_prices(ledger, prices, {'cache_dir': ROOT/'cache'}, reuse=True)
         performance = evaluate(ledger, evaluation_prices, generated_at=observed, cost_bps=cost_bps)
         performance['priceCollection'] = price_status
+        performance['feedback'] = combined.get('feedback', {})
         json_write(ROOT/'recommendation-performance.json', performance)
         if combined.get('runId') == board['meta']['runId']:
             combined.update(publicationState='confirmed', status='공개 확인 완료 · 추천 기록 보존',

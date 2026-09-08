@@ -214,7 +214,7 @@ test('empty performance history shows waiting text without fabricated return or 
   const {document, errors} = await runtime();
   assert.equal(errors.length, 0);
   assert.match(document.getElementById('performancerows').textContent, /기록 대기/);
-  assert.match(document.getElementById('performancesummary').textContent, /공개 확인된 추천이 쌓인 후/);
+  assert.match(document.getElementById('performancesummary').textContent, /추천 기록 대기/);
   assert.doesNotMatch(document.getElementById('performancerows').innerHTML, /<td>0%<\/td>|<td>1<\/td>/);
 });
 
@@ -224,6 +224,7 @@ test('null horizons stay unranked and do not enter win-rate denominator', async 
   data['recommendation-performance.json'].recordCount = 3;
   const {document, errors} = await runtime({data});
   assert.equal(errors.length, 0);
+  const period = document.getElementById('performancehorizon'); period.value='20'; period.fire('change');
   const rows = document.getElementById('performancerows').rows;
   assert.deepEqual(rows.map(row => row.cells[0].textContent), ['1','2','—']);
   assert.deepEqual(rows.map(row => row.cells[7].textContent), ['+10%','0%','—']);
@@ -318,7 +319,7 @@ test('unmatched or unavailable refresh manifest cannot relabel healthy boards', 
 
 test('research JSON/render failures remain contained in their own panels', async () => {
   const data = fixtures();
-  data['recommendation-performance.json'].rows = [performanceRow('invalid',1,{engineVersion:null})];
+  data['recommendation-performance.json'].rows = [null];
   const {document} = await runtime({data,fail:{'combined-recommendations.json':'http'}});
   assert.match(document.getElementById('combinedstatus').textContent, /불러오기 실패/);
   assert.match(document.getElementById('performancestatus').textContent, /불러오기 실패/);
@@ -329,6 +330,7 @@ test('date filter resets sorting metadata to match the new default rows', async 
   const data = fixtures();
   data['recommendation-performance.json'].rows = [performanceRow('상승',10),performanceRow('하락',-3,{recommendationDate:'2026-09-02'})];
   const {document} = await runtime({data});
+  const period = document.getElementById('performancehorizon'); period.value='20'; period.fire('change');
   const header = document.table('performancerows').headers[7];
   header.fire('click');
   assert.equal(header.getAttribute('aria-sort'),'ascending');

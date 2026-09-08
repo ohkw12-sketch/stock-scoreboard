@@ -51,7 +51,8 @@ def promote(live: dict, candidate: dict, sections: list[str]) -> tuple[dict, dic
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="검증된 구역만 data.json에 반영")
-    parser.add_argument("--sections", nargs="+", required=True, choices=SECTIONS)
+    parser.add_argument("--sections", nargs="+", choices=SECTIONS)
+    parser.add_argument('--research-only', action='store_true', help='현재 게시된 원본 후보와 일치하는 연구 결과만 반영')
     parser.add_argument("--live", type=Path, default=ROOT / "data.json")
     parser.add_argument("--candidate", type=Path, default=ROOT / "test_output" / "data.test.json")
     parser.add_argument("--html", type=Path, default=ROOT / "index.html")
@@ -59,6 +60,30 @@ def main() -> None:
     parser.add_argument("--research", action="store_true", help="별도 종합추천·성과검증 후보도 함께 반영")
     parser.add_argument("--allow-partial", action="store_true", help="실패한 평가창은 이전 게시값 유지")
     args = parser.parse_args()
+    if args.research_only:
+        if args.sections or args.youtube:
+            raise RuntimeError('연구 전용 반영에 원본 구역 변경을 섞을 수 없습니다.')
+        assert_contract(args.html, args.live)
+        live = read_json(args.live)
+        pending = {}
+        for name in ('combined-recommendations', 'recommendation-performance'):
+            data = read_json(args.candidate.parent / f'{name}.test.json')
+            if not data or data.get('schemaVersion') != 1 or not isinstance(data.get('rows'), list):
+                raise RuntimeError('연구 후보 형식 검증 실패')
+            if name == 'combined-recommendations':
+                context = live.get('meta', {}).get('refreshState', {})
+                if (data.get('runId') != live['meta'].get('runId') or
+                    data.get('sourceDate') != context.get('sourceCutoff') or
+                    data.get('snapshotId') != context.get('snapshotId')):
+                    raise RuntimeError('연구 후보와 게시 원본의 가격/회차 불일치')
+            json.dumps(data, allow_nan=False)
+            pending[args.live.parent / f'{name}.json'] = data
+        for path, data in pending.items():
+            json_write(path, data)
+        print('성과검증·종합추천만 반영 · 기존 프로젝트 표 보존')
+        return
+    if not args.sections:
+        parser.error('--sections 또는 --research-only 필요')
     quality_path = args.candidate.parent / "collection_report.test.json"
     quality = json.loads(quality_path.read_text("utf-8"))
     if quality.get("qualityStatus") != "정상":

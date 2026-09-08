@@ -30,7 +30,7 @@ def collect_performance_prices(ledger, base_prices, config, *, reuse=False):
             # The existing provider adapter handles new dates, correction overlap and
             # full-history repair when an adjustment factor changes. It is used only
             # for published tickers; the primary whole-market price set stays untouched.
-            earliest = min(pd.Timestamp(c['observedPublishedAt']).tz_localize(None).normalize()
+            earliest = min(pd.Timestamp(c.get('recordedAt') or c['observedPublishedAt']).tz_localize(None).normalize()
                            for c in ledger['cohorts'] if c.get('records'))
             missing_history = tickers - (set(prior.ticker) if not prior.empty else set())
             adapted = dict(config, refresh_universe=False,
@@ -46,7 +46,7 @@ def collect_performance_prices(ledger, base_prices, config, *, reuse=False):
             fresh = fresh[valid & fresh.ticker.isin(tickers)].copy()
             if fresh.empty:
                 raise RuntimeError('검증된 수정주가 응답 없음')
-            prior = pd.concat([prior, fresh], ignore_index=True).sort_values('date').drop_duplicates(['ticker', 'date'], keep='last')
+            prior = pd.concat([prior, fresh], ignore_index=True).drop_duplicates(['ticker', 'date'], keep='last').sort_values('date')
             cache.mkdir(parents=True, exist_ok=True)
             temporary = cache/'performance_prices.tmp.gz'
             prior.to_pickle(temporary)
@@ -63,5 +63,5 @@ def collect_performance_prices(ledger, base_prices, config, *, reuse=False):
     if prior.empty:
         return base_prices, status
     selected = prior[prior.ticker.isin(tickers)]
-    merged = pd.concat([base_prices, selected], ignore_index=True).sort_values('date').drop_duplicates(['ticker', 'date'], keep='last')
+    merged = pd.concat([base_prices, selected], ignore_index=True).drop_duplicates(['ticker', 'date'], keep='last').sort_values('date')
     return merged, status
