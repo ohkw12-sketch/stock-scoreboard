@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-08T13:49:43+09:00",
+  "generatedAt": "2026-09-08T13:53:38+09:00",
   "priceDate": "2026-09-07",
-  "recordCount": 326,
-  "cohortCount": 38,
+  "recordCount": 331,
+  "cohortCount": 39,
   "rows": [
     {
       "ticker": "228340",
@@ -28262,6 +28262,338 @@
       "elapsedSessions": 6
     },
     {
+      "ticker": "011200",
+      "name": "HMM",
+      "group": "종합",
+      "section": "combined",
+      "rank": 3,
+      "sector": "해상 운송업",
+      "cohortId": "6a663935bde2ddc4827d807613d0f09795aa9750c1230b6afeb4e8aa7c7cb4a4",
+      "recommendationDate": "2026-09-08",
+      "publishedAt": "2026-09-08T13:53:38+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "combined-feedback-2.0",
+      "ruleVersion": "combined-feedback-2.0",
+      "features": [
+        "관계:동행",
+        "순환",
+        "순환:②확산"
+      ],
+      "sourceRow": {
+        "ticker": "011200",
+        "name": "HMM",
+        "sector": "해상 운송업",
+        "currentProjectRank": 16.0,
+        "conditions": [
+          "순환"
+        ],
+        "condition": "순환",
+        "entryState": "진입 미충족",
+        "currentPrice": 21450.0,
+        "combinedScore": 1.2972,
+        "matchedPattern": {
+          "pattern": [
+            "순환:②확산"
+          ],
+          "label": "순환 ②확산",
+          "horizon": 5,
+          "sampleCount": 5,
+          "recommendationDays": 1,
+          "meanReturnPct": 1.311,
+          "medianReturnPct": 3.892,
+          "winRatePct": 80.0,
+          "score": 1.2972,
+          "status": "초기 관찰",
+          "archiveSampleCount": 5,
+          "rank": 1
+        },
+        "features": [
+          "관계:동행",
+          "순환",
+          "순환:②확산"
+        ],
+        "sourceDate": "2026-09-07",
+        "valueScore": null,
+        "growthScore": null,
+        "sectorRelation": "동행",
+        "rank": 3
+      },
+      "entryDate": null,
+      "entryPrice": null,
+      "latestDate": "2026-09-07",
+      "currentReturnPct": null,
+      "maxDrawdownPct": null,
+      "horizons": {},
+      "status": "XKRX 거래 캘린더"
+    },
+    {
+      "ticker": "028670",
+      "name": "팬오션",
+      "group": "종합",
+      "section": "combined",
+      "rank": 1,
+      "sector": "해상 운송업",
+      "cohortId": "6a663935bde2ddc4827d807613d0f09795aa9750c1230b6afeb4e8aa7c7cb4a4",
+      "recommendationDate": "2026-09-08",
+      "publishedAt": "2026-09-08T13:53:38+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "combined-feedback-2.0",
+      "ruleVersion": "combined-feedback-2.0",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:②확산"
+      ],
+      "sourceRow": {
+        "ticker": "028670",
+        "name": "팬오션",
+        "sector": "해상 운송업",
+        "currentProjectRank": 1.0,
+        "conditions": [
+          "순환"
+        ],
+        "condition": "순환",
+        "entryState": "진입 미충족",
+        "currentPrice": 6060.0,
+        "combinedScore": 1.2972,
+        "matchedPattern": {
+          "pattern": [
+            "순환:②확산"
+          ],
+          "label": "순환 ②확산",
+          "horizon": 5,
+          "sampleCount": 5,
+          "recommendationDays": 1,
+          "meanReturnPct": 1.311,
+          "medianReturnPct": 3.892,
+          "winRatePct": 80.0,
+          "score": 1.2972,
+          "status": "초기 관찰",
+          "archiveSampleCount": 5,
+          "rank": 1
+        },
+        "features": [
+          "관계:선행",
+          "순환",
+          "순환:②확산"
+        ],
+        "sourceDate": "2026-09-07",
+        "valueScore": null,
+        "growthScore": null,
+        "sectorRelation": "선행",
+        "rank": 1
+      },
+      "entryDate": null,
+      "entryPrice": null,
+      "latestDate": "2026-09-07",
+      "currentReturnPct": null,
+      "maxDrawdownPct": null,
+      "horizons": {},
+      "status": "XKRX 거래 캘린더"
+    },
+    {
+      "ticker": "178320",
+      "name": "서진시스템",
+      "group": "종합",
+      "section": "combined",
+      "rank": 7,
+      "sector": "기타 전기장비 제조업",
+      "cohortId": "6a663935bde2ddc4827d807613d0f09795aa9750c1230b6afeb4e8aa7c7cb4a4",
+      "recommendationDate": "2026-09-08",
+      "publishedAt": "2026-09-08T13:53:38+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "combined-feedback-2.0",
+      "ruleVersion": "combined-feedback-2.0",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "ticker": "178320",
+        "name": "서진시스템",
+        "sector": "기타 전기장비 제조업",
+        "currentProjectRank": 18.0,
+        "conditions": [
+          "순환"
+        ],
+        "condition": "순환",
+        "entryState": "진입 미충족",
+        "currentPrice": 36600.0,
+        "combinedScore": 0.2431,
+        "matchedPattern": {
+          "pattern": [
+            "관계:선행",
+            "순환:③주도"
+          ],
+          "label": "관계 선행 + 순환 ③주도",
+          "horizon": 5,
+          "sampleCount": 4,
+          "recommendationDays": 1,
+          "meanReturnPct": 12.487,
+          "medianReturnPct": 0.851,
+          "winRatePct": 50.0,
+          "score": 0.2431,
+          "status": "초기 관찰",
+          "archiveSampleCount": 4,
+          "rank": 2
+        },
+        "features": [
+          "관계:선행",
+          "순환",
+          "순환:③주도"
+        ],
+        "sourceDate": "2026-09-07",
+        "valueScore": null,
+        "growthScore": null,
+        "sectorRelation": "선행",
+        "rank": 7
+      },
+      "entryDate": null,
+      "entryPrice": null,
+      "latestDate": "2026-09-07",
+      "currentReturnPct": null,
+      "maxDrawdownPct": null,
+      "horizons": {},
+      "status": "XKRX 거래 캘린더"
+    },
+    {
+      "ticker": "204840",
+      "name": "지엘팜텍",
+      "group": "종합",
+      "section": "combined",
+      "rank": 8,
+      "sector": "생활용품 도매업",
+      "cohortId": "6a663935bde2ddc4827d807613d0f09795aa9750c1230b6afeb4e8aa7c7cb4a4",
+      "recommendationDate": "2026-09-08",
+      "publishedAt": "2026-09-08T13:53:38+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "combined-feedback-2.0",
+      "ruleVersion": "combined-feedback-2.0",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "ticker": "204840",
+        "name": "지엘팜텍",
+        "sector": "생활용품 도매업",
+        "currentProjectRank": 19.0,
+        "conditions": [
+          "순환"
+        ],
+        "condition": "순환",
+        "entryState": "진입 미충족",
+        "currentPrice": 5730.0,
+        "combinedScore": 0.2431,
+        "matchedPattern": {
+          "pattern": [
+            "관계:선행",
+            "순환:③주도"
+          ],
+          "label": "관계 선행 + 순환 ③주도",
+          "horizon": 5,
+          "sampleCount": 4,
+          "recommendationDays": 1,
+          "meanReturnPct": 12.487,
+          "medianReturnPct": 0.851,
+          "winRatePct": 50.0,
+          "score": 0.2431,
+          "status": "초기 관찰",
+          "archiveSampleCount": 4,
+          "rank": 2
+        },
+        "features": [
+          "관계:선행",
+          "순환",
+          "순환:③주도"
+        ],
+        "sourceDate": "2026-09-07",
+        "valueScore": null,
+        "growthScore": null,
+        "sectorRelation": "선행",
+        "rank": 8
+      },
+      "entryDate": null,
+      "entryPrice": null,
+      "latestDate": "2026-09-07",
+      "currentReturnPct": null,
+      "maxDrawdownPct": null,
+      "horizons": {},
+      "status": "XKRX 거래 캘린더"
+    },
+    {
+      "ticker": "272450",
+      "name": "진에어",
+      "group": "종합",
+      "section": "combined",
+      "rank": 5,
+      "sector": "항공 여객 운송업",
+      "cohortId": "6a663935bde2ddc4827d807613d0f09795aa9750c1230b6afeb4e8aa7c7cb4a4",
+      "recommendationDate": "2026-09-08",
+      "publishedAt": "2026-09-08T13:53:38+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "combined-feedback-2.0",
+      "ruleVersion": "combined-feedback-2.0",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:②확산"
+      ],
+      "sourceRow": {
+        "ticker": "272450",
+        "name": "진에어",
+        "sector": "항공 여객 운송업",
+        "currentProjectRank": 20.0,
+        "conditions": [
+          "순환"
+        ],
+        "condition": "순환",
+        "entryState": "진입 미충족",
+        "currentPrice": 6180.0,
+        "combinedScore": 1.2972,
+        "matchedPattern": {
+          "pattern": [
+            "순환:②확산"
+          ],
+          "label": "순환 ②확산",
+          "horizon": 5,
+          "sampleCount": 5,
+          "recommendationDays": 1,
+          "meanReturnPct": 1.311,
+          "medianReturnPct": 3.892,
+          "winRatePct": 80.0,
+          "score": 1.2972,
+          "status": "초기 관찰",
+          "archiveSampleCount": 5,
+          "rank": 1
+        },
+        "features": [
+          "관계:선행",
+          "순환",
+          "순환:②확산"
+        ],
+        "sourceDate": "2026-09-07",
+        "valueScore": null,
+        "growthScore": null,
+        "sectorRelation": "선행",
+        "rank": 5
+      },
+      "entryDate": null,
+      "entryPrice": null,
+      "latestDate": "2026-09-07",
+      "currentReturnPct": null,
+      "maxDrawdownPct": null,
+      "horizons": {},
+      "status": "XKRX 거래 캘린더"
+    },
+    {
       "ticker": "297570",
       "name": "아틀라스링크",
       "group": "가치",
@@ -28586,10 +28918,10 @@
     {
       "group": "종합",
       "horizon": 1,
-      "total": 20,
+      "total": 25,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 20,
+      "waitingOrMissing": 25,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -28597,10 +28929,10 @@
     {
       "group": "종합",
       "horizon": 5,
-      "total": 20,
+      "total": 25,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 20,
+      "waitingOrMissing": 25,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -28608,10 +28940,10 @@
     {
       "group": "종합",
       "horizon": 20,
-      "total": 20,
+      "total": 25,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 20,
+      "waitingOrMissing": 25,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -28619,10 +28951,10 @@
     {
       "group": "종합",
       "horizon": 60,
-      "total": 20,
+      "total": 25,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 20,
+      "waitingOrMissing": 25,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -28630,10 +28962,10 @@
     {
       "group": "종합",
       "horizon": 120,
-      "total": 20,
+      "total": 25,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 20,
+      "waitingOrMissing": 25,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null

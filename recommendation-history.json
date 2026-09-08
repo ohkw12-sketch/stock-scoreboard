@@ -24691,6 +24691,400 @@
         }
       ],
       "universeId": null
+    },
+    {
+      "id": "6a663935bde2ddc4827d807613d0f09795aa9750c1230b6afeb4e8aa7c7cb4a4",
+      "section": "combined",
+      "generatedAt": "2026-09-08T13:49:43+09:00",
+      "observedPublishedAt": "2026-09-08T13:53:38+09:00",
+      "universeId": "1330c01db536ee52998af0ff72cf335cba2f9a39afe3efafbe0cf3bf6ea5f8a8",
+      "snapshotId": "473c55c34cb5f01921a4a2d2eafb6013dbd45db7f013232ed8320d8811c2d481",
+      "evidenceSnapshotId": "e906c6f47f35e444bab240a39aa26686fb29b8a80d6919b51d06da52c03c0c68",
+      "runId": "13f15de8e1e2e6f38178fd4a",
+      "engineVersion": "combined-feedback-2.0",
+      "ruleVersion": "combined-feedback-2.0",
+      "sourceDate": "2026-09-07",
+      "records": [
+        {
+          "ticker": "028670",
+          "name": "팬오션",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 1,
+          "sector": "해상 운송업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "028670",
+            "name": "팬오션",
+            "sector": "해상 운송업",
+            "currentProjectRank": 1.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 6060.0,
+            "combinedScore": 1.2972,
+            "matchedPattern": {
+              "pattern": [
+                "순환:②확산"
+              ],
+              "label": "순환 ②확산",
+              "horizon": 5,
+              "sampleCount": 5,
+              "recommendationDays": 1,
+              "meanReturnPct": 1.311,
+              "medianReturnPct": 3.892,
+              "winRatePct": 80.0,
+              "score": 1.2972,
+              "status": "초기 관찰",
+              "archiveSampleCount": 5,
+              "rank": 1
+            },
+            "features": [
+              "관계:선행",
+              "순환",
+              "순환:②확산"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "선행",
+            "rank": 1
+          }
+        },
+        {
+          "ticker": "005880",
+          "name": "대한해운",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 2,
+          "sector": "해상 운송업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "005880",
+            "name": "대한해운",
+            "sector": "해상 운송업",
+            "currentProjectRank": 8.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 2115.0,
+            "combinedScore": 1.2972,
+            "matchedPattern": {
+              "pattern": [
+                "순환:②확산"
+              ],
+              "label": "순환 ②확산",
+              "horizon": 5,
+              "sampleCount": 5,
+              "recommendationDays": 1,
+              "meanReturnPct": 1.311,
+              "medianReturnPct": 3.892,
+              "winRatePct": 80.0,
+              "score": 1.2972,
+              "status": "초기 관찰",
+              "archiveSampleCount": 5,
+              "rank": 1
+            },
+            "features": [
+              "관계:선행",
+              "순환",
+              "순환:②확산"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "선행",
+            "rank": 2
+          }
+        },
+        {
+          "ticker": "011200",
+          "name": "HMM",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 3,
+          "sector": "해상 운송업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "011200",
+            "name": "HMM",
+            "sector": "해상 운송업",
+            "currentProjectRank": 16.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 21450.0,
+            "combinedScore": 1.2972,
+            "matchedPattern": {
+              "pattern": [
+                "순환:②확산"
+              ],
+              "label": "순환 ②확산",
+              "horizon": 5,
+              "sampleCount": 5,
+              "recommendationDays": 1,
+              "meanReturnPct": 1.311,
+              "medianReturnPct": 3.892,
+              "winRatePct": 80.0,
+              "score": 1.2972,
+              "status": "초기 관찰",
+              "archiveSampleCount": 5,
+              "rank": 1
+            },
+            "features": [
+              "관계:동행",
+              "순환",
+              "순환:②확산"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "동행",
+            "rank": 3
+          }
+        },
+        {
+          "ticker": "044450",
+          "name": "KSS해운",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 4,
+          "sector": "해상 운송업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "044450",
+            "name": "KSS해운",
+            "sector": "해상 운송업",
+            "currentProjectRank": 17.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 10190.0,
+            "combinedScore": 1.2972,
+            "matchedPattern": {
+              "pattern": [
+                "순환:②확산"
+              ],
+              "label": "순환 ②확산",
+              "horizon": 5,
+              "sampleCount": 5,
+              "recommendationDays": 1,
+              "meanReturnPct": 1.311,
+              "medianReturnPct": 3.892,
+              "winRatePct": 80.0,
+              "score": 1.2972,
+              "status": "초기 관찰",
+              "archiveSampleCount": 5,
+              "rank": 1
+            },
+            "features": [
+              "관계:동행",
+              "순환",
+              "순환:②확산"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "동행",
+            "rank": 4
+          }
+        },
+        {
+          "ticker": "272450",
+          "name": "진에어",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 5,
+          "sector": "항공 여객 운송업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "272450",
+            "name": "진에어",
+            "sector": "항공 여객 운송업",
+            "currentProjectRank": 20.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 6180.0,
+            "combinedScore": 1.2972,
+            "matchedPattern": {
+              "pattern": [
+                "순환:②확산"
+              ],
+              "label": "순환 ②확산",
+              "horizon": 5,
+              "sampleCount": 5,
+              "recommendationDays": 1,
+              "meanReturnPct": 1.311,
+              "medianReturnPct": 3.892,
+              "winRatePct": 80.0,
+              "score": 1.2972,
+              "status": "초기 관찰",
+              "archiveSampleCount": 5,
+              "rank": 1
+            },
+            "features": [
+              "관계:선행",
+              "순환",
+              "순환:②확산"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "선행",
+            "rank": 5
+          }
+        },
+        {
+          "ticker": "036580",
+          "name": "팜스코",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 6,
+          "sector": "곡물가공품, 전분 및 전분제품 제조업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "036580",
+            "name": "팜스코",
+            "sector": "곡물가공품, 전분 및 전분제품 제조업",
+            "currentProjectRank": 11.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 2715.0,
+            "combinedScore": 0.2431,
+            "matchedPattern": {
+              "pattern": [
+                "관계:선행",
+                "순환:③주도"
+              ],
+              "label": "관계 선행 + 순환 ③주도",
+              "horizon": 5,
+              "sampleCount": 4,
+              "recommendationDays": 1,
+              "meanReturnPct": 12.487,
+              "medianReturnPct": 0.851,
+              "winRatePct": 50.0,
+              "score": 0.2431,
+              "status": "초기 관찰",
+              "archiveSampleCount": 4,
+              "rank": 2
+            },
+            "features": [
+              "관계:선행",
+              "순환",
+              "순환:③주도"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "선행",
+            "rank": 6
+          }
+        },
+        {
+          "ticker": "178320",
+          "name": "서진시스템",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 7,
+          "sector": "기타 전기장비 제조업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "178320",
+            "name": "서진시스템",
+            "sector": "기타 전기장비 제조업",
+            "currentProjectRank": 18.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 36600.0,
+            "combinedScore": 0.2431,
+            "matchedPattern": {
+              "pattern": [
+                "관계:선행",
+                "순환:③주도"
+              ],
+              "label": "관계 선행 + 순환 ③주도",
+              "horizon": 5,
+              "sampleCount": 4,
+              "recommendationDays": 1,
+              "meanReturnPct": 12.487,
+              "medianReturnPct": 0.851,
+              "winRatePct": 50.0,
+              "score": 0.2431,
+              "status": "초기 관찰",
+              "archiveSampleCount": 4,
+              "rank": 2
+            },
+            "features": [
+              "관계:선행",
+              "순환",
+              "순환:③주도"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "선행",
+            "rank": 7
+          }
+        },
+        {
+          "ticker": "204840",
+          "name": "지엘팜텍",
+          "group": "종합 · 순환 · 진입 미충족",
+          "rank": 8,
+          "sector": "생활용품 도매업",
+          "signal": "진입 미충족",
+          "sourceRow": {
+            "ticker": "204840",
+            "name": "지엘팜텍",
+            "sector": "생활용품 도매업",
+            "currentProjectRank": 19.0,
+            "conditions": [
+              "순환"
+            ],
+            "condition": "순환",
+            "entryState": "진입 미충족",
+            "currentPrice": 5730.0,
+            "combinedScore": 0.2431,
+            "matchedPattern": {
+              "pattern": [
+                "관계:선행",
+                "순환:③주도"
+              ],
+              "label": "관계 선행 + 순환 ③주도",
+              "horizon": 5,
+              "sampleCount": 4,
+              "recommendationDays": 1,
+              "meanReturnPct": 12.487,
+              "medianReturnPct": 0.851,
+              "winRatePct": 50.0,
+              "score": 0.2431,
+              "status": "초기 관찰",
+              "archiveSampleCount": 4,
+              "rank": 2
+            },
+            "features": [
+              "관계:선행",
+              "순환",
+              "순환:③주도"
+            ],
+            "sourceDate": "2026-09-07",
+            "valueScore": null,
+            "growthScore": null,
+            "sectorRelation": "선행",
+            "rank": 8
+          }
+        }
+      ]
     }
   ],
   "universes": {

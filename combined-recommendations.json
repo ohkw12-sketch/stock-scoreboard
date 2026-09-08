@@ -4,8 +4,8 @@
   "snapshotId": "473c55c34cb5f01921a4a2d2eafb6013dbd45db7f013232ed8320d8811c2d481",
   "generatedAt": "2026-09-08T13:49:43+09:00",
   "sourceDate": "2026-09-07",
-  "status": "과거 성과 기반 초기 순위",
-  "publicationState": "preview",
+  "status": "공개 확인 완료 · 추천 기록 보존",
+  "publicationState": "confirmed",
   "candidateCount": 75,
   "matchedCandidateCount": 8,
   "rows": [
@@ -576,5 +576,7 @@
     "runId": "13f15de8e1e2e6f38178fd4a",
     "evidenceSnapshotId": "e906c6f47f35e444bab240a39aa26686fb29b8a80d6919b51d06da52c03c0c68",
     "status": "계산완료"
-  }
+  },
+  "lastPublicationCheckedAt": "2026-09-08T13:53:38+09:00",
+  "observedPublishedAt": "2026-09-08T13:53:38+09:00"
 }
