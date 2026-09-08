@@ -212,13 +212,13 @@ def attach_market_snapshot(prices: pd.DataFrame, config: dict) -> tuple[pd.DataF
 def _expected_completed_business_day(now: datetime | None = None) -> date:
     """Return the most recent weekday whose Korean close should be available.
 
-    Before 18:00 KST the current session is not treated as complete.  This
+    Before 15:40 KST the current session is not treated as complete.  This
     deliberately uses a weekday calendar: exchange holidays can make the
     result conservative, but can never make stale data look newer than it is.
     """
     current = now.astimezone(KST) if now is not None else datetime.now(KST)
     candidate = current.date()
-    if current.hour < 18:
+    if (current.hour, current.minute) < (15, 40):
         candidate -= timedelta(days=1)
     while candidate.weekday() >= 5:
         candidate -= timedelta(days=1)

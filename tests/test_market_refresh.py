@@ -88,6 +88,9 @@ class MarketRefreshTest(unittest.TestCase):
             result = completed_session_info(datetime.fromisoformat("2026-09-07T12:00:00+09:00"))
         self.assertEqual(result["calendarStatus"], "unknown")
         self.assertEqual(result["expectedCompletedSession"], "2026-09-04")
+        with patch.dict(sys.modules, {"exchange_calendars": None}):
+            after_close = completed_session_info(datetime.fromisoformat("2026-09-07T15:40:00+09:00"))
+        self.assertEqual(after_close["expectedCompletedSession"], "2026-09-07")
 
     def test_one_missing_ticker_uses_targeted_fallback_and_keeps_history(self):
         prices = generate_sample_market()
