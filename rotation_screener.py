@@ -1565,6 +1565,51 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
                                            "priceDate": str(item.date)[:10]})
     return result
 
+def entry_fundamental_scores(fundamentals: pd.DataFrame, candidate_tickers: set[str]) -> dict[str, dict]:
+    """Score reported business quality for rotation candidates without forecasts."""
+    if fundamentals.empty or not candidate_tickers:
+        return {ticker: {"score": 0.0, "basis": "재무자료 없음"} for ticker in candidate_tickers}
+    data = fundamentals.copy().drop_duplicates("ticker", keep="last")
+    data = data[data["ticker"].isin(candidate_tickers)].copy()
+    for column in ("sales_1y_growth", "op_1y_growth", "sales_current", "op_current", "op_previous"):
+        data[column] = pd.to_numeric(data.get(column), errors="coerce")
+
+    def percentile(values: pd.Series) -> pd.Series:
+        numeric = pd.to_numeric(values, errors="coerce")
+        return numeric.rank(pct=True).mul(100).where(numeric.notna(), 0.0)
+
+    profitable = (data["sales_current"] > 0) & (data["op_current"] > 0)
+    margin = data["op_current"].div(data["sales_current"].where(data["sales_current"] > 0))
+    margin_score = percentile(margin.where(profitable).clip(-0.20, 0.40))
+    sales_score = percentile(data["sales_1y_growth"].clip(-50, 150))
+    continuing_profit = profitable & (data["op_previous"] > 0)
+    op_score = percentile(data["op_1y_growth"].where(continuing_profit).clip(-100, 300))
+    op_score = op_score.where(~(profitable & (data["op_previous"] <= 0)), 100.0)
+    op_score = op_score.where(profitable, 0.0)
+
+    quarter_columns = [f"normalized_op_q{quarter}" for quarter in (3, 4, 1, 2)]
+    if all(column in data for column in quarter_columns):
+        quarters = data[quarter_columns].apply(pd.to_numeric, errors="coerce")
+        quality_score = quarters.gt(0).sum(axis=1).div(4).mul(70)
+        quality_score += quarters.notna().sum(axis=1).div(4).mul(30)
+    else:
+        quality_score = profitable.astype(float).mul(50)
+    data["entry_fundamental_score"] = (
+        margin_score * 0.35 + op_score * 0.30 + sales_score * 0.20 + quality_score * 0.15
+    ).clip(0, 100)
+    data["entry_fundamental_basis"] = np.where(
+        profitable, "영업이익률·영업이익성장·매출성장·분기흑자", "적자 또는 불완전 재무",
+    )
+    scores = {
+        row.ticker: {"score": round(float(row.entry_fundamental_score), 1),
+                     "basis": row.entry_fundamental_basis}
+        for row in data.itertuples()
+    }
+    for ticker in candidate_tickers:
+        scores.setdefault(ticker, {"score": 0.0, "basis": "재무자료 없음"})
+    return scores
+
+
 def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamentals: pd.DataFrame,
                       config: dict) -> dict:
     """Select only immediately actionable or near-entry stocks from the entire universe."""
@@ -1576,6 +1621,21 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     current = current[current["sector"].isin(sectors.index)].copy()
     for field in ("stage", "rotationType", "riskGauge", "score", "raw_ret3", "raw_ret5"):
         current[f"sector_{field}"] = current["sector"].map(sectors[field])
+    minimum_daily_turnover = int(config["minimum_daily_turnover"])
+    rotation_pool = rotation_rows(
+        stock_data, pd.DataFrame(all_sectors), int(prices["ticker"].nunique()), sector_cap=None,
+        minimum_daily_turnover=minimum_daily_turnover,
+    )
+    rotation_map = {row["ticker"]: float(row["stockEntryScore"]) for row in rotation_pool}
+    current["rotation_raw_score"] = current["ticker"].map(rotation_map)
+    current["rotation_score"] = current["rotation_raw_score"].rank(pct=True).mul(100).fillna(0)
+    fundamental_map_for_entry = entry_fundamental_scores(fundamentals, set(rotation_map))
+    current["fundamental_score"] = current["ticker"].map(
+        {ticker: value["score"] for ticker, value in fundamental_map_for_entry.items()}
+    ).fillna(0)
+    current["fundamental_basis"] = current["ticker"].map(
+        {ticker: value["basis"] for ticker, value in fundamental_map_for_entry.items()}
+    ).fillna("재무자료 없음")
     current["excess3"] = current["ret3"] - current["sector_raw_ret3"]
     current["overheated"] = (current["ret1"] > .10) | (current["ret3"] > .15) | (current["ret5"] > .25)
     current["zone_low"] = np.minimum(current["ma5"], current["ma20"]) - current["atr14"] * .25
@@ -1587,9 +1647,9 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     current["trend_ok"] = (current["ma5"] >= current["ma20"] * .98) & (current["close"] >= current["ma20"] * .96)
     current["confirm"] = (current["ret1"] > 0) & (current["close"] >= current["ma5"]) & (current["volume_ratio"] >= .85)
     allowed = ~current["sector_stage"].isin(["⑥후반", "X조기이탈", "X종료"])
-    minimum_daily_turnover = int(config["minimum_daily_turnover"])
     liquid = current["value"] >= minimum_daily_turnover
-    valid = allowed & liquid & current["trend_ok"] & ~current["overheated"] & current["ret5"].notna()
+    in_rotation_pool = current["rotation_raw_score"].notna()
+    valid = in_rotation_pool & allowed & liquid & current["trend_ok"] & ~current["overheated"] & current["ret5"].notna()
     current["entryState"] = ""
     inside = current["distance"].eq(0)
     current.loc[valid & inside & current["confirm"], "entryState"] = "진입가능"
@@ -1599,6 +1659,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
         "eligible": bool(item.entryState), "entryState": item.entryState or None,
         "priceDate": latest_date.strftime("%Y-%m-%d"),
         "reason": "진입 조건 통과" if item.entryState else (
+            "순환 후보 조건 미충족" if pd.isna(item.rotation_raw_score) else
             "과열" if item.overheated else "거래대금 부족" if item.value < minimum_daily_turnover else
             "추세 조건 미충족" if not item.trend_ok else "진입 거리·순환 단계·가격 이력 조건 미충족"),
     } for item in current.itertuples()}
@@ -1607,8 +1668,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
                                                "eligible": False, "score": None, "reason": "섹터 분석 조건 미충족",
                                                "priceDate": latest_date.strftime("%Y-%m-%d")})
     current = current[current["entryState"].ne("")].copy()
-    current["entry_score"] = (current["sector_score"] + current["excess3"].clip(-.05, .05) * 160 +
-                              current["confirm"].astype(int) * 12 - current["distance"] * 200)
+    current["entry_score"] = current["rotation_score"] * 0.50 + current["fundamental_score"] * 0.50
     current["entry_priority"] = current["entryState"].map({"진입가능": 0, "곧진입": 1})
     current = current.sort_values(["entry_priority", "entry_score", "value"], ascending=[True, False, False])
     fundamental_map = fundamentals.set_index("ticker") if not fundamentals.empty else pd.DataFrame()
@@ -1663,8 +1723,14 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
             "relation": relation, "marketState": f"{item.sector_rotationType} · {item.sector_stage}",
             "growth1Y": growth, "consensus": consensus, "consensusDate": consensus_date,
             "valueMultiple": value_text, "entryScore": round(float(item.entry_score), 1),
+            "rotationScore": round(float(item.rotation_score), 1),
+            "fundamentalScore": round(float(item.fundamental_score), 1),
+            "fundamentalBasis": item.fundamental_basis,
             "priceDate": latest_date.strftime("%Y-%m-%d"),
-            "reason": f"전체시장 진입필터 통과 · 섹터 대비 {relation} · 과열 아님",
+            "reason": (
+                f"순환 50% {float(item.rotation_score):.1f}점 · "
+                f"펀더멘털 50% {float(item.fundamental_score):.1f}점 · {item.fundamental_basis}"
+            ),
         })
     all_rows = rows
     shown, sector_counts = [], {}
@@ -1680,6 +1746,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
             "rows": shown, "_allRows": all_rows, "_eligibility": list(eligibility_map.values()),
             "_meta": {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "entry-1.0"},
             "selectionRule": (
+                "순환 후보군에서 순환점수 50% + 펀더멘털점수 50%로 순위, "
                 f"일 거래대금 {minimum_daily_turnover / 100_000_000:.0f}억원 이상, "
                 "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"
             )}

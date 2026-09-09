@@ -90,6 +90,15 @@ class RotationEngineTest(unittest.TestCase):
         self.assertAlmostEqual(weights["rs1"] + weights["rs3"] + weights["rs5"], 0.34)
         self.assertEqual(weights["turnover_change"], 0.30)
 
+    def test_entry_ranks_only_rotation_candidates_with_equal_fundamental_weight(self):
+        rotation_pool = {row["ticker"] for row in self.p11["_allRows"]}
+        self.assertTrue(all(row["ticker"] in rotation_pool for row in self.p1["rows"]))
+        for row in self.p1["rows"]:
+            self.assertAlmostEqual(
+                row["entryScore"], (row["rotationScore"] + row["fundamentalScore"]) / 2, delta=0.11,
+            )
+            self.assertTrue(row["fundamentalBasis"])
+
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
