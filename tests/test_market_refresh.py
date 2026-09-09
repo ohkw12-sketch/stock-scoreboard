@@ -24,6 +24,7 @@ class MarketRefreshTest(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.config = load_config(None, "sample")
+        self.config["minimum_quarterly_sales"] = 1
         self.config["cache_dir"] = Path(self.temp.name) / "cache"
         self.config["output_dir"] = Path(self.temp.name) / "out"
         self.config["base_data_file"] = Path(self.temp.name) / "no-board.json"

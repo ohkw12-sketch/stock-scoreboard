@@ -54,6 +54,7 @@ DEFAULTS = {
     },
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
+    "minimum_quarterly_sales": 2_500_000_000_000,
     "market_snapshot_cache_max_days": 7,
     "cache_dir": "cache",
     "output_dir": "test_output",
@@ -106,6 +107,8 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
         raise ValueError("rotation weights must contain all six factors and sum to 1")
     if int(config["minimum_daily_turnover"]) <= 0:
         raise ValueError("minimum daily turnover must be positive")
+    if int(config["minimum_quarterly_sales"]) <= 0:
+        raise ValueError("minimum quarterly sales must be positive")
     return config
 
 
@@ -1353,7 +1356,13 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         data["normalized_ttm_op"].div((data["q2_op"] * 4).replace(0, np.nan)) - 1
     ).mul(100).where(data["normalized_complete"])
     data["normalized_pop"] = data["market_cap"].div(data["normalized_op"].where(data["normalized_op"] > 0))
-    valid = data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna() & data["normalized_pop"].between(0.1, 300)
+    minimum_quarterly_sales = int(config.get("minimum_quarterly_sales", 2_500_000_000_000))
+    sales_qualified = data["q2_sales"].notna() & data["q2_sales"].ge(minimum_quarterly_sales)
+    valid_multiple = (
+        data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna()
+        & data["normalized_pop"].between(0.1, 300)
+    )
+    valid = sales_qualified & valid_multiple
     minimum_peers = int(config.get("minimum_value_sector_peers", 2))
     stats = data[valid].groupby("sector")["normalized_pop"].agg(["median", "count"])
     data["sector_normalized_pop"] = data["sector"].map(stats["median"] if not stats.empty else {})
@@ -1459,6 +1468,9 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
         "reason": "가치 조건 통과" if item.ticker in score_map else (
             "가격·시가총액 없음" if not np.isfinite(item.market_cap) else
+            "최근 분기 매출액 없음" if not np.isfinite(item.q2_sales) else
+            f"최근 분기 매출액 {minimum_quarterly_sales / 1_000_000_000_000:g}조원 미만"
+            if item.q2_sales < minimum_quarterly_sales else
             "정상화 영업이익 양수 아님/없음" if not np.isfinite(item.normalized_op) or item.normalized_op <= 0 else
             "비교 가능한 섹터 종목 부족" if not np.isfinite(item.sector_normalized_pop) else
             "가치 배수 허용 범위 밖"),
@@ -1467,19 +1479,29 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     price_dates = pd.to_datetime(data["price_date"], errors="coerce").dropna()
     price_basis = price_dates.max().strftime("%Y-%m-%d") if not price_dates.empty else None
     price_basis_text = f" · 가격 기준 {price_basis}" if price_basis else ""
+    sales_floor_eok = minimum_quarterly_sales / 100_000_000
     return {
-        "status": f"정상화 가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}",
-        "method": "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · 미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용",
+        "status": (
+            f"분기 매출 {sales_floor_eok:,.0f}억원 이상 · "
+            f"정상화 가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}"
+        ),
+        "method": (
+            f"최근 분기 매출 {sales_floor_eok:,.0f}억원 이상만 평가 · "
+            "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · "
+            "미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용"
+        ),
         "rows": rows,
         "_allRows": all_rows, "_eligibility": eligibility,
-        "_meta": {"asOfDate": price_basis, "engineVersion": "normalized-value-1.0", "forwardEstimateUsed": False},
+        "_meta": {"asOfDate": price_basis, "engineVersion": "normalized-value-1.1", "forwardEstimateUsed": False},
         "events": [{
             "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"),
-            "event": "T+와 미래 실적 추정을 완전히 제외하고 확인된 최근 4분기 이익만으로 재평가",
-            "tone": "정보", "impact": "절대 저평가·섹터 상대 저평가·이익 정상화만 가치 순위에 반영",
+            "event": f"최근 분기 매출 {sales_floor_eok:,.0f}억원 하한을 통과한 기업만 가치평가",
+            "tone": "정보", "impact": "매출 규모를 먼저 확인한 뒤 절대·섹터 상대 저평가와 이익 정상화를 평가",
         }],
         "dataStatus": status | {
             "valueUniverseCount": len(data), "valueCandidateCount": candidate_count,
+            "minimumQuarterlySales": minimum_quarterly_sales,
+            "quarterlySalesQualifiedCount": int(sales_qualified.sum()),
             "directQ2Count": int(data["direct_q2"].sum()),
             "normalizedCompleteCount": int(data["normalized_complete"].sum()),
             "forwardEstimateUsed": False,

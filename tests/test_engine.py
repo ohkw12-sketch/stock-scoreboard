@@ -26,6 +26,7 @@ class RotationEngineTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.config = load_config(None, "sample")
+        cls.config["minimum_quarterly_sales"] = 1
         cls.prices = generate_sample_market()
         cls.prices, cls.market_status = attach_market_snapshot(cls.prices, cls.config)
         cls.p11 = run_engine(cls.prices, cls.config, "unit-test-sample")
@@ -113,6 +114,35 @@ class RotationEngineTest(unittest.TestCase):
         self.assertNotIn("turnaroundRows", self.p2)
         self.assertNotIn("T+", self.p2["status"])
         self.assertFalse(self.p2["dataStatus"]["forwardEstimateUsed"])
+
+    def test_value_engine_applies_quarterly_sales_floor_before_sector_comparison(self):
+        def fundamental(ticker, name, quarterly_sales):
+            return {
+                "ticker": ticker, "name": name, "sector": "테스트", "as_of": "2026-06-30",
+                "sales_current": quarterly_sales * 2, "sales_previous": quarterly_sales * 1.8,
+                "op_current": 20e8, "op_previous": 18e8,
+                "sales_quarter_current": quarterly_sales, "sales_quarter_previous": quarterly_sales * .9,
+                "op_quarter_current": 10e8, "op_quarter_previous": 9e8,
+                "report_code": "11012",
+            }
+
+        frame = pd.DataFrame([
+            fundamental("100001", "하한통과A", 3_000_000_000_000),
+            fundamental("100002", "하한통과B", 2_500_000_000_000),
+            fundamental("100003", "하한미달", 2_499_999_999_999),
+        ])
+        prices = pd.DataFrame([
+            {"ticker": ticker, "date": "2026-09-08", "close": 10000,
+             "market_cap": market_cap, "shares": market_cap / 10000}
+            for ticker, market_cap in zip(frame["ticker"], [200e8, 240e8, 220e8])
+        ])
+        config = dict(self.config, minimum_quarterly_sales=2_500_000_000_000)
+        board = build_value_board(frame, config, {"status": "정상"}, prices)
+        self.assertEqual(board["dataStatus"]["valueCandidateCount"], 2)
+        self.assertEqual(board["dataStatus"]["quarterlySalesQualifiedCount"], 2)
+        self.assertEqual({row["name"] for row in board["rows"]}, {"하한통과A", "하한통과B"})
+        rejected = next(row for row in board["_eligibility"] if row["name"] == "하한미달")
+        self.assertEqual(rejected["reason"], "최근 분기 매출액 2.5조원 미만")
 
     def test_value_engine_removes_every_future_and_t_plus_output(self):
         frame = pd.DataFrame([

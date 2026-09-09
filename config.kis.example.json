@@ -18,6 +18,7 @@
   },
   "top_value_count": 15,
   "minimum_value_sector_peers": 2,
+  "minimum_quarterly_sales": 2500000000000,
   "market_snapshot_cache_max_days": 7,
   "cache_dir": "cache",
   "output_dir": "test_output",
