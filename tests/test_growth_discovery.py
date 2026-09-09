@@ -27,6 +27,15 @@ def prices(count=6):
                          for i in range(1,count+1) for d in dates])
 
 
+def fundamentals(count=1, quarterly_sales=40_000_000_000):
+    return pd.DataFrame([
+        dict(ticker=f'{i:06d}', report_code='11013', sales_current=quarterly_sales,
+             sales_previous=quarterly_sales / 2, op_current=quarterly_sales * .1,
+             op_previous=quarterly_sales * .05, as_of='2026-03-31')
+        for i in range(1, count + 1)
+    ])
+
+
 class GrowthTest(unittest.TestCase):
     def test_no_positive_evidence_means_no_candidates(self):
         board = build_growth_board(prices(), pd.DataFrame(), [], {}, NOW)
@@ -130,6 +139,39 @@ class GrowthTest(unittest.TestCase):
         p.loc[ix,'close']=130
         r=PriceResponse(p).evaluate('000001','산업0',event())
         self.assertEqual(r['label'],'판정 불가')
+
+    def test_growth_hard_filters_apply_sales_turnover_and_market_restrictions(self):
+        p = prices(4)
+        p['value'] = 2_000_000_000
+        p.loc[p.ticker.eq('000002'), 'value'] = 500_000_000
+        p.loc[p.ticker.eq('000004'), 'is_suspended'] = True
+        f = fundamentals(4)
+        f.loc[f.ticker.eq('000003'), ['sales_current', 'sales_previous']] = [20_000_000_000, 10_000_000_000]
+        events = [event(ticker=f'{i:06d}', identity=str(i)) for i in range(1, 5)]
+        config = {'growth_minimum_quarterly_sales': 30_000_000_000,
+                  'growth_minimum_average_turnover': 1_000_000_000,
+                  'growth_candidate_count': 50}
+        board = build_growth_board(p, f, events, {}, NOW, config=config)
+        self.assertEqual([row['ticker'] for row in board['rows']], ['000001'])
+        self.assertEqual(board['dataStatus']['marketRiskExcludedCount'], 1)
+        self.assertIn('분기 매출 400억원', board['rows'][0]['financialSummary'])
+        self.assertIn('20일 평균 거래대금 20억원', board['rows'][0]['financialSummary'])
+
+    def test_growth_keeps_top_fifty_internal_candidates_and_top_ten_display(self):
+        p = prices(60)
+        events = [event(ticker=f'{i:06d}', identity=str(i)) for i in range(1, 61)]
+        board = build_growth_board(p, pd.DataFrame(), events, {}, NOW,
+                                   config={'growth_candidate_count': 50})
+        self.assertEqual(board['dataStatus']['preCutCandidateCount'], 60)
+        self.assertEqual(board['dataStatus']['candidateCount'], 50)
+        self.assertEqual(len(board['_audit']), 50)
+        self.assertEqual(len(board['rows']), 10)
+        self.assertEqual(set(board['rows'][0]['scoreComponents']), {
+            'eventScale', 'salesPersistence', 'profitConversion', 'revenueVisibility',
+            'evidenceConfidence', 'priceUnderreaction', 'financialSafety',
+        })
+        self.assertEqual(board['rows'][0]['evidenceContents'][0]['source'], 'DART · 2026-04-01')
+        self.assertIn('장비공급 계약을 체결했습니다', board['rows'][0]['evidenceContents'][0]['content'])
 
 
 if __name__ == '__main__':

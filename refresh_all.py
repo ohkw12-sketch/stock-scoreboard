@@ -14,6 +14,7 @@ from youtube_content import collect_youtube_content
 from refresh_store import (json_write, read_json, run_lock, snapshot_files, public_fields, digest,
                            store_verified_frames, load_verified_frames)
 from recommendation_performance import empty_ledger, evaluate
+from recommendation_continuity import attach_recommendation_history
 from performance_prices import collect_performance_prices
 from board_contract import load_contract
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
@@ -213,7 +214,10 @@ def rebuild(args, config):
         listing_path = config['cache_dir']/'krx_listing_desc.csv'
         listing = pd.read_csv(listing_path, dtype={'Code': str}) if listing_path.exists() else pd.DataFrame()
         links = {e['eventId']: product_exposure(listing, e) for e in sector_events}
-        result = build_growth_board(prices, fundamentals, events, collection, sector_events=sector_events, sector_links=links)
+        result = build_growth_board(
+            prices, fundamentals, events, collection,
+            sector_events=sector_events, sector_links=links, config=config,
+        )
         growth_candidates = result.pop('_audit')
         json_write(out/'growth_audit.test.json', growth_candidates)
         portable_events = [{k: v for k, v in event.items() if not (
@@ -240,12 +244,7 @@ def rebuild(args, config):
     board['meta']['runId'] = context['runId']
     board['meta']['refreshState'] = context
     board['meta']['note'] = '성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.'
-    from issue_spread import refresh as refresh_issues
-    refresh_issues(board=board, slot=getattr(args, "issue_slot", None) or ("08:00" if datetime.now(KST).hour < 12 else "15:00"))
-    json_write(board_path, public_fields(board))
     section_dir = out / 'sections'
-    for section in ('p1', 'p11', 'p2', 'growth', 'p3', 'meta'):
-        json_write(section_dir / f'{section}.test.json', public_fields(board[section]))
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
     if youtube_path.exists():
         youtube = refresh_youtube_prices(json.loads(youtube_path.read_text('utf-8-sig')), prices)
@@ -262,6 +261,15 @@ def rebuild(args, config):
                            generated_at=generated, snapshot_id=manifest['snapshotId'])
     combined['refreshState'] = dict(context, status='계산완료')
     combined['runId'] = context['runId']
+    board, combined = attach_recommendation_history(
+        board, combined, ledger, trading_sessions=list(pd.to_datetime(prices['date']).dt.date),
+    )
+    # Reuse this full run for the morning/afternoon issue stage.
+    from issue_spread import refresh as refresh_issues
+    refresh_issues(board=board, slot=getattr(args, 'issue_slot', None) or ('08:00' if datetime.now(KST).hour < 12 else '15:00'))
+    json_write(board_path, public_fields(board))
+    for section in ('p1', 'p11', 'p2', 'growth', 'p3', 'meta'):
+        json_write(section_dir / f'{section}.test.json', public_fields(board[section]))
     states['combined'] = combined['refreshState']
     json_write(out/'combined_audit.test.json', combined)
     json_write(out/'combined-recommendations.test.json', combined)
@@ -287,7 +295,7 @@ def rebuild(args, config):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--issue-slot", choices=["08:00", "15:00"])
+    parser.add_argument('--issue-slot', choices=['08:00', '15:00'], help='지연된 전체 실행에도 원래 예약 단계 유지')
     parser.add_argument('--config', type=Path, default=Path('config.kis.example.json'))
     parser.add_argument('--reuse-snapshot', action='store_true', help='저장된 가격·재무만 재사용')
     parser.add_argument('--reuse-evidence', action='store_true', help='외부 근거 수집을 하지 않음')

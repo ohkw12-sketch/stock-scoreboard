@@ -135,7 +135,8 @@ class Document {
 }
 
 function fixtures() {
-  const common = {ticker:'000001', name:'검증종목', sector:'검증산업', rank:1};
+  const common = {ticker:'000001', name:'검증종목', sector:'검증산업', rank:1,
+    recommendationHistory:{label:'2거래일 연속 추천'}};
   return {
     'data.json': {
       meta: {title:'주식평가창', runId:'run-current', updatedKST:'2026-09-07 12:00', masterBasis:'2026-09-04 종가', note:'신뢰도는 예측 확률이 아닙니다.', sourceSummary:'검증 원자료'},
@@ -150,10 +151,13 @@ function fixtures() {
         normalizedPOP:8,sectorNormalizedPOP:10,normalizedPremiumPct:-20,normalizationAdjustmentPct:-5,
         confidence:'A',normalizationSourceBadge:'공시 실적'}]},
       growth: {status:'성장 정상',dataStatus:{status:'정상',news:{status:'정상'},verifiedDocuments:{status:'원문검증대기'}},
-        rows:[{...common,growthRate:20,fundamentalScore:70,priceReflection:'미반영 가능',confidence:'보통',evidenceCount:2}],
-        sectors:[{rank:1,sector:'검증산업',confidence:'보통',evidenceCount:3,stocks:[common]}]},
+        rows:[{...common,growthRate:20,fundamentalScore:70,priceReflection:'미반영 가능',confidence:'보통',evidenceCount:2,
+          financialSummary:'분기 매출 400억원 · 20일 평균 거래대금 20억원',
+          evidenceContents:[{kind:'수주',content:'검증 장비 계약을 120억원 규모로 체결했으며 최근 매출의 15%입니다.',source:'DART · 2026-09-01',url:'https://dart.example/test'}]}],
+        sectors:[{rank:1,sector:'검증산업',confidence:'보통',evidenceCount:3,stocks:[common],basis:'복수 기업 수주',
+          evidenceContents:[{kind:'수주',content:'산업 설비 계약을 300억원 규모로 체결했습니다.',source:'DART · 2026-09-01'}]}]},
       p3: {status:'보유 정상',valuationBasis:'검증 종가',rows:[{...common,qty:10,avg:90,ret:'+11.11%',opGrowth:'+20%',
-        valuePosition:'20% 할인',fairRange:'사용자 입력',drawdown3m:'-5%',judgment:'기존 판단',action:'보유',basis:'2026-09-04'}]},
+        recommendationHistory:undefined,valuePosition:'20% 할인',fairRange:'사용자 입력',drawdown3m:'-5%',judgment:'기존 판단',action:'보유',basis:'2026-09-04'}]},
     },
     'youtube-market.json': {meta:{status:'가격 갱신',updatedKST:'2026-09-01 08:00',range:'9월',priceBasis:'9/4 종가',summary:[]},
       weeks:[{label:'이번주',kim:[],park:[]}],recommendations:[],expired:'기간 경과',contentStatus:{status:'원문검증대기'}},
@@ -200,14 +204,34 @@ test('actual page scripts render all independent boards and preserve locked head
   assert.equal(errors.length, 0);
   assert.equal(new Set(requests).size, 5);
   for (const id of ['p1body','p11body','p2body','growthbody','p3body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
+  assert.equal(document.getElementById('p1body').rows[0].cells.length, 11);
+  assert.equal(document.getElementById('p11body').rows[0].cells.length, 7);
+  for (const id of ['p1body','p11body','p2body','growthbody','growthsectors','combinedbody']) assert.match(document.getElementById(id).innerHTML, /2거래일 연속 추천/);
+  assert.doesNotMatch(document.getElementById('p3body').innerHTML, /거래일 연속 추천/);
   const contract = JSON.parse(fs.readFileSync(path.join(root, 'ui_contract.json'), 'utf8'));
   for (const table of Object.values(contract.tables)) {
     assert.deepEqual(document.table(table.tbodyId).headers.map(header => header.originalLabel), table.headers);
   }
   assert.match(document.getElementById('growthcoverage').textContent, /뉴스 검색큐: 정상/);
   assert.match(document.getElementById('growthcoverage').textContent, /검증 뉴스·IR 원문: 원문검증대기/);
+  assert.match(document.getElementById('growthbody').textContent, /분기 매출 400억원/);
+  assert.match(document.getElementById('growthbody').textContent, /검증 장비 계약을 120억원 규모로 체결/);
+  assert.match(document.getElementById('growthsectors').textContent, /복수 기업 수주/);
   assert.match(document.getElementById('p5body').innerHTML, /이 기간에 확인·등록된 발언 없음/);
   assert.doesNotMatch(document.getElementById('p5body').innerHTML, /신규 공개 영상 없음/);
+});
+
+test('YouTube shows direct sector and stock impact as colored cards with risks', async () => {
+  const data = fixtures();
+  data['youtube-market.json'].recommendations = [
+    ['2026.09.07','반도체','섹터','09.08','AI 투자로 메모리 수요 확대','과열 가격 확인','현재 상태'],
+    ['2026.09.07','검증종목','조건부','09.07','수주 확대 가능성','실제 수주 확인','현재 상태'],
+  ];
+  const {document, errors} = await runtime({data});
+  assert.equal(errors.length, 0);
+  assert.match(document.getElementById('p5body').innerHTML, /투자 영향 큰 종목·섹터/);
+  assert.match(document.getElementById('p5body').innerHTML, /yt-impact-card sector/);
+  assert.match(document.getElementById('p5body').textContent, /확인할 점 · 과열 가격 확인/);
 });
 
 test('empty performance history shows waiting text without fabricated return or ranking', async () => {

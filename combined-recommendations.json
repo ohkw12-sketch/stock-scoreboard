@@ -2,18 +2,18 @@
   "schemaVersion": 1,
   "ruleVersion": "combined-feedback-2.0",
   "snapshotId": "35583a9beede72766c9300cab21b726fe29a1e5abd0b1d926c34899375478916",
-  "generatedAt": "2026-09-08T15:54:31+09:00",
+  "generatedAt": "2026-09-10T00:39:09+09:00",
   "sourceDate": "2026-09-08",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
-  "candidateCount": 72,
-  "matchedCandidateCount": 2,
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "candidateCount": 68,
+  "matchedCandidateCount": 1,
   "rows": [
     {
       "ticker": "028050",
       "name": "삼성E&A",
       "sector": "건축기술, 엔지니어링 및 관련 기술 서비스업",
-      "currentProjectRank": 11.5,
+      "currentProjectRank": 12.0,
       "conditions": [
         "진입",
         "순환"
@@ -51,51 +51,16 @@
       "valueScore": null,
       "growthScore": null,
       "sectorRelation": "동행",
-      "rank": 1
-    },
-    {
-      "ticker": "298690",
-      "name": "에어부산",
-      "sector": "항공 여객 운송업",
-      "currentProjectRank": 14.5,
-      "conditions": [
-        "진입",
-        "순환"
-      ],
-      "condition": "진입 + 순환",
-      "entryState": "곧진입",
-      "currentPrice": 1600,
-      "combinedScore": 1.6656,
-      "matchedPattern": {
-        "pattern": [
-          "관계:동행",
-          "순환",
-          "진입"
-        ],
-        "label": "관계 동행 + 순환 + 진입",
-        "horizon": 5,
-        "sampleCount": 5,
+      "rank": 1,
+      "recommendationHistory": {
+        "firstDate": "2026-09-08",
+        "previousDate": null,
         "recommendationDays": 1,
-        "meanReturnPct": 1.214,
-        "medianReturnPct": 4.997,
-        "winRatePct": 80.0,
-        "score": 1.6656,
-        "status": "초기 관찰",
-        "archiveSampleCount": 5,
-        "rank": 2
-      },
-      "features": [
-        "관계:동행",
-        "순환",
-        "순환:③주도",
-        "진입",
-        "진입:곧진입"
-      ],
-      "sourceDate": "2026-09-08",
-      "valueScore": null,
-      "growthScore": null,
-      "sectorRelation": "동행",
-      "rank": 2
+        "spanTradingDays": 1,
+        "gapCalendarDays": null,
+        "kind": "new",
+        "label": "신규 추천"
+      }
     }
   ],
   "feedback": {
@@ -735,16 +700,19 @@
   },
   "notice": "과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · 동점은 프로젝트 중복 수와 현재 순위 · 진입은 필수가 아니며 진입구분 별도 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-09-08T15:54:31+09:00",
+    "generatedAt": "2026-09-10T00:39:09+09:00",
     "snapshotId": "35583a9beede72766c9300cab21b726fe29a1e5abd0b1d926c34899375478916",
     "sourceCutoff": "2026-09-08",
-    "mode": "증분 수집",
-    "engineVersion": "6d492303a82ce158",
-    "runId": "d715f10ce4289ed919ca9d4b",
-    "evidenceSnapshotId": "6086410cb13b5825b36fa8478f67125e15b05b73ddcfcfdfc41714b4fa370e10",
+    "mode": "저장자료 재계산",
+    "engineVersion": "7784719607f335da",
+    "runId": "d5d97fafe655df98666bebd9",
+    "evidenceSnapshotId": "cc6ba26a36ad8323f63d22dc15c042e819b5e729b306c5e30153eca93daa9b7a",
     "status": "계산완료"
   },
-  "runId": "d715f10ce4289ed919ca9d4b",
-  "lastPublicationCheckedAt": "2026-09-08T16:02:35+09:00",
-  "observedPublishedAt": "2026-09-08T16:02:35+09:00"
+  "runId": "d5d97fafe655df98666bebd9",
+  "recommendationHistoryPolicy": {
+    "version": "recommendation-history-1.0",
+    "gapCalendarDays": 7,
+    "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
+  }
 }

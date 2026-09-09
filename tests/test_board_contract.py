@@ -18,6 +18,11 @@ class BoardContractTest(unittest.TestCase):
     def test_current_html_matches_locked_contract(self):
         self.assertEqual(validate_html(ROOT / "index.html", load_contract()), [])
 
+    def test_value_and_growth_tables_use_centered_alignment(self):
+        html = (ROOT / "index.html").read_text("utf-8")
+        self.assertIn(".value-table th,.value-table td{text-align:center}", html)
+        self.assertIn(".growth-table th,.growth-table td{text-align:center}", html)
+
     def test_value_payload_requires_locked_fields(self):
         contract = load_contract()
         board = {"meta": {"uiContractVersion": contract["version"]}, "p2": {"rows": [{}]}}

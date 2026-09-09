@@ -5,7 +5,7 @@
   const number = value => value == null ? '—' : Number(value).toLocaleString('ko-KR', {maximumFractionDigits:2});
   const pct = value => value == null ? '—' : `${value > 0 ? '+' : ''}${number(value)}%`;
   const cell = value => `<td>${text(value)}</td>`;
-  const stockCell = row => `<td><strong>${text(row.name)}</strong><span class="sector">${text(row.sector || row.ticker)}</span></td>`;
+  const stockCell = row => `<td><strong>${text(row.name)}</strong><span class="sector">${text(row.sector || row.ticker)}</span>${row.recommendationHistory?.label ? `<span class="recommendation-history">${text(row.recommendationHistory.label)}</span>` : ''}</td>`;
   async function read(path) { const r = await fetch(`${path}?v=${Date.now()}`, {cache:'no-store'}); if (!r.ok) throw new Error(path); return r.json(); }
   function combined(data) {
     document.getElementById('combinedstatus').textContent = `${data.status} · 전체 조합 후보 ${number(data.candidateCount)}개`;

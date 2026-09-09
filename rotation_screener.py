@@ -55,6 +55,10 @@ DEFAULTS = {
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
     "minimum_quarterly_sales": 2_500_000_000_000,
+    "growth_minimum_quarterly_sales": 30_000_000_000,
+    "growth_minimum_average_turnover": 1_000_000_000,
+    "growth_candidate_count": 50,
+    "growth_excluded_tickers": [],
     "market_snapshot_cache_max_days": 7,
     "cache_dir": "cache",
     "output_dir": "test_output",
@@ -109,6 +113,12 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
         raise ValueError("minimum daily turnover must be positive")
     if int(config["minimum_quarterly_sales"]) <= 0:
         raise ValueError("minimum quarterly sales must be positive")
+    if int(config["growth_minimum_quarterly_sales"]) <= 0:
+        raise ValueError("growth minimum quarterly sales must be positive")
+    if int(config["growth_minimum_average_turnover"]) <= 0:
+        raise ValueError("growth minimum average turnover must be positive")
+    if int(config["growth_candidate_count"]) <= 0:
+        raise ValueError("growth candidate count must be positive")
     return config
 
 
