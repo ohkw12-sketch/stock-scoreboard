@@ -98,6 +98,8 @@ class RotationEngineTest(unittest.TestCase):
                 row["entryScore"], (row["rotationScore"] + row["fundamentalScore"]) / 2, delta=0.11,
             )
             self.assertTrue(row["fundamentalBasis"])
+        scores = [row["entryScore"] for row in self.p1["_allRows"]]
+        self.assertEqual(scores, sorted(scores, reverse=True))
 
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())

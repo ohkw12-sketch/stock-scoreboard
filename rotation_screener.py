@@ -1670,7 +1670,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     current = current[current["entryState"].ne("")].copy()
     current["entry_score"] = current["rotation_score"] * 0.50 + current["fundamental_score"] * 0.50
     current["entry_priority"] = current["entryState"].map({"진입가능": 0, "곧진입": 1})
-    current = current.sort_values(["entry_priority", "entry_score", "value"], ascending=[True, False, False])
+    current = current.sort_values(["entry_score", "entry_priority", "value"], ascending=[False, True, False])
     fundamental_map = fundamentals.set_index("ticker") if not fundamentals.empty else pd.DataFrame()
     rows = []
     for rank, item in enumerate(current.itertuples(), 1):
