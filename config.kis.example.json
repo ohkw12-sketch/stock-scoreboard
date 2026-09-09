@@ -7,6 +7,15 @@
   "top_sector_count": 15,
   "top_stock_count": 20,
   "top_entry_count": 20,
+  "minimum_daily_turnover": 1000000000,
+  "rotation_weights": {
+    "rs1": 0.06,
+    "rs3": 0.10,
+    "rs5": 0.18,
+    "turnover_change": 0.30,
+    "breadth": 0.20,
+    "leader_strength": 0.16
+  },
   "top_value_count": 15,
   "minimum_value_sector_peers": 2,
   "market_snapshot_cache_max_days": 7,

@@ -78,6 +78,18 @@ class RotationEngineTest(unittest.TestCase):
         ))
         self.assertTrue(all(row["growth1Y"] not in {"+999.0%", "-999.0%"} for row in self.p1["rows"]))
 
+    def test_rotation_and_entry_apply_the_configured_liquidity_floor(self):
+        latest = self.prices[self.prices["date"].eq(self.prices["date"].max())].set_index("ticker")
+        minimum = self.config["minimum_daily_turnover"]
+        for section in (self.p11, self.p1):
+            self.assertTrue(all(float(latest.loc[row["ticker"], "value"]) >= minimum for row in section["rows"]))
+
+    def test_rotation_weights_favor_turnover_over_short_term_returns(self):
+        weights = self.config["rotation_weights"]
+        self.assertAlmostEqual(sum(weights.values()), 1.0)
+        self.assertAlmostEqual(weights["rs1"] + weights["rs3"] + weights["rs5"], 0.34)
+        self.assertEqual(weights["turnover_change"], 0.30)
+
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)

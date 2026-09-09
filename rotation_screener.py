@@ -43,6 +43,15 @@ DEFAULTS = {
     "top_sector_count": 15,
     "top_stock_count": 20,
     "top_entry_count": 20,
+    "minimum_daily_turnover": 1_000_000_000,
+    "rotation_weights": {
+        "rs1": 0.06,
+        "rs3": 0.10,
+        "rs5": 0.18,
+        "turnover_change": 0.30,
+        "breadth": 0.20,
+        "leader_strength": 0.16,
+    },
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
     "market_snapshot_cache_max_days": 7,
@@ -91,6 +100,12 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
         config[key] = candidate if candidate.is_absolute() else ROOT / candidate
     if not 20 <= int(config["rotation_scan_min_days"]) <= int(config["rotation_scan_max_days"]) <= 40:
         raise ValueError("rotation scan range must satisfy 20 <= min <= max <= 40")
+    required_weights = {"rs1", "rs3", "rs5", "turnover_change", "breadth", "leader_strength"}
+    weights = config.get("rotation_weights", {})
+    if set(weights) != required_weights or abs(sum(float(value) for value in weights.values()) - 1.0) > 1e-9:
+        raise ValueError("rotation weights must contain all six factors and sum to 1")
+    if int(config["minimum_daily_turnover"]) <= 0:
+        raise ValueError("minimum daily turnover must be positive")
     return config
 
 
@@ -997,15 +1012,12 @@ def build_daily_features(prices: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFra
     return work, sector_daily
 
 
-def composite_history(sector_daily: pd.DataFrame) -> pd.DataFrame:
+def composite_history(sector_daily: pd.DataFrame, weights: dict[str, float] | None = None) -> pd.DataFrame:
     history = sector_daily.copy()
-    components = []
-    for column in ("rs1", "rs3", "rs5", "turnover_change", "breadth", "leader_strength"):
-        ranked = history.groupby("date")[column].transform(rank_percentile)
-        components.append(ranked)
-    history["composite"] = (
-        components[0] * 0.10 + components[1] * 0.16 + components[2] * 0.24 +
-        components[3] * 0.16 + components[4] * 0.18 + components[5] * 0.16
+    weights = weights or DEFAULTS["rotation_weights"]
+    history["composite"] = sum(
+        history.groupby("date")[column].transform(rank_percentile) * float(weights[column])
+        for column in ("rs1", "rs3", "rs5", "turnover_change", "breadth", "leader_strength")
     )
     return history
 
@@ -1072,7 +1084,8 @@ def classify_stage(latest: pd.Series, previous: pd.Series, elapsed: int, cycle: 
 
 
 def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: int,
-                  sector_cap: int | None = 4) -> list[dict]:
+                  sector_cap: int | None = 4,
+                  minimum_daily_turnover: int = 1_000_000_000) -> list[dict]:
     latest_date = stock_data["date"].max()
     current = stock_data[stock_data["date"].eq(latest_date)].copy()
     sector_map = sector_results.set_index("name")
@@ -1088,7 +1101,7 @@ def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit:
         current["stock_excess3"].fillna(0).clip(-0.08, 0.08) * 120 -
         current["overheated"].astype(int) * 32
     )
-    current = current[current["ret5"].notna() & (current["value"] >= 100_000_000)]
+    current = current[current["ret5"].notna() & (current["value"] >= minimum_daily_turnover)]
     current = current.sort_values(["stock_score", "value"], ascending=False)
     # Avoid allowing one hot theme to occupy the entire candidate board.
     if sector_cap is not None:
@@ -1574,7 +1587,8 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     current["trend_ok"] = (current["ma5"] >= current["ma20"] * .98) & (current["close"] >= current["ma20"] * .96)
     current["confirm"] = (current["ret1"] > 0) & (current["close"] >= current["ma5"]) & (current["volume_ratio"] >= .85)
     allowed = ~current["sector_stage"].isin(["⑥후반", "X조기이탈", "X종료"])
-    liquid = current["value"] >= 100_000_000
+    minimum_daily_turnover = int(config["minimum_daily_turnover"])
+    liquid = current["value"] >= minimum_daily_turnover
     valid = allowed & liquid & current["trend_ok"] & ~current["overheated"] & current["ret5"].notna()
     current["entryState"] = ""
     inside = current["distance"].eq(0)
@@ -1585,7 +1599,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
         "eligible": bool(item.entryState), "entryState": item.entryState or None,
         "priceDate": latest_date.strftime("%Y-%m-%d"),
         "reason": "진입 조건 통과" if item.entryState else (
-            "과열" if item.overheated else "거래대금 부족" if item.value < 100_000_000 else
+            "과열" if item.overheated else "거래대금 부족" if item.value < minimum_daily_turnover else
             "추세 조건 미충족" if not item.trend_ok else "진입 거리·순환 단계·가격 이력 조건 미충족"),
     } for item in current.itertuples()}
     for item in latest_universe.itertuples():
@@ -1665,7 +1679,10 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     return {"status": f"전체 {prices['ticker'].nunique():,}종목에서 진입가능/곧진입만 선별 · 기준일 {latest_date:%Y-%m-%d}",
             "rows": shown, "_allRows": all_rows, "_eligibility": list(eligibility_map.values()),
             "_meta": {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "entry-1.0"},
-            "selectionRule": "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"}
+            "selectionRule": (
+                f"일 거래대금 {minimum_daily_turnover / 100_000_000:.0f}억원 이상, "
+                "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"
+            )}
 
 
 def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
@@ -1673,7 +1690,7 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
     if overrides:
         prices["sector"] = prices.apply(lambda row: overrides.get(row["ticker"], row["sector"]), axis=1)
     stock_data, sector_daily = build_daily_features(prices)
-    history = composite_history(sector_daily)
+    history = composite_history(sector_daily, config["rotation_weights"])
     latest_date = history["date"].max()
     eligible = history.groupby("sector")["members"].max()
     eligible = eligible[eligible >= int(config["minimum_sector_members"])].index
@@ -1734,7 +1751,8 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
     sector_results = pd.DataFrame(results).sort_values(["score", "rs5Pct", "leaderStrengthPct"], ascending=False).reset_index(drop=True)
     sector_results["rank"] = np.arange(1, len(sector_results) + 1)
     top = sector_results.head(int(config["top_sector_count"])).copy()
-    rows = rotation_rows(stock_data, top, int(config["top_stock_count"]))
+    rows = rotation_rows(stock_data, top, int(config["top_stock_count"]),
+                         minimum_daily_turnover=int(config["minimum_daily_turnover"]))
     public_sectors = top.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
     stage_counts = top["stage"].value_counts().to_dict()
     status = (
@@ -1760,7 +1778,10 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
         }],
     }
     result["_allSectors"] = sector_results.to_dict("records")
-    result["_allRows"] = rotation_rows(stock_data, sector_results, int(prices["ticker"].nunique()), sector_cap=None)
+    result["_allRows"] = rotation_rows(
+        stock_data, sector_results, int(prices["ticker"].nunique()), sector_cap=None,
+        minimum_daily_turnover=int(config["minimum_daily_turnover"]),
+    )
     all_row_map = {row["ticker"]: row for row in result["_allRows"]}
     result["_eligibility"] = [{
         "ticker": item.ticker, "name": item.name, "sector": item.sector,
