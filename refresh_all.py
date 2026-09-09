@@ -240,6 +240,8 @@ def rebuild(args, config):
     board['meta']['runId'] = context['runId']
     board['meta']['refreshState'] = context
     board['meta']['note'] = '성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.'
+    from issue_spread import refresh as refresh_issues
+    refresh_issues(board=board, slot=getattr(args, "issue_slot", None) or ("08:00" if datetime.now(KST).hour < 12 else "15:00"))
     json_write(board_path, public_fields(board))
     section_dir = out / 'sections'
     for section in ('p1', 'p11', 'p2', 'growth', 'p3', 'meta'):
@@ -285,11 +287,15 @@ def rebuild(args, config):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--issue-slot", choices=["08:00", "15:00"])
     parser.add_argument('--config', type=Path, default=Path('config.kis.example.json'))
     parser.add_argument('--reuse-snapshot', action='store_true', help='저장된 가격·재무만 재사용')
     parser.add_argument('--reuse-evidence', action='store_true', help='외부 근거 수집을 하지 않음')
     parser.add_argument('--full-refresh', action='store_true', help='정기 전체 재확인; 기본은 증분 수집')
     args = parser.parse_args()
+    from issue_spread import trading_day
+    if not trading_day(datetime.now(KST)):
+        return
     config = load_config(args.config, None)
     with run_lock(config['cache_dir']):
         rebuild(args, config)

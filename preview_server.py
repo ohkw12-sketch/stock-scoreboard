@@ -5,7 +5,14 @@ from urllib.parse import urlsplit
 import argparse
 
 ROOT = Path(__file__).resolve().parent
-FILES = {'/': ('index.html', 'text/html'), '/index.html': ('index.html', 'text/html'),
+FILES = {
+         '/issue-spread.js': ('issue-spread.js', 'text/javascript'),
+         '/issue-spread.css': ('issue-spread.css', 'text/css'),
+         '/issue-spread.json': ('test_output/issue-spread.test.json', 'application/json'),
+         '/sampro.js': ('sampro.js', 'text/javascript'),
+         '/sampro.css': ('sampro.css', 'text/css'),
+         '/sampro-market.json': ('sampro-market.json', 'application/json'),
+'/': ('index.html', 'text/html'), '/index.html': ('index.html', 'text/html'),
          '/research.js': ('research.js', 'text/javascript'),
          '/refresh-status.json': ('test_output/refresh-status.test.json', 'application/json'),
          '/data.json': ('test_output/data.test.json', 'application/json'),

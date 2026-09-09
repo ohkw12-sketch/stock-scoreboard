@@ -20,6 +20,7 @@
 .yt-wrap{display:grid;gap:16px;padding:18px}.yt-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.yt-stat{border:1px solid #e1e7ee;border-radius:11px;padding:13px;background:#fbfcfe}.yt-stat span,.yt-stat small{display:block;color:#748094}.yt-stat strong{display:block;margin:5px 0;font-size:21px;color:#243b65}.yt-week{display:grid;gap:10px}.yt-week h3{margin:0;font-size:15px}.yt-compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.yt-person{border:1px solid #e1e7ee;border-radius:12px;padding:14px;background:#fff}.yt-person-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding-bottom:9px;border-bottom:1px solid #edf1f5}.yt-person-head strong{font-size:16px}.yt-person-head span{display:block;margin-top:3px;color:#7c8797;font-size:11px}.yt-side{border-radius:999px;background:#edf3fb;color:#315e96!important;padding:4px 8px;font-weight:700}.yt-list{list-style:none;margin:0;padding:0}.yt-list>li{display:grid;grid-template-columns:76px minmax(0,1fr);gap:10px;padding:12px 0;border-bottom:1px solid #edf1f5}.yt-list>li:last-child{border-bottom:0}.yt-date{color:#637188;font-size:12px;font-variant-numeric:tabular-nums}.yt-item-title{font-weight:700}.yt-subtitle{display:block;margin-top:3px;color:#6f7b8d;font-size:12px}.yt-source{display:inline-block;margin-top:6px;color:#315e96;font-size:11px;font-weight:700;text-decoration:none}.yt-source:hover{text-decoration:underline}.yt-points{margin:7px 0 0;padding-left:18px;color:#445165;font-size:12px;line-height:1.6}.yt-empty{padding:15px 0;color:#7c8797}.yt-reco-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:3px}.yt-filters{display:flex;flex-wrap:wrap;gap:6px}.yt-filter{border:1px solid #dce3eb;background:#fff;color:#536176;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:12px;font-weight:700}.yt-filter.active{background:#243b65;border-color:#243b65;color:#fff}.yt-table{min-width:1160px}.yt-table td:nth-child(1),.yt-table td:nth-child(4){white-space:nowrap}.yt-table td:nth-child(2){font-weight:700}.yt-count{color:#6f7b8d;font-size:11px}.yt-foot{color:#7a8696;font-size:11px;line-height:1.55}.yt-error{padding:20px;color:#b13d37}.yt-grade.core{background:#e9f5ef;color:#17684e}.yt-grade.conditional{background:#fff4df;color:#875600}.yt-grade.positive{background:#edf3fb;color:#315e96}.yt-grade.sector{background:#eef1f5;color:#5f6b7b}@media(max-width:900px){.normalized-value-table td:nth-child(1)::before{content:"순위"}.normalized-value-table td:nth-child(2)::before{content:"종목"}.normalized-value-table td:nth-child(3)::before{content:"가치점수"}.normalized-value-table td:nth-child(4)::before{content:"정상화 P/OP"}.normalized-value-table td:nth-child(5)::before{content:"섹터 중앙"}.normalized-value-table td:nth-child(6)::before{content:"섹터 할인"}.normalized-value-table td:nth-child(7)::before{content:"정상화 조정률"}.normalized-value-table td:nth-child(8)::before{content:"신뢰도"}}@media(max-width:760px){.yt-wrap{padding:13px}.yt-summary,.yt-compare{grid-template-columns:1fr}.yt-reco-head{align-items:flex-start;flex-direction:column}.yt-list>li{grid-template-columns:66px minmax(0,1fr)}}
 </style>
 <link rel="stylesheet" href="sampro.css">
+<link rel="stylesheet" href="issue-spread.css">
 </head>
 <body>
 <main class="shell">
@@ -35,10 +36,12 @@
     <button class="tab" data-target="combined">종합추천</button>
     <button class="tab" data-target="performance">성과검증</button>
     <button class="tab" data-target="p3">보유</button>
+    <button class="tab" data-target="issue">이슈 확산</button>
     <button class="tab" data-target="p5">유튜브 시황</button>
     <button class="tab" data-target="sampro">유튜브시황1</button>
   </nav>
   <div class="notice"><strong>읽는 법</strong> 초록은 성장·할인, 빨강은 하락·프리미엄, 주황은 확인이 필요한 신호입니다. 종목명 아래에 세부섹터를 표시하며 변경사항은 5거래일 동안 강조됩니다.</div>
+  <section id="issue" class="panel"><div class="board"><div id="issuestatus" class="status">이슈 확산 불러오는 중</div><div id="issuebody"></div></div></section>
   <section id="p1" class="panel active"><div class="board"><div class="status" id="p1status"></div><div class="tablewrap"><table><thead><tr><th>순위</th><th>종목</th><th>진입구분</th><th>신호</th><th>현재가</th><th>진입구간</th><th>확인조건</th><th>무효화/손절</th><th>1년 OP성장</th><th>컨센서스</th><th>가치배수</th><th>핵심근거</th></tr></thead><tbody id="p1body"></tbody></table></div></div></section>
   <section id="p11" class="panel"><div class="board"><div class="status" id="p11status"></div><div class="method" id="p11method"></div><div class="sector-board"><div class="sector-title">전체시장 순환 강도 순위</div><div class="sector-grid" id="p11sectors"></div></div><div class="tablewrap"><table><thead><tr><th>순위</th><th>종목</th><th>섹터관계</th><th>순환단계</th><th>상대강도</th><th>순환상태</th><th>신호</th><th>핵심근거</th></tr></thead><tbody id="p11body"></tbody></table></div><div class="p1-events" id="p11events" hidden></div></div></section>
   <section id="p2" class="panel"><div class="board"><div class="status" id="p2status"></div><div class="method" id="p2method"></div><div class="subsection"><h3>정상화 가치 순위</h3></div><div class="tablewrap"><table class="value-table normalized-value-table"><thead><tr><th>순위</th><th>종목</th><th>가치점수</th><th class="group-fund">정상화 P/OP</th><th class="group-fund">섹터 중앙</th><th class="group-price">섹터 할인</th><th>정상화 조정률</th><th>신뢰도</th></tr></thead><tbody id="p2body"></tbody></table></div><div class="p1-events" id="p2events" hidden></div></div></section>
@@ -96,6 +99,7 @@ load().catch(e=>{document.getElementById('note').textContent='데이터를 불�
 </script>
 <script src="research.js" defer></script>
 <script src="sampro.js" defer></script>
+<script src="issue-spread.js" defer></script>
 </body>
 </html>
 
