@@ -23,6 +23,12 @@ class BoardContractTest(unittest.TestCase):
         self.assertIn(".value-table th,.value-table td{text-align:center}", html)
         self.assertIn(".growth-table th,.growth-table td{text-align:center}", html)
 
+    def test_saveticker_osun_board_is_present(self):
+        html = (ROOT / "index.html").read_text("utf-8")
+        self.assertIn('data-target="saveticker">유튜브시황2', html)
+        self.assertIn('id="savetickerstatus"', html)
+        self.assertIn('src="saveticker.js"', html)
+
     def test_value_payload_requires_locked_fields(self):
         contract = load_contract()
         board = {"meta": {"uiContractVersion": contract["version"]}, "p2": {"rows": [{}]}}

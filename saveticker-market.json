@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "meta": {
+    "title": "유튜브시황2",
+    "status": "SaveTicker 오선 국장 주요뉴스 갱신",
+    "updatedKST": "2026-09-10 01:11",
+    "range": "09.08 15:54–09.10 01:11",
+    "sourceUrl": "https://saveticker.com/news",
+    "source": "SaveTicker · 작성자 오선",
+    "selectionRule": "국내 기업·시장 직접 뉴스 우선, 국내 업종 영향이 명확한 글로벌 뉴스 보완, 유사 속보 통합",
+    "fetchedCount": 1200,
+    "authorCount": 113,
+    "selectedCount": 10,
+    "directCount": 4,
+    "sectorCount": 6,
+    "windowHours": 36
+  },
+  "items": [
+    {
+      "id": "209243",
+      "title": "오픈AI “삼성전자와 차세대 칩 협력 강화”",
+      "scope": "국장 직접",
+      "tone": "긍정",
+      "sectors": [
+        "반도체·전자"
+      ],
+      "marketImpact": "국내 삼성 계열·SK 반도체·전자 기업을 직접 언급한 뉴스입니다.",
+      "publishedKST": "2026-09-09 16:59",
+      "createdAt": "2026-09-09T16:59:57+09:00",
+      "source": "로이터",
+      "author": "오선",
+      "viewCount": 13314,
+      "isRumor": false,
+      "importanceScore": 102.1,
+      "url": "https://saveticker.com/news/209243",
+      "summary": "오픈AI 코리아는 서울 기자간담회를 통해 자체 차세대 AI 반도체 개발을 위해 삼성전자와 공동 연구 및 생산 협력을 심화하고 있다고 밝힘 또한 더 빠르고 복잡한 AI 연산으로 메모리 반도체 수요가 계속 늘어남에 따라, 한국 반도체 공급망(삼성전자·SK하이닉스)과의 협력을 한국 지사의 최우선 과제로 꼽음"
+    },
+    {
+      "id": "209239",
+      "title": "한국거래소, 9월 14일 야간 시간외 거래 개시… ETF·ETN은 제외",
+      "scope": "국장 직접",
+      "tone": "확인",
+      "sectors": [
+        "국내시장"
+      ],
+      "marketImpact": "코스피·코스닥 및 거래제도에 직접 연결되는 뉴스입니다.",
+      "publishedKST": "2026-09-09 16:52",
+      "createdAt": "2026-09-09T16:52:28+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 10333,
+      "isRumor": false,
+      "importanceScore": 102.1,
+      "url": "https://saveticker.com/news/209239",
+      "summary": "한국거래소(KRX)가 오는 9월 14일 새롭게 도입하는 코스피·코스닥 시간외 거래(장후 거래) 시장에서 ETF(상장지수펀드)와 ETN(상장지수증권)을 제외한다고 발표함 거래 대상은 코스피 및 코스닥 주식과 주식예탁증서(DR)이며, 시장경보 등 일부 시장 관리 조치를 받는 종목은 대상에서 제외됨"
+    },
+    {
+      "id": "209030",
+      "title": "한화오션, 태국 차세대 호위함 우선협상대상자 선정",
+      "scope": "국장 직접",
+      "tone": "긍정",
+      "sectors": [
+        "조선·방산"
+      ],
+      "marketImpact": "국내 조선·방산 기업의 수주와 사업에 직접 연결되는 뉴스입니다.",
+      "publishedKST": "2026-09-09 08:21",
+      "createdAt": "2026-09-09T08:21:22+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 7334,
+      "isRumor": false,
+      "importanceScore": 98.4,
+      "url": "https://saveticker.com/news/209030",
+      "summary": "한화오션, 태국 차세대 호위함 우선협상대상자 선정"
+    },
+    {
+      "id": "208166",
+      "title": "코스피 2.5% 급등하다 하락 마감… 삼성증권 \"유가 상승에 에너지·인플레 리스크 재부각",
+      "scope": "국장 직접",
+      "tone": "부정",
+      "sectors": [
+        "국내시장"
+      ],
+      "marketImpact": "코스피·코스닥 및 거래제도에 직접 연결되는 뉴스입니다.",
+      "publishedKST": "2026-09-08 17:09",
+      "createdAt": "2026-09-08T17:09:57+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 10187,
+      "isRumor": false,
+      "importanceScore": 93.8,
+      "url": "https://saveticker.com/news/208166",
+      "summary": "코스피는 유가 상승에 투자 심리가 꺾이면서 장 초반의 최대 2.5% 상승분을 모두 반납하고 0.6% 하락 마감함 삼성증권의 로이 림은 유가 상승으로 에너지 및 인플레이션 리스크가 재부각되며 거시경제 환경이 증시에 덜 우호적으로 바뀌었다고 진단했으며, 연기금의 포트폴리오 리밸런싱과 개인의 차익실현 매물이 당분간 코스피 상단을 제한할 것으로 전망함"
+    },
+    {
+      "id": "209225",
+      "title": "브렌트유, 7월 24일 이후 처음으로 배럴당 100달러 돌파",
+      "scope": "국내 섹터 영향",
+      "tone": "긍정",
+      "sectors": [
+        "정유·화학·운송"
+      ],
+      "marketImpact": "정유사는 제품 가격과 정제마진, 항공·운송·화학은 연료·원료비 부담을 함께 확인해야 합니다.",
+      "publishedKST": "2026-09-09 16:24",
+      "createdAt": "2026-09-09T16:24:22+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 16429,
+      "isRumor": false,
+      "importanceScore": 75.9,
+      "url": "https://saveticker.com/news/209225",
+      "summary": "미국과 이란의 무력 충돌 격화와 중국의 원유 구매 회복이 맞물리면서 국제 유가의 기준인 브렌트유가 지난 7월 이후 처음으로 배럴당 100달러를 돌파함 이번 분쟁으로 핵심 운송로인 호르무즈 해협의 원유 운송에 차질이 이어지는 가운데, 보텍사에 따르면 전 세계 해상 선박에 실린 원유 물량은 7월 중순 이후 1억 5,000만 배럴 넘게 줄어듦"
+    },
+    {
+      "id": "209216",
+      "title": "애플, 첫 폴더블 ‘아이폰 듀오’ 공개 예정…시작가 2,000달러",
+      "scope": "국내 섹터 영향",
+      "tone": "확인",
+      "sectors": [
+        "디스플레이·부품"
+      ],
+      "marketImpact": "국내 OLED 패널·힌지·카메라 모듈 공급망의 수요 기대에 연결됩니다.",
+      "publishedKST": "2026-09-09 16:14",
+      "createdAt": "2026-09-09T16:14:59+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 9060,
+      "isRumor": false,
+      "importanceScore": 75.7,
+      "url": "https://saveticker.com/news/209216",
+      "summary": "애플은 수요일 캘리포니아 쿠퍼티노 신제품 행사에서 자사 최초의 폴더블 스마트폰인 ‘아이폰 듀오(iPhone Duo)’를 공개할 예정임 가격은 2,000달러부터 시작해 고용량 모델은 약 3,000달러까지 올라가며, 이르면 10월 판매될 예정임"
+    },
+    {
+      "id": "209179",
+      "title": "헤지펀드 \"달러/엔 연말 150 밑으로\"… 일부는 140까지 베팅",
+      "scope": "국내 섹터 영향",
+      "tone": "확인",
+      "sectors": [
+        "자동차·수출"
+      ],
+      "marketImpact": "일본 경쟁사의 가격 경쟁력 변화가 국내 자동차·기계 등 수출주에 상대적으로 영향을 줄 수 있습니다.",
+      "publishedKST": "2026-09-09 15:35",
+      "createdAt": "2026-09-09T15:35:52+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 6834,
+      "isRumor": false,
+      "importanceScore": 74.8,
+      "url": "https://saveticker.com/news/209179",
+      "summary": "헤지펀드들은 연말까지 달러·엔 환율이 150엔 밑으로 떨어질 것(엔화 강세)에 베팅하고 있음 시카고상품거래소(CME) 자료에 따르면, 연내 만기 풋옵션 거래량은 콜옵션의 3배를 넘음"
+    },
+    {
+      "id": "208525",
+      "title": "퀄컴·아마존, AI 데이터센터용 맞춤형 반도체 공동 개발",
+      "scope": "국내 섹터 영향",
+      "tone": "긍정",
+      "sectors": [
+        "전력기기·냉각"
+      ],
+      "marketImpact": "국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
+      "publishedKST": "2026-09-08 22:00",
+      "createdAt": "2026-09-08T22:00:31+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 10831,
+      "isRumor": false,
+      "importanceScore": 69.5,
+      "url": "https://saveticker.com/news/208525",
+      "summary": "퀄컴이 아마존과 차세대 AI 데이터 센터 인프라 구축을 위한 장기적(다세대) 파트너십을 체결함 양사는 AWS의 급증하는 AI 워크로드를 지원하기 위해 맞춤형 AI 반도체(실리콘)와 고성능 광 연결 솔루션을 공동 개발하며, 반대로 퀄컴은 자사의 반도체 설계 시간을 단축하기 위해 AWS의 AI 인프라(아마존 베드록 등) 활용을 대폭 확대하기로 함"
+    },
+    {
+      "id": "209232",
+      "title": "엔비디아 - 대만 협력사 매출 (8월)",
+      "scope": "국내 섹터 영향",
+      "tone": "긍정",
+      "sectors": [
+        "반도체"
+      ],
+      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다.",
+      "publishedKST": "2026-09-09 16:37",
+      "createdAt": "2026-09-09T16:37:04+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 11412,
+      "isRumor": false,
+      "importanceScore": 69.0,
+      "url": "https://saveticker.com/news/209232",
+      "summary": "엔비디아의 주요 대만 협력사들(혼하이·콴타·위스트론·위윈)의 2026년 8월 매출이 모두 전년 동월 대비 50% 이상 큰 폭으로 증가함 '폭스콘'으로 잘 알려진 혼하이는 AI 서버 수요 호조에 힘입어 매출이 전년 동월 대비 52%가량 증가했으며, 콴타와 위스트론의 매출 역시 각각 177.45%, 166.48% 폭증함"
+    },
+    {
+      "id": "209187",
+      "title": "[종합] 미국·캐나다 무역갈등 격화…수입 금지에 정부조달 제한까지",
+      "scope": "국내 섹터 영향",
+      "tone": "혼합",
+      "sectors": [
+        "수출·관세"
+      ],
+      "marketImpact": "국내 자동차·철강·기계 수출기업의 가격 경쟁력과 현지 생산 전략을 확인해야 합니다.",
+      "publishedKST": "2026-09-09 15:54",
+      "createdAt": "2026-09-09T15:54:36+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 3806,
+      "isRumor": false,
+      "importanceScore": 66.7,
+      "url": "https://saveticker.com/news/209187",
+      "summary": "미국이 캐나다의 보복관세에 맞서 일부 유제품·주류·오토바이 수입 금지와 338조 관세 확대(치즈·가죽·모터보트 등)를 발표하고, 캐나다 기업의 미 정부조달 참여 제한까지 추진하면서 양국 간 무역갈등이 한층 격화되고 있음"
+    }
+  ],
+  "collection": {
+    "status": "정상",
+    "checkedAtKST": "2026-09-10T01:11:44+09:00"
+  }
+}

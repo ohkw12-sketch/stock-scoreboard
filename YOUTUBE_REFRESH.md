@@ -51,6 +51,7 @@
 ```powershell
 $env:PYTHONIOENCODING='utf-8'
 .venv/Scripts/python.exe youtube_refresh.py
+.venv/Scripts/python.exe save_ticker_news.py --output test_output/saveticker-market.test.json
 .venv/Scripts/python.exe -m unittest discover -s tests -p test_youtube_refresh.py
 .venv/Scripts/python.exe board_contract.py
 .venv/Scripts/python.exe promote_sections.py --youtube-only

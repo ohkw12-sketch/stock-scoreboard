@@ -79,7 +79,7 @@ jobs:
         with:
           node-version: '22'
       - name: Verify independent board rendering
-        run: node --test tests/test_ui_runtime.cjs
+        run: node --test tests/test_ui_runtime.cjs tests/test_issue_ui.cjs tests/test_saveticker_ui.cjs
       - name: Run and validate all boards
         id: refresh
         run: python refresh_all.py --config config.kis.example.json
@@ -90,13 +90,13 @@ jobs:
       - name: Commit refreshed boards
         shell: bash
         run: |
-          if git diff --quiet -- data.json youtube-market.json combined-recommendations.json recommendation-performance.json refresh-status.json; then
+          if git diff --quiet -- data.json youtube-market.json saveticker-market.json combined-recommendations.json recommendation-performance.json refresh-status.json; then
             echo 'No board changes to commit.'
             exit 0
           fi
           git config user.name 'stock-scoreboard-bot'
           git config user.email 'stock-scoreboard-bot@users.noreply.github.com'
-          git add data.json youtube-market.json combined-recommendations.json recommendation-performance.json refresh-status.json
+          git add data.json youtube-market.json saveticker-market.json combined-recommendations.json recommendation-performance.json refresh-status.json
           git commit -m 'Refresh whole stock scoreboard'
           git push
       - name: Record only the confirmed publication

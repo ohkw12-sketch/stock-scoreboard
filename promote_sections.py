@@ -65,12 +65,19 @@ def main() -> None:
         if args.sections or args.research or args.research_only or args.youtube:
             raise RuntimeError('유튜브 전용 반영에 다른 구역 변경을 섞을 수 없습니다.')
         from youtube_refresh import validate_board
-        board = read_json(args.candidate.parent / 'youtube-market.test.json')
-        validate_board(board)
+        from save_ticker_news import validate_board as validate_saveticker_board
+        youtube_board = read_json(args.candidate.parent / 'youtube-market.test.json')
+        saveticker_board = read_json(args.candidate.parent / 'saveticker-market.test.json')
+        validate_board(youtube_board)
+        if saveticker_board:
+            validate_saveticker_board(saveticker_board)
         assert_contract(args.html, args.live)
-        json.dumps(board, allow_nan=False)
-        json_write(args.live.parent / 'youtube-market.json', board)
-        print('유튜브 시황만 반영')
+        json.dumps(youtube_board, allow_nan=False)
+        json_write(args.live.parent / 'youtube-market.json', youtube_board)
+        if saveticker_board:
+            json.dumps(saveticker_board, allow_nan=False)
+            json_write(args.live.parent / 'saveticker-market.json', saveticker_board)
+        print('유튜브 시황 반영' + (' · 유튜브시황2 함께 반영' if saveticker_board else ''))
         return
     if args.research_only:
         if args.sections or args.youtube:
@@ -115,9 +122,14 @@ def main() -> None:
     assert_contract(args.html, temp_path)
     pending = {args.live: result}
     if args.youtube:
-        youtube_candidate = args.candidate.parent / "youtube-market.test.json"
-        if youtube_candidate.exists():
-            pending[args.live.parent / 'youtube-market.json'] = read_json(youtube_candidate)
+        for name in ('youtube-market', 'saveticker-market'):
+            candidate_path = args.candidate.parent / f'{name}.test.json'
+            if candidate_path.exists():
+                board = read_json(candidate_path)
+                if name == 'saveticker-market':
+                    from save_ticker_news import validate_board as validate_saveticker_board
+                    validate_saveticker_board(board)
+                pending[args.live.parent / f'{name}.json'] = board
     if args.research:
         for name in ('combined-recommendations', 'recommendation-performance'):
             data = read_json(args.candidate.parent / f'{name}.test.json')

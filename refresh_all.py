@@ -15,6 +15,7 @@ from refresh_store import (json_write, read_json, run_lock, snapshot_files, publ
                            store_verified_frames, load_verified_frames)
 from recommendation_performance import empty_ledger, evaluate
 from recommendation_continuity import attach_recommendation_history
+from save_ticker_news import refresh_or_retain as refresh_saveticker_news, validate_board as validate_saveticker_board
 from performance_prices import collect_performance_prices
 from board_contract import load_contract
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
@@ -250,6 +251,15 @@ def rebuild(args, config):
         youtube = refresh_youtube_prices(json.loads(youtube_path.read_text('utf-8-sig')), prices)
         # Morning captions, summaries and their verification dates remain intact.
         json_write(out/'youtube-market.test.json', public_fields(youtube))
+    saveticker_path = config['base_data_file'].parent/'saveticker-market.json'
+    previous_saveticker = read_json(saveticker_path)
+    if args.reuse_evidence and previous_saveticker:
+        saveticker = previous_saveticker
+    else:
+        saveticker = refresh_saveticker_news(previous_saveticker, datetime.now(KST))
+    validate_saveticker_board(saveticker)
+    json_write(out/'saveticker-market.test.json', public_fields(saveticker))
+    report['saveticker'] = saveticker.get('collection', {})
     report['growth'] = collection
     report['holdings'] = board['p3'].get('refreshStatus', {})
     ledger = read_json(config['base_data_file'].parent/'recommendation-history.json', empty_ledger())
