@@ -1,9 +1,18 @@
 {
   "schemaVersion": 1,
-  "generatedAt": null,
-  "sourceDate": null,
-  "slot": null,
-  "status": "첫 검증 실행 대기",
+  "generatedAt": "2026-09-11T21:18:23.640974+09:00",
+  "sourceDate": "2026-09-11",
+  "slot": "15:00",
+  "weights": {
+    "issue": 20,
+    "leader": 20,
+    "spread": 20,
+    "fundamental": 30,
+    "entry": 10
+  },
   "issues": [],
-  "missing": ["이슈·장중 가격·26Q3~27Q2 실적 원문 검증 후 표시합니다."]
+  "status": "수집실패",
+  "missing": [
+    "이번 실행의 이슈 원자료 없음 또는 만료"
+  ]
 }

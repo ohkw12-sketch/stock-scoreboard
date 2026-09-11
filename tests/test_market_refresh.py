@@ -127,6 +127,39 @@ class MarketRefreshTest(unittest.TestCase):
         self.assertEqual(report["qualityStatus"], "부분실패")
         self.assertEqual(len(report["invalidPriceTickers"]), 1)
 
+    def test_kis_zero_volume_recovery_is_classified_as_no_trade(self):
+        target = pd.Timestamp("2026-09-11")
+        frame = pd.DataFrame(columns=[
+            "date", "ticker", "name", "market", "sector",
+            "open", "high", "low", "close", "volume", "value",
+        ])
+        listing = pd.DataFrame([{
+            "ticker": "000325", "name": "노루홀딩스우", "market": "KOSPI", "sector": "지주회사",
+        }])
+
+        class Client:
+            def authenticate(self):
+                return None
+
+            def fetch_daily_prices(self, *_args, **_kwargs):
+                return {"rt_cd": "0", "output2": [{
+                    "stck_bsop_date": "20260911", "stck_clpr": "27600",
+                    "stck_oprc": "27800", "stck_hgpr": "27800", "stck_lwpr": "27800",
+                    "acml_vol": "0", "acml_tr_pbmn": "0",
+                }]}
+
+        info = {"expectedCompletedSession": "2026-09-11"}
+        with patch("rotation_screener.KisConsensusClient.from_environment", return_value=Client()), \
+                patch("rotation_screener.completed_session_info", return_value=info):
+            repaired = self.loader._repair_close_with_kis(frame, listing)
+        row = repaired.loc[(repaired["ticker"].eq("000325")) & repaired["date"].eq(target)].iloc[0]
+        self.assertEqual(row["close"], 27600)
+        self.assertEqual(row[["open", "high", "low", "volume", "value"]].tolist(), [0, 0, 0, 0, 0])
+        self.config["_requested_universe"] = listing.to_dict("records")
+        report = audit_market_data(repaired, self.config, "fixture")
+        self.assertEqual(report["qualityStatus"], "정상")
+        self.assertEqual(report["suspendedTickerCount"], 1)
+
     def test_q3_cumulative_fallback_cannot_be_annualized_as_half_year(self):
         prices, _ = attach_market_snapshot(generate_sample_market(), self.config)
         fundamentals = generate_sample_fundamentals(prices)

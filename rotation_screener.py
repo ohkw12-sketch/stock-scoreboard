@@ -662,11 +662,19 @@ class MarketDataLoader:
                     continue
                 open_price, high, low = number("stck_oprc"), number("stck_hgpr"), number("stck_lwpr")
                 volume, value = number("acml_vol"), number("acml_tr_pbmn")
+                # KIS can retain indicative OHLC values for a no-trade preferred
+                # share even though its carried close sits outside that range.
+                # Represent the session as suspended/no-trade so the carried close
+                # is not mistaken for an invalid traded candle.
+                no_trade = not np.isfinite(volume) or volume <= 0
+                if no_trade:
+                    open_price = high = low = volume = value = 0.0
                 item = identity.loc[ticker]
                 recovered.append({
                     "date": target, "ticker": ticker, "name": item["name"], "market": item["market"],
-                    "sector": item["sector"], "open": open_price if open_price > 0 else close,
-                    "high": high if high > 0 else close, "low": low if low > 0 else close,
+                    "sector": item["sector"], "open": 0.0 if no_trade else (open_price if open_price > 0 else close),
+                    "high": 0.0 if no_trade else (high if high > 0 else close),
+                    "low": 0.0 if no_trade else (low if low > 0 else close),
                     "close": close, "volume": volume if np.isfinite(volume) else 0,
                     "value": value if np.isfinite(value) and value > 0 else close * max(volume, 0),
                     "price_date_verified": True, "adjusted_basis": "unknown",
