@@ -1,27 +1,27 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-09-17 19:35",
+      "checkedAtKST": "2026-09-17 19:51",
       "sourceDate": "2026-09-17",
-      "summary": "증분 수집 · 구역별 검증 · 보유수량·평단 보존"
+      "summary": "저장자료 재계산 · 구역별 검증 · 보유수량·평단 보존"
     },
     "changeUntil": "2026-09-09",
     "masterBasis": "2026-09-17 KRX 마감 전체시장 엔진",
     "nextTradingDay": "거래소 개장일 확인 후 확정",
     "note": "성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.",
-    "sourceSummary": "가격 2026-09-17 · 공시 2026-06-30 · 컨센서스 2026-08-31 · 증분 수집",
+    "sourceSummary": "가격 2026-09-17 · 공시 2026-06-30 · 컨센서스 2026-08-31 · 저장자료 재계산",
     "title": "주식평가창",
-    "updatedKST": "2026-09-17 19:35",
+    "updatedKST": "2026-09-17 19:51",
     "uiContractVersion": "2026-09-10.2",
-    "runId": "d6aa682fcf98c5258898351b",
+    "runId": "d250ad8c24a3a2718ea98a2a",
     "refreshState": {
-      "generatedAt": "2026-09-17T19:29:28+09:00",
+      "generatedAt": "2026-09-17T19:50:46+09:00",
       "snapshotId": "a9d8ac4d38c230dead27256b78464d9d94a6c1b1d2359ce98704e42da45b93be",
       "sourceCutoff": "2026-09-17",
-      "mode": "증분 수집",
+      "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d6aa682fcf98c5258898351b",
-      "evidenceSnapshotId": "396165a8dcaede070575eaf2a1c64b5277816a380e1df06a57ccbc2469b6c66b"
+      "runId": "d250ad8c24a3a2718ea98a2a",
+      "evidenceSnapshotId": "476187ec94e488ee90a93a419b54b79e563ae8597412287c5624c4cccac1b118"
     }
   },
   "p1": {
@@ -711,12 +711,12 @@
     "selectionRule": "순환 후보군에서 순환점수 50% + 펀더멘털점수 50%로 순위, 일 거래대금 10억원 이상, 과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-17T19:29:28+09:00",
+      "generatedAt": "2026-09-17T19:50:46+09:00",
       "snapshotId": "a9d8ac4d38c230dead27256b78464d9d94a6c1b1d2359ce98704e42da45b93be",
       "sourceCutoff": "2026-09-17",
-      "mode": "증분 수집",
+      "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d6aa682fcf98c5258898351b"
+      "runId": "d250ad8c24a3a2718ea98a2a"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -728,7 +728,7 @@
     "status": "전체시장 엔진: KOSPI+KOSDAQ 2,765종목, 108개 섹터 분석. 기준일 2026-09-17. 진입 위치와 무관하게 확산형과 선도주 견인형을 함께 반영했으며 단계 분포 {'①초기': 6, '③주도': 6, '②확산': 1, '⑥후반': 1, '⑤재반등': 1}.",
     "engine": {
       "version": "1.0.0",
-      "generatedAtKST": "2026-09-17T19:34:41+09:00",
+      "generatedAtKST": "2026-09-17T19:51:15+09:00",
       "asOfDate": "2026-09-17",
       "source": "yfinance+FinanceDataReader+gap-recovery",
       "universe": [
@@ -1837,12 +1837,12 @@
     ],
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-17T19:29:28+09:00",
+      "generatedAt": "2026-09-17T19:50:46+09:00",
       "snapshotId": "a9d8ac4d38c230dead27256b78464d9d94a6c1b1d2359ce98704e42da45b93be",
       "sourceCutoff": "2026-09-17",
-      "mode": "증분 수집",
+      "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d6aa682fcf98c5258898351b"
+      "runId": "d250ad8c24a3a2718ea98a2a"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -2874,12 +2874,12 @@
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-17T19:29:28+09:00",
+      "generatedAt": "2026-09-17T19:50:46+09:00",
       "snapshotId": "a9d8ac4d38c230dead27256b78464d9d94a6c1b1d2359ce98704e42da45b93be",
       "sourceCutoff": "2026-09-17",
-      "mode": "증분 수집",
+      "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d6aa682fcf98c5258898351b"
+      "runId": "d250ad8c24a3a2718ea98a2a"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -3216,13 +3216,13 @@
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-17T19:29:28+09:00",
+      "generatedAt": "2026-09-17T19:50:46+09:00",
       "snapshotId": "a9d8ac4d38c230dead27256b78464d9d94a6c1b1d2359ce98704e42da45b93be",
       "sourceCutoff": "2026-09-17",
-      "mode": "증분 수집",
+      "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d6aa682fcf98c5258898351b",
-      "evidenceSnapshotId": "396165a8dcaede070575eaf2a1c64b5277816a380e1df06a57ccbc2469b6c66b"
+      "runId": "d250ad8c24a3a2718ea98a2a",
+      "evidenceSnapshotId": "476187ec94e488ee90a93a419b54b79e563ae8597412287c5624c4cccac1b118"
     }
   },
   "growth": {
@@ -10130,16 +10130,23 @@
       "missingTickers": [
         "089890"
       ],
+      "cacheReadAt": "2026-09-17T19:51:36+09:00",
+      "cacheReason": "명시적 원자료 재사용",
+      "networkRequests": 0,
+      "reused": true,
+      "sourceStatus": "부분수집",
       "news": {
-        "status": "설정필요",
+        "status": "미수집",
         "source": "NAVER 뉴스",
-        "checkedAt": null,
-        "attemptedAt": "2026-09-17T19:35:28+09:00",
-        "hints": 0,
-        "problem": "뉴스 검색 키 미설정; 기존 검증대기 큐 보존, 신규 뉴스 근거 없음"
+        "cacheReadAt": "2026-09-17T19:51:36+09:00",
+        "cacheReason": "명시적 원자료 재사용",
+        "networkRequests": 0,
+        "reused": true,
+        "sourceStatus": "미수집",
+        "problem": "재사용할 검증 원자료 없음"
       },
       "industryStatistics": {
-        "status": "정상",
+        "status": "캐시유지",
         "source": "산업통상부 월간 수출입 동향(KDI)",
         "checkedAt": "2026-09-17T19:35:28+09:00",
         "scope": "HTML 본문에 품목별 증가율이 명시된 통계만; 전 품목·전 지역 아님",
@@ -10191,21 +10198,32 @@
         "latestReleasePeriod": "2026-08",
         "missingProducts": [],
         "documentsDownloaded": 1,
-        "parsedCacheHits": 3
+        "parsedCacheHits": 3,
+        "cacheReadAt": "2026-09-17T19:51:36+09:00",
+        "cacheReason": "명시적 원자료 재사용",
+        "networkRequests": 0,
+        "reused": true,
+        "sourceStatus": "정상"
       },
       "verifiedDocuments": {
         "source": "검증 뉴스·IR 원문",
-        "status": "원문검증대기",
+        "status": "미수집",
+        "cacheReadAt": "2026-09-17T19:51:36+09:00",
+        "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
-        "checkedAt": null,
-        "problem": "검증 뉴스·IR 원문 입력 없음; 검색 요약·IR 일정은 근거로 가산하지 않음"
+        "reused": true,
+        "sourceStatus": "미수집",
+        "problem": "재사용할 검증 원자료 없음"
       },
       "ir": {
         "source": "검증 뉴스·IR 원문",
-        "status": "원문검증대기",
+        "status": "미수집",
+        "cacheReadAt": "2026-09-17T19:51:36+09:00",
+        "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
-        "checkedAt": null,
-        "problem": "검증 뉴스·IR 원문 입력 없음; 검색 요약·IR 일정은 근거로 가산하지 않음"
+        "reused": true,
+        "sourceStatus": "미수집",
+        "problem": "재사용할 검증 원자료 없음"
       },
       "consensus": {
         "status": "정상",
@@ -10223,17 +10241,17 @@
       "oldEvidenceUsed": 108
     },
     "methodVersion": "growth-evidence-v2",
-    "updatedKST": "2026-09-17 19:35",
+    "updatedKST": "2026-09-17 19:51",
     "notice": "분기 매출 300억원·20일 평균 거래대금 10억원 이상에서 50개 후보를 선별합니다. 점수는 사건규모 25%, 매출성장 지속·가속 20%, 이익전환 15%, 매출가시성 15%, 근거신뢰도 10%, 주가 미반영 10%, 확인 가능한 재무·희석위험 5%입니다.",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-17T19:29:28+09:00",
+      "generatedAt": "2026-09-17T19:50:46+09:00",
       "snapshotId": "a9d8ac4d38c230dead27256b78464d9d94a6c1b1d2359ce98704e42da45b93be",
       "sourceCutoff": "2026-09-17",
-      "mode": "증분 수집",
+      "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d6aa682fcf98c5258898351b",
-      "evidenceSnapshotId": "396165a8dcaede070575eaf2a1c64b5277816a380e1df06a57ccbc2469b6c66b"
+      "runId": "d250ad8c24a3a2718ea98a2a",
+      "evidenceSnapshotId": "476187ec94e488ee90a93a419b54b79e563ae8597412287c5624c4cccac1b118"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
