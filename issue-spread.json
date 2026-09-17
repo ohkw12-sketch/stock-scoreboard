@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-11T21:18:23.640974+09:00",
-  "sourceDate": "2026-09-11",
+  "generatedAt": "2026-09-17T19:39:04.364197+09:00",
+  "sourceDate": "2026-09-17",
   "slot": "15:00",
   "weights": {
     "issue": 20,
@@ -10,9 +10,510 @@
     "fundamental": 30,
     "entry": 10
   },
-  "issues": [],
-  "status": "수집실패",
+  "issues": [
+    {
+      "id": "aerospace-supply-orders-20260917",
+      "name": "우주항공 공급·설비 수주",
+      "strength": 25,
+      "marketGrade": "미확인",
+      "fundamentalGrade": "미확인",
+      "spreadType": "개별반응·미확인",
+      "leaders": [],
+      "candidates": [
+        {
+          "ticker": "095190",
+          "name": "신화프리텍",
+          "sector": "항공기 착륙장치 부품",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "space-095190-contract",
+              "ticker": "095190",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900768",
+              "publishedAt": "2026-09-15T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "신화프리텍이 Goodrich Aerospace Canada와 192억 원 규모 항공기 착륙장치 부품 공급계약을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "347700",
+          "name": "스피어",
+          "sector": "우주항공 특수합금",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "space-347700-contract",
+              "ticker": "347700",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900405",
+              "publishedAt": "2026-09-15T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "스피어가 미국 글로벌 우주항공 발사업체와 223억 원 규모 특수합금 원재료 공급계약의 정정 내용을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "488900",
+          "name": "비츠로넥스텍",
+          "sector": "로켓 엔진 시험설비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "space-488900-contract",
+              "ticker": "488900",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900430",
+              "publishedAt": "2026-09-15T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "비츠로넥스텍이 한국항공우주연구원과 45억 원 규모 차세대발사체 메탄 엔진 연소시험설비 설계 용역 계약을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "space-347700-contract",
+          "ticker": "347700",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900405",
+          "publishedAt": "2026-09-15T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "스피어가 미국 글로벌 우주항공 발사업체와 223억 원 규모 특수합금 원재료 공급계약의 정정 내용을 공시했다."
+        },
+        {
+          "id": "space-488900-contract",
+          "ticker": "488900",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900430",
+          "publishedAt": "2026-09-15T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "비츠로넥스텍이 한국항공우주연구원과 45억 원 규모 차세대발사체 메탄 엔진 연소시험설비 설계 용역 계약을 공시했다."
+        },
+        {
+          "id": "space-095190-contract",
+          "ticker": "095190",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900768",
+          "publishedAt": "2026-09-15T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "신화프리텍이 Goodrich Aerospace Canada와 192억 원 규모 항공기 착륙장치 부품 공급계약을 공시했다."
+        }
+      ],
+      "detection": [
+        {
+          "channel": "DART",
+          "label": "스피어 우주항공 공급계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900405",
+          "publishedAt": "2026-09-15T09:00:00+09:00",
+          "summary": "미국 우주항공 발사업체 대상 특수합금 공급계약을 확인했다."
+        }
+      ]
+    },
+    {
+      "id": "power-equipment-orders-20260917",
+      "name": "발전설비·정비 수주",
+      "strength": 25,
+      "marketGrade": "미확인",
+      "fundamentalGrade": "미확인",
+      "spreadType": "개별반응·미확인",
+      "leaders": [],
+      "candidates": [
+        {
+          "ticker": "083650",
+          "name": "비에이치아이",
+          "sector": "발전설비·보일러",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "power-083650-contract",
+              "ticker": "083650",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260916900117",
+              "publishedAt": "2026-09-16T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "비에이치아이가 한국서부발전과 2,235억 원 규모 LNG 복합화력 발전설비 공급계약을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "105840",
+          "name": "우진",
+          "sector": "원전 계측기",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "power-105840-contract",
+              "ticker": "105840",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260917800466",
+              "publishedAt": "2026-09-17T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "우진이 154억 원 규모 신한울 3·4호기 ICI Assembly 공급계약의 정정 내용을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "126720",
+          "name": "수산인더스트리",
+          "sector": "발전설비 정비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "power-126720-contract",
+              "ticker": "126720",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260917800534",
+              "publishedAt": "2026-09-17T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "수산인더스트리가 470억 원 규모 영흥본부 1·2호기 보일러설비 경상정비공사 계약의 정정 내용을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "power-083650-contract",
+          "ticker": "083650",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260916900117",
+          "publishedAt": "2026-09-16T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "비에이치아이가 한국서부발전과 2,235억 원 규모 LNG 복합화력 발전설비 공급계약을 공시했다."
+        },
+        {
+          "id": "power-126720-contract",
+          "ticker": "126720",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260917800534",
+          "publishedAt": "2026-09-17T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "수산인더스트리가 470억 원 규모 영흥본부 1·2호기 보일러설비 경상정비공사 계약의 정정 내용을 공시했다."
+        },
+        {
+          "id": "power-105840-contract",
+          "ticker": "105840",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260917800466",
+          "publishedAt": "2026-09-17T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "우진이 154억 원 규모 신한울 3·4호기 ICI Assembly 공급계약의 정정 내용을 공시했다."
+        }
+      ],
+      "detection": [
+        {
+          "channel": "DART",
+          "label": "비에이치아이 발전설비 계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260916900117",
+          "publishedAt": "2026-09-16T09:00:00+09:00",
+          "summary": "LNG 복합화력 발전설비 공급계약을 확인했다."
+        }
+      ]
+    },
+    {
+      "id": "semiconductor-inspection-orders-20260917",
+      "name": "반도체 검사장비 수주",
+      "strength": 25,
+      "marketGrade": "미확인",
+      "fundamentalGrade": "미확인",
+      "spreadType": "개별반응·미확인",
+      "leaders": [],
+      "candidates": [
+        {
+          "ticker": "025560",
+          "name": "미래산업",
+          "sector": "반도체 검사장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "semi-025560-contract",
+              "ticker": "025560",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260911800546",
+              "publishedAt": "2026-09-11T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "미래산업이 154억 원 규모 반도체 검사장비 공급계약의 정정 내용을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "420770",
+          "name": "기가비스",
+          "sector": "반도체 기판 검사장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "semi-420770-contract",
+              "ticker": "420770",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900285",
+              "publishedAt": "2026-09-15T09:00:00+09:00",
+              "verifiedAt": "2026-09-17T19:34:18+09:00",
+              "reviewer": "Codex · DART 원문 구조 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "기가비스가 일본 반도체 기판 제조사와 130억 원 규모 반도체 기판 검사·수리장비 공급계약을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "semi-420770-contract",
+          "ticker": "420770",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900285",
+          "publishedAt": "2026-09-15T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "기가비스가 일본 반도체 기판 제조사와 130억 원 규모 반도체 기판 검사·수리장비 공급계약을 공시했다."
+        },
+        {
+          "id": "semi-025560-contract",
+          "ticker": "025560",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260911800546",
+          "publishedAt": "2026-09-11T09:00:00+09:00",
+          "verifiedAt": "2026-09-17T19:34:18+09:00",
+          "reviewer": "Codex · DART 원문 구조 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "미래산업이 154억 원 규모 반도체 검사장비 공급계약의 정정 내용을 공시했다."
+        }
+      ],
+      "detection": [
+        {
+          "channel": "DART",
+          "label": "기가비스 검사장비 계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915900285",
+          "publishedAt": "2026-09-15T09:00:00+09:00",
+          "summary": "반도체 기판 검사·수리장비 공급계약을 확인했다."
+        }
+      ]
+    }
+  ],
+  "status": "검증완료",
   "missing": [
-    "이번 실행의 이슈 원자료 없음 또는 만료"
+    "089890 코세스 정정공시 원문 재시도 실패 · 해당 종목 이슈 점수 제외",
+    "2026-09-17 유튜브 원문 검증 자료 미확보 · 탐지 점수 미반영",
+    "08:00 단계는 장중 동일시각 거래대금·가격을 사용하지 않아 탐색 후보로만 표시"
   ]
 }
