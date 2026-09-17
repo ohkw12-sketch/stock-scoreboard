@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-17T19:29:28+09:00",
+  "generatedAt": "2026-09-17T19:42:08+09:00",
   "priceDate": "2026-09-17",
-  "recordCount": 437,
-  "cohortCount": 49,
+  "recordCount": 475,
+  "cohortCount": 54,
   "rows": [
     {
       "ticker": "201490",
@@ -13676,6 +13676,3616 @@
       },
       "status": "추적 중",
       "elapsedSessions": 8
+    },
+    {
+      "ticker": "000150",
+      "name": "두산",
+      "group": "순환",
+      "section": "p11",
+      "rank": 9,
+      "sector": "전자부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 9,
+        "name": "두산",
+        "ticker": "000150",
+        "sector": "전자부품 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 9.55,
+        "stockRs5Pct": 3.89,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.07%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +11.95% · 5일 +6.28%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 91.6,
+        "priceDate": "2026-09-17",
+        "currentPrice": 1405000.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +9.55%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 1405000.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "001440",
+      "name": "대한전선",
+      "group": "진입",
+      "section": "p1",
+      "rank": 20,
+      "sector": "전선",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 20,
+        "ticker": "001440",
+        "name": "대한전선",
+        "sector": "전선",
+        "entryState": "곧진입",
+        "signal": "진입가격 접근 중",
+        "currentPrice": 28300,
+        "entryZone": "28,026~28,925원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 27036,
+        "stopPct": -4.5,
+        "relation": "후행",
+        "marketState": "확산형 · ①초기",
+        "growth1Y": "+117.8%",
+        "consensus": "변경이력 없음",
+        "consensusDate": "2026-07-30",
+        "valueMultiple": "예상PER 36.7배 / 섹터 25.2배",
+        "entryScore": 77.6,
+        "rotationScore": 94.8,
+        "fundamentalScore": 60.4,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 94.8점 · 펀더멘털 50% 60.4점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 28300.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "003720",
+      "name": "삼영",
+      "group": "진입",
+      "section": "p1",
+      "rank": 10,
+      "sector": "플라스틱제품 제조업",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 10,
+        "ticker": "003720",
+        "name": "삼영",
+        "sector": "플라스틱제품 제조업",
+        "entryState": "곧진입",
+        "signal": "재반등 진입",
+        "currentPrice": 6590,
+        "entryZone": "6,238~6,403원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 6056,
+        "stopPct": -8.1,
+        "relation": "선행",
+        "marketState": "선도주 견인형 · ⑤재반등",
+        "growth1Y": "+187.5%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 85.8,
+        "rotationScore": 92.9,
+        "fundamentalScore": 78.8,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 92.9점 · 펀더멘털 50% 78.8점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 6590.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "010170",
+      "name": "대한광통신",
+      "group": "순환",
+      "section": "p11",
+      "rank": 1,
+      "sector": "전선",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:①초기"
+      ],
+      "sourceRow": {
+        "rank": 1,
+        "name": "대한광통신",
+        "ticker": "010170",
+        "sector": "전선",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 8.7,
+        "stockRs5Pct": 6.9,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.22%p",
+        "premium": "선행",
+        "marketState": "확산형 · ①초기",
+        "marketDetail": "3일 +11.32% · 5일 +9.43%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 초기",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 99.8,
+        "priceDate": "2026-09-17",
+        "currentPrice": 16130.0,
+        "reason": "순환 단계 ①초기 · 섹터 대비 선행; 3일 초과수익 +8.70%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 16130.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "011560",
+      "name": "세보엠이씨",
+      "group": "성장",
+      "section": "growth",
+      "rank": 5,
+      "sector": "건물설비 설치 공사업",
+      "cohortId": "b4251b7cd86259340d8325ff38fc1119c9a1339eeff102670e26420200a322c3",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "growth-evidence-v2",
+      "features": [
+        "성장",
+        "성장:미반영 가능"
+      ],
+      "sourceRow": {
+        "ticker": "011560",
+        "name": "세보엠이씨",
+        "sector": "건물설비 설치 공사업",
+        "growthRate": 51.9,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 71.1,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 289840009644.0,
+        "confidence": "보통",
+        "evidenceCount": 4,
+        "confidenceScore": 57.1,
+        "priceReflection": "미반영 가능",
+        "score": 80.92,
+        "averageTurnover20": 1448508032.0,
+        "financialSummary": "분기 매출 2,898억원 · 20일 평균 거래대금 14억원 · 누적 매출 +51.9%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "평택 배관공사3 계약을 체결했습니다. 계약금액은 1,057억원으로 최근 매출의 14.8%이며 계약은 2027-09-30까지 진행됩니다.",
+            "source": "DART · 2026-09-14",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260914900175"
+          },
+          {
+            "kind": "수주",
+            "content": "아산 배관공사 계약을 체결했습니다. 계약금액은 416억원으로 최근 매출의 5.8%이며 계약은 2027-03-31까지 진행됩니다.",
+            "source": "DART · 2026-04-09",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260810900581"
+          },
+          {
+            "kind": "수주",
+            "content": "평택 설비공사2 계약을 체결했습니다. 계약금액은 430억원으로 최근 매출의 6%이며 계약은 2027-09-30까지 진행됩니다.",
+            "source": "DART · 2026-09-04",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260904900182"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 74.0,
+          "salesPersistence": 80.2,
+          "profitConversion": 71.1,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 57.1,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-04-09",
+        "lastVerified": "2026-09-17T19:34:58+09:00",
+        "sourceDate": "2026-09-17",
+        "oldEvidenceCount": 1,
+        "rank": 5,
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 24200.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "012450",
+      "name": "한화에어로스페이스",
+      "group": "진입",
+      "section": "p1",
+      "rank": 18,
+      "sector": "항공기,우주선 및 부품 제조업",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:진입가능"
+      ],
+      "sourceRow": {
+        "rank": 18,
+        "ticker": "012450",
+        "name": "한화에어로스페이스",
+        "sector": "항공기,우주선 및 부품 제조업",
+        "entryState": "진입가능",
+        "signal": "1차 분할진입",
+        "currentPrice": 1097000,
+        "entryZone": "1,065,568~1,105,825원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 1027118,
+        "stopPct": -6.4,
+        "relation": "후행",
+        "marketState": "확산형 · ②확산",
+        "growth1Y": "+44.1%",
+        "consensus": "변경이력 없음",
+        "consensusDate": "2026-08-25",
+        "valueMultiple": "예상PER 19.1배 / 섹터 41.9배",
+        "entryScore": 78.6,
+        "rotationScore": 89.8,
+        "fundamentalScore": 67.4,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 89.8점 · 펀더멘털 50% 67.4점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 1097000.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "020120",
+      "name": "키다리스튜디오",
+      "group": "진입",
+      "section": "p1",
+      "rank": 15,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 15,
+        "ticker": "020120",
+        "name": "키다리스튜디오",
+        "sector": "인터넷/소프트웨어",
+        "entryState": "곧진입",
+        "signal": "진입가격 접근 중",
+        "currentPrice": 9250,
+        "entryZone": "6,845~9,155원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 6251,
+        "stopPct": -32.4,
+        "relation": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "growth1Y": "+274.7%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 79.3,
+        "rotationScore": 92.0,
+        "fundamentalScore": 66.5,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 92.0점 · 펀더멘털 50% 66.5점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 9250.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "032500",
+      "name": "케이엠더블유",
+      "group": "순환",
+      "section": "p11",
+      "rank": 7,
+      "sector": "통신 및 방송 장비 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑥후반"
+      ],
+      "sourceRow": {
+        "rank": 7,
+        "name": "케이엠더블유",
+        "ticker": "032500",
+        "sector": "통신 및 방송 장비 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 10.83,
+        "stockRs5Pct": 12.75,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.22%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ⑥후반",
+        "marketDetail": "3일 +12.85% · 5일 +15.28%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 후반",
+        "entryFit": "추격금지",
+        "overheated": false,
+        "stockEntryScore": 91.7,
+        "priceDate": "2026-09-17",
+        "currentPrice": 18180.0,
+        "reason": "순환 단계 ⑥후반 · 섹터 대비 선행; 3일 초과수익 +10.83%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 18180.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "036540",
+      "name": "SFA반도체",
+      "group": "순환",
+      "section": "p11",
+      "rank": 20,
+      "sector": "반도체",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:①초기"
+      ],
+      "sourceRow": {
+        "rank": 20,
+        "name": "SFA반도체",
+        "ticker": "036540",
+        "sector": "반도체",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 10.45,
+        "stockRs5Pct": 20.8,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +1.55%p",
+        "premium": "선행",
+        "marketState": "혼합/관찰 · ①초기",
+        "marketDetail": "3일 +14.87% · 5일 +21.66%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 초기",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 88.3,
+        "priceDate": "2026-09-17",
+        "currentPrice": 8650.0,
+        "reason": "순환 단계 ①초기 · 섹터 대비 선행; 3일 초과수익 +10.45%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 8650.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "053800",
+      "name": "안랩",
+      "group": "순환",
+      "section": "p11",
+      "rank": 17,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 17,
+        "name": "안랩",
+        "ticker": "053800",
+        "sector": "인터넷/소프트웨어",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 6.97,
+        "stockRs5Pct": 12.11,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.11%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +7.04% · 5일 +14.54%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 89.3,
+        "priceDate": "2026-09-17",
+        "currentPrice": 65400.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +6.97%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 65400.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "083650",
+      "name": "비에이치아이",
+      "group": "성장",
+      "section": "growth",
+      "rank": 3,
+      "sector": "일반 목적용 기계 제조업",
+      "cohortId": "b4251b7cd86259340d8325ff38fc1119c9a1339eeff102670e26420200a322c3",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "growth-evidence-v2",
+      "features": [
+        "성장",
+        "성장:미반영 가능"
+      ],
+      "sourceRow": {
+        "ticker": "083650",
+        "name": "비에이치아이",
+        "sector": "일반 목적용 기계 제조업",
+        "growthRate": 89.5,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 81.8,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 296273189758.0,
+        "confidence": "보통",
+        "evidenceCount": 5,
+        "confidenceScore": 62.5,
+        "priceReflection": "미반영 가능",
+        "score": 81.68,
+        "averageTurnover20": 28709825140.0,
+        "financialSummary": "분기 매출 2,963억원 · 20일 평균 거래대금 287억원 · 누적 매출 +89.5%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "LNG 복합화력 발전설비 공급계약을 체결했습니다. 계약금액은 2,235억원으로 최근 매출의 28.9%이며 계약은 2029-12-31까지 진행됩니다.",
+            "source": "DART · 2026-09-16",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260916900117"
+          },
+          {
+            "kind": "수주",
+            "content": "LNG 복합화력 발전설비 공급계약을 체결했습니다. 계약금액은 1,453억원으로 최근 매출의 18.8%이며 계약은 2029-04-15까지 진행됩니다.",
+            "source": "DART · 2026-09-02",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260902900118"
+          },
+          {
+            "kind": "수주",
+            "content": "LNG 복합화력 발전설비 공급계약을 체결했습니다. 계약금액은 1,883억원으로 최근 매출의 24.3%이며 계약은 2033-04-30까지 진행됩니다.",
+            "source": "DART · 2026-06-01",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601900279"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 66.0,
+          "salesPersistence": 83.2,
+          "profitConversion": 81.8,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 62.5,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-05-26",
+        "lastVerified": "2026-09-17T19:34:58+09:00",
+        "sourceDate": "2026-09-17",
+        "oldEvidenceCount": 2,
+        "rank": 3,
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 64600.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "093370",
+      "name": "후성",
+      "group": "진입",
+      "section": "p1",
+      "rank": 14,
+      "sector": "기초 화학물질 제조업",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 14,
+        "ticker": "093370",
+        "name": "후성",
+        "sector": "기초 화학물질 제조업",
+        "entryState": "곧진입",
+        "signal": "진입가격 접근 중",
+        "currentPrice": 14810,
+        "entryZone": "12,850~14,640원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 12185,
+        "stopPct": -17.7,
+        "relation": "선행",
+        "marketState": "선도주 견인형 · ①초기",
+        "growth1Y": "+122.7%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 79.3,
+        "rotationScore": 88.0,
+        "fundamentalScore": 70.6,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 88.0점 · 펀더멘털 50% 70.6점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 14810.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "098120",
+      "name": "마이크로컨텍솔",
+      "group": "진입",
+      "section": "p1",
+      "rank": 8,
+      "sector": "전자부품 제조업",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:진입가능"
+      ],
+      "sourceRow": {
+        "rank": 8,
+        "ticker": "098120",
+        "name": "마이크로컨텍솔",
+        "sector": "전자부품 제조업",
+        "entryState": "진입가능",
+        "signal": "1차 분할진입",
+        "currentPrice": 52100,
+        "entryZone": "44,295~53,294원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 41468,
+        "stopPct": -20.4,
+        "relation": "동행",
+        "marketState": "선도주 견인형 · ③주도",
+        "growth1Y": "+122.3%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 87.3,
+        "rotationScore": 89.8,
+        "fundamentalScore": 84.9,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 89.8점 · 펀더멘털 50% 84.9점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 52100.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "099320",
+      "name": "쎄트렉아이",
+      "group": "순환",
+      "section": "p11",
+      "rank": 4,
+      "sector": "항공기,우주선 및 부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:동행",
+        "순환",
+        "순환:②확산"
+      ],
+      "sourceRow": {
+        "rank": 4,
+        "name": "쎄트렉아이",
+        "ticker": "099320",
+        "sector": "항공기,우주선 및 부품 제조업",
+        "relation": "동행",
+        "sectorLeadLag": "동행",
+        "stockRs3Pct": 0.73,
+        "stockRs5Pct": -0.94,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +10.38%p",
+        "premium": "동행",
+        "marketState": "확산형 · ②확산",
+        "marketDetail": "3일 +10.59% · 5일 +8.75%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [],
+        "signal": "확산 진행",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 93.4,
+        "priceDate": "2026-09-17",
+        "currentPrice": 78300.0,
+        "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 +0.73%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 78300.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "110990",
+      "name": "디아이티",
+      "group": "진입",
+      "section": "p1",
+      "rank": 5,
+      "sector": "반도체",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 5,
+        "ticker": "110990",
+        "name": "디아이티",
+        "sector": "반도체",
+        "entryState": "곧진입",
+        "signal": "진입가격 접근 중",
+        "currentPrice": 16280,
+        "entryZone": "15,511~16,127원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 15026,
+        "stopPct": -7.7,
+        "relation": "선행",
+        "marketState": "혼합/관찰 · ①초기",
+        "growth1Y": "+121.7%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 87.8,
+        "rotationScore": 87.2,
+        "fundamentalScore": 88.3,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 87.2점 · 펀더멘털 50% 88.3점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 16280.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "123330",
+      "name": "제닉",
+      "group": "성장",
+      "section": "growth",
+      "rank": null,
+      "sector": "화장품",
+      "cohortId": "b4251b7cd86259340d8325ff38fc1119c9a1339eeff102670e26420200a322c3",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "growth-evidence-v2",
+      "features": [
+        "성장"
+      ],
+      "sourceRow": {
+        "ticker": "123330",
+        "name": "제닉",
+        "sector": "화장품",
+        "growthRate": 85.0,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 90.7,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 49209965806.0,
+        "score": 94.34,
+        "averageTurnover20": 9953268608.0,
+        "exposureBasis": "상장사 제품 정보 일치 + 실제 매출 성장; 기업별 수출액 미확인",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        },
+        "_sectorPick": true
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 25000.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "125210",
+      "name": "아모그린텍",
+      "group": "순환",
+      "section": "p11",
+      "rank": 10,
+      "sector": "전자부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 10,
+        "name": "아모그린텍",
+        "ticker": "125210",
+        "sector": "전자부품 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 9.78,
+        "stockRs5Pct": 6.67,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.07%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +12.19% · 5일 +9.06%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 91.6,
+        "priceDate": "2026-09-17",
+        "currentPrice": 6260.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +9.78%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 6260.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "189300",
+      "name": "인텔리안테크",
+      "group": "순환",
+      "section": "p11",
+      "rank": 15,
+      "sector": "통신 및 방송 장비 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑥후반"
+      ],
+      "sourceRow": {
+        "rank": 15,
+        "name": "인텔리안테크",
+        "ticker": "189300",
+        "sector": "통신 및 방송 장비 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 6.6,
+        "stockRs5Pct": 4.58,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.22%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ⑥후반",
+        "marketDetail": "3일 +8.62% · 5일 +7.11%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 후반",
+        "entryFit": "추격금지",
+        "overheated": false,
+        "stockEntryScore": 90.0,
+        "priceDate": "2026-09-17",
+        "currentPrice": 69300.0,
+        "reason": "순환 단계 ⑥후반 · 섹터 대비 선행; 3일 초과수익 +6.60%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 69300.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "189330",
+      "name": "씨이랩",
+      "group": "순환",
+      "section": "p11",
+      "rank": 14,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 14,
+        "name": "씨이랩",
+        "ticker": "189330",
+        "sector": "인터넷/소프트웨어",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 8.06,
+        "stockRs5Pct": 5.6,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.11%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +8.13% · 5일 +8.03%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 90.5,
+        "priceDate": "2026-09-17",
+        "currentPrice": 12110.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +8.06%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 12110.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "190510",
+      "name": "나무가",
+      "group": "순환",
+      "section": "p11",
+      "rank": 19,
+      "sector": "전자부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 19,
+        "name": "나무가",
+        "ticker": "190510",
+        "sector": "전자부품 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 5.55,
+        "stockRs5Pct": 5.21,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.07%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +7.95% · 5일 +7.59%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 88.7,
+        "priceDate": "2026-09-17",
+        "currentPrice": 16150.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +5.55%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 16150.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "192080",
+      "name": "더블유게임즈",
+      "group": "진입",
+      "section": "p1",
+      "rank": 12,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:진입가능"
+      ],
+      "sourceRow": {
+        "rank": 12,
+        "ticker": "192080",
+        "name": "더블유게임즈",
+        "sector": "인터넷/소프트웨어",
+        "entryState": "진입가능",
+        "signal": "돌파 후 지지",
+        "currentPrice": 58800,
+        "entryZone": "57,352~58,802원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 56027,
+        "stopPct": -4.7,
+        "relation": "동행",
+        "marketState": "선도주 견인형 · ③주도",
+        "growth1Y": "+27.0%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 80.3,
+        "rotationScore": 87.6,
+        "fundamentalScore": 73.0,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 87.6점 · 펀더멘털 50% 73.0점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 58800.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "217590",
+      "name": "티엠씨",
+      "group": "순환",
+      "section": "p11",
+      "rank": 2,
+      "sector": "전선",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:①초기"
+      ],
+      "sourceRow": {
+        "rank": 2,
+        "name": "티엠씨",
+        "ticker": "217590",
+        "sector": "전선",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 5.21,
+        "stockRs5Pct": 21.97,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.22%p",
+        "premium": "선행",
+        "marketState": "확산형 · ①초기",
+        "marketDetail": "3일 +7.83% · 5일 +24.50%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 초기",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 96.5,
+        "priceDate": "2026-09-17",
+        "currentPrice": 13770.0,
+        "reason": "순환 단계 ①초기 · 섹터 대비 선행; 3일 초과수익 +5.21%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 13770.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "230240",
+      "name": "에치에프알",
+      "group": "순환",
+      "section": "p11",
+      "rank": 8,
+      "sector": "통신 및 방송 장비 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑥후반"
+      ],
+      "sourceRow": {
+        "rank": 8,
+        "name": "에치에프알",
+        "ticker": "230240",
+        "sector": "통신 및 방송 장비 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 9.38,
+        "stockRs5Pct": 2.95,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.22%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ⑥후반",
+        "marketDetail": "3일 +11.40% · 5일 +5.48%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 후반",
+        "entryFit": "추격금지",
+        "overheated": false,
+        "stockEntryScore": 91.7,
+        "priceDate": "2026-09-17",
+        "currentPrice": 12700.0,
+        "reason": "순환 단계 ⑥후반 · 섹터 대비 선행; 3일 초과수익 +9.38%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 12700.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "252990",
+      "name": "샘씨엔에스",
+      "group": "진입",
+      "section": "p1",
+      "rank": 4,
+      "sector": "전자부품 제조업",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:진입가능"
+      ],
+      "sourceRow": {
+        "rank": 4,
+        "ticker": "252990",
+        "name": "샘씨엔에스",
+        "sector": "전자부품 제조업",
+        "entryState": "진입가능",
+        "signal": "1차 분할진입",
+        "currentPrice": 16760,
+        "entryZone": "13,690~16,854원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 12799,
+        "stopPct": -23.6,
+        "relation": "동행",
+        "marketState": "선도주 견인형 · ③주도",
+        "growth1Y": "+252.3%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 88.1,
+        "rotationScore": 86.1,
+        "fundamentalScore": 90.2,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 86.1점 · 펀더멘털 50% 90.2점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 16760.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "257720",
+      "name": "실리콘투",
+      "group": "성장",
+      "section": "growth",
+      "rank": null,
+      "sector": "화장품",
+      "cohortId": "b4251b7cd86259340d8325ff38fc1119c9a1339eeff102670e26420200a322c3",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "growth-evidence-v2",
+      "features": [
+        "성장"
+      ],
+      "sourceRow": {
+        "ticker": "257720",
+        "name": "실리콘투",
+        "sector": "화장품",
+        "growthRate": 46.6,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 86.7,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 402597050816.0,
+        "score": 84.76,
+        "averageTurnover20": 70109176642.0,
+        "exposureBasis": "상장사 제품 정보 일치 + 실제 매출 성장; 기업별 수출액 미확인",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        },
+        "_sectorPick": true
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 41950.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "263860",
+      "name": "지니언스",
+      "group": "진입",
+      "section": "p1",
+      "rank": 16,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 16,
+        "ticker": "263860",
+        "name": "지니언스",
+        "sector": "인터넷/소프트웨어",
+        "entryState": "곧진입",
+        "signal": "진입가격 접근 중",
+        "currentPrice": 18850,
+        "entryZone": "15,934~19,318원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 14882,
+        "stopPct": -21.0,
+        "relation": "후행",
+        "marketState": "선도주 견인형 · ③주도",
+        "growth1Y": "+294.3%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 79.2,
+        "rotationScore": 79.5,
+        "fundamentalScore": 78.9,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 79.5점 · 펀더멘털 50% 78.9점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 18850.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "278470",
+      "name": "에이피알",
+      "group": "성장",
+      "section": "growth",
+      "rank": null,
+      "sector": "화장품",
+      "cohortId": "b4251b7cd86259340d8325ff38fc1119c9a1339eeff102670e26420200a322c3",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "growth-evidence-v2",
+      "features": [
+        "성장"
+      ],
+      "sourceRow": {
+        "ticker": "278470",
+        "name": "에이피알",
+        "sector": "화장품",
+        "growthRate": 129.2,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 89.2,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 767533293305.0,
+        "score": 96.21,
+        "averageTurnover20": 111629452500.0,
+        "exposureBasis": "상장사 제품 정보 일치 + 실제 매출 성장; 기업별 수출액 미확인",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        },
+        "_sectorPick": true
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 353000.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "281820",
+      "name": "케이씨텍",
+      "group": "진입",
+      "section": "p1",
+      "rank": 7,
+      "sector": "반도체",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 7,
+        "ticker": "281820",
+        "name": "케이씨텍",
+        "sector": "반도체",
+        "entryState": "곧진입",
+        "signal": "돌파 후 지지",
+        "currentPrice": 72200,
+        "entryZone": "66,250~70,912원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 62905,
+        "stopPct": -12.9,
+        "relation": "선행",
+        "marketState": "혼합/관찰 · ①초기",
+        "growth1Y": "+149.4%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 87.5,
+        "rotationScore": 90.6,
+        "fundamentalScore": 84.4,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 90.6점 · 펀더멘털 50% 84.4점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 72200.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "333430",
+      "name": "일승",
+      "group": "진입",
+      "section": "p1",
+      "rank": 17,
+      "sector": "조선",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "진입",
+        "진입:진입가능"
+      ],
+      "sourceRow": {
+        "rank": 17,
+        "ticker": "333430",
+        "name": "일승",
+        "sector": "조선",
+        "entryState": "진입가능",
+        "signal": "1차 분할진입",
+        "currentPrice": 3845,
+        "entryZone": "3,728~3,872원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 3566,
+        "stopPct": -7.2,
+        "relation": "동행",
+        "marketState": "혼합/관찰 · ③주도",
+        "growth1Y": "+314.3%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 78.7,
+        "rotationScore": 68.7,
+        "fundamentalScore": 88.7,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 68.7점 · 펀더멘털 50% 88.7점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 3845.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "357880",
+      "name": "SKAI",
+      "group": "순환",
+      "section": "p11",
+      "rank": 12,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 12,
+        "name": "SKAI",
+        "ticker": "357880",
+        "sector": "인터넷/소프트웨어",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 12.21,
+        "stockRs5Pct": 2.75,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.11%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +12.28% · 5일 +5.18%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 90.5,
+        "priceDate": "2026-09-17",
+        "currentPrice": 1929.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +12.21%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 1929.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "361390",
+      "name": "제노코",
+      "group": "순환",
+      "section": "p11",
+      "rank": 11,
+      "sector": "통신 및 방송 장비 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑥후반"
+      ],
+      "sourceRow": {
+        "rank": 11,
+        "name": "제노코",
+        "ticker": "361390",
+        "sector": "통신 및 방송 장비 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 7.15,
+        "stockRs5Pct": 3.71,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.22%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ⑥후반",
+        "marketDetail": "3일 +9.17% · 5일 +6.24%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 후반",
+        "entryFit": "추격금지",
+        "overheated": false,
+        "stockEntryScore": 90.7,
+        "priceDate": "2026-09-17",
+        "currentPrice": 13100.0,
+        "reason": "순환 단계 ⑥후반 · 섹터 대비 선행; 3일 초과수익 +7.15%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 13100.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "413630",
+      "name": "씨피시스템",
+      "group": "종합",
+      "section": "combined",
+      "rank": 1,
+      "sector": "플라스틱제품 제조업",
+      "cohortId": "8cc660185bd58f996410ef4580e727d668370c11d14b860f67dc8d1a655808d6",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "combined-feedback-2.0",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑤재반등",
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "ticker": "413630",
+        "name": "씨피시스템",
+        "sector": "플라스틱제품 제조업",
+        "currentProjectRank": 13.5,
+        "conditions": [
+          "진입",
+          "순환"
+        ],
+        "condition": "진입 + 순환",
+        "entryState": "곧진입",
+        "currentPrice": 4480,
+        "combinedScore": 0.9434,
+        "matchedPattern": {
+          "pattern": [
+            "순환:⑤재반등",
+            "진입"
+          ],
+          "label": "순환 ⑤재반등 + 진입",
+          "horizon": 5,
+          "sampleCount": 9,
+          "recommendationDays": 2,
+          "meanReturnPct": 1.931,
+          "medianReturnPct": 1.992,
+          "winRatePct": 55.56,
+          "score": 0.9434,
+          "status": "초기 관찰",
+          "archiveSampleCount": 9,
+          "rank": 7
+        },
+        "features": [
+          "관계:선행",
+          "순환",
+          "순환:⑤재반등",
+          "진입",
+          "진입:곧진입"
+        ],
+        "sourceDate": "2026-09-17",
+        "valueScore": null,
+        "growthScore": null,
+        "sectorRelation": "선행",
+        "rank": 1,
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 4480.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "413630",
+      "name": "씨피시스템",
+      "group": "진입",
+      "section": "p1",
+      "rank": 9,
+      "sector": "플라스틱제품 제조업",
+      "cohortId": "e71c98abbd9d1ef710ed1b0738c72e5320b0404779777cb1e16addb827ef7207",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p1-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑤재반등",
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 9,
+        "ticker": "413630",
+        "name": "씨피시스템",
+        "sector": "플라스틱제품 제조업",
+        "entryState": "곧진입",
+        "signal": "재반등 진입",
+        "currentPrice": 4480,
+        "entryZone": "3,934~4,530원",
+        "confirmation": "당일 상승·5일선 회복·거래량 20일 평균 85% 이상",
+        "invalidationPrice": 3666,
+        "stopPct": -18.2,
+        "relation": "선행",
+        "marketState": "선도주 견인형 · ⑤재반등",
+        "growth1Y": "+104.1%",
+        "consensus": "자료없음",
+        "consensusDate": null,
+        "valueMultiple": "자료없음",
+        "entryScore": 86.7,
+        "rotationScore": 97.4,
+        "fundamentalScore": 76.0,
+        "fundamentalBasis": "영업이익률·영업이익성장·매출성장·분기흑자",
+        "priceDate": "2026-09-17",
+        "reason": "순환 50% 97.4점 · 펀더멘털 50% 76.0점 · 영업이익률·영업이익성장·매출성장·분기흑자",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 4480.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "413630",
+      "name": "씨피시스템",
+      "group": "순환",
+      "section": "p11",
+      "rank": 18,
+      "sector": "플라스틱제품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:⑤재반등",
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceRow": {
+        "rank": 18,
+        "name": "씨피시스템",
+        "ticker": "413630",
+        "sector": "플라스틱제품 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 9.68,
+        "stockRs5Pct": 5.88,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +1.47%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ⑤재반등",
+        "marketDetail": "3일 +11.03% · 5일 +6.67%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "순환 재반등",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 89.0,
+        "priceDate": "2026-09-17",
+        "currentPrice": 4480.0,
+        "reason": "순환 단계 ⑤재반등 · 섹터 대비 선행; 3일 초과수익 +9.68%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 4480.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "425420",
+      "name": "티에프이",
+      "group": "순환",
+      "section": "p11",
+      "rank": 16,
+      "sector": "전자부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 16,
+        "name": "티에프이",
+        "ticker": "425420",
+        "sector": "전자부품 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 6.28,
+        "stockRs5Pct": -4.6,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.07%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +8.68% · 5일 -2.21%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 89.5,
+        "priceDate": "2026-09-17",
+        "currentPrice": 57600.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +6.28%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 57600.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "451760",
+      "name": "컨텍",
+      "group": "순환",
+      "section": "p11",
+      "rank": 13,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:선행",
+        "순환",
+        "순환:③주도"
+      ],
+      "sourceRow": {
+        "rank": 13,
+        "name": "컨텍",
+        "ticker": "451760",
+        "sector": "인터넷/소프트웨어",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 12.97,
+        "stockRs5Pct": 9.37,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +3.11%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +13.04% · 5일 +11.80%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [
+          "UP"
+        ],
+        "signal": "주도 지속",
+        "entryFit": "눌림/분할",
+        "overheated": false,
+        "stockEntryScore": 90.5,
+        "priceDate": "2026-09-17",
+        "currentPrice": 8150.0,
+        "reason": "순환 단계 ③주도 · 섹터 대비 선행; 3일 초과수익 +12.97%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 8150.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "462350",
+      "name": "이노스페이스",
+      "group": "순환",
+      "section": "p11",
+      "rank": 5,
+      "sector": "항공기,우주선 및 부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:동행",
+        "순환",
+        "순환:②확산"
+      ],
+      "sourceRow": {
+        "rank": 5,
+        "name": "이노스페이스",
+        "ticker": "462350",
+        "sector": "항공기,우주선 및 부품 제조업",
+        "relation": "동행",
+        "sectorLeadLag": "동행",
+        "stockRs3Pct": 0.67,
+        "stockRs5Pct": 0.84,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +10.38%p",
+        "premium": "동행",
+        "marketState": "확산형 · ②확산",
+        "marketDetail": "3일 +10.54% · 5일 +10.54%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [],
+        "signal": "확산 진행",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 93.3,
+        "priceDate": "2026-09-17",
+        "currentPrice": 6610.0,
+        "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 +0.67%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 6610.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "474170",
+      "name": "루미르",
+      "group": "순환",
+      "section": "p11",
+      "rank": 6,
+      "sector": "항공기,우주선 및 부품 제조업",
+      "cohortId": "741f367b713b1fb69e22f41a2afe8fcabee490e70995b3fc38bcbfb3ecc859ae",
+      "recommendationDate": "2026-09-17",
+      "publishedAt": "2026-09-17T19:42:08+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "24274ce6e9fd22f0",
+      "ruleVersion": "p11-existing",
+      "features": [
+        "관계:동행",
+        "순환",
+        "순환:②확산"
+      ],
+      "sourceRow": {
+        "rank": 6,
+        "name": "루미르",
+        "ticker": "474170",
+        "sector": "항공기,우주선 및 부품 제조업",
+        "relation": "동행",
+        "sectorLeadLag": "동행",
+        "stockRs3Pct": -0.21,
+        "stockRs5Pct": -1.02,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +10.38%p",
+        "premium": "동행",
+        "marketState": "확산형 · ②확산",
+        "marketDetail": "3일 +9.65% · 5일 +8.67%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-24",
+        "marks": [],
+        "signal": "확산 진행",
+        "entryFit": "진입적합",
+        "overheated": false,
+        "stockEntryScore": 92.2,
+        "priceDate": "2026-09-17",
+        "currentPrice": 7270.0,
+        "reason": "순환 단계 ②확산 · 섹터 대비 동행; 3일 초과수익 -0.21%p",
+        "recommendationHistory": {
+          "firstDate": "2026-09-17",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-17",
+      "entryPrice": 7270.0,
+      "latestDate": "2026-09-17",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
     },
     {
       "ticker": "020000",
@@ -38883,10 +42493,10 @@
     {
       "group": "진입",
       "horizon": 1,
-      "total": 123,
+      "total": 136,
       "evaluated": 122,
       "uniqueStocks": 122,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 14,
       "meanReturnPct": -0.8382,
       "medianReturnPct": -1.005,
       "winRatePct": 28.69
@@ -38894,10 +42504,10 @@
     {
       "group": "진입",
       "horizon": 5,
-      "total": 123,
+      "total": 136,
       "evaluated": 103,
       "uniqueStocks": 103,
-      "waitingOrMissing": 20,
+      "waitingOrMissing": 33,
       "meanReturnPct": -0.561,
       "medianReturnPct": -1.3487,
       "winRatePct": 40.78
@@ -38905,10 +42515,10 @@
     {
       "group": "진입",
       "horizon": 20,
-      "total": 123,
+      "total": 136,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 123,
+      "waitingOrMissing": 136,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -38916,10 +42526,10 @@
     {
       "group": "진입",
       "horizon": 60,
-      "total": 123,
+      "total": 136,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 123,
+      "waitingOrMissing": 136,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -38927,10 +42537,10 @@
     {
       "group": "진입",
       "horizon": 120,
-      "total": 123,
+      "total": 136,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 123,
+      "waitingOrMissing": 136,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -38938,10 +42548,10 @@
     {
       "group": "순환",
       "horizon": 1,
-      "total": 159,
+      "total": 178,
       "evaluated": 159,
       "uniqueStocks": 159,
-      "waitingOrMissing": 0,
+      "waitingOrMissing": 19,
       "meanReturnPct": -0.218,
       "medianReturnPct": -0.9901,
       "winRatePct": 36.48
@@ -38949,10 +42559,10 @@
     {
       "group": "순환",
       "horizon": 5,
-      "total": 159,
+      "total": 178,
       "evaluated": 140,
       "uniqueStocks": 140,
-      "waitingOrMissing": 19,
+      "waitingOrMissing": 38,
       "meanReturnPct": -1.5067,
       "medianReturnPct": -2.9546,
       "winRatePct": 32.14
@@ -38960,10 +42570,10 @@
     {
       "group": "순환",
       "horizon": 20,
-      "total": 159,
+      "total": 178,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 159,
+      "waitingOrMissing": 178,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -38971,10 +42581,10 @@
     {
       "group": "순환",
       "horizon": 60,
-      "total": 159,
+      "total": 178,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 159,
+      "waitingOrMissing": 178,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -38982,10 +42592,10 @@
     {
       "group": "순환",
       "horizon": 120,
-      "total": 159,
+      "total": 178,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 159,
+      "waitingOrMissing": 178,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39048,10 +42658,10 @@
     {
       "group": "성장",
       "horizon": 1,
-      "total": 34,
+      "total": 39,
       "evaluated": 34,
       "uniqueStocks": 34,
-      "waitingOrMissing": 0,
+      "waitingOrMissing": 5,
       "meanReturnPct": -1.4219,
       "medianReturnPct": -1.9042,
       "winRatePct": 14.71
@@ -39059,10 +42669,10 @@
     {
       "group": "성장",
       "horizon": 5,
-      "total": 34,
+      "total": 39,
       "evaluated": 22,
       "uniqueStocks": 22,
-      "waitingOrMissing": 12,
+      "waitingOrMissing": 17,
       "meanReturnPct": -4.1252,
       "medianReturnPct": -4.0291,
       "winRatePct": 18.18
@@ -39070,10 +42680,10 @@
     {
       "group": "성장",
       "horizon": 20,
-      "total": 34,
+      "total": 39,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 34,
+      "waitingOrMissing": 39,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39081,10 +42691,10 @@
     {
       "group": "성장",
       "horizon": 60,
-      "total": 34,
+      "total": 39,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 34,
+      "waitingOrMissing": 39,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39092,10 +42702,10 @@
     {
       "group": "성장",
       "horizon": 120,
-      "total": 34,
+      "total": 39,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 34,
+      "waitingOrMissing": 39,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39103,10 +42713,10 @@
     {
       "group": "종합",
       "horizon": 1,
-      "total": 37,
+      "total": 38,
       "evaluated": 37,
       "uniqueStocks": 37,
-      "waitingOrMissing": 0,
+      "waitingOrMissing": 1,
       "meanReturnPct": -1.4305,
       "medianReturnPct": -1.1776,
       "winRatePct": 16.22
@@ -39114,10 +42724,10 @@
     {
       "group": "종합",
       "horizon": 5,
-      "total": 37,
+      "total": 38,
       "evaluated": 27,
       "uniqueStocks": 27,
-      "waitingOrMissing": 10,
+      "waitingOrMissing": 11,
       "meanReturnPct": -1.5203,
       "medianReturnPct": -1.4706,
       "winRatePct": 37.04
@@ -39125,10 +42735,10 @@
     {
       "group": "종합",
       "horizon": 20,
-      "total": 37,
+      "total": 38,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 37,
+      "waitingOrMissing": 38,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39136,10 +42746,10 @@
     {
       "group": "종합",
       "horizon": 60,
-      "total": 37,
+      "total": 38,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 37,
+      "waitingOrMissing": 38,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39147,10 +42757,10 @@
     {
       "group": "종합",
       "horizon": 120,
-      "total": 37,
+      "total": 38,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 37,
+      "waitingOrMissing": 38,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -39173,14 +42783,15 @@
   "priceCollection": {
     "source": "추천 종목 Yahoo 공급자 수정주가",
     "requested": 343,
-    "status": "일부 누락",
+    "status": "저장 수정주가 재사용",
     "covered": 341,
     "missingTickers": [
       "004920",
       "032790"
     ],
     "priceDate": "2026-09-17",
-    "checkedAt": "2026-09-17T10:36:14.290372+00:00"
+    "checkedAt": "2026-09-17T10:36:14.290372+00:00",
+    "networkRequests": 0
   },
   "feedback": {
     "version": "feedback-1.0",
@@ -40171,6 +43782,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "f7b77cd91c4ffa51d6f1324f5bf0dfc4767423d8a03900c73098895303a3c7cd"
+  }
 }
