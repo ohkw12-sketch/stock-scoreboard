@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-18T19:48:14+09:00",
+  "generatedAt": "2026-09-18T19:53:03+09:00",
   "priceDate": "2026-09-18",
-  "recordCount": 508,
-  "cohortCount": 64,
+  "recordCount": 518,
+  "cohortCount": 69,
   "rows": [
     {
       "ticker": "201490",
@@ -16831,6 +16831,100 @@
       "elapsedSessions": 0
     },
     {
+      "ticker": "001680",
+      "name": "대상",
+      "group": "가치",
+      "section": "p2",
+      "rank": 10,
+      "sector": "기타 식품 제조업",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 10,
+        "typeRank": 10,
+        "ticker": "001680",
+        "name": "대상",
+        "sector": "기타 식품 제조업",
+        "valueScore": 87.9,
+        "normalizedPOP": 3.5,
+        "sectorNormalizedPOP": 7.2,
+        "normalizedPremiumPct": -50.9,
+        "normalizationAdjustmentPct": -6.0,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 10,
+        "normalizationQuality": 91.9,
+        "normalizedResult": "정상화 32위(50.9% 할인)",
+        "absoluteValueScore": 97.0,
+        "sectorValueScore": 75.4,
+        "valueScoreBeforeConfidence": 87.9,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 17700.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
       "ticker": "004710",
       "name": "한솔테크닉스",
       "group": "순환",
@@ -17133,6 +17227,100 @@
       "elapsedSessions": 0
     },
     {
+      "ticker": "007340",
+      "name": "DN오토모티브",
+      "group": "가치",
+      "section": "p2",
+      "rank": 8,
+      "sector": "2차전지/ESS",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 8,
+        "typeRank": 8,
+        "ticker": "007340",
+        "name": "DN오토모티브",
+        "sector": "2차전지/ESS",
+        "valueScore": 90.5,
+        "normalizedPOP": 4.7,
+        "sectorNormalizedPOP": 18.6,
+        "normalizedPremiumPct": -74.9,
+        "normalizationAdjustmentPct": -24.7,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 5,
+        "normalizationQuality": 94.3,
+        "normalizedResult": "정상화 10위(74.9% 할인)",
+        "absoluteValueScore": 90.2,
+        "sectorValueScore": 87.5,
+        "valueScoreBeforeConfidence": 90.5,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 49300.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
       "ticker": "010820",
       "name": "퍼스텍",
       "group": "진입",
@@ -17186,6 +17374,288 @@
       },
       "entryDate": "2026-09-18",
       "entryPrice": 6390.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "011760",
+      "name": "현대코퍼레이션",
+      "group": "가치",
+      "section": "p2",
+      "rank": 6,
+      "sector": "상품 종합 도매업",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 6,
+        "typeRank": 6,
+        "ticker": "011760",
+        "name": "현대코퍼레이션",
+        "sector": "상품 종합 도매업",
+        "valueScore": 91.2,
+        "normalizedPOP": 2.0,
+        "sectorNormalizedPOP": 5.2,
+        "normalizedPremiumPct": -61.7,
+        "normalizationAdjustmentPct": -29.5,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 5,
+        "normalizationQuality": 93.0,
+        "normalizedResult": "정상화 22위(61.7% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 80.9,
+        "valueScoreBeforeConfidence": 91.2,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 26500.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "015750",
+      "name": "성우하이텍",
+      "group": "가치",
+      "section": "p2",
+      "rank": 1,
+      "sector": "자동차",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 1,
+        "typeRank": 1,
+        "ticker": "015750",
+        "name": "성우하이텍",
+        "sector": "자동차",
+        "valueScore": 93.3,
+        "normalizedPOP": 2.0,
+        "sectorNormalizedPOP": 5.8,
+        "normalizedPremiumPct": -65.8,
+        "normalizationAdjustmentPct": -8.3,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 11,
+        "normalizationQuality": 97.5,
+        "normalizedResult": "정상화 17위(65.8% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 82.9,
+        "valueScoreBeforeConfidence": 93.3,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 5970.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "017810",
+      "name": "풀무원",
+      "group": "가치",
+      "section": "p2",
+      "rank": 9,
+      "sector": "기타 식품 제조업",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 9,
+        "typeRank": 9,
+        "ticker": "017810",
+        "name": "풀무원",
+        "sector": "기타 식품 제조업",
+        "valueScore": 89.7,
+        "normalizedPOP": 3.2,
+        "sectorNormalizedPOP": 7.2,
+        "normalizedPremiumPct": -55.5,
+        "normalizationAdjustmentPct": 7.6,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 10,
+        "normalizationQuality": 93.0,
+        "normalizedResult": "정상화 27위(55.5% 할인)",
+        "absoluteValueScore": 98.9,
+        "sectorValueScore": 77.7,
+        "valueScoreBeforeConfidence": 89.7,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 8850.0,
       "latestDate": "2026-09-18",
       "currentReturnPct": 0.0,
       "maxDrawdownPct": 0,
@@ -18827,6 +19297,100 @@
       "elapsedSessions": 0
     },
     {
+      "ticker": "097950",
+      "name": "CJ제일제당",
+      "group": "가치",
+      "section": "p2",
+      "rank": 4,
+      "sector": "기타 식품 제조업",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 4,
+        "typeRank": 4,
+        "ticker": "097950",
+        "name": "CJ제일제당",
+        "sector": "기타 식품 제조업",
+        "valueScore": 92.2,
+        "normalizedPOP": 2.5,
+        "sectorNormalizedPOP": 7.2,
+        "normalizedPremiumPct": -64.9,
+        "normalizationAdjustmentPct": 1.6,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 10,
+        "normalizationQuality": 94.4,
+        "normalizedResult": "정상화 20위(64.9% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 82.4,
+        "valueScoreBeforeConfidence": 92.2,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 174600.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
       "ticker": "103590",
       "name": "일진전기",
       "group": "종합",
@@ -19127,6 +19691,194 @@
       "elapsedSessions": 0
     },
     {
+      "ticker": "122690",
+      "name": "서진오토모티브",
+      "group": "가치",
+      "section": "p2",
+      "rank": 13,
+      "sector": "자동차",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 13,
+        "typeRank": 13,
+        "ticker": "122690",
+        "name": "서진오토모티브",
+        "sector": "자동차",
+        "valueScore": 86.5,
+        "normalizedPOP": 1.5,
+        "sectorNormalizedPOP": 5.8,
+        "normalizedPremiumPct": -73.8,
+        "normalizationAdjustmentPct": -73.4,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 11,
+        "normalizationQuality": 70.3,
+        "normalizedResult": "정상화 11위(73.8% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 86.9,
+        "valueScoreBeforeConfidence": 86.5,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 1620.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "124500",
+      "name": "아이티센글로벌",
+      "group": "가치",
+      "section": "p2",
+      "rank": 2,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 2,
+        "typeRank": 2,
+        "ticker": "124500",
+        "name": "아이티센글로벌",
+        "sector": "인터넷/소프트웨어",
+        "valueScore": 93.0,
+        "normalizedPOP": 2.1,
+        "sectorNormalizedPOP": 11.7,
+        "normalizedPremiumPct": -82.2,
+        "normalizationAdjustmentPct": 900.7,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 12,
+        "normalizationQuality": 87.0,
+        "normalizedResult": "정상화 4위(82.2% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 91.1,
+        "valueScoreBeforeConfidence": 93.0,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 29650.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
       "ticker": "126730",
       "name": "코칩",
       "group": "진입",
@@ -19180,6 +19932,100 @@
       },
       "entryDate": "2026-09-18",
       "entryPrice": 23850.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "151860",
+      "name": "KG에코솔루션",
+      "group": "가치",
+      "section": "p2",
+      "rank": 5,
+      "sector": "자동차",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 5,
+        "typeRank": 5,
+        "ticker": "151860",
+        "name": "KG에코솔루션",
+        "sector": "자동차",
+        "valueScore": 91.4,
+        "normalizedPOP": 1.8,
+        "sectorNormalizedPOP": 5.8,
+        "normalizedPremiumPct": -69.9,
+        "normalizationAdjustmentPct": -26.5,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 11,
+        "normalizationQuality": 88.9,
+        "normalizedResult": "정상화 14위(69.9% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 85.0,
+        "valueScoreBeforeConfidence": 91.4,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 5610.0,
       "latestDate": "2026-09-18",
       "currentReturnPct": 0.0,
       "maxDrawdownPct": 0,
@@ -19464,6 +20310,100 @@
       },
       "entryDate": "2026-09-18",
       "entryPrice": 7640.0,
+      "latestDate": "2026-09-18",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "200880",
+      "name": "서연이화",
+      "group": "가치",
+      "section": "p2",
+      "rank": 3,
+      "sector": "자동차",
+      "cohortId": "c214ea9fc10a6f9d9fd3f66c7bbad0a93b646f79571c8dabc7658c322cb93cc2",
+      "recommendationDate": "2026-09-18",
+      "publishedAt": "2026-09-18T19:53:03+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "2b19976e637d91bd",
+      "ruleVersion": "p2-existing",
+      "features": [
+        "가치",
+        "가치:1~5배",
+        "가치:섹터할인"
+      ],
+      "sourceRow": {
+        "rank": 3,
+        "typeRank": 3,
+        "ticker": "200880",
+        "name": "서연이화",
+        "sector": "자동차",
+        "valueScore": 92.4,
+        "normalizedPOP": 1.8,
+        "sectorNormalizedPOP": 5.8,
+        "normalizedPremiumPct": -69.7,
+        "normalizationAdjustmentPct": -16.8,
+        "confidence": "A",
+        "normalizationSourceBadge": "최근 4분기",
+        "normalizedPeriod": "2026-06-30",
+        "normalizedQuarterCount": 4,
+        "normalizedPeerCount": 11,
+        "normalizationQuality": 92.5,
+        "normalizedResult": "정상화 15위(69.7% 할인)",
+        "absoluteValueScore": 100.0,
+        "sectorValueScore": 84.8,
+        "valueScoreBeforeConfidence": 92.4,
+        "confidenceMultiplier": 1.0,
+        "structureMultiplier": 1.0,
+        "structureWarning": "",
+        "priceDate": "2026-09-18",
+        "recommendationHistory": {
+          "firstDate": "2026-09-18",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-18",
+      "entryPrice": 11140.0,
       "latestDate": "2026-09-18",
       "currentReturnPct": 0.0,
       "maxDrawdownPct": 0,
@@ -45787,10 +46727,10 @@
     {
       "group": "가치",
       "horizon": 1,
-      "total": 84,
+      "total": 94,
       "evaluated": 83,
       "uniqueStocks": 83,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 11,
       "meanReturnPct": -1.5827,
       "medianReturnPct": -1.3495,
       "winRatePct": 21.69
@@ -45798,10 +46738,10 @@
     {
       "group": "가치",
       "horizon": 5,
-      "total": 84,
+      "total": 94,
       "evaluated": 83,
       "uniqueStocks": 83,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 11,
       "meanReturnPct": -1.1943,
       "medianReturnPct": -1.7582,
       "winRatePct": 32.53
@@ -45809,10 +46749,10 @@
     {
       "group": "가치",
       "horizon": 20,
-      "total": 84,
+      "total": 94,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 84,
+      "waitingOrMissing": 94,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -45820,10 +46760,10 @@
     {
       "group": "가치",
       "horizon": 60,
-      "total": 84,
+      "total": 94,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 84,
+      "waitingOrMissing": 94,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -45831,10 +46771,10 @@
     {
       "group": "가치",
       "horizon": 120,
-      "total": 84,
+      "total": 94,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 84,
+      "waitingOrMissing": 94,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -46966,6 +47906,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "9ca65e687ccea5d494ad305d5264364462432d2e81e22403eb055087167768ef"
+  }
 }
