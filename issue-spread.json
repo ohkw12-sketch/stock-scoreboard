@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T17:29:14.986272+09:00",
+  "generatedAt": "2026-09-18T17:34:06.351188+09:00",
   "sourceDate": "2026-09-18",
-  "slot": "08:00",
+  "slot": "15:00",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -26,7 +26,17 @@
           "sector": "AI 서버·부속품",
           "direct": true,
           "fundamental": 0,
-          "quote": {},
+          "quote": {
+            "status": "verified",
+            "source": "yfinance",
+            "url": "https://finance.yahoo.com/quote/351320.KQ/",
+            "asOf": "2026-09-18T17:05:05+09:00",
+            "adjustmentChecked": true,
+            "changePct": -0.3817,
+            "return5dPct": -2.3691,
+            "turnoverRatio": 0.1436,
+            "distance20Pct": 13.9688
+          },
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -50,16 +60,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 5,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "미확인"
+          "overheat": "보통"
         }
       ],
       "evidence": [
@@ -91,60 +101,29 @@
       "id": "maritime-energy-orders-20260918",
       "name": "해상에너지·선박 핵심설비 수주",
       "strength": 25,
-      "marketGrade": "미확인",
+      "marketGrade": "B",
       "fundamentalGrade": "미확인",
-      "spreadType": "개별반응·미확인",
+      "spreadType": "섹터확산",
       "leaders": [],
       "candidates": [
-        {
-          "ticker": "060370",
-          "name": "LS마린솔루션",
-          "sector": "해상풍력 해저케이블 운송·설치",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {},
-          "confirmed": false,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "marine-060370-contract",
-              "ticker": "060370",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
-              "publishedAt": "2026-09-18T09:00:00+09:00",
-              "verifiedAt": "2026-09-18T17:10:20+09:00",
-              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "LS마린솔루션이 한화오션과 1,569억 원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 공시했다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 0,
-            "fundamental": 0,
-            "entry": 0
-          },
-          "score": 5,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "미확인"
-        },
         {
           "ticker": "071970",
           "name": "HD현대마린엔진",
           "sector": "선박엔진 공급",
           "direct": true,
           "fundamental": 0,
-          "quote": {},
-          "confirmed": false,
+          "quote": {
+            "status": "verified",
+            "source": "yfinance",
+            "url": "https://finance.yahoo.com/quote/071970.KS/",
+            "asOf": "2026-09-18T17:04:55+09:00",
+            "adjustmentChecked": true,
+            "changePct": 2.1401,
+            "return5dPct": 0.0,
+            "turnoverRatio": 1.9086,
+            "distance20Pct": 2.145
+          },
+          "confirmed": true,
           "hot": false,
           "evidence": [
             {
@@ -165,18 +144,69 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 0,
+            "spread": 10,
             "fundamental": 0,
-            "entry": 0
+            "entry": 10
           },
-          "score": 5,
+          "score": 25,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "미확인"
+          "priceStatus": "확인",
+          "overheat": "보통"
+        },
+        {
+          "ticker": "060370",
+          "name": "LS마린솔루션",
+          "sector": "해상풍력 해저케이블 운송·설치",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "yfinance",
+            "url": "https://finance.yahoo.com/quote/060370.KQ/",
+            "asOf": "2026-09-18T17:04:58+09:00",
+            "adjustmentChecked": true,
+            "changePct": 6.4163,
+            "return5dPct": 5.2632,
+            "turnoverRatio": 6.6015,
+            "distance20Pct": 6.0098
+          },
+          "confirmed": true,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "marine-060370-contract",
+              "ticker": "060370",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
+              "publishedAt": "2026-09-18T09:00:00+09:00",
+              "verifiedAt": "2026-09-18T17:10:20+09:00",
+              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "LS마린솔루션이 한화오션과 1,569억 원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 공시했다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 10,
+            "fundamental": 0,
+            "entry": 5
+          },
+          "score": 20,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "확인",
+          "overheat": "보통"
         }
       ],
       "evidence": [
@@ -239,8 +269,18 @@
           "sector": "반도체 Substrate 제조설비",
           "direct": false,
           "fundamental": 0,
-          "quote": {},
-          "confirmed": false,
+          "quote": {
+            "status": "verified",
+            "source": "yfinance",
+            "url": "https://finance.yahoo.com/quote/195870.KS/",
+            "asOf": "2026-09-18T17:07:09+09:00",
+            "adjustmentChecked": true,
+            "changePct": 5.6985,
+            "return5dPct": 14.7705,
+            "turnoverRatio": 2.6468,
+            "distance20Pct": 9.7433
+          },
+          "confirmed": true,
           "hot": false,
           "evidence": [
             {
@@ -263,16 +303,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 0,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "미확인"
+          "priceStatus": "확인",
+          "overheat": "보통"
         }
       ],
       "evidence": [
