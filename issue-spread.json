@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T17:27:58.618504+09:00",
+  "generatedAt": "2026-09-18T17:29:14.986272+09:00",
   "sourceDate": "2026-09-18",
-  "slot": "15:00",
+  "slot": "08:00",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -26,17 +26,7 @@
           "sector": "AI 서버·부속품",
           "direct": true,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/351320.KQ/",
-            "asOf": "2026-09-18T17:05:05+09:00",
-            "adjustmentChecked": true,
-            "changePct": -0.3817,
-            "return5dPct": -2.3691,
-            "turnoverRatio": 0.1436,
-            "distance20Pct": 13.9688
-          },
+          "quote": {},
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -60,16 +50,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 10,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "보통"
+          "overheat": "미확인"
         }
       ],
       "evidence": [
@@ -101,80 +91,19 @@
       "id": "maritime-energy-orders-20260918",
       "name": "해상에너지·선박 핵심설비 수주",
       "strength": 25,
-      "marketGrade": "B",
+      "marketGrade": "미확인",
       "fundamentalGrade": "미확인",
-      "spreadType": "섹터확산",
+      "spreadType": "개별반응·미확인",
       "leaders": [],
       "candidates": [
-        {
-          "ticker": "071970",
-          "name": "HD현대마린엔진",
-          "sector": "선박엔진 공급",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/071970.KS/",
-            "asOf": "2026-09-18T17:04:55+09:00",
-            "adjustmentChecked": true,
-            "changePct": 2.1401,
-            "return5dPct": 0.0,
-            "turnoverRatio": 1.9086,
-            "distance20Pct": 2.145
-          },
-          "confirmed": true,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "marine-071970-correction",
-              "ticker": "071970",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
-              "publishedAt": "2026-09-18T09:00:00+09:00",
-              "verifiedAt": "2026-09-18T17:10:20+09:00",
-              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "HD현대마린엔진이 344억 원 규모 선박엔진 공급계약의 정정 내용을 공시했으며 계약 종료일은 2026-11-15이다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 10,
-            "fundamental": 0,
-            "entry": 10
-          },
-          "score": 25,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
-        },
         {
           "ticker": "060370",
           "name": "LS마린솔루션",
           "sector": "해상풍력 해저케이블 운송·설치",
           "direct": true,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/060370.KQ/",
-            "asOf": "2026-09-18T17:04:58+09:00",
-            "adjustmentChecked": true,
-            "changePct": 6.4163,
-            "return5dPct": 5.2632,
-            "turnoverRatio": 6.6015,
-            "distance20Pct": 6.0098
-          },
-          "confirmed": true,
+          "quote": {},
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -195,18 +124,59 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 10,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 20,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "071970",
+          "name": "HD현대마린엔진",
+          "sector": "선박엔진 공급",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "marine-071970-correction",
+              "ticker": "071970",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
+              "publishedAt": "2026-09-18T09:00:00+09:00",
+              "verifiedAt": "2026-09-18T17:10:20+09:00",
+              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "HD현대마린엔진이 344억 원 규모 선박엔진 공급계약의 정정 내용을 공시했으며 계약 종료일은 2026-11-15이다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
         }
       ],
       "evidence": [
@@ -269,18 +239,8 @@
           "sector": "반도체 Substrate 제조설비",
           "direct": false,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/195870.KS/",
-            "asOf": "2026-09-18T17:07:09+09:00",
-            "adjustmentChecked": true,
-            "changePct": 5.6985,
-            "return5dPct": 14.7705,
-            "turnoverRatio": 2.6468,
-            "distance20Pct": 9.7433
-          },
-          "confirmed": true,
+          "quote": {},
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -303,16 +263,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 5,
+          "score": 0,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
+          "priceStatus": "미확인",
+          "overheat": "미확인"
         }
       ],
       "evidence": [
@@ -337,6 +297,34 @@
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
           "publishedAt": "2026-09-18T09:00:00+09:00",
           "summary": "반도체 Substrate Panel 공법 도입 설비투자를 확인했다."
+        },
+        {
+          "channel": "유튜브시황2·오선",
+          "label": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”",
+          "url": "https://saveticker.com/news/news_gCv2QtNQbwmx",
+          "publishedAt": "2026-09-18T16:53:35+09:00",
+          "summary": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다” 당사 해명 기사로 탐지만 반영했다."
+        },
+        {
+          "channel": "유튜브시황2·오선",
+          "label": "(카더라) 창신메모리, 낸드 시장 진출 추진…삼성·SK하이닉스·마이크론에 도전",
+          "url": "https://saveticker.com/news/news_6qrO9E6VwIsa",
+          "publishedAt": "2026-09-18T15:21:08+09:00",
+          "summary": "로이터 통신은 소식통을 인용해, 중국 최대 DRAM 업체인 창신메모리(CXMT)가 베이징 신규 공장에 낸드플래시 연구개발(R&D) 생산라인을 구축할 계획이라고 보도함 AI 서버 수요 급증과 제조사들의 D램·HBM 투자 집중으로 낸드 공급 부족이 이어지는 가운데, CXMT가 낸드 시장에 진출할 경우 삼성전자·SK하이닉스·마이크론 등 글로벌 선도 기업은 물론 자국 내 경쟁사인 YMTC(양쯔메모리)와도 직접 경쟁하게 됨 미확정 보도로 탐지만 반영했다."
+        },
+        {
+          "channel": "유튜브시황2·오선",
+          "label": "(카더라) SK하이닉스 솔리다임, 미국 NAND 공장 건설 검토…뉴욕주 북부 유력 후보",
+          "url": "https://saveticker.com/news/news_-tKPbkCNhqQA",
+          "publishedAt": "2026-09-18T15:13:07+09:00",
+          "summary": "로이터 통신은 소식통을 인용해 SK하이닉스의 미국 자회사 솔리다임이 미국 내 낸드플래시 공장 신설을 검토 중이며 뉴욕주 북부가 유력한 후보지로 거론되고 있다고 보도함 트럼프 행정부가 미국 내 반도체 생산 확대를 압박하는 가운데 AI 데이터센터 투자 증가로 메모리칩 부족이 심해진 것이 배경이며, 이번 검토는 SK하이닉스가 인텔의 오하이오 공장에서 메모리칩을 생산하는 방안을 논의 중인 것과는 별개의 프로젝트라고 함 미확정 보도로 탐지만 반영했다."
+        },
+        {
+          "channel": "유튜브시황2·오선",
+          "label": "(카더라) SK그룹 부회장 4명 중 3명, SK하이닉스로...",
+          "url": "https://saveticker.com/news/news_Xn5uFikyyhIO",
+          "publishedAt": "2026-09-18T15:33:10+09:00",
+          "summary": "연합뉴스는 익명의 업계 관계자들을 인용해, SK그룹이 반도체 산업의 중요성과 글로벌 경영환경의 불확실성을 반영해 그룹 지주사인 SK㈜ 소속 부회장 4명 중 서진우·유정준·이형희 부회장 3명을 SK하이닉스로 이동 배치했다고 보도함 이들은 그동안 그룹의 글로벌 사업과 대외협력을 이끌어온 인사들로, 현재 SK하이닉스 임원 약 250명을 대상으로 심층 면담을 진행 중인 것으로 전해짐 미확정 보도로 탐지만 반영했다."
         }
       ]
     }
@@ -345,6 +333,6 @@
   "missing": [
     "스튜디오드래곤 Netflix 콘텐츠 계약은 계약금액 비공개로 탐지 사실만 보존하고 점수에서 제외",
     "건설 및 바이오 공시는 운영 제외 기준에 따라 후보에서 제외",
-    "삼프로TV·오선 유튜브는 2026-09-18 공개분 중 이슈 점수로 승격할 검증 원문 미확보 · 탐지 점수 미반영"
+    "유튜브시황2 오선 기사 4건은 이슈 탐지만 반영하고 추천점수에서 제외 · 삼프로TV 영상 원문은 추가 승격 없음"
   ]
 }

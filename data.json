@@ -1,7 +1,7 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-09-18 17:27",
+      "checkedAtKST": "2026-09-18 17:29",
       "sourceDate": "2026-09-18",
       "summary": "저장자료 재계산 · 구역별 검증 · 보유수량·평단 보존"
     },
@@ -11,17 +11,17 @@
     "note": "성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.",
     "sourceSummary": "가격 2026-09-18 · 공시 2026-06-30 · 컨센서스 2026-08-31 · 저장자료 재계산",
     "title": "주식평가창",
-    "updatedKST": "2026-09-18 17:27",
+    "updatedKST": "2026-09-18 17:29",
     "uiContractVersion": "2026-09-10.2",
-    "runId": "d0c02522b8d15a3887205e62",
+    "runId": "f89c5238f379ab217867d09d",
     "refreshState": {
-      "generatedAt": "2026-09-18T17:26:28+09:00",
+      "generatedAt": "2026-09-18T17:28:17+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d0c02522b8d15a3887205e62",
-      "evidenceSnapshotId": "d423e08ec8ba5a7e055b4d9d5de8f7c7c41d308cb5741d273e44056a37ce5389"
+      "runId": "f89c5238f379ab217867d09d",
+      "evidenceSnapshotId": "677fe8e19df9723dd744f7df9a186e0fb780acda03cc1fe5a1444b10e40aa5e4"
     }
   },
   "p1": {
@@ -711,12 +711,12 @@
     "selectionRule": "순환 후보군에서 순환점수 50% + 펀더멘털점수 50%로 순위, 일 거래대금 10억원 이상, 과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T17:26:28+09:00",
+      "generatedAt": "2026-09-18T17:28:17+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d0c02522b8d15a3887205e62"
+      "runId": "f89c5238f379ab217867d09d"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -728,7 +728,7 @@
     "status": "전체시장 엔진: KOSPI+KOSDAQ 2,762종목, 108개 섹터 분석. 기준일 2026-09-18. 진입 위치와 무관하게 확산형과 선도주 견인형을 함께 반영했으며 단계 분포 {'②확산': 6, '⑥후반': 4, '③주도': 4, '①초기': 1}.",
     "engine": {
       "version": "1.0.0",
-      "generatedAtKST": "2026-09-18T17:26:51+09:00",
+      "generatedAtKST": "2026-09-18T17:28:41+09:00",
       "asOfDate": "2026-09-18",
       "source": "yfinance+FinanceDataReader",
       "universe": [
@@ -1841,12 +1841,12 @@
     ],
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T17:26:28+09:00",
+      "generatedAt": "2026-09-18T17:28:17+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d0c02522b8d15a3887205e62"
+      "runId": "f89c5238f379ab217867d09d"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -2878,12 +2878,12 @@
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T17:26:28+09:00",
+      "generatedAt": "2026-09-18T17:28:17+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d0c02522b8d15a3887205e62"
+      "runId": "f89c5238f379ab217867d09d"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -3220,13 +3220,13 @@
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T17:26:28+09:00",
+      "generatedAt": "2026-09-18T17:28:17+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d0c02522b8d15a3887205e62",
-      "evidenceSnapshotId": "d423e08ec8ba5a7e055b4d9d5de8f7c7c41d308cb5741d273e44056a37ce5389"
+      "runId": "f89c5238f379ab217867d09d",
+      "evidenceSnapshotId": "677fe8e19df9723dd744f7df9a186e0fb780acda03cc1fe5a1444b10e40aa5e4"
     }
   },
   "growth": {
@@ -10263,7 +10263,7 @@
         "206560",
         "459510"
       ],
-      "cacheReadAt": "2026-09-18T17:27:08+09:00",
+      "cacheReadAt": "2026-09-18T17:28:58+09:00",
       "cacheReason": "명시적 원자료 재사용",
       "networkRequests": 0,
       "reused": true,
@@ -10271,7 +10271,7 @@
       "news": {
         "status": "미수집",
         "source": "NAVER 뉴스",
-        "cacheReadAt": "2026-09-18T17:27:08+09:00",
+        "cacheReadAt": "2026-09-18T17:28:58+09:00",
         "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
         "reused": true,
@@ -10332,7 +10332,7 @@
         "missingProducts": [],
         "documentsDownloaded": 1,
         "parsedCacheHits": 3,
-        "cacheReadAt": "2026-09-18T17:27:08+09:00",
+        "cacheReadAt": "2026-09-18T17:28:58+09:00",
         "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
         "reused": true,
@@ -10341,7 +10341,7 @@
       "verifiedDocuments": {
         "source": "검증 뉴스·IR 원문",
         "status": "미수집",
-        "cacheReadAt": "2026-09-18T17:27:08+09:00",
+        "cacheReadAt": "2026-09-18T17:28:58+09:00",
         "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
         "reused": true,
@@ -10351,7 +10351,7 @@
       "ir": {
         "source": "검증 뉴스·IR 원문",
         "status": "미수집",
-        "cacheReadAt": "2026-09-18T17:27:08+09:00",
+        "cacheReadAt": "2026-09-18T17:28:58+09:00",
         "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
         "reused": true,
@@ -10374,17 +10374,17 @@
       "oldEvidenceUsed": 109
     },
     "methodVersion": "growth-evidence-v2",
-    "updatedKST": "2026-09-18 17:27",
+    "updatedKST": "2026-09-18 17:28",
     "notice": "분기 매출 300억원·20일 평균 거래대금 10억원 이상에서 50개 후보를 선별합니다. 점수는 사건규모 25%, 매출성장 지속·가속 20%, 이익전환 15%, 매출가시성 15%, 근거신뢰도 10%, 주가 미반영 10%, 확인 가능한 재무·희석위험 5%입니다.",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T17:26:28+09:00",
+      "generatedAt": "2026-09-18T17:28:17+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "24274ce6e9fd22f0",
-      "runId": "d0c02522b8d15a3887205e62",
-      "evidenceSnapshotId": "d423e08ec8ba5a7e055b4d9d5de8f7c7c41d308cb5741d273e44056a37ce5389"
+      "runId": "f89c5238f379ab217867d09d",
+      "evidenceSnapshotId": "677fe8e19df9723dd744f7df9a186e0fb780acda03cc1fe5a1444b10e40aa5e4"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
