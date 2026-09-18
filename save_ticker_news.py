@@ -232,7 +232,7 @@ def validate_board(board: dict) -> None:
             raise ValueError("오선 작성자가 아닌 기사가 포함됐습니다")
         if item.get("scope") not in ("국장 직접", "국내 섹터 영향"):
             raise ValueError("국내 증시 연결 구분이 없습니다")
-        if not re.fullmatch(r"https://saveticker\.com/news/\d+", str(item.get("url") or "")):
+        if not re.fullmatch(r"https://saveticker\.com/news/(?:\d+|news_[A-Za-z0-9_-]+)", str(item.get("url") or "")):
             raise ValueError("허용되지 않은 기사 링크")
 
 

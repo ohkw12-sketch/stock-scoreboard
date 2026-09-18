@@ -40,15 +40,15 @@ class SaveTickerNewsTest(unittest.TestCase):
         self.assertEqual(selected[0]['sectors'], ['정유·화학·운송'])
 
     def test_board_summarizes_actual_article_content_and_keeps_source_link(self):
-        items = [article(1, '한화오션, 태국 호위함 우선협상대상자 선정', views=7000)]
-        details = {'1': {'source': 'SaveTicker', 'content': [
+        items = [article('news_gCv2QtNQbwmx', '한화오션, 태국 호위함 우선협상대상자 선정', views=7000)]
+        details = {'news_gCv2QtNQbwmx': {'source': 'SaveTicker', 'content': [
             {'type': 'text', 'content': '한화오션은 태국 해군 차세대 호위함 사업의 우선협상대상자로 선정됐습니다.'},
             {'type': 'text', 'content': '최종 계약 체결 여부와 사업 규모는 후속 협상에서 정해집니다.'},
         ]}}
         board = build_board(items, details, NOW)
         validate_board(board)
         self.assertIn('우선협상대상자', board['items'][0]['summary'])
-        self.assertEqual(board['items'][0]['url'], 'https://saveticker.com/news/1')
+        self.assertEqual(board['items'][0]['url'], 'https://saveticker.com/news/news_gCv2QtNQbwmx')
         self.assertEqual(board['meta']['directCount'], 1)
 
     def test_failed_refresh_retains_previous_board(self):

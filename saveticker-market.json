@@ -3,80 +3,117 @@
   "meta": {
     "title": "유튜브시황2",
     "status": "SaveTicker 오선 국장 주요뉴스 갱신",
-    "updatedKST": "2026-09-17 19:28",
-    "range": "09.17 02:51–09.17 19:28",
+    "updatedKST": "2026-09-18 17:26",
+    "range": "09.17 22:33–09.18 17:26",
     "sourceUrl": "https://saveticker.com/news",
     "source": "SaveTicker · 작성자 오선",
     "selectionRule": "국내 기업·시장 직접 뉴스 우선, 국내 업종 영향이 명확한 글로벌 뉴스 보완, 유사 속보 통합",
     "fetchedCount": 500,
-    "authorCount": 40,
-    "selectedCount": 3,
-    "directCount": 0,
-    "sectorCount": 3,
+    "authorCount": 29,
+    "selectedCount": 5,
+    "directCount": 4,
+    "sectorCount": 1,
     "windowHours": 36
   },
   "items": [
     {
-      "id": "215462",
-      "title": "엔비디아 GPU 임대료 20% 인상… AI 인프라 수익성 확대",
-      "scope": "국내 섹터 영향",
-      "tone": "긍정",
+      "id": "news_gCv2QtNQbwmx",
+      "title": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”",
+      "scope": "국장 직접",
+      "tone": "확인",
       "sectors": [
-        "반도체",
-        "전력기기·냉각"
+        "반도체·전자"
       ],
-      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다. 국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
-      "publishedKST": "2026-09-17 15:32",
-      "createdAt": "2026-09-17T15:32:06+09:00",
-      "source": "블룸버그",
+      "marketImpact": "국내 삼성 계열·SK 반도체·전자 기업을 직접 언급한 뉴스입니다.",
+      "publishedKST": "2026-09-18 16:53",
+      "createdAt": "2026-09-18T16:53:35+09:00",
+      "source": "SaveTicker",
       "author": "오선",
-      "viewCount": 15731,
+      "viewCount": 5433,
       "isRumor": false,
-      "importanceScore": 77.6,
-      "url": "https://saveticker.com/news/215462",
-      "summary": "네비우스가 10월 1일부로 엔비디아 주요 GPU(H100, H200, B200, B300)의 임대료를 약 20% 인상함 양산된 지 4년이 지난 H100의 임대료까지 계속 오르면서, 이미 비용의 상당 부분이 감가상각된 GPU 보유 업체들은 더 높은 수익을 올릴 수 있게 됨"
+      "importanceScore": 103.5,
+      "url": "https://saveticker.com/news/news_gCv2QtNQbwmx",
+      "summary": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”"
     },
     {
-      "id": "215596",
-      "title": "크루소, AI 추론 수요 겨냥해 ‘초대형 AI 데이터센터에서 소형 모듈형으로’",
+      "id": "news_6qrO9E6VwIsa",
+      "title": "(카더라) 창신메모리, 낸드 시장 진출 추진…삼성·SK하이닉스·마이크론에 도전",
+      "scope": "국장 직접",
+      "tone": "확인",
+      "sectors": [
+        "반도체·전자"
+      ],
+      "marketImpact": "국내 삼성 계열·SK 반도체·전자 기업을 직접 언급한 뉴스입니다.",
+      "publishedKST": "2026-09-18 15:21",
+      "createdAt": "2026-09-18T15:21:08+09:00",
+      "source": "로이터",
+      "author": "오선",
+      "viewCount": 15491,
+      "isRumor": true,
+      "importanceScore": 99.3,
+      "url": "https://saveticker.com/news/news_6qrO9E6VwIsa",
+      "summary": "로이터 통신은 소식통을 인용해, 중국 최대 DRAM 업체인 창신메모리(CXMT)가 베이징 신규 공장에 낸드플래시 연구개발(R&D) 생산라인을 구축할 계획이라고 보도함 AI 서버 수요 급증과 제조사들의 D램·HBM 투자 집중으로 낸드 공급 부족이 이어지는 가운데, CXMT가 낸드 시장에 진출할 경우 삼성전자·SK하이닉스·마이크론 등 글로벌 선도 기업은 물론 자국 내 경쟁사인 YMTC(양쯔메모리)와도 직접 경쟁하게 됨"
+    },
+    {
+      "id": "news_-tKPbkCNhqQA",
+      "title": "(카더라) SK하이닉스 솔리다임, 미국 NAND 공장 건설 검토…뉴욕주 북부 유력 후보",
+      "scope": "국장 직접",
+      "tone": "확인",
+      "sectors": [
+        "반도체·전자"
+      ],
+      "marketImpact": "국내 삼성 계열·SK 반도체·전자 기업을 직접 언급한 뉴스입니다.",
+      "publishedKST": "2026-09-18 15:13",
+      "createdAt": "2026-09-18T15:13:07+09:00",
+      "source": "로이터",
+      "author": "오선",
+      "viewCount": 8750,
+      "isRumor": true,
+      "importanceScore": 98.9,
+      "url": "https://saveticker.com/news/news_-tKPbkCNhqQA",
+      "summary": "로이터 통신은 소식통을 인용해 SK하이닉스의 미국 자회사 솔리다임이 미국 내 낸드플래시 공장 신설을 검토 중이며 뉴욕주 북부가 유력한 후보지로 거론되고 있다고 보도함 트럼프 행정부가 미국 내 반도체 생산 확대를 압박하는 가운데 AI 데이터센터 투자 증가로 메모리칩 부족이 심해진 것이 배경이며, 이번 검토는 SK하이닉스가 인텔의 오하이오 공장에서 메모리칩을 생산하는 방안을 논의 중인 것과는 별개의 프로젝트라고 함"
+    },
+    {
+      "id": "news_Xn5uFikyyhIO",
+      "title": "(카더라) SK그룹 부회장 4명 중 3명, SK하이닉스로...",
+      "scope": "국장 직접",
+      "tone": "확인",
+      "sectors": [
+        "반도체·전자"
+      ],
+      "marketImpact": "국내 삼성 계열·SK 반도체·전자 기업을 직접 언급한 뉴스입니다.",
+      "publishedKST": "2026-09-18 15:33",
+      "createdAt": "2026-09-18T15:33:10+09:00",
+      "source": "연합뉴스",
+      "author": "오선",
+      "viewCount": 16889,
+      "isRumor": true,
+      "importanceScore": 92.3,
+      "url": "https://saveticker.com/news/news_Xn5uFikyyhIO",
+      "summary": "연합뉴스는 익명의 업계 관계자들을 인용해, SK그룹이 반도체 산업의 중요성과 글로벌 경영환경의 불확실성을 반영해 그룹 지주사인 SK㈜ 소속 부회장 4명 중 서진우·유정준·이형희 부회장 3명을 SK하이닉스로 이동 배치했다고 보도함 이들은 그동안 그룹의 글로벌 사업과 대외협력을 이끌어온 인사들로, 현재 SK하이닉스 임원 약 250명을 대상으로 심층 면담을 진행 중인 것으로 전해짐"
+    },
+    {
+      "id": "news_se-5TFDzPG4B",
+      "title": "(카더라) 미국, 중국 추가 관세 결정 보류…트럼프·시진핑 회담 앞두고 속도 조절",
       "scope": "국내 섹터 영향",
       "tone": "확인",
       "sectors": [
-        "전력기기·냉각"
+        "수출·관세"
       ],
-      "marketImpact": "국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
-      "publishedKST": "2026-09-17 18:21",
-      "createdAt": "2026-09-17T18:21:36+09:00",
-      "source": "월스트리트저널",
-      "author": "오선",
-      "viewCount": 6911,
-      "isRumor": false,
-      "importanceScore": 70.8,
-      "url": "https://saveticker.com/news/215596",
-      "summary": "오픈AI의 초대형 데이터센터를 구축했던 스타트업 크루소(Crusoe)가 공장에서 사전 제작해 이동할 수 있는 소형 데이터센터로 눈을 돌리며, 약 309억 달러의 기업가치로 39억 달러 규모의 신규 자금을 조달함 AI 모델 '훈련'과 달리 '추론' 단계에서는 훨씬 적은 칩으로도 충분하다는 점에 착안해, 자체 공장에서 조립한 뒤 트럭으로 운송해 전력이 있는 곳이면 어디든 설치할 수 있는 소형 데이터센터 '스파크(Spark)'에 집…"
-    },
-    {
-      "id": "215673",
-      "title": "(카더라) 사우디, 호르무즈 해협 밖에서 아시아에 원유 공급 확대",
-      "scope": "국내 섹터 영향",
-      "tone": "긍정",
-      "sectors": [
-        "정유·화학·운송"
-      ],
-      "marketImpact": "정유사는 제품 가격과 정제마진, 항공·운송·화학은 연료·원료비 부담을 함께 확인해야 합니다.",
-      "publishedKST": "2026-09-17 19:26",
-      "createdAt": "2026-09-17T19:26:31+09:00",
+      "marketImpact": "국내 자동차·철강·기계 수출기업의 가격 경쟁력과 현지 생산 전략을 확인해야 합니다.",
+      "publishedKST": "2026-09-18 07:24",
+      "createdAt": "2026-09-18T07:24:40+09:00",
       "source": "블룸버그",
       "author": "오선",
-      "viewCount": 1446,
+      "viewCount": 7087,
       "isRumor": true,
-      "importanceScore": 55.8,
-      "url": "https://saveticker.com/news/215673",
-      "summary": "블룸버그 통신은 소식통을 인용해, 사우디아라비아가 호르무즈 해협 외곽에서 인도하는 조건으로 아시아 정유사들에 원유 공급을 확대했다고 보도함 이번 주 판매된 원유는 장기 계약 및 현물 물량을 합쳐 최대 6천만 배럴에 달하며, 한국·일본·인도 및 중국(국영·민간 포함) 정유사들이 이를 공급받음"
+      "importanceScore": 55.7,
+      "url": "https://saveticker.com/news/news_se-5TFDzPG4B",
+      "summary": "블룸버그 통신은 소식통을 인용해, 미국이 주요 교역국의 과잉생산 문제와 관련해 추진해 온 신규 관세 발표를 최소한 다음 주 트럼프·시진핑 정상회담 이후로 연기할 전망이라고 보도함 당초 미 행정부는 정상회담 전에 무역법 301조 조사와 관련한 과잉생산 보고서를 공개하고, 중국산 제품에 7.5%의 추가 관세를 부과하도록 권고할 계획이었음"
     }
   ],
   "collection": {
     "status": "정상",
-    "checkedAtKST": "2026-09-17T19:28:12+09:00"
+    "checkedAtKST": "2026-09-18T17:26:16+09:00"
   }
 }
