@@ -54,7 +54,7 @@ DEFAULTS = {
     },
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
-    "minimum_quarterly_sales": 2_500_000_000_000,
+    "minimum_quarterly_sales": 700_000_000_000,
     "growth_minimum_quarterly_sales": 30_000_000_000,
     "growth_minimum_average_turnover": 1_000_000_000,
     "growth_candidate_count": 50,
@@ -1374,7 +1374,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         data["normalized_ttm_op"].div((data["q2_op"] * 4).replace(0, np.nan)) - 1
     ).mul(100).where(data["normalized_complete"])
     data["normalized_pop"] = data["market_cap"].div(data["normalized_op"].where(data["normalized_op"] > 0))
-    minimum_quarterly_sales = int(config.get("minimum_quarterly_sales", 2_500_000_000_000))
+    minimum_quarterly_sales = int(config.get("minimum_quarterly_sales", 700_000_000_000))
     sales_qualified = data["q2_sales"].notna() & data["q2_sales"].ge(minimum_quarterly_sales)
     valid_multiple = (
         data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna()
