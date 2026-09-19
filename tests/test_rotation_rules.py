@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from rotation_rules import features, macd_weight, score_candidate, select_top, build_rotation, evidence_from_sources
+from rotation_rules import features, macd_weight, score_candidate, select_top, build_rotation, evidence_from_sources, improving_financial_watch
 
 
 def candidate(**changes):
@@ -104,6 +104,18 @@ class RotationRulesTest(unittest.TestCase):
             self.assertFalse(score_candidate(candidate(sector=sector),[],1e9)['eligible'])
         self.assertTrue(score_candidate(candidate(sector='반도체'),[],1e9)['eligible'])
 
+    def test_financial_observation_requires_verified_improvement_and_stays_watch(self):
+        fund=dict(ticker='123456',normalization_periods='2025Q3,2025Q4,2026Q1,2026Q2',
+            normalization_sources=__import__('json').dumps([dict(quarter=q,receipt='20260813000001') for q in ['2025Q3','2025Q4','2026Q1','2026Q2']]),
+            normalized_sales_q1=30e9,normalized_sales_q2=40e9,normalized_op_q1=3e9,normalized_op_q2=5e9)
+        profiles={'123456':dict(eligible=False,complete=True,averageQuarterlySales=35e9,averageQuarterlyOperatingMarginPct=12)}
+        watches,events=improving_financial_watch(pd.DataFrame([fund]),profiles,'2026-08-18')
+        self.assertIn('123456',watches)
+        self.assertEqual(events[0]['eventId'],'dart:20260813000001')
+        for changes in [dict(normalized_op_q2=-1),dict(normalized_sales_q2=29e9),dict(normalization_sources='[]')]:
+            self.assertFalse(improving_financial_watch(pd.DataFrame([dict(fund,**changes)]),profiles,'2026-08-18')[0])
+        self.assertFalse(improving_financial_watch(pd.DataFrame([fund]),profiles,'2026-08-13')[0])
+
     def test_real_output_shape_with_qualifying_price_fixture(self):
         n=70
         close=np.linspace(100,110,n)
@@ -129,6 +141,12 @@ class RotationRulesTest(unittest.TestCase):
         self.assertEqual(len(pool), 8)
         self.assertEqual(len(rows), 5)
         self.assertEqual(len(audit), 8)
+        watches={r['ticker']:dict(reason='평균 매출 미달 · 실적 개선') for r in templates}
+        watch_rows, _, _ = build_rotation(pd.concat(frames), sectors, templates,
+            dict(top_stock_count=5, minimum_daily_turnover=1e9), [], watches)
+        self.assertEqual([r['rank'] for r in watch_rows],[4,5])
+        self.assertTrue(all(r['financialWatch'] and '조기 관찰' in r['reason'] for r in watch_rows))
+
 
 
 

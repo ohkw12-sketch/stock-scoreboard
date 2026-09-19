@@ -210,7 +210,64 @@ def select_top(candidates, limit=5):
     return selected
 
 
-def build_rotation(prices, sectors, templates, config, evidence):
+def improving_financial_watch(fundamentals, profiles, as_of):
+    """Only complete, published financials with sales AND profit improvement.
+
+    Accept verified standalone-quarter YoY or consecutive-quarter improvement.
+    Loss-making latest quarters, unknown dates and future corrections cannot pass.
+    """
+    watches, events = {}, []
+    if fundamentals is None:
+        return watches, events
+    for r in fundamentals.to_dict('records'):
+        ticker = str(r['ticker']).zfill(6)
+        profile = profiles.get(ticker, {})
+        if profile.get('eligible') or not profile.get('complete'):
+            continue
+        try:
+            sources = json.loads(r.get('normalization_sources', '[]'))
+            periods = sorted(pd.Period(p.strip(), freq='Q') for p in r['normalization_periods'].split(','))
+            receipts = [str(s['receipt']) for s in sources]
+            if len(periods) != 4 or any(periods[i]+1 != periods[i+1] for i in range(3)) or not receipts:
+                continue
+            if {str(p) for p in periods} - {s.get('quarter') for s in sources}:
+                continue
+            if any(not re.fullmatch(r'20\d{12}', v) or
+                   not pd.to_datetime(v[:8], errors='coerce') < pd.Timestamp(as_of).normalize() for v in receipts):
+                continue
+            if not 0 <= (pd.Timestamp(as_of) - periods[-1].end_time.normalize()).days <= 180:
+                continue
+            q, previous = periods[-1].quarter, periods[-2].quarter
+            sales, profit = number(r.get(f'normalized_sales_q{q}')), number(r.get(f'normalized_op_q{q}'))
+            prev_sales, prev_profit = number(r.get(f'normalized_sales_q{previous}')), number(r.get(f'normalized_op_q{previous}'))
+            qoq = sales > prev_sales > 0 and profit > prev_profit and profit > 0
+            yoy = (r.get('quarter_value_verified') == True and
+                   str(r.get('quarter_as_of')) == str(periods[-1].end_time.date()) and
+                   sales == number(r.get('sales_quarter_current')) and profit == number(r.get('op_quarter_current')) and
+                   sales > number(r.get('sales_quarter_previous')) > 0 and
+                   profit > number(r.get('op_quarter_previous')) and profit > 0)
+            if not (qoq or yoy):
+                continue
+            misses = []
+            if profile['averageQuarterlySales'] < 50e9:
+                misses.append(f"평균 분기매출 {profile['averageQuarterlySales']/1e8:.1f}억원(500억원 미달)")
+            if profile['averageQuarterlyOperatingMarginPct'] < 15:
+                misses.append(f"평균 영업이익률 {profile['averageQuarterlyOperatingMarginPct']:.1f}%(15% 미달)")
+            basis = '전년 동분기' if yoy else '직전 분기'
+            watches[ticker] = dict(reason=' · '.join(misses)+f' · {basis} 대비 매출·영업이익 증가, 최근 분기 흑자',
+                                   basis=basis, financial=profile)
+            # Same filing ID as the existing earnings adapter: deduplicated,
+            # never a second independent catalyst or an automatic heat exception.
+            receipt = max(receipts)
+            events.append(dict(ticker=ticker, eventId='dart:'+receipt, source='DART',
+                publishedAt=pd.to_datetime(receipt[:8]).strftime('%Y-%m-%d'), status='verified',
+                kind='earnings', points=10, strong=False, maxAgeDays=180))
+        except (ValueError, TypeError, KeyError):
+            continue
+    return watches, events
+
+
+def build_rotation(prices, sectors, templates, config, evidence, financial_watches=None):
     frame = features(prices)
     latest = frame[frame.date.eq(frame.date.max())]
     sector_map = {r['name']: r for r in sectors}
@@ -224,6 +281,11 @@ def build_rotation(prices, sectors, templates, config, evidence):
         sector = sector_map.get(row['sector'], {})
         row['sector_stage'] = sector.get('stage')
         result = score_candidate(row, evidence_map.get(row['ticker'], []), config['minimum_daily_turnover'])
+        financial_watch = (financial_watches or {}).get(row['ticker'])
+        if financial_watch:
+            result['watchOnly'] = True
+            result['financialWatch'] = True
+            result['financialWatchReason'] = financial_watch['reason']
         if row['ticker'] not in template_map:
             result['eligible'] = False
             result['exclusionReasons'].append('기존 섹터/유동성 조건 미충족')
@@ -239,5 +301,7 @@ def build_rotation(prices, sectors, templates, config, evidence):
             entryFit='관찰' if result['watchOnly'] else '진입 검토',
             reason=f"거래량 {result['volumeRatio']:.2f}배 · 종가 저항 {result['resistanceDistancePct']:+.2f}% · "
                    f"수급/실적/촉매 {result['scoreBlocks']['수급·차트']:.1f}/{result['scoreBlocks']['실적·컨센서스']:.1f}/{result['scoreBlocks']['신규촉매·업황']:.1f} · 감점 {result['penalty']} · {result['evidenceStatus']}")
+        if financial_watch:
+            public['reason'] = '조기 관찰 · '+financial_watch['reason']+' · '+public['reason']
         candidates.append(public)
     return select_top(candidates, min(5, config['top_stock_count'])), candidates, audit
