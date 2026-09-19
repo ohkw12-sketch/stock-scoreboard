@@ -199,11 +199,8 @@ def rebuild(args, config):
         prices, config, report.get('engineSource', 'verified-snapshot'), fundamentals,
     ),
                            previous, states, context)
-    def entry():
-        if states['p11']['status'] != '계산완료':
-            raise RuntimeError('순환 계산 실패로 진입 계산을 보류했습니다.')
-        return build_entry_board(prices, p11['_allSectors'], fundamentals, config)
-    p1 = isolated_section('p1', entry, previous, states, context)
+    p1 = {'retired': True, 'rows': [], 'status': '순환으로 통합'}
+    states['p1'] = dict(context, status='통합 종료')
     source_previous = {}
     value_source = isolated_section(
         'valueSource', lambda: build_value_board(fundamentals, config, report['fundamentals'], prices),

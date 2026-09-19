@@ -17,7 +17,12 @@ def observed(c):
 
 
 def features(section_rows):
+    if section_rows.get('p11', {}).get('ruleVersion') == 'rotation-entry-3.0':
+        section_rows = {k:v for k,v in section_rows.items() if k != 'p1'}
     tokens = {LABELS[k] for k in section_rows if k in LABELS and k != 'combined'}
+    if section_rows.get('p11', {}).get('ruleVersion') == 'rotation-entry-3.0':
+        tokens.discard('순환')
+        tokens.add('순환진입')
     for key, row in section_rows.items():
         if key == 'combined':
             continue
@@ -26,7 +31,7 @@ def features(section_rows):
         if key == 'p11':
             stage = re.search(r'[①②③④⑤⑥][가-힣]+|X조기이탈|X종료', str(row.get('marketState', row.get('stage', ''))))
             if stage:
-                tokens.add('순환:' + stage.group())
+                tokens.add(('순환진입:' if row.get('ruleVersion') == 'rotation-entry-3.0' else '순환:') + stage.group())
             if row.get('relation'):
                 tokens.add('관계:' + row['relation'])
         if key == 'p2':
@@ -78,6 +83,8 @@ def evaluate_first_recommendations(ledger, prices, *, generated_at=None, cost_bp
         latest_sections[c['section']] = c
         for r in c['records']:
             key = (c['section'], r['ticker'])
+            if c.get('ruleVersion') == 'rotation-entry-3.0':
+                key += ('rotation-entry-3.0',)
             if key in first:
                 continue
             # Only contemporaneously saved recommendations can define an overlap.
@@ -97,12 +104,13 @@ def evaluate_first_recommendations(ledger, prices, *, generated_at=None, cost_bp
                 if hit:
                     related[other['section']] = hit.get('sourceRow', {})
     rows = []
-    for (section, ticker), (c, r, related) in first.items():
+    for identity, (c, r, related) in first.items():
+        section, ticker = identity[:2]
         day = timestamp(observed(c)).tz_localize(None).normalize()
         # Weekend recommendations use the next session close, explicitly shown in entryDate.
         future = [d for d in (sessions or []) if d >= day]
         entry = future[0] if future else None
-        row = dict(ticker=ticker, name=r['name'], group=LABELS[section], section=section,
+        row = dict(ticker=ticker, name=r['name'], group='순환(통합)' if c.get('ruleVersion') == 'rotation-entry-3.0' else LABELS[section], section=section,
                    rank=r.get('rank') or r.get('sourceRow',{}).get('typeRank'), sector=r.get('sector'), cohortId=c['id'],
                    recommendationDate=str(day.date()), publishedAt=c.get('observedPublishedAt'),
                    recordBasis=c.get('recordBasis', '사이트 공개 확인'), sourceCommit=c.get('sourceCommit'),
@@ -143,7 +151,7 @@ def evaluate_first_recommendations(ledger, prices, *, generated_at=None, cost_bp
         rows.append(row)
     rows.sort(key=lambda r: (-(r['currentReturnPct'] if r['currentReturnPct'] is not None else -1e9), r['ticker'], r['section']))
     summaries = []
-    for group in LABELS.values():
+    for group in [*LABELS.values(), '순환(통합)']:
         subset = [r for r in rows if r['group'] == group]
         if not subset:
             continue
@@ -218,7 +226,10 @@ def learn_patterns(performance, *, cutoff_date):
 def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
     model = learn_patterns(performance, cutoff_date=source_date)
     members = defaultdict(dict)
+    integrated = board.get('p11', {}).get('projectType') == 'rotation-entry'
     for key, public_key in (('p1','p1'), ('p11','p11'), ('valueGrowth','p2')):
+        if integrated and key == 'p1':
+            continue
         section = board.get(public_key,{})
         if section.get('refreshState',{}).get('status') == '실패·이전유지':
             continue
@@ -227,6 +238,8 @@ def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
             continue
         rows = list(section.get('rows',[]))
         for r in rows:
+            if integrated and key == 'p11' and (r.get('watchOnly') or r.get('financialWatch') or r.get('entryState') != '진입 검토'):
+                continue
             if r.get('ticker'):
                 members[r['ticker']][key] = r
     candidates = []
@@ -236,7 +249,7 @@ def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
         # One best supported pattern per candidate: overlapping patterns cannot stack points.
         best = matches[0] if matches else None
         row = next(iter(related.values()))
-        entry = related.get('p1',{})
+        entry = related.get('p11',{}) if integrated else related.get('p1',{})
         candidates.append(dict(ticker=ticker, name=row['name'], sector=row.get('sector'),
             currentProjectRank=mean([float(r.get('rank') or r.get('typeRank') or 999) for r in related.values()]),
             conditions=[LABELS[k] for k in related], condition=' + '.join(LABELS[k] for k in related),
@@ -250,7 +263,7 @@ def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
     ranked = [r for r in candidates if r['combinedScore'] is not None]
     for i,r in enumerate(ranked,1):
         r['rank']=i
-    return dict(schemaVersion=1, ruleVersion='combined-feedback-2.0', snapshotId=snapshot_id,
+    return dict(schemaVersion=1, ruleVersion='combined-feedback-3.0' if integrated else 'combined-feedback-2.0', snapshotId=snapshot_id,
         generatedAt=generated_at, sourceDate=source_date, status=model['status'], publicationState='preview',
         candidateCount=len(candidates), matchedCandidateCount=len(ranked), rows=ranked[:10], feedback=model,
         notice='과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · 동점은 프로젝트 중복 수와 현재 순위 · 진입은 필수가 아니며 진입구분 별도 표시 · '+model['notice'])

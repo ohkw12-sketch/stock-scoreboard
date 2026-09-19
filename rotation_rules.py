@@ -187,7 +187,7 @@ def score_candidate(item, events, minimum_turnover):
 
 def select_top(candidates, limit=15):
     """At most five sectors, three stocks each; no relaxation to fill slots."""
-    ranked = sorted(candidates, key=lambda r: (-r['stockEntryScore'], -r['volumeRatio'], r['ticker']))
+    ranked = sorted([r for r in candidates if not r.get('watchOnly') and not r.get('financialWatch') and r.get('eligible', True)], key=lambda r: (-r['stockEntryScore'], -r['volumeRatio'], r['ticker']))
     selected, sectors, themes = [], set(), set()
     limit = max(0, min(15, limit))
     sector_limit = min(5, limit)
@@ -204,20 +204,16 @@ def select_top(candidates, limit=15):
             break
         if row['sector'] in sectors:
             continue
-        selected.append(dict(row, rank=len(selected)+1, entryFit='관찰',
-                             signal='과열 관찰' if row['heatException'] else '관찰'))
+        selected.append(dict(row))
         sectors.add(row['sector'])
-    entry_tickers = {row['ticker'] for row in selected if row['entryFit']=='진입 검토'}
     grouped = []
     for sector_rank, representative in enumerate(selected, 1):
         members = [representative] + [r for r in ranked if r['sector']==representative['sector'] and r['ticker']!=representative['ticker']]
         for stock_rank, row in enumerate(members[:3], 1):
             if len(grouped) >= limit:
                 break
-            entry = row['ticker'] in entry_tickers
             grouped.append(dict(row, rank=len(grouped)+1, sectorRank=sector_rank, rankInSector=stock_rank,
-                entryFit='진입 검토' if entry else '관찰',
-                signal='진입 검토' if entry else '과열 관찰' if row['heatException'] else '관찰'))
+                entryState='진입 검토', ruleVersion='rotation-entry-3.0', entryFit='진입 검토', signal='진입 검토'))
     return grouped
 
 

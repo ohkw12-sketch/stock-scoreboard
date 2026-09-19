@@ -200,10 +200,10 @@ test('actual page scripts render all independent boards and preserve locked head
   const {document, errors, requests} = await runtime();
   assert.equal(errors.length, 0);
   assert.equal(new Set(requests).size, 5);
-  for (const id of ['p1body','p11body','p2body','p3body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
-  assert.equal(document.getElementById('p1body').rows[0].cells.length, 11);
+  for (const id of ['p11body','p2body','p3body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
+  assert.equal(document.getElementById('p1body'), null);
   assert.equal(document.getElementById('p11body').rows[0].cells.length, 7);
-  for (const id of ['p1body','p11body','p2body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /2거래일 연속 추천/);
+  for (const id of ['p11body','p2body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /2거래일 연속 추천/);
   assert.doesNotMatch(document.getElementById('p3body').innerHTML, /거래일 연속 추천/);
   const contract = JSON.parse(fs.readFileSync(path.join(root, 'ui_contract.json'), 'utf8'));
   for (const table of Object.values(contract.tables)) {
@@ -283,7 +283,7 @@ for (const failure of ['http','json','network']) {
 test('YouTube JSON failure cannot abort entry or value growth', async () => {
   const {document} = await runtime({fail:{'youtube-market.json':'json'}});
   assert.match(document.getElementById('p5status').textContent, /불러오기 실패/);
-  for (const id of ['p1body','p2body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
+  for (const id of ['p2body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
 });
 
 test('rotation render exception cannot abort value growth or holdings', async () => {
@@ -315,7 +315,7 @@ test('matching refresh manifest overlays failed-section warnings on retained pub
   assert.equal(errors.length,0);
   assert.match(document.getElementById('p2status').textContent,/갱신 실패, 이전 자료 유지/);
   assert.match(document.getElementById('p2body').innerHTML,/검증종목/);
-  assert.equal(document.getElementById('p1status').textContent,'진입 정상');
+  assert.equal(document.getElementById('p1status'),null);
   assert.match(document.getElementById('combinedbody').innerHTML,/검증종목/);
 });
 
@@ -339,7 +339,7 @@ test('research JSON/render failures remain contained in their own panels', async
   const {document} = await runtime({data,fail:{'combined-recommendations.json':'http'}});
   assert.match(document.getElementById('combinedstatus').textContent, /불러오기 실패/);
   assert.match(document.getElementById('performancestatus').textContent, /불러오기 실패/);
-  for (const id of ['p1body','p2body','p3body']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
+  for (const id of ['p2body','p3body']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
 });
 
 test('date filter resets sorting metadata to match the new default rows', async () => {

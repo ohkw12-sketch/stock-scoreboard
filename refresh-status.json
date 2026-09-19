@@ -5,21 +5,13 @@
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-09-19T19:13:54+09:00",
-      "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
-      "mode": "저장자료 재계산",
-      "engineVersion": "d860e1761e9dbc1a",
-      "runId": "38d19c867cdfc476740a497b"
+      "generatedAt": "2026-09-20T00:06:08+09:00",
+      "engineVersion": "rotation-entry-3.0",
+      "mode": "verified-snapshot-reuse"
     },
     "p1": {
-      "status": "계산완료",
-      "generatedAt": "2026-09-19T19:13:54+09:00",
-      "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
-      "sourceCutoff": "2026-09-18",
-      "mode": "저장자료 재계산",
-      "engineVersion": "d860e1761e9dbc1a",
-      "runId": "38d19c867cdfc476740a497b"
+      "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",

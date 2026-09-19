@@ -121,7 +121,7 @@ def main() -> None:
     if failed and not args.allow_partial:
         raise RuntimeError(f"실패한 구역 반영을 중단했습니다: {failed}")
     selected = [k for k in args.sections if k not in failed]
-    if args.research and not {'p1', 'p11', 'p2'}.issubset(set(args.sections)):
+    if args.research and not ({'p11', 'p2'} if candidate.get('p11', {}).get('projectType') == 'rotation-entry' else {'p1', 'p11', 'p2'}).issubset(set(args.sections)):
         raise RuntimeError('종합추천은 원본 진입·순환·가치성장 갱신과 함께 반영해야 합니다.')
     result, report = promote(live, candidate, selected)
     report['retainedFailedSections'] = failed

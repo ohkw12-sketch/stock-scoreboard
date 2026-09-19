@@ -1981,24 +1981,20 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
     legacy_pool = rotation_rows(stock_data, sector_results, int(prices['ticker'].nunique()),
         sector_cap=None, minimum_daily_turnover=int(config['minimum_daily_turnover']),
         eligible_tickers=eligible_tickers)
-    financial_watches, watch_evidence = improving_financial_watch(fundamentals, financial_profiles, latest_date)
-    watch_pool = rotation_rows(stock_data, sector_results, int(prices['ticker'].nunique()),
-        sector_cap=None, minimum_daily_turnover=int(config['minimum_daily_turnover']),
-        eligible_tickers=(eligible_tickers | set(financial_watches)) if eligible_tickers is not None else None)
     rows, rotation_pool, rotation_audit = build_rotation(
-        prices, sector_results.to_dict('records'), watch_pool, config,
-        evidence_from_sources(fundamentals, config) + watch_evidence, financial_watches)
+        prices, sector_results.to_dict('records'), legacy_pool if fundamentals is not None else [], config,
+        evidence_from_sources(fundamentals, config))
     public_sectors = top.drop(columns=['raw_ret3', 'raw_ret5']).to_dict('records')
     stage_counts = top["stage"].value_counts().to_dict()
     status = (
         f"전체시장 엔진: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
         f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
-        f"분기 영업이익률 평균 {minimum_average_margin:g}%는 진입 선조건. 관찰은 검증된 실적 개선 추세 허용. "
-        f"조건 통과 섹터 최대 5개, 섹터당 최대 3종목. 진입 검토 최대 3개, 나머지는 관찰. 부족하면 미충원."
+        f"분기 영업이익률 평균 {minimum_average_margin:g}%는 진입 선조건. 실적 미달·관찰 전용 후보 제외. "
+        f"조건 통과 섹터 최대 5개, 섹터당 최대 3종목. 표시 종목 모두 진입 최소조건 통과. 부족하면 미충원."
     )
     result = {
-        "status": status,
+        "status": status, "projectType": "rotation-entry", "ruleVersion": "rotation-entry-3.0",
         "engine": {
             "version": "2.0.0", "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
             "asOfDate": latest_date.strftime("%Y-%m-%d"), "source": source_name,
@@ -2067,7 +2063,7 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
         )
     result['_eligibility'] = rotation_audit
     result['_allRows'] = rotation_pool
-    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-2.2"}
+    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-entry-3.0"}
     return result
 
 
@@ -2101,12 +2097,12 @@ def write_outputs(p1: dict, p11: dict, p2: dict, report: dict, config: dict) -> 
     board.setdefault("meta", {})
     board["meta"]["updatedKST"] = datetime.now(KST).strftime("%Y-%m-%d %H:%M")
     board["meta"]["masterBasis"] = f"{report.get('latestPriceDate', '기준일 미확인')} KRX 마감 전체시장 엔진"
-    board["meta"]["note"] = "순환은 진입 위치와 무관한 전체시장 순환 강도, 진입은 진입가능·곧진입만 표시합니다. 단타 탭은 제거했습니다."
+    board["meta"]["note"] = "순환은 진입 최소조건 통과 종목만 표시합니다. 전체시장 순환 강도는 별도 상위 10개입니다."
     board["meta"]["sourceSummary"] = (
         f"가격 {report.get('source', '자료원 미확인')} · 커버리지 {float(report.get('latestCoverageRatio', 0)):.2%} · "
         f"컨센서스 {report.get('fundamentals', {}).get('status', '상태 미확인')}"
     )
-    board["p1"], board["p11"] = public(p1), public_p11
+    board["p1"], board["p11"] = {"retired": True, "rows": [], "status": "순환으로 통합"}, public_p11
     if p2.get("rows"):
         board["p2"] = public(p2)
     else:

@@ -76,6 +76,19 @@ class FeedbackTest(unittest.TestCase):
         self.assertEqual(result['rows'][0]['entryState'],'진입 미충족')
         self.assertEqual(board,old)
 
+    def test_integrated_rotation_ignores_retired_entry_and_watch_candidates(self):
+        strict=dict(ticker='123456',name='통과',rank=1,entryState='진입 검토',ruleVersion='rotation-entry-3.0')
+        board={'p11':{'projectType':'rotation-entry','rows':[strict,dict(strict,ticker='000002',watchOnly=True)]},
+               'p1':{'rows':[dict(strict,ticker='000003',entryState='진입가능')]}}
+        samples=self.samples()
+        for r in samples['rows']: r['features']=['순환진입']
+        result=rank_recent(board,samples,source_date='2026-09-03',generated_at='2026-09-03T18:00:00+09:00',snapshot_id='x')
+        self.assertEqual(result['candidateCount'],1)
+        self.assertEqual(result['rows'][0]['entryState'],'진입 검토')
+        self.assertEqual(result['rows'][0]['conditions'],['순환'])
+        self.assertEqual(result['ruleVersion'],'combined-feedback-3.0')
+        self.assertEqual(rank_recent(board,self.samples(),source_date='2026-09-03',generated_at='2026-09-03T18:00:00+09:00',snapshot_id='x')['rows'],[])
+
     def test_insufficient_samples_not_fabricated(self):
         self.assertFalse(learn_patterns({'rows':self.samples()['rows'][:2]},cutoff_date='2026-09-03')['patterns'])
 
