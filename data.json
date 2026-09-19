@@ -13,14 +13,14 @@
     "title": "주식평가창",
     "updatedKST": "2026-09-19 19:15",
     "uiContractVersion": "2026-09-20.1",
-    "runId": "38d19c867cdfc476740a497b",
+    "runId": "rotation-entry-3.0-20260920",
     "refreshState": {
       "generatedAt": "2026-09-19T19:13:54+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
       "engineVersion": "d860e1761e9dbc1a",
-      "runId": "38d19c867cdfc476740a497b",
+      "runId": "rotation-entry-3.0-20260920",
       "evidenceSnapshotId": "8d85e61bd8c6e19621d6accf7a009f60e0f004a8a9c2462340c23ea173a56817"
     }
   },
@@ -829,7 +829,8 @@
       "sourceCutoff": "2026-09-18",
       "generatedAt": "2026-09-20T00:06:08+09:00",
       "engineVersion": "rotation-entry-3.0",
-      "mode": "verified-snapshot-reuse"
+      "mode": "verified-snapshot-reuse",
+      "runId": "rotation-entry-3.0-20260920"
     },
     "engineVersion": "rotation-entry-3.0",
     "generatedAt": "2026-09-20T00:06:08+09:00",

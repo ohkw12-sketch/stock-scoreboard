@@ -1,5 +1,5 @@
 {
-  "runId": "38d19c867cdfc476740a497b",
+  "runId": "rotation-entry-3.0-20260920",
   "attemptedAt": "2026-09-19T19:13:54+09:00",
   "sourceDate": "2026-09-18",
   "sections": {
@@ -8,7 +8,8 @@
       "sourceCutoff": "2026-09-18",
       "generatedAt": "2026-09-20T00:06:08+09:00",
       "engineVersion": "rotation-entry-3.0",
-      "mode": "verified-snapshot-reuse"
+      "mode": "verified-snapshot-reuse",
+      "runId": "rotation-entry-3.0-20260920"
     },
     "p1": {
       "status": "통합 종료"
