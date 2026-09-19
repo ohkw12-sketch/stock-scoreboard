@@ -205,8 +205,8 @@ def main():
             unavailableFinancialTickers=sorted(set(latest.ticker)-{t for t,p in profiles.items() if p['complete']}),
             financialReconstructionFailures=failures,
             oldTop5=outcomes(legacy), newTop5=outcomes(result['rows']),
-            newEntries=outcomes([r for r in result['rows'] if r['rank']<=3]),
-            newObservations=outcomes([r for r in result['rows'] if r['rank']>=4]),
+            newEntries=outcomes([r for r in result['rows'] if r['entryFit']=='진입 검토']),
+            newObservations=outcomes([r for r in result['rows'] if r['entryFit']=='관찰']),
             cases=named)
         checkpoint.write_text(json.dumps(record, ensure_ascii=False, indent=2, default=str), encoding='utf-8')
         days.append(record)

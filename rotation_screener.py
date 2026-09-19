@@ -1964,7 +1964,9 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
         })
     sector_results = pd.DataFrame(results).sort_values(["score", "rs5Pct", "leaderStrengthPct"], ascending=False).reset_index(drop=True)
     sector_results["rank"] = np.arange(1, len(sector_results) + 1)
-    top = sector_results.head(int(config["top_sector_count"])).copy()
+    # Reuse the engine's active-rotation criteria, independent of stock selection.
+    top = sector_results[(sector_results['score'] >= 58) & (sector_results['rs5Pct'] > 0)
+        & ~sector_results['stage'].isin(['X조기이탈', 'X종료'])].copy()
     minimum_average_sales = float(config.get("selection_minimum_average_quarterly_sales", 50_000_000_000))
     minimum_average_margin = float(config.get("selection_minimum_average_quarterly_op_margin_pct", 15.0))
     financial_profiles = reported_financial_prerequisites(
@@ -1986,14 +1988,14 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
     rows, rotation_pool, rotation_audit = build_rotation(
         prices, sector_results.to_dict('records'), watch_pool, config,
         evidence_from_sources(fundamentals, config) + watch_evidence, financial_watches)
-    public_sectors = top.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
+    public_sectors = top.drop(columns=['raw_ret3', 'raw_ret5']).to_dict('records')
     stage_counts = top["stage"].value_counts().to_dict()
     status = (
         f"전체시장 엔진: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
         f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
         f"분기 영업이익률 평균 {minimum_average_margin:g}%는 진입 선조건. 관찰은 검증된 실적 개선 추세 허용. "
-        f"최소조건 통과 후 최대 5종목: 1~3위 진입 검토, 4~5위 관찰. 단계 분포 {stage_counts}."
+        f"조건 통과 섹터 최대 5개, 섹터당 최대 3종목. 진입 검토 최대 3개, 나머지는 관찰. 부족하면 미충원."
     )
     result = {
         "status": status,
@@ -2061,11 +2063,11 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
             '실적 선조건 탈락' if row['financialExclusionReasons'] and not row.get('financialWatch') else
             '가격·섹터 조건 탈락' if not row['eligible'] else
             '순위·분산 제한으로 미노출' if not row['displayed'] else
-            '진입 검토' if row['displayRank'] <= 3 else '관찰'
+            '진입 검토' if displayed[row['ticker']]['entryFit'] == '진입 검토' else '관찰'
         )
     result['_eligibility'] = rotation_audit
     result['_allRows'] = rotation_pool
-    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-2.1"}
+    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-2.2"}
     return result
 
 

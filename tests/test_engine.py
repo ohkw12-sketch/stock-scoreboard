@@ -49,9 +49,14 @@ class RotationEngineTest(unittest.TestCase):
         legacy_row = {"rank", "name", "sector", "opGrowth", "value", "sectorMedian",
                       "premium", "marketState", "marketDetail", "change", "changeUntil",
                       "marks", "signal", "reason"}
-        self.assertLessEqual(len(self.p11["rows"]), 5)
+        self.assertLessEqual(len(self.p11["rows"]), 15)
         for row in self.p11["rows"]:
             self.assertTrue(legacy_row.issubset(row))
+
+    def test_strength_board_is_independent_and_filters_active_sectors(self):
+        expected=[r['name'] for r in self.p11['_allSectors'] if r['score']>=58 and r['rs5Pct']>0 and r['stage'] not in ['X조기이탈','X종료']]
+        self.assertEqual([r['name'] for r in self.p11['sectors']],expected)
+        self.assertGreater(len(expected),0)
 
     def test_required_metrics_and_classifications(self):
         sector = self.p11["sectors"][0]

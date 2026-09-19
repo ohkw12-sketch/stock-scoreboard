@@ -359,3 +359,14 @@ test('date filter resets sorting metadata to match the new default rows', async 
   assert.equal(document.getElementById('performancerows').rows.length,1);
   assert.equal(document.getElementById('performancerows').rows[0].cells[7].textContent,'+10%');
 });
+
+
+test('rotation displays up to fifteen stocks and independent strength sectors', async () => {
+  const data=fixtures(), p=data['data.json'].p11;
+  p.rows=Array.from({length:15},(_,i)=>({...p.rows[0],ticker:String(i),name:'종목'+i,rank:i+1,sector:'섹터'+Math.floor(i/3)}));
+  p.sectors=Array.from({length:23},(_,i)=>({...p.sectors[0],name:'강도섹터'+i,rank:i+1}));
+  const {document}=await runtime({data});
+  assert.equal(document.getElementById('p11body').rows.length,15);
+  assert.match(document.getElementById('p11sectors').innerHTML,/강도섹터22/);
+  assert.match(document.getElementById('p11method').textContent,/섹터당 최대 3종목/);
+});

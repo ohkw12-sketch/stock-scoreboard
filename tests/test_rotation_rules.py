@@ -86,17 +86,20 @@ class RotationRulesTest(unittest.TestCase):
         self.assertEqual(score_candidate(candidate(),many,1e9)['scoreBlocks'],{'수급·차트':40,'실적·컨센서스':35,'신규촉매·업황':25})
 
     def test_diversity_and_watch_slots(self):
-        rows=[dict(ticker=str(i),sector='a' if i<4 else str(i),detailTheme='same' if i<3 else str(i),
-            stockEntryScore=100-i,volumeRatio=2,watchOnly=i==0,heatException=i==0) for i in range(9)]
+        rows=[dict(ticker=str(i),sector=str(i//3),detailTheme=str(i//3),
+            stockEntryScore=100-i,volumeRatio=2,watchOnly=i%3!=0,heatException=False) for i in range(18)]
         chosen=select_top(rows)
-        self.assertEqual(len(chosen),5)
-        self.assertLessEqual(sum(r['sector']=='a' for r in chosen),2)
-        top3=[r for r in chosen if r['rank']<=3]
-        self.assertEqual(len({r['detailTheme'] for r in top3}),len(top3))
-        self.assertFalse(any(r['watchOnly'] for r in top3))
-        self.assertTrue(all(r['entryFit']=='관찰' for r in chosen if r['rank']>=4))
-        only_watch=select_top([rows[0]])
-        self.assertEqual(only_watch[0]['rank'],4)
+        self.assertEqual(len(chosen),15)
+        self.assertEqual(len({r['sector'] for r in chosen}),5)
+        self.assertTrue(all(sum(r['sector']==s for r in chosen)<=3 for s in {r['sector'] for r in chosen}))
+        entries=[r for r in chosen if r['entryFit']=='진입 검토']
+        self.assertEqual(len(entries),3)
+        self.assertTrue(all(not r['watchOnly'] for r in entries))
+        self.assertEqual(len(select_top(rows[:2])),2)
+        self.assertEqual(len(select_top([])),0)
+        only_watch=select_top([dict(rows[0],watchOnly=True,heatException=True)])
+        self.assertEqual(only_watch[0]['rank'],1)
+        self.assertEqual(only_watch[0]['entryFit'],'관찰')
         self.assertEqual(only_watch[0]['signal'],'과열 관찰')
 
     def test_excluded_sectors_and_semiconductor_rotation(self):
@@ -144,7 +147,8 @@ class RotationRulesTest(unittest.TestCase):
         watches={r['ticker']:dict(reason='평균 매출 미달 · 실적 개선') for r in templates}
         watch_rows, _, _ = build_rotation(pd.concat(frames), sectors, templates,
             dict(top_stock_count=5, minimum_daily_turnover=1e9), [], watches)
-        self.assertEqual([r['rank'] for r in watch_rows],[4,5])
+        self.assertEqual([r['rank'] for r in watch_rows],[1,2,3,4,5])
+        self.assertTrue(all(r['entryFit']=='관찰' for r in watch_rows))
         self.assertTrue(all(r['financialWatch'] and '조기 관찰' in r['reason'] for r in watch_rows))
 
 

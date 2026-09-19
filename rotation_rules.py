@@ -185,29 +185,40 @@ def score_candidate(item, events, minimum_turnover):
         evidenceStatus='확인' if unique else '시점 확인 근거 없음')
 
 
-def select_top(candidates, limit=5):
-    """Reserve ranks 1..3 for entry reviews, 4..5 for observation only."""
+def select_top(candidates, limit=15):
+    """At most five sectors, three stocks each; no relaxation to fill slots."""
     ranked = sorted(candidates, key=lambda r: (-r['stockEntryScore'], -r['volumeRatio'], r['ticker']))
-    selected, sectors, themes = [], {}, set()
+    selected, sectors, themes = [], set(), set()
+    limit = max(0, min(15, limit))
+    sector_limit = min(5, limit)
     for row in ranked:
         if len(selected) >= min(3, limit):
             break
-        if row['watchOnly'] or sectors.get(row['sector'], 0) >= 2 or row['detailTheme'] in themes:
+        if row['watchOnly'] or row['sector'] in sectors or row['detailTheme'] in themes:
             continue
         selected.append(dict(row, rank=len(selected)+1, signal='진입 검토', entryFit='진입 검토'))
-        sectors[row['sector']] = sectors.get(row['sector'], 0) + 1
+        sectors.add(row['sector'])
         themes.add(row['detailTheme'])
-    chosen = {r['ticker'] for r in selected}
     for row in ranked:
-        if len([r for r in selected if r['rank'] >= 4]) >= min(2, max(0, limit - 3)):
+        if len(selected) >= sector_limit:
             break
-        if row['ticker'] in chosen or sectors.get(row['sector'], 0) >= 2:
+        if row['sector'] in sectors:
             continue
-        selected.append(dict(row, rank=4+len([r for r in selected if r['rank'] >= 4]), entryFit='관찰',
+        selected.append(dict(row, rank=len(selected)+1, entryFit='관찰',
                              signal='과열 관찰' if row['heatException'] else '관찰'))
-        chosen.add(row['ticker'])
-        sectors[row['sector']] = sectors.get(row['sector'], 0) + 1
-    return selected
+        sectors.add(row['sector'])
+    entry_tickers = {row['ticker'] for row in selected if row['entryFit']=='진입 검토'}
+    grouped = []
+    for sector_rank, representative in enumerate(selected, 1):
+        members = [representative] + [r for r in ranked if r['sector']==representative['sector'] and r['ticker']!=representative['ticker']]
+        for stock_rank, row in enumerate(members[:3], 1):
+            if len(grouped) >= limit:
+                break
+            entry = row['ticker'] in entry_tickers
+            grouped.append(dict(row, rank=len(grouped)+1, sectorRank=sector_rank, rankInSector=stock_rank,
+                entryFit='진입 검토' if entry else '관찰',
+                signal='진입 검토' if entry else '과열 관찰' if row['heatException'] else '관찰'))
+    return grouped
 
 
 def improving_financial_watch(fundamentals, profiles, as_of):
@@ -304,4 +315,4 @@ def build_rotation(prices, sectors, templates, config, evidence, financial_watch
         if financial_watch:
             public['reason'] = '조기 관찰 · '+financial_watch['reason']+' · '+public['reason']
         candidates.append(public)
-    return select_top(candidates, min(5, config['top_stock_count'])), candidates, audit
+    return select_top(candidates, min(15, config['top_stock_count'])), candidates, audit
