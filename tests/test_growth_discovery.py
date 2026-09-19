@@ -30,8 +30,13 @@ def prices(count=6):
 def fundamentals(count=1, quarterly_sales=40_000_000_000):
     return pd.DataFrame([
         dict(ticker=f'{i:06d}', report_code='11013', sales_current=quarterly_sales,
-             sales_previous=quarterly_sales / 2, op_current=quarterly_sales * .1,
-             op_previous=quarterly_sales * .05, as_of='2026-03-31')
+             sales_previous=quarterly_sales / 2, op_current=quarterly_sales * .2,
+             op_previous=quarterly_sales * .1, as_of='2026-03-31',
+             normalized_sales_q3=quarterly_sales, normalized_sales_q4=quarterly_sales,
+             normalized_sales_q1=quarterly_sales, normalized_sales_q2=quarterly_sales,
+             normalized_op_q3=quarterly_sales * .2, normalized_op_q4=quarterly_sales * .2,
+             normalized_op_q1=quarterly_sales * .2, normalized_op_q2=quarterly_sales * .2,
+             normalized_quarter_count=4)
         for i in range(1, count + 1)
     ])
 
@@ -147,14 +152,18 @@ class GrowthTest(unittest.TestCase):
         p.loc[p.ticker.eq('000004'), 'is_suspended'] = True
         f = fundamentals(4)
         f.loc[f.ticker.eq('000003'), ['sales_current', 'sales_previous']] = [20_000_000_000, 10_000_000_000]
+        for column in ('normalized_sales_q3', 'normalized_sales_q4', 'normalized_sales_q1', 'normalized_sales_q2'):
+            f.loc[f.ticker.eq('000003'), column] = 20_000_000_000
         events = [event(ticker=f'{i:06d}', identity=str(i)) for i in range(1, 5)]
-        config = {'growth_minimum_quarterly_sales': 30_000_000_000,
+        config = {'selection_minimum_average_quarterly_sales': 30_000_000_000,
+                  'selection_minimum_average_quarterly_op_margin_pct': 15,
                   'growth_minimum_average_turnover': 1_000_000_000,
                   'growth_candidate_count': 50}
         board = build_growth_board(p, f, events, {}, NOW, config=config)
         self.assertEqual([row['ticker'] for row in board['rows']], ['000001'])
         self.assertEqual(board['dataStatus']['marketRiskExcludedCount'], 1)
-        self.assertIn('분기 매출 400억원', board['rows'][0]['financialSummary'])
+        self.assertIn('4분기 평균 매출 400억원', board['rows'][0]['financialSummary'])
+        self.assertIn('분기 영업이익률 평균 20.0%', board['rows'][0]['financialSummary'])
         self.assertIn('20일 평균 거래대금 20억원', board['rows'][0]['financialSummary'])
 
     def test_growth_keeps_top_fifty_internal_candidates_and_top_ten_display(self):

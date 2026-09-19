@@ -24,7 +24,10 @@ class MarketRefreshTest(unittest.TestCase):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
         self.config = load_config(None, "sample")
-        self.config["minimum_quarterly_sales"] = 1
+        self.config["value_minimum_average_quarterly_sales"] = 1
+        self.config["value_minimum_average_quarterly_op_margin_pct"] = -100
+        self.config["selection_minimum_average_quarterly_sales"] = 1
+        self.config["selection_minimum_average_quarterly_op_margin_pct"] = -100
         self.config["cache_dir"] = Path(self.temp.name) / "cache"
         self.config["output_dir"] = Path(self.temp.name) / "out"
         self.config["base_data_file"] = Path(self.temp.name) / "no-board.json"
@@ -165,6 +168,12 @@ class MarketRefreshTest(unittest.TestCase):
         fundamentals = generate_sample_fundamentals(prices)
         fundamentals['report_code'] = '11014'
         fundamentals['quarter_value_verified'] = False
+        for column in [
+            *(f'normalized_sales_q{quarter}' for quarter in (3, 4, 1, 2)),
+            *(f'normalized_op_q{quarter}' for quarter in (3, 4, 1, 2)),
+        ]:
+            fundamentals[column] = None
+        fundamentals['normalized_quarter_count'] = 0
         result = build_value_board(fundamentals, self.config, {'status': '정상'}, prices)
         self.assertEqual(result['rows'], [])
         self.assertTrue(all(not r['eligible'] for r in result['_eligibility']))
@@ -183,7 +192,7 @@ class MarketRefreshTest(unittest.TestCase):
         prices, _ = attach_market_snapshot(generate_sample_market(), self.config)
         fundamentals = generate_sample_fundamentals(prices)
         self.config.update(top_stock_count=2, top_entry_count=2, top_value_count=2)
-        p11 = run_engine(prices, self.config, "fixture")
+        p11 = run_engine(prices, self.config, "fixture", fundamentals)
         p1 = build_entry_board(prices, p11["_allSectors"], fundamentals, self.config)
         p2 = build_value_board(fundamentals, self.config, {"status": "정상"}, prices)
         for section in (p1, p11, p2):

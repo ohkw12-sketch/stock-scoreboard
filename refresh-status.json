@@ -1,63 +1,63 @@
 {
-  "runId": "a2fa1242b31e72c163bb9187",
-  "attemptedAt": "2026-09-18T19:48:14+09:00",
+  "runId": "126653fec1c25879c001bea2",
+  "attemptedAt": "2026-09-19T18:17:36+09:00",
   "sourceDate": "2026-09-18",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T19:48:14+09:00",
+      "generatedAt": "2026-09-19T18:17:36+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "2b19976e637d91bd",
-      "runId": "a2fa1242b31e72c163bb9187"
+      "engineVersion": "052311fadbdeb34c",
+      "runId": "126653fec1c25879c001bea2"
     },
     "p1": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T19:48:14+09:00",
+      "generatedAt": "2026-09-19T18:17:36+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "2b19976e637d91bd",
-      "runId": "a2fa1242b31e72c163bb9187"
+      "engineVersion": "052311fadbdeb34c",
+      "runId": "126653fec1c25879c001bea2"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T19:48:14+09:00",
+      "generatedAt": "2026-09-19T18:17:36+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "2b19976e637d91bd",
-      "runId": "a2fa1242b31e72c163bb9187"
+      "engineVersion": "052311fadbdeb34c",
+      "runId": "126653fec1c25879c001bea2"
     },
     "growth": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T19:48:14+09:00",
+      "generatedAt": "2026-09-19T18:17:36+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "2b19976e637d91bd",
-      "runId": "a2fa1242b31e72c163bb9187",
-      "evidenceSnapshotId": "4e53a9ceb524cda24e138e459d66efc44fad4a80dda37dd6415ae03e9c6361aa"
+      "engineVersion": "052311fadbdeb34c",
+      "runId": "126653fec1c25879c001bea2",
+      "evidenceSnapshotId": "5539f29d170486e1a8fd22a03be2296a6e0359be3ac1ac3a281c1906c8d8545d"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-09-18T19:48:14+09:00",
+      "generatedAt": "2026-09-19T18:17:36+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "2b19976e637d91bd",
-      "runId": "a2fa1242b31e72c163bb9187",
-      "evidenceSnapshotId": "4e53a9ceb524cda24e138e459d66efc44fad4a80dda37dd6415ae03e9c6361aa"
+      "engineVersion": "052311fadbdeb34c",
+      "runId": "126653fec1c25879c001bea2",
+      "evidenceSnapshotId": "5539f29d170486e1a8fd22a03be2296a6e0359be3ac1ac3a281c1906c8d8545d"
     },
     "combined": {
-      "generatedAt": "2026-09-18T19:48:14+09:00",
+      "generatedAt": "2026-09-19T18:17:36+09:00",
       "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "2b19976e637d91bd",
-      "runId": "a2fa1242b31e72c163bb9187",
-      "evidenceSnapshotId": "4e53a9ceb524cda24e138e459d66efc44fad4a80dda37dd6415ae03e9c6361aa",
+      "engineVersion": "052311fadbdeb34c",
+      "runId": "126653fec1c25879c001bea2",
+      "evidenceSnapshotId": "5539f29d170486e1a8fd22a03be2296a6e0359be3ac1ac3a281c1906c8d8545d",
       "status": "계산완료"
     }
   }

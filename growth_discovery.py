@@ -25,6 +25,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from dart_fundamentals import _api_key, _request_bytes, _request_json
+from reported_financials import four_quarter_metrics
 
 KST = timezone(timedelta(hours=9))
 EVENT_NAMES = re.compile(r'단일판매|공급계약|신규시설투자|영업.*전망|장래사업|기업설명회|투자판단')
@@ -676,11 +677,15 @@ def fundamental_profile(row):
     safety = 50 + 25 * int(op is not None and op > 0)
     if available:
         safety += 25 * int(all(value > 0 for value in available))
+    reported = four_quarter_metrics(row)
     return {'growthRate': round(growth, 1) if growth is not None else None,
             'growthBasis': f"공시 누적 매출 전년동기 · {str(row.get('as_of', ''))[:10]}",
             'fundamentalScore': round(quality, 1) if quality is not None else None,
             'fundamentalBasis': '실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님',
-            'quarterlySales': round(quarters['q2Sales'], 0) if quarters['q2Sales'] is not None else None,
+             'quarterlySales': round(quarters['q2Sales'], 0) if quarters['q2Sales'] is not None else None,
+            'reportedFourQuarterComplete': reported['complete'],
+            'averageQuarterlySales': reported['averageQuarterlySales'],
+            'averageQuarterlyOperatingMarginPct': reported['averageQuarterlyOperatingMarginPct'],
             '_salesPersistenceScore': max(0, min(100, persistence)),
             '_profitConversionScore': quality or 0,
             '_financialSafetyScore': max(0, min(100, safety)),
@@ -764,8 +769,10 @@ def evidence_contents(events, limit=3):
 
 def financial_summary(profile, average_turnover):
     parts = []
-    if profile.get('quarterlySales') is not None:
-        parts.append(f"분기 매출 {_eok(profile['quarterlySales'])}")
+    if profile.get('averageQuarterlySales') is not None:
+        parts.append(f"4분기 평균 매출 {_eok(profile['averageQuarterlySales'])}")
+    if profile.get('averageQuarterlyOperatingMarginPct') is not None:
+        parts.append(f"분기 영업이익률 평균 {profile['averageQuarterlyOperatingMarginPct']:.1f}%")
     if average_turnover is not None:
         parts.append(f"20일 평균 거래대금 {_eok(average_turnover)}")
     if profile.get('growthRate') is not None:
@@ -788,7 +795,8 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
     now = now or datetime.now(KST)
     today = now.date()
     config = config or {}
-    minimum_quarterly_sales = float(config.get('growth_minimum_quarterly_sales', 0))
+    minimum_average_quarterly_sales = float(config.get('selection_minimum_average_quarterly_sales', 0))
+    minimum_average_quarterly_margin = float(config.get('selection_minimum_average_quarterly_op_margin_pct', 0))
     minimum_average_turnover = float(config.get('growth_minimum_average_turnover', 0))
     candidate_limit = int(config.get('growth_candidate_count', 50))
     excluded_tickers = {str(value).zfill(6) for value in config.get('growth_excluded_tickers', [])}
@@ -829,9 +837,18 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
             continue
         conf = confidence(eligible + [e for e in evidence if e['polarity'] == 'negative' and (today - pd.Timestamp(e['publishedAt']).date()).days <= 90])
         profile = fundamental_profile(financials.get(ticker, {}))
-        quarterly_sales = profile.get('quarterlySales')
         average_turnover = number(turnover20.get(ticker))
-        if minimum_quarterly_sales and (quarterly_sales is None or quarterly_sales < minimum_quarterly_sales):
+        if minimum_average_quarterly_sales and (
+            not profile.get('reportedFourQuarterComplete')
+            or profile.get('averageQuarterlySales') is None
+            or profile['averageQuarterlySales'] < minimum_average_quarterly_sales
+        ):
+            continue
+        if minimum_average_quarterly_margin and (
+            not profile.get('reportedFourQuarterComplete')
+            or profile.get('averageQuarterlyOperatingMarginPct') is None
+            or profile['averageQuarterlyOperatingMarginPct'] < minimum_average_quarterly_margin
+        ):
             continue
         if minimum_average_turnover and (average_turnover is None or average_turnover < minimum_average_turnover):
             continue
@@ -914,9 +931,18 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
             profile = fundamental_profile(financials.get(ticker, {}))
             if profile['growthRate'] is None or profile['growthRate']<=0:
                 continue
-            quarterly_sales = profile.get('quarterlySales')
             average_turnover = number(turnover20.get(ticker))
-            if minimum_quarterly_sales and (quarterly_sales is None or quarterly_sales < minimum_quarterly_sales):
+            if minimum_average_quarterly_sales and (
+                not profile.get('reportedFourQuarterComplete')
+                or profile.get('averageQuarterlySales') is None
+                or profile['averageQuarterlySales'] < minimum_average_quarterly_sales
+            ):
+                continue
+            if minimum_average_quarterly_margin and (
+                not profile.get('reportedFourQuarterComplete')
+                or profile.get('averageQuarterlyOperatingMarginPct') is None
+                or profile['averageQuarterlyOperatingMarginPct'] < minimum_average_quarterly_margin
+            ):
                 continue
             if minimum_average_turnover and (average_turnover is None or average_turnover < minimum_average_turnover):
                 continue
@@ -954,7 +980,8 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
     return {'status': status, 'sectors': sector_rows, 'rows': stock_rows,
         'dataStatus': dict(source_status, candidateCount=len(candidates), evaluatedTickers=len(latest),
                                preCutCandidateCount=pre_cut_count,
-                               minimumQuarterlySales=minimum_quarterly_sales,
+                               minimumAverageQuarterlySales=minimum_average_quarterly_sales,
+                               minimumAverageQuarterlyOperatingMarginPct=minimum_average_quarterly_margin,
                                minimumAverageTurnover=minimum_average_turnover,
                                candidateLimit=candidate_limit,
                                marketRiskExcludedCount=len(risk_excluded),
@@ -962,8 +989,11 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
                                    'is_management', 'is_suspended', 'is_delisting', 'management_issue',
                                    'trading_halt', 'trading_status', 'market_warning', 'listing_status')),
                                oldEvidenceUsed=sum(r['oldEvidenceCount'] for r in candidates)),
-            'methodVersion': 'growth-evidence-v2', 'updatedKST': now.strftime('%Y-%m-%d %H:%M'),
-            'notice': ('분기 매출 300억원·20일 평균 거래대금 10억원 이상에서 50개 후보를 선별합니다. '
+            'methodVersion': 'growth-evidence-v3', 'updatedKST': now.strftime('%Y-%m-%d %H:%M'),
+            'notice': (f'확정 4분기 평균 매출 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원·'
+                       f'분기별 영업이익률 단순평균 {minimum_average_quarterly_margin:g}%·'
+                       f'20일 평균 거래대금 {minimum_average_turnover / 100_000_000:,.0f}억원 이상을 '
+                       f'선조건으로 적용해 {candidate_limit}개 후보를 선별합니다. '
                        '점수는 사건규모 25%, 매출성장 지속·가속 20%, 이익전환 15%, 매출가시성 15%, '
                        '근거신뢰도 10%, 주가 미반영 10%, 확인 가능한 재무·희석위험 5%입니다.'),
             '_audit': audited}

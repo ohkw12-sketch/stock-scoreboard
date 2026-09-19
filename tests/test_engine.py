@@ -26,11 +26,14 @@ class RotationEngineTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.config = load_config(None, "sample")
-        cls.config["minimum_quarterly_sales"] = 1
+        cls.config["value_minimum_average_quarterly_sales"] = 1
+        cls.config["value_minimum_average_quarterly_op_margin_pct"] = -100
+        cls.config["selection_minimum_average_quarterly_sales"] = 1
+        cls.config["selection_minimum_average_quarterly_op_margin_pct"] = -100
         cls.prices = generate_sample_market()
         cls.prices, cls.market_status = attach_market_snapshot(cls.prices, cls.config)
-        cls.p11 = run_engine(cls.prices, cls.config, "unit-test-sample")
         cls.fundamentals = generate_sample_fundamentals(cls.prices)
+        cls.p11 = run_engine(cls.prices, cls.config, "unit-test-sample", cls.fundamentals)
         cls.p1 = build_entry_board(cls.prices, cls.p11["_allSectors"], cls.fundamentals, cls.config)
         cls.p2 = build_value_board(cls.fundamentals, cls.config,
                                    {"status": "정상", "asOfDate": "2026-08-27"}, cls.prices)
@@ -102,6 +105,39 @@ class RotationEngineTest(unittest.TestCase):
         scores = [row["entryScore"] for row in self.p1["_allRows"]]
         self.assertEqual(scores, sorted(scores, reverse=True))
 
+    def test_rotation_and_entry_add_the_four_quarter_filter_before_existing_scores(self):
+        fundamentals = self.fundamentals.copy()
+        for quarter in (3, 4, 1, 2):
+            fundamentals[f"normalized_sales_q{quarter}"] = 60_000_000_000
+            fundamentals[f"normalized_op_q{quarter}"] = 12_000_000_000
+        fundamentals["normalized_ttm_sales"] = 240_000_000_000
+        fundamentals["normalized_ttm_op"] = 48_000_000_000
+        fundamentals["normalized_quarter_count"] = 4
+        config = dict(
+            self.config,
+            selection_minimum_average_quarterly_sales=50_000_000_000,
+            selection_minimum_average_quarterly_op_margin_pct=15,
+        )
+        baseline = run_engine(self.prices, config, "unit-test-sample", fundamentals)
+        target = baseline["_allRows"][0]["ticker"]
+        target_mask = fundamentals["ticker"].eq(target)
+        for quarter in (3, 4, 1, 2):
+            fundamentals.loc[target_mask, f"normalized_op_q{quarter}"] = 8_940_000_000
+        fundamentals.loc[target_mask, "normalized_ttm_op"] = 35_760_000_000
+
+        filtered = run_engine(self.prices, config, "unit-test-sample", fundamentals)
+        self.assertNotIn(target, {row["ticker"] for row in filtered["_allRows"]})
+        rotation_audit = next(row for row in filtered["_eligibility"] if row["ticker"] == target)
+        self.assertEqual(rotation_audit["reason"], "분기 영업이익률 4개 평균 15% 미만")
+        entry = build_entry_board(self.prices, filtered["_allSectors"], fundamentals, config)
+        self.assertNotIn(target, {row["ticker"] for row in entry["_allRows"]})
+        entry_audit = next(row for row in entry["_eligibility"] if row["ticker"] == target)
+        self.assertEqual(entry_audit["reason"], "분기 영업이익률 4개 평균 15% 미만")
+        for row in entry["_allRows"]:
+            self.assertAlmostEqual(
+                row["entryScore"], (row["rotationScore"] + row["fundamentalScore"]) / 2, delta=0.11,
+            )
+
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
         self.assertGreater(len(self.p2["rows"]), 0)
@@ -115,34 +151,55 @@ class RotationEngineTest(unittest.TestCase):
         self.assertNotIn("T+", self.p2["status"])
         self.assertFalse(self.p2["dataStatus"]["forwardEstimateUsed"])
 
-    def test_value_engine_applies_quarterly_sales_floor_before_sector_comparison(self):
-        def fundamental(ticker, name, quarterly_sales):
+    def test_value_engine_applies_four_quarter_sales_and_mean_margin_prerequisites(self):
+        def fundamental(ticker, name, quarterly_sales, quarterly_margins):
+            sales = list(quarterly_sales)
+            margins = list(quarterly_margins)
             return {
                 "ticker": ticker, "name": name, "sector": "테스트", "as_of": "2026-06-30",
-                "sales_current": quarterly_sales * 2, "sales_previous": quarterly_sales * 1.8,
-                "op_current": 20e8, "op_previous": 18e8,
-                "sales_quarter_current": quarterly_sales, "sales_quarter_previous": quarterly_sales * .9,
-                "op_quarter_current": 10e8, "op_quarter_previous": 9e8,
+                "sales_current": sales[2] + sales[3], "sales_previous": sales[0] + sales[1],
+                "op_current": sales[2] * margins[2] / 100 + sales[3] * margins[3] / 100,
+                "op_previous": sales[0] * margins[0] / 100 + sales[1] * margins[1] / 100,
+                "sales_quarter_current": sales[3], "sales_quarter_previous": sales[1],
+                "op_quarter_current": sales[3] * margins[3] / 100,
+                "op_quarter_previous": sales[1] * margins[1] / 100,
+                "normalized_sales_q3": sales[0], "normalized_sales_q4": sales[1],
+                "normalized_sales_q1": sales[2], "normalized_sales_q2": sales[3],
+                "normalized_op_q3": sales[0] * margins[0] / 100,
+                "normalized_op_q4": sales[1] * margins[1] / 100,
+                "normalized_op_q1": sales[2] * margins[2] / 100,
+                "normalized_op_q2": sales[3] * margins[3] / 100,
+                "normalized_ttm_sales": sum(sales),
+                "normalized_ttm_op": sum(value * margin / 100 for value, margin in zip(sales, margins)),
+                "normalized_quarter_count": 4, "normalization_as_of": "2026-06-30",
                 "report_code": "11012",
             }
 
         frame = pd.DataFrame([
-            fundamental("100001", "하한통과A", 3_000_000_000_000),
-            fundamental("100002", "하한통과B", 2_500_000_000_000),
-            fundamental("100003", "하한미달", 2_499_999_999_999),
+            # Quarterly margins average 17.5%, while TTM OP / TTM sales is below 15%.
+            fundamental("100001", "단순평균통과", [60e9, 60e9, 60e9, 220e9], [20, 20, 20, 10]),
+            fundamental("100002", "경계통과", [100e9] * 4, [15] * 4),
+            fundamental("100003", "매출미달", [99e9] * 4, [20] * 4),
+            fundamental("100004", "이익률미달", [100e9] * 4, [14.9] * 4),
         ])
         prices = pd.DataFrame([
             {"ticker": ticker, "date": "2026-09-08", "close": 10000,
              "market_cap": market_cap, "shares": market_cap / 10000}
-            for ticker, market_cap in zip(frame["ticker"], [200e8, 240e8, 220e8])
+            for ticker, market_cap in zip(frame["ticker"], [200e8, 240e8, 220e8, 260e8])
         ])
-        config = dict(self.config, minimum_quarterly_sales=2_500_000_000_000)
+        config = dict(
+            self.config,
+            value_minimum_average_quarterly_sales=100_000_000_000,
+            value_minimum_average_quarterly_op_margin_pct=15,
+        )
         board = build_value_board(frame, config, {"status": "정상"}, prices)
         self.assertEqual(board["dataStatus"]["valueCandidateCount"], 2)
-        self.assertEqual(board["dataStatus"]["quarterlySalesQualifiedCount"], 2)
-        self.assertEqual({row["name"] for row in board["rows"]}, {"하한통과A", "하한통과B"})
-        rejected = next(row for row in board["_eligibility"] if row["name"] == "하한미달")
-        self.assertEqual(rejected["reason"], "최근 분기 매출액 2.5조원 미만")
+        self.assertEqual(board["dataStatus"]["financialPrerequisiteQualifiedCount"], 2)
+        self.assertEqual({row["name"] for row in board["rows"]}, {"단순평균통과", "경계통과"})
+        accepted = next(row for row in board["rows"] if row["name"] == "단순평균통과")
+        self.assertEqual(accepted["averageQuarterlyOperatingMarginPct"], 17.5)
+        rejected = next(row for row in board["_eligibility"] if row["name"] == "이익률미달")
+        self.assertEqual(rejected["reason"], "분기 영업이익률 4개 평균 15% 미만")
 
     def test_value_engine_removes_every_future_and_t_plus_output(self):
         frame = pd.DataFrame([
@@ -177,6 +234,16 @@ class RotationEngineTest(unittest.TestCase):
              "consensus_as_of": np.nan, "consensus_change_1d": np.nan,
              "consensus_change_5d": np.nan, "consensus_change_20d": np.nan, "analyst_count": np.nan},
         ])
+        for index in frame.index:
+            quarterly_sales = frame.at[index, "sales_current"] / 2
+            quarterly_op = frame.at[index, "op_current"] / 2
+            for quarter in (3, 4, 1, 2):
+                frame.at[index, f"normalized_sales_q{quarter}"] = quarterly_sales
+                frame.at[index, f"normalized_op_q{quarter}"] = quarterly_op
+            frame.at[index, "normalized_ttm_sales"] = quarterly_sales * 4
+            frame.at[index, "normalized_ttm_op"] = quarterly_op * 4
+            frame.at[index, "normalized_quarter_count"] = 4
+            frame.at[index, "normalization_as_of"] = "2026-06-30"
         price_rows = pd.DataFrame([
             {"ticker": "000001", "date": "2026-08-28", "close": 40000, "market_cap": 9000e8, "shares": 22_500_000},
             {"ticker": "000002", "date": "2026-08-28", "close": 24000, "market_cap": 3000e8, "shares": 12_500_000},
@@ -200,6 +267,12 @@ class RotationEngineTest(unittest.TestCase):
                 "op_current": 20e8, "op_previous": 18e8,
                 "sales_quarter_current": 100e8, "sales_quarter_previous": 90e8,
                 "op_quarter_current": 10e8, "op_quarter_previous": 9e8,
+                "normalized_sales_q3": 100e8, "normalized_sales_q4": 100e8,
+                "normalized_sales_q1": 100e8, "normalized_sales_q2": 100e8,
+                "normalized_op_q3": 10e8, "normalized_op_q4": 10e8,
+                "normalized_op_q1": 10e8, "normalized_op_q2": 10e8,
+                "normalized_ttm_sales": 400e8, "normalized_ttm_op": 40e8,
+                "normalized_quarter_count": 4, "normalization_as_of": "2026-06-30",
                 "op_growth_basis": "증가율", "report_code": "11012",
                 "consensus_sales_2026": 400, "consensus_op_2026": 40,
                 "consensus_sales_2027": 500, "consensus_op_2027": 60,

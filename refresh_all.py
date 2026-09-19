@@ -161,7 +161,11 @@ def rebuild(args, config):
         if report.get('qualityStatus') != '정상':
             json_write(out/'failed_collection_report.json', report)
             raise RuntimeError('전체시장 가격 검증 실패 · 이전 검증 원자료와 게시 자료를 보존했습니다.')
-        required_financials = {'ticker', 'sector', 'normalized_ttm_op'}
+        required_financials = {
+            'ticker', 'sector', 'normalized_ttm_op', 'normalized_quarter_count',
+            *(f'normalized_sales_q{quarter}' for quarter in (3, 4, 1, 2)),
+            *(f'normalized_op_q{quarter}' for quarter in (3, 4, 1, 2)),
+        }
         financial_failed = (fundamentals.empty or not required_financials.issubset(fundamentals.columns)
                             or fundamental_status.get('status') in ('실패', '자료없음', '수집실패'))
         if financial_failed:
@@ -182,13 +186,16 @@ def rebuild(args, config):
     else:
         manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
-        'rotation_screener.py', 'growth_discovery.py', 'dart_fundamentals.py', 'kis_consensus.py',
+        'rotation_screener.py', 'growth_discovery.py', 'reported_financials.py',
+        'dart_fundamentals.py', 'kis_consensus.py',
         'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py', 'performance_feedback.py')})[:16]
     context = {'generatedAt': generated, 'snapshotId': manifest['snapshotId'],
                'sourceCutoff': report['latestPriceDate'], 'mode': report['runMode'], 'engineVersion': engine_version}
     context['runId'] = digest(context)[:24]
     states = {}
-    p11 = isolated_section('p11', lambda: run_engine(prices, config, report.get('engineSource', 'verified-snapshot')),
+    p11 = isolated_section('p11', lambda: run_engine(
+        prices, config, report.get('engineSource', 'verified-snapshot'), fundamentals,
+    ),
                            previous, states, context)
     def entry():
         if states['p11']['status'] != '계산완료':

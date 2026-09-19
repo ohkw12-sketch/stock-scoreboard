@@ -24,6 +24,7 @@ import pandas as pd
 
 from dart_fundamentals import collect_dart_fundamentals
 from kis_consensus import KisConsensusClient, collect_kis_consensus
+from reported_financials import add_four_quarter_metrics
 
 
 ROOT = Path(__file__).resolve().parent
@@ -54,8 +55,10 @@ DEFAULTS = {
     },
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
-    "minimum_quarterly_sales": 700_000_000_000,
-    "growth_minimum_quarterly_sales": 30_000_000_000,
+    "value_minimum_average_quarterly_sales": 100_000_000_000,
+    "value_minimum_average_quarterly_op_margin_pct": 15.0,
+    "selection_minimum_average_quarterly_sales": 50_000_000_000,
+    "selection_minimum_average_quarterly_op_margin_pct": 15.0,
     "growth_minimum_average_turnover": 1_000_000_000,
     "growth_candidate_count": 50,
     "growth_excluded_tickers": [],
@@ -111,10 +114,12 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
         raise ValueError("rotation weights must contain all six factors and sum to 1")
     if int(config["minimum_daily_turnover"]) <= 0:
         raise ValueError("minimum daily turnover must be positive")
-    if int(config["minimum_quarterly_sales"]) <= 0:
-        raise ValueError("minimum quarterly sales must be positive")
-    if int(config["growth_minimum_quarterly_sales"]) <= 0:
-        raise ValueError("growth minimum quarterly sales must be positive")
+    for key in ("value_minimum_average_quarterly_sales", "selection_minimum_average_quarterly_sales"):
+        if int(config[key]) <= 0:
+            raise ValueError(f"{key} must be positive")
+    for key in ("value_minimum_average_quarterly_op_margin_pct", "selection_minimum_average_quarterly_op_margin_pct"):
+        if not np.isfinite(float(config[key])):
+            raise ValueError(f"{key} must be finite")
     if int(config["growth_minimum_average_turnover"]) <= 0:
         raise ValueError("growth minimum average turnover must be positive")
     if int(config["growth_candidate_count"]) <= 0:
@@ -1105,8 +1110,9 @@ def classify_stage(latest: pd.Series, previous: pd.Series, elapsed: int, cycle: 
 
 
 def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit: int,
-                  sector_cap: int | None = 4,
-                  minimum_daily_turnover: int = 1_000_000_000) -> list[dict]:
+                   sector_cap: int | None = 4,
+                   minimum_daily_turnover: int = 1_000_000_000,
+                   eligible_tickers: set[str] | None = None) -> list[dict]:
     latest_date = stock_data["date"].max()
     current = stock_data[stock_data["date"].eq(latest_date)].copy()
     sector_map = sector_results.set_index("name")
@@ -1123,6 +1129,8 @@ def rotation_rows(stock_data: pd.DataFrame, sector_results: pd.DataFrame, limit:
         current["overheated"].astype(int) * 32
     )
     current = current[current["ret5"].notna() & (current["value"] >= minimum_daily_turnover)]
+    if eligible_tickers is not None:
+        current = current[current["ticker"].isin(eligible_tickers)]
     current = current.sort_values(["stock_score", "value"], ascending=False)
     # Avoid allowing one hot theme to occupy the entire candidate board.
     if sector_cap is not None:
@@ -1180,14 +1188,23 @@ def generate_sample_fundamentals(prices: pd.DataFrame) -> pd.DataFrame:
         consensus_prior_op = -float(40 + seed % 90) if future_turnaround else float(100 + seed % 800)
         consensus_forward_op = float(60 + seed % 250) if future_turnaround else consensus_prior_op * (1 + future_op_growth / 100)
         consensus_next_op = consensus_forward_op * (1.15 + (seed % 10) / 100)
+        quarterly_sales = sales_current / 2
+        quarterly_op = op_current / 2
         rows.append({
             "ticker": item.ticker, "name": item.name, "sector": item.sector,
             "as_of": "2026-08-27", "sales_q3_growth": 8 + seed % 37,
             "sales_q4_growth": 6 + seed % 41, "sales_1y_growth": sales_growth,
             "op_1y_growth": op_growth, "sales_current": sales_current, "sales_previous": sales_previous,
             "op_current": op_current, "op_previous": op_previous,
-            "sales_quarter_current": sales_current / 2, "sales_quarter_previous": sales_previous / 2,
-            "op_quarter_current": op_current / 2, "op_quarter_previous": op_previous / 2,
+            "sales_quarter_current": quarterly_sales, "sales_quarter_previous": sales_previous / 2,
+            "op_quarter_current": quarterly_op, "op_quarter_previous": op_previous / 2,
+            "normalized_sales_q3": quarterly_sales * .88, "normalized_sales_q4": quarterly_sales * .94,
+            "normalized_sales_q1": quarterly_sales * .97, "normalized_sales_q2": quarterly_sales,
+            "normalized_op_q3": quarterly_op * .82, "normalized_op_q4": quarterly_op * .90,
+            "normalized_op_q1": quarterly_op * .95, "normalized_op_q2": quarterly_op,
+            "normalized_ttm_sales": quarterly_sales * 3.79,
+            "normalized_ttm_op": quarterly_op * 3.67,
+            "normalized_quarter_count": 4, "normalization_as_of": "2026-06-30",
             "quarter_as_of": "2026-06-30",
             "sales_growth_basis": "증가율", "op_growth_basis": "흑자전환" if turnaround else "증가율",
             "report_code": "11012", "fs_div": "CFS",
@@ -1357,13 +1374,14 @@ def load_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame,
 
 def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -> dict:
     """Rank value from reported profit only; no forward/T+ estimate is consumed."""
+    data = add_four_quarter_metrics(data)
     normalized_op_columns = [f"normalized_op_q{quarter}" for quarter in (3, 4, 1, 2)]
     normalized_sales_columns = [f"normalized_sales_q{quarter}" for quarter in (3, 4, 1, 2)]
     reconstructed_count = data[normalized_op_columns].notna().sum(axis=1).astype(float)
     data["normalized_quarter_count"] = data["normalized_quarter_count"].where(
         data["normalized_quarter_count"].notna(), reconstructed_count,
     )
-    data["normalized_complete"] = data["normalized_quarter_count"].eq(4)
+    data["normalized_complete"] = data["reported_four_quarter_complete"]
     data["normalized_op"] = data["normalized_ttm_op"].where(
         data["normalized_complete"], data["q2_op"] * 4,
     )
@@ -1374,13 +1392,25 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         data["normalized_ttm_op"].div((data["q2_op"] * 4).replace(0, np.nan)) - 1
     ).mul(100).where(data["normalized_complete"])
     data["normalized_pop"] = data["market_cap"].div(data["normalized_op"].where(data["normalized_op"] > 0))
-    minimum_quarterly_sales = int(config.get("minimum_quarterly_sales", 700_000_000_000))
-    sales_qualified = data["q2_sales"].notna() & data["q2_sales"].ge(minimum_quarterly_sales)
+    minimum_average_quarterly_sales = int(config.get(
+        "value_minimum_average_quarterly_sales", 100_000_000_000,
+    ))
+    minimum_average_quarterly_op_margin = float(config.get(
+        "value_minimum_average_quarterly_op_margin_pct", 15.0,
+    ))
+    sales_qualified = (
+        data["reported_four_quarter_complete"]
+        & data["average_quarterly_sales"].ge(minimum_average_quarterly_sales)
+    )
+    margin_qualified = (
+        data["reported_four_quarter_complete"]
+        & data["average_quarterly_op_margin_pct"].ge(minimum_average_quarterly_op_margin)
+    )
     valid_multiple = (
         data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna()
         & data["normalized_pop"].between(0.1, 300)
     )
-    valid = sales_qualified & valid_multiple
+    valid = sales_qualified & margin_qualified & valid_multiple
     minimum_peers = int(config.get("minimum_value_sector_peers", 2))
     stats = data[valid].groupby("sector")["normalized_pop"].agg(["median", "count"])
     data["sector_normalized_pop"] = data["sector"].map(stats["median"] if not stats.empty else {})
@@ -1467,6 +1497,8 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
             "normalizedQuarterCount": int(item.normalized_quarter_count),
             "normalizedPeerCount": int(item.normalized_peer_count),
             "normalizationQuality": rounded(item.normalization_quality),
+            "averageQuarterlySales": rounded(item.average_quarterly_sales),
+            "averageQuarterlyOperatingMarginPct": rounded(item.average_quarterly_op_margin_pct),
             "normalizedResult": normalized_result,
             "absoluteValueScore": rounded(item.absolute_value_score),
             "sectorValueScore": rounded(item.sector_value_score),
@@ -1486,9 +1518,11 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
         "reason": "가치 조건 통과" if item.ticker in score_map else (
             "가격·시가총액 없음" if not np.isfinite(item.market_cap) else
-            "최근 분기 매출액 없음" if not np.isfinite(item.q2_sales) else
-            f"최근 분기 매출액 {minimum_quarterly_sales / 1_000_000_000_000:g}조원 미만"
-            if item.q2_sales < minimum_quarterly_sales else
+            "확정 4개 분기 재무 없음" if not item.reported_four_quarter_complete else
+            f"4분기 평균 매출액 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원 미만"
+            if item.average_quarterly_sales < minimum_average_quarterly_sales else
+            f"분기 영업이익률 4개 평균 {minimum_average_quarterly_op_margin:g}% 미만"
+            if item.average_quarterly_op_margin_pct < minimum_average_quarterly_op_margin else
             "정상화 영업이익 양수 아님/없음" if not np.isfinite(item.normalized_op) or item.normalized_op <= 0 else
             "비교 가능한 섹터 종목 부족" if not np.isfinite(item.sector_normalized_pop) else
             "가치 배수 허용 범위 밖"),
@@ -1497,29 +1531,37 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     price_dates = pd.to_datetime(data["price_date"], errors="coerce").dropna()
     price_basis = price_dates.max().strftime("%Y-%m-%d") if not price_dates.empty else None
     price_basis_text = f" · 가격 기준 {price_basis}" if price_basis else ""
-    sales_floor_eok = minimum_quarterly_sales / 100_000_000
+    sales_floor_eok = minimum_average_quarterly_sales / 100_000_000
     return {
         "status": (
-            f"분기 매출 {sales_floor_eok:,.0f}억원 이상 · "
+            f"4분기 평균 매출 {sales_floor_eok:,.0f}억원 이상 · "
+            f"분기 영업이익률 평균 {minimum_average_quarterly_op_margin:g}% 이상 · "
             f"정상화 가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}"
         ),
         "method": (
-            f"최근 분기 매출 {sales_floor_eok:,.0f}억원 이상만 평가 · "
+            f"확정 4분기 평균 매출 {sales_floor_eok:,.0f}억원 이상 및 "
+            f"분기별 영업이익률 단순평균 {minimum_average_quarterly_op_margin:g}% 이상을 선조건으로 적용 · "
             "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · "
             "미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용"
         ),
         "rows": rows,
         "_allRows": all_rows, "_eligibility": eligibility,
-        "_meta": {"asOfDate": price_basis, "engineVersion": "normalized-value-1.1", "forwardEstimateUsed": False},
+        "_meta": {"asOfDate": price_basis, "engineVersion": "normalized-value-1.2", "forwardEstimateUsed": False},
         "events": [{
             "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"),
-            "event": f"최근 분기 매출 {sales_floor_eok:,.0f}억원 하한을 통과한 기업만 가치평가",
-            "tone": "정보", "impact": "매출 규모를 먼저 확인한 뒤 절대·섹터 상대 저평가와 이익 정상화를 평가",
+            "event": (
+                f"4분기 평균 매출 {sales_floor_eok:,.0f}억원·분기 영업이익률 평균 "
+                f"{minimum_average_quarterly_op_margin:g}% 선조건을 통과한 기업만 가치평가"
+            ),
+            "tone": "정보", "impact": "4분기 규모와 수익성을 먼저 확인한 뒤 기존 가치 점수를 평가",
         }],
         "dataStatus": status | {
             "valueUniverseCount": len(data), "valueCandidateCount": candidate_count,
-            "minimumQuarterlySales": minimum_quarterly_sales,
-            "quarterlySalesQualifiedCount": int(sales_qualified.sum()),
+            "minimumAverageQuarterlySales": minimum_average_quarterly_sales,
+            "minimumAverageQuarterlyOperatingMarginPct": minimum_average_quarterly_op_margin,
+            "averageQuarterlySalesQualifiedCount": int(sales_qualified.sum()),
+            "averageQuarterlyOperatingMarginQualifiedCount": int(margin_qualified.sum()),
+            "financialPrerequisiteQualifiedCount": int((sales_qualified & margin_qualified).sum()),
             "directQ2Count": int(data["direct_q2"].sum()),
             "normalizedCompleteCount": int(data["normalized_complete"].sum()),
             "forwardEstimateUsed": False,
@@ -1650,6 +1692,35 @@ def entry_fundamental_scores(fundamentals: pd.DataFrame, candidate_tickers: set[
     return scores
 
 
+def reported_financial_prerequisites(fundamentals: pd.DataFrame, minimum_average_sales: float,
+                                     minimum_average_margin_pct: float) -> dict[str, dict]:
+    """Evaluate the shared four-quarter hard filter without changing project scores."""
+    if fundamentals.empty:
+        return {}
+    data = fundamentals.copy().drop_duplicates("ticker", keep="last")
+    data["ticker"] = data["ticker"].astype(str).str.zfill(6)
+    data = add_four_quarter_metrics(data)
+    data["financial_prerequisite_eligible"] = (
+        data["reported_four_quarter_complete"]
+        & data["average_quarterly_sales"].ge(minimum_average_sales)
+        & data["average_quarterly_op_margin_pct"].ge(minimum_average_margin_pct)
+    )
+    return {
+        item.ticker: {
+            "eligible": bool(item.financial_prerequisite_eligible),
+            "complete": bool(item.reported_four_quarter_complete),
+            "averageQuarterlySales": (
+                float(item.average_quarterly_sales) if np.isfinite(item.average_quarterly_sales) else None
+            ),
+            "averageQuarterlyOperatingMarginPct": (
+                float(item.average_quarterly_op_margin_pct)
+                if np.isfinite(item.average_quarterly_op_margin_pct) else None
+            ),
+        }
+        for item in data.itertuples(index=False)
+    }
+
+
 def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamentals: pd.DataFrame,
                       config: dict) -> dict:
     """Select only immediately actionable or near-entry stocks from the entire universe."""
@@ -1662,9 +1733,18 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     for field in ("stage", "rotationType", "riskGauge", "score", "raw_ret3", "raw_ret5"):
         current[f"sector_{field}"] = current["sector"].map(sectors[field])
     minimum_daily_turnover = int(config["minimum_daily_turnover"])
+    minimum_average_sales = float(config.get("selection_minimum_average_quarterly_sales", 50_000_000_000))
+    minimum_average_margin = float(config.get("selection_minimum_average_quarterly_op_margin_pct", 15.0))
+    financial_profiles = reported_financial_prerequisites(
+        fundamentals, minimum_average_sales, minimum_average_margin,
+    )
+    financial_eligible_tickers = {
+        ticker for ticker, profile in financial_profiles.items() if profile["eligible"]
+    }
     rotation_pool = rotation_rows(
         stock_data, pd.DataFrame(all_sectors), int(prices["ticker"].nunique()), sector_cap=None,
         minimum_daily_turnover=minimum_daily_turnover,
+        eligible_tickers=financial_eligible_tickers,
     )
     rotation_map = {row["ticker"]: float(row["stockEntryScore"]) for row in rotation_pool}
     current["rotation_raw_score"] = current["ticker"].map(rotation_map)
@@ -1676,6 +1756,15 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     current["fundamental_basis"] = current["ticker"].map(
         {ticker: value["basis"] for ticker, value in fundamental_map_for_entry.items()}
     ).fillna("재무자료 없음")
+    current["financial_eligible"] = current["ticker"].map(
+        {ticker: value["eligible"] for ticker, value in financial_profiles.items()}
+    ).fillna(False)
+    current["average_quarterly_sales"] = current["ticker"].map(
+        {ticker: value["averageQuarterlySales"] for ticker, value in financial_profiles.items()}
+    )
+    current["average_quarterly_op_margin_pct"] = current["ticker"].map(
+        {ticker: value["averageQuarterlyOperatingMarginPct"] for ticker, value in financial_profiles.items()}
+    )
     current["excess3"] = current["ret3"] - current["sector_raw_ret3"]
     current["overheated"] = (current["ret1"] > .10) | (current["ret3"] > .15) | (current["ret5"] > .25)
     current["zone_low"] = np.minimum(current["ma5"], current["ma20"]) - current["atr14"] * .25
@@ -1689,7 +1778,10 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
     allowed = ~current["sector_stage"].isin(["⑥후반", "X조기이탈", "X종료"])
     liquid = current["value"] >= minimum_daily_turnover
     in_rotation_pool = current["rotation_raw_score"].notna()
-    valid = in_rotation_pool & allowed & liquid & current["trend_ok"] & ~current["overheated"] & current["ret5"].notna()
+    valid = (
+        current["financial_eligible"] & in_rotation_pool & allowed & liquid
+        & current["trend_ok"] & ~current["overheated"] & current["ret5"].notna()
+    )
     current["entryState"] = ""
     inside = current["distance"].eq(0)
     current.loc[valid & inside & current["confirm"], "entryState"] = "진입가능"
@@ -1699,6 +1791,11 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
         "eligible": bool(item.entryState), "entryState": item.entryState or None,
         "priceDate": latest_date.strftime("%Y-%m-%d"),
         "reason": "진입 조건 통과" if item.entryState else (
+            "확정 4개 분기 재무 없음" if item.ticker not in financial_profiles or not financial_profiles[item.ticker]["complete"] else
+            f"4분기 평균 매출액 {minimum_average_sales / 100_000_000:,.0f}억원 미만"
+            if item.average_quarterly_sales < minimum_average_sales else
+            f"분기 영업이익률 4개 평균 {minimum_average_margin:g}% 미만"
+            if item.average_quarterly_op_margin_pct < minimum_average_margin else
             "순환 후보 조건 미충족" if pd.isna(item.rotation_raw_score) else
             "과열" if item.overheated else "거래대금 부족" if item.value < minimum_daily_turnover else
             "추세 조건 미충족" if not item.trend_ok else "진입 거리·순환 단계·가격 이력 조건 미충족"),
@@ -1766,6 +1863,8 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
             "rotationScore": round(float(item.rotation_score), 1),
             "fundamentalScore": round(float(item.fundamental_score), 1),
             "fundamentalBasis": item.fundamental_basis,
+            "averageQuarterlySales": round(float(item.average_quarterly_sales), 1),
+            "averageQuarterlyOperatingMarginPct": round(float(item.average_quarterly_op_margin_pct), 1),
             "priceDate": latest_date.strftime("%Y-%m-%d"),
             "reason": (
                 f"순환 50% {float(item.rotation_score):.1f}점 · "
@@ -1782,17 +1881,24 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
             sector_counts[row["sector"]] = count + 1
     for record in eligibility_map.values():
         record.setdefault("score", None)
-    return {"status": f"전체 {prices['ticker'].nunique():,}종목에서 진입가능/곧진입만 선별 · 기준일 {latest_date:%Y-%m-%d}",
+    return {"status": (
+                f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
+                f"분기 영업이익률 평균 {minimum_average_margin:g}% 선조건 후 "
+                f"전체 {prices['ticker'].nunique():,}종목에서 진입가능/곧진입만 선별 · 기준일 {latest_date:%Y-%m-%d}"
+            ),
             "rows": shown, "_allRows": all_rows, "_eligibility": list(eligibility_map.values()),
-            "_meta": {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "entry-1.0"},
+            "_meta": {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "entry-1.1"},
             "selectionRule": (
+                f"확정 4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원 이상 및 "
+                f"분기별 영업이익률 단순평균 {minimum_average_margin:g}% 이상을 선조건으로 적용, "
                 "순환 후보군에서 순환점수 50% + 펀더멘털점수 50%로 순위, "
                 f"일 거래대금 {minimum_daily_turnover / 100_000_000:.0f}억원 이상, "
                 "과열·후반·종료 제외, 추세 유지, 진입구간 안 또는 3% 이내"
             )}
 
 
-def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
+def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
+               fundamentals: pd.DataFrame | None = None) -> dict:
     overrides = read_overrides(config["sector_overrides_file"])
     if overrides:
         prices["sector"] = prices.apply(lambda row: overrides.get(row["ticker"], row["sector"]), axis=1)
@@ -1858,13 +1964,27 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
     sector_results = pd.DataFrame(results).sort_values(["score", "rs5Pct", "leaderStrengthPct"], ascending=False).reset_index(drop=True)
     sector_results["rank"] = np.arange(1, len(sector_results) + 1)
     top = sector_results.head(int(config["top_sector_count"])).copy()
+    minimum_average_sales = float(config.get("selection_minimum_average_quarterly_sales", 50_000_000_000))
+    minimum_average_margin = float(config.get("selection_minimum_average_quarterly_op_margin_pct", 15.0))
+    financial_profiles = reported_financial_prerequisites(
+        fundamentals if fundamentals is not None else pd.DataFrame(),
+        minimum_average_sales,
+        minimum_average_margin,
+    )
+    eligible_tickers = (
+        {ticker for ticker, profile in financial_profiles.items() if profile["eligible"]}
+        if fundamentals is not None else None
+    )
     rows = rotation_rows(stock_data, top, int(config["top_stock_count"]),
-                         minimum_daily_turnover=int(config["minimum_daily_turnover"]))
+                         minimum_daily_turnover=int(config["minimum_daily_turnover"]),
+                         eligible_tickers=eligible_tickers)
     public_sectors = top.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
     stage_counts = top["stage"].value_counts().to_dict()
     status = (
         f"전체시장 엔진: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
+        f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
+        f"분기 영업이익률 평균 {minimum_average_margin:g}% 선조건 적용. "
         f"진입 위치와 무관하게 확산형과 선도주 견인형을 함께 반영했으며 단계 분포 {stage_counts}."
     )
     result = {
@@ -1874,6 +1994,11 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
             "asOfDate": latest_date.strftime("%Y-%m-%d"), "source": source_name,
             "universe": ["KOSPI", "KOSDAQ"], "stockCount": int(prices["ticker"].nunique()),
             "sectorCount": int(len(sector_results)), "lookbackTradingDays": int(prices["date"].nunique()),
+            "minimumAverageQuarterlySales": minimum_average_sales,
+            "minimumAverageQuarterlyOperatingMarginPct": minimum_average_margin,
+            "financialPrerequisiteQualifiedCount": (
+                len(eligible_tickers) if eligible_tickers is not None else None
+            ),
             "startDateScanBusinessDays": [int(config["rotation_scan_min_days"]), int(config["rotation_scan_max_days"])],
         },
         "sectors": public_sectors,
@@ -1888,6 +2013,7 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
     result["_allRows"] = rotation_rows(
         stock_data, sector_results, int(prices["ticker"].nunique()), sector_cap=None,
         minimum_daily_turnover=int(config["minimum_daily_turnover"]),
+        eligible_tickers=eligible_tickers,
     )
     all_row_map = {row["ticker"]: row for row in result["_allRows"]}
     result["_eligibility"] = [{
@@ -1895,9 +2021,19 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str) -> dict:
         "eligible": item.ticker in all_row_map,
         "score": all_row_map.get(item.ticker, {}).get("stockEntryScore"),
         "priceDate": latest_date.strftime("%Y-%m-%d"),
-        "reason": "순환 후보 조건 통과" if item.ticker in all_row_map else "섹터·거래대금·가격 이력 조건 미충족",
+        "reason": "순환 후보 조건 통과" if item.ticker in all_row_map else (
+            "확정 4개 분기 재무 없음"
+            if fundamentals is not None and (
+                item.ticker not in financial_profiles or not financial_profiles[item.ticker]["complete"]
+            ) else
+            f"4분기 평균 매출액 {minimum_average_sales / 100_000_000:,.0f}억원 미만"
+            if fundamentals is not None and financial_profiles[item.ticker]["averageQuarterlySales"] < minimum_average_sales else
+            f"분기 영업이익률 4개 평균 {minimum_average_margin:g}% 미만"
+            if fundamentals is not None and financial_profiles[item.ticker]["averageQuarterlyOperatingMarginPct"] < minimum_average_margin else
+            "섹터·거래대금·가격 이력 조건 미충족"
+        ),
     } for item in stock_data[stock_data["date"].eq(latest_date)].itertuples()]
-    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-1.0"}
+    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-1.1"}
     return result
 
 
@@ -1973,8 +2109,8 @@ def main(argv: Iterable[str] | None = None) -> int:
         prices, source = loader.load()
         prices, market_snapshot_status = attach_market_snapshot(prices, config)
         log(f"loaded {prices['ticker'].nunique():,} stocks, {prices['date'].nunique()} trading days from {source}")
-        p11 = run_engine(prices, config, source)
         fundamentals, fundamental_status = load_fundamentals(prices, config)
+        p11 = run_engine(prices, config, source, fundamentals)
         p1 = build_entry_board(prices, p11["_allSectors"], fundamentals, config)
         p2 = build_value_board(fundamentals, config, fundamental_status, prices)
         report = dict(loader.report)
