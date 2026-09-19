@@ -55,7 +55,7 @@ DEFAULTS = {
     },
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
-    "value_minimum_average_quarterly_sales": 100_000_000_000,
+    "value_minimum_average_quarterly_sales": 50_000_000_000,
     "value_minimum_average_quarterly_op_margin_pct": 15.0,
     "selection_minimum_average_quarterly_sales": 50_000_000_000,
     "selection_minimum_average_quarterly_op_margin_pct": 15.0,
@@ -1393,7 +1393,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     ).mul(100).where(data["normalized_complete"])
     data["normalized_pop"] = data["market_cap"].div(data["normalized_op"].where(data["normalized_op"] > 0))
     minimum_average_quarterly_sales = int(config.get(
-        "value_minimum_average_quarterly_sales", 100_000_000_000,
+        "value_minimum_average_quarterly_sales", 50_000_000_000,
     ))
     minimum_average_quarterly_op_margin = float(config.get(
         "value_minimum_average_quarterly_op_margin_pct", 15.0,
