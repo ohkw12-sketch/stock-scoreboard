@@ -18,9 +18,8 @@ class BoardContractTest(unittest.TestCase):
     def test_current_html_matches_locked_contract(self):
         self.assertEqual(validate_html(ROOT / "index.html", load_contract()), [])
 
-    def test_value_and_growth_tables_use_centered_alignment(self):
+    def test_value_growth_table_uses_centered_alignment(self):
         html = (ROOT / "index.html").read_text("utf-8")
-        self.assertIn(".value-table th,.value-table td{text-align:center}", html)
         self.assertIn(".growth-table th,.growth-table td{text-align:center}", html)
 
     def test_saveticker_osun_board_is_present(self):
@@ -36,13 +35,13 @@ class BoardContractTest(unittest.TestCase):
         self.assertTrue(errors and "필드 누락" in errors[0])
 
     def test_value_rendering_order_is_locked(self):
-        html = (ROOT / "index.html").read_text("utf-8").replace("${multiple(x.normalizedPOP)}", "${x.normalizedPOP}")
+        html = (ROOT / "index.html").read_text("utf-8").replace("${esc(x.valueGrowthScore)}", "${x.valueGrowthScore}")
         with tempfile.TemporaryDirectory() as directory:
             changed = Path(directory) / "index.html"
             changed.write_text(html, "utf-8")
             self.assertTrue(any("값 표시형식" in error for error in validate_html(changed, load_contract())))
 
-    def test_growth_only_promotion_preserves_every_other_section_and_holdings(self):
+    def test_value_growth_promotion_removes_legacy_growth_and_preserves_holdings(self):
         live = {
             "p1": {"rows": [1]}, "p11": {"rows": [2]}, "p2": {"rows": [3]},
             "growth": {"rows": ["old"]},
@@ -50,13 +49,13 @@ class BoardContractTest(unittest.TestCase):
             "meta": {"updatedKST": "old"}
         }
         candidate = copy.deepcopy(live)
-        candidate["growth"] = {"rows": ["new"]}
-        candidate["p2"] = {"rows": ["accidental"]}
-        result, report = promote(live, candidate, ["growth"])
-        self.assertEqual(result["growth"], {"rows": ["new"]})
-        for key in ("p1", "p11", "p2", "p3", "meta"):
+        candidate["p2"] = {"rows": ["new"], "projectType": "value-growth"}
+        result, report = promote(live, candidate, ["p2"])
+        self.assertNotIn("growth", result)
+        self.assertEqual(result["p2"], candidate["p2"])
+        for key in ("p1", "p11", "p3", "meta"):
             self.assertEqual(result[key], live[key])
-        self.assertEqual(report["protectedSections"], ["meta", "p1", "p11", "p2", "p3"])
+        self.assertEqual(report["protectedSections"], ["meta", "p1", "p11", "p3"])
 
     def test_holding_inputs_cannot_change_during_promotion(self):
         live = {key: {} for key in ("p1", "p11", "p2", "growth", "meta")}

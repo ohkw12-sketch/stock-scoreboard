@@ -65,7 +65,7 @@ def quote(row, now, overseas=False):
 
 def matching_boards(board, ticker, date):
     matches = []
-    for key, label in [('p1', '진입'), ('p11', '순환'), ('p2', '가치')]:
+    for key, label in [('p1', '진입'), ('p11', '순환'), ('p2', '가치성장')]:
         section = board.get(key, {})
         if section.get('refreshState', {}).get('status') == '실패·이전유지':
             continue

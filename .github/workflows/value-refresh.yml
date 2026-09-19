@@ -84,7 +84,7 @@ jobs:
         id: refresh
         run: python refresh_all.py --config config.kis.example.json
       - name: Promote validated board files
-        run: python promote_sections.py --sections p1 p11 p2 growth p3 meta --youtube --research --allow-partial
+        run: python promote_sections.py --sections p1 p11 p2 p3 meta --youtube --research --allow-partial
       - name: Verify display contract
         run: python board_contract.py
       - name: Commit refreshed boards

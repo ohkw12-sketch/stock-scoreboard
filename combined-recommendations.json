@@ -2,127 +2,13 @@
   "schemaVersion": 1,
   "ruleVersion": "combined-feedback-2.0",
   "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
-  "generatedAt": "2026-09-19T18:50:35+09:00",
+  "generatedAt": "2026-09-19T19:13:54+09:00",
   "sourceDate": "2026-09-18",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
-  "candidateCount": 47,
-  "matchedCandidateCount": 7,
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "candidateCount": 45,
+  "matchedCandidateCount": 6,
   "rows": [
-    {
-      "ticker": "192080",
-      "name": "더블유게임즈",
-      "sector": "인터넷/소프트웨어",
-      "currentProjectRank": 6.666666666666667,
-      "conditions": [
-        "진입",
-        "순환",
-        "가치"
-      ],
-      "condition": "진입 + 순환 + 가치",
-      "entryState": "곧진입",
-      "currentPrice": 58000,
-      "combinedScore": 1.2461,
-      "matchedPattern": {
-        "pattern": [
-          "관계:동행",
-          "순환",
-          "진입"
-        ],
-        "label": "관계 동행 + 순환 + 진입",
-        "horizon": 5,
-        "sampleCount": 8,
-        "recommendationDays": 3,
-        "meanReturnPct": 0.608,
-        "medianReturnPct": 2.804,
-        "winRatePct": 75.0,
-        "score": 1.2461,
-        "status": "초기 관찰",
-        "archiveSampleCount": 6,
-        "rank": 3
-      },
-      "features": [
-        "가치",
-        "가치:1~5배",
-        "가치:섹터할인",
-        "관계:동행",
-        "순환",
-        "순환:③주도",
-        "진입",
-        "진입:곧진입"
-      ],
-      "sourceDate": "2026-09-18",
-      "valueScore": 82.6,
-      "growthScore": null,
-      "sectorRelation": "동행",
-      "rank": 1,
-      "recommendationHistory": {
-        "firstDate": "2026-09-18",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
-    {
-      "ticker": "052400",
-      "name": "코나아이",
-      "sector": "인터넷/소프트웨어",
-      "currentProjectRank": 8.0,
-      "conditions": [
-        "진입",
-        "순환",
-        "가치"
-      ],
-      "condition": "진입 + 순환 + 가치",
-      "entryState": "곧진입",
-      "currentPrice": 37950,
-      "combinedScore": 1.2461,
-      "matchedPattern": {
-        "pattern": [
-          "관계:동행",
-          "순환",
-          "진입"
-        ],
-        "label": "관계 동행 + 순환 + 진입",
-        "horizon": 5,
-        "sampleCount": 8,
-        "recommendationDays": 3,
-        "meanReturnPct": 0.608,
-        "medianReturnPct": 2.804,
-        "winRatePct": 75.0,
-        "score": 1.2461,
-        "status": "초기 관찰",
-        "archiveSampleCount": 6,
-        "rank": 3
-      },
-      "features": [
-        "가치",
-        "가치:5~10배",
-        "가치:섹터할인",
-        "관계:동행",
-        "순환",
-        "순환:③주도",
-        "진입",
-        "진입:곧진입"
-      ],
-      "sourceDate": "2026-09-18",
-      "valueScore": 79.3,
-      "growthScore": null,
-      "sectorRelation": "동행",
-      "rank": 2,
-      "recommendationHistory": {
-        "firstDate": "2026-09-18",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
     {
       "ticker": "101490",
       "name": "에스앤에스텍",
@@ -158,6 +44,112 @@
         "관계:동행",
         "순환",
         "순환:②확산",
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceDate": "2026-09-18",
+      "valueScore": null,
+      "growthScore": null,
+      "sectorRelation": "동행",
+      "rank": 1,
+      "recommendationHistory": {
+        "firstDate": "2026-09-18",
+        "previousDate": null,
+        "recommendationDays": 1,
+        "spanTradingDays": 1,
+        "gapCalendarDays": null,
+        "kind": "new",
+        "label": "신규 추천"
+      }
+    },
+    {
+      "ticker": "052400",
+      "name": "코나아이",
+      "sector": "인터넷/소프트웨어",
+      "currentProjectRank": 8.0,
+      "conditions": [
+        "진입",
+        "순환"
+      ],
+      "condition": "진입 + 순환",
+      "entryState": "곧진입",
+      "currentPrice": 37950,
+      "combinedScore": 1.2461,
+      "matchedPattern": {
+        "pattern": [
+          "관계:동행",
+          "순환",
+          "진입"
+        ],
+        "label": "관계 동행 + 순환 + 진입",
+        "horizon": 5,
+        "sampleCount": 8,
+        "recommendationDays": 3,
+        "meanReturnPct": 0.608,
+        "medianReturnPct": 2.804,
+        "winRatePct": 75.0,
+        "score": 1.2461,
+        "status": "초기 관찰",
+        "archiveSampleCount": 6,
+        "rank": 3
+      },
+      "features": [
+        "관계:동행",
+        "순환",
+        "순환:③주도",
+        "진입",
+        "진입:곧진입"
+      ],
+      "sourceDate": "2026-09-18",
+      "valueScore": null,
+      "growthScore": null,
+      "sectorRelation": "동행",
+      "rank": 2,
+      "recommendationHistory": {
+        "firstDate": "2026-09-18",
+        "previousDate": null,
+        "recommendationDays": 1,
+        "spanTradingDays": 1,
+        "gapCalendarDays": null,
+        "kind": "new",
+        "label": "신규 추천"
+      }
+    },
+    {
+      "ticker": "192080",
+      "name": "더블유게임즈",
+      "sector": "인터넷/소프트웨어",
+      "currentProjectRank": 9.0,
+      "conditions": [
+        "진입",
+        "순환"
+      ],
+      "condition": "진입 + 순환",
+      "entryState": "곧진입",
+      "currentPrice": 58000,
+      "combinedScore": 1.2461,
+      "matchedPattern": {
+        "pattern": [
+          "관계:동행",
+          "순환",
+          "진입"
+        ],
+        "label": "관계 동행 + 순환 + 진입",
+        "horizon": 5,
+        "sampleCount": 8,
+        "recommendationDays": 3,
+        "meanReturnPct": 0.608,
+        "medianReturnPct": 2.804,
+        "winRatePct": 75.0,
+        "score": 1.2461,
+        "status": "초기 관찰",
+        "archiveSampleCount": 6,
+        "rank": 3
+      },
+      "features": [
+        "관계:동행",
+        "순환",
+        "순환:③주도",
         "진입",
         "진입:곧진입"
       ],
@@ -316,59 +308,6 @@
       "growthScore": null,
       "sectorRelation": "후행",
       "rank": 6,
-      "recommendationHistory": {
-        "firstDate": "2026-09-18",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
-    {
-      "ticker": "067160",
-      "name": "SOOP",
-      "sector": "인터넷/소프트웨어",
-      "currentProjectRank": 6.5,
-      "conditions": [
-        "순환",
-        "가치"
-      ],
-      "condition": "순환 + 가치",
-      "entryState": "진입 미충족",
-      "currentPrice": 36700.0,
-      "combinedScore": 0.4605,
-      "matchedPattern": {
-        "pattern": [
-          "가치",
-          "순환"
-        ],
-        "label": "가치 + 순환",
-        "horizon": 5,
-        "sampleCount": 3,
-        "recommendationDays": 2,
-        "meanReturnPct": 0.933,
-        "medianReturnPct": 1.996,
-        "winRatePct": 66.67,
-        "score": 0.4605,
-        "status": "초기 관찰",
-        "archiveSampleCount": 3,
-        "rank": 15
-      },
-      "features": [
-        "가치",
-        "가치:1~5배",
-        "가치:섹터할인",
-        "관계:동행",
-        "순환",
-        "순환:③주도"
-      ],
-      "sourceDate": "2026-09-18",
-      "valueScore": 83.0,
-      "growthScore": null,
-      "sectorRelation": "동행",
-      "rank": 7,
       "recommendationHistory": {
         "firstDate": "2026-09-18",
         "previousDate": null,
@@ -1372,21 +1311,19 @@
   },
   "notice": "과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · 동점은 프로젝트 중복 수와 현재 순위 · 진입은 필수가 아니며 진입구분 별도 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-09-19T18:50:35+09:00",
+    "generatedAt": "2026-09-19T19:13:54+09:00",
     "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
     "sourceCutoff": "2026-09-18",
     "mode": "저장자료 재계산",
-    "engineVersion": "2dca5cf1f3689887",
-    "runId": "56b583c3adc2d455c987d1ef",
-    "evidenceSnapshotId": "9b985e69d4a30f81f8cdaae32b22f3b13c214d4c7f6fd4f9c4d3c6fa6d2826cb",
+    "engineVersion": "d860e1761e9dbc1a",
+    "runId": "38d19c867cdfc476740a497b",
+    "evidenceSnapshotId": "8d85e61bd8c6e19621d6accf7a009f60e0f004a8a9c2462340c23ea173a56817",
     "status": "계산완료"
   },
-  "runId": "56b583c3adc2d455c987d1ef",
+  "runId": "38d19c867cdfc476740a497b",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-09-19T18:53:52+09:00",
-  "observedPublishedAt": "2026-09-19T18:53:52+09:00"
+  }
 }

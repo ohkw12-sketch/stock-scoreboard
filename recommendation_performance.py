@@ -35,7 +35,11 @@ def record_publication(ledger, board, combined, universe, *, observed_at, engine
     members = sorted(set(str(t).zfill(6) for t in universe))
     universe_id = digest(members)
     ledger['universes'].setdefault(universe_id, members)
-    sections = [(key, board.get(key, {})) for key in ('p1', 'p11', 'p2', 'growth')]
+    p2 = board.get('p2', {})
+    p2_key = 'valueGrowth' if p2.get('projectType') == 'value-growth' else 'p2'
+    sections = [('p1', board.get('p1', {})), ('p11', board.get('p11', {})), (p2_key, p2)]
+    if board.get('growth'):
+        sections.append(('growth', board['growth']))
     sections.append(('combined', combined))
     for key, section in sections:
         state = section.get('refreshState', {})
@@ -56,7 +60,8 @@ def record_publication(ledger, board, combined, universe, *, observed_at, engine
         for row in rows:
             if not row.get('ticker'):
                 continue
-            group = {'p1': '진입', 'p11': '순환', 'p2': '가치', 'growth': '성장', 'combined': '종합' }[key]
+            group = {'p1': '진입', 'p11': '순환', 'p2': '가치', 'valueGrowth': '가치성장',
+                     'growth': '성장', 'combined': '종합' }[key]
             group = ('성장섹터' if row.get('_sectorPick') else group)
             if key == 'p1':
                 group += ' · ' + row.get('entryState', '미확인')

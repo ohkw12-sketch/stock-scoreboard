@@ -11,7 +11,7 @@ from board_contract import ROOT, assert_contract, load_contract
 from refresh_store import json_write, read_json
 
 
-SECTIONS = ("p1", "p11", "p2", "growth", "p3", "meta")
+SECTIONS = ("p1", "p11", "p2", "p3", "meta")
 
 
 def digest(value: object) -> str:
@@ -30,6 +30,14 @@ def promote(live: dict, candidate: dict, sections: list[str]) -> tuple[dict, dic
     before_holdings = holding_inputs(live)
     protected = {key: digest(live.get(key)) for key in SECTIONS if key not in sections}
     result = copy.deepcopy(live)
+    # The value-growth migration replaces both former public projects with p2.
+    # Do this only when that replacement is actually promoted (or already live),
+    # so a failed first migration cannot remove a still-valid legacy board.
+    migrated = live.get("p2", {}).get("projectType") == "value-growth"
+    promoting_migration = ("p2" in sections
+                           and candidate.get("p2", {}).get("projectType") == "value-growth")
+    if migrated or promoting_migration:
+        result.pop("growth", None)
     for key in sections:
         if key not in candidate:
             raise KeyError(f"후보 파일에 {key} 구역이 없습니다.")
@@ -113,8 +121,8 @@ def main() -> None:
     if failed and not args.allow_partial:
         raise RuntimeError(f"실패한 구역 반영을 중단했습니다: {failed}")
     selected = [k for k in args.sections if k not in failed]
-    if args.research and not {'p1', 'p11', 'p2', 'growth'}.issubset(set(args.sections)):
-        raise RuntimeError('종합추천은 원본 진입·순환·가치·성장 갱신과 함께 반영해야 합니다.')
+    if args.research and not {'p1', 'p11', 'p2'}.issubset(set(args.sections)):
+        raise RuntimeError('종합추천은 원본 진입·순환·가치성장 갱신과 함께 반영해야 합니다.')
     result, report = promote(live, candidate, selected)
     report['retainedFailedSections'] = failed
     temp_path = args.candidate.parent / "promotion-candidate.json"

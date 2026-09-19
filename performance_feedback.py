@@ -7,7 +7,8 @@ import math
 import re
 import pandas as pd
 
-LABELS = {'p1': '진입', 'p11': '순환', 'p2': '가치', 'growth': '성장', 'combined': '종합'}
+LABELS = {'p1': '진입', 'p11': '순환', 'p2': '가치', 'growth': '성장',
+          'valueGrowth': '가치성장', 'combined': '종합'}
 HORIZONS = (1, 5, 20, 60, 120)
 
 
@@ -37,6 +38,12 @@ def features(section_rows):
                 tokens.add('가치:섹터할인' if discount < 0 else '가치:섹터프리미엄')
         if key == 'growth' and row.get('priceReflection'):
             tokens.add('성장:' + row['priceReflection'])
+        if key == 'valueGrowth':
+            if row.get('priceReflection'):
+                tokens.add('가치성장:' + row['priceReflection'])
+            penalty = row.get('riskPenalty')
+            if isinstance(penalty, (int, float)):
+                tokens.add('가치성장:' + ('무감점' if penalty == 0 else '위험감점'))
     return sorted(tokens)
 
 
@@ -211,16 +218,14 @@ def learn_patterns(performance, *, cutoff_date):
 def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
     model = learn_patterns(performance, cutoff_date=source_date)
     members = defaultdict(dict)
-    for key in ('p1','p11','p2','growth'):
-        section = board.get(key,{})
+    for key, public_key in (('p1','p1'), ('p11','p11'), ('valueGrowth','p2')):
+        section = board.get(public_key,{})
         if section.get('refreshState',{}).get('status') == '실패·이전유지':
             continue
         date = section.get('refreshState',{}).get('sourceCutoff') or section.get('sourceDate')
         if date and date != source_date:
             continue
         rows = list(section.get('rows',[]))
-        if key == 'growth':
-            rows += [r for s in section.get('sectors',[]) for r in s.get('stocks',[])]
         for r in rows:
             if r.get('ticker'):
                 members[r['ticker']][key] = r
@@ -238,8 +243,8 @@ def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
             entryState=entry.get('entryState','진입 미충족'),
             currentPrice=entry.get('currentPrice') or row.get('currentPrice'),
             combinedScore=best['score'] if best else None, matchedPattern=best,
-            features=tokens, sourceDate=source_date, valueScore=related.get('p2',{}).get('valueScore'),
-            growthScore=related.get('growth',{}).get('score'),
+            features=tokens, sourceDate=source_date, valueScore=related.get('valueGrowth',{}).get('valueScore'),
+            growthScore=related.get('valueGrowth',{}).get('growthScore'),
             sectorRelation=related.get('p11',{}).get('relation','미확인')))
     candidates.sort(key=lambda r: (r['combinedScore'] is None, -(r['combinedScore'] or 0), -len(r['conditions']), r['currentProjectRank'], r['ticker']))
     ranked = [r for r in candidates if r['combinedScore'] is not None]

@@ -7,7 +7,7 @@ from datetime import date
 import pandas as pd
 
 
-SCOPES = ("p1", "p11", "p2", "growth", "growth-sector", "combined")
+SCOPES = ("p1", "p11", "p2", "growth", "growth-sector", "valueGrowth", "combined")
 
 
 def _day(value) -> date | None:
@@ -30,7 +30,7 @@ def _published_rosters(ledger: dict) -> dict[str, dict[date, set[str]]]:
         observed = cohort.get("observedPublishedAt")
         section = cohort.get("section")
         source_day = _day(cohort.get("sourceDate") or cohort.get("generatedAt"))
-        if not observed or section not in {"p1", "p11", "p2", "growth", "combined"} or source_day is None:
+        if not observed or section not in {"p1", "p11", "p2", "growth", "valueGrowth", "combined"} or source_day is None:
             continue
         observed_stamp = pd.Timestamp(observed)
         by_scope: dict[str, set[str]] = {}
@@ -135,23 +135,31 @@ def attach_recommendation_history(board: dict, combined: dict, ledger: dict,
     sessions = [] if trading_sessions is None else trading_sessions
     trading_days = sorted({day for value in sessions if (day := _day(value)) is not None})
 
-    for scope in ("p1", "p11", "p2"):
+    for scope in ("p1", "p11"):
         section = board.get(scope, {})
         _attach(section.get("rows", []), scope, _source_day(section), rosters, trading_days)
+    value_growth = board.get("p2", {})
+    value_scope = "valueGrowth" if value_growth.get("projectType") == "value-growth" else "p2"
+    _attach(value_growth.get("rows", []), value_scope, _source_day(value_growth), rosters, trading_days)
 
+    # Read-only compatibility for historical fixtures and archived boards. New
+    # public boards no longer contain this section.
     growth = board.get("growth", {})
-    growth_day = _source_day(growth)
-    _attach(growth.get("rows", []), "growth", growth_day, rosters, trading_days)
-    sector_rows = [row for sector in growth.get("sectors", []) for row in sector.get("stocks", [])]
-    _attach(sector_rows, "growth-sector", growth_day, rosters, trading_days)
+    if growth:
+        growth_day = _source_day(growth)
+        _attach(growth.get("rows", []), "growth", growth_day, rosters, trading_days)
+        sector_rows = [row for sector in growth.get("sectors", []) for row in sector.get("stocks", [])]
+        _attach(sector_rows, "growth-sector", growth_day, rosters, trading_days)
 
     _attach(combined.get("rows", []), "combined", _source_day(combined), rosters, trading_days)
     policy = {
         "version": "recommendation-history-1.0", "gapCalendarDays": 7,
         "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용",
     }
-    for scope in ("p1", "p11", "p2", "growth"):
+    for scope in ("p1", "p11", "p2"):
         if scope in board:
             board[scope]["recommendationHistoryPolicy"] = policy
+    if "growth" in board:
+        board["growth"]["recommendationHistoryPolicy"] = policy
     combined["recommendationHistoryPolicy"] = policy
     return board, combined

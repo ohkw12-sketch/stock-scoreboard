@@ -18,6 +18,7 @@ from recommendation_continuity import attach_recommendation_history
 from save_ticker_news import refresh_or_retain as refresh_saveticker_news, validate_board as validate_saveticker_board
 from performance_prices import collect_performance_prices
 from board_contract import load_contract
+from value_growth import build_value_growth_board
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
                               build_value_board, load_config, load_fundamentals, run_engine, write_outputs)
 
@@ -188,7 +189,8 @@ def rebuild(args, config):
     engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
         'rotation_screener.py', 'growth_discovery.py', 'reported_financials.py',
         'dart_fundamentals.py', 'kis_consensus.py',
-        'growth_sources.py', 'growth_documents.py', 'combined_recommendations.py', 'performance_feedback.py')})[:16]
+        'growth_sources.py', 'growth_documents.py', 'value_growth.py',
+        'combined_recommendations.py', 'performance_feedback.py')})[:16]
     context = {'generatedAt': generated, 'snapshotId': manifest['snapshotId'],
                'sourceCutoff': report['latestPriceDate'], 'mode': report['runMode'], 'engineVersion': engine_version}
     context['runId'] = digest(context)[:24]
@@ -202,8 +204,11 @@ def rebuild(args, config):
             raise RuntimeError('순환 계산 실패로 진입 계산을 보류했습니다.')
         return build_entry_board(prices, p11['_allSectors'], fundamentals, config)
     p1 = isolated_section('p1', entry, previous, states, context)
-    p2 = isolated_section('p2', lambda: build_value_board(fundamentals, config, report['fundamentals'], prices),
-                          previous, states, context)
+    source_previous = {}
+    value_source = isolated_section(
+        'valueSource', lambda: build_value_board(fundamentals, config, report['fundamentals'], prices),
+        source_previous, states, context,
+    )
     collection = {}
     growth_candidates = []
     def growth_section():
@@ -235,13 +240,18 @@ def rebuild(args, config):
             {'sourceCutoff': report['latestPriceDate'], 'firstStoredAt': generated})
         context['evidenceSnapshotId'] = evidence_manifest['snapshotId']
         return result
-    growth = isolated_section('growth', growth_section, previous, states, context)
+    growth_source = isolated_section('growthSource', growth_section, source_previous, states, context)
+    def value_growth_section():
+        if states['valueSource']['status'] != '계산완료' or states['growthSource']['status'] != '계산완료':
+            raise RuntimeError('가치 또는 성장 원본 계산 실패로 가치성장 계산을 보류했습니다.')
+        return build_value_growth_board(value_source, growth_source, growth_candidates, fundamentals, prices)
+    p2 = isolated_section('p2', value_growth_section, previous, states, context)
+    json_write(out/'value_source.test.json', public_fields(value_source))
+    json_write(out/'growth_source.test.json', public_fields(growth_source))
     _, board_path, _ = write_outputs(p1, p11, p2, report, config)
     board = read_json(board_path)
     board['p2'] = public_fields(p2)
-    board['p2'].pop('turnaroundRows', None)
-    board['p2'].pop('turnaroundStatus', None)
-    board['growth'] = growth
+    board.pop('growth', None)
     board['p3'] = isolated_section('p3', lambda: refresh_holdings(previous.get('p3', {}), prices, fundamentals),
                                    previous, states, context)
     board['meta']['sourceSummary'] = f"가격 {report['latestPriceDate']} · 공시 {report['fundamentals'].get('asOfDate') or '미확인'} · 컨센서스 {report['fundamentals'].get('consensusAsOfDate') or '공급일 미확인'} · {report['runMode']}"
@@ -251,7 +261,7 @@ def rebuild(args, config):
     board['meta']['nextTradingDay'] = '거래소 개장일 확인 후 확정'
     board['meta']['runId'] = context['runId']
     board['meta']['refreshState'] = context
-    board['meta']['note'] = '성장 조기포착은 공개 근거 기반 후보입니다. 주가 미반영 판단·신뢰도는 예측 확률이 아닙니다.'
+    board['meta']['note'] = '가치성장은 확정 실적 가치 50%와 검증된 성장 근거 50%를 합산한 후보입니다. 점수와 신뢰도는 예측 확률이 아닙니다.'
     section_dir = out / 'sections'
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
     if youtube_path.exists():
@@ -285,7 +295,7 @@ def rebuild(args, config):
     from issue_spread import refresh as refresh_issues
     refresh_issues(board=board, slot=getattr(args, 'issue_slot', None) or ('08:00' if datetime.now(KST).hour < 12 else '15:00'))
     json_write(board_path, public_fields(board))
-    for section in ('p1', 'p11', 'p2', 'growth', 'p3', 'meta'):
+    for section in ('p1', 'p11', 'p2', 'p3', 'meta'):
         json_write(section_dir / f'{section}.test.json', public_fields(board[section]))
     states['combined'] = combined['refreshState']
     json_write(out/'combined_audit.test.json', combined)
@@ -300,13 +310,14 @@ def rebuild(args, config):
     report['sectionStates'] = states
     report['performancePrices'] = performance_price_status
     report['snapshotId'] = manifest['snapshotId']
-    if states['growth']['status'] == '계산완료':
+    if states['growthSource']['status'] == '계산완료':
         report['evidenceSnapshotId'] = context.get('evidenceSnapshotId')
     json_write(out/'collection_report.test.json', report)
     json_write(out/'refresh-status.test.json', {'runId': context['runId'], 'attemptedAt': generated,
         'sourceDate': report['latestPriceDate'], 'sections': states})
-    print(json.dumps({'priceDate':report['latestPriceDate'], 'valueCount':len(p2.get('rows',[])),
-                      'growthSectors':len(growth.get('sectors', [])), 'growthStocks':len(growth.get('rows', [])),
+    print(json.dumps({'priceDate':report['latestPriceDate'], 'valueGrowthCount':len(p2.get('rows',[])),
+                      'valueSourceCount':len(value_source.get('_allRows', [])),
+                      'growthSourceCount':len(growth_candidates),
                       'combinedCount': len(combined.get('rows', [])), 'sections': states}, ensure_ascii=False))
 
 

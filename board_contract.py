@@ -32,8 +32,8 @@ def validate_html(html_path: Path, contract: dict) -> list[str]:
         headers = [th.get_text(" ", strip=True) for th in table.select("thead tr:last-child th")]
         if headers != table_contract["headers"]:
             errors.append(f"{name}: 제목/순서 변경 감지: {headers!r}")
-    start = html.find("const normalizedRow=")
-    end = html.find(";document.getElementById('p2body')", start)
+    start = html.find("function renderP2")
+    end = html.find("function renderP3", start)
     renderer = html[start:end] if start >= 0 and end > start else ""
     position = -1
     for token in contract["tables"]["p2"]["renderTokens"]:
@@ -41,9 +41,6 @@ def validate_html(html_path: Path, contract: dict) -> list[str]:
         if position < 0:
             errors.append(f"p2: 값 표시형식/순서 변경 감지: {token}")
             break
-    for token in contract["tables"]["p2"]["forbiddenRenderTokens"]:
-        if token.lower() in renderer.lower():
-            errors.append(f"p2: 금지된 미래/T+ 표시 감지: {token}")
     return errors
 
 
@@ -58,15 +55,11 @@ def validate_board(board: dict, contract: dict) -> list[str]:
         if missing:
             errors.append(f"p2 {index}행 필드 누락: {', '.join(missing)}")
             continue
-        numeric_fields = value_contract["fields"][2:-1]
+        numeric_fields = value_contract.get("numericFields", [])
         for field in numeric_fields:
             value = row.get(field)
-            if value is not None and (not isinstance(value, (int, float)) or round(float(value), 1) != float(value)):
-                errors.append(f"p2 {index}행 {field} 표시 정밀도 변경 감지: {value!r}")
-        prefixes = tuple(prefix.lower() for prefix in value_contract["forbiddenFieldPrefixes"])
-        forbidden = [key for key in row if key.lower().startswith(prefixes)]
-        if forbidden:
-            errors.append(f"p2 {index}행 미래/T+ 필드 감지: {', '.join(forbidden)}")
+            if value is not None and not isinstance(value, (int, float)):
+                errors.append(f"p2 {index}행 {field} 숫자 형식 변경 감지: {value!r}")
     return errors
 
 

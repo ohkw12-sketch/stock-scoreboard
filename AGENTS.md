@@ -34,6 +34,6 @@
 - `ui_contract.json` is the user-approved source of truth for table titles, column order, and value display formats. Do not change it unless the user explicitly requests a display change.
 - Run `python board_contract.py` before deployment. A contract mismatch is a deployment blocker, not an automatic migration opportunity.
 - Generate candidates in `test_output/sections/` and promote only the explicitly requested sections with `promote_sections.py`. Never replace the whole live `data.json` for a one-section request.
-- Treat `p1`, `p11`, `p2`, `growth`, `p3`, and `meta` as separately promotable sections. A growth-engine change must not change value, entry, rotation, holdings, or global metadata unless those sections were also explicitly requested.
+- Treat `p1`, `p11`, `p2`, `p3`, and `meta` as separately promotable public sections. The former public value and growth sections are internal source calculations for the single `p2` 가치성장 project.
 - `p3` quantities and average purchase prices are immutable user inputs. Its judgment, action, fair-range, and display labels are not automatic-refresh outputs.
-- Project 2 value ranking uses only absolute undervaluation, sector-relative undervaluation, and reported-profit normalization. Never add T+, forward earnings, consensus growth, future P/OP, future discounts, or growth-discovery evidence to its score or rows.
+- Project 2 가치성장 ranks the intersection of the verified value and growth-source candidates: value score 50% + growth score 50% - capped risk penalties. Keep the source value score free of T+, forward earnings, consensus growth, future P/OP, and future discounts. Consensus may appear only as verified growth evidence and receives the configured penalty when it is the sole growth evidence.
