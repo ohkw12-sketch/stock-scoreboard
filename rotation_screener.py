@@ -24,6 +24,7 @@ import pandas as pd
 
 from dart_fundamentals import collect_dart_fundamentals
 from kis_consensus import KisConsensusClient, collect_kis_consensus
+from rotation_rules import build_rotation, evidence_from_sources
 from reported_financials import add_four_quarter_metrics
 
 
@@ -1975,9 +1976,12 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
         {ticker for ticker, profile in financial_profiles.items() if profile["eligible"]}
         if fundamentals is not None else None
     )
-    rows = rotation_rows(stock_data, top, int(config["top_stock_count"]),
-                         minimum_daily_turnover=int(config["minimum_daily_turnover"]),
-                         eligible_tickers=eligible_tickers)
+    legacy_pool = rotation_rows(stock_data, sector_results, int(prices['ticker'].nunique()),
+        sector_cap=None, minimum_daily_turnover=int(config['minimum_daily_turnover']),
+        eligible_tickers=eligible_tickers)
+    rows, rotation_pool, rotation_audit = build_rotation(
+        prices, sector_results.to_dict('records'), legacy_pool, config,
+        evidence_from_sources(fundamentals, config))
     public_sectors = top.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
     stage_counts = top["stage"].value_counts().to_dict()
     status = (
@@ -1985,12 +1989,12 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
         f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
         f"분기 영업이익률 평균 {minimum_average_margin:g}% 선조건 적용. "
-        f"진입 위치와 무관하게 확산형과 선도주 견인형을 함께 반영했으며 단계 분포 {stage_counts}."
+        f"최소조건 통과 후 최대 5종목: 1~3위 진입 검토, 4~5위 관찰. 단계 분포 {stage_counts}."
     )
     result = {
         "status": status,
         "engine": {
-            "version": "1.0.0", "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
+            "version": "2.0.0", "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
             "asOfDate": latest_date.strftime("%Y-%m-%d"), "source": source_name,
             "universe": ["KOSPI", "KOSDAQ"], "stockCount": int(prices["ticker"].nunique()),
             "sectorCount": int(len(sector_results)), "lookbackTradingDays": int(prices["date"].nunique()),
@@ -2010,11 +2014,8 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
         }],
     }
     result["_allSectors"] = sector_results.to_dict("records")
-    result["_allRows"] = rotation_rows(
-        stock_data, sector_results, int(prices["ticker"].nunique()), sector_cap=None,
-        minimum_daily_turnover=int(config["minimum_daily_turnover"]),
-        eligible_tickers=eligible_tickers,
-    )
+    result["_legacyEntryRows"] = legacy_pool
+    result["_allRows"] = legacy_pool
     all_row_map = {row["ticker"]: row for row in result["_allRows"]}
     result["_eligibility"] = [{
         "ticker": item.ticker, "name": item.name, "sector": item.sector,
@@ -2033,7 +2034,14 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
             "섹터·거래대금·가격 이력 조건 미충족"
         ),
     } for item in stock_data[stock_data["date"].eq(latest_date)].itertuples()]
-    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-1.1"}
+    previous_audit = {row['ticker']: row for row in result['_eligibility']}
+    for row in rotation_audit:
+        old = previous_audit.get(row['ticker'], {})
+        if not old.get('eligible', False):
+            row['reason'] = old.get('reason', row['reason'])
+    result['_eligibility'] = rotation_audit
+    result['_allRows'] = rotation_pool
+    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-2.0"}
     return result
 
 

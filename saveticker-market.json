@@ -2,20 +2,170 @@
   "schemaVersion": 1,
   "meta": {
     "title": "유튜브시황2",
-    "status": "SaveTicker 오선 국장 주요뉴스 갱신",
-    "updatedKST": "2026-09-18 17:26",
-    "range": "09.17 22:33–09.18 17:26",
+    "status": "SaveTicker 오선 국장·매크로 시황 갱신",
+    "updatedKST": "2026-09-19 21:37",
+    "range": "09.18 17:17–09.19 21:37",
     "sourceUrl": "https://saveticker.com/news",
     "source": "SaveTicker · 작성자 오선",
-    "selectionRule": "국내 기업·시장 직접 뉴스 우선, 국내 업종 영향이 명확한 글로벌 뉴스 보완, 유사 속보 통합",
+    "selectionRule": "국장 직접·국내 업종 영향 뉴스와 장전·마감 리포트, 금리·물가·경기·환율·원자재 매크로 시황을 함께 선별",
     "fetchedCount": 500,
-    "authorCount": 29,
-    "selectedCount": 5,
+    "authorCount": 36,
+    "selectedCount": 11,
     "directCount": 4,
-    "sectorCount": 1,
+    "sectorCount": 2,
+    "macroCount": 5,
     "windowHours": 36
   },
   "items": [
+    {
+      "id": "news_BiZw4TOarzBI",
+      "title": "SAVE 마감 리포트｜ 26년 09월 18일 (금) - 텍스트",
+      "scope": "매크로 시황",
+      "tone": "긍정",
+      "sectors": [
+        "장전·마감 시황",
+        "채권·환율",
+        "수급·금융환경"
+      ],
+      "marketImpact": "미국 시장의 방향과 금리·환율·원자재 움직임을 함께 확인합니다. 국채 금리와 통화 움직임은 성장주 평가와 국가 간 자금 이동의 주요 변수입니다.",
+      "publishedKST": "2026-09-19 07:18",
+      "createdAt": "2026-09-19T07:18:33+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 6345,
+      "isRumor": false,
+      "importanceScore": 99.0,
+      "url": "https://saveticker.com/news/news_BiZw4TOarzBI",
+      "summary": "금일 미국 증시는 혼조세였습니다. 대규모 옵션 만기일이 겹치며 거래량이 급증한 가운데, 증시는 국채 금리 상승 여파로 방향성을 잡지 못한 채…",
+      "contentStatus": "본문 확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_YipLj2IZfj1h",
+      "title": "SAVE 장 전 리포트｜26년 09월 18일 (금)",
+      "scope": "매크로 시황",
+      "tone": "확인",
+      "sectors": [
+        "장전·마감 시황"
+      ],
+      "marketImpact": "미국 시장의 방향과 금리·환율·원자재 움직임을 함께 확인합니다.",
+      "publishedKST": "2026-09-18 20:55",
+      "createdAt": "2026-09-18T20:55:32+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 5966,
+      "isRumor": false,
+      "importanceScore": 87.2,
+      "url": "https://saveticker.com/news/news_YipLj2IZfj1h",
+      "summary": "SAVE 장 전 리포트｜26년 09월 18일 (금)",
+      "contentStatus": "목록 미리보기·본문 미확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_SqBhUM04kg2J",
+      "title": "스코프, 프랑스 국가신용등급 AA-에서 A+로 강등",
+      "scope": "매크로 시황",
+      "tone": "확인",
+      "sectors": [
+        "수급·금융환경"
+      ],
+      "marketImpact": "만기·자금 흐름과 금융여건에 따른 단기 변동성 및 위험 선호 변화를 확인합니다.",
+      "publishedKST": "2026-09-19 05:13",
+      "createdAt": "2026-09-19T05:13:46+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 7093,
+      "isRumor": false,
+      "importanceScore": 85.5,
+      "url": "https://saveticker.com/news/news_SqBhUM04kg2J",
+      "summary": "스코프 레이팅스가 프랑스의 국가신용등급을 AA-에서 A+로 한 단계 강등함 스코프의 프랑스 신용등급 평가는 피치와 S&P와 같은 수준이 됨",
+      "contentStatus": "본문 확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_k2rUUDIxqHzn",
+      "title": "슈미드 총재, 추가 긴축 필요성 시사…“인플레 광범위”",
+      "scope": "매크로 시황",
+      "tone": "확인",
+      "sectors": [
+        "중앙은행·금리",
+        "물가"
+      ],
+      "marketImpact": "금리 경로와 긴축 강도의 변화는 주식의 할인율과 글로벌 자금 흐름에 연결됩니다. 물가의 방향과 예상치 대비 차이를 통화정책·실질금리 변화와 함께 확인합니다.",
+      "publishedKST": "2026-09-19 00:36",
+      "createdAt": "2026-09-19T00:36:43+09:00",
+      "source": "SaveTicker",
+      "author": "오선",
+      "viewCount": 6664,
+      "isRumor": false,
+      "importanceScore": 76.8,
+      "url": "https://saveticker.com/news/news_k2rUUDIxqHzn",
+      "summary": "캔자스시티 연은 슈미드 총재는 이번 주 연준의 기준금리 인상이 높은 물가를 잡기 위해 필요한 조치였다며, 이를 지지했다고 밝힘 현재의 인플레이션…",
+      "contentStatus": "본문 확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_m3PlgWYGmYVK",
+      "title": "(카더라) 사우디, 유럽 정유사들에 “다음 달 원유 공급 없다” 통보",
+      "scope": "매크로 시황",
+      "tone": "확인",
+      "sectors": [
+        "원자재·지정학"
+      ],
+      "marketImpact": "에너지 공급과 지정학 변화가 물가·금리 및 기업 원가에 주는 영향을 확인합니다.",
+      "publishedKST": "2026-09-18 20:21",
+      "createdAt": "2026-09-18T20:21:08+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 12627,
+      "isRumor": true,
+      "importanceScore": 64.2,
+      "url": "https://saveticker.com/news/news_m3PlgWYGmYVK",
+      "summary": "블룸버그 통신은 소식통을 인용해, 사우디 아람코가 핵심 송유관 피격 여파로 다음 달 유럽 고객들에게 원유를 배정하지 않기로 했다고 보도함 이번…",
+      "contentStatus": "본문 확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_vUxr4ZjvhziG",
+      "title": "(카더라) 오픈AI·앤트로픽, 빠른 컴퓨팅 용량 확보 위해 소규모 데이터센터 눈독",
+      "scope": "국내 섹터 영향",
+      "tone": "확인",
+      "sectors": [
+        "전력기기·냉각"
+      ],
+      "marketImpact": "국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
+      "publishedKST": "2026-09-18 18:44",
+      "createdAt": "2026-09-18T18:44:26+09:00",
+      "source": "CNBC",
+      "author": "오선",
+      "viewCount": 13265,
+      "isRumor": true,
+      "importanceScore": 57.6,
+      "url": "https://saveticker.com/news/news_vUxr4ZjvhziG",
+      "summary": "CNBC는 소식통을 인용해, 오픈AI와 앤트로픽이 기존의 수백 MW~GW(기가와트)급 대형 데이터센터 계약과 병행해 20~30MW 수준의 소규모 컴퓨팅 용량 확보에도 나서고 있다고 보도함 대형 데이터센터는 전력·부지 확보난과 지역사회의 반발 등으로 구축 지연 위험이 커진 반면, 이미 전력 인프라가 갖춰진 기존 시설에서 소규모 용량을 확보하면 훨씬 빠르게 가동할 수 있다는 점이 가장 큰 장점으로 꼽힘",
+      "contentStatus": "본문 확인"
+    },
+    {
+      "id": "news_e3aWwUbtj1f1",
+      "title": "엔스케일, 10GW 전력 확보 앞세워 IPO 추진…",
+      "scope": "국내 섹터 영향",
+      "tone": "확인",
+      "sectors": [
+        "반도체",
+        "전력기기·냉각"
+      ],
+      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다. 국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
+      "publishedKST": "2026-09-19 07:32",
+      "createdAt": "2026-09-19T07:32:45+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 3392,
+      "isRumor": true,
+      "importanceScore": 52.7,
+      "url": "https://saveticker.com/news/news_e3aWwUbtj1f1",
+      "summary": "엔비디아가 투자한 AI 데이터센터 개발업체 엔스케일이 폭발적인 AI 컴퓨팅 수요에 대응하기 위해 뉴욕증시 IPO 서류를 공개 제출함 올해 상반기 매출은 1억4,060만 달러로 급성장했으나 순손실도 10억2,000만 달러로 확대됨.",
+      "contentStatus": "본문 확인"
+    },
     {
       "id": "news_gCv2QtNQbwmx",
       "title": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”",
@@ -33,7 +183,9 @@
       "isRumor": false,
       "importanceScore": 103.5,
       "url": "https://saveticker.com/news/news_gCv2QtNQbwmx",
-      "summary": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”"
+      "summary": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”",
+      "retained": true,
+      "contentStatus": "이전 확인 자료·원래 날짜 유지"
     },
     {
       "id": "news_6qrO9E6VwIsa",
@@ -52,7 +204,9 @@
       "isRumor": true,
       "importanceScore": 99.3,
       "url": "https://saveticker.com/news/news_6qrO9E6VwIsa",
-      "summary": "로이터 통신은 소식통을 인용해, 중국 최대 DRAM 업체인 창신메모리(CXMT)가 베이징 신규 공장에 낸드플래시 연구개발(R&D) 생산라인을 구축할 계획이라고 보도함 AI 서버 수요 급증과 제조사들의 D램·HBM 투자 집중으로 낸드 공급 부족이 이어지는 가운데, CXMT가 낸드 시장에 진출할 경우 삼성전자·SK하이닉스·마이크론 등 글로벌 선도 기업은 물론 자국 내 경쟁사인 YMTC(양쯔메모리)와도 직접 경쟁하게 됨"
+      "summary": "로이터 통신은 소식통을 인용해, 중국 최대 DRAM 업체인 창신메모리(CXMT)가 베이징 신규 공장에 낸드플래시 연구개발(R&D) 생산라인을 구축할 계획이라고 보도함 AI 서버 수요 급증과 제조사들의 D램·HBM 투자 집중으로 낸드 공급 부족이 이어지는 가운데, CXMT가 낸드 시장에 진출할 경우 삼성전자·SK하이닉스·마이크론 등 글로벌 선도 기업은 물론 자국 내 경쟁사인 YMTC(양쯔메모리)와도 직접 경쟁하게 됨",
+      "retained": true,
+      "contentStatus": "이전 확인 자료·원래 날짜 유지"
     },
     {
       "id": "news_-tKPbkCNhqQA",
@@ -71,7 +225,9 @@
       "isRumor": true,
       "importanceScore": 98.9,
       "url": "https://saveticker.com/news/news_-tKPbkCNhqQA",
-      "summary": "로이터 통신은 소식통을 인용해 SK하이닉스의 미국 자회사 솔리다임이 미국 내 낸드플래시 공장 신설을 검토 중이며 뉴욕주 북부가 유력한 후보지로 거론되고 있다고 보도함 트럼프 행정부가 미국 내 반도체 생산 확대를 압박하는 가운데 AI 데이터센터 투자 증가로 메모리칩 부족이 심해진 것이 배경이며, 이번 검토는 SK하이닉스가 인텔의 오하이오 공장에서 메모리칩을 생산하는 방안을 논의 중인 것과는 별개의 프로젝트라고 함"
+      "summary": "로이터 통신은 소식통을 인용해 SK하이닉스의 미국 자회사 솔리다임이 미국 내 낸드플래시 공장 신설을 검토 중이며 뉴욕주 북부가 유력한 후보지로 거론되고 있다고 보도함 트럼프 행정부가 미국 내 반도체 생산 확대를 압박하는 가운데 AI 데이터센터 투자 증가로 메모리칩 부족이 심해진 것이 배경이며, 이번 검토는 SK하이닉스가 인텔의 오하이오 공장에서 메모리칩을 생산하는 방안을 논의 중인 것과는 별개의 프로젝트라고 함",
+      "retained": true,
+      "contentStatus": "이전 확인 자료·원래 날짜 유지"
     },
     {
       "id": "news_Xn5uFikyyhIO",
@@ -90,30 +246,19 @@
       "isRumor": true,
       "importanceScore": 92.3,
       "url": "https://saveticker.com/news/news_Xn5uFikyyhIO",
-      "summary": "연합뉴스는 익명의 업계 관계자들을 인용해, SK그룹이 반도체 산업의 중요성과 글로벌 경영환경의 불확실성을 반영해 그룹 지주사인 SK㈜ 소속 부회장 4명 중 서진우·유정준·이형희 부회장 3명을 SK하이닉스로 이동 배치했다고 보도함 이들은 그동안 그룹의 글로벌 사업과 대외협력을 이끌어온 인사들로, 현재 SK하이닉스 임원 약 250명을 대상으로 심층 면담을 진행 중인 것으로 전해짐"
-    },
-    {
-      "id": "news_se-5TFDzPG4B",
-      "title": "(카더라) 미국, 중국 추가 관세 결정 보류…트럼프·시진핑 회담 앞두고 속도 조절",
-      "scope": "국내 섹터 영향",
-      "tone": "확인",
-      "sectors": [
-        "수출·관세"
-      ],
-      "marketImpact": "국내 자동차·철강·기계 수출기업의 가격 경쟁력과 현지 생산 전략을 확인해야 합니다.",
-      "publishedKST": "2026-09-18 07:24",
-      "createdAt": "2026-09-18T07:24:40+09:00",
-      "source": "블룸버그",
-      "author": "오선",
-      "viewCount": 7087,
-      "isRumor": true,
-      "importanceScore": 55.7,
-      "url": "https://saveticker.com/news/news_se-5TFDzPG4B",
-      "summary": "블룸버그 통신은 소식통을 인용해, 미국이 주요 교역국의 과잉생산 문제와 관련해 추진해 온 신규 관세 발표를 최소한 다음 주 트럼프·시진핑 정상회담 이후로 연기할 전망이라고 보도함 당초 미 행정부는 정상회담 전에 무역법 301조 조사와 관련한 과잉생산 보고서를 공개하고, 중국산 제품에 7.5%의 추가 관세를 부과하도록 권고할 계획이었음"
+      "summary": "연합뉴스는 익명의 업계 관계자들을 인용해, SK그룹이 반도체 산업의 중요성과 글로벌 경영환경의 불확실성을 반영해 그룹 지주사인 SK㈜ 소속 부회장 4명 중 서진우·유정준·이형희 부회장 3명을 SK하이닉스로 이동 배치했다고 보도함 이들은 그동안 그룹의 글로벌 사업과 대외협력을 이끌어온 인사들로, 현재 SK하이닉스 임원 약 250명을 대상으로 심층 면담을 진행 중인 것으로 전해짐",
+      "retained": true,
+      "contentStatus": "이전 확인 자료·원래 날짜 유지"
     }
   ],
   "collection": {
-    "status": "정상",
-    "checkedAtKST": "2026-09-18T17:26:16+09:00"
+    "status": "부분갱신·국장 이전자료 포함",
+    "checkedAtKST": "2026-09-19T21:37:38+09:00",
+    "retainedIds": [
+      "news_gCv2QtNQbwmx",
+      "news_6qrO9E6VwIsa",
+      "news_-tKPbkCNhqQA",
+      "news_Xn5uFikyyhIO"
+    ]
   }
 }

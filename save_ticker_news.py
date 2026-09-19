@@ -1,4 +1,4 @@
-"""Collect SaveTicker articles authored by 오선 that matter to the Korean stock market."""
+"""Collect 오선's SaveTicker Korean-market news and global macro briefings."""
 from __future__ import annotations
 
 import argparse
@@ -51,6 +51,16 @@ SECTOR_RULES = (
     (r"AI 인프라|데이터센터|전력망|변압기|원자력 전력|전력 수요", "전력기기·냉각", "국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다."),
     (r"리튬|니켈|양극재|전고체.{0,8}배터리|배터리 공급망", "2차전지", "국내 배터리·소재 기업의 원가와 수요 전망에 영향을 줄 수 있습니다."),
     (r"철강.{0,20}관세|자동차.{0,20}관세|대중국.{0,12}관세|미국.{0,12}관세", "수출·관세", "국내 자동차·철강·기계 수출기업의 가격 경쟁력과 현지 생산 전략을 확인해야 합니다."),
+)
+
+MACRO_RULES = (
+    (r"SAVE.*(?:장\s*전|마감|시황).*리포트|미국 증시 (?:요약|마감)", "장전·마감 시황", "미국 시장의 방향과 금리·환율·원자재 움직임을 함께 확인합니다."),
+    (r"연준|연은|FOMC|연방준비|기준금리|추가 긴축|금리 (?:인상|인하)|일본은행|ECB", "중앙은행·금리", "금리 경로와 긴축 강도의 변화는 주식의 할인율과 글로벌 자금 흐름에 연결됩니다."),
+    (r"인플레|소비자물가|생산자물가|\bCPI\b|\bPCE\b|\bPPI\b|물가상승", "물가", "물가의 방향과 예상치 대비 차이를 통화정책·실질금리 변화와 함께 확인합니다."),
+    (r"비농업|실업률|고용지표|소매판매|산업생산|경기선행|\bPMI\b|\bGDP\b|경기 침체", "경기·고용", "경기와 고용의 둔화 또는 회복이 기업 실적과 정책 기대에 미치는 영향을 확인합니다."),
+    (r"국채|채권 금리|채권 수익률|달러 인덱스|달러지수|엔화|외환|달러/엔", "채권·환율", "국채 금리와 통화 움직임은 성장주 평가와 국가 간 자금 이동의 주요 변수입니다."),
+    (r"브렌트유|\bWTI\b|유가|원유|천연가스|국제 금값|금 가격|호르무즈|중동.*(?:회담|전쟁|협상)", "원자재·지정학", "에너지 공급과 지정학 변화가 물가·금리 및 기업 원가에 주는 영향을 확인합니다."),
+    (r"옵션 만기|리밸런싱|유동성|양적 (?:긴축|완화)|자금 유입|자금 유출|신용등급", "수급·금융환경", "만기·자금 흐름과 금융여건에 따른 단기 변동성 및 위험 선호 변화를 확인합니다."),
 )
 
 POSITIVE_TERMS = re.compile(r"협력|선정|수주|확대|증가|급증|상향|돌파구|투자 계획|완화|회복|재평가")
@@ -110,18 +120,27 @@ def classify(item: dict, now: datetime) -> dict | None:
     if str(item.get("author_name") or "").strip() != "오선":
         return None
     created = _parse_time(item.get("created_at"))
+    if created > now:
+        return None
     text = _clean(str(item.get("title") or "") + " " + _text(item.get("content")))
     direct = _matches(text, DIRECT_RULES)
     sectors = _matches(text, SECTOR_RULES)
-    if not direct and not sectors:
+    macro = _matches(text, MACRO_RULES)
+    macro_headline = _matches(str(item.get('title') or ''), MACRO_RULES)
+    if not direct and not sectors and not macro:
         return None
-    scope = "국장 직접" if direct else "국내 섹터 영향"
-    selected = direct or sectors
+    scope = "국장 직접" if direct else "매크로 시황" if macro_headline or (macro and not sectors) else "국내 섹터 영향"
+    # Daily market reports retain their macro identity even when they mention Korea.
+    if macro_headline and macro_headline[0][0] == '장전·마감 시황':
+        scope = '매크로 시황'
+    selected = macro if scope == '매크로 시황' else direct or sectors
     labels = list(dict.fromkeys(label for label, _ in selected))[:3]
     impacts = list(dict.fromkeys(impact for _, impact in selected))[:2]
     views = int(item.get("view_count") or 0)
     age_hours = max(0.0, (now - created).total_seconds() / 3600)
-    score = (85 if direct else 52) + min(20, math.log10(max(1, views)) * 5)
+    score = (85 if scope == '국장 직접' else 65 if scope == '매크로 시황' else 52) + min(20, math.log10(max(1, views)) * 5)
+    score += 12 if scope == '매크로 시황' and labels[0] == '장전·마감 시황' else 0
+    score += 8 if scope == '매크로 시황' and '텍스트' in str(item.get('title')) else 0
     score += 7 if item.get("is_top_story") or item.get("is_group_top_story") else 0
     score -= min(18, age_hours * .35)
     if RUMOR.search(text):
@@ -163,10 +182,13 @@ def select_news(items: list[dict], now: datetime, limit: int = 10) -> list[dict]
             continue
         keys.append(key)
         unique.append(item)
-    direct = [item for item in unique if item["scope"] == "국장 직접"][:6]
+    domestic = [item for item in unique if item['scope'] != '매크로 시황']
+    direct = [item for item in domestic if item["scope"] == "국장 직접"][:min(6, limit)]
     selected = list(direct)
     used_primary = {item["sectors"][0] for item in selected if item["sectors"]}
-    for item in unique:
+    for item in domestic:
+        if len(selected) >= limit:
+            break
         if item in selected:
             continue
         primary = item["sectors"][0] if item["sectors"] else "기타"
@@ -176,7 +198,21 @@ def select_news(items: list[dict], now: datetime, limit: int = 10) -> list[dict]
         used_primary.add(primary)
         if len(selected) >= limit:
             break
-    return sorted(selected, key=lambda item: item["importanceScore"], reverse=True)[:limit]
+    macro, topics = [], set()
+    for item in sorted(unique, key=lambda x: (x['createdAt'], x['importanceScore']), reverse=True):
+        if item['scope'] != '매크로 시황':
+            continue
+        topic = item['sectors'][0]
+        # Keep the latest pre-market and closing report, plus distinct macro topics.
+        if topic == '장전·마감 시황':
+            topic += ':장전' if re.search(r'장\s*전', item['title']) else ':마감'
+        if topic in topics:
+            continue
+        topics.add(topic)
+        macro.append(item)
+        if len(macro) == 6:
+            break
+    return sorted(selected[:limit] + macro, key=lambda item: item['importanceScore'], reverse=True)
 
 
 def collect_list(now: datetime, hours: int = 36, max_pages: int = 12) -> list[dict]:
@@ -198,29 +234,38 @@ def build_board(items: list[dict], details: dict[str, dict], now: datetime, hour
     for item in selected:
         detail = details.get(item["id"], {})
         item["summary"] = _summary(detail, next(x for x in items if str(x.get("id")) == item["id"]))
+        item['contentStatus'] = '본문 확인' if _text(detail.get('content')).strip() else '목록 미리보기·본문 미확인'
+        if item['scope'] == '매크로 시황':
+            # Public snippets stay short; the source link exposes the full report.
+            words = item['summary'].split()
+            item['summary'] = ' '.join(words[:20]) + ('…' if len(words) > 20 else '')
+            item['summaryKind'] = '원문 발췌'
         item["source"] = str(detail.get("source") or item["source"])
     author_count = sum(str(item.get("author_name") or "").strip() == "오선" for item in items)
     direct_count = sum(item["scope"] == "국장 직접" for item in selected)
+    macro_count = sum(item['scope'] == '매크로 시황' for item in selected)
     oldest = min((_parse_time(item.get("created_at")) for item in items), default=now)
     return {
         "schemaVersion": 1,
         "meta": {
             "title": "유튜브시황2",
-            "status": "SaveTicker 오선 국장 주요뉴스 갱신",
+            "status": "SaveTicker 오선 국장·매크로 시황 갱신",
             "updatedKST": now.strftime("%Y-%m-%d %H:%M"),
             "range": f"{oldest.strftime('%m.%d %H:%M')}–{now.strftime('%m.%d %H:%M')}",
             "sourceUrl": SOURCE_URL,
             "source": "SaveTicker · 작성자 오선",
-            "selectionRule": "국내 기업·시장 직접 뉴스 우선, 국내 업종 영향이 명확한 글로벌 뉴스 보완, 유사 속보 통합",
+            "selectionRule": "국장 직접·국내 업종 영향 뉴스와 장전·마감 리포트, 금리·물가·경기·환율·원자재 매크로 시황을 함께 선별",
             "fetchedCount": len(items),
             "authorCount": author_count,
             "selectedCount": len(selected),
             "directCount": direct_count,
-            "sectorCount": len(selected) - direct_count,
+            "sectorCount": len(selected) - direct_count - macro_count,
+            "macroCount": macro_count,
             "windowHours": hours,
         },
         "items": selected,
-        "collection": {"status": "정상", "checkedAtKST": now.isoformat(timespec="seconds")},
+        "collection": {"status": "정상" if all(x['contentStatus']=='본문 확인' for x in selected) else '부분수집·본문 미확인 포함',
+                       "checkedAtKST": now.isoformat(timespec="seconds")},
     }
 
 
@@ -230,7 +275,7 @@ def validate_board(board: dict) -> None:
     for item in board["items"]:
         if item.get("author") != "오선":
             raise ValueError("오선 작성자가 아닌 기사가 포함됐습니다")
-        if item.get("scope") not in ("국장 직접", "국내 섹터 영향"):
+        if item.get("scope") not in ("국장 직접", "국내 섹터 영향", "매크로 시황"):
             raise ValueError("국내 증시 연결 구분이 없습니다")
         if not re.fullmatch(r"https://saveticker\.com/news/(?:\d+|news_[A-Za-z0-9_-]+)", str(item.get("url") or "")):
             raise ValueError("허용되지 않은 기사 링크")
@@ -254,7 +299,29 @@ def refresh(now: datetime | None = None, hours: int = 36) -> dict:
 def refresh_or_retain(previous: dict | None, now: datetime | None = None, hours: int = 36) -> dict:
     now = (now or datetime.now(KST)).astimezone(KST)
     try:
-        return refresh(now, hours)
+        board = refresh(now, hours)
+        # A bounded public feed can omit still-recent domestic articles. An added
+        # macro section must not silently erase the existing verified domestic view.
+        retained = []
+        for scope in ('국장 직접', '국내 섹터 영향'):
+            if any(item['scope'] == scope for item in board['items']):
+                continue
+            for old in (previous or {}).get('items', []):
+                if old.get('scope') != scope:
+                    continue
+                if now - timedelta(hours=hours) <= _parse_time(old['createdAt']) <= now:
+                    item = copy.deepcopy(old)
+                    item['retained'] = True
+                    item['contentStatus'] = '이전 확인 자료·원래 날짜 유지'
+                    retained.append(item)
+        board['items'].extend(retained)
+        for scope, field in [('국장 직접','directCount'),('국내 섹터 영향','sectorCount'),('매크로 시황','macroCount')]:
+            board['meta'][field] = sum(item['scope']==scope for item in board['items'])
+        board['meta']['selectedCount'] = len(board['items'])
+        if retained:
+            board['collection']['status'] = '부분갱신·국장 이전자료 포함'
+            board['collection']['retainedIds'] = [item['id'] for item in retained]
+        return board
     except Exception as exc:
         if previous:
             retained = copy.deepcopy(previous)

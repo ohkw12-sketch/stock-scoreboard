@@ -187,7 +187,7 @@ def rebuild(args, config):
     else:
         manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
-        'rotation_screener.py', 'growth_discovery.py', 'reported_financials.py',
+        'rotation_screener.py', 'rotation_rules.py', 'growth_discovery.py', 'reported_financials.py',
         'dart_fundamentals.py', 'kis_consensus.py',
         'growth_sources.py', 'growth_documents.py', 'value_growth.py',
         'combined_recommendations.py', 'performance_feedback.py')})[:16]

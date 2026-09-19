@@ -41,3 +41,13 @@ test('load failure stays inside the new board',async()=>{
   const n=await render({},true);
   assert.match(n.savetickerstatus.textContent,/불러오기 실패/);
 });
+
+test('macro section coexists with domestic sections and links SAVE text reports',async()=>{
+  const n=await render({meta:{macroCount:1},items:[{title:'SAVE 마감 리포트',scope:'매크로 시황',
+    summary:'금리와 유가를 함께 확인',summaryKind:'원문 발췌',marketImpact:'글로벌 금리 경로',
+    sectors:['장전·마감 시황'],author:'오선',url:'https://saveticker.com/news/news_test-123'}]});
+  assert.match(n.savetickerbody.innerHTML,/매크로 시황 · 오선 SAVE/);
+  assert.match(n.savetickerbody.innerHTML,/시장 연결/);
+  assert.match(n.savetickerbody.innerHTML,/href="https:\/\/saveticker.com\/news\/news_test-123"/);
+  assert.match(n.savetickerbody.innerHTML,/국내 기업·시장 직접 뉴스/);
+});

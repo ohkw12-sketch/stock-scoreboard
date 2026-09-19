@@ -49,7 +49,9 @@ class RotationEngineTest(unittest.TestCase):
         legacy_row = {"rank", "name", "sector", "opGrowth", "value", "sectorMedian",
                       "premium", "marketState", "marketDetail", "change", "changeUntil",
                       "marks", "signal", "reason"}
-        self.assertTrue(legacy_row.issubset(self.p11["rows"][0]))
+        self.assertLessEqual(len(self.p11["rows"]), 5)
+        for row in self.p11["rows"]:
+            self.assertTrue(legacy_row.issubset(row))
 
     def test_required_metrics_and_classifications(self):
         sector = self.p11["sectors"][0]
@@ -95,7 +97,7 @@ class RotationEngineTest(unittest.TestCase):
         self.assertEqual(weights["turnover_change"], 0.30)
 
     def test_entry_ranks_only_rotation_candidates_with_equal_fundamental_weight(self):
-        rotation_pool = {row["ticker"] for row in self.p11["_allRows"]}
+        rotation_pool = {row["ticker"] for row in self.p11["_legacyEntryRows"]}
         self.assertTrue(all(row["ticker"] in rotation_pool for row in self.p1["rows"]))
         for row in self.p1["rows"]:
             self.assertAlmostEqual(
@@ -119,7 +121,7 @@ class RotationEngineTest(unittest.TestCase):
             selection_minimum_average_quarterly_op_margin_pct=15,
         )
         baseline = run_engine(self.prices, config, "unit-test-sample", fundamentals)
-        target = baseline["_allRows"][0]["ticker"]
+        target = baseline["_legacyEntryRows"][0]["ticker"]
         target_mask = fundamentals["ticker"].eq(target)
         for quarter in (3, 4, 1, 2):
             fundamentals.loc[target_mask, f"normalized_op_q{quarter}"] = 8_940_000_000
