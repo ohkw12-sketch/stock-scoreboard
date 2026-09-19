@@ -41,4 +41,4 @@
 
 - Latest p11 display approval: at most FIVE DISTINCT SECTORS, up to THREE qualified stocks per sector. Keep at most three entry-review candidates; allow eligible observation candidates within those sectors, at most fifteen stocks overall. Do not fill when qualifying sectors are unavailable. Rank is display order, not entry eligibility; use entryFit/signal to distinguish entry from observation. This supersedes fixed observation ranks 4–5 and the two-observation limit.
 
-- The upper whole-market rotation-strength board is independent of the five-sector stock list. Show active sectors using existing engine criteria (score >= 58, five-day relative strength > 0, neither early-exit nor ended), without a fixed 20-sector fill/cap.
+- The upper whole-market rotation-strength board is independent of the five-sector stock list. Show active sectors using existing engine criteria (score >= 58, five-day relative strength > 0, neither early-exit nor ended), displaying only the first ten qualifying sectors (latest user correction). Do not fill missing slots.
