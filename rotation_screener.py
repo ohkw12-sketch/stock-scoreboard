@@ -2035,10 +2035,30 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
         ),
     } for item in stock_data[stock_data["date"].eq(latest_date)].itertuples()]
     previous_audit = {row['ticker']: row for row in result['_eligibility']}
+    displayed = {row['ticker']: row for row in rows}
     for row in rotation_audit:
         old = previous_audit.get(row['ticker'], {})
+        profile = financial_profiles.get(row['ticker'])
+        row['financialPrerequisite'] = profile
+        row['financialExclusionReasons'] = []
+        if fundamentals is not None:
+            if not profile or not profile['complete']:
+                row['financialExclusionReasons'].append('확정 4개 분기 재무 없음')
+            else:
+                if profile['averageQuarterlySales'] < minimum_average_sales:
+                    row['financialExclusionReasons'].append('4분기 평균 매출액 기준 미달')
+                if profile['averageQuarterlyOperatingMarginPct'] < minimum_average_margin:
+                    row['financialExclusionReasons'].append('4분기 평균 영업이익률 기준 미달')
         if not old.get('eligible', False):
             row['reason'] = old.get('reason', row['reason'])
+        row['displayed'] = row['ticker'] in displayed
+        row['displayRank'] = displayed.get(row['ticker'], {}).get('rank')
+        row['selectionStage'] = (
+            '실적 선조건 탈락' if row['financialExclusionReasons'] else
+            '가격·섹터 조건 탈락' if not row['eligible'] else
+            '순위·분산 제한으로 미노출' if not row['displayed'] else
+            '진입 검토' if row['displayRank'] <= 3 else '관찰'
+        )
     result['_eligibility'] = rotation_audit
     result['_allRows'] = rotation_pool
     result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-2.0"}
@@ -2144,4 +2164,3 @@ def main(argv: Iterable[str] | None = None) -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
