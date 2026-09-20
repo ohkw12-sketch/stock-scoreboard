@@ -45,3 +45,6 @@
 
 ## Latest integration approval (2026-09-20)
 Supersedes observation exceptions and entry-three cap: retire the separate p1 screen (empty retired payload only for compatibility), use p11 rotation-entry-3.0 for strict entry-qualified stocks only. No financialWatch or watchOnly candidates. Up to five sectors and three stocks each, no forced filling. All displayed candidates retain entry eligibility independent of rank. Keep upper strength display at ten. Combined ranking ignores retired p1 and derives entry state from strict rotation. Preserve historical publications and version new recommendations separately.
+
+## Separate observation area (2026-09-21)
+User approved a separate watchCandidates area below strict p11 rows, with a 후보 badge. Restore the previously verified financial-improvement exception only for this separate area. Existing price, liquidity, excluded-sector and heat gates still apply. At most five sectors and three candidates each, no forced filling. These observations never enter p11.rows, combined recommendations or entry performance records. Show explicit watch reasons; preserve strict entry rules.

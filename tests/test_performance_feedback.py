@@ -78,7 +78,7 @@ class FeedbackTest(unittest.TestCase):
 
     def test_integrated_rotation_ignores_retired_entry_and_watch_candidates(self):
         strict=dict(ticker='123456',name='통과',rank=1,entryState='진입 검토',ruleVersion='rotation-entry-3.0')
-        board={'p11':{'projectType':'rotation-entry','rows':[strict,dict(strict,ticker='000002',watchOnly=True)]},
+        board={'p11':{'projectType':'rotation-entry','watchCandidates':[dict(strict,ticker='000004',watchOnly=True)],'rows':[strict,dict(strict,ticker='000002',watchOnly=True)]},
                'p1':{'rows':[dict(strict,ticker='000003',entryState='진입가능')]}}
         samples=self.samples()
         for r in samples['rows']: r['features']=['순환진입']

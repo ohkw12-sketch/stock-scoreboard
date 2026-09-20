@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from rotation_rules import features, macd_weight, score_candidate, select_top, build_rotation, evidence_from_sources, improving_financial_watch
+from rotation_rules import select_watch_candidates, features, macd_weight, score_candidate, select_top, build_rotation, evidence_from_sources, improving_financial_watch
 
 
 def candidate(**changes):
@@ -99,6 +99,20 @@ class RotationRulesTest(unittest.TestCase):
         self.assertEqual(len(select_top([])),0)
         only_watch=select_top([dict(rows[0],watchOnly=True,heatException=True)])
         self.assertEqual(only_watch,[])
+
+    def test_separate_watch_candidates_never_enter_strict_list(self):
+        rows=[dict(ticker=str(i),sector=str(i//3),detailTheme=str(i//3),eligible=True,
+                   stockEntryScore=100-i,volumeRatio=2,watchOnly=True,heatException=False,
+                   financialWatch=True,financialWatchReason='매출 기준 미달 · 실적 개선') for i in range(18)]
+        selected=select_watch_candidates(rows)
+        self.assertEqual(len(selected),15)
+        self.assertEqual(len({r['sector'] for r in selected}),5)
+        self.assertTrue(all(r['candidateBadge']=='후보' and r['entryState']=='관찰 후보' for r in selected))
+        self.assertEqual(select_top(rows),[])
+        self.assertEqual(select_watch_candidates([dict(rows[0],eligible=False)]),[])
+        self.assertEqual(select_watch_candidates([dict(rows[0],watchOnly=False)]),[])
+        self.assertEqual(select_watch_candidates(rows[:1],rows[:1]),[])
+        self.assertEqual(len(select_watch_candidates(rows[:2])),2)
 
     def test_excluded_sectors_and_semiconductor_rotation(self):
         for sector in ['건설','바이오/제약']:

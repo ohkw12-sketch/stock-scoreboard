@@ -24,7 +24,7 @@ import pandas as pd
 
 from dart_fundamentals import collect_dart_fundamentals
 from kis_consensus import KisConsensusClient, collect_kis_consensus
-from rotation_rules import build_rotation, evidence_from_sources, improving_financial_watch
+from rotation_rules import build_rotation, evidence_from_sources, improving_financial_watch, select_watch_candidates
 from reported_financials import add_four_quarter_metrics
 
 
@@ -1984,13 +1984,20 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
     rows, rotation_pool, rotation_audit = build_rotation(
         prices, sector_results.to_dict('records'), legacy_pool if fundamentals is not None else [], config,
         evidence_from_sources(fundamentals, config))
+    financial_watches, watch_evidence = improving_financial_watch(fundamentals, financial_profiles, latest_date)
+    watch_templates = rotation_rows(stock_data, sector_results, int(prices['ticker'].nunique()),
+        sector_cap=None, minimum_daily_turnover=int(config['minimum_daily_turnover']),
+        eligible_tickers=(eligible_tickers or set()) | set(financial_watches))
+    _, watch_pool, _ = build_rotation(prices, sector_results.to_dict('records'), watch_templates, config,
+        evidence_from_sources(fundamentals, config) + watch_evidence, financial_watches)
+    observations = select_watch_candidates(watch_pool, rows)
     public_sectors = top.drop(columns=['raw_ret3', 'raw_ret5']).to_dict('records')
     stage_counts = top["stage"].value_counts().to_dict()
     status = (
         f"전체시장 엔진: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
         f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
-        f"분기 영업이익률 평균 {minimum_average_margin:g}%는 진입 선조건. 실적 미달·관찰 전용 후보 제외. "
+        f"분기 영업이익률 평균 {minimum_average_margin:g}%는 진입 선조건. 관찰 후보는 아래 별도 표시. "
         f"조건 통과 섹터 최대 5개, 섹터당 최대 3종목. 표시 종목 모두 진입 최소조건 통과. 부족하면 미충원."
     )
     result = {
@@ -2008,7 +2015,7 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
             "startDateScanBusinessDays": [int(config["rotation_scan_min_days"]), int(config["rotation_scan_max_days"])],
         },
         "sectors": public_sectors,
-        "rows": rows,
+        "rows": rows, "watchCandidates": observations, "watchRuleVersion": "rotation-watch-1.0",
         "events": [{
             "name": "전체시장 순환매 엔진", "date": latest_date.strftime("%Y-%m-%d"),
             "event": f"{prices['ticker'].nunique():,}종목 전수 구조로 섹터 상대강도·수급·확산·선도주 강도 계산",

@@ -372,3 +372,15 @@ test('rotation displays up to fifteen stocks and at most ten strength sectors', 
   assert.equal((document.getElementById('p11sectors').innerHTML.match(/class="sector-card"/g)||[]).length,10);
   assert.match(document.getElementById('p11method').textContent,/섹터당 최대 3종목/);
 });
+
+test('separate watch area badges candidates, escapes reasons and excludes duplicate entry', async()=>{
+  const data=fixtures(), p=data['data.json'].p11;
+  p.watchCandidates=[{ticker:'999999',name:'관찰종목',sector:'장비',watchOnly:true,watchReason:'<b>미달</b>',reason:'확인 필요'},
+                    {...p.rows[0],watchOnly:true}];
+  const {document,errors}=await runtime({data});
+  assert.equal(errors.length,0);
+  const html=document.getElementById('p11watchbody').innerHTML;
+  assert.match(html,/후보/); assert.match(html,/관찰종목/); assert.match(html,/&lt;b&gt;/);
+  assert.equal(document.getElementById('p11watchbody').rows.length,1);
+  assert.doesNotMatch(document.getElementById('p11body').innerHTML,/관찰종목/);
+});

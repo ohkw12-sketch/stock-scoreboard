@@ -175,7 +175,13 @@ def score_candidate(item, events, minimum_turnover):
     # minimum gate can remain low-ranked observations, with a 20-point penalty.
     penalty = (20 if distribution else 0) + (15 if distance > .10 else 0) + (15 if exception else 0) + (15 if r.get('sector_stage') == '⑥후반' else 0)
     watch = distribution or exception or not breakout or distance > .10 or r.get('sector_stage') == '⑥후반'
-    return dict(eligible=not reasons, exclusionReasons=reasons, score=round(max(0, chart + financial + catalyst - penalty), 2),
+    watch_reasons = []
+    if not breakout: watch_reasons.append('종가 저항 돌파 대기')
+    if distance > .10: watch_reasons.append('저항 돌파 후 과도한 이격')
+    if distribution: watch_reasons.append('윗꼬리·종가 밀림 확인 필요')
+    if exception: watch_reasons.append('강한 촉매 동반 과열 관찰')
+    if r.get('sector_stage') == '⑥후반': watch_reasons.append('순환 후반 위험')
+    return dict(watchReasons=watch_reasons, eligible=not reasons, exclusionReasons=reasons, score=round(max(0, chart + financial + catalyst - penalty), 2),
         scoreBlocks={'수급·차트': chart, '실적·컨센서스': financial, '신규촉매·업황': catalyst},
         penalty=penalty, watchOnly=watch, overheated=hot, heatException=exception,
         distributionWarning=distribution,
@@ -215,6 +221,31 @@ def select_top(candidates, limit=15):
             grouped.append(dict(row, rank=len(grouped)+1, sectorRank=sector_rank, rankInSector=stock_rank,
                 entryState='진입 검토', ruleVersion='rotation-entry-3.0', entryFit='진입 검토', signal='진입 검토'))
     return grouped
+
+
+def select_watch_candidates(candidates, entry_rows=(), limit=15):
+    """Separate observations; never relax eligibility or promote to entry."""
+    excluded = {r['ticker'] for r in entry_rows}
+    ranked = sorted((r for r in candidates if r.get('eligible') and r.get('watchOnly') and r['ticker'] not in excluded),
+                    key=lambda r: (-r['stockEntryScore'], -r['volumeRatio'], r['ticker']))
+    groups, seen = {}, set()
+    for row in ranked:
+        if row['ticker'] in seen:
+            continue
+        sector = row['sector']
+        if sector not in groups and len(groups) >= 5:
+            continue
+        group = groups.setdefault(sector, [])
+        if len(group) >= 3:
+            continue
+        reasons = list(row.get('watchReasons', []))
+        if row.get('financialWatchReason'):
+            reasons.insert(0, row['financialWatchReason'])
+        group.append(dict(row, signal='후보', entryFit='관찰 후보', entryState='관찰 후보',
+                          candidateBadge='후보', watchReason=' · '.join(reasons) or '진입 조건 추가 확인 필요'))
+        seen.add(row['ticker'])
+    selected = [r for group in groups.values() for r in group][:max(0, min(15, limit))]
+    return [dict(r, rank=i+1) for i,r in enumerate(selected)]
 
 
 def improving_financial_watch(fundamentals, profiles, as_of):
