@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-18T17:34:06.351188+09:00",
-  "sourceDate": "2026-09-18",
-  "slot": "15:00",
+  "generatedAt": "2026-09-21T09:00:22.984368+09:00",
+  "sourceDate": "2026-09-21",
+  "slot": "08:00",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -12,55 +12,45 @@
   },
   "issues": [
     {
-      "id": "ai-server-supply-20260918",
-      "name": "AI 서버·부속품 공급",
-      "strength": 25,
+      "id": "physical-ai-automation-20260921",
+      "name": "피지컬 AI·검사 자동화",
+      "strength": 50,
       "marketGrade": "미확인",
       "fundamentalGrade": "미확인",
       "spreadType": "개별반응·미확인",
       "leaders": [],
       "candidates": [
         {
-          "ticker": "351320",
-          "name": "넥사다이내믹스",
-          "sector": "AI 서버·부속품",
-          "direct": true,
+          "ticker": "088340",
+          "name": "유라클",
+          "sector": "산업용 소프트웨어·피지컬 AI",
+          "direct": false,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/351320.KQ/",
-            "asOf": "2026-09-18T17:05:05+09:00",
-            "adjustmentChecked": true,
-            "changePct": -0.3817,
-            "return5dPct": -2.3691,
-            "turnoverRatio": 0.1436,
-            "distance20Pct": 13.9688
-          },
+          "quote": {},
           "confirmed": false,
           "hot": false,
           "evidence": [
             {
-              "id": "ai-351320-contract",
-              "ticker": "351320",
+              "id": "physical-ai-088340-policy",
+              "ticker": "088340",
               "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
-              "publishedAt": "2026-09-18T09:00:00+09:00",
-              "verifiedAt": "2026-09-18T17:10:20+09:00",
-              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
+              "publishedAt": "2026-09-18T16:51:00+09:00",
+              "verifiedAt": "2026-09-21T08:44:40+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
               "status": "verified",
               "polarity": "positive",
-              "kind": "contract",
-              "summary": "넥사다이내믹스가 일본 AI 부속품 업체와 15억8,734만 원 규모 AI 서버 및 부속품 공급계약을 공시했다."
+              "kind": "policy",
+              "summary": "유라클은 산업통상부 주관 피지컬 AI 기반 트랙터 변속기 자율제조 검사 통합 플랫폼 과제의 주관기관으로 선정됐다. 총 사업비는 116억4,273만5천원, 유라클 배정 정부지원 연구개발비는 13억5천만원이며 연구기간은 2026-07-01부터 2029-12-31까지다."
             }
           ],
           "earningsPeriods": [],
           "scores": {
-            "issue": 5,
+            "issue": 10,
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
           "score": 10,
           "stage": "탐색",
@@ -69,195 +59,99 @@
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "보통"
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "459510",
+          "name": "나우로보틱스",
+          "sector": "산업용 로봇·검사 자동화",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "physical-ai-459510-contract",
+              "ticker": "459510",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
+              "publishedAt": "2026-09-18T17:10:00+09:00",
+              "verifiedAt": "2026-09-21T08:44:40+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "나우로보틱스의 에이피알팩토리 대상 부스터 프로 X2 Probe Ass’y 자동화 설비 공급계약은 8억원으로 최근 매출의 6.39%이며, 종료일이 2026-11-18로 변경됐다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 10,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
         }
       ],
       "evidence": [
         {
-          "id": "ai-351320-contract",
-          "ticker": "351320",
+          "id": "physical-ai-088340-policy",
+          "ticker": "088340",
           "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "verifiedAt": "2026-09-18T17:10:20+09:00",
-          "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
+          "publishedAt": "2026-09-18T16:51:00+09:00",
+          "verifiedAt": "2026-09-21T08:44:40+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "policy",
+          "summary": "유라클은 산업통상부 주관 피지컬 AI 기반 트랙터 변속기 자율제조 검사 통합 플랫폼 과제의 주관기관으로 선정됐다. 총 사업비는 116억4,273만5천원, 유라클 배정 정부지원 연구개발비는 13억5천만원이며 연구기간은 2026-07-01부터 2029-12-31까지다."
+        },
+        {
+          "id": "physical-ai-459510-contract",
+          "ticker": "459510",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
+          "publishedAt": "2026-09-18T17:10:00+09:00",
+          "verifiedAt": "2026-09-21T08:44:40+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
-          "summary": "넥사다이내믹스가 일본 AI 부속품 업체와 15억8,734만 원 규모 AI 서버 및 부속품 공급계약을 공시했다."
+          "summary": "나우로보틱스의 에이피알팩토리 대상 부스터 프로 X2 Probe Ass’y 자동화 설비 공급계약은 8억원으로 최근 매출의 6.39%이며, 종료일이 2026-11-18로 변경됐다."
         }
       ],
       "detection": [
         {
           "channel": "DART",
-          "label": "넥사다이내믹스 AI 서버 공급계약",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "summary": "일본 AI 부속품 업체 대상 서버·부속품 공급계약을 확인했다."
+          "label": "유라클 피지컬 AI 기반 자율제조 검사 국책과제 선정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
+          "publishedAt": "2026-09-18T16:51:00+09:00",
+          "summary": "산업통상부 주관 피지컬 AI 기반 트랙터 변속기 자율제조 검사 통합 플랫폼 국책과제의 주관연구개발기관 선정을 확인했다."
+        },
+        {
+          "channel": "DART",
+          "label": "나우로보틱스 자동화 설비 공급계약 일정 정정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
+          "publishedAt": "2026-09-18T17:10:00+09:00",
+          "summary": "Probe Ass’y 자동화 설비 공급계약의 종료일 변경 공시와 계약 존속을 확인했다."
         }
       ]
     },
     {
-      "id": "maritime-energy-orders-20260918",
-      "name": "해상에너지·선박 핵심설비 수주",
+      "id": "ai-infrastructure-supply-capex-20260921",
+      "name": "AI 서버 공급·반도체 기판 CAPEX",
       "strength": 25,
-      "marketGrade": "B",
-      "fundamentalGrade": "미확인",
-      "spreadType": "섹터확산",
-      "leaders": [],
-      "candidates": [
-        {
-          "ticker": "071970",
-          "name": "HD현대마린엔진",
-          "sector": "선박엔진 공급",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/071970.KS/",
-            "asOf": "2026-09-18T17:04:55+09:00",
-            "adjustmentChecked": true,
-            "changePct": 2.1401,
-            "return5dPct": 0.0,
-            "turnoverRatio": 1.9086,
-            "distance20Pct": 2.145
-          },
-          "confirmed": true,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "marine-071970-correction",
-              "ticker": "071970",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
-              "publishedAt": "2026-09-18T09:00:00+09:00",
-              "verifiedAt": "2026-09-18T17:10:20+09:00",
-              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "HD현대마린엔진이 344억 원 규모 선박엔진 공급계약의 정정 내용을 공시했으며 계약 종료일은 2026-11-15이다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 10,
-            "fundamental": 0,
-            "entry": 10
-          },
-          "score": 25,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
-        },
-        {
-          "ticker": "060370",
-          "name": "LS마린솔루션",
-          "sector": "해상풍력 해저케이블 운송·설치",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/060370.KQ/",
-            "asOf": "2026-09-18T17:04:58+09:00",
-            "adjustmentChecked": true,
-            "changePct": 6.4163,
-            "return5dPct": 5.2632,
-            "turnoverRatio": 6.6015,
-            "distance20Pct": 6.0098
-          },
-          "confirmed": true,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "marine-060370-contract",
-              "ticker": "060370",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
-              "publishedAt": "2026-09-18T09:00:00+09:00",
-              "verifiedAt": "2026-09-18T17:10:20+09:00",
-              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "LS마린솔루션이 한화오션과 1,569억 원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 공시했다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 10,
-            "fundamental": 0,
-            "entry": 5
-          },
-          "score": 20,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
-        }
-      ],
-      "evidence": [
-        {
-          "id": "marine-060370-contract",
-          "ticker": "060370",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "verifiedAt": "2026-09-18T17:10:20+09:00",
-          "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "LS마린솔루션이 한화오션과 1,569억 원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 공시했다."
-        },
-        {
-          "id": "marine-071970-correction",
-          "ticker": "071970",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "verifiedAt": "2026-09-18T17:10:20+09:00",
-          "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "HD현대마린엔진이 344억 원 규모 선박엔진 공급계약의 정정 내용을 공시했으며 계약 종료일은 2026-11-15이다."
-        }
-      ],
-      "detection": [
-        {
-          "channel": "DART",
-          "label": "LS마린솔루션 해상풍력 해저케이블 계약",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "summary": "신안우이 해상풍력 해저케이블 운송·설치 계약을 확인했다."
-        },
-        {
-          "channel": "DART",
-          "label": "HD현대마린엔진 선박엔진 계약 정정",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "summary": "기존 선박엔진 공급계약의 정정 공시를 확인했다."
-        }
-      ]
-    },
-    {
-      "id": "semiconductor-substrate-capex-20260918",
-      "name": "반도체 기판 신공정 CAPEX",
-      "strength": 0,
       "marketGrade": "미확인",
       "fundamentalGrade": "미확인",
       "spreadType": "개별반응·미확인",
@@ -266,21 +160,11 @@
         {
           "ticker": "195870",
           "name": "해성디에스",
-          "sector": "반도체 Substrate 제조설비",
+          "sector": "반도체 기판 제조",
           "direct": false,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "yfinance",
-            "url": "https://finance.yahoo.com/quote/195870.KS/",
-            "asOf": "2026-09-18T17:07:09+09:00",
-            "adjustmentChecked": true,
-            "changePct": 5.6985,
-            "return5dPct": 14.7705,
-            "turnoverRatio": 2.6468,
-            "distance20Pct": 9.7433
-          },
-          "confirmed": true,
+          "quote": {},
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -288,22 +172,22 @@
               "ticker": "195870",
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
-              "publishedAt": "2026-09-18T09:00:00+09:00",
-              "verifiedAt": "2026-09-18T17:10:20+09:00",
-              "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
+              "publishedAt": "2026-09-18T16:40:00+09:00",
+              "verifiedAt": "2026-09-21T08:44:40+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
               "status": "verified",
               "polarity": "positive",
               "kind": "capex",
-              "summary": "해성디에스가 반도체 Substrate Panel 공법 도입을 위해 1,900억 원 규모 신규시설투자를 결정했다. 투자기간은 2030-12-31까지다."
+              "summary": "해성디에스는 반도체 Substrate Panel 공법 도입을 위해 1,900억원 규모 신규시설투자를 결정했다. 투자기간은 2026-09-18부터 2030-12-31까지며 금액과 기간은 진행 과정에서 변경될 수 있다."
             }
           ],
           "earningsPeriods": [],
           "scores": {
-            "issue": 0,
+            "issue": 5,
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
           "score": 5,
           "stage": "탐색",
@@ -311,68 +195,253 @@
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "351320",
+          "name": "넥사다이내믹스",
+          "sector": "AI 서버·부속품",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "ai-351320-contract",
+              "ticker": "351320",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
+              "publishedAt": "2026-09-18T16:41:00+09:00",
+              "verifiedAt": "2026-09-21T08:44:40+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "넥사다이내믹스는 일본 AI 부속품 업체와 15억8,734만5천원 규모 AI 서버 및 부속품 공급계약을 체결했다. 계약금액은 최근 매출의 12.20%, 계약기간은 2026-09-18부터 2027-09-18까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
         }
       ],
       "evidence": [
+        {
+          "id": "ai-351320-contract",
+          "ticker": "351320",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
+          "publishedAt": "2026-09-18T16:41:00+09:00",
+          "verifiedAt": "2026-09-21T08:44:40+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "넥사다이내믹스는 일본 AI 부속품 업체와 15억8,734만5천원 규모 AI 서버 및 부속품 공급계약을 체결했다. 계약금액은 최근 매출의 12.20%, 계약기간은 2026-09-18부터 2027-09-18까지다."
+        },
         {
           "id": "substrate-195870-capex",
           "ticker": "195870",
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "verifiedAt": "2026-09-18T17:10:20+09:00",
-          "reviewer": "Codex · DART 원문 및 웹 뷰어 재검증",
+          "publishedAt": "2026-09-18T16:40:00+09:00",
+          "verifiedAt": "2026-09-21T08:44:40+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "capex",
-          "summary": "해성디에스가 반도체 Substrate Panel 공법 도입을 위해 1,900억 원 규모 신규시설투자를 결정했다. 투자기간은 2030-12-31까지다."
+          "summary": "해성디에스는 반도체 Substrate Panel 공법 도입을 위해 1,900억원 규모 신규시설투자를 결정했다. 투자기간은 2026-09-18부터 2030-12-31까지며 금액과 기간은 진행 과정에서 변경될 수 있다."
+        }
+      ],
+      "detection": [
+        {
+          "channel": "연합뉴스",
+          "label": "미국 AI·반도체주 강세와 필라델피아반도체지수 상승",
+          "url": "https://www.yna.co.kr/view/AKR20260918189100008",
+          "publishedAt": "2026-09-20T06:00:00+09:00",
+          "summary": "주말 시장 점검에서 엔비디아·브로드컴·AMD·마이크론 강세와 필라델피아반도체지수 2.78% 상승을 확인했다. 이는 이슈 탐지에만 사용했다."
+        },
+        {
+          "channel": "유튜브시황2·삼프로TV",
+          "label": "돌아온 AI 모멘텀! 반도체·원전·전력 집중 분야",
+          "url": "https://www.youtube.com/watch?v=aozBx7Z0kjA",
+          "summary": "영상 제목을 AI 인프라 이슈 탐지에만 사용했고 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "DART",
+          "label": "넥사다이내믹스 AI 서버·부속품 공급계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
+          "publishedAt": "2026-09-18T16:41:00+09:00",
+          "summary": "일본 AI 부속품 업체 대상 AI 서버 및 부속품 공급계약 원문을 확인했다."
+        },
+        {
+          "channel": "DART",
+          "label": "해성디에스 반도체 기판 Panel 공법 설비투자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
+          "publishedAt": "2026-09-18T16:40:00+09:00",
+          "summary": "반도체 Substrate Panel 공법 도입을 위한 신규시설투자 원문을 확인했다."
+        }
+      ]
+    },
+    {
+      "id": "maritime-energy-orders-20260921",
+      "name": "해상에너지·선박 핵심설비 수주",
+      "strength": 25,
+      "marketGrade": "미확인",
+      "fundamentalGrade": "미확인",
+      "spreadType": "개별반응·미확인",
+      "leaders": [],
+      "candidates": [
+        {
+          "ticker": "060370",
+          "name": "LS마린솔루션",
+          "sector": "해상풍력 해저케이블 운송·설치",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "marine-060370-contract",
+              "ticker": "060370",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
+              "publishedAt": "2026-09-18T09:27:00+09:00",
+              "verifiedAt": "2026-09-21T08:44:40+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "LS마린솔루션은 한화오션과 1,569억원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 체결했다. 최근 매출의 64.2%이며 계약기간은 2026-09-17부터 2028-09-06까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "071970",
+          "name": "HD현대마린엔진",
+          "sector": "선박엔진 제조",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "marine-071970-correction",
+              "ticker": "071970",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
+              "publishedAt": "2026-09-18T14:03:00+09:00",
+              "verifiedAt": "2026-09-21T08:44:40+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "HD현대마린엔진의 중국 Taizhou Sanfu Ship Engineering 대상 선박엔진 공급계약은 344억734만4천원, 최근 매출의 19.2%이며 종료일이 2026-11-15로 연장됐다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "marine-060370-contract",
+          "ticker": "060370",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
+          "publishedAt": "2026-09-18T09:27:00+09:00",
+          "verifiedAt": "2026-09-21T08:44:40+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "LS마린솔루션은 한화오션과 1,569억원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 체결했다. 최근 매출의 64.2%이며 계약기간은 2026-09-17부터 2028-09-06까지다."
+        },
+        {
+          "id": "marine-071970-correction",
+          "ticker": "071970",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
+          "publishedAt": "2026-09-18T14:03:00+09:00",
+          "verifiedAt": "2026-09-21T08:44:40+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "HD현대마린엔진의 중국 Taizhou Sanfu Ship Engineering 대상 선박엔진 공급계약은 344억734만4천원, 최근 매출의 19.2%이며 종료일이 2026-11-15로 연장됐다."
         }
       ],
       "detection": [
         {
           "channel": "DART",
-          "label": "해성디에스 반도체 기판 설비투자",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
-          "publishedAt": "2026-09-18T09:00:00+09:00",
-          "summary": "반도체 Substrate Panel 공법 도입 설비투자를 확인했다."
+          "label": "LS마린솔루션 신안우이 해상풍력 해저케이블 계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
+          "publishedAt": "2026-09-18T09:27:00+09:00",
+          "summary": "신안우이 해상풍력 해저케이블 운송·설치 계약 원문을 재확인했다."
         },
         {
-          "channel": "유튜브시황2·오선",
-          "label": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다”",
-          "url": "https://saveticker.com/news/news_gCv2QtNQbwmx",
-          "publishedAt": "2026-09-18T16:53:35+09:00",
-          "summary": "SK하이닉스 “일본 반도체 공장 건설, 결정된 바 없다” 당사 해명 기사로 탐지만 반영했다."
-        },
-        {
-          "channel": "유튜브시황2·오선",
-          "label": "(카더라) 창신메모리, 낸드 시장 진출 추진…삼성·SK하이닉스·마이크론에 도전",
-          "url": "https://saveticker.com/news/news_6qrO9E6VwIsa",
-          "publishedAt": "2026-09-18T15:21:08+09:00",
-          "summary": "로이터 통신은 소식통을 인용해, 중국 최대 DRAM 업체인 창신메모리(CXMT)가 베이징 신규 공장에 낸드플래시 연구개발(R&D) 생산라인을 구축할 계획이라고 보도함 AI 서버 수요 급증과 제조사들의 D램·HBM 투자 집중으로 낸드 공급 부족이 이어지는 가운데, CXMT가 낸드 시장에 진출할 경우 삼성전자·SK하이닉스·마이크론 등 글로벌 선도 기업은 물론 자국 내 경쟁사인 YMTC(양쯔메모리)와도 직접 경쟁하게 됨 미확정 보도로 탐지만 반영했다."
-        },
-        {
-          "channel": "유튜브시황2·오선",
-          "label": "(카더라) SK하이닉스 솔리다임, 미국 NAND 공장 건설 검토…뉴욕주 북부 유력 후보",
-          "url": "https://saveticker.com/news/news_-tKPbkCNhqQA",
-          "publishedAt": "2026-09-18T15:13:07+09:00",
-          "summary": "로이터 통신은 소식통을 인용해 SK하이닉스의 미국 자회사 솔리다임이 미국 내 낸드플래시 공장 신설을 검토 중이며 뉴욕주 북부가 유력한 후보지로 거론되고 있다고 보도함 트럼프 행정부가 미국 내 반도체 생산 확대를 압박하는 가운데 AI 데이터센터 투자 증가로 메모리칩 부족이 심해진 것이 배경이며, 이번 검토는 SK하이닉스가 인텔의 오하이오 공장에서 메모리칩을 생산하는 방안을 논의 중인 것과는 별개의 프로젝트라고 함 미확정 보도로 탐지만 반영했다."
-        },
-        {
-          "channel": "유튜브시황2·오선",
-          "label": "(카더라) SK그룹 부회장 4명 중 3명, SK하이닉스로...",
-          "url": "https://saveticker.com/news/news_Xn5uFikyyhIO",
-          "publishedAt": "2026-09-18T15:33:10+09:00",
-          "summary": "연합뉴스는 익명의 업계 관계자들을 인용해, SK그룹이 반도체 산업의 중요성과 글로벌 경영환경의 불확실성을 반영해 그룹 지주사인 SK㈜ 소속 부회장 4명 중 서진우·유정준·이형희 부회장 3명을 SK하이닉스로 이동 배치했다고 보도함 이들은 그동안 그룹의 글로벌 사업과 대외협력을 이끌어온 인사들로, 현재 SK하이닉스 임원 약 250명을 대상으로 심층 면담을 진행 중인 것으로 전해짐 미확정 보도로 탐지만 반영했다."
+          "channel": "DART",
+          "label": "HD현대마린엔진 선박엔진 계약 종료일 정정",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
+          "publishedAt": "2026-09-18T14:03:00+09:00",
+          "summary": "기존 선박엔진 공급계약의 종료일 연장과 계약 존속을 재확인했다."
         }
       ]
     }
   ],
   "status": "검증완료",
   "missing": [
-    "스튜디오드래곤 Netflix 콘텐츠 계약은 계약금액 비공개로 탐지 사실만 보존하고 점수에서 제외",
-    "건설 및 바이오 공시는 운영 제외 기준에 따라 후보에서 제외",
-    "유튜브시황2 오선 기사 4건은 이슈 탐지만 반영하고 추천점수에서 제외 · 삼프로TV 영상 원문은 추가 승격 없음"
+    "공시 전수대조: OpenDART 2026-09-18 전체 695건과 2026-09-19~21 전체 13건을 수집했고, 상장사 주요경영·계약·투자 키워드 119건을 원문 후보로 대조했다. 건설·바이오, 자금조달, 소송, 단순 정정·관리 공시는 제외했다.",
+    "가격 기준일: 08:00 장전 실행이므로 2026-09-21 장중 시세와 동일 경과시각 거래대금 배율은 아직 존재하지 않는다. 후보 quote는 비워 두고 10:30 재검증 대상으로 남겼다.",
+    "컨센서스 기준일: 이번 이슈 후보에는 원문으로 확인된 2026Q3~2027Q2 컨센서스 상향 근거를 연결하지 않았다. 날짜를 추정하지 않고 fundamental 점수를 0으로 유지한다.",
+    "유튜브시황2: 삼프로TV의 AI 모멘텀 영상은 탐지에만 반영했다. 오선의 미국증시는 2026-09-15 이후 새 원문을 확인하지 못해 이번 탐지에 추가하지 않았고 추천점수에는 둘 다 반영하지 않았다.",
+    "신규 취소·부정 확인: 2026-09-19~21 OpenDART 목록에서 위 6개 후보의 계약 취소·해지·투자 철회 공시는 확인되지 않았다."
   ]
 }
