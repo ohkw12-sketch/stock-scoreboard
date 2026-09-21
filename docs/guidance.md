@@ -5,7 +5,7 @@
 ## 추가·변경 파일
 - `guidance_engine.py`: 공식 공시 수집, 원문 표 파싱, 이력·최신 버전 선택, 컨센서스 변환과 비교, 독립 실행 명령.
 - `guidance.js`: 가치성장 탭 안의 접이식 Guidance 표. 가이던스 우선 표시, 외부 컨센서스·기준일 병기.
-- `forecast_integration.py`: 연결 연간 가이던스를 성장근거의 같은 기간 수치에 우선 적용.
+- `forecast_integration.py`: 연결 연간 가이던스와 외부 전망 중 발표일이 더 늦은 수치를 성장근거에 적용. 같은 날·날짜 불명확 시 가이던스 우선.
 - `refresh_forecasts.py`: 컨센서스·가이던스 순차 갱신, 검증, 게시 파일 승격.
 - `preview_server.py`: Guidance 스크립트와 테스트 JSON의 미리보기 경로 추가.
 - `config.example.json`: 임계값·NEW 표시 기간·컨센서스 회계기준 설정 추가.

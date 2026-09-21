@@ -13,10 +13,10 @@ def forecast(ticker, year, sales, op, status="유효 컨센서스", day="2026-09
                 "sourceUrl": "https://example.com/report.pdf"}]}
 
 
-def guidance(ticker, year, sales, op, basis="consolidated"):
+def guidance(ticker, year, sales, op, basis="consolidated", day="2026-02-01"):
     item = lambda value: {"low": value * 1e8, "high": value * 1e8, "mid": value * 1e8}
     return {"ticker": ticker, "period": str(year), "basis": basis, "active": True,
-            "fetch_status": "정상", "published_at": "2026-02-01",
+            "fetch_status": "정상", "published_at": day,
             "source_url": "https://dart.fss.or.kr/example", "sales": item(sales),
             "operating_profit": item(op)}
 
@@ -38,15 +38,40 @@ class ForecastIntegrationTests(unittest.TestCase):
         self.assertEqual(row.revision_consensus_source, "KIS")
         self.assertEqual(status["integratedTickers"], 1)
 
-    def test_consolidated_guidance_replaces_same_period_only(self):
+    def test_newer_consensus_wins_but_guidance_remains_reference(self):
         rows = [forecast("123456", 2026, 100, 10), forecast("123456", 2027, 120, 15)]
         frame, status = integrate_forecasts(self.base, rows, [guidance("123456", 2026, 110, 11)],
                                              today=date(2026, 9, 21))
+        row = frame.iloc[0]
+        self.assertEqual(row.consensus_prior_sales, 100)
+        self.assertEqual(row.consensus_forward_sales, 120)
+        self.assertFalse(bool(row.guidance_used))
+        self.assertEqual(status["guidancePreferredTickers"], 0)
+        self.assertEqual(status["newerConsensusPreferredTickers"], 1)
+
+    def test_newer_or_same_day_guidance_replaces_same_period_only(self):
+        rows = [forecast("123456", 2026, 100, 10), forecast("123456", 2027, 120, 15)]
+        frame, status = integrate_forecasts(
+            self.base, rows, [guidance("123456", 2026, 110, 11, day="2026-09-10")],
+            today=date(2026, 9, 21))
         row = frame.iloc[0]
         self.assertEqual(row.consensus_prior_sales, 110)
         self.assertEqual(row.consensus_forward_sales, 120)
         self.assertTrue(bool(row.guidance_used))
         self.assertEqual(status["guidancePreferredTickers"], 1)
+        self.assertEqual(status["newerConsensusPreferredTickers"], 0)
+
+    def test_newer_consensus_keeps_guidance_for_missing_metric(self):
+        rows = [forecast("123456", 2026, None, 10), forecast("123456", 2027, 120, 15)]
+        frame, status = integrate_forecasts(
+            self.base, rows, [guidance("123456", 2026, 110, 11)],
+            today=date(2026, 9, 21))
+        row = frame.iloc[0]
+        self.assertEqual(row.consensus_prior_sales, 110)
+        self.assertEqual(row.consensus_prior_op, 10)
+        self.assertTrue(bool(row.guidance_used))
+        self.assertEqual(status["guidancePreferredTickers"], 1)
+        self.assertEqual(status["newerConsensusPreferredTickers"], 1)
 
     def test_separate_guidance_and_disagreement_do_not_drive_growth(self):
         rows = [forecast("123456", 2026, 100, 10),

@@ -63,6 +63,7 @@ class HoldingsReviewTests(unittest.TestCase):
         for group in ('sectors','topAxes'):
             self.assertAlmostEqual(sum(float(r['weight'].rstrip('%')) for r in p3['exposure'][group]),100,delta=.3)
         self.assertEqual(len(p3['assessments']),11)
-        self.assertTrue(all('2026-09-18' in r['basis'] for r in p3['rows']))
+        price_date=p3['refreshStatus']['priceDate']
+        self.assertTrue(all(price_date in r['basis'] for r in p3['rows']))
 
 if __name__=='__main__': unittest.main()

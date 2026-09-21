@@ -1,27 +1,27 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-09-21 19:53",
+      "checkedAtKST": "2026-09-21 20:42",
       "sourceDate": "2026-09-21",
-      "summary": "증분 수집 · 구역별 검증 · 보유수량·평단 보존"
+      "summary": "저장자료 재계산 · 구역별 검증 · 보유수량·평단 보존"
     },
     "changeUntil": "2026-09-09",
     "masterBasis": "2026-09-21 KRX 마감 전체시장 엔진",
     "nextTradingDay": "거래소 개장일 확인 후 확정",
     "note": "가치성장은 확정 실적 가치 50%와 검증된 성장 근거 50%를 합산한 후보입니다. 점수와 신뢰도는 예측 확률이 아닙니다.",
-    "sourceSummary": "가격 2026-09-21 · 공시 2026-06-30 · 컨센서스 2026-09-21 · 증분 수집",
+    "sourceSummary": "가격 2026-09-21 · 공시 2026-06-30 · 컨센서스 2026-09-21 · 저장자료 재계산",
     "title": "주식평가창",
-    "updatedKST": "2026-09-21 19:53",
+    "updatedKST": "2026-09-21 20:42",
     "uiContractVersion": "2026-09-21.1",
-    "runId": "bb17b3cdd3386374914e87bf",
+    "runId": "754af001841568381e80be71",
     "refreshState": {
-      "generatedAt": "2026-09-21T19:48:21+09:00",
-      "snapshotId": "a95512f9a480e6a928b8a97470164fdf96908540d2a882263872bb523f8b3064",
+      "generatedAt": "2026-09-21T20:40:08+09:00",
+      "snapshotId": "e05b85a4e94bc1e20f3cb1c5222a281a1da0d2eb83b86c652bf5b045fbabf507",
       "sourceCutoff": "2026-09-21",
-      "mode": "증분 수집",
-      "engineVersion": "bbaf2a7ebe617bdb",
-      "runId": "bb17b3cdd3386374914e87bf",
-      "evidenceSnapshotId": "8c9c04b2fe46d0590e86eec939e2a899f5f571f5c60a1f1a1576cdf0540a1359"
+      "mode": "저장자료 재계산",
+      "engineVersion": "22471bc6b59d4fea",
+      "runId": "754af001841568381e80be71",
+      "evidenceSnapshotId": "a466505f9284695912e8f3f2cef7de194010f50753eeea3df36f4c3d694db229"
     }
   },
   "p1": {
@@ -40,7 +40,7 @@
     "ruleVersion": "rotation-entry-3.0",
     "engine": {
       "version": "2.0.0",
-      "generatedAtKST": "2026-09-21T19:53:38+09:00",
+      "generatedAtKST": "2026-09-21T20:42:05+09:00",
       "asOfDate": "2026-09-21",
       "source": "partial-recovery",
       "universe": [
@@ -1191,12 +1191,12 @@
     ],
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-21T19:48:21+09:00",
-      "snapshotId": "a95512f9a480e6a928b8a97470164fdf96908540d2a882263872bb523f8b3064",
+      "generatedAt": "2026-09-21T20:40:08+09:00",
+      "snapshotId": "e05b85a4e94bc1e20f3cb1c5222a281a1da0d2eb83b86c652bf5b045fbabf507",
       "sourceCutoff": "2026-09-21",
-      "mode": "증분 수집",
-      "engineVersion": "bbaf2a7ebe617bdb",
-      "runId": "bb17b3cdd3386374914e87bf"
+      "mode": "저장자료 재계산",
+      "engineVersion": "22471bc6b59d4fea",
+      "runId": "754af001841568381e80be71"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -1864,73 +1864,6 @@
         }
       },
       {
-        "ticker": "267260",
-        "name": "HD현대일렉트릭",
-        "sector": "전력기기",
-        "growthRate": 13.4,
-        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
-        "fundamentalScore": 90.2,
-        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
-        "quarterlySales": 1141812823338.0,
-        "reportedFourQuarterComplete": true,
-        "averageQuarterlySales": 1084230984842.0,
-        "averageQuarterlyOperatingMarginPct": 25.61663327553864,
-        "confidence": "초기",
-        "evidenceCount": 1,
-        "confidenceScore": 25.0,
-        "priceReflection": "미반영 가능",
-        "score": 52.17,
-        "averageTurnover20": 93234719650.0,
-        "financialSummary": "4분기 평균 매출 10,842억원 · 분기 영업이익률 평균 25.6% · 20일 평균 거래대금 932억원 · 누적 매출 +13.4%",
-        "evidenceContents": [
-          {
-            "kind": "가이던스·컨센서스",
-            "content": "회사 공식 가이던스를 기준으로 외부 추정치는 2027.12E에 매출 +33.1%·영업이익 +27.6%을 예상합니다.",
-            "source": "회사 공식 가이던스 + 증권사 전망 · 2026-08-24",
-            "url": "https://consensus.hankyung.com/analysis/downpdf?report_idx=651864"
-          }
-        ],
-        "scoreComponents": {
-          "eventScale": 43.0,
-          "salesPersistence": 53.9,
-          "profitConversion": 90.2,
-          "revenueVisibility": 60,
-          "evidenceConfidence": 25.0,
-          "priceUnderreaction": 100,
-          "financialSafety": 100
-        },
-        "stage": "초기 포착",
-        "firstPublished": "2026-08-24",
-        "lastVerified": "2026-09-21T19:37:52+09:00",
-        "sourceDate": "2026-09-21",
-        "oldEvidenceCount": 0,
-        "valueGrowthScore": 52.17,
-        "valueScore": 42.8,
-        "growthScore": 61.55,
-        "normalizedPOP": 23.1,
-        "normalizedPremiumPct": 0.0,
-        "valueConfidence": "B",
-        "riskPenalty": 0,
-        "riskWarnings": [],
-        "valueBasis": "정상화 P/OP 23.1배 · 섹터 대비 0.0% 프리미엄",
-        "operatingProfitDeclineStreak": 0,
-        "latestQuarterOperatingMarginPct": 25.1,
-        "fourQuarterAverageOperatingMarginPct": 25.6,
-        "currentQuarterAnnualizedPOP": 22.4,
-        "sectorNormalizedPOP": 23.1,
-        "consensusOnlyEvidence": false,
-        "rank": 10,
-        "recommendationHistory": {
-          "kind": "consecutive",
-          "label": "2거래일 연속 추천",
-          "firstDate": "2026-09-18",
-          "previousDate": "2026-09-18",
-          "recommendationDays": 2,
-          "spanTradingDays": 2,
-          "gapCalendarDays": 3
-        }
-      },
-      {
         "ticker": "104830",
         "name": "원익머트리얼즈",
         "sector": "기초 화학물질 제조업",
@@ -1989,7 +1922,7 @@
         "currentQuarterAnnualizedPOP": 7.6,
         "sectorNormalizedPOP": 10.9,
         "consensusOnlyEvidence": true,
-        "rank": 11,
+        "rank": 10,
         "recommendationHistory": {
           "firstDate": "2026-09-21",
           "previousDate": null,
@@ -2058,7 +1991,7 @@
         "currentQuarterAnnualizedPOP": 16.2,
         "sectorNormalizedPOP": 15.8,
         "consensusOnlyEvidence": false,
-        "rank": 12,
+        "rank": 11,
         "recommendationHistory": {
           "kind": "consecutive",
           "label": "2거래일 연속 추천",
@@ -2127,7 +2060,7 @@
         "currentQuarterAnnualizedPOP": 15.7,
         "sectorNormalizedPOP": 84.2,
         "consensusOnlyEvidence": true,
-        "rank": 13,
+        "rank": 12,
         "recommendationHistory": {
           "firstDate": "2026-09-21",
           "previousDate": null,
@@ -2196,7 +2129,7 @@
         "currentQuarterAnnualizedPOP": 14.4,
         "sectorNormalizedPOP": 15.8,
         "consensusOnlyEvidence": true,
-        "rank": 14,
+        "rank": 13,
         "recommendationHistory": {
           "kind": "consecutive",
           "label": "2거래일 연속 추천",
@@ -2277,7 +2210,7 @@
         "currentQuarterAnnualizedPOP": 13.9,
         "sectorNormalizedPOP": 7.1,
         "consensusOnlyEvidence": false,
-        "rank": 15,
+        "rank": 14,
         "recommendationHistory": {
           "kind": "consecutive",
           "label": "2거래일 연속 추천",
@@ -2346,7 +2279,7 @@
         "currentQuarterAnnualizedPOP": 12.1,
         "sectorNormalizedPOP": 13.8,
         "consensusOnlyEvidence": true,
-        "rank": 16,
+        "rank": 15,
         "recommendationHistory": {
           "firstDate": "2026-09-21",
           "previousDate": null,
@@ -2415,7 +2348,7 @@
         "currentQuarterAnnualizedPOP": 23.3,
         "sectorNormalizedPOP": 27.2,
         "consensusOnlyEvidence": true,
-        "rank": 17,
+        "rank": 16,
         "recommendationHistory": {
           "kind": "consecutive",
           "label": "2거래일 연속 추천",
@@ -2484,7 +2417,7 @@
         "currentQuarterAnnualizedPOP": 10.9,
         "sectorNormalizedPOP": 11.9,
         "consensusOnlyEvidence": true,
-        "rank": 18,
+        "rank": 17,
         "recommendationHistory": {
           "firstDate": "2026-09-21",
           "previousDate": null,
@@ -2553,7 +2486,7 @@
         "currentQuarterAnnualizedPOP": 13.6,
         "sectorNormalizedPOP": 15.8,
         "consensusOnlyEvidence": true,
-        "rank": 19,
+        "rank": 18,
         "recommendationHistory": {
           "firstDate": "2026-09-21",
           "previousDate": null,
@@ -2634,7 +2567,7 @@
         "currentQuarterAnnualizedPOP": 25.3,
         "sectorNormalizedPOP": 23.1,
         "consensusOnlyEvidence": false,
-        "rank": 20,
+        "rank": 19,
         "recommendationHistory": {
           "kind": "consecutive",
           "label": "2거래일 연속 추천",
@@ -2643,6 +2576,75 @@
           "recommendationDays": 2,
           "spanTradingDays": 2,
           "gapCalendarDays": 3
+        }
+      },
+      {
+        "ticker": "319660",
+        "name": "피에스케이",
+        "sector": "특수 목적용 기계 제조업",
+        "growthRate": 54.0,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 89.9,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 167474032244.0,
+        "reportedFourQuarterComplete": true,
+        "averageQuarterlySales": 142717707104.75,
+        "averageQuarterlyOperatingMarginPct": 24.489641139050978,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "일부 가격 반응",
+        "score": 45.54,
+        "averageTurnover20": 38087295225.0,
+        "financialSummary": "4분기 평균 매출 1,427억원 · 분기 영업이익률 평균 24.5% · 20일 평균 거래대금 381억원 · 누적 매출 +54%",
+        "evidenceContents": [
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2027.12E에 매출 +19.5%·영업이익 +15.7%을 예상합니다.",
+            "source": "증권사 리포트·공개 집계 컨센서스 · 2026-08-18",
+            "url": "https://stock.pstatic.net/stock-research/company/21/20260818_company_950573000.pdf"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 25.3,
+          "salesPersistence": 81.8,
+          "profitConversion": 89.9,
+          "revenueVisibility": 60,
+          "evidenceConfidence": 25.0,
+          "priceUnderreaction": 60,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-08-18",
+        "lastVerified": "2026-09-21T19:37:52+09:00",
+        "sourceDate": "2026-09-21",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 45.54,
+        "valueScore": 42.4,
+        "growthScore": 58.68,
+        "normalizedPOP": 27.8,
+        "normalizedPremiumPct": 14.0,
+        "valueConfidence": "A",
+        "riskPenalty": 5,
+        "riskWarnings": [
+          "성장 근거가 컨센서스뿐임 -5"
+        ],
+        "valueBasis": "정상화 P/OP 27.8배 · 섹터 대비 14.0% 프리미엄",
+        "operatingProfitDeclineStreak": 0,
+        "latestQuarterOperatingMarginPct": 30.0,
+        "fourQuarterAverageOperatingMarginPct": 24.5,
+        "currentQuarterAnnualizedPOP": 19.7,
+        "sectorNormalizedPOP": 24.4,
+        "consensusOnlyEvidence": true,
+        "rank": 20,
+        "recommendationHistory": {
+          "firstDate": "2026-09-21",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
         }
       }
     ],
@@ -8230,7 +8232,7 @@
         "missingTickers": [
           "089890"
         ],
-        "cacheReadAt": "2026-09-21T19:53:39+09:00",
+        "cacheReadAt": "2026-09-21T20:42:06+09:00",
         "cacheReason": "명시적 원자료 재사용",
         "networkRequests": 0,
         "reused": true,
@@ -8238,7 +8240,7 @@
         "news": {
           "status": "미수집",
           "source": "NAVER 뉴스",
-          "cacheReadAt": "2026-09-21T19:53:40+09:00",
+          "cacheReadAt": "2026-09-21T20:42:06+09:00",
           "cacheReason": "명시적 원자료 재사용",
           "networkRequests": 0,
           "reused": true,
@@ -8299,7 +8301,7 @@
           "missingProducts": [],
           "documentsDownloaded": 1,
           "parsedCacheHits": 3,
-          "cacheReadAt": "2026-09-21T19:53:40+09:00",
+          "cacheReadAt": "2026-09-21T20:42:06+09:00",
           "cacheReason": "명시적 원자료 재사용",
           "networkRequests": 0,
           "reused": true,
@@ -8308,7 +8310,7 @@
         "verifiedDocuments": {
           "source": "검증 뉴스·IR 원문",
           "status": "미수집",
-          "cacheReadAt": "2026-09-21T19:53:40+09:00",
+          "cacheReadAt": "2026-09-21T20:42:06+09:00",
           "cacheReason": "명시적 원자료 재사용",
           "networkRequests": 0,
           "reused": true,
@@ -8318,7 +8320,7 @@
         "ir": {
           "source": "검증 뉴스·IR 원문",
           "status": "미수집",
-          "cacheReadAt": "2026-09-21T19:53:40+09:00",
+          "cacheReadAt": "2026-09-21T20:42:06+09:00",
           "cacheReason": "명시적 원자료 재사용",
           "networkRequests": 0,
           "reused": true,
@@ -8328,7 +8330,7 @@
         "consensus": {
           "status": "정상",
           "asOfDate": "2026-09-21",
-          "evidenceCount": 201
+          "evidenceCount": 198
         },
         "candidateCount": 43,
         "evaluatedTickers": 2762,
@@ -8346,17 +8348,17 @@
     "methodVersion": "value-growth-1.0",
     "projectType": "value-growth",
     "sourceDate": "2026-09-21",
-    "updatedKST": "2026-09-21 19:53",
+    "updatedKST": "2026-09-21 20:42",
     "notice": "가치와 성장조기포착의 기존 선조건을 모두 통과한 종목만 평가합니다. 영업이익 연속 감소·최근 마진 저하·최근 분기 연환산 고평가·컨센서스 단독 근거를 감점합니다.",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-21T19:48:21+09:00",
-      "snapshotId": "a95512f9a480e6a928b8a97470164fdf96908540d2a882263872bb523f8b3064",
+      "generatedAt": "2026-09-21T20:40:08+09:00",
+      "snapshotId": "e05b85a4e94bc1e20f3cb1c5222a281a1da0d2eb83b86c652bf5b045fbabf507",
       "sourceCutoff": "2026-09-21",
-      "mode": "증분 수집",
-      "engineVersion": "bbaf2a7ebe617bdb",
-      "runId": "bb17b3cdd3386374914e87bf",
-      "evidenceSnapshotId": "8c9c04b2fe46d0590e86eec939e2a899f5f571f5c60a1f1a1576cdf0540a1359"
+      "mode": "저장자료 재계산",
+      "engineVersion": "22471bc6b59d4fea",
+      "runId": "754af001841568381e80be71",
+      "evidenceSnapshotId": "a466505f9284695912e8f3f2cef7de194010f50753eeea3df36f4c3d694db229"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -8884,13 +8886,13 @@
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-21T19:48:21+09:00",
-      "snapshotId": "a95512f9a480e6a928b8a97470164fdf96908540d2a882263872bb523f8b3064",
+      "generatedAt": "2026-09-21T20:40:08+09:00",
+      "snapshotId": "e05b85a4e94bc1e20f3cb1c5222a281a1da0d2eb83b86c652bf5b045fbabf507",
       "sourceCutoff": "2026-09-21",
-      "mode": "증분 수집",
-      "engineVersion": "bbaf2a7ebe617bdb",
-      "runId": "bb17b3cdd3386374914e87bf",
-      "evidenceSnapshotId": "8c9c04b2fe46d0590e86eec939e2a899f5f571f5c60a1f1a1576cdf0540a1359"
+      "mode": "저장자료 재계산",
+      "engineVersion": "22471bc6b59d4fea",
+      "runId": "754af001841568381e80be71",
+      "evidenceSnapshotId": "a466505f9284695912e8f3f2cef7de194010f50753eeea3df36f4c3d694db229"
     },
     "holdingsUpdatedAt": "2026-09-21",
     "holdingsSelectionRule": "동일 종목은 낮은 매입단가 행 전체 선택, 수량 합산하지 않음",
