@@ -796,7 +796,7 @@ def extract_naver_summary(
     record: NaverResearchRecord,
     *,
     as_of: date,
-    freshness_days: int = 90,
+    freshness_days: int = 370,
 ) -> tuple[list[ForecastObservation], dict]:
     text = re.sub(r"\s+", " ", f"{record.title}. {record.content}").strip()
     report_year = date.fromisoformat(record.report_date).year
@@ -1386,7 +1386,7 @@ def extract_report_pdf(
     pdf_path: Path,
     *,
     as_of: date,
-    freshness_days: int = 90,
+    freshness_days: int = 370,
     max_pages: int = 24,
 ) -> tuple[list[ForecastObservation], dict]:
     try:
@@ -2403,7 +2403,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-dir", default="test_output/forecast_engine")
     parser.add_argument("--cache-dir", default="cache")
     parser.add_argument("--supplements", help="검증된 기사/공식자료 JSON 또는 CSV")
-    parser.add_argument("--freshness-days", type=int, default=60)
+    parser.add_argument("--freshness-days", type=int, default=370)
     parser.add_argument("--minimum-confidence", type=float, default=0.8)
     parser.add_argument("--consensus-window-days", type=int, default=30)
     parser.add_argument("--reports-per-ticker-broker", type=int, default=2)

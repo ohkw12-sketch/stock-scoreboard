@@ -49,16 +49,16 @@ class ForecastIntegrationTests(unittest.TestCase):
         self.assertEqual(status["guidancePreferredTickers"], 0)
         self.assertEqual(status["consensusPreferredTickers"], 1)
 
-    def test_newer_or_same_day_guidance_does_not_replace_consensus(self):
+    def test_same_day_guidance_replaces_consensus(self):
         rows = [forecast("123456", 2026, 100, 10), forecast("123456", 2027, 120, 15)]
         frame, status = integrate_forecasts(
             self.base, rows, [guidance("123456", 2026, 110, 11, day="2026-09-10")],
             today=date(2026, 9, 21))
         row = frame.iloc[0]
-        self.assertEqual(row.consensus_prior_sales, 100)
+        self.assertEqual(row.consensus_prior_sales, 110)
         self.assertEqual(row.consensus_forward_sales, 120)
-        self.assertFalse(bool(row.guidance_used))
-        self.assertEqual(status["guidancePreferredTickers"], 0)
+        self.assertTrue(bool(row.guidance_used))
+        self.assertEqual(status["guidancePreferredTickers"], 1)
         self.assertEqual(status["consensusPreferredTickers"], 1)
 
     def test_newer_consensus_keeps_guidance_for_missing_metric(self):
@@ -72,6 +72,44 @@ class ForecastIntegrationTests(unittest.TestCase):
         self.assertTrue(bool(row.guidance_used))
         self.assertEqual(status["guidancePreferredTickers"], 1)
         self.assertEqual(status["consensusPreferredTickers"], 1)
+
+    def test_older_available_consensus_is_used_without_weighting(self):
+        rows = [forecast("123456", 2026, 100, 10, day="2026-02-01"),
+                forecast("123456", 2027, 120, 15, day="2026-02-01")]
+        frame, status = integrate_forecasts(self.base, rows, [], today=date(2026, 9, 21))
+        row = frame.iloc[0]
+        self.assertEqual(row.consensus_prior_sales, 100)
+        self.assertEqual(row.consensus_confidence_factor, 1.0)
+        self.assertEqual(status["integratedTickers"], 1)
+
+    def test_latest_consensus_row_is_selected_without_weighting(self):
+        rows = [forecast("123456", 2026, 80, 8, day="2026-02-01"),
+                forecast("123456", 2026, 100, 10, day="2026-08-01"),
+                forecast("123456", 2027, 120, 15, day="2026-08-01")]
+        frame, status = integrate_forecasts(self.base, rows, [], today=date(2026, 9, 21))
+        self.assertEqual(frame.iloc[0].consensus_prior_sales, 100)
+        self.assertEqual(frame.iloc[0].consensus_confidence_factor, 1.0)
+
+    def test_newer_guidance_replaces_consensus(self):
+        rows = [forecast("123456", 2026, 100, 10, day="2026-05-01"),
+                forecast("123456", 2027, 120, 15, day="2026-05-01")]
+        frame, status = integrate_forecasts(
+            self.base, rows, [guidance("123456", 2026, 115, 12, day="2026-08-01")],
+            today=date(2026, 9, 21))
+        row = frame.iloc[0]
+        self.assertEqual(row.consensus_prior_sales, 115)
+        self.assertEqual(row.consensus_prior_op, 12)
+        self.assertTrue(bool(row.guidance_used))
+        self.assertEqual(status["guidancePreferredTickers"], 1)
+
+    def test_latest_guidance_row_is_selected(self):
+        rows = [forecast("123456", 2026, 100, 10, day="2026-05-01"),
+                forecast("123456", 2027, 120, 15, day="2026-05-01")]
+        guidance_rows = [guidance("123456", 2026, 108, 11, day="2026-06-01"),
+                         guidance("123456", 2026, 118, 13, day="2026-08-01")]
+        frame, _ = integrate_forecasts(self.base, rows, guidance_rows, today=date(2026, 9, 21))
+        self.assertEqual(frame.iloc[0].consensus_prior_sales, 118)
+        self.assertEqual(frame.iloc[0].consensus_prior_op, 13)
 
     def test_separate_guidance_and_disagreement_do_not_drive_growth(self):
         rows = [forecast("123456", 2026, 100, 10),

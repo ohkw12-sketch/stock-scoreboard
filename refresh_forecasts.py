@@ -44,7 +44,7 @@ def validate():
             "forecastPoints": len(rows), "annualForecastTickers": len(by_ticker),
             "currentNextYearPairs": len(paired), "guidanceRows": len(guidance["rows"]),
             "guidanceTickers": len({row["ticker"] for row in guidance["rows"]}),
-            "policy": "60일 이내 유효 컨센서스 우선, 같은 기간·항목 컨센서스가 없을 때만 연결 연간 가이던스 보충; 불일치 검토는 점수 제외"}
+            "policy": "같은 종목·기간·항목에서 최신 컨센서스와 회사 공식 가이던스 중 발표일이 더 최신인 값을 사용; 같은 날이면 가이던스 우선; 날짜·증권사 수 점수·가중치 없음"}
 
 
 def main():
@@ -57,7 +57,7 @@ def main():
         if not args.skip_forecast:
             command = ["forecast_report_engine.py", "--start-date", f"{datetime.now(KST).year}-01-01",
                        "--incremental", "--skip-hankyung-pdf-backfill",
-                       "--freshness-days", "60", "--consensus-window-days", "30"]
+                       "--freshness-days", "370", "--consensus-window-days", "30"]
             if args.reuse_naver_index:
                 command.append("--reuse-naver-index")
             run(*command)

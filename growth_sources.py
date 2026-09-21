@@ -240,8 +240,6 @@ def consensus_evidence(fundamentals, status, now=None):
         source_url = row.get('consensus_source_url') or 'https://apiportal.koreainvestment.com/apiservice'
         kind = '가이던스·컨센서스' if guidance_used else '컨센서스'
         source_type = '공식가이던스+컨센서스' if guidance_used else '컨센서스'
-        confidence_factor = number(row.get('consensus_confidence_factor'))
-        confidence_factor = confidence_factor if confidence_factor is not None else 1.0
         events.append(dict(ticker=row['ticker'], eventId=fingerprint(row['ticker'],provider,period),
                            receipt=f"FORECAST-{row['ticker']}-{period}", kind=kind,
                            source=provider, sourceType=source_type,
@@ -249,7 +247,7 @@ def consensus_evidence(fundamentals, status, now=None):
                            firstPublished=published,publishedAt=published,lastVerified=verified_at,fetchedAt=verified_at,
                            activeUntil=future,status='유효' if verification_valid and row['ticker'] in status.get('freshTickers',[]) else '상태확인필요',polarity=polarity,
                            factType='회사공식전망+외부기관전망' if guidance_used else '외부기관전망',
-                           materiality=min(100,max(0,sales)*2*confidence_factor),
+                           materiality=min(100,max(0,sales)*2),
                            salesGrowth=sales,opGrowth=op,opTurnaround=turnaround,
                            estimatePeriod=period,guidanceUsed=guidance_used,
                            guidanceUrl=row.get('guidance_source_url'),

@@ -320,7 +320,7 @@ def build_board(history, consensus, status, config, today=None):
     return {'status':status,'rows':rows,'gap_threshold':config.get('guidance_gap_threshold',.05),
             'coverage':{'activeRows':len(rows),'activeTickers':len({r['ticker'] for r in rows}),
                         'comparableRows':sum(r.get('comparison_status')=='동일 기간·기준' for r in rows)},
-            'policy':'가이던스와 외부 컨센서스를 함께 표시. 성장근거 계산은 유효 컨센서스를 우선하고 누락 항목만 가이던스로 보충. 가치 원점수에는 미반영.'}
+            'policy':'가이던스와 외부 컨센서스를 함께 표시. 같은 종목·기간·항목에서 최신 컨센서스와 가이던스 중 발표일이 더 최신인 값을 사용하고 같은 날이면 가이던스를 우선. 날짜·증권사 수 점수·가중치 없음. 가치 원점수에는 미반영.'}
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
