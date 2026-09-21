@@ -24,7 +24,9 @@ class BoardContractTest(unittest.TestCase):
 
     def test_saveticker_osun_board_is_present(self):
         html = (ROOT / "index.html").read_text("utf-8")
-        self.assertIn('data-target="saveticker">유튜브시황2', html)
+        self.assertIn('data-target="p5">김종효·박시동 시황', html)
+        self.assertIn('data-target="sampro">삼프로TV 당일 시황', html)
+        self.assertIn('data-target="saveticker">오선 국장 주요뉴스', html)
         self.assertIn('id="savetickerstatus"', html)
         self.assertIn('src="saveticker.js"', html)
 

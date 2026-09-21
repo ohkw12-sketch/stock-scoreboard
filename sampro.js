@@ -15,5 +15,5 @@
       document.getElementById('samproedition').innerHTML=`<header class="sp-intro"><span>${e(d.date)} · 종합 정리</span><h2>${e(d.headline)}</h2><p>${e(d.overview)}</p></header>${['매크로','기업'].map(group=>`<section><h3>${group==='매크로'?'매크로 경제 · 시장의 방향':'개별 기업 · 실적에 연결되는 이슈'}</h3><div class="sp-grid">${d.items.filter(x=>x.category===group).map(x=>`<article class="sp-card"><h4>${e(x.title)}</h4><dl><dt>무슨 일이 있었나</dt><dd>${e(x.fact)}</dd><dt>어떻게 바라보나</dt><dd>${e(x.view)}</dd><dt>앞으로 확인할 점 <small>편집 해석</small></dt><dd>${e(x.watch)}</dd></dl><footer>${e(x.attribution)}<br>${link(sourceMap[x.source])}${(x.additionalSources||[]).map(id=>' · '+link(sourceMap[id])).join('')}</footer></article>`).join('')}</div></section>`).join('')}<p class="sp-note">원문 게시: ${d.sources.map(s=>`${link(s)} · ${e(s.publishedAt.replace('T',' ').replace('+09:00',' KST'))}`).join('<br>')}<br>확인 시각: ${e(d.updatedAt)} · 이날 모든 방송을 망라한 요약은 아닙니다.</p>`;
     };
     document.getElementById('samprodate').addEventListener('change',draw);draw();
-  }).catch(error=>{status.textContent='삼프로 시황을 불러오지 못했습니다. 잠시 후 다시 열어 주세요.';console.error(error);});
+  }).catch(error=>{status.textContent='삼프로TV 당일 시황을 불러오지 못했습니다. 잠시 후 다시 열어 주세요.';console.error(error);});
 })();

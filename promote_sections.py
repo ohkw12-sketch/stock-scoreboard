@@ -98,7 +98,7 @@ def main() -> None:
         if saveticker_board:
             json.dumps(saveticker_board, allow_nan=False)
             json_write(args.live.parent / 'saveticker-market.json', saveticker_board)
-        print('유튜브 시황 반영' + (' · 유튜브시황2 함께 반영' if saveticker_board else ''))
+        print('김종효·박시동 시황 반영' + (' · 오선 국장 주요뉴스 함께 반영' if saveticker_board else ''))
         return
     if args.research_only:
         if args.sections or args.youtube:

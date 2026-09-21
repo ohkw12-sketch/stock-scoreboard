@@ -248,7 +248,7 @@ def build_board(items: list[dict], details: dict[str, dict], now: datetime, hour
     return {
         "schemaVersion": 1,
         "meta": {
-            "title": "유튜브시황2",
+            "title": "오선 국장 주요뉴스",
             "status": "SaveTicker 오선 국장·매크로 시황 갱신",
             "updatedKST": now.strftime("%Y-%m-%d %H:%M"),
             "range": f"{oldest.strftime('%m.%d %H:%M')}–{now.strftime('%m.%d %H:%M')}",
