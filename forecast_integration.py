@@ -71,17 +71,6 @@ def _guidance_point(row):
     }
 
 
-def _iso_day(value):
-    """Return a comparable ISO day, or None when the source date is unusable."""
-    match = re.match(r"^(20\d{2})[-./](\d{1,2})[-./](\d{1,2})", str(value or ""))
-    if not match:
-        return None
-    try:
-        return date(*(int(part) for part in match.groups()))
-    except ValueError:
-        return None
-
-
 def _overlay(base, official):
     if not base:
         result = dict(official)
@@ -90,43 +79,30 @@ def _overlay(base, official):
                       selection_reason="외부 전망 없음 · 공식 가이던스 사용")
         return result
 
-    # A later broker estimate can incorporate earnings, orders, FX or industry
-    # changes disclosed after management issued its guidance.  Use the newer
-    # dated estimate; keep same-day/undated ties with the official source.
-    base_day, official_day = _iso_day(base.get("date")), _iso_day(official.get("date"))
-    consensus_is_newer = bool(base_day and official_day and base_day > official_day)
+    # Eligible broker consensus is primary. Official guidance is used only to
+    # fill a metric the consensus does not provide.
     result = dict(base)
     guidance_selected = False
-    newer_consensus_selected = False
-    if consensus_is_newer:
-        for key in ("sales", "op"):
-            if base.get(key) is not None:
-                newer_consensus_selected = True
-            elif official.get(key) is not None:
-                result[key] = official[key]
-                guidance_selected = True
-    else:
-        for key in ("sales", "op"):
-            if official.get(key) is not None:
-                result[key] = official[key]
-                guidance_selected = True
+    consensus_selected = False
+    for key in ("sales", "op"):
+        if base.get(key) is not None:
+            consensus_selected = True
+        elif official.get(key) is not None:
+            result[key] = official[key]
+            guidance_selected = True
     result.update(guidance=guidance_selected, guidance_available=True,
                   guidance_selected=guidance_selected,
-                  newer_consensus_selected=newer_consensus_selected,
+                  consensus_selected=consensus_selected,
                   guidance_date=official.get("date"), guidance_url=official.get("url"),
                   guidance_basis="consolidated")
-    result["date"] = max(filter(None, (base.get("date"), official.get("date"))), default=None)
-    if consensus_is_newer:
-        if guidance_selected:
-            result["source"] = base.get("source", "외부 전망") + " + 회사 공식 가이던스 보충"
-            result["selection_reason"] = "가이던스 이후 최신 외부 전망 사용 · 누락 항목은 공식 가이던스 보충"
-        else:
-            result["source"] = base.get("source", "외부 전망") + " (공식 가이던스 이후 갱신)"
-            result["selection_reason"] = "공식 가이던스 이후 발표된 최신 외부 전망 사용"
+    used_dates = [base.get("date")]
+    if guidance_selected:
+        used_dates.append(official.get("date"))
+        result["source"] = base.get("source", "외부 전망") + " + 회사 공식 가이던스 보충"
+        result["selection_reason"] = "유효 컨센서스 우선 · 누락 항목만 공식 가이던스 보충"
     else:
-        result["source"] = "회사 공식 가이던스 + " + base.get("source", "외부 전망")
-        result["confidence"] = max(base.get("confidence", 0), official.get("confidence", 0))
-        result["selection_reason"] = "같은 날·이전 외부 전망보다 공식 가이던스 우선"
+        result["selection_reason"] = "유효 컨센서스 사용 · 공식 가이던스는 비교 참고"
+    result["date"] = max(filter(None, used_dates), default=None)
     return result
 
 
@@ -137,8 +113,8 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
 
     Only annual current/next-year pairs produce growth evidence.  Disagreement
     rows are retained in the collector audit but are never admitted here.
-    Consolidated annual guidance anchors the matching period metric-by-metric,
-    except when a broker estimate has a strictly later verified report date.
+    Eligible broker consensus is primary. Consolidated annual guidance fills a
+    matching metric only when the consensus has no usable value.
     """
     today = today or datetime.now(KST).date()
     fetched_at = fetched_at or datetime.now(KST).isoformat(timespec="seconds")
@@ -209,7 +185,7 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
     }:
         frame[column] = frame[column].astype(object)
 
-    integrated, guidance_used, newer_consensus_used, annual_available = [], [], [], set()
+    integrated, guidance_used, consensus_used, annual_available = [], [], [], set()
     for ticker in frame["ticker"]:
         current, forward = annual.get((ticker, current_year)), annual.get((ticker, next_year))
         mask = frame["ticker"].eq(ticker)
@@ -232,8 +208,8 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
                      if current_op is not None and current_op > 0 else None)
         latest = max(filter(None, (current.get("date"), forward.get("date"))), default=None)
         used_guidance = bool(current.get("guidance") or forward.get("guidance"))
-        newer_than_guidance = bool(
-            current.get("newer_consensus_selected") or forward.get("newer_consensus_selected")
+        used_consensus = bool(
+            current.get("consensus_selected") or forward.get("consensus_selected")
         )
         source = "회사 공식 가이던스 + 증권사 전망" if used_guidance else "증권사 리포트·공개 집계 컨센서스"
         source_url = forward.get("url") or current.get("url")
@@ -259,8 +235,8 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
         integrated.append(ticker)
         if used_guidance:
             guidance_used.append(ticker)
-        if newer_than_guidance:
-            newer_consensus_used.append(ticker)
+        if used_consensus:
+            consensus_used.append(ticker)
 
     dates = [point.get("date") for point in annual.values() if point.get("date")]
     verified = {ticker: fetched_at for ticker in integrated}
@@ -269,10 +245,10 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
         "asOfDate": max(dates, default=None), "currentYear": current_year, "nextYear": next_year,
         "annualForecastTickers": len(annual_available), "integratedTickers": len(set(integrated)),
         "guidancePreferredTickers": len(set(guidance_used)),
-        "newerConsensusPreferredTickers": len(set(newer_consensus_used)),
+        "consensusPreferredTickers": len(set(consensus_used)),
         "rejectedDisagreementPoints": len(rejected), "rejected": rejected,
         "freshTickers": sorted(set(integrated)), "verifiedAtByTicker": verified,
-        "policy": "같은 기간은 검증된 발표일이 더 늦은 자료를 사용; 같은 날·날짜 불명확 시 연결 연간 가이던스 우선; 외부 전망 신뢰도는 참여 증권사 수로 차등",
+        "policy": "60일 이내 유효 컨센서스를 우선하고 같은 기간·항목의 컨센서스가 없을 때만 연결 연간 가이던스로 보충; 불일치 전망 제외",
     }
 
 

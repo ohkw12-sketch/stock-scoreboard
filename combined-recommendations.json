@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-feedback-3.0",
-  "snapshotId": "e05b85a4e94bc1e20f3cb1c5222a281a1da0d2eb83b86c652bf5b045fbabf507",
-  "generatedAt": "2026-09-21T20:40:08+09:00",
+  "snapshotId": "19c8a6bd90071d55b575e210aebf1edb4d8a5007e10d1b53e415ad9420cfb654",
+  "generatedAt": "2026-09-21T21:05:08+09:00",
   "sourceDate": "2026-09-21",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
   "candidateCount": 20,
   "matchedCandidateCount": 0,
   "rows": [],
@@ -1068,21 +1068,19 @@
   },
   "notice": "과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · 동점은 프로젝트 중복 수와 현재 순위 · 진입은 필수가 아니며 진입구분 별도 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-09-21T20:40:08+09:00",
-    "snapshotId": "e05b85a4e94bc1e20f3cb1c5222a281a1da0d2eb83b86c652bf5b045fbabf507",
+    "generatedAt": "2026-09-21T21:05:08+09:00",
+    "snapshotId": "19c8a6bd90071d55b575e210aebf1edb4d8a5007e10d1b53e415ad9420cfb654",
     "sourceCutoff": "2026-09-21",
     "mode": "저장자료 재계산",
-    "engineVersion": "22471bc6b59d4fea",
-    "runId": "754af001841568381e80be71",
-    "evidenceSnapshotId": "a466505f9284695912e8f3f2cef7de194010f50753eeea3df36f4c3d694db229",
+    "engineVersion": "66b79a445afffda9",
+    "runId": "336c26d845db42da520d0c98",
+    "evidenceSnapshotId": "10e7f774b8cf5edc1fea29d14d3d8704090536c4925b4b1a04b5597d80d8c6e6",
     "status": "계산완료"
   },
-  "runId": "754af001841568381e80be71",
+  "runId": "336c26d845db42da520d0c98",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-09-21T20:46:14+09:00",
-  "observedPublishedAt": "2026-09-21T20:46:14+09:00"
+  }
 }

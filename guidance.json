@@ -1,7 +1,7 @@
 {
   "status": {
     "status": "정상",
-    "checked_at": "2026-09-21T19:37:53.287409+09:00",
+    "checked_at": "2026-09-21T21:04:30.181028+09:00",
     "failures": [],
     "from": "2025-08-17",
     "to": "2026-09-21",
@@ -567,10 +567,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 34670750000000.0,
-        "operating_profit": 6230900000000.0,
+        "sales": 34800000000000.0,
+        "operating_profit": 6659000000000.0,
         "as_of": "2026-07-30",
-        "source": "참고 컨센서스"
+        "source": "개별 추정치"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -825,10 +825,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 5682600000000.0,
-        "operating_profit": 1030000000000.0,
+        "sales": 5672300000000.0,
+        "operating_profit": 1007050000000.0,
         "as_of": "2026-08-10",
-        "source": "유효 컨센서스"
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1234,7 +1234,7 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 8271650000000.0,
+        "sales": 8295500000000.0,
         "operating_profit": 1029500000000.0,
         "as_of": "2026-09-21",
         "source": "유효 컨센서스"
@@ -1471,16 +1471,7 @@
         "sales": "유지",
         "operating_profit": "확인불가"
       },
-      "consensus": {
-        "ticker": "047040",
-        "period": "2026",
-        "basis": null,
-        "amount_unit": "원",
-        "sales": 8082500000000.0,
-        "operating_profit": 794100000000.0,
-        "as_of": "2026-07-20",
-        "source": "개별 추정치"
-      },
+      "consensus": null,
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -1521,8 +1512,8 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 5485000000000.0,
-        "operating_profit": 315000000000.0,
+        "sales": 5378400000000.0,
+        "operating_profit": 308500000000.0,
         "as_of": "2026-07-31",
         "source": "유효 컨센서스"
       },
@@ -1780,8 +1771,8 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 5127000000000.0,
-        "operating_profit": 627000000000.0,
+        "sales": 5126000000000.0,
+        "operating_profit": 639000000000.0,
         "as_of": "2026-07-31",
         "source": "유효 컨센서스"
       },
@@ -2049,16 +2040,7 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": {
-        "ticker": "089860",
-        "period": "2026",
-        "basis": null,
-        "amount_unit": "원",
-        "sales": 3160000000000.0,
-        "operating_profit": 355100000000.0,
-        "as_of": "2026-07-02",
-        "source": "개별 추정치"
-      },
+      "consensus": null,
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -2477,16 +2459,7 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": {
-        "ticker": "139480",
-        "period": "2026",
-        "basis": null,
-        "amount_unit": "원",
-        "sales": null,
-        "operating_profit": 60000000000.0,
-        "as_of": "2026-06-24",
-        "source": "개별 추정치"
-      },
+      "consensus": null,
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -2651,7 +2624,7 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 9782000000000.0,
+        "sales": 9731000000000.0,
         "operating_profit": 407000000000.0,
         "as_of": "2026-08-03",
         "source": "유효 컨센서스"
@@ -3311,10 +3284,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 1548750000000.0,
-        "operating_profit": 56150000000.0,
+        "sales": 1553500000000.0,
+        "operating_profit": 55300000000.0,
         "as_of": "2026-09-14",
-        "source": "참고 컨센서스"
+        "source": "개별 추정치"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3797,5 +3770,5 @@
     "activeTickers": 81,
     "comparableRows": 0
   },
-  "policy": "가이던스가 있으면 같은 기간 성장근거에서 우선하고, 없으면 외부 컨센서스를 사용. 가치 원점수에는 미반영."
+  "policy": "가이던스와 외부 컨센서스를 함께 표시. 성장근거 계산은 유효 컨센서스를 우선하고 누락 항목만 가이던스로 보충. 가치 원점수에는 미반영."
 }
