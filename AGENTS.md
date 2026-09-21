@@ -48,3 +48,6 @@ Supersedes observation exceptions and entry-three cap: retire the separate p1 sc
 
 ## Separate observation area (2026-09-21)
 User approved a separate watchCandidates area below strict p11 rows, with a 후보 badge. Restore the previously verified financial-improvement exception only for this separate area. Existing price, liquidity, excluded-sector and heat gates still apply. At most five sectors and three candidates each, no forced filling. These observations never enter p11.rows, combined recommendations or entry performance records. Show explicit watch reasons; preserve strict entry rules.
+
+## Explicit holdings update (2026-09-21)
+User supplied two holdings images. For duplicate tickers use the entire lower-average-cost row, never sum quantities. This explicit import is allowed only with `promote_sections.py --sections p3 --holdings-input <local-transcription.json>` matching the approved roster exactly. Subsequent automatic refreshes keep quantity and average cost locked. Never publish raw brokerage screenshots or account identifiers. Below the holdings table, show only dated assessments with concrete sourced facts, separate interpretation and next checks; lack of evidence means omit the assessment, not invent a reason. Price refreshes must preserve assessment dates and sources.

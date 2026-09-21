@@ -23,7 +23,7 @@ def holding_inputs(board: dict) -> dict[str, tuple[object, object]]:
     return {row["name"]: (row.get("qty"), row.get("avg")) for row in board.get("p3", {}).get("rows", [])}
 
 
-def promote(live: dict, candidate: dict, sections: list[str]) -> tuple[dict, dict]:
+def promote(live: dict, candidate: dict, sections: list[str], holdings_update: dict | None = None) -> tuple[dict, dict]:
     unknown = sorted(set(sections) - set(SECTIONS))
     if unknown or not sections:
         raise ValueError(f"허용되지 않은 구역: {unknown or '선택 없음'}")
@@ -42,7 +42,18 @@ def promote(live: dict, candidate: dict, sections: list[str]) -> tuple[dict, dic
         if key not in candidate:
             raise KeyError(f"후보 파일에 {key} 구역이 없습니다.")
         result[key] = copy.deepcopy(candidate[key])
-    if holding_inputs(result) != before_holdings:
+    if 'p3' in sections and result['p3'].get('assessments'):
+        from holdings_review import validate_assessments
+        validate_assessments(result['p3'])
+    if holdings_update is not None:
+        from holdings_review import select_holdings
+        approved = select_holdings(holdings_update)
+        expected = {r['name']: (r['qty'], r['avg']) for r in approved}
+        if sections != ['p3'] or holding_inputs(result) != expected or len(result['p3']['rows']) != len(approved):
+            raise RuntimeError('승인된 이미지 보유 입력과 반영 대상이 다릅니다.')
+        if {r['name']: r.get('ticker') for r in result['p3']['rows']} != {r['name']: r['ticker'] for r in approved}:
+            raise RuntimeError('승인된 보유 종목코드와 다릅니다.')
+    elif holding_inputs(result) != before_holdings:
         raise RuntimeError("보유 수량 또는 평균매입가 변경을 감지해 반영을 중단했습니다.")
     changed_protected = [key for key, value in protected.items() if digest(result.get(key)) != value]
     if changed_protected:
@@ -51,7 +62,8 @@ def promote(live: dict, candidate: dict, sections: list[str]) -> tuple[dict, dic
         "contractVersion": load_contract()["version"],
         "promotedSections": sections,
         "protectedSections": sorted(protected),
-        "holdingsLocked": True,
+        "holdingsLocked": holdings_update is None,
+        "holdingsUpdateDate": holdings_update.get('sourceDate') if holdings_update else None,
         "status": "정상"
     }
     return result, report
@@ -64,6 +76,7 @@ def main() -> None:
     parser.add_argument("--live", type=Path, default=ROOT / "data.json")
     parser.add_argument("--candidate", type=Path, default=ROOT / "test_output" / "data.test.json")
     parser.add_argument("--html", type=Path, default=ROOT / "index.html")
+    parser.add_argument('--holdings-input', type=Path, help='사용자가 명시적으로 갱신 요청한 이미지 전사본')
     parser.add_argument("--youtube", action="store_true")
     parser.add_argument('--youtube-only', action='store_true')
     parser.add_argument("--research", action="store_true", help="별도 종합추천·성과검증 후보도 함께 반영")
@@ -123,7 +136,8 @@ def main() -> None:
     selected = [k for k in args.sections if k not in failed]
     if args.research and not ({'p11', 'p2'} if candidate.get('p11', {}).get('projectType') == 'rotation-entry' else {'p1', 'p11', 'p2'}).issubset(set(args.sections)):
         raise RuntimeError('종합추천은 원본 진입·순환·가치성장 갱신과 함께 반영해야 합니다.')
-    result, report = promote(live, candidate, selected)
+    result, report = promote(live, candidate, selected,
+                             read_json(args.holdings_input) if args.holdings_input else None)
     report['retainedFailedSections'] = failed
     temp_path = args.candidate.parent / "promotion-candidate.json"
     json_write(temp_path, result)

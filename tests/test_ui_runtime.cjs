@@ -384,3 +384,28 @@ test('separate watch area badges candidates, escapes reasons and excludes duplic
   assert.equal(document.getElementById('p11watchbody').rows.length,1);
   assert.doesNotMatch(document.getElementById('p11body').innerHTML,/관찰종목/);
 });
+
+test('holdings reasons render only sourced held names and escape assessment text', async () => {
+  const data=fixtures();
+  const base={ticker:'000001',name:'검증종목',label:'기대 미달',title:'이유 <img src=x onerror=alert(1)>',
+    period:'2026년 2분기',checkedAt:'2026-09-21',fact:'이익 미달',interpretation:'기대치 하향',watch:'다음 실적',
+    sources:[{title:'공시',url:'https://example.org/filing'}]};
+  data['data.json'].p3.assessments=[base,{...base,ticker:'999999',name:'미보유'}, {...base,sources:[],name:'출처없음'}];
+  const {document,errors}=await runtime({data});
+  assert.equal(errors.length,0);
+  const markup=document.getElementById('holdingsReview').innerHTML;
+  assert.match(markup,/이익 미달/);
+  assert.match(markup,/&lt;img/);
+  assert.doesNotMatch(markup,/<img|미보유|출처없음/);
+  assert.match(markup,/2026-09-21/);
+});
+
+test('published holdings show fourteen rows and eleven sourced assessments', async () => {
+  const data=fixtures();
+  data['data.json']=JSON.parse(fs.readFileSync(path.join(root,'data.json'),'utf8'));
+  const {document,errors}=await runtime({data});
+  assert.equal(errors.length,0);
+  assert.equal(document.getElementById('p3body').rows.length,14);
+  assert.equal((document.getElementById('holdingsReview').innerHTML.match(/class="review-card"/g)||[]).length,11);
+  assert.match(document.getElementById('holdingsReview').innerHTML,/추가 근거 확인 중: 테스, 엠앤씨솔루션, 유니트론텍/);
+});

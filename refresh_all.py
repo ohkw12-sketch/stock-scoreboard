@@ -85,20 +85,29 @@ def refresh_holdings(previous, prices, fundamentals):
     # Preserve the user's existing exposure taxonomy, recompute weights only.
     sector_map = {'SK하이닉스':'메모리', '코리아써키트':'PCB·기판·광학', 'LG이노텍':'PCB·기판·광학',
                   '대덕전자':'PCB·기판·광학', '테스':'반도체 장비', '피에스케이':'반도체 장비',
-                  '일진전기':'전력기기', 'HD현대일렉트릭':'전력기기', '엠앤씨솔루션':'방산'}
+                  '일진전기':'전력기기', 'HD현대일렉트릭':'전력기기', '엠앤씨솔루션':'방산',
+                  '삼성전자':'메모리', '삼성전기':'PCB·기판·광학', '한화오션':'조선',
+                  '티에스이':'반도체 장비', '유니트론텍':'반도체 유통'}
     exposure = result.setdefault('exposure', {})
+    sectors = exposure.setdefault('sectors', [])
+    for sector_name in sorted({sector_map.get(n, '기타') for n in values}):
+        if not any(entry['name'] == sector_name for entry in sectors):
+            sectors.append({'name': sector_name})
     for entry in exposure.get('sectors', []):
-        weight = sum(v for n,v in values.items() if sector_map.get(n) == entry['name']) / total * 100 if total else 0
+        weight = sum(v for n,v in values.items() if sector_map.get(n, '기타') == entry['name']) / total * 100 if total else 0
         entry.update(weight=f'{weight:.1f}%', status='과밀' if weight >= 30 else '부족' if weight == 0 else '적정')
     axes = {'AI 직접': {'메모리','PCB·기판·광학','반도체 장비'}, 'AI 인프라': {'전력기기'},
-            'Physical AI': {'로봇·자동화'}, '비AI 산업': {'방산','조선','자동차·소비재'}}
+            'Physical AI': {'로봇·자동화'}, '비AI 산업': {'방산','조선','자동차·소비재','반도체 유통','기타'}}
     for entry in exposure.get('topAxes', []):
-        weight = sum(v for n,v in values.items() if sector_map.get(n) in axes.get(entry['name'],set())) / total * 100 if total else 0
+        weight = sum(v for n,v in values.items() if sector_map.get(n, '기타') in axes.get(entry['name'],set())) / total * 100 if total else 0
         entry.update(weight=f'{weight:.1f}%', status='과밀' if weight >= 50 else '부족' if weight == 0 else '적정')
     exposure['basis'] = f'{price_date} 검증 종가 × 기존 보유수량' + (' · 일부 누락' if missing else '')
     result['valuationBasis'] = f'보유수량·평균매입가 유지 · {price_date} 종가 · 총매입 {costs:,.0f}원 · 총평가 {total:,.0f}원'
     result['status'] = f'보유 {updated}/{len(result.get("rows", []))}종목 가격·공시 재평가 · 실거래·보유수량 변경 없음'
     result['events'] = []
+    if 'assessments' in result:
+        held = {row['ticker'] for row in result['rows']}
+        result['assessments'] = [item for item in result['assessments'] if item['ticker'] in held]
     result['refreshStatus'] = {'priceDate': price_date, 'updated': updated, 'missing': missing,
                                'assessment': '기존 주관적 목표가 대신 검증된 수치로 재평가; 매매 지시 아님'}
     return result

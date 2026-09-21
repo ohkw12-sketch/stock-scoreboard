@@ -8428,37 +8428,37 @@
   "p3": {
     "events": [],
     "exposure": {
-      "basis": "2026-09-18 검증 종가 × 기존 보유수량",
+      "basis": "2026-09-18 검증 종가 × 9/21 갱신 보유수량",
       "sectors": [
         {
           "name": "PCB·기판·광학",
           "status": "과밀",
-          "weight": "30.4%"
+          "weight": "34.9%"
         },
         {
           "name": "메모리",
           "status": "적정",
-          "weight": "19.1%"
+          "weight": "27.4%"
         },
         {
           "name": "반도체 장비",
           "status": "적정",
-          "weight": "16.4%"
+          "weight": "17.0%"
         },
         {
           "name": "전력기기",
           "status": "적정",
-          "weight": "16.1%"
+          "weight": "7.4%"
         },
         {
           "name": "방산",
           "status": "적정",
-          "weight": "18.1%"
+          "weight": "8.3%"
         },
         {
           "name": "조선",
-          "status": "부족",
-          "weight": "0.0%"
+          "status": "적정",
+          "weight": "1.4%"
         },
         {
           "name": "로봇·자동화",
@@ -8469,6 +8469,11 @@
           "name": "자동차·소비재",
           "status": "부족",
           "weight": "0.0%"
+        },
+        {
+          "name": "반도체 유통",
+          "weight": "3.6%",
+          "status": "적정"
         }
       ],
       "topAxes": [
@@ -8476,13 +8481,13 @@
           "name": "AI 직접",
           "detail": "메모리·PCB·반도체 장비",
           "status": "과밀",
-          "weight": "65.8%"
+          "weight": "79.3%"
         },
         {
           "name": "AI 인프라",
           "detail": "전력기기",
           "status": "적정",
-          "weight": "16.1%"
+          "weight": "7.4%"
         },
         {
           "name": "Physical AI",
@@ -8492,103 +8497,115 @@
         },
         {
           "name": "비AI 산업",
-          "detail": "방산",
+          "detail": "방산·조선·반도체 유통 (사업 분류 기준)",
           "status": "적정",
-          "weight": "18.1%"
+          "weight": "13.3%"
         }
       ]
     },
     "positionRules": "기업판정과 가격판정을 분리. 보유주는 실적·컨센·수주·가이던스 훼손이 없으면 단기 가격변동만으로 매도하지 않음.",
     "rows": [
       {
-        "action": "보유·재점검",
-        "avg": 2522750,
+        "action": "근거 확인",
+        "avg": 1716000,
         "basis": "2026-09-18 검증 종가",
         "close": 1857000.0,
         "drawdown3m": "-37.83%",
-        "fairRange": "재산정 필요",
-        "judgment": "기업: 매우 강함 · 가격: 종가가 당일 저가권",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "높은 수익성에도 시장 기대에는 미달",
         "marks": [],
         "name": "SK하이닉스",
         "opGrowth": "+489.4% 실제",
         "priceChange": "가격·공시 수치 재계산",
-        "qty": 2,
-        "ret": "-26.39%",
+        "qty": 3,
+        "ret": "+8.22%",
         "sector": "메모리",
-        "special": "실적 2026-06-30 · 종가 1,857,000원",
+        "special": "실적 2026-06-30 · 종가 1,857,000원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "35.4% 할인",
         "previousAssessment": {
-          "judgment": "기업: 매우 강함 · 가격: 종가가 당일 저가권",
-          "action": "보유·재점검",
-          "fairRange": "재산정 필요",
-          "valuePosition": "재산정 필요",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "높은 수익성에도 시장 기대에는 미달",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "000660"
+        "ticker": "000660",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 1869000,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·추매대기",
-        "avg": 63465,
+        "action": "근거 확인",
+        "avg": 54331,
         "basis": "2026-09-18 검증 종가",
         "close": 52500.0,
         "drawdown3m": "-58.33%",
-        "fairRange": "98,500~120,400원",
-        "judgment": "기업: 개선 · 가격: 56,200원 지지 확인",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "2분기 이익 미달과 회복 시점 지연이 부담",
         "marks": [],
         "name": "코리아써키트",
         "opGrowth": "+918.7% 실제",
         "priceChange": "가격·공시 수치 재계산",
-        "qty": 37,
-        "ret": "-17.28%",
+        "qty": 89,
+        "ret": "-3.37%",
         "sector": "PCB/패키지기판",
-        "special": "실적 2026-06-30 · 종가 52,500원",
+        "special": "실적 2026-06-30 · 종가 52,500원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "19.5% 할인",
         "previousAssessment": {
-          "judgment": "기업: 개선 · 가격: 56,200원 지지 확인",
-          "action": "보유·추매대기",
-          "fairRange": "98,500~120,400원",
-          "valuePosition": "섹터 대비 할인",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "2분기 이익 미달과 회복 시점 지연이 부담",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "007810"
+        "ticker": "007810",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 51900,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·재점검",
-        "avg": 610000,
+        "action": "근거 확인",
+        "avg": 566000,
         "basis": "2026-09-18 검증 종가",
         "close": 532000.0,
         "drawdown3m": "-54.99%",
-        "fairRange": "868,000~1,060,900원",
-        "judgment": "기업: 강함 · 가격: 561,000원 지지 재확인",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "2분기 실적 부진으로 보기 어려움",
         "marks": [],
         "name": "LG이노텍",
         "opGrowth": "+296.4% 실제",
         "priceChange": "가격·공시 수치 재계산",
-        "qty": 3,
-        "ret": "-12.79%",
+        "qty": 6,
+        "ret": "-6.01%",
         "sector": "광학/FC-BGA",
-        "special": "실적 2026-06-30 · 종가 532,000원",
+        "special": "실적 2026-06-30 · 종가 532,000원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "28.5% 할인",
         "previousAssessment": {
-          "judgment": "기업: 강함 · 가격: 561,000원 지지 재확인",
-          "action": "보유·재점검",
-          "fairRange": "868,000~1,060,900원",
-          "valuePosition": "할인",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "2분기 실적 부진으로 보기 어려움",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "011070"
+        "ticker": "011070",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 521000,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·눌림목추매",
+        "action": "확인 대기",
         "avg": 175800,
         "basis": "2026-09-18 검증 종가",
         "close": 138100.0,
         "drawdown3m": "-41.61%",
-        "fairRange": "재산정 필요",
-        "judgment": "기업: 강함 · 가격: 장중 저점 회복 우수",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "구체적 근거 추가 확인 중",
         "marks": [],
         "name": "테스",
         "opGrowth": "+31.6% 실제",
@@ -8596,26 +8613,30 @@
         "qty": 13,
         "ret": "-21.44%",
         "sector": "반도체 전공정",
-        "special": "실적 2026-06-30 · 종가 138,100원",
+        "special": "실적 2026-06-30 · 종가 138,100원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "135.9% 프리미엄",
         "previousAssessment": {
-          "judgment": "기업: 강함 · 가격: 장중 저점 회복 우수",
-          "action": "보유·눌림목추매",
-          "fairRange": "재산정 필요",
-          "valuePosition": "성장 대비 가치 재점검",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "구체적 근거 추가 확인 중",
+          "action": "확인 대기",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "095610"
+        "ticker": "095610",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 1,
+          "quotedPrice": 144900,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·재점검",
+        "action": "근거 확인",
         "avg": 74300,
         "basis": "2026-09-18 검증 종가",
         "close": 76600.0,
         "drawdown3m": "-9.56%",
-        "fairRange": "94,500~115,500원",
-        "judgment": "기업: 강함 · 가격: 67,500원 지지 확인",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "좋은 실적과 목표가 하향이 함께 나타남",
         "marks": [],
         "name": "일진전기",
         "opGrowth": "+71.3% 실제",
@@ -8623,26 +8644,30 @@
         "qty": 22,
         "ret": "+3.10%",
         "sector": "변압기/전선",
-        "special": "실적 2026-06-30 · 종가 76,600원",
+        "special": "실적 2026-06-30 · 종가 76,600원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "27.5% 할인",
         "previousAssessment": {
-          "judgment": "기업: 강함 · 가격: 67,500원 지지 확인",
-          "action": "보유·재점검",
-          "fairRange": "94,500~115,500원",
-          "valuePosition": "섹터 대비 할인",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "좋은 실적과 목표가 하향이 함께 나타남",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "103590"
+        "ticker": "103590",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 1,
+          "quotedPrice": 73300,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·재점검",
+        "action": "근거 확인",
         "avg": 787000,
         "basis": "2026-09-18 검증 종가",
         "close": 725000.0,
         "drawdown3m": "-34.27%",
-        "fairRange": "재산정 필요",
-        "judgment": "기업: 매우 강함 · 가격: 710,000원 지지 확인",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "매출·수익성·수주잔고가 함께 개선",
         "marks": [],
         "name": "HD현대일렉트릭",
         "opGrowth": "+27.6% 실제",
@@ -8650,80 +8675,92 @@
         "qty": 2,
         "ret": "-7.88%",
         "sector": "전력기기/변압기",
-        "special": "실적 2026-06-30 · 종가 725,000원",
+        "special": "실적 2026-06-30 · 종가 725,000원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "34.3% 프리미엄",
         "previousAssessment": {
-          "judgment": "기업: 매우 강함 · 가격: 710,000원 지지 확인",
-          "action": "보유·재점검",
-          "fairRange": "재산정 필요",
-          "valuePosition": "섹터 프리미엄",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "매출·수익성·수주잔고가 함께 개선",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "267260"
+        "ticker": "267260",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 1,
+          "quotedPrice": 718000,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·눌림목추매",
-        "avg": 170000,
+        "action": "근거 확인",
+        "avg": 145862,
         "basis": "2026-09-18 검증 종가",
         "close": 126900.0,
         "drawdown3m": "-42.19%",
-        "fairRange": "재산정 필요",
-        "judgment": "기업: 재점검 · 가격: 장중 저점 회복 우수",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "영업이익은 컨센서스를 상회",
         "marks": [],
         "name": "피에스케이",
         "opGrowth": "+125.6% 실제",
         "priceChange": "가격·공시 수치 재계산",
-        "qty": 11,
-        "ret": "-25.35%",
+        "qty": 29,
+        "ret": "-13.00%",
         "sector": "반도체 장비",
-        "special": "실적 2026-06-30 · 종가 126,900원",
+        "special": "실적 2026-06-30 · 종가 126,900원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "79.7% 프리미엄",
         "previousAssessment": {
-          "judgment": "기업: 재점검 · 가격: 장중 저점 회복 우수",
-          "action": "보유·눌림목추매",
-          "fairRange": "재산정 필요",
-          "valuePosition": "재산정 필요",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "영업이익은 컨센서스를 상회",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "319660"
+        "ticker": "319660",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 134100,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·눌림목추매",
-        "avg": 106400,
+        "action": "근거 확인",
+        "avg": 98600,
         "basis": "2026-09-18 검증 종가",
         "close": 103200.0,
         "drawdown3m": "-36.69%",
-        "fairRange": "재산정 필요",
-        "judgment": "기업: 매우 강함 · 가격: 업종 대비 방어",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "2분기 실적과 FC-BGA 가동률 개선 확인",
         "marks": [],
         "name": "대덕전자",
         "opGrowth": "흑자전환",
         "priceChange": "가격·공시 수치 재계산",
-        "qty": 23,
-        "ret": "-3.01%",
+        "qty": 40,
+        "ret": "+4.67%",
         "sector": "AI PCB/패키지기판",
-        "special": "실적 2026-06-30 · 종가 103,200원",
+        "special": "실적 2026-06-30 · 종가 103,200원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "77.1% 프리미엄",
         "previousAssessment": {
-          "judgment": "기업: 매우 강함 · 가격: 업종 대비 방어",
-          "action": "보유·눌림목추매",
-          "fairRange": "재산정 필요",
-          "valuePosition": "실적 가속·가치 할인",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "2분기 실적과 FC-BGA 가동률 개선 확인",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "353200"
+        "ticker": "353200",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 102500,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
       },
       {
-        "action": "보유·재점검",
+        "action": "확인 대기",
         "avg": 28143,
         "basis": "2026-09-18 검증 종가",
         "close": 19000.0,
         "drawdown3m": "-46.63%",
-        "fairRange": "재산정 필요",
-        "judgment": "기업: 개선 · 가격: 17,520원 지지 확인",
+        "fairRange": "별도 산정 안 함",
+        "judgment": "구체적 근거 추가 확인 중",
         "marks": [],
         "name": "엠앤씨솔루션",
         "opGrowth": "-10.8% 실제",
@@ -8731,36 +8768,389 @@
         "qty": 185,
         "ret": "-32.49%",
         "sector": "방산/정밀제어",
-        "special": "실적 2026-06-30 · 종가 19,000원",
+        "special": "실적 2026-06-30 · 종가 19,000원 · 보유 입력 9/21 이미지",
         "tag": "H",
         "valuePosition": "49.5% 할인",
         "previousAssessment": {
-          "judgment": "기업: 개선 · 가격: 17,520원 지지 확인",
-          "action": "보유·재점검",
-          "fairRange": "재산정 필요",
-          "valuePosition": "재산정 필요",
-          "basis": "2026-09-02 KRX 종가"
+          "judgment": "구체적 근거 추가 확인 중",
+          "action": "확인 대기",
+          "fairRange": "별도 산정 안 함"
         },
-        "ticker": "484870"
+        "ticker": "484870",
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 1,
+          "quotedPrice": 18300,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        }
+      },
+      {
+        "name": "삼성전자",
+        "ticker": "005930",
+        "qty": 23,
+        "avg": 245086,
+        "tag": "H",
+        "judgment": "메모리가 이끈 최대 실적, 사업별 차이는 존재",
+        "action": "근거 확인",
+        "fairRange": "별도 산정 안 함",
+        "marks": [],
+        "previousAssessment": {
+          "judgment": "메모리가 이끈 최대 실적, 사업별 차이는 존재",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
+        },
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 269500,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        },
+        "close": 261000.0,
+        "ret": "+6.49%",
+        "drawdown3m": "-28.10%",
+        "opGrowth": "+1191.4% 실제",
+        "valuePosition": "47.8% 할인",
+        "special": "실적 2026-06-30 · 종가 261,000원 · 보유 입력 9/21 이미지",
+        "basis": "2026-09-18 검증 종가",
+        "priceChange": "가격·공시 수치 재계산"
+      },
+      {
+        "name": "삼성전기",
+        "ticker": "009150",
+        "qty": 2,
+        "avg": 1317000,
+        "tag": "H",
+        "judgment": "AI·전장 부품이 실적 개선을 뒷받침",
+        "action": "근거 확인",
+        "fairRange": "별도 산정 안 함",
+        "marks": [],
+        "previousAssessment": {
+          "judgment": "AI·전장 부품이 실적 개선을 뒷받침",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
+        },
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 1411000,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        },
+        "close": 1388000.0,
+        "ret": "+5.39%",
+        "drawdown3m": "-40.17%",
+        "opGrowth": "+74.3% 실제",
+        "valuePosition": "420.3% 프리미엄",
+        "special": "실적 2026-06-30 · 종가 1,388,000원 · 보유 입력 9/21 이미지",
+        "basis": "2026-09-18 검증 종가",
+        "priceChange": "가격·공시 수치 재계산"
+      },
+      {
+        "name": "한화오션",
+        "ticker": "042660",
+        "qty": 7,
+        "avg": 93428,
+        "tag": "H",
+        "judgment": "2분기 호실적과 잠수함 수주 기대를 구분",
+        "action": "근거 확인",
+        "fairRange": "별도 산정 안 함",
+        "marks": [],
+        "previousAssessment": {
+          "judgment": "2분기 호실적과 잠수함 수주 기대를 구분",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
+        },
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 81800,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        },
+        "close": 82900.0,
+        "ret": "-11.27%",
+        "drawdown3m": "-33.79%",
+        "opGrowth": "+86.8% 실제",
+        "valuePosition": "35.6% 프리미엄",
+        "special": "실적 2026-06-30 · 종가 82,900원 · 보유 입력 9/21 이미지",
+        "basis": "2026-09-18 검증 종가",
+        "priceChange": "가격·공시 수치 재계산"
+      },
+      {
+        "name": "티에스이",
+        "ticker": "131290",
+        "qty": 7,
+        "avg": 250500,
+        "tag": "H",
+        "judgment": "프로브카드 실적이 기대를 웃돎",
+        "action": "근거 확인",
+        "fairRange": "별도 산정 안 함",
+        "marks": [],
+        "previousAssessment": {
+          "judgment": "프로브카드 실적이 기대를 웃돎",
+          "action": "근거 확인",
+          "fairRange": "별도 산정 안 함"
+        },
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 254000,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        },
+        "close": 243000.0,
+        "ret": "-2.99%",
+        "drawdown3m": "-23.70%",
+        "opGrowth": "+427.3% 실제",
+        "valuePosition": "6.9% 프리미엄",
+        "special": "실적 2026-06-30 · 종가 243,000원 · 보유 입력 9/21 이미지",
+        "basis": "2026-09-18 검증 종가",
+        "priceChange": "가격·공시 수치 재계산"
+      },
+      {
+        "name": "유니트론텍",
+        "ticker": "142210",
+        "qty": 250,
+        "avg": 6910,
+        "tag": "H",
+        "judgment": "구체적 근거 추가 확인 중",
+        "action": "확인 대기",
+        "fairRange": "별도 산정 안 함",
+        "marks": [],
+        "previousAssessment": {
+          "judgment": "구체적 근거 추가 확인 중",
+          "action": "확인 대기",
+          "fairRange": "별도 산정 안 함"
+        },
+        "holdingInput": {
+          "sourceDate": "2026-09-21",
+          "sourceImage": 2,
+          "quotedPrice": 6160,
+          "priceBasis": "이미지 촬영 시점 장중 가격 · 평가 종가와 별도"
+        },
+        "close": 6110.0,
+        "ret": "-11.58%",
+        "drawdown3m": "-17.10%",
+        "opGrowth": "+242.4% 실제",
+        "valuePosition": "89.9% 할인",
+        "special": "실적 2026-06-30 · 종가 6,110원 · 보유 입력 9/21 이미지",
+        "basis": "2026-09-18 검증 종가",
+        "priceChange": "가격·공시 수치 재계산"
       }
     ],
-    "status": "보유 9/9종목 가격·공시 재평가 · 실거래·보유수량 변경 없음",
-    "valuationBasis": "보유수량·평균매입가 유지 · 2026-09-18 종가 · 총매입 24,241,360원 · 총평가 19,467,500원",
+    "status": "2026-09-21 이미지로 보유 14종목 갱신 · 중복은 낮은 매입단가 행 선택 · 수량 합산 없음",
+    "valuationBasis": "9/21 이미지 수량·평단 적용 · 2026-09-18 종가 · 총매입 44,659,886원 · 총평가 42,276,900원 · 수익률은 수수료·세금 제외 · 이미지 장중 시세와 다름",
     "refreshStatus": {
       "priceDate": "2026-09-18",
-      "updated": 9,
+      "updated": 14,
       "missing": [],
       "assessment": "기존 주관적 목표가 대신 검증된 수치로 재평가; 매매 지시 아님"
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-09-21T08:58:28+09:00",
-      "snapshotId": "d49cbe3586e2d5736093474dbdd91e030a583275b8fef3d8b5a2a72d9aa3c705",
+      "generatedAt": "2026-09-19T19:13:54+09:00",
+      "snapshotId": "bc28f38710992c205a238a3e492c0e50cb46fa3585bbbe731da400c45bc31535",
       "sourceCutoff": "2026-09-18",
       "mode": "저장자료 재계산",
-      "engineVersion": "0ce64cc59a26d998",
-      "runId": "d9c1f2f40961b3668ace99b2",
-      "evidenceSnapshotId": "c4cabb9243ca3d72fdf3fb54fedbc44fe5844982ab95a8a52ad0b5caf279bb73"
-    }
+      "engineVersion": "d860e1761e9dbc1a",
+      "runId": "38d19c867cdfc476740a497b",
+      "evidenceSnapshotId": "8d85e61bd8c6e19621d6accf7a009f60e0f004a8a9c2462340c23ea173a56817"
+    },
+    "holdingsUpdatedAt": "2026-09-21",
+    "holdingsSelectionRule": "동일 종목은 낮은 매입단가 행 전체 선택, 수량 합산하지 않음",
+    "assessments": [
+      {
+        "name": "코리아써키트",
+        "ticker": "007810",
+        "label": "기대 미달·회복 지연",
+        "title": "2분기 이익 미달과 회복 시점 지연이 부담",
+        "fact": "2분기 영업이익 193억원은 전년보다 증가했지만 메리츠 자체 추정치를 40.8% 밑돌았다. 메리츠는 원재료 부족에 따른 출하 지연, 인터플렉스 영업적자 52억원, 메모리 모듈 증설 효과의 3분기에서 4분기로의 지연을 지적했다.",
+        "interpretation": "이익 증가율만 보면 놓치는 기대치 하향 요인이다. 순환매 재료가 실제 이익으로 이어지는 시점이 뒤로 밀렸다는 해석이 가능하다. 40.8%는 시장 전체 컨센서스 대비가 아니다.",
+        "watch": "3분기 재고평가 비용과 출하 회복, 4분기 증설 매출 반영 여부. 4분기 회복은 아직 전망이다.",
+        "period": "2026년 2분기 실적 · 9/3 리포트 보도",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "이데일리 · 메리츠 분석 · 2026-09-03",
+            "url": "https://coinlab.edaily.co.kr/News/Read?mediaCodeNo=257&newsId=02712566645576512"
+          }
+        ]
+      },
+      {
+        "name": "SK하이닉스",
+        "ticker": "000660",
+        "label": "기대 미달·추정 하향",
+        "title": "높은 수익성에도 시장 기대에는 미달",
+        "fact": "신한 분석에 따르면 2분기 매출 79.3조원·영업이익 60.5조원은 시장 기대를 소폭 밑돌았다. HBM 매출 구성과 고객 계약 시점이 평균판매단가 상승 폭을 제한했고, 2026·2027년 이익 추정치를 각각 7%·9% 낮췄다.",
+        "interpretation": "사업 악화와 기대치 조정을 구분해야 한다. 해당 분석은 낮은 재고와 높은 수익성도 함께 제시하므로 실적 붕괴로 해석할 근거는 아니다.",
+        "watch": "다음 분기 판매단가·HBM 출하·이익 전망의 재상향 여부. 하반기 공급 부족은 분석기관의 전망이다.",
+        "period": "2026년 2분기 실적 · 7/30 분석",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "신한금융그룹 · 2026-07-30",
+            "url": "https://www.shinhangroup.com/kr/archive/insight/extend/detail/33242"
+          }
+        ]
+      },
+      {
+        "name": "한화오션",
+        "ticker": "042660",
+        "label": "실적 개선·수주 변수",
+        "title": "2분기 호실적과 잠수함 수주 기대를 구분",
+        "fact": "KB증권은 2분기 영업이익 7,361억원과 매출·이익의 시장 예상 30% 이상 상회를 확인했다. 다만 회사는 7/27 실적 설명회에서 캐나다 잠수함 사업에서 원하는 결과를 얻지 못했다고 밝혔다.",
+        "interpretation": "상선 수익성은 개선됐지만 대형 방산 수주 기대에는 별도 변수가 생겼다. 실적 부진 한 가지로 설명할 수 없는 종목이다.",
+        "watch": "고수익 상선의 이익 지속성과 후속 함정 수주 공시. 특정 수주 기대를 확정 매출처럼 반영하지 않는다.",
+        "period": "2026년 2분기 실적 · 7/27 설명회",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "KB증권 · 2026-07-27",
+            "url": "https://kbthink.com/securities-view.html?docId=20260727161415043K"
+          },
+          {
+            "title": "ZDNet Korea · 회사 설명회 · 2026-07-27",
+            "url": "https://zdnet.co.kr/view/?no=20260727153138"
+          }
+        ]
+      },
+      {
+        "name": "LG이노텍",
+        "ticker": "011070",
+        "label": "실적 개선",
+        "title": "2분기 실적 부진으로 보기 어려움",
+        "fact": "회사 발표 2분기 영업이익은 2,458억원으로 전년 대비 2,057% 증가했다. 모바일 카메라와 고부가 반도체 기판 공급이 성장에 기여했다. 전분기 대비 이익은 16.8% 감소했다.",
+        "interpretation": "전분기 감소와 전년 대비 성장을 구분해야 한다. 확인된 실적은 개선이며, 최근 주가 정체를 실적 미달로 단정할 근거는 부족하다.",
+        "watch": "하반기 카메라 수요와 FC-BGA 매출·수익성의 지속 여부.",
+        "period": "2026년 2분기 잠정 실적",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "LG이노텍 공식 발표 · 2026-07-27",
+            "url": "https://news.lginnotek.com/1660"
+          }
+        ]
+      },
+      {
+        "name": "삼성전자",
+        "ticker": "005930",
+        "label": "실적 개선",
+        "title": "메모리가 이끈 최대 실적, 사업별 차이는 존재",
+        "fact": "회사 발표 2분기 매출은 171.5조원, 영업이익은 89.5조원이다. DS 영업이익은 89.2조원이며 메모리 가격 상승과 서버 수요가 기여했다. DX 매출은 전분기 대비 9% 감소했다.",
+        "interpretation": "확인된 전체 실적을 부진으로 분류할 수 없다. 메모리 수익 기여가 큰 만큼 이후 실적은 메모리 가격과 고부가 제품 공급 흐름에 민감할 수 있다.",
+        "watch": "메모리 가격 상승 지속 여부, HBM4 판매 확대, DX 회복. 회사의 하반기 계획은 확정 성과와 구분한다.",
+        "period": "2026년 2분기 실적",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "삼성전자 공식 발표 · 2026-07-30",
+            "url": "https://news.samsungsemiconductor.com/global/samsung-electronics-announces-second-quarter-2026-results/"
+          }
+        ]
+      },
+      {
+        "name": "삼성전기",
+        "ticker": "009150",
+        "label": "실적 개선",
+        "title": "AI·전장 부품이 실적 개선을 뒷받침",
+        "fact": "회사 발표 2분기 매출 3조4,572억원·영업이익 4,404억원으로 전년 대비 각각 24%·107% 증가했다. AI 서버·전장용 MLCC와 고부가 FC-BGA 공급 확대가 기여했다.",
+        "interpretation": "실적 측면의 보유 근거가 확인된다. 다만 이 수치만으로 주가에 반영된 기대 수준이나 추가 상승 여력을 확정할 수 없다.",
+        "watch": "AI·전장용 고부가 제품의 공급 증가와 다음 분기 수익성 유지 여부.",
+        "period": "2026년 2분기 실적",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "삼성전기 공식 발표 · 2026-07-30",
+            "url": "https://samsungsem.com/kr/newsroom/news/view.do?id=10461"
+          }
+        ]
+      },
+      {
+        "name": "HD현대일렉트릭",
+        "ticker": "267260",
+        "label": "실적·수주 개선",
+        "title": "매출·수익성·수주잔고가 함께 개선",
+        "fact": "회사 발표 2분기 영업이익 2,870억원은 전년 대비 37.3% 증가했고 영업이익률은 25.1%다. 수주잔고는 전년 대비 29.6% 증가한 84.9억달러다.",
+        "interpretation": "실적이나 수주 부족을 약세 이유로 적을 근거는 없다. 향후 평가는 늘어난 수주가 현재 수익성을 유지하면서 매출로 전환되는지에 달려 있다.",
+        "watch": "수주잔고의 매출 전환과 변압기·배전기기 수익성 유지.",
+        "period": "2026년 2분기 실적",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "HD현대일렉트릭 공식 뉴스 · 2026-07-28",
+            "url": "https://www.hyundai-elec.co.kr/elect/m/ko/index.jsp"
+          }
+        ]
+      },
+      {
+        "name": "일진전기",
+        "ticker": "103590",
+        "label": "실적 개선·목표가 조정",
+        "title": "좋은 실적과 목표가 하향이 함께 나타남",
+        "fact": "2분기 영업이익은 720억원으로 전년 대비 91.4% 증가했다. NH투자증권은 자체 추정치 상회로 평가하면서도 8/12 목표가를 직전 118,000원에서 108,000원으로 낮췄다.",
+        "interpretation": "실적 증가만으로 시장의 평가 수준이 계속 높아진다고 볼 수 없다는 사례다. 목표가 하향 원인은 해당 공개 요약만으로 확정할 수 없다.",
+        "watch": "북미 비중 확대에 따른 수익성 개선이 실제 다음 분기 실적과 추정치 상향으로 이어지는지 확인.",
+        "period": "2026년 2분기 실적 · 8/12 리포트",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "EBN · 실적 공시 보도 · 2026-08-11",
+            "url": "https://v.daum.net/v/20260811160659502"
+          },
+          {
+            "title": "뉴스핌 · NH투자증권 분석 · 2026-08-12",
+            "url": "https://www.newspim.com/news/view/20260812000220"
+          }
+        ]
+      },
+      {
+        "name": "대덕전자",
+        "ticker": "353200",
+        "label": "기대 상회",
+        "title": "2분기 실적과 FC-BGA 가동률 개선 확인",
+        "fact": "키움증권 분석의 2분기 영업이익은 703억원으로 컨센서스 648억원을 상회했다. 2분기 말 FC-BGA 가동률은 90%에 도달한 것으로 분석했다.",
+        "interpretation": "코리아써키트와 같은 PCB 계열이어도 실적 기대 충족 여부는 다르다. 이 자료에서는 실적 미달보다 개선 근거가 확인된다.",
+        "watch": "대면적 기판의 매출 확대와 가동률 개선 지속 여부. 4분기 신규 양산은 전망 단계다.",
+        "period": "2026년 2분기 리뷰 · 원문 게시일 미확인",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "키움증권 · 2Q26 리뷰",
+            "url": "https://invest.kiwoom.com/inv/38886"
+          }
+        ]
+      },
+      {
+        "name": "피에스케이",
+        "ticker": "319660",
+        "label": "기대 상회",
+        "title": "영업이익은 컨센서스를 상회",
+        "fact": "한국투자증권 테크팀의 2분기 리뷰에 따르면 매출 1,675억원·영업이익 503억원이며, 영업이익은 컨센서스를 9.6% 웃돌았다. 피에스케이홀딩스와는 별도 종목이다.",
+        "interpretation": "실적 미달을 약세 이유로 제시하기 어렵다. 실적 개선과 주가 회복은 별개이므로 다음 분기 장비 매출의 지속성을 확인해야 한다.",
+        "watch": "후속 분기 장비 매출과 이익률, 고객 투자 집행에 따른 실제 수주·공시.",
+        "period": "2026년 2분기 리뷰 · 원문 게시일 미확인",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "한국투자증권 테크팀 · 공개 실적 리뷰",
+            "url": "https://t.me/s/KISemicon?before=4652"
+          }
+        ]
+      },
+      {
+        "name": "티에스이",
+        "ticker": "131290",
+        "label": "기대 상회",
+        "title": "프로브카드 실적이 기대를 웃돎",
+        "fact": "삼성증권의 8/18 리뷰에 따르면 2분기 매출 1,888억원·영업이익 525억원으로 컨센서스를 각각 28%·23% 상회했다. 해당 증권사는 프로브카드 실적을 주요 개선 요인으로 평가했다.",
+        "interpretation": "실적 기대 충족 측면에서는 긍정적 근거가 있다. 호실적이 다음 분기에도 이어지는지 확인하는 것이 보유 판단의 핵심이다.",
+        "watch": "프로브카드 매출·이익률 지속성과 다음 분기 전망 변화.",
+        "period": "2026년 2분기 실적 · 8/18 리포트",
+        "checkedAt": "2026-09-21",
+        "sources": [
+          {
+            "title": "뉴스핌 · 삼성증권 분석 · 2026-08-18",
+            "url": "https://www.newspim.com/news/view/20260818000279"
+          }
+        ]
+      }
+    ]
   }
 }
