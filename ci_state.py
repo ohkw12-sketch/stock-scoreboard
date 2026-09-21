@@ -24,7 +24,7 @@ GROWTH_FILES = {'event_ledger.json', 'collection_status.json', 'disclosure_index
                 'news_hints.json', 'news_status.json', 'news_queue.json', 'news_search_state.json',
                 'trade_ledger.json', 'trade_status.json', 'trade_release_cache.json'}
 SECRET_ENV = ('DART_API_KEY', 'KIS_APP_KEY', 'KIS_APP_SECRET', 'NAVER_CLIENT_ID',
-              'NAVER_CLIENT_SECRET', 'GH_TOKEN', 'GITHUB_TOKEN')
+              'NAVER_CLIENT_SECRET', 'GH_TOKEN', 'GITHUB_TOKEN', 'OPENAI_API_KEY', 'RAW_STATE_KEY')
 
 
 def _parts(relative):

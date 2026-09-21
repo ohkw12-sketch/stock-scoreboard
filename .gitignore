@@ -5,3 +5,4 @@ consensus_cache.csv
 test_output/
 .codex/
 .venv/
+.cloud-state/

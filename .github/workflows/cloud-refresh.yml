@@ -1,0 +1,177 @@
+name: Cloud Scoreboard (data and AI research)
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        type: string
+        default: verify-state
+      slot:
+        type: string
+        default: auto
+  schedule:
+    # UTC: KST business-day 08:00, 10:30, 15:00. KRX holidays are checked below.
+    - cron: '0 23 * * 0-4'
+    - cron: '30 1 * * 1-5'
+    - cron: '0 6 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'verify-state: restore/test only; refresh: collect, validate and publish'
+        type: choice
+        options: [verify-state, refresh]
+        default: verify-state
+      slot:
+        description: 'KST stage (auto chooses by current time for manual runs)'
+        type: choice
+        options: [auto, '08:00', '10:30', '15:00']
+        default: auto
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stock-scoreboard-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    if: github.event_name == 'workflow_dispatch' || vars.CLOUD_AUTOMATION_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install -r requirements.txt
+      - name: Determine KRX day and original slot
+        id: gate
+        env:
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          REQUESTED_SLOT: ${{ inputs.slot || 'auto' }}
+          VERIFY_ONLY: ${{ inputs.mode == 'verify-state' }}
+        run: |
+          extra=()
+          if [ "$VERIFY_ONLY" = true ]; then extra+=(--verify-only); fi
+          python cloud_runner.py gate --slot "$REQUESTED_SLOT" "${extra[@]}"
+      - name: Validate secrets without printing their values
+        if: steps.gate.outputs.run == 'true'
+        env:
+          RAW_STATE_KEY: ${{ secrets.RAW_STATE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
+          KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
+          VERIFY_ONLY: ${{ inputs.mode == 'verify-state' }}
+        run: |
+          test -n "$RAW_STATE_KEY" || { echo 'Missing RAW_STATE_KEY'; exit 2; }
+          if [ "$VERIFY_ONLY" != true ]; then
+            test -n "$OPENAI_API_KEY" || { echo 'Missing OPENAI_API_KEY; desktop scheduling remains in place until cutover'; exit 2; }
+            test -n "$DART_API_KEY" && test -n "$KIS_APP_KEY" && test -n "$KIS_APP_SECRET"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          ref: raw-data
+          path: .cloud-state
+          persist-credentials: false
+      - name: Restore encrypted persistent data
+        if: steps.gate.outputs.run == 'true'
+        env:
+          RAW_STATE_KEY: ${{ secrets.RAW_STATE_KEY }}
+        run: |
+          python cloud_state.py restore --state-dir .cloud-state
+          python cloud_runner.py verify
+      - name: Regression and rendering checks
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          python -m unittest discover -s tests -v
+          node --test tests/test_ui_runtime.cjs tests/test_issue_ui.cjs tests/test_saveticker_ui.cjs
+          python board_contract.py
+      - name: Review original sources with AI
+        if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state'
+        id: research
+        uses: openai/codex-action@v1
+        timeout-minutes: 65
+        env:
+          SLOT: ${{ steps.gate.outputs.slot }}
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
+          KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .github/codex/cloud-review.md
+          output-file: test_output/cloud-review-summary.md
+          sandbox: workspace-write
+          safety-strategy: drop-sudo
+          codex-args: '["--ephemeral", "-c", "sandbox_workspace_write.network_access=true", "-c", "web_search=\"live\""]'
+      - name: Compute, validate and promote only approved outputs
+        if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state'
+        env:
+          SLOT: ${{ steps.gate.outputs.slot }}
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
+          KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
+          NAVER_CLIENT_ID: ${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET: ${{ secrets.NAVER_CLIENT_SECRET }}
+        run: python cloud_runner.py build --slot "$SLOT"
+      - name: Save persistent raw data before publication
+        if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state'
+        env:
+          RAW_STATE_KEY: ${{ secrets.RAW_STATE_KEY }}
+          DART_API_KEY: ${{ secrets.DART_API_KEY }}
+          KIS_APP_KEY: ${{ secrets.KIS_APP_KEY }}
+          KIS_APP_SECRET: ${{ secrets.KIS_APP_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: python cloud_state.py save --state-dir .cloud-state
+      - name: Commit encrypted state and public boards
+        if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh auth setup-git
+          git -C .cloud-state config user.name stock-scoreboard-bot
+          git -C .cloud-state config user.email stock-scoreboard-bot@users.noreply.github.com
+          git -C .cloud-state add objects state.enc
+          if ! git -C .cloud-state diff --cached --quiet; then
+            git -C .cloud-state commit -m 'Persist encrypted incremental raw data'
+            git -C .cloud-state push origin HEAD:raw-data
+          fi
+          git config user.name stock-scoreboard-bot
+          git config user.email stock-scoreboard-bot@users.noreply.github.com
+          git add data.json youtube-market.json sampro-market.json saveticker-market.json issue-spread.json combined-recommendations.json recommendation-performance.json refresh-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Publish verified cloud scoreboard'
+            git push origin HEAD:main
+          fi
+      - name: Verify publication and persist recommendation history
+        if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state' && steps.gate.outputs.slot != '10:30'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python record_publication.py --attempts 30 --interval 20
+          git add recommendation-history.json recommendation-performance.json combined-recommendations.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Record verified cloud publication'
+            git push origin HEAD:main
+          fi
+      - name: Confirm every published board (including issue-only runs)
+        if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state'
+        run: python cloud_runner.py verify-public
+      - name: Summarize restored data
+        if: always() && steps.gate.outputs.run == 'true'
+        run: |
+          if [ -f test_output/cloud-verification.json ]; then
+            cat test_output/cloud-verification.json >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo 'Full AI migration is active only after a successful refresh and CLOUD_AUTOMATION_ENABLED=true.' >> "$GITHUB_STEP_SUMMARY"
