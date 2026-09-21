@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-21T09:00:22.984368+09:00",
+  "generatedAt": "2026-09-21T10:41:53.546871+09:00",
   "sourceDate": "2026-09-21",
-  "slot": "08:00",
+  "slot": "10:30",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -26,8 +26,148 @@
           "sector": "산업용 소프트웨어·피지컬 AI",
           "direct": false,
           "fundamental": 0,
-          "quote": {},
-          "confirmed": false,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 주식일별분봉·수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
+            "asOf": "2026-09-21T10:30:00+09:00",
+            "lastTradeTime": "103000",
+            "fetchedAt": "2026-09-21T10:37:27.825139+09:00",
+            "adjustmentChecked": true,
+            "price": 6770,
+            "changePct": 1.4993,
+            "return5dPct": -2.1676,
+            "distance20Pct": -1.9835,
+            "turnoverRatio": 10.14147,
+            "turnover": 172049255,
+            "baselineTurnover": 16964922,
+            "baselineSessions": [
+              {
+                "date": "20260824",
+                "lastTradeTime": "102800",
+                "turnover": 9370900,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "lastTradeTime": "102700",
+                "turnover": 11243450,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "lastTradeTime": "102700",
+                "turnover": 11630810,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "lastTradeTime": "102800",
+                "turnover": 13928090,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "lastTradeTime": "103000",
+                "turnover": 10248190,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "lastTradeTime": "103000",
+                "turnover": 19283280,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "lastTradeTime": "102800",
+                "turnover": 14742700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "lastTradeTime": "102700",
+                "turnover": 7234030,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "lastTradeTime": "102800",
+                "turnover": 11745730,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "lastTradeTime": "103000",
+                "turnover": 49111830,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "lastTradeTime": "101700",
+                "turnover": 6431550,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "lastTradeTime": "102900",
+                "turnover": 22529190,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "lastTradeTime": "102800",
+                "turnover": 17473490,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "lastTradeTime": "101800",
+                "turnover": 29698660,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "lastTradeTime": "103000",
+                "turnover": 15138680,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "lastTradeTime": "102800",
+                "turnover": 47406610,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "lastTradeTime": "103000",
+                "turnover": 11513570,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "lastTradeTime": "102800",
+                "turnover": 2585760,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "lastTradeTime": "102000",
+                "turnover": 5817535,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "lastTradeTime": "102900",
+                "turnover": 22164385,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "최근 20 KRX 영업일 각 10:30까지 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
+            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
+            "maBasis": "당일 10:30 가격 + 직전19거래일 수정종가"
+          },
+          "confirmed": true,
           "hot": false,
           "evidence": [
             {
@@ -50,16 +190,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 10
           },
-          "score": 10,
+          "score": 20,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "미확인"
+          "priceStatus": "확인",
+          "overheat": "보통"
         },
         {
           "ticker": "459510",
@@ -67,7 +207,147 @@
           "sector": "산업용 로봇·검사 자동화",
           "direct": true,
           "fundamental": 0,
-          "quote": {},
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 주식일별분봉·수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
+            "asOf": "2026-09-21T10:30:00+09:00",
+            "lastTradeTime": "103000",
+            "fetchedAt": "2026-09-21T10:37:32.153911+09:00",
+            "adjustmentChecked": true,
+            "price": 15840,
+            "changePct": -1.0,
+            "return5dPct": 0.0632,
+            "distance20Pct": 3.845,
+            "turnoverRatio": 0.287745,
+            "turnover": 249993650,
+            "baselineTurnover": 868802939.5,
+            "baselineSessions": [
+              {
+                "date": "20260824",
+                "lastTradeTime": "103000",
+                "turnover": 131916560,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "lastTradeTime": "103000",
+                "turnover": 589668050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "lastTradeTime": "103000",
+                "turnover": 158028850,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "lastTradeTime": "103000",
+                "turnover": 120333275,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "lastTradeTime": "103000",
+                "turnover": 160628455,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "lastTradeTime": "103000",
+                "turnover": 153024560,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "lastTradeTime": "103000",
+                "turnover": 192621740,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "lastTradeTime": "103000",
+                "turnover": 73648960,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "lastTradeTime": "103000",
+                "turnover": 54977640,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "lastTradeTime": "103000",
+                "turnover": 1458464255,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "lastTradeTime": "103000",
+                "turnover": 324206480,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "lastTradeTime": "102900",
+                "turnover": 198812080,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "lastTradeTime": "102900",
+                "turnover": 61547465,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "lastTradeTime": "103000",
+                "turnover": 3752264980,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "lastTradeTime": "103000",
+                "turnover": 4621828935,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "lastTradeTime": "103000",
+                "turnover": 1497102175,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "lastTradeTime": "103000",
+                "turnover": 2403219070,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "lastTradeTime": "103000",
+                "turnover": 725920460,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "lastTradeTime": "103000",
+                "turnover": 304908320,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "lastTradeTime": "102900",
+                "turnover": 392936480,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "최근 20 KRX 영업일 각 10:30까지 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
+            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
+            "maBasis": "당일 10:30 가격 + 직전19거래일 수정종가"
+          },
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -91,16 +371,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 10,
+          "score": 15,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "미확인"
+          "overheat": "보통"
         }
       ],
       "evidence": [
@@ -163,7 +443,147 @@
           "sector": "반도체 기판 제조",
           "direct": false,
           "fundamental": 0,
-          "quote": {},
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 주식일별분봉·수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
+            "asOf": "2026-09-21T10:30:00+09:00",
+            "lastTradeTime": "103000",
+            "fetchedAt": "2026-09-21T10:37:37.064505+09:00",
+            "adjustmentChecked": true,
+            "price": 57100,
+            "changePct": -0.6957,
+            "return5dPct": 16.5306,
+            "distance20Pct": 8.5242,
+            "turnoverRatio": 2.331008,
+            "turnover": 4406842050,
+            "baselineTurnover": 1890530447.5,
+            "baselineSessions": [
+              {
+                "date": "20260824",
+                "lastTradeTime": "103000",
+                "turnover": 1285988950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "lastTradeTime": "103000",
+                "turnover": 984013000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "lastTradeTime": "103000",
+                "turnover": 990762900,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "lastTradeTime": "103000",
+                "turnover": 1607404750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "lastTradeTime": "103000",
+                "turnover": 1140372150,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "lastTradeTime": "103000",
+                "turnover": 624891350,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "lastTradeTime": "103000",
+                "turnover": 799172250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "lastTradeTime": "103000",
+                "turnover": 1587794850,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "lastTradeTime": "103000",
+                "turnover": 1692141850,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "lastTradeTime": "103000",
+                "turnover": 1092436500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "lastTradeTime": "103000",
+                "turnover": 1357527100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "lastTradeTime": "103000",
+                "turnover": 1766437250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "lastTradeTime": "103000",
+                "turnover": 2644419050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "lastTradeTime": "103000",
+                "turnover": 1599214350,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "lastTradeTime": "103000",
+                "turnover": 725174550,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "lastTradeTime": "103000",
+                "turnover": 1354130800,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "lastTradeTime": "103000",
+                "turnover": 758473050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "lastTradeTime": "103000",
+                "turnover": 10765847650,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "lastTradeTime": "103000",
+                "turnover": 3074163100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "lastTradeTime": "103000",
+                "turnover": 1960243500,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "최근 20 KRX 영업일 각 10:30까지 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
+            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
+            "maBasis": "당일 10:30 가격 + 직전19거래일 수정종가"
+          },
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -187,16 +607,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 5,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "미확인"
+          "overheat": "보통"
         },
         {
           "ticker": "351320",
@@ -204,7 +624,147 @@
           "sector": "AI 서버·부속품",
           "direct": true,
           "fundamental": 0,
-          "quote": {},
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 주식일별분봉·수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
+            "asOf": "2026-09-21T10:30:00+09:00",
+            "lastTradeTime": "102900",
+            "fetchedAt": "2026-09-21T10:37:41.815287+09:00",
+            "adjustmentChecked": true,
+            "price": 3770,
+            "changePct": -3.7037,
+            "return5dPct": -7.824,
+            "distance20Pct": 6.35,
+            "turnoverRatio": 0.268504,
+            "turnover": 686761484,
+            "baselineTurnover": 2557736217.85,
+            "baselineSessions": [
+              {
+                "date": "20260824",
+                "lastTradeTime": "103000",
+                "turnover": 2227498665,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "lastTradeTime": "103000",
+                "turnover": 4012861118,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "lastTradeTime": "103000",
+                "turnover": 2488187447,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "lastTradeTime": "103000",
+                "turnover": 2540714920,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "lastTradeTime": "103000",
+                "turnover": 5230844452,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "lastTradeTime": "103000",
+                "turnover": 2558432381,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "lastTradeTime": "103000",
+                "turnover": 2579167227,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "lastTradeTime": "103000",
+                "turnover": 1347555140,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "lastTradeTime": "103000",
+                "turnover": 1481130844,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "lastTradeTime": "103000",
+                "turnover": 4734375696,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "lastTradeTime": "103000",
+                "turnover": 3654924660,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "lastTradeTime": "103000",
+                "turnover": 3138332989,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "lastTradeTime": null,
+                "turnover": 0,
+                "noTradesAllDay": true
+              },
+              {
+                "date": "20260910",
+                "lastTradeTime": "103000",
+                "turnover": 8758663167,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "lastTradeTime": "103000",
+                "turnover": 2660561398,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "lastTradeTime": "103000",
+                "turnover": 1202803944,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "lastTradeTime": "103000",
+                "turnover": 682801304,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "lastTradeTime": "102900",
+                "turnover": 1219808710,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "lastTradeTime": "102800",
+                "turnover": 367115135,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "lastTradeTime": "103000",
+                "turnover": 268945160,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "최근 20 KRX 영업일 각 10:30까지 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
+            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
+            "maBasis": "당일 10:30 가격 + 직전19거래일 수정종가"
+          },
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -228,16 +788,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 5,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "미확인"
+          "overheat": "보통"
         }
       ],
       "evidence": [
@@ -308,53 +868,152 @@
       "leaders": [],
       "candidates": [
         {
-          "ticker": "060370",
-          "name": "LS마린솔루션",
-          "sector": "해상풍력 해저케이블 운송·설치",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {},
-          "confirmed": false,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "marine-060370-contract",
-              "ticker": "060370",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
-              "publishedAt": "2026-09-18T09:27:00+09:00",
-              "verifiedAt": "2026-09-21T08:44:40+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 당일 공시목록 재검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "LS마린솔루션은 한화오션과 1,569억원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 체결했다. 최근 매출의 64.2%이며 계약기간은 2026-09-17부터 2028-09-06까지다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 0,
-            "fundamental": 0,
-            "entry": 0
-          },
-          "score": 5,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "미확인"
-        },
-        {
           "ticker": "071970",
           "name": "HD현대마린엔진",
           "sector": "선박엔진 제조",
           "direct": true,
           "fundamental": 0,
-          "quote": {},
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 주식일별분봉·수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
+            "asOf": "2026-09-21T10:30:00+09:00",
+            "lastTradeTime": "103000",
+            "fetchedAt": "2026-09-21T10:37:50.885962+09:00",
+            "adjustmentChecked": true,
+            "price": 51500,
+            "changePct": -1.9048,
+            "return5dPct": -1.9048,
+            "distance20Pct": 0.0631,
+            "turnoverRatio": 0.632964,
+            "turnover": 1846099700,
+            "baselineTurnover": 2916596991.25,
+            "baselineSessions": [
+              {
+                "date": "20260824",
+                "lastTradeTime": "103000",
+                "turnover": 2898176275,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "lastTradeTime": "103000",
+                "turnover": 3664694200,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "lastTradeTime": "103000",
+                "turnover": 1819094300,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "lastTradeTime": "103000",
+                "turnover": 1991023700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "lastTradeTime": "103000",
+                "turnover": 6472176750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "lastTradeTime": "103000",
+                "turnover": 2881954550,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "lastTradeTime": "103000",
+                "turnover": 3620344600,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "lastTradeTime": "103000",
+                "turnover": 1751781600,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "lastTradeTime": "103000",
+                "turnover": 2401747875,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "lastTradeTime": "103000",
+                "turnover": 1400727050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "lastTradeTime": "103000",
+                "turnover": 1110946650,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "lastTradeTime": "103000",
+                "turnover": 2054450950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "lastTradeTime": "103000",
+                "turnover": 5867488800,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "lastTradeTime": "103000",
+                "turnover": 1987505000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "lastTradeTime": "103000",
+                "turnover": 3107650300,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "lastTradeTime": "103000",
+                "turnover": 2511645550,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "lastTradeTime": "103000",
+                "turnover": 2530284950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "lastTradeTime": "103000",
+                "turnover": 2787298525,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "lastTradeTime": "103000",
+                "turnover": 5578659950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "lastTradeTime": "103000",
+                "turnover": 1894288250,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "최근 20 KRX 영업일 각 10:30까지 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
+            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
+            "maBasis": "당일 10:30 가격 + 직전19거래일 수정종가"
+          },
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -378,16 +1037,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 5,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "미확인"
+          "overheat": "보통"
         }
       ],
       "evidence": [
@@ -436,12 +1095,102 @@
       ]
     }
   ],
-  "status": "검증완료",
+  "status": "시세 검증완료 · 실적 근거 미확인",
   "missing": [
-    "공시 전수대조: OpenDART 2026-09-18 전체 695건과 2026-09-19~21 전체 13건을 수집했고, 상장사 주요경영·계약·투자 키워드 119건을 원문 후보로 대조했다. 건설·바이오, 자금조달, 소송, 단순 정정·관리 공시는 제외했다.",
-    "가격 기준일: 08:00 장전 실행이므로 2026-09-21 장중 시세와 동일 경과시각 거래대금 배율은 아직 존재하지 않는다. 후보 quote는 비워 두고 10:30 재검증 대상으로 남겼다.",
-    "컨센서스 기준일: 이번 이슈 후보에는 원문으로 확인된 2026Q3~2027Q2 컨센서스 상향 근거를 연결하지 않았다. 날짜를 추정하지 않고 fundamental 점수를 0으로 유지한다.",
-    "유튜브시황2: 삼프로TV의 AI 모멘텀 영상은 탐지에만 반영했다. 오선의 미국증시는 2026-09-15 이후 새 원문을 확인하지 못해 이번 탐지에 추가하지 않았고 추천점수에는 둘 다 반영하지 않았다.",
-    "신규 취소·부정 확인: 2026-09-19~21 OpenDART 목록에서 위 6개 후보의 계약 취소·해지·투자 철회 공시는 확인되지 않았다."
-  ]
+    "10:30 후보 6개 전수 시세 수집·최근20거래일 같은 10:30 누적 거래대금 대조 완료. LS마린솔루션(060370)은 KIS 업종 건설 확인으로 제외하여 표시 후보 5개. 주도주·섹터 동반상승 미확인, 최종추천 없음.",
+    "유라클(088340): 컨센서스 기준일 미확인. KIS 미제공, FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 오전 실적검증값/공시검증일 유지.",
+    "나우로보틱스(459510): 컨센서스 기준일 미확인. KIS 미제공, FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 오전 실적검증값/공시검증일 유지.",
+    "넥사다이내믹스(351320): 컨센서스 기준일 미확인. KIS 미제공, FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 오전 실적검증값/공시검증일 유지.",
+    "해성디에스(195870): 컨센서스 기준일 미확인. KIS 미제공, FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 오전 실적검증값/공시검증일 유지.",
+    "LS마린솔루션(060370): 컨센서스 기준일 미확인. KIS 미제공, FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 오전 실적검증값/공시검증일 유지.",
+    "HD현대마린엔진(071970): 컨센서스 기준일 미확인. KIS 미제공, FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 오전 실적검증값/공시검증일 유지.",
+    "당일 OpenDART 공시목록 46건 확인: 오전 후보 6종목의 새 정정·취소 공시 없음. 기존 공시 사실의 오전 검증시간 유지. 유튜브 전체 갱신 없음. 신규 뉴스 국내 직접수혜 연결 미검증."
+  ],
+  "collectionAudit": [
+    {
+      "ticker": "088340",
+      "name": "유라클",
+      "priceDate": "2026-09-21T10:30:00+09:00",
+      "price": 6770,
+      "changePct": 1.4993,
+      "turnoverRatio": 10.14147,
+      "return5dPct": -2.1676,
+      "distance20Pct": -1.9835,
+      "quoteStatus": "검증완료",
+      "consensusDate": null,
+      "consensusStatus": "KIS 기준일/추정값 미제공; FnGuide 요청분기 표 미확인",
+      "excluded": false
+    },
+    {
+      "ticker": "459510",
+      "name": "나우로보틱스",
+      "priceDate": "2026-09-21T10:30:00+09:00",
+      "price": 15840,
+      "changePct": -1.0,
+      "turnoverRatio": 0.287745,
+      "return5dPct": 0.0632,
+      "distance20Pct": 3.845,
+      "quoteStatus": "검증완료",
+      "consensusDate": null,
+      "consensusStatus": "KIS 기준일/추정값 미제공; FnGuide 요청분기 표 미확인",
+      "excluded": false
+    },
+    {
+      "ticker": "351320",
+      "name": "넥사다이내믹스",
+      "priceDate": "2026-09-21T10:30:00+09:00",
+      "price": 3770,
+      "changePct": -3.7037,
+      "turnoverRatio": 0.268504,
+      "return5dPct": -7.824,
+      "distance20Pct": 6.35,
+      "quoteStatus": "검증완료",
+      "consensusDate": null,
+      "consensusStatus": "KIS 기준일/추정값 미제공; FnGuide 요청분기 표 미확인",
+      "excluded": false
+    },
+    {
+      "ticker": "195870",
+      "name": "해성디에스",
+      "priceDate": "2026-09-21T10:30:00+09:00",
+      "price": 57100,
+      "changePct": -0.6957,
+      "turnoverRatio": 2.331008,
+      "return5dPct": 16.5306,
+      "distance20Pct": 8.5242,
+      "quoteStatus": "검증완료",
+      "consensusDate": null,
+      "consensusStatus": "KIS 기준일/추정값 미제공; FnGuide 요청분기 표 미확인",
+      "excluded": false
+    },
+    {
+      "ticker": "060370",
+      "name": "LS마린솔루션",
+      "priceDate": "2026-09-21T10:30:00+09:00",
+      "price": 32850,
+      "changePct": -3.3824,
+      "turnoverRatio": 1.345661,
+      "return5dPct": 1.3889,
+      "distance20Pct": 2.0662,
+      "quoteStatus": "검증완료",
+      "consensusDate": null,
+      "consensusStatus": "KIS 기준일/추정값 미제공; FnGuide 요청분기 표 미확인",
+      "excluded": true
+    },
+    {
+      "ticker": "071970",
+      "name": "HD현대마린엔진",
+      "priceDate": "2026-09-21T10:30:00+09:00",
+      "price": 51500,
+      "changePct": -1.9048,
+      "turnoverRatio": 0.632964,
+      "return5dPct": -1.9048,
+      "distance20Pct": 0.0631,
+      "quoteStatus": "검증완료",
+      "consensusDate": null,
+      "consensusStatus": "KIS 기준일/추정값 미제공; FnGuide 요청분기 표 미확인",
+      "excluded": false
+    }
+  ],
+  "retainedEvidenceBaseline": "2026-09-21T08:44:40+09:00"
 }
