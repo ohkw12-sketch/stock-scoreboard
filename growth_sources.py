@@ -226,20 +226,33 @@ def consensus_evidence(fundamentals, status, now=None):
             continue
         if published > str(now.date()) or future < str(now.date()) or sales is None:
             continue
-        polarity = 'positive' if sales>=10 and forward_op>0 and op is not None and op>=10 else 'negative' if sales<0 else 'neutral'
+        turnaround = bool(row.get('consensus_op_turnaround'))
+        polarity = ('positive' if sales>=10 and forward_op>0 and ((op is not None and op>=10) or turnaround)
+                    else 'negative' if sales<0 else 'neutral')
         if polarity=='neutral':
             continue
         verified_raw = status.get('verifiedAtByTicker', {}).get(row['ticker'])
         verified = pd.to_datetime(verified_raw, errors='coerce', utc=True)
         verification_valid = pd.notna(verified) and verified <= pd.Timestamp(now).tz_convert('UTC')
         verified_at = verified_raw if verification_valid else None
-        events.append(dict(ticker=row['ticker'], eventId=fingerprint(row['ticker'],'KIS',period),
-                           receipt=f"KIS-{row['ticker']}-{period}", kind='컨센서스',
-                           source='KIS 종목추정실적',sourceType='컨센서스',
-                           url='https://apiportal.koreainvestment.com/apiservice',
+        guidance_used = bool(row.get('guidance_used'))
+        provider = row.get('consensus_source') or 'KIS 종목추정실적'
+        source_url = row.get('consensus_source_url') or 'https://apiportal.koreainvestment.com/apiservice'
+        kind = '가이던스·컨센서스' if guidance_used else '컨센서스'
+        source_type = '공식가이던스+컨센서스' if guidance_used else '컨센서스'
+        confidence_factor = number(row.get('consensus_confidence_factor'))
+        confidence_factor = confidence_factor if confidence_factor is not None else 1.0
+        events.append(dict(ticker=row['ticker'], eventId=fingerprint(row['ticker'],provider,period),
+                           receipt=f"FORECAST-{row['ticker']}-{period}", kind=kind,
+                           source=provider, sourceType=source_type,
+                           url=source_url,
                            firstPublished=published,publishedAt=published,lastVerified=verified_at,fetchedAt=verified_at,
                            activeUntil=future,status='유효' if verification_valid and row['ticker'] in status.get('freshTickers',[]) else '상태확인필요',polarity=polarity,
-                           factType='외부기관전망',materiality=min(100,max(0,sales)*2),
-                           salesGrowth=sales,opGrowth=op,estimatePeriod=period,
+                           factType='회사공식전망+외부기관전망' if guidance_used else '외부기관전망',
+                           materiality=min(100,max(0,sales)*2*confidence_factor),
+                           salesGrowth=sales,opGrowth=op,opTurnaround=turnaround,
+                           estimatePeriod=period,guidanceUsed=guidance_used,
+                           guidanceUrl=row.get('guidance_source_url'),
+                           estimateStatus=row.get('consensus_estimate_status'),
                            datePrecision='day', dateCaveat='공급자 일 단위 추정 기준일; 공급자 날짜·실제 수집확인 시각을 보존'))
     return events

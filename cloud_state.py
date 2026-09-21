@@ -29,6 +29,17 @@ EXTRA = {
     'cache/youtube/content_ledger.json',
     'cache/youtube/content_status.json',
     'cache/youtube/verified_transcripts_input.json',
+    'cache/guidance/history.json',
+    'cache/guidance/filings.json',
+    'cache/guidance/reviewed_exclusions.json',
+    'test_output/guidance.json',
+    'test_output/forecast_engine/forecast_observations.json',
+    'test_output/forecast_engine/forecast_consensus.json',
+    'test_output/forecast_engine/naver_research_index.json',
+    'test_output/forecast_engine/report_index.json',
+    'test_output/forecast_engine/report_index_exclusions.json',
+    'test_output/forecast_engine/naver_pdf_index.json',
+    'test_output/forecast_engine/run_report.json',
 }
 CHUNK = 16 * 1024 * 1024
 

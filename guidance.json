@@ -1,0 +1,3801 @@
+{
+  "status": {
+    "status": "정상",
+    "checked_at": "2026-09-21T19:37:53.287409+09:00",
+    "failures": [],
+    "from": "2025-08-17",
+    "to": "2026-09-21",
+    "excluded": [
+      {
+        "reason": "자회사 한세모빌리티 수주 목표만 제시; 매출·영업이익 미제공",
+        "document_name": "20251029800126.xml",
+        "sha256": "bcc5c8f05c25ee55a8c64d8dcc2a48ab1d3a57392f27527714bda0d3d4650914",
+        "reviewed_at": "2026-09-21T18:23:17.084771+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251029800126",
+        "receipt": "20251029800126",
+        "ticker": "016450",
+        "name": "한세예스24홀딩스"
+      },
+      {
+        "reason": "판매대수 목표만 제시; 매출·영업이익 미제공",
+        "document_name": "20260105800035.xml",
+        "sha256": "400e9fe2f4b90597467c36ae463a17e0d01660cbafdf9e1989b193c2e12f15e1",
+        "reviewed_at": "2026-09-21T18:23:17.085274+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800035",
+        "receipt": "20260105800035",
+        "ticker": "000270",
+        "name": "기아"
+      },
+      {
+        "reason": "판매대수 목표만 제시; 매출·영업이익 미제공",
+        "document_name": "20260105800384.xml",
+        "sha256": "465717c70197c9a8044e4a4451c02450f906f7bda5110afe3bfe2b8277d2499c",
+        "reviewed_at": "2026-09-21T18:23:17.085274+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800384",
+        "receipt": "20260105800384",
+        "ticker": "005380",
+        "name": "현대자동차"
+      },
+      {
+        "reason": "수주 목표만 제시; 매출·영업이익 미제공",
+        "document_name": "20260105800697.xml",
+        "sha256": "49b1130457c84c20e080d0c19a9dc56165d98b5e21b130d9ba4647b00e2fae69",
+        "reviewed_at": "2026-09-21T18:23:17.085776+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800697",
+        "receipt": "20260105800697",
+        "ticker": "009540",
+        "name": "HD한국조선해양"
+      },
+      {
+        "reason": "판매량 목표만 제시; 매출·영업이익 미제공",
+        "document_name": "20260130800409.xml",
+        "sha256": "5dc68121746d325006a743d3ff171eba0bb86afae081bff20d55bfe5a54a4add",
+        "reviewed_at": "2026-09-21T18:23:17.085776+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130800409",
+        "receipt": "20260130800409",
+        "ticker": "004020",
+        "name": "현대제철"
+      },
+      {
+        "reason": "당기순이익 목표만 제시; 매출·영업이익 미제공",
+        "document_name": "20260205800766.xml",
+        "sha256": "0b9793a17a9bfa639bf2e2651e55925a7af9f4df87e29be470222694dd3ab8ea",
+        "reviewed_at": "2026-09-21T18:23:17.086275+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800766",
+        "receipt": "20260205800766",
+        "ticker": "175330",
+        "name": "JB금융지주"
+      },
+      {
+        "reason": "PUBG IP 두 자릿수 성장 전망; 금액 범위 미제공",
+        "document_name": "20260209800895.xml",
+        "sha256": "07242e938dc2a0f64d86583dd3ca7f9d6041fd2dd4af0c52c890dce8e2c76695",
+        "reviewed_at": "2026-09-21T18:23:17.086275+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209800895",
+        "receipt": "20260209800895",
+        "ticker": "259960",
+        "name": "크래프톤"
+      },
+      {
+        "reason": "판매량 등 사업계획; 매출·영업이익 금액 미제공",
+        "document_name": "20260209801331.xml",
+        "sha256": "022c49629d86e0937af80ee6ed7f62118da29818d2c1e393c06e9793225c51cd",
+        "reviewed_at": "2026-09-21T18:23:17.086778+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209801331",
+        "receipt": "20260209801331",
+        "ticker": "010130",
+        "name": "고려아연"
+      },
+      {
+        "reason": "톡비즈 광고 두 자릿수 성장 목표; 전체 회사 금액 가이던스 아님",
+        "document_name": "20260212800074.xml",
+        "sha256": "e7fb490e7e47430a813d2af87f0971675e03511bce63f546aba40ae850eb4fec",
+        "reviewed_at": "2026-09-21T18:23:17.086778+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212800074",
+        "receipt": "20260212800074",
+        "ticker": "035720",
+        "name": "카카오"
+      },
+      {
+        "reason": "첨부서류만 정정; DART 뷰어 확인. 연결된 원 공시 20260512900569 숫자 유지",
+        "document_name": "20260512900617.viewer.html",
+        "sha256": "b5ba80542b4aaf5e50f99d6826aaafd663b7e0f2d60c43021242dac12f6e6062",
+        "reviewed_at": "2026-09-21T18:23:17.096304+09:00",
+        "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260512900617",
+        "receipt": "20260512900617",
+        "ticker": "263750",
+        "name": "펄어비스"
+      }
+    ]
+  },
+  "rows": [
+    {
+      "ticker": "000720",
+      "name": "현대건설",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-04",
+      "receipt": "20260204800950",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260204800950",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 2.9197080291970803,
+        "high": 2.9197080291970803,
+        "mid": 2.9197080291970803
+      },
+      "sales": {
+        "low": 27400000000000.0,
+        "high": 27400000000000.0,
+        "mid": 27400000000000.0
+      },
+      "operating_profit": {
+        "low": 800000000000.0,
+        "high": 800000000000.0,
+        "mid": 800000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "000720",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 27673000000000.0,
+        "operating_profit": 862000000000.0,
+        "as_of": "2026-09-16",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "0009K0",
+      "name": "에임드바이오",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-03-26",
+      "receipt": "20260326900213",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326900213",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 32.149200710479576,
+        "high": 32.149200710479576,
+        "mid": 32.149200710479576
+      },
+      "sales": {
+        "low": 56300000000.0,
+        "high": 56300000000.0,
+        "mid": 56300000000.0
+      },
+      "operating_profit": {
+        "low": 18100000000.0,
+        "high": 18100000000.0,
+        "mid": 18100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "002350",
+      "name": "넥센타이어",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-04",
+      "receipt": "20260204800566",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260204800566",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 3300000000000.0,
+        "high": 3300000000000.0,
+        "mid": 3300000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "002350",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 3520850000000.0,
+        "operating_profit": 180000000000.0,
+        "as_of": "2026-08-14",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "003070",
+      "name": "코오롱글로벌",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-29",
+      "receipt": "20260129800836",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260129800836",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 3.870967741935484,
+        "high": 3.870967741935484,
+        "mid": 3.870967741935484
+      },
+      "sales": {
+        "low": 3100000000000.0,
+        "high": 3100000000000.0,
+        "mid": 3100000000000.0
+      },
+      "operating_profit": {
+        "low": 120000000000.0,
+        "high": 120000000000.0,
+        "mid": 120000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "003070",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 2926800000000.0,
+        "operating_profit": 131300000000.0,
+        "as_of": "2026-09-18",
+        "source": "외부 집계 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "004090",
+      "name": "한국석유공업",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-09",
+      "receipt": "20260209801370",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209801370",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 3.0180840664711632,
+        "high": 3.0180840664711632,
+        "mid": 3.0180840664711632
+      },
+      "sales": {
+        "low": 818400000000.0,
+        "high": 818400000000.0,
+        "mid": 818400000000.0
+      },
+      "operating_profit": {
+        "low": 24700000000.0,
+        "high": 24700000000.0,
+        "mid": 24700000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "005090",
+      "name": "SGC에너지",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-03",
+      "receipt": "20260203800575",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260203800575",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 5.503875968992248,
+        "high": 5.503875968992248,
+        "mid": 5.503875968992248
+      },
+      "sales": {
+        "low": 2580000000000.0,
+        "high": 2580000000000.0,
+        "mid": 2580000000000.0
+      },
+      "operating_profit": {
+        "low": 142000000000.0,
+        "high": 142000000000.0,
+        "mid": 142000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "005090",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 2558600000000.0,
+        "operating_profit": 174100000000.0,
+        "as_of": "2026-07-24",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "005300",
+      "name": "롯데칠성음료",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-04",
+      "receipt": "20260204800368",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260204800368",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 4.878048780487805,
+        "high": 4.878048780487805,
+        "mid": 4.878048780487805
+      },
+      "sales": {
+        "low": 4100000000000.0,
+        "high": 4100000000000.0,
+        "mid": 4100000000000.0
+      },
+      "operating_profit": {
+        "low": 200000000000.0,
+        "high": 200000000000.0,
+        "mid": 200000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "005300",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4094000000000.0,
+        "operating_profit": 200000000000.0,
+        "as_of": "2026-08-06",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "005810",
+      "name": "풍산홀딩스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-04",
+      "receipt": "20260204800619",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260204800619",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 212900000000.0,
+        "high": 212900000000.0,
+        "mid": 212900000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "006360",
+      "name": "GS건설",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-06",
+      "receipt": "20260206800732",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260206800732",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 11500000000000.0,
+        "high": 11500000000000.0,
+        "mid": 11500000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "006360",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 11400000000000.0,
+        "operating_profit": 405900000000.0,
+        "as_of": "2026-09-21",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "009540",
+      "name": "HD한국조선해양",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "subsidiary",
+      "amount_unit": "원",
+      "published_at": "2026-01-05",
+      "receipt": "20260105800686",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800686",
+      "report_name": "영업실적등에대한전망(공정공시)(자회사의 주요경영사항)              ",
+      "opm": null,
+      "sales": {
+        "low": 8316600000000.0,
+        "high": 8316600000000.0,
+        "mid": 8316600000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "009540",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 34670750000000.0,
+        "operating_profit": 6230900000000.0,
+        "as_of": "2026-07-30",
+        "source": "참고 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "010140",
+      "name": "삼성중공업",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-30",
+      "receipt": "20260130800722",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130800722",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 12800000000000.0,
+        "high": 12800000000000.0,
+        "mid": 12800000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "010140",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 12556000000000.0,
+        "operating_profit": 1322000000000.0,
+        "as_of": "2026-09-17",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "0126Z0",
+      "name": "삼성에피스홀딩스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-26",
+      "receipt": "20260126800649",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260126800649",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 1850000000000.0,
+        "high": 1850000000000.0,
+        "mid": 1850000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "0126Z0",
+      "name": "삼성에피스홀딩스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "subsidiary",
+      "amount_unit": "원",
+      "published_at": "2026-01-26",
+      "receipt": "20260126800636",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260126800636",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)(자회사의 주요경영사항)              ",
+      "opm": null,
+      "sales": {
+        "low": 1850000000000.0,
+        "high": 1850000000000.0,
+        "mid": 1850000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "016250",
+      "name": "SGC E&C",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-03",
+      "receipt": "20260203900552",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260203900552",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 3.5278624896035486,
+        "high": 3.5278624896035486,
+        "mid": 3.5278624896035486
+      },
+      "sales": {
+        "low": 1442800000000.0,
+        "high": 1442800000000.0,
+        "mid": 1442800000000.0
+      },
+      "operating_profit": {
+        "low": 50900000000.0,
+        "high": 50900000000.0,
+        "mid": 50900000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "017800",
+      "name": "현대엘리베이터",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-10",
+      "receipt": "20260210800914",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260210800914",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 8.404504161453517,
+        "high": 8.404504161453517,
+        "mid": 8.404504161453517
+      },
+      "sales": {
+        "low": 1838300000000.0,
+        "high": 1838300000000.0,
+        "mid": 1838300000000.0
+      },
+      "operating_profit": {
+        "low": 154500000000.0,
+        "high": 154500000000.0,
+        "mid": 154500000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "021240",
+      "name": "코웨이",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-06",
+      "receipt": "20260206800011",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260206800011",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 16.886930983847282,
+        "high": 18.09740382793254,
+        "mid": 17.482517482517483
+      },
+      "sales": {
+        "low": 5277000000000.0,
+        "high": 5448000000000.0,
+        "mid": 5362500000000.0
+      },
+      "operating_profit": {
+        "low": 920000000000.0,
+        "high": 955000000000.0,
+        "mid": 937500000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "021240",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 5682600000000.0,
+        "operating_profit": 1030000000000.0,
+        "as_of": "2026-08-10",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "028050",
+      "name": "삼성E&A",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-23",
+      "receipt": "20260123800222",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260123800222",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 8.0,
+        "high": 8.0,
+        "mid": 8.0
+      },
+      "sales": {
+        "low": 10000000000000.0,
+        "high": 10000000000000.0,
+        "mid": 10000000000000.0
+      },
+      "operating_profit": {
+        "low": 800000000000.0,
+        "high": 800000000000.0,
+        "mid": 800000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "028050",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 10800000000000.0,
+        "operating_profit": 977600000000.0,
+        "as_of": "2026-09-21",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "028260",
+      "name": "삼성물산",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-28",
+      "receipt": "20260128800560",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260128800560",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 44500000000000.0,
+        "high": 44500000000000.0,
+        "mid": 44500000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "028260",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": null,
+        "operating_profit": 3700000000000.0,
+        "as_of": "2026-09-21",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "030520",
+      "name": "한컴",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-04-20",
+      "receipt": "20260420900105",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260420900105",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 28.571428571428573,
+        "high": 28.571428571428573,
+        "mid": 28.571428571428573
+      },
+      "sales": {
+        "low": 210000000000.0,
+        "high": 210000000000.0,
+        "mid": 210000000000.0
+      },
+      "operating_profit": {
+        "low": 60000000000.0,
+        "high": 60000000000.0,
+        "mid": 60000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "032620",
+      "name": "GC메디아이",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-05-11",
+      "receipt": "20260511900529",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260511900529",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 6.18698441796517,
+        "high": 6.18698441796517,
+        "mid": 6.18698441796517
+      },
+      "sales": {
+        "low": 218200000000.0,
+        "high": 218200000000.0,
+        "mid": 218200000000.0
+      },
+      "operating_profit": {
+        "low": 13500000000.0,
+        "high": 13500000000.0,
+        "mid": 13500000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "032620",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 207600000000.0,
+        "operating_profit": 10800000000.0,
+        "as_of": "2026-08-13",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "032640",
+      "name": "LG유플러스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-05",
+      "receipt": "20260205800044",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800044",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 11610300000000.0,
+        "high": 11610300000000.0,
+        "mid": 11610300000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "032640",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 15576000000000.0,
+        "operating_profit": 1126350000000.0,
+        "as_of": "2026-08-07",
+        "source": "참고 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "033050",
+      "name": "제이엠아이",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-07-08",
+      "receipt": "20260708900171",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260708900171",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 117500000000.0,
+        "high": 117500000000.0,
+        "mid": 117500000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "034020",
+      "name": "두산에너빌리티",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "managed_consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-12",
+      "receipt": "20260212800739",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212800739",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 5.363699177629351,
+        "high": 5.363699177629351,
+        "mid": 5.363699177629351
+      },
+      "sales": {
+        "low": 7381100000000.0,
+        "high": 7381100000000.0,
+        "mid": 7381100000000.0
+      },
+      "operating_profit": {
+        "low": 395900000000.0,
+        "high": 395900000000.0,
+        "mid": 395900000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "035510",
+      "name": "신세계I&C",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-27",
+      "receipt": "20260227801228",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260227801228",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 7.913043478260869,
+        "high": 7.913043478260869,
+        "mid": 7.913043478260869
+      },
+      "sales": {
+        "low": 690000000000.0,
+        "high": 690000000000.0,
+        "mid": 690000000000.0
+      },
+      "operating_profit": {
+        "low": 54600000000.0,
+        "high": 54600000000.0,
+        "mid": 54600000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "035720",
+      "name": "카카오",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-12",
+      "receipt": "20260212800070",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212800070",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 10.0,
+        "high": 10.0,
+        "mid": 10.0
+      },
+      "sales": null,
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "035720",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 8271650000000.0,
+        "operating_profit": 1029500000000.0,
+        "as_of": "2026-09-21",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "039570",
+      "name": "HDC랩스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-09",
+      "receipt": "20260209801244",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209801244",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 692000000000.0,
+        "high": 692000000000.0,
+        "mid": 692000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "039840",
+      "name": "디오",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-12",
+      "receipt": "20260212900065",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212900065",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 200000000000.0,
+        "high": 200000000000.0,
+        "mid": 200000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "039840",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 190700000000.0,
+        "operating_profit": 25300000000.0,
+        "as_of": "2026-08-18",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "043340",
+      "name": "에쎈테크",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2025-12-04",
+      "receipt": "20251204900204",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251204900204",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 5.45144804088586,
+        "high": 5.45144804088586,
+        "mid": 5.45144804088586
+      },
+      "sales": {
+        "low": 58700000000.0,
+        "high": 58700000000.0,
+        "mid": 58700000000.0
+      },
+      "operating_profit": {
+        "low": 3200000000.0,
+        "high": 3200000000.0,
+        "mid": 3200000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "043910",
+      "name": "자연과환경",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-05-18",
+      "receipt": "20260518900310",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260518900310",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 46900000000.0,
+        "high": 46900000000.0,
+        "mid": 46900000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "046890",
+      "name": "서울반도체",
+      "period": "2026Q3",
+      "period_start": "2026-07-01",
+      "period_end": "2026-09-30",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-11",
+      "receipt": "20260811900429",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811900429",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 310000000000.0,
+        "high": 310000000000.0,
+        "mid": 310000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "047040",
+      "name": "대우건설",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-04",
+      "receipt": "20260804800070",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260804800070",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 8000000000000.0,
+        "high": 8000000000000.0,
+        "mid": 8000000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 2,
+      "changes": {
+        "sales": "유지",
+        "operating_profit": "확인불가"
+      },
+      "consensus": {
+        "ticker": "047040",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 8082500000000.0,
+        "operating_profit": 794100000000.0,
+        "as_of": "2026-07-20",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "047810",
+      "name": "한국항공우주",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-05",
+      "receipt": "20260205800569",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800569",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 5730600000000.0,
+        "high": 5730600000000.0,
+        "mid": 5730600000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "047810",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 5485000000000.0,
+        "operating_profit": 315000000000.0,
+        "as_of": "2026-07-31",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "051910",
+      "name": "LG화학",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-29",
+      "receipt": "20260129800636",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260129800636",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 23000000000000.0,
+        "high": 23000000000000.0,
+        "mid": 23000000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "052400",
+      "name": "코나아이",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-12",
+      "receipt": "20260112900078",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260112900078",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 31.682242990654206,
+        "high": 31.682242990654206,
+        "mid": 31.682242990654206
+      },
+      "sales": {
+        "low": 321000000000.0,
+        "high": 321000000000.0,
+        "mid": 321000000000.0
+      },
+      "operating_profit": {
+        "low": 101700000000.0,
+        "high": 101700000000.0,
+        "mid": 101700000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "060980",
+      "name": "HL홀딩스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-11",
+      "receipt": "20260211801223",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260211801223",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 1357100000000.0,
+        "high": 1357100000000.0,
+        "mid": 1357100000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "060980",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 1363000000000.0,
+        "operating_profit": 123000000000.0,
+        "as_of": "2026-09-18",
+        "source": "외부 집계 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "071320",
+      "name": "지역난방공사",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-10",
+      "receipt": "20260210800233",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260210800233",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 7.407711014564035,
+        "high": 7.407711014564035,
+        "mid": 7.407711014564035
+      },
+      "sales": {
+        "low": 3659700000000.0,
+        "high": 3659700000000.0,
+        "mid": 3659700000000.0
+      },
+      "operating_profit": {
+        "low": 271100000000.0,
+        "high": 271100000000.0,
+        "mid": 271100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "071970",
+      "name": "HD현대마린엔진",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-06",
+      "receipt": "20260106800522",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260106800522",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 597100000000.0,
+        "high": 597100000000.0,
+        "mid": 597100000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "071970",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 602200000000.0,
+        "operating_profit": 148700000000.0,
+        "as_of": "2026-07-29",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "073240",
+      "name": "금호타이어",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-06",
+      "receipt": "20260206801777",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260206801777",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 5100000000000.0,
+        "high": 5100000000000.0,
+        "mid": 5100000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "073240",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 5127000000000.0,
+        "operating_profit": 627000000000.0,
+        "as_of": "2026-07-31",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "079940",
+      "name": "가비아",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-08-21",
+      "receipt": "20260821900774",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821900774",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 10.509296685529506,
+        "high": 10.509296685529506,
+        "mid": 10.509296685529506
+      },
+      "sales": {
+        "low": 123700000000.0,
+        "high": 123700000000.0,
+        "mid": 123700000000.0
+      },
+      "operating_profit": {
+        "low": 13000000000.0,
+        "high": 13000000000.0,
+        "mid": 13000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "081180",
+      "name": "쎄크",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2025-12-29",
+      "receipt": "20251229900883",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251229900883",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 2.987197724039829,
+        "high": 2.987197724039829,
+        "mid": 2.987197724039829
+      },
+      "sales": {
+        "low": 70300000000.0,
+        "high": 70300000000.0,
+        "mid": 70300000000.0
+      },
+      "operating_profit": {
+        "low": 2100000000.0,
+        "high": 2100000000.0,
+        "mid": 2100000000.0
+      },
+      "active": true,
+      "revision": 2,
+      "changes": {
+        "sales": "하향",
+        "operating_profit": "하향"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "081180",
+      "name": "쎄크",
+      "period": "2027",
+      "period_start": "2027-01-01",
+      "period_end": "2027-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2025-12-29",
+      "receipt": "20251229900883",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251229900883",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 10.21505376344086,
+        "high": 10.21505376344086,
+        "mid": 10.21505376344086
+      },
+      "sales": {
+        "low": 111600000000.0,
+        "high": 111600000000.0,
+        "mid": 111600000000.0
+      },
+      "operating_profit": {
+        "low": 11400000000.0,
+        "high": 11400000000.0,
+        "mid": 11400000000.0
+      },
+      "active": true,
+      "revision": 2,
+      "changes": {
+        "sales": "유지",
+        "operating_profit": "유지"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "081660",
+      "name": "미스토홀딩스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-03-18",
+      "receipt": "20260318801228",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260318801228",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 4580400000000.0,
+        "high": 4580400000000.0,
+        "mid": 4580400000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "086280",
+      "name": "현대글로비스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-29",
+      "receipt": "20260129800205",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260129800205",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 6.774193548387097,
+        "high": 6.774193548387097,
+        "mid": 6.774193548387097
+      },
+      "sales": {
+        "low": 31000000000000.0,
+        "high": 31000000000000.0,
+        "mid": 31000000000000.0
+      },
+      "operating_profit": {
+        "low": 2100000000000.0,
+        "high": 2100000000000.0,
+        "mid": 2100000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "086280",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 33517000000000.0,
+        "operating_profit": 2132000000000.0,
+        "as_of": "2026-07-24",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "089860",
+      "name": "롯데렌탈",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-03-26",
+      "receipt": "20260326800100",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260326800100",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 11.696284329563813,
+        "high": 11.696284329563813,
+        "mid": 11.696284329563813
+      },
+      "sales": {
+        "low": 3095000000000.0,
+        "high": 3095000000000.0,
+        "mid": 3095000000000.0
+      },
+      "operating_profit": {
+        "low": 362000000000.0,
+        "high": 362000000000.0,
+        "mid": 362000000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "089860",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 3160000000000.0,
+        "operating_profit": 355100000000.0,
+        "as_of": "2026-07-02",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "090430",
+      "name": "아모레퍼시픽",
+      "period": "2026-07-01/2027-06-30",
+      "period_start": "2026-07-01",
+      "period_end": "2027-06-30",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-09-11",
+      "receipt": "20260911800223",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260911800223",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 4950000000000.0,
+        "high": 4950000000000.0,
+        "mid": 4950000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [
+        "NEW"
+      ],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "092190",
+      "name": "서울바이오시스",
+      "period": "2026Q3",
+      "period_start": "2026-07-01",
+      "period_end": "2026-09-30",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-10",
+      "receipt": "20260810900427",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260810900427",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 225000000000.0,
+        "high": 225000000000.0,
+        "mid": 225000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "093320",
+      "name": "케이아이엔엑스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-08-21",
+      "receipt": "20260821900722",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260821900722",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 26.161369193154034,
+        "high": 26.161369193154034,
+        "mid": 26.161369193154034
+      },
+      "sales": {
+        "low": 122700000000.0,
+        "high": 122700000000.0,
+        "mid": 122700000000.0
+      },
+      "operating_profit": {
+        "low": 32100000000.0,
+        "high": 32100000000.0,
+        "mid": 32100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "100090",
+      "name": "SK오션플랜트",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-23",
+      "receipt": "20260223800216",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260223800216",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 821700000000.0,
+        "high": 821700000000.0,
+        "mid": 821700000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "100090",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 650000000000.0,
+        "operating_profit": 60900000000.0,
+        "as_of": "2026-08-13",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "103140",
+      "name": "풍산",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-04",
+      "receipt": "20260204800519",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260204800519",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 6.434778556950819,
+        "high": 6.434778556950819,
+        "mid": 6.434778556950819
+      },
+      "sales": {
+        "low": 4292300000000.0,
+        "high": 4292300000000.0,
+        "mid": 4292300000000.0
+      },
+      "operating_profit": {
+        "low": 276200000000.0,
+        "high": 276200000000.0,
+        "mid": 276200000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "115610",
+      "name": "이미지스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-06-19",
+      "receipt": "20260619900739",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260619900739",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": -3.3333333333333335,
+        "high": -3.3333333333333335,
+        "mid": -3.3333333333333335
+      },
+      "sales": {
+        "low": 21000000000.0,
+        "high": 21000000000.0,
+        "mid": 21000000000.0
+      },
+      "operating_profit": {
+        "low": -700000000.0,
+        "high": -700000000.0,
+        "mid": -700000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "119610",
+      "name": "인터로조",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-06",
+      "receipt": "20260206900757",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260206900757",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 21.940928270042193,
+        "high": 21.940928270042193,
+        "mid": 21.940928270042193
+      },
+      "sales": {
+        "low": 142200000000.0,
+        "high": 142200000000.0,
+        "mid": 142200000000.0
+      },
+      "operating_profit": {
+        "low": 31200000000.0,
+        "high": 31200000000.0,
+        "mid": 31200000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "136540",
+      "name": "윈스테크넷",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-03-03",
+      "receipt": "20260303900377",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260303900377",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 16.211453744493394,
+        "high": 16.211453744493394,
+        "mid": 16.211453744493394
+      },
+      "sales": {
+        "low": 113500000000.0,
+        "high": 113500000000.0,
+        "mid": 113500000000.0
+      },
+      "operating_profit": {
+        "low": 18400000000.0,
+        "high": 18400000000.0,
+        "mid": 18400000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "136540",
+      "name": "윈스테크넷",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-03-03",
+      "receipt": "20260303900379",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260303900379",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 16.454545454545453,
+        "high": 16.454545454545453,
+        "mid": 16.454545454545453
+      },
+      "sales": {
+        "low": 110000000000.0,
+        "high": 110000000000.0,
+        "mid": 110000000000.0
+      },
+      "operating_profit": {
+        "low": 18100000000.0,
+        "high": 18100000000.0,
+        "mid": 18100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "139480",
+      "name": "이마트",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-11",
+      "receipt": "20260211800382",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260211800382",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 29300000000000.0,
+        "high": 29300000000000.0,
+        "mid": 29300000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "139480",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": null,
+        "operating_profit": 60000000000.0,
+        "as_of": "2026-06-24",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "145020",
+      "name": "휴젤",
+      "period": "2028",
+      "period_start": "2028-01-01",
+      "period_end": "2028-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-22",
+      "receipt": "20260122900178",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260122900178",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 900000000000.0,
+        "high": 900000000000.0,
+        "mid": 900000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "177900",
+      "name": "쓰리에이로직스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-05-27",
+      "receipt": "20260527900219",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260527900219",
+      "report_name": "[기재정정]영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 13.333333333333334,
+        "high": 13.333333333333334,
+        "mid": 13.333333333333334
+      },
+      "sales": {
+        "low": 30000000000.0,
+        "high": 30000000000.0,
+        "mid": 30000000000.0
+      },
+      "operating_profit": {
+        "low": 4000000000.0,
+        "high": 4000000000.0,
+        "mid": 4000000000.0
+      },
+      "active": true,
+      "revision": 2,
+      "changes": {
+        "sales": "하향",
+        "operating_profit": "하향"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "200470",
+      "name": "에이팩트",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-08-18",
+      "receipt": "20260818900338",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260818900338",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 6.723484848484849,
+        "high": 6.723484848484849,
+        "mid": 6.723484848484849
+      },
+      "sales": {
+        "low": 211200000000.0,
+        "high": 211200000000.0,
+        "mid": 211200000000.0
+      },
+      "operating_profit": {
+        "low": 14200000000.0,
+        "high": 14200000000.0,
+        "mid": 14200000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "204320",
+      "name": "HL만도",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-05",
+      "receipt": "20260205800572",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800572",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 9623300000000.0,
+        "high": 9623300000000.0,
+        "mid": 9623300000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "204320",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 9782000000000.0,
+        "operating_profit": 407000000000.0,
+        "as_of": "2026-08-03",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "207940",
+      "name": "삼성바이오로직스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-21",
+      "receipt": "20260121800501",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260121800501",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 5320000000000.0,
+        "high": 5320000000000.0,
+        "mid": 5320000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "207940",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 5472900000000.0,
+        "operating_profit": 2472000000000.0,
+        "as_of": "2026-07-24",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "214150",
+      "name": "클래시스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-12",
+      "receipt": "20260812900270",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260812900270",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 445000000000.0,
+        "high": 445000000000.0,
+        "mid": 445000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 3,
+      "changes": {
+        "sales": "하향",
+        "operating_profit": "확인불가"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "222800",
+      "name": "심텍",
+      "period": "2026-07-01/2026-12-31",
+      "period_start": "2026-07-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-05",
+      "receipt": "20260805900462",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260805900462",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 15.215971639145442,
+        "high": 15.215971639145442,
+        "mid": 15.215971639145442
+      },
+      "sales": {
+        "low": 1071900000000.0,
+        "high": 1071900000000.0,
+        "mid": 1071900000000.0
+      },
+      "operating_profit": {
+        "low": 163100000000.0,
+        "high": 163100000000.0,
+        "mid": 163100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "236810",
+      "name": "엔비티",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-07-06",
+      "receipt": "20260706900821",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706900821",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 1.9462465245597775,
+        "high": 1.9462465245597775,
+        "mid": 1.9462465245597775
+      },
+      "sales": {
+        "low": 107900000000.0,
+        "high": 107900000000.0,
+        "mid": 107900000000.0
+      },
+      "operating_profit": {
+        "low": 2100000000.0,
+        "high": 2100000000.0,
+        "mid": 2100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "241560",
+      "name": "두산밥캣",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-11",
+      "receipt": "20260211801478",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260211801478",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 7.479480164158686,
+        "high": 7.479480164158686,
+        "mid": 7.479480164158686
+      },
+      "sales": {
+        "low": 8772000000000.0,
+        "high": 8772000000000.0,
+        "mid": 8772000000000.0
+      },
+      "operating_profit": {
+        "low": 656100000000.0,
+        "high": 656100000000.0,
+        "mid": 656100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "241560",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 8127550000000.0,
+        "operating_profit": 767600000000.0,
+        "as_of": "2026-07-24",
+        "source": "참고 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "241690",
+      "name": "유니테크노",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-07-27",
+      "receipt": "20260727900238",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260727900238",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 6.0357675111773474,
+        "high": 6.0357675111773474,
+        "mid": 6.0357675111773474
+      },
+      "sales": {
+        "low": 134200000000.0,
+        "high": 134200000000.0,
+        "mid": 134200000000.0
+      },
+      "operating_profit": {
+        "low": 8100000000.0,
+        "high": 8100000000.0,
+        "mid": 8100000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "243070",
+      "name": "휴온스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-13",
+      "receipt": "20260213901177",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260213901177",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 646200000000.0,
+        "high": 646200000000.0,
+        "mid": 646200000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "248070",
+      "name": "솔루엠",
+      "period": "2026-07-01/2026-12-31",
+      "period_start": "2026-07-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-14",
+      "receipt": "20260814801089",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260814801089",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 980900000000.0,
+        "high": 980900000000.0,
+        "mid": 980900000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "263750",
+      "name": "펄어비스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-08-11",
+      "receipt": "20260811900977",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260811900977",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 44.44914060298676,
+        "high": 44.44914060298676,
+        "mid": 44.44914060298676
+      },
+      "sales": {
+        "low": 709800000000.0,
+        "high": 709800000000.0,
+        "mid": 709800000000.0
+      },
+      "operating_profit": {
+        "low": 315500000000.0,
+        "high": 315500000000.0,
+        "mid": 315500000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "263750",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 746550000000.0,
+        "operating_profit": 354900000000.0,
+        "as_of": "2026-08-13",
+        "source": "참고 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "267260",
+      "name": "HD현대일렉트릭",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-07-06",
+      "receipt": "20260706800260",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260706800260",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 4350000000000.0,
+        "high": 4350000000000.0,
+        "mid": 4350000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 2,
+      "changes": {
+        "sales": "유지",
+        "operating_profit": "확인불가"
+      },
+      "consensus": {
+        "ticker": "267260",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4808000000000.0,
+        "operating_profit": 1244000000000.0,
+        "as_of": "2026-08-24",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "267270",
+      "name": "HD건설기계",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-14",
+      "receipt": "20260114800059",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260114800059",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 5.040243986333096,
+        "high": 5.040243986333096,
+        "mid": 5.040243986333096
+      },
+      "sales": {
+        "low": 8721800000000.0,
+        "high": 8721800000000.0,
+        "mid": 8721800000000.0
+      },
+      "operating_profit": {
+        "low": 439600000000.0,
+        "high": 439600000000.0,
+        "mid": 439600000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "267270",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 9398300000000.0,
+        "operating_profit": 795100000000.0,
+        "as_of": "2026-07-30",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "270660",
+      "name": "에브리봇",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2025-12-22",
+      "receipt": "20251222900644",
+      "is_correction": true,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251222900644",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 58000000000.0,
+        "high": 58000000000.0,
+        "mid": 58000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "294870",
+      "name": "IPARK현대산업개발",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-04",
+      "receipt": "20260204800911",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260204800911",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 4233600000000.0,
+        "high": 4233600000000.0,
+        "mid": 4233600000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "294870",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4000000000000.0,
+        "operating_profit": 540400000000.0,
+        "as_of": "2026-09-21",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "307950",
+      "name": "현대오토에버",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-30",
+      "receipt": "20260130800396",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130800396",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 4512000000000.0,
+        "high": 4512000000000.0,
+        "mid": 4512000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "307950",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4810000000000.0,
+        "operating_profit": 275000000000.0,
+        "as_of": "2026-08-18",
+        "source": "유효 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "317400",
+      "name": "자이에스앤디",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-26",
+      "receipt": "20260126800336",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260126800336",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 1600000000000.0,
+        "high": 1600000000000.0,
+        "mid": 1600000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "317400",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 1548750000000.0,
+        "operating_profit": 56150000000.0,
+        "as_of": "2026-09-14",
+        "source": "참고 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "322000",
+      "name": "HD현대에너지솔루션",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-05",
+      "receipt": "20260105800100",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800100",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 612200000000.0,
+        "high": 612200000000.0,
+        "mid": 612200000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "329180",
+      "name": "HD현대중공업",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-01-05",
+      "receipt": "20260105800692",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800692",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 24408400000000.0,
+        "high": 24408400000000.0,
+        "mid": 24408400000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "329180",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 24811000000000.0,
+        "operating_profit": 4196000000000.0,
+        "as_of": "2026-09-17",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "336370",
+      "name": "솔루스첨단소재",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-05",
+      "receipt": "20260205800290",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800290",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 533000000000.0,
+        "high": 533000000000.0,
+        "mid": 533000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "336370",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 555600000000.0,
+        "operating_profit": -75350000000.0,
+        "as_of": "2026-07-27",
+        "source": "참고 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "361570",
+      "name": "알비더블유",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-06-30",
+      "receipt": "20260630901406",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630901406",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 80900000000.0,
+        "high": 80900000000.0,
+        "mid": 80900000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "375500",
+      "name": "DL이앤씨",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-06",
+      "receipt": "20260206801463",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260206801463",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 7200000000000.0,
+        "high": 7200000000000.0,
+        "mid": 7200000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "375500",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 7100000000000.0,
+        "operating_profit": 604800000000.0,
+        "as_of": "2026-09-21",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "408920",
+      "name": "메쎄이상",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-04-02",
+      "receipt": "20260402900668",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260402900668",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 25.895598771750254,
+        "high": 25.895598771750254,
+        "mid": 25.895598771750254
+      },
+      "sales": {
+        "low": 97700000000.0,
+        "high": 97700000000.0,
+        "mid": 97700000000.0
+      },
+      "operating_profit": {
+        "low": 25300000000.0,
+        "high": 25300000000.0,
+        "mid": 25300000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "408920",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 87900000000.0,
+        "operating_profit": 24300000000.0,
+        "as_of": "2026-08-28",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "440320",
+      "name": "오픈놀",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-04-21",
+      "receipt": "20260421900440",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421900440",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 100000000000.0,
+        "high": 100000000000.0,
+        "mid": 100000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "443060",
+      "name": "HD현대마린솔루션",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-01-02",
+      "receipt": "20260102800003",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260102800003",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 2334900000000.0,
+        "high": 2334900000000.0,
+        "mid": 2334900000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "443060",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 2412400000000.0,
+        "operating_profit": 415800000000.0,
+        "as_of": "2026-09-17",
+        "source": "개별 추정치"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "476060",
+      "name": "온코닉테라퓨틱스",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "separate",
+      "amount_unit": "원",
+      "published_at": "2026-02-05",
+      "receipt": "20260205900090",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205900090",
+      "report_name": "영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": 23.70304114490161,
+        "high": 23.70304114490161,
+        "mid": 23.70304114490161
+      },
+      "sales": {
+        "low": 111800000000.0,
+        "high": 111800000000.0,
+        "mid": 111800000000.0
+      },
+      "operating_profit": {
+        "low": 26500000000.0,
+        "high": 26500000000.0,
+        "mid": 26500000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": {
+        "ticker": "476060",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 111200000000.0,
+        "operating_profit": 25800000000.0,
+        "as_of": "2026-09-18",
+        "source": "외부 집계 컨센서스"
+      },
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "481070",
+      "name": "에이유브랜즈",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-05-13",
+      "receipt": "20260513900345",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260513900345",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 120000000000.0,
+        "high": 120000000000.0,
+        "mid": 120000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
+      "ticker": "488280",
+      "name": "에스투더블유",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-02-25",
+      "receipt": "20260225901780",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260225901780",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": null,
+      "sales": {
+        "low": 19000000000.0,
+        "high": 19000000000.0,
+        "mid": 19000000000.0
+      },
+      "operating_profit": null,
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    }
+  ],
+  "gap_threshold": 0.05,
+  "coverage": {
+    "activeRows": 84,
+    "activeTickers": 81,
+    "comparableRows": 0
+  },
+  "policy": "가이던스가 있으면 같은 기간 성장근거에서 우선하고, 없으면 외부 컨센서스를 사용. 가치 원점수에는 미반영."
+}

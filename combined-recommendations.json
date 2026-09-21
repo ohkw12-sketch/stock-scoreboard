@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-feedback-3.0",
-  "snapshotId": "f34dc079ada2bcf88455c0db8e0b86489bebce42e7905310a21e049d414ff775",
-  "generatedAt": "2026-09-21T15:15:34+09:00",
-  "sourceDate": "2026-09-18",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
-  "candidateCount": 21,
+  "snapshotId": "a95512f9a480e6a928b8a97470164fdf96908540d2a882263872bb523f8b3064",
+  "generatedAt": "2026-09-21T19:48:21+09:00",
+  "sourceDate": "2026-09-21",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "candidateCount": 20,
   "matchedCandidateCount": 0,
   "rows": [],
   "feedback": {
     "version": "feedback-1.0",
-    "cutoffDate": "2026-09-18",
+    "cutoffDate": "2026-09-21",
     "horizon": 5,
-    "sampleCount": 324,
+    "sampleCount": 379,
     "patterns": [
       {
         "pattern": [
@@ -22,12 +22,12 @@
         ],
         "label": "관계 동행 + 순환 ⑤재반등",
         "horizon": 5,
-        "sampleCount": 4,
-        "recommendationDays": 1,
-        "meanReturnPct": 6.564,
-        "medianReturnPct": 6.835,
-        "winRatePct": 100.0,
-        "score": 1.9528,
+        "sampleCount": 6,
+        "recommendationDays": 2,
+        "meanReturnPct": 3.577,
+        "medianReturnPct": 4.381,
+        "winRatePct": 66.67,
+        "score": 1.6428,
         "status": "초기 관찰",
         "archiveSampleCount": 4,
         "rank": 1
@@ -122,23 +122,6 @@
       },
       {
         "pattern": [
-          "순환:⑤재반등",
-          "진입"
-        ],
-        "label": "순환 ⑤재반등 + 진입",
-        "horizon": 5,
-        "sampleCount": 9,
-        "recommendationDays": 2,
-        "meanReturnPct": 1.931,
-        "medianReturnPct": 1.992,
-        "winRatePct": 55.56,
-        "score": 0.9434,
-        "status": "초기 관찰",
-        "archiveSampleCount": 9,
-        "rank": 7
-      },
-      {
-        "pattern": [
           "관계:후행",
           "순환:②확산"
         ],
@@ -152,7 +135,7 @@
         "score": 0.8106,
         "status": "초기 관찰",
         "archiveSampleCount": 3,
-        "rank": 8
+        "rank": 7
       },
       {
         "pattern": [
@@ -170,24 +153,24 @@
         "score": 0.6395,
         "status": "초기 관찰",
         "archiveSampleCount": 3,
-        "rank": 9
+        "rank": 8
       },
       {
         "pattern": [
-          "순환",
+          "순환:⑤재반등",
           "진입:진입가능"
         ],
-        "label": "순환 + 진입 진입가능",
+        "label": "순환 ⑤재반등 + 진입 진입가능",
         "horizon": 5,
-        "sampleCount": 6,
-        "recommendationDays": 3,
-        "meanReturnPct": 2.312,
-        "medianReturnPct": 1.685,
+        "sampleCount": 3,
+        "recommendationDays": 2,
+        "meanReturnPct": 3.136,
+        "medianReturnPct": 2.25,
         "winRatePct": 66.67,
-        "score": 0.6319,
+        "score": 0.5193,
         "status": "초기 관찰",
-        "archiveSampleCount": 6,
-        "rank": 10
+        "archiveSampleCount": 2,
+        "rank": 9
       },
       {
         "pattern": [
@@ -205,7 +188,7 @@
         "score": 0.4814,
         "status": "초기 관찰",
         "archiveSampleCount": 4,
-        "rank": 11
+        "rank": 10
       },
       {
         "pattern": [
@@ -222,6 +205,23 @@
         "score": 0.4814,
         "status": "초기 관찰",
         "archiveSampleCount": 4,
+        "rank": 11
+      },
+      {
+        "pattern": [
+          "순환",
+          "진입:진입가능"
+        ],
+        "label": "순환 + 진입 진입가능",
+        "horizon": 5,
+        "sampleCount": 7,
+        "recommendationDays": 4,
+        "meanReturnPct": 1.982,
+        "medianReturnPct": 1.12,
+        "winRatePct": 57.14,
+        "score": 0.461,
+        "status": "초기 관찰",
+        "archiveSampleCount": 6,
         "rank": 12
       },
       {
@@ -296,18 +296,18 @@
       {
         "pattern": [
           "순환:⑤재반등",
-          "진입:곧진입"
+          "진입"
         ],
-        "label": "순환 ⑤재반등 + 진입 곧진입",
+        "label": "순환 ⑤재반등 + 진입",
         "horizon": 5,
-        "sampleCount": 7,
-        "recommendationDays": 2,
-        "meanReturnPct": 1.139,
-        "medianReturnPct": -0.142,
-        "winRatePct": 42.86,
-        "score": -0.0584,
-        "status": "초기 관찰",
-        "archiveSampleCount": 7,
+        "sampleCount": 12,
+        "recommendationDays": 3,
+        "meanReturnPct": 0.85,
+        "medianReturnPct": -0.071,
+        "winRatePct": 41.67,
+        "score": -0.0387,
+        "status": "누적 관찰",
+        "archiveSampleCount": 9,
         "rank": 17
       },
       {
@@ -329,20 +329,52 @@
       },
       {
         "pattern": [
+          "성장:미반영 가능"
+        ],
+        "label": "성장 미반영 가능",
+        "horizon": 5,
+        "sampleCount": 13,
+        "recommendationDays": 3,
+        "meanReturnPct": 1.893,
+        "medianReturnPct": -0.249,
+        "winRatePct": 38.46,
+        "score": -0.141,
+        "status": "누적 관찰",
+        "archiveSampleCount": 5,
+        "rank": 19
+      },
+      {
+        "pattern": [
           "순환",
           "진입"
         ],
         "label": "순환 + 진입",
         "horizon": 5,
-        "sampleCount": 20,
-        "recommendationDays": 4,
-        "meanReturnPct": 0.172,
+        "sampleCount": 24,
+        "recommendationDays": 5,
+        "meanReturnPct": 0.93,
         "medianReturnPct": -0.208,
-        "winRatePct": 45.0,
-        "score": -0.1387,
+        "winRatePct": 41.67,
+        "score": -0.1469,
         "status": "누적 관찰",
         "archiveSampleCount": 17,
-        "rank": 19
+        "rank": 20
+      },
+      {
+        "pattern": [
+          "진입:곧진입"
+        ],
+        "label": "진입 곧진입",
+        "horizon": 5,
+        "sampleCount": 33,
+        "recommendationDays": 4,
+        "meanReturnPct": 2.569,
+        "medianReturnPct": -0.274,
+        "winRatePct": 45.45,
+        "score": -0.2105,
+        "status": "누적 관찰",
+        "archiveSampleCount": 12,
+        "rank": 21
       },
       {
         "pattern": [
@@ -352,101 +384,32 @@
         ],
         "label": "관계 선행 + 순환 ⑤재반등 + 진입",
         "horizon": 5,
-        "sampleCount": 6,
-        "recommendationDays": 1,
-        "meanReturnPct": 0.243,
-        "medianReturnPct": -0.376,
-        "winRatePct": 33.33,
-        "score": -0.1411,
+        "sampleCount": 9,
+        "recommendationDays": 2,
+        "meanReturnPct": -0.635,
+        "medianReturnPct": -0.611,
+        "winRatePct": 22.22,
+        "score": -0.2893,
         "status": "초기 관찰",
         "archiveSampleCount": 6,
-        "rank": 20
-      },
-      {
-        "pattern": [
-          "관계:선행",
-          "순환:⑤재반등",
-          "진입:곧진입"
-        ],
-        "label": "관계 선행 + 순환 ⑤재반등 + 진입 곧진입",
-        "horizon": 5,
-        "sampleCount": 6,
-        "recommendationDays": 1,
-        "meanReturnPct": 0.243,
-        "medianReturnPct": -0.376,
-        "winRatePct": 33.33,
-        "score": -0.1411,
-        "status": "초기 관찰",
-        "archiveSampleCount": 6,
-        "rank": 21
-      },
-      {
-        "pattern": [
-          "순환",
-          "진입:곧진입"
-        ],
-        "label": "순환 + 진입 곧진입",
-        "horizon": 5,
-        "sampleCount": 14,
-        "recommendationDays": 3,
-        "meanReturnPct": -0.745,
-        "medianReturnPct": -0.443,
-        "winRatePct": 35.71,
-        "score": -0.2581,
-        "status": "누적 관찰",
-        "archiveSampleCount": 11,
         "rank": 22
       },
       {
         "pattern": [
+          "순환:⑤재반등",
           "진입:곧진입"
         ],
-        "label": "진입 곧진입",
+        "label": "순환 ⑤재반등 + 진입 곧진입",
         "horizon": 5,
-        "sampleCount": 16,
+        "sampleCount": 9,
         "recommendationDays": 3,
-        "meanReturnPct": -0.912,
-        "medianReturnPct": -0.443,
-        "winRatePct": 37.5,
-        "score": -0.2723,
-        "status": "누적 관찰",
-        "archiveSampleCount": 12,
+        "meanReturnPct": 0.088,
+        "medianReturnPct": -0.611,
+        "winRatePct": 33.33,
+        "score": -0.2893,
+        "status": "초기 관찰",
+        "archiveSampleCount": 7,
         "rank": 23
-      },
-      {
-        "pattern": [
-          "관계:선행",
-          "순환",
-          "진입"
-        ],
-        "label": "관계 선행 + 순환 + 진입",
-        "horizon": 5,
-        "sampleCount": 11,
-        "recommendationDays": 3,
-        "meanReturnPct": 0.004,
-        "medianReturnPct": -0.611,
-        "winRatePct": 27.27,
-        "score": -0.3199,
-        "status": "누적 관찰",
-        "archiveSampleCount": 10,
-        "rank": 24
-      },
-      {
-        "pattern": [
-          "관계:선행",
-          "진입"
-        ],
-        "label": "관계 선행 + 진입",
-        "horizon": 5,
-        "sampleCount": 11,
-        "recommendationDays": 3,
-        "meanReturnPct": 0.004,
-        "medianReturnPct": -0.611,
-        "winRatePct": 27.27,
-        "score": -0.3199,
-        "status": "누적 관찰",
-        "archiveSampleCount": 10,
-        "rank": 25
       },
       {
         "pattern": [
@@ -463,7 +426,59 @@
         "score": -0.3394,
         "status": "초기 관찰",
         "archiveSampleCount": 3,
+        "rank": 24
+      },
+      {
+        "pattern": [
+          "관계:선행",
+          "순환",
+          "진입"
+        ],
+        "label": "관계 선행 + 순환 + 진입",
+        "horizon": 5,
+        "sampleCount": 15,
+        "recommendationDays": 4,
+        "meanReturnPct": 1.262,
+        "medianReturnPct": -0.611,
+        "winRatePct": 26.67,
+        "score": -0.3664,
+        "status": "누적 관찰",
+        "archiveSampleCount": 10,
+        "rank": 25
+      },
+      {
+        "pattern": [
+          "관계:선행",
+          "진입"
+        ],
+        "label": "관계 선행 + 진입",
+        "horizon": 5,
+        "sampleCount": 15,
+        "recommendationDays": 4,
+        "meanReturnPct": 1.262,
+        "medianReturnPct": -0.611,
+        "winRatePct": 26.67,
+        "score": -0.3664,
+        "status": "누적 관찰",
+        "archiveSampleCount": 10,
         "rank": 26
+      },
+      {
+        "pattern": [
+          "순환",
+          "진입:곧진입"
+        ],
+        "label": "순환 + 진입 곧진입",
+        "horizon": 5,
+        "sampleCount": 17,
+        "recommendationDays": 4,
+        "meanReturnPct": 0.497,
+        "medianReturnPct": -0.611,
+        "winRatePct": 35.29,
+        "score": -0.3845,
+        "status": "누적 관찰",
+        "archiveSampleCount": 11,
+        "rank": 27
       },
       {
         "pattern": [
@@ -480,23 +495,42 @@
         "score": -0.3878,
         "status": "초기 관찰",
         "archiveSampleCount": 7,
-        "rank": 27
+        "rank": 28
       },
       {
         "pattern": [
-          "성장:일부 가격 반응"
+          "관계:선행",
+          "순환:⑤재반등",
+          "진입:곧진입"
         ],
-        "label": "성장 일부 가격 반응",
+        "label": "관계 선행 + 순환 ⑤재반등 + 진입 곧진입",
         "horizon": 5,
-        "sampleCount": 9,
-        "recommendationDays": 1,
-        "meanReturnPct": -3.838,
-        "medianReturnPct": -0.979,
-        "winRatePct": 22.22,
-        "score": -0.4637,
+        "sampleCount": 8,
+        "recommendationDays": 2,
+        "meanReturnPct": -0.714,
+        "medianReturnPct": -1.023,
+        "winRatePct": 25.0,
+        "score": -0.4545,
         "status": "초기 관찰",
-        "archiveSampleCount": 9,
-        "rank": 28
+        "archiveSampleCount": 6,
+        "rank": 29
+      },
+      {
+        "pattern": [
+          "성장",
+          "진입"
+        ],
+        "label": "성장 + 진입",
+        "horizon": 5,
+        "sampleCount": 3,
+        "recommendationDays": 1,
+        "meanReturnPct": -3.351,
+        "medianReturnPct": -2.394,
+        "winRatePct": 0.0,
+        "score": -0.5524,
+        "status": "초기 관찰",
+        "archiveSampleCount": 0,
+        "rank": 30
       },
       {
         "pattern": [
@@ -506,15 +540,15 @@
         ],
         "label": "관계 선행 + 순환 + 진입 곧진입",
         "horizon": 5,
-        "sampleCount": 10,
-        "recommendationDays": 3,
-        "meanReturnPct": -1.961,
-        "medianReturnPct": -1.023,
-        "winRatePct": 20.0,
-        "score": -0.5113,
+        "sampleCount": 13,
+        "recommendationDays": 4,
+        "meanReturnPct": -0.057,
+        "medianReturnPct": -1.434,
+        "winRatePct": 23.08,
+        "score": -0.8107,
         "status": "누적 관찰",
         "archiveSampleCount": 9,
-        "rank": 29
+        "rank": 31
       },
       {
         "pattern": [
@@ -523,15 +557,31 @@
         ],
         "label": "관계 선행 + 진입 곧진입",
         "horizon": 5,
-        "sampleCount": 10,
-        "recommendationDays": 3,
-        "meanReturnPct": -1.961,
-        "medianReturnPct": -1.023,
-        "winRatePct": 20.0,
-        "score": -0.5113,
+        "sampleCount": 13,
+        "recommendationDays": 4,
+        "meanReturnPct": -0.057,
+        "medianReturnPct": -1.434,
+        "winRatePct": 23.08,
+        "score": -0.8107,
         "status": "누적 관찰",
         "archiveSampleCount": 9,
-        "rank": 30
+        "rank": 32
+      },
+      {
+        "pattern": [
+          "진입"
+        ],
+        "label": "진입",
+        "horizon": 5,
+        "sampleCount": 123,
+        "recommendationDays": 8,
+        "meanReturnPct": 0.421,
+        "medianReturnPct": -0.969,
+        "winRatePct": 43.09,
+        "score": -0.8961,
+        "status": "누적 관찰",
+        "archiveSampleCount": 68,
+        "rank": 33
       },
       {
         "pattern": [
@@ -539,15 +589,15 @@
         ],
         "label": "가치 1~5배",
         "horizon": 5,
-        "sampleCount": 28,
-        "recommendationDays": 4,
-        "meanReturnPct": -0.481,
-        "medianReturnPct": -1.081,
-        "winRatePct": 39.29,
-        "score": -0.7965,
+        "sampleCount": 31,
+        "recommendationDays": 5,
+        "meanReturnPct": -0.807,
+        "medianReturnPct": -1.37,
+        "winRatePct": 35.48,
+        "score": -1.0358,
         "status": "누적 관찰",
         "archiveSampleCount": 26,
-        "rank": 31
+        "rank": 34
       },
       {
         "pattern": [
@@ -556,80 +606,47 @@
         ],
         "label": "가치 1~5배 + 가치 섹터할인",
         "horizon": 5,
-        "sampleCount": 28,
-        "recommendationDays": 4,
-        "meanReturnPct": -0.481,
-        "medianReturnPct": -1.081,
-        "winRatePct": 39.29,
-        "score": -0.7965,
+        "sampleCount": 31,
+        "recommendationDays": 5,
+        "meanReturnPct": -0.807,
+        "medianReturnPct": -1.37,
+        "winRatePct": 35.48,
+        "score": -1.0358,
         "status": "누적 관찰",
         "archiveSampleCount": 26,
-        "rank": 32
-      },
-      {
-        "pattern": [
-          "가치:섹터할인"
-        ],
-        "label": "가치 섹터할인",
-        "horizon": 5,
-        "sampleCount": 28,
-        "recommendationDays": 4,
-        "meanReturnPct": -0.481,
-        "medianReturnPct": -1.081,
-        "winRatePct": 39.29,
-        "score": -0.7965,
-        "status": "누적 관찰",
-        "archiveSampleCount": 26,
-        "rank": 33
-      },
-      {
-        "pattern": [
-          "관계:동행"
-        ],
-        "label": "관계 동행",
-        "horizon": 5,
-        "sampleCount": 28,
-        "recommendationDays": 7,
-        "meanReturnPct": -1.686,
-        "medianReturnPct": -1.349,
-        "winRatePct": 39.29,
-        "score": -0.9943,
-        "status": "누적 관찰",
-        "archiveSampleCount": 23,
-        "rank": 34
-      },
-      {
-        "pattern": [
-          "관계:동행",
-          "순환"
-        ],
-        "label": "관계 동행 + 순환",
-        "horizon": 5,
-        "sampleCount": 28,
-        "recommendationDays": 7,
-        "meanReturnPct": -1.686,
-        "medianReturnPct": -1.349,
-        "winRatePct": 39.29,
-        "score": -0.9943,
-        "status": "누적 관찰",
-        "archiveSampleCount": 23,
         "rank": 35
       },
       {
         "pattern": [
-          "진입"
+          "성장:일부 가격 반응"
         ],
-        "label": "진입",
+        "label": "성장 일부 가격 반응",
         "horizon": 5,
-        "sampleCount": 103,
-        "recommendationDays": 7,
-        "meanReturnPct": -0.422,
-        "medianReturnPct": -1.14,
-        "winRatePct": 41.75,
-        "score": -1.0391,
-        "status": "누적 관찰",
-        "archiveSampleCount": 68,
+        "sampleCount": 14,
+        "recommendationDays": 2,
+        "meanReturnPct": -3.736,
+        "medianReturnPct": -1.776,
+        "winRatePct": 28.57,
+        "score": -1.0358,
+        "status": "초기 관찰",
+        "archiveSampleCount": 9,
         "rank": 36
+      },
+      {
+        "pattern": [
+          "순환:②확산"
+        ],
+        "label": "순환 ②확산",
+        "horizon": 5,
+        "sampleCount": 46,
+        "recommendationDays": 8,
+        "meanReturnPct": -1.963,
+        "medianReturnPct": -1.326,
+        "winRatePct": 39.13,
+        "score": -1.0895,
+        "status": "누적 관찰",
+        "archiveSampleCount": 36,
+        "rank": 37
       },
       {
         "pattern": [
@@ -638,15 +655,15 @@
         ],
         "label": "관계 선행 + 순환 ⑥후반",
         "horizon": 5,
-        "sampleCount": 3,
-        "recommendationDays": 1,
-        "meanReturnPct": -3.921,
-        "medianReturnPct": -4.588,
+        "sampleCount": 4,
+        "recommendationDays": 2,
+        "meanReturnPct": -3.85,
+        "medianReturnPct": -4.112,
         "winRatePct": 0.0,
-        "score": -1.0588,
+        "score": -1.1749,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 37
+        "rank": 38
       },
       {
         "pattern": [
@@ -654,15 +671,15 @@
         ],
         "label": "순환 ⑥후반",
         "horizon": 5,
-        "sampleCount": 3,
-        "recommendationDays": 1,
-        "meanReturnPct": -3.921,
-        "medianReturnPct": -4.588,
+        "sampleCount": 4,
+        "recommendationDays": 2,
+        "meanReturnPct": -3.85,
+        "medianReturnPct": -4.112,
         "winRatePct": 0.0,
-        "score": -1.0588,
+        "score": -1.1749,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 38
+        "rank": 39
       },
       {
         "pattern": [
@@ -670,30 +687,14 @@
         ],
         "label": "순환 ⑤재반등",
         "horizon": 5,
-        "sampleCount": 26,
-        "recommendationDays": 5,
-        "meanReturnPct": -2.276,
-        "medianReturnPct": -1.486,
-        "winRatePct": 38.46,
-        "score": -1.0732,
+        "sampleCount": 35,
+        "recommendationDays": 6,
+        "meanReturnPct": -1.161,
+        "medianReturnPct": -1.538,
+        "winRatePct": 37.14,
+        "score": -1.1959,
         "status": "누적 관찰",
         "archiveSampleCount": 26,
-        "rank": 39
-      },
-      {
-        "pattern": [
-          "순환:②확산"
-        ],
-        "label": "순환 ②확산",
-        "horizon": 5,
-        "sampleCount": 44,
-        "recommendationDays": 7,
-        "meanReturnPct": -1.92,
-        "medianReturnPct": -1.326,
-        "winRatePct": 38.64,
-        "score": -1.0807,
-        "status": "누적 관찰",
-        "archiveSampleCount": 36,
         "rank": 40
       },
       {
@@ -702,15 +703,65 @@
         ],
         "label": "진입 진입가능",
         "horizon": 5,
-        "sampleCount": 93,
-        "recommendationDays": 7,
-        "meanReturnPct": -0.336,
-        "medianReturnPct": -1.349,
-        "winRatePct": 41.94,
-        "score": -1.2178,
+        "sampleCount": 96,
+        "recommendationDays": 8,
+        "meanReturnPct": -0.369,
+        "medianReturnPct": -1.345,
+        "winRatePct": 41.67,
+        "score": -1.2186,
         "status": "누적 관찰",
         "archiveSampleCount": 62,
         "rank": 41
+      },
+      {
+        "pattern": [
+          "가치:5~10배",
+          "가치:섹터할인"
+        ],
+        "label": "가치 5~10배 + 가치 섹터할인",
+        "horizon": 5,
+        "sampleCount": 5,
+        "recommendationDays": 1,
+        "meanReturnPct": -3.559,
+        "medianReturnPct": -3.712,
+        "winRatePct": 0.0,
+        "score": -1.2375,
+        "status": "초기 관찰",
+        "archiveSampleCount": 0,
+        "rank": 42
+      },
+      {
+        "pattern": [
+          "관계:동행"
+        ],
+        "label": "관계 동행",
+        "horizon": 5,
+        "sampleCount": 30,
+        "recommendationDays": 8,
+        "meanReturnPct": -1.734,
+        "medianReturnPct": -1.655,
+        "winRatePct": 36.67,
+        "score": -1.2415,
+        "status": "누적 관찰",
+        "archiveSampleCount": 23,
+        "rank": 43
+      },
+      {
+        "pattern": [
+          "관계:동행",
+          "순환"
+        ],
+        "label": "관계 동행 + 순환",
+        "horizon": 5,
+        "sampleCount": 30,
+        "recommendationDays": 8,
+        "meanReturnPct": -1.734,
+        "medianReturnPct": -1.655,
+        "winRatePct": 36.67,
+        "score": -1.2415,
+        "status": "누적 관찰",
+        "archiveSampleCount": 23,
+        "rank": 44
       },
       {
         "pattern": [
@@ -727,7 +778,39 @@
         "score": -1.3125,
         "status": "초기 관찰",
         "archiveSampleCount": 2,
-        "rank": 42
+        "rank": 45
+      },
+      {
+        "pattern": [
+          "가치:섹터할인"
+        ],
+        "label": "가치 섹터할인",
+        "horizon": 5,
+        "sampleCount": 38,
+        "recommendationDays": 5,
+        "meanReturnPct": -1.194,
+        "medianReturnPct": -1.768,
+        "winRatePct": 31.58,
+        "score": -1.3997,
+        "status": "누적 관찰",
+        "archiveSampleCount": 26,
+        "rank": 46
+      },
+      {
+        "pattern": [
+          "성장"
+        ],
+        "label": "성장",
+        "horizon": 5,
+        "sampleCount": 34,
+        "recommendationDays": 3,
+        "meanReturnPct": -1.731,
+        "medianReturnPct": -2.101,
+        "winRatePct": 29.41,
+        "score": -1.6238,
+        "status": "누적 관찰",
+        "archiveSampleCount": 20,
+        "rank": 47
       },
       {
         "pattern": [
@@ -735,31 +818,48 @@
         ],
         "label": "가치",
         "horizon": 5,
-        "sampleCount": 72,
-        "recommendationDays": 5,
-        "meanReturnPct": -0.846,
-        "medianReturnPct": -1.537,
-        "winRatePct": 36.11,
-        "score": -1.3496,
+        "sampleCount": 83,
+        "recommendationDays": 6,
+        "meanReturnPct": -1.2,
+        "medianReturnPct": -1.855,
+        "winRatePct": 32.53,
+        "score": -1.6558,
         "status": "누적 관찰",
         "archiveSampleCount": 70,
-        "rank": 43
+        "rank": 48
       },
       {
         "pattern": [
-          "성장:미반영 가능"
+          "관계:선행",
+          "순환:⑤재반등"
         ],
-        "label": "성장 미반영 가능",
+        "label": "관계 선행 + 순환 ⑤재반등",
         "horizon": 5,
-        "sampleCount": 7,
-        "recommendationDays": 2,
-        "meanReturnPct": -1.666,
-        "medianReturnPct": -3.587,
-        "winRatePct": 28.57,
-        "score": -1.4769,
+        "sampleCount": 28,
+        "recommendationDays": 5,
+        "meanReturnPct": -1.639,
+        "medianReturnPct": -2.331,
+        "winRatePct": 32.14,
+        "score": -1.7178,
+        "status": "누적 관찰",
+        "archiveSampleCount": 21,
+        "rank": 49
+      },
+      {
+        "pattern": [
+          "가치:5~10배"
+        ],
+        "label": "가치 5~10배",
+        "horizon": 5,
+        "sampleCount": 6,
+        "recommendationDays": 1,
+        "meanReturnPct": -4.097,
+        "medianReturnPct": -4.665,
+        "winRatePct": 0.0,
+        "score": -1.7495,
         "status": "초기 관찰",
-        "archiveSampleCount": 5,
-        "rank": 44
+        "archiveSampleCount": 0,
+        "rank": 50
       },
       {
         "pattern": [
@@ -776,7 +876,7 @@
         "score": -1.772,
         "status": "누적 관찰",
         "archiveSampleCount": 14,
-        "rank": 45
+        "rank": 51
       },
       {
         "pattern": [
@@ -794,7 +894,7 @@
         "score": -1.8633,
         "status": "초기 관찰",
         "archiveSampleCount": 3,
-        "rank": 46
+        "rank": 52
       },
       {
         "pattern": [
@@ -812,7 +912,7 @@
         "score": -1.8633,
         "status": "초기 관찰",
         "archiveSampleCount": 3,
-        "rank": 47
+        "rank": 53
       },
       {
         "pattern": [
@@ -828,7 +928,7 @@
         "score": -1.9541,
         "status": "초기 관찰",
         "archiveSampleCount": 6,
-        "rank": 48
+        "rank": 54
       },
       {
         "pattern": [
@@ -845,7 +945,7 @@
         "score": -1.9541,
         "status": "초기 관찰",
         "archiveSampleCount": 6,
-        "rank": 49
+        "rank": 55
       },
       {
         "pattern": [
@@ -854,32 +954,15 @@
         ],
         "label": "관계 선행 + 순환 ③주도",
         "horizon": 5,
-        "sampleCount": 18,
-        "recommendationDays": 6,
-        "meanReturnPct": -0.334,
+        "sampleCount": 22,
+        "recommendationDays": 7,
+        "meanReturnPct": 0.288,
         "medianReturnPct": -3.055,
-        "winRatePct": 38.89,
-        "score": -1.9638,
+        "winRatePct": 36.36,
+        "score": -2.1002,
         "status": "누적 관찰",
         "archiveSampleCount": 10,
-        "rank": 50
-      },
-      {
-        "pattern": [
-          "관계:선행",
-          "순환:⑤재반등"
-        ],
-        "label": "관계 선행 + 순환 ⑤재반등",
-        "horizon": 5,
-        "sampleCount": 21,
-        "recommendationDays": 4,
-        "meanReturnPct": -3.297,
-        "medianReturnPct": -3.125,
-        "winRatePct": 28.57,
-        "score": -2.1169,
-        "status": "누적 관찰",
-        "archiveSampleCount": 21,
-        "rank": 51
+        "rank": 56
       },
       {
         "pattern": [
@@ -888,31 +971,15 @@
         ],
         "label": "관계 선행 + 순환 ②확산",
         "horizon": 5,
-        "sampleCount": 30,
-        "recommendationDays": 7,
-        "meanReturnPct": -2.51,
+        "sampleCount": 32,
+        "recommendationDays": 8,
+        "meanReturnPct": -2.536,
         "medianReturnPct": -2.925,
-        "winRatePct": 30.0,
-        "score": -2.1934,
+        "winRatePct": 31.25,
+        "score": -2.2282,
         "status": "누적 관찰",
         "archiveSampleCount": 26,
-        "rank": 52
-      },
-      {
-        "pattern": [
-          "순환:③주도"
-        ],
-        "label": "순환 ③주도",
-        "horizon": 5,
-        "sampleCount": 21,
-        "recommendationDays": 6,
-        "meanReturnPct": -1.065,
-        "medianReturnPct": -3.315,
-        "winRatePct": 33.33,
-        "score": -2.2456,
-        "status": "누적 관찰",
-        "archiveSampleCount": 12,
-        "rank": 53
+        "rank": 57
       },
       {
         "pattern": [
@@ -928,7 +995,23 @@
         "score": -2.3006,
         "status": "누적 관찰",
         "archiveSampleCount": 15,
-        "rank": 54
+        "rank": 58
+      },
+      {
+        "pattern": [
+          "순환:③주도"
+        ],
+        "label": "순환 ③주도",
+        "horizon": 5,
+        "sampleCount": 25,
+        "recommendationDays": 7,
+        "meanReturnPct": -0.401,
+        "medianReturnPct": -3.315,
+        "winRatePct": 32.0,
+        "score": -2.3678,
+        "status": "누적 관찰",
+        "archiveSampleCount": 12,
+        "rank": 59
       },
       {
         "pattern": [
@@ -936,31 +1019,15 @@
         ],
         "label": "순환",
         "horizon": 5,
-        "sampleCount": 140,
-        "recommendationDays": 8,
-        "meanReturnPct": -1.536,
-        "medianReturnPct": -2.955,
-        "winRatePct": 32.14,
-        "score": -2.7577,
+        "sampleCount": 158,
+        "recommendationDays": 9,
+        "meanReturnPct": -1.032,
+        "medianReturnPct": -2.836,
+        "winRatePct": 32.91,
+        "score": -2.6669,
         "status": "누적 관찰",
         "archiveSampleCount": 108,
-        "rank": 55
-      },
-      {
-        "pattern": [
-          "성장"
-        ],
-        "label": "성장",
-        "horizon": 5,
-        "sampleCount": 22,
-        "recommendationDays": 2,
-        "meanReturnPct": -4.125,
-        "medianReturnPct": -4.029,
-        "winRatePct": 18.18,
-        "score": -2.77,
-        "status": "초기 관찰",
-        "archiveSampleCount": 20,
-        "rank": 56
+        "rank": 60
       },
       {
         "pattern": [
@@ -968,15 +1035,15 @@
         ],
         "label": "관계 선행",
         "horizon": 5,
-        "sampleCount": 107,
-        "recommendationDays": 8,
-        "meanReturnPct": -1.237,
-        "medianReturnPct": -3.153,
-        "winRatePct": 30.84,
-        "score": -2.8832,
+        "sampleCount": 123,
+        "recommendationDays": 9,
+        "meanReturnPct": -0.614,
+        "medianReturnPct": -3.125,
+        "winRatePct": 32.52,
+        "score": -2.89,
         "status": "누적 관찰",
         "archiveSampleCount": 80,
-        "rank": 57
+        "rank": 61
       },
       {
         "pattern": [
@@ -985,15 +1052,15 @@
         ],
         "label": "관계 선행 + 순환",
         "horizon": 5,
-        "sampleCount": 107,
-        "recommendationDays": 8,
-        "meanReturnPct": -1.237,
-        "medianReturnPct": -3.153,
-        "winRatePct": 30.84,
-        "score": -2.8832,
+        "sampleCount": 123,
+        "recommendationDays": 9,
+        "meanReturnPct": -0.614,
+        "medianReturnPct": -3.125,
+        "winRatePct": 32.52,
+        "score": -2.89,
         "status": "누적 관찰",
         "archiveSampleCount": 80,
-        "rank": 58
+        "rank": 62
       }
     ],
     "status": "과거 성과 기반 초기 순위",
@@ -1001,21 +1068,19 @@
   },
   "notice": "과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · 동점은 프로젝트 중복 수와 현재 순위 · 진입은 필수가 아니며 진입구분 별도 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-09-21T15:15:34+09:00",
-    "snapshotId": "f34dc079ada2bcf88455c0db8e0b86489bebce42e7905310a21e049d414ff775",
-    "sourceCutoff": "2026-09-18",
+    "generatedAt": "2026-09-21T19:48:21+09:00",
+    "snapshotId": "a95512f9a480e6a928b8a97470164fdf96908540d2a882263872bb523f8b3064",
+    "sourceCutoff": "2026-09-21",
     "mode": "증분 수집",
-    "engineVersion": "0ce64cc59a26d998",
-    "runId": "2bb0541c6a8f719bdd6d4f15",
-    "evidenceSnapshotId": "df06fd8851870bf7344395420a0bb55d186f3eef7404ce1dd86227579db94903",
+    "engineVersion": "bbaf2a7ebe617bdb",
+    "runId": "bb17b3cdd3386374914e87bf",
+    "evidenceSnapshotId": "8c9c04b2fe46d0590e86eec939e2a899f5f571f5c60a1f1a1576cdf0540a1359",
     "status": "계산완료"
   },
-  "runId": "2bb0541c6a8f719bdd6d4f15",
+  "runId": "bb17b3cdd3386374914e87bf",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-09-21T15:46:13+09:00",
-  "observedPublishedAt": "2026-09-21T15:46:13+09:00"
+  }
 }

@@ -6,6 +6,8 @@ import argparse
 
 ROOT = Path(__file__).resolve().parent
 FILES = {
+         '/guidance.js': ('guidance.js', 'text/javascript'),
+         '/guidance.json': ('test_output/guidance.json', 'application/json'),
          '/issue-spread.js': ('issue-spread.js', 'text/javascript'),
          '/issue-spread.css': ('issue-spread.css', 'text/css'),
          '/issue-spread.json': ('test_output/issue-spread.test.json', 'application/json'),

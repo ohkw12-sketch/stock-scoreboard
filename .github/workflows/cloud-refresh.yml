@@ -94,7 +94,7 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: |
           python -m unittest discover -s tests -v
-          node --test tests/test_ui_runtime.cjs tests/test_issue_ui.cjs tests/test_saveticker_ui.cjs
+          node --test tests/test_ui_runtime.cjs tests/test_issue_ui.cjs tests/test_saveticker_ui.cjs tests/test_guidance_ui.cjs
           python board_contract.py
       - name: Review original sources with AI
         if: steps.gate.outputs.run == 'true' && inputs.mode != 'verify-state'
@@ -149,7 +149,7 @@ jobs:
           fi
           git config user.name stock-scoreboard-bot
           git config user.email stock-scoreboard-bot@users.noreply.github.com
-          git add data.json youtube-market.json sampro-market.json saveticker-market.json issue-spread.json combined-recommendations.json recommendation-performance.json refresh-status.json
+          git add data.json youtube-market.json sampro-market.json saveticker-market.json issue-spread.json combined-recommendations.json recommendation-performance.json refresh-status.json guidance.json
           if ! git diff --cached --quiet; then
             git commit -m 'Publish verified cloud scoreboard'
             git push origin HEAD:main

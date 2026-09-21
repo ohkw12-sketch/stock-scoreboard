@@ -1,6 +1,6 @@
 # 예상실적 보고서 수집 엔진
 
-`forecast_report_engine.py`는 스코어보드와 분리된 예상실적 원자료 수집기다. 이 파일의 결과는 현재 `data.json`, 가치성장, 순환, 종합추천 계산에 연결되지 않는다.
+`forecast_report_engine.py`는 예상실적 원자료 수집기다. `forecast_integration.py`가 올해·내년 연간값이 모두 있고 불일치 검토가 아닌 종목만 기존 성장근거 계산에 연결한다. 연결 연간 회사 가이던스가 있으면 같은 기간의 매출·영업이익을 항목별로 우선한다. 확정실적 기반 가치 원점수와 KIS 추정치 상향 이력은 바꾸지 않는다.
 
 ## 수집 범위
 
@@ -46,6 +46,12 @@ python forecast_report_engine.py --start-date 2026-01-01 --reuse-naver-index
 ```
 
 Windows에서는 `setup_windows.bat`을 한 번 실행한 뒤 `run_forecast_engine.bat`을 실행하면 같은 증분 갱신을 수행한다.
+
+컨센서스와 가이던스를 함께 갱신하고 검증할 때:
+
+```powershell
+python refresh_forecasts.py --reuse-naver-index
+```
 
 ## 출력
 

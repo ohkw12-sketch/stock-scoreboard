@@ -739,14 +739,17 @@ def evidence_contents(events, limit=3):
             if event.get('activeUntil'):
                 content += f"이며 계약은 {event['activeUntil']}까지 진행됩니다"
             content += '.'
-        elif kind == '컨센서스':
+        elif kind in {'컨센서스', '가이던스·컨센서스'}:
             period = event.get('estimatePeriod') or '향후 실적'
             facts = []
             if number(event.get('salesGrowth')) is not None:
                 facts.append(f"매출 {_pct(event['salesGrowth'])}")
-            if number(event.get('opGrowth')) is not None:
+            if event.get('opTurnaround'):
+                facts.append('영업이익 흑자전환')
+            elif number(event.get('opGrowth')) is not None:
                 facts.append(f"영업이익 {_pct(event['opGrowth'])}")
-            content = f"외부 추정치는 {period}에 {'·'.join(facts) or '실적 성장'}을 예상합니다."
+            prefix = '회사 공식 가이던스를 기준으로 외부 추정치는' if event.get('guidanceUsed') else '외부 추정치는'
+            content = f"{prefix} {period}에 {'·'.join(facts) or '실적 성장'}을 예상합니다."
         elif number(event.get('growthRate')) is not None:
             product = event.get('product') or event.get('sector') or '해당 품목'
             period = event.get('period') or event.get('publishedAt') or '최근 기간'

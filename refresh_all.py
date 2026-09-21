@@ -19,6 +19,7 @@ from save_ticker_news import refresh_or_retain as refresh_saveticker_news, valid
 from performance_prices import collect_performance_prices
 from board_contract import load_contract
 from value_growth import build_value_growth_board
+from forecast_integration import integrate_from_files
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
                               build_value_board, load_config, load_fundamentals, run_engine, write_outputs)
 
@@ -151,6 +152,26 @@ def isolated_section(name, build, previous, states, context):
         return result
 
 
+def attach_forecast_status(report, status):
+    """Merge source verification metadata without weakening reported-financial checks."""
+    fundamentals = report.setdefault('fundamentals', {})
+    fundamentals['forecastIntegration'] = status
+    if status.get('status') != '정상':
+        return
+    base = dict(fundamentals.get('consensus') or {})
+    fresh = sorted(set(base.get('freshTickers', [])) | set(status.get('freshTickers', [])))
+    verified = dict(base.get('verifiedAtByTicker', {}))
+    verified.update(status.get('verifiedAtByTicker', {}))
+    source_dates = [value for value in (base.get('asOfDate'), status.get('asOfDate')) if value]
+    base.update(status='정상', source='KIS + 증권사 리포트·FnGuide + 회사 공식 가이던스',
+                asOfDate=max(source_dates, default=None), freshTickers=fresh,
+                verifiedAtByTicker=verified, problem=None,
+                forecastIntegratedTickers=status.get('integratedTickers', 0),
+                guidancePreferredTickers=status.get('guidancePreferredTickers', 0))
+    fundamentals['consensus'] = base
+    fundamentals['consensusAsOfDate'] = base.get('asOfDate')
+
+
 def rebuild(args, config):
     out = config['output_dir']
     out.mkdir(parents=True, exist_ok=True)
@@ -183,22 +204,23 @@ def rebuild(args, config):
             fundamentals = retained
             report['fundamentals'] = dict(retained_report['fundamentals'],
                 retentionStatus='최신 수집 실패·원래 기준일 유지', failedAttemptAt=generated)
-        store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     if report.get('qualityStatus') != '정상':
         raise RuntimeError('Whole-market price validation incomplete; live data not overwritten')
     if prices.empty or str(pd.to_datetime(prices.date).max().date()) != report.get('latestPriceDate'):
         raise RuntimeError('가격 파일과 검증 보고서 기준일이 다릅니다.')
     report['runMode'] = '저장자료 재계산' if args.reuse_snapshot else '증분 수집'
     report['attemptedAt'] = generated
-    pointer = read_json(out/'verified_snapshot.json')
-    if pointer:
-        manifest = read_json(config['cache_dir']/'snapshots/manifests'/f"{pointer['snapshotId']}.json")
-    else:
-        manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
+    fundamentals, forecast_status = integrate_from_files(
+        fundamentals,
+        config.get('forecast_consensus_file', 'test_output/forecast_engine/forecast_consensus.json'),
+        config.get('guidance_file', 'test_output/guidance.json'),
+    )
+    attach_forecast_status(report, forecast_status)
+    manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
         'rotation_screener.py', 'rotation_rules.py', 'growth_discovery.py', 'reported_financials.py',
         'dart_fundamentals.py', 'kis_consensus.py',
-        'growth_sources.py', 'growth_documents.py', 'value_growth.py',
+        'growth_sources.py', 'growth_documents.py', 'forecast_integration.py', 'value_growth.py',
         'combined_recommendations.py', 'performance_feedback.py')})[:16]
     context = {'generatedAt': generated, 'snapshotId': manifest['snapshotId'],
                'sourceCutoff': report['latestPriceDate'], 'mode': report['runMode'], 'engineVersion': engine_version}

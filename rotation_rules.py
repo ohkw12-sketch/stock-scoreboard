@@ -108,13 +108,15 @@ def evidence_from_sources(fundamentals, config):
                         publishedAt=pd.to_datetime(receipt[:8]).strftime('%Y-%m-%d'),
                         status='verified', kind='earnings', points=min(20, growth / 2),
                         strong=growth >= 30, maxAgeDays=90))
-            observed = row.get('consensus_fetched_at')
-            if (isinstance(observed, str) and row.get('consensus_as_of_precision') == 'day'
-                    and number(row.get('consensus_change_20d')) > 0):
+            observed = row.get('revision_consensus_fetched_at', row.get('consensus_fetched_at'))
+            precision = row.get('revision_consensus_as_of_precision', row.get('consensus_as_of_precision'))
+            revision = number(row.get('revision_consensus_change_20d', row.get('consensus_change_20d')))
+            source = row.get('revision_consensus_source', row.get('consensus_source', ''))
+            if (isinstance(observed, str) and precision == 'day' and revision > 0):
                 events.append(dict(ticker=ticker, eventId=f'consensus:{ticker}:{observed}',
-                    source=row.get('consensus_source', ''), publishedAt=observed, status='verified',
-                    kind='consensus', points=min(25, number(row['consensus_change_20d']) * 2.5),
-                    strong=number(row['consensus_change_20d']) >= 10))
+                    source=source, publishedAt=observed, status='verified',
+                    kind='consensus', points=min(25, revision * 2.5),
+                    strong=revision >= 10))
     ledger = Path(config.get('cache_dir', 'cache')) / 'growth' / 'event_ledger.json'
     if ledger.exists():
         for row in json.loads(ledger.read_text('utf-8')):

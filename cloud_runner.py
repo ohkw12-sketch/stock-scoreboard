@@ -16,7 +16,7 @@ from refresh_store import read_json, load_verified_frames, json_write
 ROOT = Path(__file__).resolve().parent
 PUBLIC = ('data.json', 'youtube-market.json', 'sampro-market.json', 'saveticker-market.json',
           'issue-spread.json', 'combined-recommendations.json', 'recommendation-performance.json',
-          'refresh-status.json', 'recommendation-history.json')
+          'refresh-status.json', 'recommendation-history.json', 'guidance.json')
 
 
 def run(*args):
@@ -70,9 +70,11 @@ def build(slot):
                 'status': '원문 검증 실패·이전 자료 유지', 'checkedAt': datetime.now(KST).isoformat()}
             json_write(ROOT/'youtube-market.json', prior)
     if slot != '10:30':
+        run('refresh_forecasts.py')
         run('refresh_all.py', '--config', 'config.kis.example.json', '--issue-slot', slot)
         run('promote_sections.py', '--sections', 'p1', 'p11', 'p2', 'p3', 'meta',
             '--youtube', '--research', '--allow-partial')
+        run('refresh_forecasts.py', '--publish-only')
     run('issue_spread.py', '--slot', slot, '--promote')
     sampro = ROOT/'test_output/sections/sampro-market.json'
     if sampro.exists():
