@@ -1,0 +1,2 @@
+ticker,name,broker,report_date,period,sales_krw_100m,operating_profit_krw_100m,source_url,report_id,extraction_method,confidence
+000001,예시기업,예시증권,2026-09-21,2026Q3,1000,100,https://example.com/source,example-20260921,검증된 보충자료,0.95
