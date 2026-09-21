@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-21T20:40:08+09:00",
+  "generatedAt": "2026-09-21T20:46:14+09:00",
   "priceDate": "2026-09-21",
-  "recordCount": 605,
-  "cohortCount": 94,
+  "recordCount": 606,
+  "cohortCount": 97,
   "rows": [
     {
       "ticker": "201490",
@@ -26191,6 +26191,134 @@
       },
       "entryDate": "2026-09-21",
       "entryPrice": 42250.0,
+      "latestDate": "2026-09-21",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "319660",
+      "name": "피에스케이",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 20,
+      "sector": "특수 목적용 기계 제조업",
+      "cohortId": "a6c5feeec40fc9a349e36ee9b5432a1800d9cab39b67a1ead91b6b60d6465e08",
+      "recommendationDate": "2026-09-21",
+      "publishedAt": "2026-09-21T20:46:14+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "22471bc6b59d4fea",
+      "ruleVersion": "value-growth-1.0",
+      "features": [
+        "가치성장",
+        "가치성장:위험감점",
+        "가치성장:일부 가격 반응"
+      ],
+      "sourceRow": {
+        "ticker": "319660",
+        "name": "피에스케이",
+        "sector": "특수 목적용 기계 제조업",
+        "growthRate": 54.0,
+        "growthBasis": "공시 누적 매출 전년동기 · 2026-06-30",
+        "fundamentalScore": 89.9,
+        "fundamentalBasis": "실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님",
+        "quarterlySales": 167474032244.0,
+        "reportedFourQuarterComplete": true,
+        "averageQuarterlySales": 142717707104.75,
+        "averageQuarterlyOperatingMarginPct": 24.489641139050978,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "일부 가격 반응",
+        "score": 45.54,
+        "averageTurnover20": 38087295225.0,
+        "financialSummary": "4분기 평균 매출 1,427억원 · 분기 영업이익률 평균 24.5% · 20일 평균 거래대금 381억원 · 누적 매출 +54%",
+        "evidenceContents": [
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2027.12E에 매출 +19.5%·영업이익 +15.7%을 예상합니다.",
+            "source": "증권사 리포트·공개 집계 컨센서스 · 2026-08-18",
+            "url": "https://stock.pstatic.net/stock-research/company/21/20260818_company_950573000.pdf"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 25.3,
+          "salesPersistence": 81.8,
+          "profitConversion": 89.9,
+          "revenueVisibility": 60,
+          "evidenceConfidence": 25.0,
+          "priceUnderreaction": 60,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-08-18",
+        "lastVerified": "2026-09-21T19:37:52+09:00",
+        "sourceDate": "2026-09-21",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 45.54,
+        "valueScore": 42.4,
+        "growthScore": 58.68,
+        "normalizedPOP": 27.8,
+        "normalizedPremiumPct": 14.0,
+        "valueConfidence": "A",
+        "riskPenalty": 5,
+        "riskWarnings": [
+          "성장 근거가 컨센서스뿐임 -5"
+        ],
+        "valueBasis": "정상화 P/OP 27.8배 · 섹터 대비 14.0% 프리미엄",
+        "operatingProfitDeclineStreak": 0,
+        "latestQuarterOperatingMarginPct": 30.0,
+        "fourQuarterAverageOperatingMarginPct": 24.5,
+        "currentQuarterAnnualizedPOP": 19.7,
+        "sectorNormalizedPOP": 24.4,
+        "consensusOnlyEvidence": true,
+        "rank": 20,
+        "recommendationHistory": {
+          "firstDate": "2026-09-21",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-21",
+      "entryPrice": 136900.0,
       "latestDate": "2026-09-21",
       "currentReturnPct": 0.0,
       "maxDrawdownPct": 0,
@@ -56446,10 +56574,10 @@
     {
       "group": "가치성장",
       "horizon": 1,
-      "total": 28,
+      "total": 29,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 28,
+      "waitingOrMissing": 29,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56457,10 +56585,10 @@
     {
       "group": "가치성장",
       "horizon": 5,
-      "total": 28,
+      "total": 29,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 28,
+      "waitingOrMissing": 29,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56468,10 +56596,10 @@
     {
       "group": "가치성장",
       "horizon": 20,
-      "total": 28,
+      "total": 29,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 28,
+      "waitingOrMissing": 29,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56479,10 +56607,10 @@
     {
       "group": "가치성장",
       "horizon": 60,
-      "total": 28,
+      "total": 29,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 28,
+      "waitingOrMissing": 29,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56490,10 +56618,10 @@
     {
       "group": "가치성장",
       "horizon": 120,
-      "total": 28,
+      "total": 29,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 28,
+      "waitingOrMissing": 29,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -57691,6 +57819,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "b2e556c9db85b51e8d9c0cbf097a503044211511619d402f936b1ecbad46c421"
+  }
 }
