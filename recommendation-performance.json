@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-21T09:05:49+09:00",
+  "generatedAt": "2026-09-21T15:15:34+09:00",
   "priceDate": "2026-09-18",
   "recordCount": 597,
   "cohortCount": 88,
@@ -54069,5 +54069,6 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  }
+  },
+  "priceSnapshotId": "f94dec7010d6de535eaaf27f5099ed1cf99b416ec2c512bc842628ebf6356a06"
 }
