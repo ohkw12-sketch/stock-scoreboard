@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-21.1",
+  "version": "2026-09-22.1",
   "description": "사용자가 확정한 주식평가창 제목·순서·표시형식 계약. 명시적인 화면 변경 요청 없이는 수정하지 않는다.",
   "tables": {
     "p11": {
@@ -14,17 +14,53 @@
         "핵심근거"
       ]
     },
+    "p2interest": {
+      "tbodyId": "p2interestbody",
+      "headers": [
+        "순위",
+        "종목",
+        "시장관심점수",
+        "성장근거",
+        "섹터관심",
+        "섹터단계",
+        "진입상태",
+        "성장률",
+        "주가 반영 판단",
+        "신뢰도",
+        "근거 실제 내용"
+      ],
+      "fields": [
+        "rank",
+        "name",
+        "interestGrowthScore",
+        "growthScore",
+        "sectorAttentionScore",
+        "sectorStage",
+        "entryState",
+        "growthRate",
+        "priceReflection",
+        "confidence",
+        "evidenceContents"
+      ],
+      "numericFields": [
+        "rank",
+        "interestGrowthScore",
+        "growthScore",
+        "sectorAttentionScore",
+        "growthRate"
+      ]
+    },
     "p2": {
       "tbodyId": "p2body",
       "headers": [
         "순위",
         "종목",
-        "가치성장점수",
+        "절대가치성장점수",
         "가치점수",
         "성장점수",
+        "예상 P/OP",
         "성장률",
         "펀더멘털",
-        "주가 반영 판단",
         "위험감점",
         "신뢰도",
         "근거 실제 내용"
@@ -35,9 +71,9 @@
         "valueGrowthScore",
         "valueScore",
         "growthScore",
+        "normalizedPOP",
         "growthRate",
         "fundamentalScore",
-        "priceReflection",
         "riskPenalty",
         "confidence",
         "evidenceContents"
@@ -47,6 +83,7 @@
         "valueGrowthScore",
         "valueScore",
         "growthScore",
+        "normalizedPOP",
         "growthRate",
         "fundamentalScore",
         "riskPenalty"
@@ -57,9 +94,9 @@
         "최대 소수점 2자리 점수",
         "최대 소수점 1자리 점수",
         "최대 소수점 2자리 점수",
+        "배수",
         "백분율",
         "점수",
-        "판정",
         "감점과 사유",
         "등급·근거수",
         "실제 원문 내용 요약"
@@ -70,9 +107,9 @@
         "${esc(x.valueGrowthScore)}",
         "${esc(x.valueScore)}",
         "${esc(x.growthScore)}",
+        "${x.normalizedPOP==null?'—':esc(x.normalizedPOP)+'배'}",
         "${x.growthRate==null?'—':esc(x.growthRate)+'%'}",
         "${x.fundamentalScore==null?'—':esc(x.fundamentalScore)+'점'}",
-        "${esc(x.priceReflection)}",
         "${esc(x.riskPenalty||0)}",
         "${conf(x)}",
         "${evidence(x)}"

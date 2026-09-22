@@ -153,6 +153,10 @@ class RotationEngineTest(unittest.TestCase):
                     "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct",
                     "fundamentalSource", "fundamentalYear", "projectedOperatingMarginPct"}
         self.assertTrue(required.issubset(self.p2["rows"][0]))
+        self.assertGreater(len(self.p2["_absoluteRows"]), 0)
+        self.assertEqual(self.p2["_absoluteRows"][0]["valueMode"], "absolute")
+        self.assertIsNone(self.p2["_absoluteRows"][0]["sectorNormalizedPOP"])
+        self.assertIsNone(self.p2["_absoluteRows"][0]["normalizedPremiumPct"])
         self.assertNotIn("turnaroundRows", self.p2)
         self.assertNotIn("T+", self.p2["status"])
         self.assertTrue(self.p2["dataStatus"]["forwardEstimateUsed"])

@@ -1468,25 +1468,77 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     )
     selected = ranked.head(int(config["top_value_count"]))
 
+    # The public split board also needs a genuinely absolute lens.  It keeps
+    # the same financial prerequisites and structural cautions, but it does
+    # not require sector peers and it never uses a sector median in scoring.
+    absolute_candidates = data[valid].copy()
+    absolute_candidates["absolute_value_score"] = absolute_multiple_score(
+        absolute_candidates["normalized_pop"],
+    )
+    absolute_candidates["sector_value_score"] = np.nan
+    absolute_candidates["value_score_before_confidence"] = (
+        absolute_candidates["absolute_value_score"] * (35.0 / 65.0)
+        + absolute_candidates["normalization_quality"] * (30.0 / 65.0)
+    )
+    absolute_candidates["confidence_multiplier"] = 1.0
+    absolute_holding_like = (
+        absolute_candidates["name"].astype(str).str.contains("홀딩스|지주", regex=True, na=False)
+        | absolute_candidates["sector"].astype(str).str.contains(
+            "회사 본부|경영 컨설팅", regex=True, na=False,
+        )
+    )
+    absolute_finance_like = absolute_candidates["sector"].astype(str).str.contains(
+        "금융", regex=False, na=False,
+    )
+    absolute_candidates["structure_multiplier"] = np.select(
+        [absolute_finance_like, absolute_holding_like], [0.75, 0.80], default=1.00,
+    )
+    absolute_candidates["structure_warning"] = np.select(
+        [absolute_finance_like, absolute_holding_like],
+        ["금융업 P/OP 비교제한", "지주·연결실적 검토"],
+        default="",
+    )
+    absolute_candidates["value_score"] = (
+        absolute_candidates["value_score_before_confidence"]
+        * absolute_candidates["structure_multiplier"]
+    )
+    absolute_extreme = absolute_candidates["normalized_pop"] < 1
+    absolute_candidates.loc[absolute_extreme, "value_score"] = absolute_candidates.loc[
+        absolute_extreme, "value_score"
+    ].clip(upper=69)
+    absolute_candidates.loc[
+        absolute_extreme & absolute_candidates["structure_warning"].eq(""),
+        "structure_warning",
+    ] = "1배 미만 배수 검증필요"
+    absolute_ranked = absolute_candidates.sort_values(
+        ["value_score", "normalized_pop"], ascending=[False, True], na_position="last",
+    ).copy()
+    absolute_ranked["type_rank"] = np.arange(1, len(absolute_ranked) + 1)
+
     def rounded(value):
         try:
             return round(float(value), 1) if np.isfinite(float(value)) else None
         except (TypeError, ValueError):
             return None
 
-    def make_row(item):
-        premium_label = "할인" if item.normalized_premium_pct < 0 else "프리미엄"
-        normalized_result = (
-            f"{int(item.value_fundamental_year)}E 가치 {int(item.normalized_value_rank)}위"
-            f"({abs(item.normalized_premium_pct):.1f}% {premium_label})"
-        )
+    def make_row(item, *, absolute=False):
+        if absolute:
+            normalized_result = (
+                f"{int(item.value_fundamental_year)}E 절대 P/OP {item.normalized_pop:.1f}배"
+            )
+        else:
+            premium_label = "할인" if item.normalized_premium_pct < 0 else "프리미엄"
+            normalized_result = (
+                f"{int(item.value_fundamental_year)}E 가치 {int(item.normalized_value_rank)}위"
+                f"({abs(item.normalized_premium_pct):.1f}% {premium_label})"
+            )
         return {
             "rank": int(item.type_rank), "typeRank": int(item.type_rank),
             "ticker": item.ticker, "name": item.name, "sector": item.sector,
             "valueScore": rounded(item.value_score),
             "normalizedPOP": rounded(item.normalized_pop),
-            "sectorNormalizedPOP": rounded(item.sector_normalized_pop),
-            "normalizedPremiumPct": rounded(item.normalized_premium_pct),
+            "sectorNormalizedPOP": None if absolute else rounded(item.sector_normalized_pop),
+            "normalizedPremiumPct": None if absolute else rounded(item.normalized_premium_pct),
             "normalizationAdjustmentPct": rounded(item.normalization_adjustment_pct),
             "confidence": item.confidence,
             "normalizationSourceBadge": item.value_fundamental_source,
@@ -1510,16 +1562,20 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
             "priorYearRole": item.value_fundamental_prior_year_role,
             "normalizedResult": normalized_result,
             "absoluteValueScore": rounded(item.absolute_value_score),
-            "sectorValueScore": rounded(item.sector_value_score),
+            "sectorValueScore": None if absolute else rounded(item.sector_value_score),
             "valueScoreBeforeConfidence": rounded(item.value_score_before_confidence),
             "confidenceMultiplier": round(float(item.confidence_multiplier), 2),
             "structureMultiplier": round(float(item.structure_multiplier), 2),
             "structureWarning": item.structure_warning,
+            "valueMode": "absolute" if absolute else "sector-relative",
             "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
         }
 
     rows = [make_row(item) for item in selected.itertuples(index=False)]
     all_rows = [make_row(item) for item in ranked.itertuples(index=False)]
+    absolute_rows = [
+        make_row(item, absolute=True) for item in absolute_ranked.itertuples(index=False)
+    ]
     score_map = {row["ticker"]: row["valueScore"] for row in all_rows}
     eligibility = [{
         "ticker": item.ticker, "name": item.name, "sector": item.sector,
@@ -1557,7 +1613,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
             "당해연도 상반기 이익품질 30% · 컨센서스 부재 감점 없음"
         ),
         "rows": rows,
-        "_allRows": all_rows, "_eligibility": eligibility,
+        "_allRows": all_rows, "_absoluteRows": absolute_rows, "_eligibility": eligibility,
         "_meta": {"asOfDate": price_basis, "engineVersion": "future-value-2.0", "forwardEstimateUsed": True},
         "events": [{
             "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"),
@@ -1569,6 +1625,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         }],
         "dataStatus": status | {
             "valueUniverseCount": len(data), "valueCandidateCount": candidate_count,
+            "absoluteValueCandidateCount": len(absolute_rows),
             "minimumAverageQuarterlySales": minimum_average_quarterly_sales,
             "minimumAverageQuarterlyOperatingMarginPct": minimum_average_quarterly_op_margin,
             "averageQuarterlySalesQualifiedCount": int(sales_qualified.sum()),

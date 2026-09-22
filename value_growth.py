@@ -9,7 +9,7 @@ import pandas as pd
 
 
 KST = timezone(timedelta(hours=9))
-RULE_VERSION = "value-growth-2.1"
+RULE_VERSION = "value-growth-split-3.0"
 DISPLAY_LIMIT = 20
 
 
@@ -107,17 +107,19 @@ def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> 
 
 def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit: list[dict],
                              fundamentals: pd.DataFrame, prices: pd.DataFrame,
-                             *, now: datetime | None = None, display_limit: int = DISPLAY_LIMIT) -> dict:
-    """Intersect both verified candidate pools and rank 50/50 less capped risk penalties."""
+                             rotation_board: dict | None = None, *, now: datetime | None = None,
+                             display_limit: int = DISPLAY_LIMIT) -> dict:
+    """Build separate market-interest and absolute-value growth rankings."""
     now = now or datetime.now(KST)
     today = now.date()
-    values = {str(row.get("ticker", "")).zfill(6): row for row in value_board.get("_allRows", [])}
+    absolute_source = value_board.get("_absoluteRows") or value_board.get("_allRows", [])
+    values = {str(row.get("ticker", "")).zfill(6): row for row in absolute_source}
     growth = {str(row.get("ticker", "")).zfill(6): row for row in growth_audit}
     financials = {str(row.get("ticker", "")).zfill(6): row for row in fundamentals.to_dict("records")}
     latest_prices = prices.sort_values("date").groupby("ticker").tail(1)
     latest = {str(row.get("ticker", "")).zfill(6): row for row in latest_prices.to_dict("records")}
     common = sorted(set(values) & set(growth))
-    rows, exclusions = [], []
+    absolute_rows, exclusions = [], []
     for ticker in common:
         value_row, growth_row = values[ticker], growth[ticker]
         negatives = _recent_valid_negatives(growth_row, today)
@@ -141,43 +143,117 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
         row.update({
             "ticker": ticker,
             "valueGrowthScore": score,
+            "absoluteValueGrowthScore": score,
             "score": score,
             "valueScore": round(value_score, 1),
             "growthScore": round(growth_score, 2),
             "normalizedPOP": value_row.get("normalizedPOP"),
-            "normalizedPremiumPct": value_row.get("normalizedPremiumPct"),
+            "normalizedPremiumPct": None,
             "valueConfidence": value_row.get("confidence"),
             "riskPenalty": risk_penalty,
             "riskWarnings": risk_warnings,
             "valueBasis": (
-                f"{value_row.get('fundamentalYear', '당해연도')}E P/OP {value_row.get('normalizedPOP', '—')}배 · "
-                f"섹터 대비 {abs(value_row.get('normalizedPremiumPct') or 0):.1f}% "
-                f"{'할인' if (value_row.get('normalizedPremiumPct') or 0) < 0 else '프리미엄'}"
+                f"{value_row.get('fundamentalYear', '당해연도')}E 절대 P/OP "
+                f"{value_row.get('normalizedPOP', '—')}배 · 섹터 가치비교 제외"
             ),
             "fundamentalSource": value_row.get("fundamentalSource"),
             "fundamentalSourceDate": value_row.get("fundamentalSourceDate"),
+            "fundamentalYear": value_row.get("fundamentalYear"),
             "seasonalityFallback": value_row.get("seasonalityFallback", False),
+            "sectorAttentionUsed": False,
             **risk_metrics,
         })
-        rows.append(row)
-    rows.sort(key=lambda row: (-row["valueGrowthScore"], row["ticker"]))
-    all_rows = [dict(row, rank=index) for index, row in enumerate(rows, 1)]
+        absolute_rows.append(row)
+    absolute_rows.sort(key=lambda row: (-row["valueGrowthScore"], row["ticker"]))
+    all_rows = [dict(row, rank=index) for index, row in enumerate(absolute_rows, 1)]
     displayed = all_rows[:max(0, int(display_limit))]
+
+    sector_rows = (rotation_board or {}).get("_allSectors") or (rotation_board or {}).get("sectors", [])
+    sectors = {str(row.get("name", "")): row for row in sector_rows}
+    interest_exclusions, interest_rows = [], []
+    for ticker, growth_row in growth.items():
+        negatives = _recent_valid_negatives(growth_row, today)
+        if negatives:
+            interest_exclusions.append({
+                "ticker": ticker, "name": growth_row.get("name"),
+                "reason": "최근 90일 유효 부정 근거", "evidenceCount": len(negatives),
+            })
+            continue
+        sector_row = sectors.get(str(growth_row.get("sector", "")))
+        growth_score = _number(growth_row.get("score"))
+        sector_score = _number((sector_row or {}).get("score"))
+        if growth_score is None or sector_score is None:
+            continue
+        interest_score = round(.60 * growth_score + .40 * sector_score, 2)
+        stage = str(sector_row.get("stage") or "")
+        entry_fit = str(sector_row.get("entryFit") or "관찰")
+        risk_gauge = _number(sector_row.get("riskGauge")) or 0
+        if entry_fit == "추격금지" or stage == "⑥후반":
+            entry_state = "추격주의"
+        elif risk_gauge >= 70:
+            entry_state = "과열주의"
+        else:
+            entry_state = entry_fit
+        row = deepcopy(growth_row)
+        row.pop("events", None)
+        row.pop("priceResponses", None)
+        row.pop("counterEvidence", None)
+        row.update({
+            "ticker": ticker,
+            "interestGrowthScore": interest_score,
+            "score": interest_score,
+            "growthScore": round(growth_score, 2),
+            "sectorAttentionScore": round(sector_score, 1),
+            "sectorRank": sector_row.get("rank"),
+            "sectorStage": stage,
+            "sectorEntryFit": entry_fit,
+            "sectorRiskGauge": round(risk_gauge, 1),
+            "entryState": entry_state,
+            "valuationMetricsUsed": False,
+        })
+        interest_rows.append(row)
+    interest_rows.sort(key=lambda row: (-row["interestGrowthScore"], row["ticker"]))
+    all_interest_rows = [dict(row, rank=index) for index, row in enumerate(interest_rows, 1)]
+    displayed_interest = all_interest_rows[:max(0, int(display_limit))]
+    common_top = {row["ticker"] for row in displayed} & {
+        row["ticker"] for row in displayed_interest
+    }
+    for row in all_rows:
+        row["alsoInterestTop20"] = row["ticker"] in common_top
+    for row in all_interest_rows:
+        row["alsoAbsoluteTop20"] = row["ticker"] in common_top
+
     value_status = value_board.get("dataStatus", {})
     growth_status = growth_board.get("dataStatus", {})
-    source_date = next((row.get("sourceDate") for row in all_rows if row.get("sourceDate")),
+    source_date = next((row.get("sourceDate") for row in all_interest_rows if row.get("sourceDate")),
                        value_board.get("_meta", {}).get("asOfDate"))
+    interest_method = (
+        "기업별 성장근거 60% + 해당 섹터 시장관심 40% · P/OP·PER·섹터 할인율은 사용하지 않음 · "
+        "과열·후반 섹터는 순위에서 숨기지 않고 진입상태로 표시"
+    )
+    absolute_method = (
+        "절대 P/OP와 당해연도 상반기 이익품질로 만든 가치점수 50% + 기업별 성장근거 50% "
+        "- 위험감점(최대 25점) · 섹터 상대가치와 시장관심은 사용하지 않음"
+    )
     return {
         "status": (
-            f"가치 후보 {len(values)}개와 성장 근거 후보 {len(growth)}개의 교집합 {len(common)}개 · "
-            f"부정 근거 {len(exclusions)}개 제외 · 최종 {len(all_rows)}개 중 {len(displayed)}개 표시"
+            f"시장관심·성장 {len(all_interest_rows)}개 중 {len(displayed_interest)}개 · "
+            f"절대 저평가·성장 {len(all_rows)}개 중 {len(displayed)}개 표시"
         ),
-        "method": (
-            "당해연도 미래 펀더멘털 가치점수 50% + 성장조기포착 점수 50% - 위험감점(최대 25점) · "
-            "최근 90일 유효 부정 근거는 제외 · 최종 순위는 최대 20위까지만 표시"
-        ),
+        "method": "서로 다른 목적을 한 점수에 섞지 않고 시장 관심과 절대 저평가를 위·아래 두 표로 분리",
         "rows": displayed,
         "_allRows": all_rows,
+        "interestGrowth": {
+            "status": f"시장관심·성장 상위 {len(displayed_interest)}개",
+            "method": interest_method,
+            "rows": displayed_interest,
+        },
+        "absoluteValueGrowth": {
+            "status": f"절대 저평가·성장 상위 {len(displayed)}개",
+            "method": absolute_method,
+            "rows": displayed,
+        },
+        "_allInterestRows": all_interest_rows,
         "_eligibility": [
             {"ticker": ticker, "name": (growth.get(ticker) or values.get(ticker) or {}).get("name"),
              "eligible": any(row["ticker"] == ticker for row in all_rows),
@@ -187,6 +263,7 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             for ticker in common
         ],
         "excludedRows": exclusions,
+        "interestExcludedRows": interest_exclusions,
         "dataStatus": {
             "status": "정상",
             "valueCandidateCount": len(values),
@@ -194,6 +271,9 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             "intersectionCount": len(common),
             "recentNegativeExcludedCount": len(exclusions),
             "finalCandidateCount": len(all_rows),
+            "interestCandidateCount": len(all_interest_rows),
+            "interestRecentNegativeExcludedCount": len(interest_exclusions),
+            "commonTop20Count": len(common_top),
             "displayLimit": int(display_limit),
             "valuePrerequisites": {
                 "minimumAverageQuarterlySales": value_status.get("minimumAverageQuarterlySales"),
@@ -212,9 +292,8 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
         "sourceDate": source_date,
         "updatedKST": now.strftime("%Y-%m-%d %H:%M"),
         "notice": (
-            "가이던스·컨센서스가 있으면 최신 전망을 사용하고, 없으면 1·2분기 실제와 전년도 계절성 비율로 "
-            "3·4분기를 추정하고 신뢰도 5점을 감점합니다. 전년도 절대 실적은 평가하지 않으며, "
-            "당해연도 P/OP가 섹터 중앙보다 높으면 5점을 감점합니다."
+            "두 표 모두 최소 매출·영업이익률과 검증된 성장근거를 요구합니다. 절대 저평가표는 "
+            "가이던스·컨센서스가 없고 계절성 추정만 사용하면 5점을 감점합니다."
         ),
         "_meta": {"asOfDate": source_date, "engineVersion": RULE_VERSION,
                   "projectType": "value-growth", "displayLimit": int(display_limit)},

@@ -75,6 +75,37 @@ class ValueGrowthTest(unittest.TestCase):
         self.assertEqual(len(result['rows']), 20)
         self.assertEqual([row['rank'] for row in result['rows']], list(range(1, 21)))
 
+    def test_market_interest_ranking_uses_growth_and_sector_attention_without_valuation(self):
+        value, growth_board, growth, fundamentals, prices = self.sources()
+        rotation = {'_allSectors': [{
+            'name': '검증', 'score': 90, 'rank': 1, 'stage': '②확산',
+            'entryFit': '진입적합', 'riskGauge': 20,
+        }]}
+        result = build_value_growth_board(
+            value, growth_board, growth, fundamentals, prices, rotation,
+            now=datetime(2026, 9, 19, tzinfo=KST),
+        )
+        row = result['interestGrowth']['rows'][0]
+        self.assertEqual(row['interestGrowthScore'], 78)
+        self.assertEqual(row['growthScore'], 70)
+        self.assertEqual(row['sectorAttentionScore'], 90)
+        self.assertFalse(row['valuationMetricsUsed'])
+        self.assertEqual(row['entryState'], '진입적합')
+
+    def test_split_board_marks_names_present_in_both_top_lists(self):
+        value, growth_board, growth, fundamentals, prices = self.sources()
+        rotation = {'_allSectors': [{
+            'name': '검증', 'score': 80, 'rank': 1, 'stage': '⑥후반',
+            'entryFit': '추격금지', 'riskGauge': 60,
+        }]}
+        result = build_value_growth_board(
+            value, growth_board, growth, fundamentals, prices, rotation,
+            now=datetime(2026, 9, 19, tzinfo=KST),
+        )
+        self.assertTrue(result['rows'][0]['alsoInterestTop20'])
+        self.assertTrue(result['interestGrowth']['rows'][0]['alsoAbsoluteTop20'])
+        self.assertEqual(result['interestGrowth']['rows'][0]['entryState'], '추격주의')
+
 
 if __name__ == '__main__':
     unittest.main()

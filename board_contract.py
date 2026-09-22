@@ -49,17 +49,24 @@ def validate_board(board: dict, contract: dict) -> list[str]:
     version = board.get("meta", {}).get("uiContractVersion")
     if version != contract["version"]:
         errors.append(f"data.json 화면 계약 버전이 {contract['version']}이 아닙니다: {version!r}")
-    value_contract = contract["tables"]["p2"]
-    for index, row in enumerate(board.get("p2", {}).get("rows", []), start=1):
-        missing = [field for field in value_contract["fields"] if field not in row]
-        if missing:
-            errors.append(f"p2 {index}행 필드 누락: {', '.join(missing)}")
-            continue
-        numeric_fields = value_contract.get("numericFields", [])
-        for field in numeric_fields:
-            value = row.get(field)
-            if value is not None and not isinstance(value, (int, float)):
-                errors.append(f"p2 {index}행 {field} 숫자 형식 변경 감지: {value!r}")
+    p2 = board.get("p2", {})
+    value_tables = {
+        "p2interest": p2.get("interestGrowth", {}).get("rows", []),
+        "p2": p2.get("absoluteValueGrowth", {}).get("rows", p2.get("rows", [])),
+    }
+    for table_name, rows in value_tables.items():
+        table_contract = contract["tables"][table_name]
+        for index, row in enumerate(rows, start=1):
+            missing = [field for field in table_contract.get("fields", []) if field not in row]
+            if missing:
+                errors.append(f"{table_name} {index}행 필드 누락: {', '.join(missing)}")
+                continue
+            for field in table_contract.get("numericFields", []):
+                value = row.get(field)
+                if value is not None and not isinstance(value, (int, float)):
+                    errors.append(
+                        f"{table_name} {index}행 {field} 숫자 형식 변경 감지: {value!r}"
+                    )
     return errors
 
 

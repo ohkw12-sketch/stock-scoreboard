@@ -275,7 +275,9 @@ def rebuild(args, config):
     def value_growth_section():
         if states['valueSource']['status'] != '계산완료' or states['growthSource']['status'] != '계산완료':
             raise RuntimeError('가치 또는 성장 원본 계산 실패로 가치성장 계산을 보류했습니다.')
-        return build_value_growth_board(value_source, growth_source, growth_candidates, fundamentals, prices)
+        return build_value_growth_board(
+            value_source, growth_source, growth_candidates, fundamentals, prices, p11,
+        )
     p2 = isolated_section('p2', value_growth_section, previous, states, context)
     json_write(out/'value_source.test.json', public_fields(value_source))
     json_write(out/'growth_source.test.json', public_fields(growth_source))
@@ -292,7 +294,10 @@ def rebuild(args, config):
     board['meta']['nextTradingDay'] = '거래소 개장일 확인 후 확정'
     board['meta']['runId'] = context['runId']
     board['meta']['refreshState'] = context
-    board['meta']['note'] = '가치성장은 확정 실적 가치 50%와 검증된 성장 근거 50%를 합산한 후보입니다. 점수와 신뢰도는 예측 확률이 아닙니다.'
+    board['meta']['note'] = (
+        '가치성장은 시장 관심·성장과 절대 저평가·성장을 별도 순위로 표시합니다. '
+        '시장 관심표에는 가치배수를 사용하지 않으며 점수와 신뢰도는 예측 확률이 아닙니다.'
+    )
     section_dir = out / 'sections'
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
     if youtube_path.exists():
