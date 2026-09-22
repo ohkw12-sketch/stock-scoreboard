@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-21T15:43:36.758436+09:00",
-  "sourceDate": "2026-09-21",
-  "slot": "15:00",
+  "generatedAt": "2026-09-22T10:26:18.980816+09:00",
+  "sourceDate": "2026-09-22",
+  "slot": "08:00",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -12,7 +12,7 @@
   },
   "issues": [
     {
-      "id": "physical-ai-automation-20260921",
+      "id": "physical-ai-automation-20260922",
       "name": "피지컬 AI·검사 자동화",
       "strength": 50,
       "marketGrade": "미확인",
@@ -26,148 +26,8 @@
           "sector": "산업용 소프트웨어·피지컬 AI",
           "direct": false,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-21T15:19:00+09:00",
-            "lastTradeTime": "151900",
-            "fetchedAt": "2026-09-21T15:40:04.712256+09:00",
-            "adjustmentChecked": true,
-            "price": 6720,
-            "changePct": 0.7496,
-            "return5dPct": -2.8902,
-            "distance20Pct": -2.6722,
-            "turnoverRatio": 5.51504,
-            "turnover": 253743455,
-            "baselineTurnover": 46009361,
-            "baselineSessions": [
-              {
-                "date": "20260824",
-                "lastTradeTime": "153000",
-                "turnover": 33870690,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260825",
-                "lastTradeTime": "153000",
-                "turnover": 35612100,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "153000",
-                "turnover": 41944500,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "153000",
-                "turnover": 50059535,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "153000",
-                "turnover": 53476590,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "153000",
-                "turnover": 37327560,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "153000",
-                "turnover": 49752245,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "153000",
-                "turnover": 37845410,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "153000",
-                "turnover": 46948590,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "153000",
-                "turnover": 73120180,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "153000",
-                "turnover": 16403460,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "153000",
-                "turnover": 44791030,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "153000",
-                "turnover": 67320630,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "153000",
-                "turnover": 45153900,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "153000",
-                "turnover": 32090110,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "153000",
-                "turnover": 69604730,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "153000",
-                "turnover": 24455190,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "153000",
-                "turnover": 35277715,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "153000",
-                "turnover": 26009580,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "153000",
-                "turnover": 99123480,
-                "noTradesAllDay": false
-              }
-            ],
-            "baselineMethod": "최근 20 KRX 영업일 각 15:30 조회 시 제공된 최종 정규장 분봉 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
-            "maBasis": "당일 최종 정규장 분봉 가격 + 직전19거래일 수정종가"
-          },
-          "confirmed": true,
+          "quote": {},
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -176,8 +36,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
               "publishedAt": "2026-09-18T16:51:00+09:00",
-              "verifiedAt": "2026-09-21T15:42:16+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
               "status": "verified",
               "polarity": "positive",
               "kind": "policy",
@@ -190,16 +50,57 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 10
+            "entry": 0
           },
-          "score": 20,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "090470",
+          "name": "제이스로보틱스",
+          "sector": "이차전지 제조 자동화",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "physical-ai-090470-contract",
+              "ticker": "090470",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900091",
+              "publishedAt": "2026-09-21T00:00:00+09:00",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 정정 전후 계약 내용 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "제이스로보틱스는 이차전지 제조 인프라 및 샘플 생산 서비스 공급계약을 체결했다. 계약금액은 56억4,728만7,800원으로 최근 매출의 18.42%, 계약기간은 2026-09-21부터 2028-03-31까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 10,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
         },
         {
           "ticker": "459510",
@@ -207,147 +108,7 @@
           "sector": "산업용 로봇·검사 자동화",
           "direct": true,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-21T15:19:00+09:00",
-            "lastTradeTime": "151900",
-            "fetchedAt": "2026-09-21T15:40:09.211307+09:00",
-            "adjustmentChecked": true,
-            "price": 15780,
-            "changePct": -1.375,
-            "return5dPct": -0.3159,
-            "distance20Pct": 3.472,
-            "turnoverRatio": 0.26772,
-            "turnover": 471049065,
-            "baselineTurnover": 1759479634,
-            "baselineSessions": [
-              {
-                "date": "20260824",
-                "lastTradeTime": "153000",
-                "turnover": 295947165,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260825",
-                "lastTradeTime": "153000",
-                "turnover": 993041650,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "153000",
-                "turnover": 394360420,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "153000",
-                "turnover": 464488375,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "153000",
-                "turnover": 377320210,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "153000",
-                "turnover": 294912760,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "153000",
-                "turnover": 364283420,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "153000",
-                "turnover": 312960715,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "153000",
-                "turnover": 210468615,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "153000",
-                "turnover": 2201364655,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "153000",
-                "turnover": 1624015985,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "153000",
-                "turnover": 440624675,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "153000",
-                "turnover": 273560120,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "153000",
-                "turnover": 4828242155,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "153000",
-                "turnover": 13138978155,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "153000",
-                "turnover": 3150559690,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "153000",
-                "turnover": 3263226595,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "153000",
-                "turnover": 1322880815,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "153000",
-                "turnover": 594525510,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "153000",
-                "turnover": 643830995,
-                "noTradesAllDay": false
-              }
-            ],
-            "baselineMethod": "최근 20 KRX 영업일 각 15:30 조회 시 제공된 최종 정규장 분봉 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
-            "maBasis": "당일 최종 정규장 분봉 가격 + 직전19거래일 수정종가"
-          },
+          "quote": {},
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -357,8 +118,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
               "publishedAt": "2026-09-18T17:10:00+09:00",
-              "verifiedAt": "2026-09-21T15:42:16+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
               "status": "verified",
               "polarity": "positive",
               "kind": "contract",
@@ -371,16 +132,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "보통"
+          "overheat": "미확인"
         }
       ],
       "evidence": [
@@ -390,8 +151,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
           "publishedAt": "2026-09-18T16:51:00+09:00",
-          "verifiedAt": "2026-09-21T15:42:16+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "policy",
@@ -403,12 +164,25 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
           "publishedAt": "2026-09-18T17:10:00+09:00",
-          "verifiedAt": "2026-09-21T15:42:16+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
           "summary": "나우로보틱스의 에이피알팩토리 대상 부스터 프로 X2 Probe Ass’y 자동화 설비 공급계약은 8억원으로 최근 매출의 6.39%이며, 종료일이 2026-11-18로 변경됐다."
+        },
+        {
+          "id": "physical-ai-090470-contract",
+          "ticker": "090470",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900091",
+          "publishedAt": "2026-09-21T00:00:00+09:00",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 정정 전후 계약 내용 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "제이스로보틱스는 이차전지 제조 인프라 및 샘플 생산 서비스 공급계약을 체결했다. 계약금액은 56억4,728만7,800원으로 최근 매출의 18.42%, 계약기간은 2026-09-21부터 2028-03-31까지다."
         }
       ],
       "detection": [
@@ -417,20 +191,27 @@
           "label": "유라클 피지컬 AI 기반 자율제조 검사 국책과제 선정",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
           "publishedAt": "2026-09-18T16:51:00+09:00",
-          "summary": "산업통상부 주관 피지컬 AI 기반 트랙터 변속기 자율제조 검사 통합 플랫폼 국책과제의 주관연구개발기관 선정을 확인했다."
+          "summary": "산업통상부 주관 피지컬 AI 기반 트랙터 변속기 자율제조 검사 통합 플랫폼 국책과제의 주관연구개발기관 선정을 원문으로 재확인했다."
         },
         {
           "channel": "DART",
           "label": "나우로보틱스 자동화 설비 공급계약 일정 정정",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
           "publishedAt": "2026-09-18T17:10:00+09:00",
-          "summary": "Probe Ass’y 자동화 설비 공급계약의 종료일 변경 공시와 계약 존속을 확인했다."
+          "summary": "Probe Ass’y 자동화 설비 공급계약의 종료일 변경 공시와 계약 존속을 원문으로 재확인했다."
+        },
+        {
+          "channel": "DART",
+          "label": "제이스로보틱스 이차전지 제조 인프라 공급계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900091",
+          "publishedAt": "2026-09-21T00:00:00+09:00",
+          "summary": "이차전지 제조 인프라 및 샘플 생산 서비스 공급계약 원문을 확인했다. DART 공개 목록이 제공하는 공시일 기준이다."
         }
       ]
     },
     {
-      "id": "ai-infrastructure-supply-capex-20260921",
-      "name": "AI 서버 공급·반도체 기판 CAPEX",
+      "id": "ai-infrastructure-supply-capex-20260922",
+      "name": "AI 인프라 전력·냉각·기판·RAG 공급",
       "strength": 25,
       "marketGrade": "미확인",
       "fundamentalGrade": "미확인",
@@ -438,152 +219,94 @@
       "leaders": [],
       "candidates": [
         {
+          "ticker": "066570",
+          "name": "LG전자",
+          "sector": "AI 데이터센터 냉각 CDU",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "dsx-066570-product",
+              "ticker": "066570",
+              "source": "기업IR",
+              "url": "https://blogs.nvidia.com/blog/dsx-ready-ai-factories-power-cooling/",
+              "publishedAt": "2026-09-22T03:00:07+09:00",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · NVIDIA 공식 발표 및 연합뉴스 교차검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "product",
+              "summary": "NVIDIA는 DSX Ready AI 팩토리 전력·냉각 생태계의 적격 CDU 솔루션 공급사로 LG전자를 열거했다. 이는 제품 적격성 확인이며 공급계약이나 매출 인식을 뜻하지 않는다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "148780",
+          "name": "비큐AI",
+          "sector": "AI RAG 콘텐츠·데이터",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "rag-148780-contract",
+              "ticker": "148780",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922900097",
+              "publishedAt": "2026-09-22T00:00:00+09:00",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 단일판매·공급계약 원문 검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "비큐AI는 국내 대기업 IT 플랫폼사와 AI RAG용 콘텐츠 공급 MCP 계약을 체결했다. 계약금액은 21억3,050만원으로 최근 매출의 12.52%, 계약기간은 2026-09-01부터 2029-08-31까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
           "ticker": "195870",
           "name": "해성디에스",
           "sector": "반도체 기판 제조",
           "direct": false,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-21T15:19:00+09:00",
-            "lastTradeTime": "151900",
-            "fetchedAt": "2026-09-21T15:40:13.753711+09:00",
-            "adjustmentChecked": true,
-            "price": 56300,
-            "changePct": -2.087,
-            "return5dPct": 14.898,
-            "distance20Pct": 7.0851,
-            "turnoverRatio": 1.66019,
-            "turnover": 10015661850,
-            "baselineTurnover": 6032824815,
-            "baselineSessions": [
-              {
-                "date": "20260824",
-                "lastTradeTime": "153000",
-                "turnover": 2420566200,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260825",
-                "lastTradeTime": "153000",
-                "turnover": 6319572150,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "153000",
-                "turnover": 3518571400,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "153000",
-                "turnover": 3612686950,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "153000",
-                "turnover": 2351652650,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "153000",
-                "turnover": 2129576350,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "153000",
-                "turnover": 2526338750,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "153000",
-                "turnover": 4957280800,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "153000",
-                "turnover": 6043512100,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "153000",
-                "turnover": 3956450700,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "153000",
-                "turnover": 4348199950,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "153000",
-                "turnover": 5609418950,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "153000",
-                "turnover": 6009970400,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "153000",
-                "turnover": 6779008900,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "153000",
-                "turnover": 2518784450,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "153000",
-                "turnover": 3034246750,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "153000",
-                "turnover": 3150586000,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "153000",
-                "turnover": 30813520100,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "153000",
-                "turnover": 7077876250,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "153000",
-                "turnover": 13478676500,
-                "noTradesAllDay": false
-              }
-            ],
-            "baselineMethod": "최근 20 KRX 영업일 각 15:30 조회 시 제공된 최종 정규장 분봉 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
-            "maBasis": "당일 최종 정규장 분봉 가격 + 직전19거래일 수정종가"
-          },
+          "quote": {},
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -593,8 +316,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
               "publishedAt": "2026-09-18T16:40:00+09:00",
-              "verifiedAt": "2026-09-21T15:42:16+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
               "status": "verified",
               "polarity": "positive",
               "kind": "capex",
@@ -607,179 +330,39 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 10,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "보통"
+          "overheat": "미확인"
         },
         {
-          "ticker": "351320",
-          "name": "넥사다이내믹스",
-          "sector": "AI 서버·부속품",
-          "direct": true,
+          "ticker": "204270",
+          "name": "제이앤티씨",
+          "sector": "TGV 유리기판",
+          "direct": false,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-21T15:19:00+09:00",
-            "lastTradeTime": "151900",
-            "fetchedAt": "2026-09-21T15:40:18.355717+09:00",
-            "adjustmentChecked": true,
-            "price": 3720,
-            "changePct": -4.9808,
-            "return5dPct": -9.0465,
-            "distance20Pct": 5.0136,
-            "turnoverRatio": 0.27102,
-            "turnover": 1254793099,
-            "baselineTurnover": 4629882415,
-            "baselineSessions": [
-              {
-                "date": "20260824",
-                "lastTradeTime": "153000",
-                "turnover": 3915099380,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260825",
-                "lastTradeTime": "153000",
-                "turnover": 5965329899,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "153000",
-                "turnover": 5371352176,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "153000",
-                "turnover": 7770608064,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "153000",
-                "turnover": 8922576702,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "153000",
-                "turnover": 4777579925,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "153000",
-                "turnover": 4425957792,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "153000",
-                "turnover": 2174578788,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "153000",
-                "turnover": 2527938391,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "153000",
-                "turnover": 8223790292,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "153000",
-                "turnover": 6603907152,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "153000",
-                "turnover": 7528791328,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": null,
-                "turnover": 0,
-                "noTradesAllDay": true
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "153000",
-                "turnover": 12087832874,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "153000",
-                "turnover": 4840687700,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "153000",
-                "turnover": 2068537419,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "153000",
-                "turnover": 1778856940,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "153000",
-                "turnover": 2131277992,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "153000",
-                "turnover": 813408745,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "153000",
-                "turnover": 669536750,
-                "noTradesAllDay": false
-              }
-            ],
-            "baselineMethod": "최근 20 KRX 영업일 각 15:30 조회 시 제공된 최종 정규장 분봉 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
-            "maBasis": "당일 최종 정규장 분봉 가격 + 직전19거래일 수정종가"
-          },
+          "quote": {},
           "confirmed": false,
           "hot": false,
           "evidence": [
             {
-              "id": "ai-351320-contract",
-              "ticker": "351320",
+              "id": "glass-substrate-204270-capex",
+              "ticker": "204270",
               "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
-              "publishedAt": "2026-09-18T16:41:00+09:00",
-              "verifiedAt": "2026-09-21T15:42:16+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
+              "publishedAt": "2026-09-21T00:00:00+09:00",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 신규시설투자 원문 검증",
               "status": "verified",
               "polarity": "positive",
-              "kind": "contract",
-              "summary": "넥사다이내믹스는 일본 AI 부속품 업체와 15억8,734만5천원 규모 AI 서버 및 부속품 공급계약을 체결했다. 계약금액은 최근 매출의 12.20%, 계약기간은 2026-09-18부터 2027-09-18까지다."
+              "kind": "capex",
+              "summary": "제이앤티씨는 TGV 유리기판 생산능력 확대를 위해 김천 신공장에 3,470억원을 투자하기로 했다. 자기자본의 140.08%이며 투자기간은 2027-01-01부터 2030-06-30까지다."
             }
           ],
           "earningsPeriods": [],
@@ -788,78 +371,166 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 10,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "보통"
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "373220",
+          "name": "LG에너지솔루션",
+          "sector": "AI 데이터센터 전력 BESS",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "dsx-373220-product",
+              "ticker": "373220",
+              "source": "기업IR",
+              "url": "https://www.prnewswire.com/news-releases/lg-energy-solutions-battery-energy-storage-system-qualifies-as-nvidia-dsx-ready-bess-302884438.html",
+              "publishedAt": "2026-09-22T03:00:00+09:00",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · LG에너지솔루션 제공 보도자료와 NVIDIA 공식 발표 교차검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "product",
+              "summary": "LG에너지솔루션의 BESS가 NVIDIA DSX Ready 적격 솔루션으로 인정됐다. 이는 제품 적격성 확인이며 공급계약이나 매출 인식을 뜻하지 않는다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
         }
       ],
       "evidence": [
-        {
-          "id": "ai-351320-contract",
-          "ticker": "351320",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
-          "publishedAt": "2026-09-18T16:41:00+09:00",
-          "verifiedAt": "2026-09-21T15:42:16+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "넥사다이내믹스는 일본 AI 부속품 업체와 15억8,734만5천원 규모 AI 서버 및 부속품 공급계약을 체결했다. 계약금액은 최근 매출의 12.20%, 계약기간은 2026-09-18부터 2027-09-18까지다."
-        },
         {
           "id": "substrate-195870-capex",
           "ticker": "195870",
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
           "publishedAt": "2026-09-18T16:40:00+09:00",
-          "verifiedAt": "2026-09-21T15:42:16+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "capex",
           "summary": "해성디에스는 반도체 Substrate Panel 공법 도입을 위해 1,900억원 규모 신규시설투자를 결정했다. 투자기간은 2026-09-18부터 2030-12-31까지며 금액과 기간은 진행 과정에서 변경될 수 있다."
+        },
+        {
+          "id": "glass-substrate-204270-capex",
+          "ticker": "204270",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
+          "publishedAt": "2026-09-21T00:00:00+09:00",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 신규시설투자 원문 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "capex",
+          "summary": "제이앤티씨는 TGV 유리기판 생산능력 확대를 위해 김천 신공장에 3,470억원을 투자하기로 했다. 자기자본의 140.08%이며 투자기간은 2027-01-01부터 2030-06-30까지다."
+        },
+        {
+          "id": "rag-148780-contract",
+          "ticker": "148780",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922900097",
+          "publishedAt": "2026-09-22T00:00:00+09:00",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 단일판매·공급계약 원문 검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "비큐AI는 국내 대기업 IT 플랫폼사와 AI RAG용 콘텐츠 공급 MCP 계약을 체결했다. 계약금액은 21억3,050만원으로 최근 매출의 12.52%, 계약기간은 2026-09-01부터 2029-08-31까지다."
+        },
+        {
+          "id": "dsx-066570-product",
+          "ticker": "066570",
+          "source": "기업IR",
+          "url": "https://blogs.nvidia.com/blog/dsx-ready-ai-factories-power-cooling/",
+          "publishedAt": "2026-09-22T03:00:07+09:00",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · NVIDIA 공식 발표 및 연합뉴스 교차검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "product",
+          "summary": "NVIDIA는 DSX Ready AI 팩토리 전력·냉각 생태계의 적격 CDU 솔루션 공급사로 LG전자를 열거했다. 이는 제품 적격성 확인이며 공급계약이나 매출 인식을 뜻하지 않는다."
+        },
+        {
+          "id": "dsx-373220-product",
+          "ticker": "373220",
+          "source": "기업IR",
+          "url": "https://www.prnewswire.com/news-releases/lg-energy-solutions-battery-energy-storage-system-qualifies-as-nvidia-dsx-ready-bess-302884438.html",
+          "publishedAt": "2026-09-22T03:00:00+09:00",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · LG에너지솔루션 제공 보도자료와 NVIDIA 공식 발표 교차검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "product",
+          "summary": "LG에너지솔루션의 BESS가 NVIDIA DSX Ready 적격 솔루션으로 인정됐다. 이는 제품 적격성 확인이며 공급계약이나 매출 인식을 뜻하지 않는다."
         }
       ],
       "detection": [
         {
-          "channel": "연합뉴스",
-          "label": "미국 AI·반도체주 강세와 필라델피아반도체지수 상승",
-          "url": "https://www.yna.co.kr/view/AKR20260918189100008",
-          "publishedAt": "2026-09-20T06:00:00+09:00",
-          "summary": "주말 시장 점검에서 엔비디아·브로드컴·AMD·마이크론 강세와 필라델피아반도체지수 2.78% 상승을 확인했다. 이는 이슈 탐지에만 사용했다."
+          "channel": "Reuters",
+          "label": "미국 AI·반도체주 강세와 나스닥 사상 최고",
+          "url": "https://www.marketscreener.com/news/nasdaq-notches-record-high-on-ai-optimism-yields-retreat-ce785adbd08af123",
+          "publishedAt": "2026-09-22T08:14:00+09:00",
+          "summary": "메타의 AI 모델 공개와 반도체주 동반 강세를 확인했다. 시장 방향 탐지에만 사용하고 추천점수에는 반영하지 않았다."
         },
         {
-          "channel": "오선 국장 주요뉴스·삼프로TV 당일 시황",
-          "label": "돌아온 AI 모멘텀! 반도체·원전·전력 집중 분야",
-          "url": "https://www.youtube.com/watch?v=aozBx7Z0kjA",
-          "summary": "영상 제목을 AI 인프라 이슈 탐지에만 사용했고 추천점수에는 반영하지 않았다."
+          "channel": "기업IR",
+          "label": "NVIDIA DSX Ready AI 팩토리 전력·냉각 생태계 발표",
+          "url": "https://blogs.nvidia.com/blog/dsx-ready-ai-factories-power-cooling/",
+          "publishedAt": "2026-09-22T03:00:07+09:00",
+          "summary": "NVIDIA 공식 발표에서 LG에너지솔루션 BESS와 LG전자 CDU가 DSX Ready 적격 솔루션 목록에 포함된 사실을 확인했다."
+        },
+        {
+          "channel": "오선 국장 주요뉴스",
+          "label": "LG에너지솔루션 BESS, NVIDIA DSX Ready 적격 솔루션",
+          "url": "https://saveticker.com/news/news_GnnKuUwMyPrJ",
+          "publishedAt": "2026-09-22T03:02:00+09:00",
+          "summary": "오선 기사를 이슈 탐지에만 사용하고 NVIDIA·LG 공식 발표로 사실을 교차검증했다."
         },
         {
           "channel": "DART",
-          "label": "넥사다이내믹스 AI 서버·부속품 공급계약",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900615",
-          "publishedAt": "2026-09-18T16:41:00+09:00",
-          "summary": "일본 AI 부속품 업체 대상 AI 서버 및 부속품 공급계약 원문을 확인했다."
+          "label": "제이앤티씨 TGV 유리기판 신공장 투자",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
+          "publishedAt": "2026-09-21T00:00:00+09:00",
+          "summary": "TGV 유리기판 생산능력 확대를 위한 김천 신공장 투자 원문을 확인했다."
         },
         {
           "channel": "DART",
-          "label": "해성디에스 반도체 기판 Panel 공법 설비투자",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
-          "publishedAt": "2026-09-18T16:40:00+09:00",
-          "summary": "반도체 Substrate Panel 공법 도입을 위한 신규시설투자 원문을 확인했다."
+          "label": "비큐AI AI RAG 콘텐츠 공급 MCP 계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922900097",
+          "publishedAt": "2026-09-22T00:00:00+09:00",
+          "summary": "국내 대기업 IT 플랫폼사 대상 AI RAG용 콘텐츠 공급 MCP 계약 원문을 확인했다. DART 공개 목록이 제공하는 공시일 기준이다."
         }
       ]
     },
     {
-      "id": "maritime-energy-orders-20260921",
+      "id": "maritime-energy-orders-20260922",
       "name": "해상에너지·선박 핵심설비 수주",
       "strength": 25,
       "marketGrade": "미확인",
@@ -868,152 +539,53 @@
       "leaders": [],
       "candidates": [
         {
+          "ticker": "060370",
+          "name": "LS마린솔루션",
+          "sector": "해상풍력 해저케이블 운송·설치",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "marine-060370-contract",
+              "ticker": "060370",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
+              "publishedAt": "2026-09-18T09:27:00+09:00",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "LS마린솔루션은 한화오션과 1,569억원 규모 신안우이 해상풍력 해저케이블 운송·설치 계약을 체결했다. 최근 매출의 64.2%이며 계약기간은 2026-09-17부터 2028-09-06까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
           "ticker": "071970",
           "name": "HD현대마린엔진",
           "sector": "선박엔진 제조",
           "direct": true,
           "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-21T15:19:00+09:00",
-            "lastTradeTime": "151900",
-            "fetchedAt": "2026-09-21T15:40:27.506825+09:00",
-            "adjustmentChecked": true,
-            "price": 50900,
-            "changePct": -3.0476,
-            "return5dPct": -3.0476,
-            "distance20Pct": -1.045,
-            "turnoverRatio": 0.62883,
-            "turnover": 5062121350,
-            "baselineTurnover": 8050021981,
-            "baselineSessions": [
-              {
-                "date": "20260824",
-                "lastTradeTime": "153000",
-                "turnover": 8068976900,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260825",
-                "lastTradeTime": "153000",
-                "turnover": 8775430850,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "153000",
-                "turnover": 5353736200,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "153000",
-                "turnover": 3909657000,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "153000",
-                "turnover": 10624774750,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "153000",
-                "turnover": 6406749700,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "153000",
-                "turnover": 6695753550,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "153000",
-                "turnover": 7950161125,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "153000",
-                "turnover": 6237308850,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "153000",
-                "turnover": 3290094400,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "153000",
-                "turnover": 4176966500,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "153000",
-                "turnover": 5067914400,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "153000",
-                "turnover": 10018691800,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "153000",
-                "turnover": 13024244100,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "153000",
-                "turnover": 9084204400,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "153000",
-                "turnover": 8527055050,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "153000",
-                "turnover": 9706234725,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "153000",
-                "turnover": 7678671575,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "153000",
-                "turnover": 11369929300,
-                "noTradesAllDay": false
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "153000",
-                "turnover": 15033884450,
-                "noTradesAllDay": false
-              }
-            ],
-            "baselineMethod": "최근 20 KRX 영업일 각 15:30 조회 시 제공된 최종 정규장 분봉 누적 거래대금 평균. 미체결 분은 직전 누적값. 종일 거래량/대금 0인 날만 0 인정.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치, 분할비율0 확인",
-            "maBasis": "당일 최종 정규장 분봉 가격 + 직전19거래일 수정종가"
-          },
+          "quote": {},
           "confirmed": false,
           "hot": false,
           "evidence": [
@@ -1023,8 +595,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
               "publishedAt": "2026-09-18T14:03:00+09:00",
-              "verifiedAt": "2026-09-21T15:42:16+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+              "verifiedAt": "2026-09-22T10:17:43+09:00",
+              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
               "status": "verified",
               "polarity": "positive",
               "kind": "contract",
@@ -1037,16 +609,16 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 10,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "미확인",
-          "overheat": "보통"
+          "overheat": "미확인"
         }
       ],
       "evidence": [
@@ -1056,8 +628,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
           "publishedAt": "2026-09-18T09:27:00+09:00",
-          "verifiedAt": "2026-09-21T15:42:16+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
@@ -1069,8 +641,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
           "publishedAt": "2026-09-18T14:03:00+09:00",
-          "verifiedAt": "2026-09-21T15:42:16+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 15:00 당일 공시목록 재검증",
+          "verifiedAt": "2026-09-22T10:17:43+09:00",
+          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
@@ -1083,7 +655,7 @@
           "label": "LS마린솔루션 신안우이 해상풍력 해저케이블 계약",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
           "publishedAt": "2026-09-18T09:27:00+09:00",
-          "summary": "신안우이 해상풍력 해저케이블 운송·설치 계약 원문을 재확인했다."
+          "summary": "신안우이 해상풍력 해저케이블 운송·설치 계약 원문과 후속 취소 여부를 재확인했다."
         },
         {
           "channel": "DART",
@@ -1097,14 +669,13 @@
   ],
   "status": "검증완료",
   "missing": [
-    "15:30 재조회 후보 7개 전수 시세 수집·최근20거래일 같은 최종 정규장 분봉 누적 거래대금 대조 완료. LS마린솔루션(060370)은 KIS 업종 건설 확인으로 표시 후보에서 제외. 수치는 KIS가 제공한 최종 정규장 분봉 15:19 기준이며 종가로 취급하지 않음.",
-    "유라클(088340): 컨센서스 기준일 미확인. KIS 미제공, 10:30 FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. DART 원문은 15:00 재검증.",
-    "나우로보틱스(459510): 컨센서스 기준일 미확인. KIS 미제공, 10:30 FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. DART 원문은 15:00 재검증.",
-    "넥사다이내믹스(351320): 컨센서스 기준일 미확인. KIS 미제공, 10:30 FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. DART 원문은 15:00 재검증.",
-    "해성디에스(195870): 컨센서스 기준일 미확인. KIS 미제공, 10:30 FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. DART 원문은 15:00 재검증.",
-    "LS마린솔루션(060370): 컨센서스 기준일 미확인. KIS 미제공, 10:30 FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. 건설 업종 제외 유지.",
-    "HD현대마린엔진(071970): 컨센서스 기준일 미확인. KIS 미제공, 10:30 FnGuide 대체조회에서도 26Q3~27Q2 분기 연결 미검증. DART 원문은 15:00 재검증.",
-    "제이앤티씨(204270): 컨센서스 기준일 미확인. KIS 미제공. 3,470억원 TGV 유리기판 공장 신설은 확인했으나 26Q3~27Q2 실적 귀속은 원문에 없어 period와 펀더멘털 점수는 부여하지 않음.",
-    "15:00 OpenDART 당일 공시목록 198건 전수 제목 대조: 오전 후보 6종목의 새 정정·취소·부정 공시 없음. 제이앤티씨 신규시설투자 1건을 원문 검증했으나 관련 직접수혜 2종목 이상은 확인되지 않아 최종선정 대상 아님. 오전 유튜브 탐지는 유지."
+    "공시 전수대조: OpenDART 2026-09-21~22 전체 375건을 수집하고 상장사 계약·투자·국책과제·취소·소송을 원문 대조했다. 건설·바이오, 자금조달, 단순 정정·관리 공시는 제외했다.",
+    "후보 재대조: 유라클·나우로보틱스·해성디에스·LS마린솔루션·HD현대마린엔진은 후속 취소·철회 공시가 없음을 확인했다. 넥사다이내믹스는 2026-09-21 전환사채·사모사채 무효 확인 소송 공시를 확인해 기존 AI 서버 공급 후보에서 제외했다.",
+    "단독 공시 보류: 나라스페이스테크놀로지의 67억300만원 규모 초소형위성 기반 우주자산 방호 국책과제는 원문 확인했으나 같은 이슈의 국내 직접수혜 확산 후보를 추가 검증하지 못해 이번 상위 이슈에서 보류했다.",
+    "광통신 탐지 보류: Coherent PhotonLink 발표와 오선 기사는 확인했으나 국내 상장사의 최근 직접 공급·고객 원문을 연결하지 못해 종목 후보로 만들지 않았다.",
+    "가격 기준일: 08:00 슬롯은 장전 규칙을 적용해 국내 실시간 가격과 동일 경과시각 거래대금 배율을 비워 두고 10:30 재검증 대상으로 남겼다.",
+    "컨센서스 기준일: 이번 신규 이슈 후보에는 원문으로 확인된 2026Q3~2027Q2 컨센서스 상향 근거를 연결하지 않았다. 날짜를 추정하지 않고 실적 연결 점수를 0으로 유지한다.",
+    "유튜브시황2: 최근 10일 김종효·김구라 경제연구소·TomatoTV·박시동 시동위키·매불쇼와 삼프로 공식 채널을 재검색했다. 2026-09-21~22 새 영상은 페이지와 자막 트랙 표시까지 확인했지만 자막 원문 응답이 비어 제목만 대기 목록에 기록했고 추천점수에는 반영하지 않았다.",
+    "오선 국장 주요뉴스: 2026-09-22 09:59 기준 500건을 확인해 국내 관련 7건을 선별했다. LG에너지솔루션 DSX Ready는 NVIDIA·LG 공식 발표로 교차검증했고, 소문으로 표시된 중동 국부펀드 기사는 근거에서 제외했다."
   ]
 }
