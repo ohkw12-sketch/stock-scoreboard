@@ -56,6 +56,19 @@ class ValueGrowthTest(unittest.TestCase):
         self.assertEqual(result['rows'], [])
         self.assertEqual(result['dataStatus']['recentNegativeExcludedCount'], 1)
 
+    def test_sector_premium_and_seasonality_only_each_cost_five(self):
+        value, growth_board, growth, fundamentals, prices = self.sources()
+        value['_allRows'][0]['normalizedPOP'] = 11
+        value['_allRows'][0]['sectorNormalizedPOP'] = 10
+        value['_allRows'][0]['seasonalityFallback'] = True
+        result = build_value_growth_board(value, growth_board, growth, fundamentals, prices,
+                                          now=datetime(2026, 9, 19, tzinfo=KST))
+        row = result['rows'][0]
+        self.assertEqual(row['riskPenalty'], 10)
+        self.assertIn('당해연도 P/OP가 섹터 중앙보다 높음 -5', row['riskWarnings'])
+        self.assertIn('컨센서스·가이던스 없음·계절성 추정 -5', row['riskWarnings'])
+        self.assertTrue(row['seasonalityEstimateOnly'])
+
     def test_final_display_is_capped_at_twenty_without_padding(self):
         result = self.build(22)
         self.assertEqual(len(result['_allRows']), 22)

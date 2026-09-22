@@ -9,7 +9,7 @@ import pandas as pd
 
 
 KST = timezone(timedelta(hours=9))
-RULE_VERSION = "value-growth-2.0"
+RULE_VERSION = "value-growth-2.1"
 DISPLAY_LIMIT = 20
 
 
@@ -78,8 +78,12 @@ def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> 
     current_annualized_pop = _number(value_row.get("normalizedPOP"))
     sector_pop = _number(value_row.get("sectorNormalizedPOP"))
     if current_annualized_pop is not None and sector_pop is not None and current_annualized_pop > sector_pop:
-        penalty += 10
-        warnings.append("최근 분기 연환산 P/OP가 섹터 중앙보다 높음 -10")
+        penalty += 5
+        warnings.append("당해연도 P/OP가 섹터 중앙보다 높음 -5")
+
+    if bool(value_row.get("seasonalityFallback")):
+        penalty += 5
+        warnings.append("컨센서스·가이던스 없음·계절성 추정 -5")
 
     if _consensus_only(growth_row):
         penalty += 5
@@ -97,6 +101,7 @@ def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> 
         "currentQuarterAnnualizedPOP": round(current_annualized_pop, 1) if current_annualized_pop is not None else None,
         "sectorNormalizedPOP": round(sector_pop, 1) if sector_pop is not None else None,
         "consensusOnlyEvidence": _consensus_only(growth_row),
+        "seasonalityEstimateOnly": bool(value_row.get("seasonalityFallback")),
     }
 
 
@@ -208,7 +213,8 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
         "updatedKST": now.strftime("%Y-%m-%d %H:%M"),
         "notice": (
             "가이던스·컨센서스가 있으면 최신 전망을 사용하고, 없으면 1·2분기 실제와 전년도 계절성 비율로 "
-            "3·4분기를 추정합니다. 전년도 절대 실적은 평가하지 않으며 컨센서스 부재 자체는 감점하지 않습니다."
+            "3·4분기를 추정하고 신뢰도 5점을 감점합니다. 전년도 절대 실적은 평가하지 않으며, "
+            "당해연도 P/OP가 섹터 중앙보다 높으면 5점을 감점합니다."
         ),
         "_meta": {"asOfDate": source_date, "engineVersion": RULE_VERSION,
                   "projectType": "value-growth", "displayLimit": int(display_limit)},
