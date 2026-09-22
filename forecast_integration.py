@@ -1,7 +1,8 @@
 """Join broker forecasts and official company guidance to reported fundamentals.
 
-The reported-profit value score remains untouched.  These fields feed only the
-existing growth-evidence path and retain the original source/date/status.
+The selected current/next-year values retain their source, date and URL so the
+value-growth board can use the newest verified forecast without losing audit
+provenance.
 """
 from __future__ import annotations
 
@@ -194,6 +195,15 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
         "consensus_op_turnaround": False, "guidance_used": False,
         "guidance_source_url": None,
     }
+    for year in (current_year, next_year):
+        columns.update({
+            f"forecast_source_{year}": None,
+            f"forecast_date_{year}": None,
+            f"forecast_source_url_{year}": None,
+            f"forecast_status_{year}": None,
+            f"forecast_guidance_used_{year}": False,
+            f"forecast_consensus_used_{year}": False,
+        })
     for column, default in columns.items():
         if column not in frame:
             frame[column] = default
@@ -202,6 +212,10 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
         "consensus_fetched_at", "estimate_period", "prior_period", "next_estimate_period",
         "consensus_source", "consensus_source_url", "consensus_estimate_status",
         "consensus_status", "guidance_source_url",
+        *(f"forecast_source_{year}" for year in (current_year, next_year)),
+        *(f"forecast_date_{year}" for year in (current_year, next_year)),
+        *(f"forecast_source_url_{year}" for year in (current_year, next_year)),
+        *(f"forecast_status_{year}" for year in (current_year, next_year)),
     }:
         frame[column] = frame[column].astype(object)
 
@@ -216,6 +230,12 @@ def integrate_forecasts(fundamentals: pd.DataFrame, forecast_rows: list[dict],
             if year in (2026, 2027):
                 frame.loc[mask, f"consensus_sales_{year}"] = point.get("sales")
                 frame.loc[mask, f"consensus_op_{year}"] = point.get("op")
+            frame.loc[mask, f"forecast_source_{year}"] = point.get("source")
+            frame.loc[mask, f"forecast_date_{year}"] = point.get("date")
+            frame.loc[mask, f"forecast_source_url_{year}"] = point.get("url")
+            frame.loc[mask, f"forecast_status_{year}"] = point.get("status")
+            frame.loc[mask, f"forecast_guidance_used_{year}"] = bool(point.get("guidance_selected"))
+            frame.loc[mask, f"forecast_consensus_used_{year}"] = bool(point.get("consensus_selected"))
         if not current or not forward:
             continue
         current_sales, next_sales = current.get("sales"), forward.get("sales")

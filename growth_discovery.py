@@ -25,7 +25,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from dart_fundamentals import _api_key, _request_bytes, _request_json
-from reported_financials import four_quarter_metrics
+from future_fundamentals import attach_future_fundamentals
 
 KST = timezone(timedelta(hours=9))
 EVENT_NAMES = re.compile(r'단일판매|공급계약|신규시설투자|영업.*전망|장래사업|기업설명회|투자판단')
@@ -645,51 +645,56 @@ def _reported_quarters(row):
 
 
 def fundamental_profile(row):
-    sales, op = number(row.get('sales_current')), number(row.get('op_current'))
-    previous = number(row.get('sales_previous'))
-    growth = (sales / previous - 1) * 100 if sales is not None and previous and previous > 0 else None
-    margin = op / sales * 100 if op is not None and sales and sales > 0 else None
-    quarters = _reported_quarters(row)
-    q1_growth = ((quarters['q1Sales'] / quarters['q1SalesPrevious'] - 1) * 100
-                 if quarters['q1Sales'] is not None and quarters['q1SalesPrevious'] and quarters['q1SalesPrevious'] > 0 else None)
-    q2_growth = ((quarters['q2Sales'] / quarters['q2SalesPrevious'] - 1) * 100
-                 if quarters['q2Sales'] is not None and quarters['q2SalesPrevious'] and quarters['q2SalesPrevious'] > 0 else None)
-    observed_growth = [value for value in (q1_growth, q2_growth) if value is not None]
-    if len(observed_growth) == 2:
-        persistence = .70 * np.mean([_score(value, -20, 80) for value in observed_growth])
-        persistence += 15 * int(all(value > 0 for value in observed_growth))
-        persistence += 15 * int(q2_growth > q1_growth)
-    elif growth is not None:
-        persistence = .70 * _score(growth, -20, 80) + 15 * int(growth > 0)
+    if not row.get('value_fundamental_year'):
+        enriched = attach_future_fundamentals(pd.DataFrame([dict(row)]))
+        row = enriched.iloc[0].to_dict() if not enriched.empty else dict(row)
+    sales = number(row.get('value_fundamental_sales'))
+    op = number(row.get('value_fundamental_op'))
+    margin = number(row.get('value_fundamental_opm_pct'))
+    forecast_growth = number(row.get('value_fundamental_next_sales_growth_pct'))
+    q1_sales = number(row.get('value_fundamental_q1_sales'))
+    q2_sales = number(row.get('value_fundamental_q2_sales'))
+    q1_op = number(row.get('value_fundamental_q1_op'))
+    q2_op = number(row.get('value_fundamental_q2_op'))
+    sequential_growth = ((q2_sales / q1_sales - 1) * 100
+                         if q1_sales is not None and q1_sales > 0 and q2_sales is not None else None)
+    growth = forecast_growth if forecast_growth is not None else sequential_growth
+    if growth is not None:
+        persistence = .85 * _score(growth, -20, 80) + 15 * int(growth > 0)
     else:
         persistence = 0
-    qs = [number(row.get('normalized_op_q' + str(q))) for q in (3, 4, 1, 2)]
-    available = [v for v in qs if v is not None]
+    available = [value for value in (q1_op, q2_op) if value is not None]
     margin_score = None if margin is None else max(0, min(100, 50 + margin * 2))
     positive_quarters = 100 * sum(value > 0 for value in available) / len(available) if available else 50
-    q1_margin = (quarters['q1Op'] / quarters['q1Sales'] * 100
-                 if quarters['q1Op'] is not None and quarters['q1Sales'] and quarters['q1Sales'] > 0 else None)
-    q2_margin = (quarters['q2Op'] / quarters['q2Sales'] * 100
-                 if quarters['q2Op'] is not None and quarters['q2Sales'] and quarters['q2Sales'] > 0 else None)
+    q1_margin = q1_op / q1_sales * 100 if q1_op is not None and q1_sales and q1_sales > 0 else None
+    q2_margin = q2_op / q2_sales * 100 if q2_op is not None and q2_sales and q2_sales > 0 else None
     margin_change_score = (max(0, min(100, 50 + (q2_margin - q1_margin) * 5))
                            if q1_margin is not None and q2_margin is not None else 50)
-    quality = None if margin_score is None else .50 * margin_score + .30 * positive_quarters + .20 * margin_change_score
+    quality = None if margin_score is None else .60 * margin_score + .25 * positive_quarters + .15 * margin_change_score
     safety = 50 + 25 * int(op is not None and op > 0)
     if available:
         safety += 25 * int(all(value > 0 for value in available))
-    reported = four_quarter_metrics(row)
+    complete = bool(row.get('value_fundamental_complete'))
+    source = row.get('value_fundamental_source')
+    year = number(row.get('value_fundamental_year'))
+    growth_basis = (f"{int(year) + 1}E/{int(year)}E 매출" if forecast_growth is not None and year
+                    else f"{int(year)}년 2Q/1Q 매출" if year else "당해연도 분기 매출")
     return {'growthRate': round(growth, 1) if growth is not None else None,
-            'growthBasis': f"공시 누적 매출 전년동기 · {str(row.get('as_of', ''))[:10]}",
+            'growthBasis': growth_basis,
             'fundamentalScore': round(quality, 1) if quality is not None else None,
-            'fundamentalBasis': '실제 영업이익률·흑자분기 비율; 재무건전성 종합점수 아님',
-             'quarterlySales': round(quarters['q2Sales'], 0) if quarters['q2Sales'] is not None else None,
-            'reportedFourQuarterComplete': reported['complete'],
-            'averageQuarterlySales': reported['averageQuarterlySales'],
-            'averageQuarterlyOperatingMarginPct': reported['averageQuarterlyOperatingMarginPct'],
+            'fundamentalBasis': '당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님',
+            'quarterlySales': round(q2_sales, 0) if q2_sales is not None else None,
+            'reportedFourQuarterComplete': complete,
+            'futureFundamentalComplete': complete,
+            'averageQuarterlySales': number(row.get('value_fundamental_average_quarterly_sales')),
+            'averageQuarterlyOperatingMarginPct': margin,
+            'fundamentalSource': source,
+            'fundamentalYear': int(year) if year is not None else None,
+            'seasonalityFallback': bool(row.get('value_fundamental_seasonality_used')),
             '_salesPersistenceScore': max(0, min(100, persistence)),
             '_profitConversionScore': quality or 0,
             '_financialSafetyScore': max(0, min(100, safety)),
-            '_q1SalesGrowth': q1_growth, '_q2SalesGrowth': q2_growth}
+            '_q1SalesGrowth': None, '_q2SalesGrowth': sequential_growth}
 
 
 def revenue_visibility(events, today):
@@ -772,10 +777,13 @@ def evidence_contents(events, limit=3):
 
 def financial_summary(profile, average_turnover):
     parts = []
+    year = profile.get('fundamentalYear') or datetime.now(KST).year
     if profile.get('averageQuarterlySales') is not None:
-        parts.append(f"4분기 평균 매출 {_eok(profile['averageQuarterlySales'])}")
+        parts.append(f"{year}E 분기평균 매출 {_eok(profile['averageQuarterlySales'])}")
     if profile.get('averageQuarterlyOperatingMarginPct') is not None:
-        parts.append(f"분기 영업이익률 평균 {profile['averageQuarterlyOperatingMarginPct']:.1f}%")
+        parts.append(f"{year}E 영업이익률 {profile['averageQuarterlyOperatingMarginPct']:.1f}%")
+    if profile.get('fundamentalSource'):
+        parts.append(str(profile['fundamentalSource']))
     if average_turnover is not None:
         parts.append(f"20일 평균 거래대금 {_eok(average_turnover)}")
     if profile.get('growthRate') is not None:
@@ -809,6 +817,7 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
         turnover20 = prices.sort_values('date').groupby('ticker').tail(20).groupby('ticker')['value'].mean()
     else:
         turnover20 = pd.Series(dtype=float)
+    fundamentals = attach_future_fundamentals(fundamentals, current_year=today.year)
     financials = {str(r['ticker']).zfill(6): r for r in fundamentals.to_dict('records')}
     response = PriceResponse(prices)
     grouped = {}
@@ -842,13 +851,13 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
         profile = fundamental_profile(financials.get(ticker, {}))
         average_turnover = number(turnover20.get(ticker))
         if minimum_average_quarterly_sales and (
-            not profile.get('reportedFourQuarterComplete')
+            not profile.get('futureFundamentalComplete')
             or profile.get('averageQuarterlySales') is None
             or profile['averageQuarterlySales'] < minimum_average_quarterly_sales
         ):
             continue
         if minimum_average_quarterly_margin and (
-            not profile.get('reportedFourQuarterComplete')
+            not profile.get('futureFundamentalComplete')
             or profile.get('averageQuarterlyOperatingMarginPct') is None
             or profile['averageQuarterlyOperatingMarginPct'] < minimum_average_quarterly_margin
         ):
@@ -936,13 +945,13 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
                 continue
             average_turnover = number(turnover20.get(ticker))
             if minimum_average_quarterly_sales and (
-                not profile.get('reportedFourQuarterComplete')
+                not profile.get('futureFundamentalComplete')
                 or profile.get('averageQuarterlySales') is None
                 or profile['averageQuarterlySales'] < minimum_average_quarterly_sales
             ):
                 continue
             if minimum_average_quarterly_margin and (
-                not profile.get('reportedFourQuarterComplete')
+                not profile.get('futureFundamentalComplete')
                 or profile.get('averageQuarterlyOperatingMarginPct') is None
                 or profile['averageQuarterlyOperatingMarginPct'] < minimum_average_quarterly_margin
             ):
@@ -993,10 +1002,12 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
                                    'trading_halt', 'trading_status', 'market_warning', 'listing_status')),
                                oldEvidenceUsed=sum(r['oldEvidenceCount'] for r in candidates)),
             'methodVersion': 'growth-evidence-v3', 'updatedKST': now.strftime('%Y-%m-%d %H:%M'),
-            'notice': (f'확정 4분기 평균 매출 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원·'
-                       f'분기별 영업이익률 단순평균 {minimum_average_quarterly_margin:g}%·'
+            'notice': (f'{today.year}년 전망 분기평균 매출 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원·'
+                       f'예상 영업이익률 {minimum_average_quarterly_margin:g}%·'
                        f'20일 평균 거래대금 {minimum_average_turnover / 100_000_000:,.0f}억원 이상을 '
                        f'선조건으로 적용해 {candidate_limit}개 후보를 선별합니다. '
+                       '컨센서스·가이던스가 없으면 1·2분기 실제치와 전년도 계절성 비율로 3·4분기를 추정하며, '
+                       '전년도 절대 실적은 점수에 사용하지 않습니다. '
                        '점수는 사건규모 25%, 매출성장 지속·가속 20%, 이익전환 15%, 매출가시성 15%, '
                        '근거신뢰도 10%, 주가 미반영 10%, 확인 가능한 재무·희석위험 5%입니다.'),
             '_audit': audited}

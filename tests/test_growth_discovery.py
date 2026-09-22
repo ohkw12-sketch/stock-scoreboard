@@ -36,7 +36,11 @@ def fundamentals(count=1, quarterly_sales=40_000_000_000):
              normalized_sales_q1=quarterly_sales, normalized_sales_q2=quarterly_sales,
              normalized_op_q3=quarterly_sales * .2, normalized_op_q4=quarterly_sales * .2,
              normalized_op_q1=quarterly_sales * .2, normalized_op_q2=quarterly_sales * .2,
-             normalized_quarter_count=4)
+             normalized_quarter_count=4,
+             consensus_sales_2026=quarterly_sales * 4 / 100_000_000,
+             consensus_op_2026=quarterly_sales * 4 * .2 / 100_000_000,
+             consensus_sales_2027=quarterly_sales * 4 * 1.2 / 100_000_000,
+             consensus_op_2027=quarterly_sales * 4 * .25 / 100_000_000)
         for i in range(1, count + 1)
     ])
 
@@ -116,11 +120,14 @@ class GrowthTest(unittest.TestCase):
     def test_loss_making_company_not_automatically_excluded(self):
         f=pd.DataFrame([dict(ticker='000001',sales_current=200,sales_previous=100,op_current=-5,as_of='2026-06-30')])
         b=build_growth_board(prices(),f,[event()],{},NOW)
-        self.assertEqual(b['rows'][0]['growthRate'],100)
+        self.assertIsNone(b['rows'][0]['growthRate'])
         self.assertEqual(len(b['rows']),1)
 
     def test_growth_uses_sales_not_turnaround_999(self):
-        p=fundamental_profile(dict(sales_current=120,sales_previous=100,op_current=10,op_1y_growth=999))
+        p=fundamental_profile(dict(consensus_sales_2026=100,consensus_sales_2027=120,
+                                   consensus_op_2026=10,consensus_op_2027=15,
+                                   normalized_sales_q1=20,normalized_sales_q2=30,
+                                   normalized_op_q1=2,normalized_op_q2=3,op_1y_growth=999))
         self.assertAlmostEqual(p['growthRate'],20)
 
     def test_sector_requires_multiple_linked_companies(self):
@@ -151,9 +158,7 @@ class GrowthTest(unittest.TestCase):
         p.loc[p.ticker.eq('000002'), 'value'] = 500_000_000
         p.loc[p.ticker.eq('000004'), 'is_suspended'] = True
         f = fundamentals(4)
-        f.loc[f.ticker.eq('000003'), ['sales_current', 'sales_previous']] = [20_000_000_000, 10_000_000_000]
-        for column in ('normalized_sales_q3', 'normalized_sales_q4', 'normalized_sales_q1', 'normalized_sales_q2'):
-            f.loc[f.ticker.eq('000003'), column] = 20_000_000_000
+        f.loc[f.ticker.eq('000003'), 'consensus_sales_2026'] = 800
         events = [event(ticker=f'{i:06d}', identity=str(i)) for i in range(1, 5)]
         config = {'selection_minimum_average_quarterly_sales': 30_000_000_000,
                   'selection_minimum_average_quarterly_op_margin_pct': 15,
@@ -162,8 +167,8 @@ class GrowthTest(unittest.TestCase):
         board = build_growth_board(p, f, events, {}, NOW, config=config)
         self.assertEqual([row['ticker'] for row in board['rows']], ['000001'])
         self.assertEqual(board['dataStatus']['marketRiskExcludedCount'], 1)
-        self.assertIn('4분기 평균 매출 400억원', board['rows'][0]['financialSummary'])
-        self.assertIn('분기 영업이익률 평균 20.0%', board['rows'][0]['financialSummary'])
+        self.assertIn('2026E 분기평균 매출 400억원', board['rows'][0]['financialSummary'])
+        self.assertIn('2026E 영업이익률 20.0%', board['rows'][0]['financialSummary'])
         self.assertIn('20일 평균 거래대금 20억원', board['rows'][0]['financialSummary'])
 
     def test_growth_keeps_top_fifty_internal_candidates_and_top_ten_display(self):

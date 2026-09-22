@@ -9,7 +9,7 @@ import pandas as pd
 
 
 KST = timezone(timedelta(hours=9))
-RULE_VERSION = "value-growth-1.0"
+RULE_VERSION = "value-growth-2.0"
 DISPLAY_LIMIT = 20
 
 
@@ -48,37 +48,34 @@ def _consensus_only(row: dict) -> bool:
 
 
 def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> tuple[int, list[str], dict]:
-    op = [_number(fundamental.get(f"normalized_op_q{quarter}")) for quarter in (3, 4, 1, 2)]
-    sales = [_number(fundamental.get(f"normalized_sales_q{quarter}")) for quarter in (3, 4, 1, 2)]
+    op = [_number(fundamental.get(f"value_fundamental_q{quarter}_op")) for quarter in (1, 2)]
+    sales = [_number(fundamental.get(f"value_fundamental_q{quarter}_sales")) for quarter in (1, 2)]
     warnings: list[str] = []
     penalty = 0
 
-    trailing_declines = 0
-    for newer, older in zip(reversed(op[1:]), reversed(op[:-1])):
-        if newer is not None and older is not None and newer < older:
-            trailing_declines += 1
-        else:
-            break
-    if trailing_declines >= 3:
+    forward_op_growth = _number(fundamental.get("value_fundamental_next_op_growth_pct"))
+    q2_decline = op[0] is not None and op[1] is not None and op[1] < op[0]
+    if forward_op_growth is not None and forward_op_growth <= -20:
         penalty += 15
-        warnings.append("영업이익 3분기 연속 감소 -15")
-    elif trailing_declines >= 2:
+        warnings.append("내년 예상 영업이익 20% 이상 감소 -15")
+    elif forward_op_growth is not None and forward_op_growth < 0:
         penalty += 7
-        warnings.append("영업이익 2분기 연속 감소 -7")
+        warnings.append("내년 예상 영업이익 감소 -7")
+    elif forward_op_growth is None and q2_decline:
+        penalty += 7
+        warnings.append("2026년 2분기 영업이익이 1분기보다 감소 -7")
 
     margins = [profit / revenue * 100 if profit is not None and revenue and revenue > 0 else None
-               for profit, revenue in zip(op, sales)]
+                for profit, revenue in zip(op, sales)]
     available_margins = [value for value in margins if value is not None]
-    average_margin = sum(available_margins) / len(available_margins) if len(available_margins) == 4 else None
+    average_margin = sum(available_margins) / len(available_margins) if len(available_margins) == 2 else None
     latest_margin = margins[-1]
-    if (average_margin is not None and latest_margin is not None
-            and latest_margin < average_margin * .70):
+    if (margins[0] is not None and latest_margin is not None
+            and latest_margin < margins[0] * .70):
         penalty += 5
-        warnings.append("최근 분기 영업이익률이 4분기 평균의 70% 미만 -5")
+        warnings.append("2026년 2분기 영업이익률이 1분기의 70% 미만 -5")
 
-    market_cap = _number(price.get("market_cap"))
-    latest_op = op[-1]
-    current_annualized_pop = market_cap / (latest_op * 4) if market_cap and latest_op and latest_op > 0 else None
+    current_annualized_pop = _number(value_row.get("normalizedPOP"))
     sector_pop = _number(value_row.get("sectorNormalizedPOP"))
     if current_annualized_pop is not None and sector_pop is not None and current_annualized_pop > sector_pop:
         penalty += 10
@@ -90,9 +87,13 @@ def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> 
 
     applied = min(25, penalty)
     return applied, warnings, {
-        "operatingProfitDeclineStreak": trailing_declines,
+        "operatingProfitDeclineStreak": 1 if q2_decline else 0,
+        "nextYearOperatingProfitGrowthPct": (
+            round(forward_op_growth, 1) if forward_op_growth is not None else None
+        ),
         "latestQuarterOperatingMarginPct": round(latest_margin, 1) if latest_margin is not None else None,
         "fourQuarterAverageOperatingMarginPct": round(average_margin, 1) if average_margin is not None else None,
+        "currentHalfAverageOperatingMarginPct": round(average_margin, 1) if average_margin is not None else None,
         "currentQuarterAnnualizedPOP": round(current_annualized_pop, 1) if current_annualized_pop is not None else None,
         "sectorNormalizedPOP": round(sector_pop, 1) if sector_pop is not None else None,
         "consensusOnlyEvidence": _consensus_only(growth_row),
@@ -144,10 +145,13 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             "riskPenalty": risk_penalty,
             "riskWarnings": risk_warnings,
             "valueBasis": (
-                f"정상화 P/OP {value_row.get('normalizedPOP', '—')}배 · "
+                f"{value_row.get('fundamentalYear', '당해연도')}E P/OP {value_row.get('normalizedPOP', '—')}배 · "
                 f"섹터 대비 {abs(value_row.get('normalizedPremiumPct') or 0):.1f}% "
                 f"{'할인' if (value_row.get('normalizedPremiumPct') or 0) < 0 else '프리미엄'}"
             ),
+            "fundamentalSource": value_row.get("fundamentalSource"),
+            "fundamentalSourceDate": value_row.get("fundamentalSourceDate"),
+            "seasonalityFallback": value_row.get("seasonalityFallback", False),
             **risk_metrics,
         })
         rows.append(row)
@@ -164,7 +168,7 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             f"부정 근거 {len(exclusions)}개 제외 · 최종 {len(all_rows)}개 중 {len(displayed)}개 표시"
         ),
         "method": (
-            "확정 실적 가치점수 50% + 성장조기포착 점수 50% - 위험감점(최대 25점) · "
+            "당해연도 미래 펀더멘털 가치점수 50% + 성장조기포착 점수 50% - 위험감점(최대 25점) · "
             "최근 90일 유효 부정 근거는 제외 · 최종 순위는 최대 20위까지만 표시"
         ),
         "rows": displayed,
@@ -203,8 +207,8 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
         "sourceDate": source_date,
         "updatedKST": now.strftime("%Y-%m-%d %H:%M"),
         "notice": (
-            "가치와 성장조기포착의 기존 선조건을 모두 통과한 종목만 평가합니다. "
-            "영업이익 연속 감소·최근 마진 저하·최근 분기 연환산 고평가·컨센서스 단독 근거를 감점합니다."
+            "가이던스·컨센서스가 있으면 최신 전망을 사용하고, 없으면 1·2분기 실제와 전년도 계절성 비율로 "
+            "3·4분기를 추정합니다. 전년도 절대 실적은 평가하지 않으며 컨센서스 부재 자체는 감점하지 않습니다."
         ),
         "_meta": {"asOfDate": source_date, "engineVersion": RULE_VERSION,
                   "projectType": "value-growth", "displayLimit": int(display_limit)},

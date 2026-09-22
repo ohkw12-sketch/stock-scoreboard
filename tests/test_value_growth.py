@@ -24,8 +24,11 @@ class ValueGrowthTest(unittest.TestCase):
             fundamentals.append({'ticker': ticker,
                                  'normalized_op_q3': 20, 'normalized_op_q4': 22,
                                  'normalized_op_q1': 24, 'normalized_op_q2': 26,
-                                 'normalized_sales_q3': 100, 'normalized_sales_q4': 100,
-                                 'normalized_sales_q1': 100, 'normalized_sales_q2': 100})
+                                  'normalized_sales_q3': 100, 'normalized_sales_q4': 100,
+                                  'normalized_sales_q1': 100, 'normalized_sales_q2': 100,
+                                  'value_fundamental_q1_op': 24, 'value_fundamental_q2_op': 26,
+                                  'value_fundamental_q1_sales': 100, 'value_fundamental_q2_sales': 100,
+                                  'value_fundamental_next_op_growth_pct': 10})
             prices.append({'ticker': ticker, 'date': pd.Timestamp('2026-09-18'), 'market_cap': 500})
         return ({'_allRows': values, 'dataStatus': {}, '_meta': {'asOfDate': '2026-09-18'}},
                 {'dataStatus': {}}, growth, pd.DataFrame(fundamentals), pd.DataFrame(prices))
@@ -37,8 +40,9 @@ class ValueGrowthTest(unittest.TestCase):
         value, growth_board, growth, fundamentals, prices = self.sources()
         row = growth[0]
         row['events'] = [{'status': '유효', 'polarity': 'positive', 'kind': '컨센서스'}]
-        fundamentals.loc[0, ['normalized_op_q3','normalized_op_q4','normalized_op_q1','normalized_op_q2']] = [40,30,20,10]
-        prices.loc[0, 'market_cap'] = 1000
+        fundamentals.loc[0, ['value_fundamental_q1_op','value_fundamental_q2_op',
+                             'value_fundamental_q1_sales','value_fundamental_q2_sales',
+                             'value_fundamental_next_op_growth_pct']] = [30, 10, 100, 100, -25]
         result = build_value_growth_board(value, growth_board, growth, fundamentals, prices,
                                           now=datetime(2026, 9, 19, tzinfo=KST))
         self.assertEqual(result['rows'][0]['riskPenalty'], 25)

@@ -20,6 +20,7 @@ from performance_prices import collect_performance_prices
 from board_contract import load_contract
 from value_growth import build_value_growth_board
 from forecast_integration import integrate_from_files
+from future_fundamentals import attach_future_fundamentals
 from rotation_screener import (MarketDataLoader, attach_market_snapshot, build_entry_board,
                               build_value_board, load_config, load_fundamentals, run_engine, write_outputs)
 
@@ -215,12 +216,14 @@ def rebuild(args, config):
         config.get('forecast_consensus_file', 'test_output/forecast_engine/forecast_consensus.json'),
         config.get('guidance_file', 'test_output/guidance.json'),
     )
+    fundamentals = attach_future_fundamentals(fundamentals)
     attach_forecast_status(report, forecast_status)
     manifest = store_verified_frames(out, config['cache_dir'], prices, fundamentals, report, generated)
     engine_version = digest({name: (Path(__file__).parent/name).read_text('utf-8') for name in (
         'rotation_screener.py', 'rotation_rules.py', 'growth_discovery.py', 'reported_financials.py',
         'dart_fundamentals.py', 'kis_consensus.py',
-        'growth_sources.py', 'growth_documents.py', 'forecast_integration.py', 'value_growth.py',
+        'growth_sources.py', 'growth_documents.py', 'forecast_integration.py', 'future_fundamentals.py',
+        'value_growth.py',
         'combined_recommendations.py', 'performance_feedback.py')})[:16]
     context = {'generatedAt': generated, 'snapshotId': manifest['snapshotId'],
                'sourceCutoff': report['latestPriceDate'], 'mode': report['runMode'], 'engineVersion': engine_version}

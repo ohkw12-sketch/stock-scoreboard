@@ -26,6 +26,7 @@ from dart_fundamentals import collect_dart_fundamentals
 from kis_consensus import KisConsensusClient, collect_kis_consensus
 from rotation_rules import build_rotation, evidence_from_sources, improving_financial_watch, select_watch_candidates
 from reported_financials import add_four_quarter_metrics
+from future_fundamentals import attach_future_fundamentals
 
 
 ROOT = Path(__file__).resolve().parent
@@ -1374,24 +1375,20 @@ def load_fundamentals(prices: pd.DataFrame, config: dict) -> tuple[pd.DataFrame,
 
 
 def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -> dict:
-    """Rank value from reported profit only; no forward/T+ estimate is consumed."""
-    data = add_four_quarter_metrics(data)
-    normalized_op_columns = [f"normalized_op_q{quarter}" for quarter in (3, 4, 1, 2)]
-    normalized_sales_columns = [f"normalized_sales_q{quarter}" for quarter in (3, 4, 1, 2)]
-    reconstructed_count = data[normalized_op_columns].notna().sum(axis=1).astype(float)
-    data["normalized_quarter_count"] = data["normalized_quarter_count"].where(
-        data["normalized_quarter_count"].notna(), reconstructed_count,
+    """Rank value from the current-year forecast or a seasonality-only fallback."""
+    data = attach_future_fundamentals(data)
+    data["normalized_complete"] = data["value_fundamental_complete"].fillna(False).astype(bool)
+    data["normalized_op"] = pd.to_numeric(data["value_fundamental_op"], errors="coerce")
+    data["normalized_sales"] = pd.to_numeric(data["value_fundamental_sales"], errors="coerce")
+    data["average_quarterly_sales"] = pd.to_numeric(
+        data["value_fundamental_average_quarterly_sales"], errors="coerce",
     )
-    data["normalized_complete"] = data["reported_four_quarter_complete"]
-    data["normalized_op"] = data["normalized_ttm_op"].where(
-        data["normalized_complete"], data["q2_op"] * 4,
+    data["average_quarterly_op_margin_pct"] = pd.to_numeric(
+        data["value_fundamental_opm_pct"], errors="coerce",
     )
-    data["normalized_sales"] = data["normalized_ttm_sales"].where(
-        data["normalized_complete"], data["q2_sales"] * 4,
+    data["normalization_adjustment_pct"] = pd.to_numeric(
+        data["value_fundamental_adjustment_pct"], errors="coerce",
     )
-    data["normalization_adjustment_pct"] = (
-        data["normalized_ttm_op"].div((data["q2_op"] * 4).replace(0, np.nan)) - 1
-    ).mul(100).where(data["normalized_complete"])
     data["normalized_pop"] = data["market_cap"].div(data["normalized_op"].where(data["normalized_op"] > 0))
     minimum_average_quarterly_sales = int(config.get(
         "value_minimum_average_quarterly_sales", 50_000_000_000,
@@ -1400,11 +1397,11 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "value_minimum_average_quarterly_op_margin_pct", 15.0,
     ))
     sales_qualified = (
-        data["reported_four_quarter_complete"]
+        data["normalized_complete"]
         & data["average_quarterly_sales"].ge(minimum_average_quarterly_sales)
     )
     margin_qualified = (
-        data["reported_four_quarter_complete"]
+        data["normalized_complete"]
         & data["average_quarterly_op_margin_pct"].ge(minimum_average_quarterly_op_margin)
     )
     valid_multiple = (
@@ -1420,19 +1417,15 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     data.loc[sparse, "sector_normalized_pop"] = np.nan
     data["normalized_premium_pct"] = (data["normalized_pop"].div(data["sector_normalized_pop"]) - 1) * 100
 
-    op_quarters = data[normalized_op_columns]
-    positive_ratio = op_quarters.gt(0).sum(axis=1).div(4).where(data["normalized_complete"], 0)
-    op_mean = op_quarters.mean(axis=1)
-    op_cv = op_quarters.std(axis=1).div(op_mean.abs().replace(0, np.nan))
-    consistency = (100 / (1 + op_cv.clip(lower=0))).where(data["normalized_complete"], 0).fillna(0)
-    data["normalization_quality"] = (
-        data["normalized_quarter_count"].clip(0, 4).div(4) * 40
-        + positive_ratio * 30
-        + consistency * 0.30
-    ).clip(0, 100)
+    data["normalization_quality"] = pd.to_numeric(
+        data["value_fundamental_quality"], errors="coerce",
+    ).fillna(0).clip(0, 100)
     broad_sector = data["normalized_peer_count"] >= 5
+    forecast_source = data["value_fundamental_forecast_available"].fillna(False).astype(bool)
     data["confidence"] = np.select(
-        [data["normalized_complete"] & broad_sector, data["normalized_complete"], broad_sector],
+        [data["normalized_complete"] & broad_sector & forecast_source,
+         data["normalized_complete"] & broad_sector,
+         data["normalized_complete"]],
         ["A", "B", "C"], default="D",
     )
     candidates = data[valid & data["sector_normalized_pop"].notna()].copy()
@@ -1443,9 +1436,9 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         + candidates["sector_value_score"] * 0.35
         + candidates["normalization_quality"] * 0.30
     )
-    candidates["confidence_multiplier"] = candidates["confidence"].map(
-        {"A": 1.00, "B": 0.92, "C": 0.82, "D": 0.70},
-    ).fillna(0.70)
+    # Missing consensus/guidance is not a penalty.  The source grade is shown
+    # for audit, while a complete seasonal estimate receives the same weight.
+    candidates["confidence_multiplier"] = 1.0
     holding_like = (
         candidates["name"].astype(str).str.contains("홀딩스|지주", regex=True, na=False)
         | candidates["sector"].astype(str).str.contains("회사 본부|경영 컨설팅", regex=True, na=False)
@@ -1476,12 +1469,15 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     selected = ranked.head(int(config["top_value_count"]))
 
     def rounded(value):
-        return round(float(value), 1) if np.isfinite(value) else None
+        try:
+            return round(float(value), 1) if np.isfinite(float(value)) else None
+        except (TypeError, ValueError):
+            return None
 
     def make_row(item):
         premium_label = "할인" if item.normalized_premium_pct < 0 else "프리미엄"
         normalized_result = (
-            f"정상화 {int(item.normalized_value_rank)}위"
+            f"{int(item.value_fundamental_year)}E 가치 {int(item.normalized_value_rank)}위"
             f"({abs(item.normalized_premium_pct):.1f}% {premium_label})"
         )
         return {
@@ -1493,13 +1489,25 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
             "normalizedPremiumPct": rounded(item.normalized_premium_pct),
             "normalizationAdjustmentPct": rounded(item.normalization_adjustment_pct),
             "confidence": item.confidence,
-            "normalizationSourceBadge": "최근 4분기" if item.normalized_complete else "반기 연환산",
-            "normalizedPeriod": str(item.normalization_as_of)[:10] if pd.notna(item.normalization_as_of) else None,
-            "normalizedQuarterCount": int(item.normalized_quarter_count),
+            "normalizationSourceBadge": item.value_fundamental_source,
+            "normalizedPeriod": str(item.value_fundamental_source_date)[:10]
+            if pd.notna(item.value_fundamental_source_date) else None,
+            "normalizedQuarterCount": 4,
             "normalizedPeerCount": int(item.normalized_peer_count),
             "normalizationQuality": rounded(item.normalization_quality),
             "averageQuarterlySales": rounded(item.average_quarterly_sales),
             "averageQuarterlyOperatingMarginPct": rounded(item.average_quarterly_op_margin_pct),
+            "projectedAnnualSales": rounded(item.normalized_sales),
+            "projectedAnnualOperatingProfit": rounded(item.normalized_op),
+            "projectedOperatingMarginPct": rounded(item.average_quarterly_op_margin_pct),
+            "fundamentalSource": item.value_fundamental_source,
+            "fundamentalSourceDate": str(item.value_fundamental_source_date)[:10]
+            if pd.notna(item.value_fundamental_source_date) else None,
+            "fundamentalSourceUrl": item.value_fundamental_source_url
+            if pd.notna(item.value_fundamental_source_url) else None,
+            "fundamentalYear": int(item.value_fundamental_year),
+            "seasonalityFallback": bool(item.value_fundamental_seasonality_used),
+            "priorYearRole": item.value_fundamental_prior_year_role,
             "normalizedResult": normalized_result,
             "absoluteValueScore": rounded(item.absolute_value_score),
             "sectorValueScore": rounded(item.sector_value_score),
@@ -1519,12 +1527,12 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
         "reason": "가치 조건 통과" if item.ticker in score_map else (
             "가격·시가총액 없음" if not np.isfinite(item.market_cap) else
-            "확정 4개 분기 재무 없음" if not item.reported_four_quarter_complete else
-            f"4분기 평균 매출액 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원 미만"
+            "당해연도 전망 또는 계절성 추정 불가" if not item.normalized_complete else
+            f"당해연도 분기평균 매출액 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원 미만"
             if item.average_quarterly_sales < minimum_average_quarterly_sales else
-            f"분기 영업이익률 4개 평균 {minimum_average_quarterly_op_margin:g}% 미만"
+            f"당해연도 예상 영업이익률 {minimum_average_quarterly_op_margin:g}% 미만"
             if item.average_quarterly_op_margin_pct < minimum_average_quarterly_op_margin else
-            "정상화 영업이익 양수 아님/없음" if not np.isfinite(item.normalized_op) or item.normalized_op <= 0 else
+            "당해연도 예상 영업이익 양수 아님/없음" if not np.isfinite(item.normalized_op) or item.normalized_op <= 0 else
             "비교 가능한 섹터 종목 부족" if not np.isfinite(item.sector_normalized_pop) else
             "가치 배수 허용 범위 밖"),
     } for item in data.itertuples(index=False)]
@@ -1533,28 +1541,31 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     price_basis = price_dates.max().strftime("%Y-%m-%d") if not price_dates.empty else None
     price_basis_text = f" · 가격 기준 {price_basis}" if price_basis else ""
     sales_floor_eok = minimum_average_quarterly_sales / 100_000_000
+    forecast_count = int(data["value_fundamental_forecast_available"].fillna(False).sum())
+    seasonal_count = int(data["value_fundamental_seasonality_used"].fillna(False).sum())
+    fundamental_year = int(data["value_fundamental_year"].dropna().iloc[0])
     return {
         "status": (
-            f"4분기 평균 매출 {sales_floor_eok:,.0f}억원 이상 · "
-            f"분기 영업이익률 평균 {minimum_average_quarterly_op_margin:g}% 이상 · "
-            f"정상화 가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}"
+            f"{fundamental_year}년 분기평균 매출 {sales_floor_eok:,.0f}억원 이상 · "
+            f"예상 영업이익률 {minimum_average_quarterly_op_margin:g}% 이상 · "
+            f"미래가치 후보 {candidate_count}개 중 상위 {len(rows)}개{price_basis_text}"
         ),
         "method": (
-            f"확정 4분기 평균 매출 {sales_floor_eok:,.0f}억원 이상 및 "
-            f"분기별 영업이익률 단순평균 {minimum_average_quarterly_op_margin:g}% 이상을 선조건으로 적용 · "
-            "절대 저평가 35% + 섹터 상대 저평가 35% + 최근 4분기 이익 정상화 30% · "
-            "미래 추정치 미사용 · 신뢰도 및 금융·지주 구조 배수 적용"
+            f"{fundamental_year}년 최신 컨센서스·회사 가이던스를 우선 사용하고, 둘 다 없으면 "
+            f"{fundamental_year}년 1·2분기 실제치에 전년도 계절성 비율만 적용해 3·4분기 추정 · "
+            "전년도 절대 실적은 가치평가에서 제외 · 절대 저평가 35% + 섹터 상대 저평가 35% + "
+            "당해연도 상반기 이익품질 30% · 컨센서스 부재 감점 없음"
         ),
         "rows": rows,
         "_allRows": all_rows, "_eligibility": eligibility,
-        "_meta": {"asOfDate": price_basis, "engineVersion": "normalized-value-1.2", "forwardEstimateUsed": False},
+        "_meta": {"asOfDate": price_basis, "engineVersion": "future-value-2.0", "forwardEstimateUsed": True},
         "events": [{
             "name": "가치 엔진", "date": datetime.now(KST).strftime("%Y-%m-%d"),
             "event": (
-                f"4분기 평균 매출 {sales_floor_eok:,.0f}억원·분기 영업이익률 평균 "
+                f"{fundamental_year}년 전망 기준 분기평균 매출 {sales_floor_eok:,.0f}억원·영업이익률 "
                 f"{minimum_average_quarterly_op_margin:g}% 선조건을 통과한 기업만 가치평가"
             ),
-            "tone": "정보", "impact": "4분기 규모와 수익성을 먼저 확인한 뒤 기존 가치 점수를 평가",
+            "tone": "정보", "impact": "공식 가이던스·컨센서스 우선, 미제공 종목은 상반기 실제와 계절성으로 평가",
         }],
         "dataStatus": status | {
             "valueUniverseCount": len(data), "valueCandidateCount": candidate_count,
@@ -1565,18 +1576,23 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
             "financialPrerequisiteQualifiedCount": int((sales_qualified & margin_qualified).sum()),
             "directQ2Count": int(data["direct_q2"].sum()),
             "normalizedCompleteCount": int(data["normalized_complete"].sum()),
-            "forwardEstimateUsed": False,
+            "forecastFundamentalCount": forecast_count,
+            "seasonalityFallbackCount": seasonal_count,
+            "fundamentalYear": fundamental_year,
+            "priorYearAbsoluteValuesUsed": False,
+            "priorYearSeasonalityOnly": True,
+            "forwardEstimateUsed": True,
         },
     }
 
 
 def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
                       prices: pd.DataFrame | None = None) -> dict:
-    """Build normalized-value rankings from reported results; growth is separate.
+    """Build current-year value rankings; growth evidence remains separate.
 
-    Ordering combines absolute and sector-relative valuation using trailing
-    four-quarter normalized operating profit, then applies earnings-quality and
-    source-confidence controls. No forward estimate is read by this calculation.
+    The newest current-year consensus or official guidance supplies annual sales
+    and profit.  If neither is available, verified Q1/Q2 results are extended
+    with prior-year seasonality ratios only.
     """
     if fundamentals.empty:
         return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}",

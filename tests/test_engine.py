@@ -150,18 +150,20 @@ class RotationEngineTest(unittest.TestCase):
         self.assertGreater(len(self.p2["rows"]), 0)
         required = {"confidence", "normalizedPOP", "sectorNormalizedPOP", "normalizedPremiumPct",
                     "normalizationQuality", "absoluteValueScore", "sectorValueScore",
-                    "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct"}
+                    "confidenceMultiplier", "valueScore", "normalizationAdjustmentPct",
+                    "fundamentalSource", "fundamentalYear", "projectedOperatingMarginPct"}
         self.assertTrue(required.issubset(self.p2["rows"][0]))
-        self.assertTrue(all(not any(key.lower().startswith("future") for key in row) for row in self.p2["rows"]))
-        self.assertTrue(all("consensus" not in key.lower() for row in self.p2["rows"] for key in row))
         self.assertNotIn("turnaroundRows", self.p2)
         self.assertNotIn("T+", self.p2["status"])
-        self.assertFalse(self.p2["dataStatus"]["forwardEstimateUsed"])
+        self.assertTrue(self.p2["dataStatus"]["forwardEstimateUsed"])
+        self.assertFalse(self.p2["dataStatus"]["priorYearAbsoluteValuesUsed"])
 
-    def test_value_engine_applies_four_quarter_sales_and_mean_margin_prerequisites(self):
+    def test_value_engine_applies_current_year_sales_and_margin_prerequisites(self):
         def fundamental(ticker, name, quarterly_sales, quarterly_margins):
             sales = list(quarterly_sales)
             margins = list(quarterly_margins)
+            annual_sales = sum(sales)
+            annual_op = sum(value * margin / 100 for value, margin in zip(sales, margins))
             return {
                 "ticker": ticker, "name": name, "sector": "테스트", "as_of": "2026-06-30",
                 "sales_current": sales[2] + sales[3], "sales_previous": sales[0] + sales[1],
@@ -180,11 +182,12 @@ class RotationEngineTest(unittest.TestCase):
                 "normalized_ttm_op": sum(value * margin / 100 for value, margin in zip(sales, margins)),
                 "normalized_quarter_count": 4, "normalization_as_of": "2026-06-30",
                 "report_code": "11012",
+                "consensus_sales_2026": annual_sales / 100_000_000,
+                "consensus_op_2026": annual_op / 100_000_000,
             }
 
         frame = pd.DataFrame([
-            # Quarterly margins average 17.5%, while TTM OP / TTM sales is below 15%.
-            fundamental("100001", "단순평균통과", [60e9, 60e9, 60e9, 220e9], [20, 20, 20, 10]),
+            fundamental("100001", "예상마진통과", [100e9] * 4, [17.5] * 4),
             fundamental("100002", "경계통과", [100e9] * 4, [15] * 4),
             fundamental("100003", "매출미달", [99e9] * 4, [20] * 4),
             fundamental("100004", "이익률미달", [100e9] * 4, [14.9] * 4),
@@ -202,13 +205,13 @@ class RotationEngineTest(unittest.TestCase):
         board = build_value_board(frame, config, {"status": "정상"}, prices)
         self.assertEqual(board["dataStatus"]["valueCandidateCount"], 2)
         self.assertEqual(board["dataStatus"]["financialPrerequisiteQualifiedCount"], 2)
-        self.assertEqual({row["name"] for row in board["rows"]}, {"단순평균통과", "경계통과"})
-        accepted = next(row for row in board["rows"] if row["name"] == "단순평균통과")
+        self.assertEqual({row["name"] for row in board["rows"]}, {"예상마진통과", "경계통과"})
+        accepted = next(row for row in board["rows"] if row["name"] == "예상마진통과")
         self.assertEqual(accepted["averageQuarterlyOperatingMarginPct"], 17.5)
         rejected = next(row for row in board["_eligibility"] if row["name"] == "이익률미달")
-        self.assertEqual(rejected["reason"], "분기 영업이익률 4개 평균 15% 미만")
+        self.assertEqual(rejected["reason"], "당해연도 예상 영업이익률 15% 미만")
 
-    def test_value_engine_removes_every_future_and_t_plus_output(self):
+    def test_value_engine_uses_current_and_next_year_without_prior_year_levels(self):
         frame = pd.DataFrame([
             {"ticker": "000001", "name": "미래A", "sector": "테스트", "as_of": "2026-06-30",
              "sales_1y_growth": 20, "op_1y_growth": 30, "sales_current": 1200e8,
@@ -251,6 +254,10 @@ class RotationEngineTest(unittest.TestCase):
             frame.at[index, "normalized_ttm_op"] = quarterly_op * 4
             frame.at[index, "normalized_quarter_count"] = 4
             frame.at[index, "normalization_as_of"] = "2026-06-30"
+            frame.at[index, "consensus_sales_2026"] = frame.at[index, "sales_current"] * 2 / 100_000_000
+            frame.at[index, "consensus_op_2026"] = frame.at[index, "op_current"] * 2 / 100_000_000
+            frame.at[index, "consensus_sales_2027"] = frame.at[index, "consensus_sales_2026"] * 1.2
+            frame.at[index, "consensus_op_2027"] = max(frame.at[index, "consensus_op_2026"] * 1.3, 1)
         price_rows = pd.DataFrame([
             {"ticker": "000001", "date": "2026-08-28", "close": 40000, "market_cap": 9000e8, "shares": 22_500_000},
             {"ticker": "000002", "date": "2026-08-28", "close": 24000, "market_cap": 3000e8, "shares": 12_500_000},
@@ -261,9 +268,9 @@ class RotationEngineTest(unittest.TestCase):
         rows = {row["name"]: row for row in board["rows"]}
         self.assertNotIn("turnaroundRows", board)
         self.assertNotIn("미래T", rows)
-        self.assertFalse(any(key.lower().startswith("future") for key in rows["미래A"]))
-        self.assertNotIn("성장 대비", board["method"])
-        self.assertIn("미래 추정치 미사용", board["method"])
+        self.assertEqual(rows["미래A"]["fundamentalYear"], 2026)
+        self.assertEqual(rows["미래A"]["priorYearRole"], "미사용")
+        self.assertIn("전년도 절대 실적은 가치평가에서 제외", board["method"])
 
     def test_current_value_rank_uses_discount_to_each_sector_median(self):
         def fundamental(ticker, name, sector):
@@ -306,10 +313,10 @@ class RotationEngineTest(unittest.TestCase):
             frame, self.config, {"status": "정상", "asOfDate": "2026-06-30"}, price_rows,
         )
         rows = {row["name"]: row for row in board["rows"]}
-        self.assertEqual(rows["저배수50할인"]["normalizedResult"], "정상화 1위(50.0% 할인)")
-        self.assertEqual(rows["고배수9할인"]["normalizedResult"], "정상화 2위(9.1% 할인)")
-        self.assertEqual(rows["고배수9프리미엄"]["normalizedResult"], "정상화 3위(9.1% 프리미엄)")
-        self.assertEqual(rows["저배수50프리미엄"]["normalizedResult"], "정상화 4위(50.0% 프리미엄)")
+        self.assertEqual(rows["저배수50할인"]["normalizedResult"], "2026E 가치 1위(50.0% 할인)")
+        self.assertEqual(rows["고배수9할인"]["normalizedResult"], "2026E 가치 2위(9.1% 할인)")
+        self.assertEqual(rows["고배수9프리미엄"]["normalizedResult"], "2026E 가치 3위(9.1% 프리미엄)")
+        self.assertEqual(rows["저배수50프리미엄"]["normalizedResult"], "2026E 가치 4위(50.0% 프리미엄)")
 
     def test_normalized_value_beats_extreme_growth_at_a_high_price(self):
         def fundamental(ticker, name, op_2027):
@@ -401,4 +408,3 @@ class RotationEngineTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

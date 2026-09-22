@@ -36,6 +36,9 @@ class ForecastIntegrationTests(unittest.TestCase):
         self.assertEqual(row.estimate_period, "2027.12E")
         self.assertEqual(row.revision_consensus_change_20d, 7.0)
         self.assertEqual(row.revision_consensus_source, "KIS")
+        self.assertEqual(row.forecast_source_2026, "증권사 리포트")
+        self.assertEqual(row.forecast_date_2026, "2026-09-10")
+        self.assertTrue(bool(row.forecast_consensus_used_2026))
         self.assertEqual(status["integratedTickers"], 1)
 
     def test_consensus_wins_and_guidance_remains_reference(self):
@@ -58,6 +61,7 @@ class ForecastIntegrationTests(unittest.TestCase):
         self.assertEqual(row.consensus_prior_sales, 110)
         self.assertEqual(row.consensus_forward_sales, 120)
         self.assertTrue(bool(row.guidance_used))
+        self.assertTrue(bool(row.forecast_guidance_used_2026))
         self.assertEqual(status["guidancePreferredTickers"], 1)
         self.assertEqual(status["consensusPreferredTickers"], 1)
 

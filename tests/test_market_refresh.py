@@ -163,7 +163,7 @@ class MarketRefreshTest(unittest.TestCase):
         self.assertEqual(report["qualityStatus"], "정상")
         self.assertEqual(report["suspendedTickerCount"], 1)
 
-    def test_q3_cumulative_fallback_cannot_be_annualized_as_half_year(self):
+    def test_q3_cumulative_without_forecast_cannot_become_seasonal_estimate(self):
         prices, _ = attach_market_snapshot(generate_sample_market(), self.config)
         fundamentals = generate_sample_fundamentals(prices)
         fundamentals['report_code'] = '11014'
@@ -174,6 +174,9 @@ class MarketRefreshTest(unittest.TestCase):
         ]:
             fundamentals[column] = None
         fundamentals['normalized_quarter_count'] = 0
+        for column in ('consensus_sales_2026', 'consensus_op_2026',
+                       'consensus_sales_2027', 'consensus_op_2027'):
+            fundamentals[column] = None
         result = build_value_board(fundamentals, self.config, {'status': '정상'}, prices)
         self.assertEqual(result['rows'], [])
         self.assertTrue(all(not r['eligible'] for r in result['_eligibility']))
