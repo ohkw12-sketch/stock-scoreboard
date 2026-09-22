@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-22T10:35:14.184090+09:00",
+  "generatedAt": "2026-09-22T16:25:06.587455+09:00",
   "sourceDate": "2026-09-22",
-  "slot": "10:30",
+  "slot": "15:00",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -22,127 +22,7 @@
         {
           "name": "유라클",
           "market": "KR",
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:17.346528+09:00",
-            "adjustmentChecked": true,
-            "price": 6780,
-            "changePct": 0.5935,
-            "return5dPct": -3.1429,
-            "distance20Pct": -1.7249,
-            "turnoverRatio": 3.071624,
-            "turnover": 77094190,
-            "baselineTurnover": 25098839.75,
-            "baselineSessions": [
-              {
-                "date": "20260825",
-                "lastTradeTime": "102700",
-                "turnover": 11243450
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "102700",
-                "turnover": 11630810
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "102800",
-                "turnover": 13928090
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 10248190
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 19283280
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "102800",
-                "turnover": 14742700
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "102700",
-                "turnover": 7234030
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "102800",
-                "turnover": 11745730
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 49111830
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "101700",
-                "turnover": 6431550
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "102900",
-                "turnover": 22529190
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "102800",
-                "turnover": 17473490
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "101800",
-                "turnover": 29698660
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 15138680
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "102800",
-                "turnover": 47406610
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 11513570
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "102800",
-                "turnover": 2585760
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "102000",
-                "turnover": 5817535
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "102900",
-                "turnover": 22164385
-              },
-              {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 172049255
-              }
-            ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
-          },
+          "quote": {},
           "tags": [
             "반응 미확인"
           ]
@@ -157,126 +37,126 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:17.346528+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:23.688599+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 6780,
-            "changePct": 0.5935,
-            "return5dPct": -3.1429,
-            "distance20Pct": -1.7249,
-            "turnoverRatio": 3.071624,
-            "turnover": 77094190,
-            "baselineTurnover": 25098839.75,
+            "price": 6690,
+            "changePct": -0.7418,
+            "return5dPct": -4.4286,
+            "distance20Pct": -2.9661,
+            "turnoverRatio": 0.785102,
+            "turnover": 107800640,
+            "baselineTurnover": 137307860,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "102700",
-                "turnover": 11243450
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "102700",
-                "turnover": 11630810
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "102800",
-                "turnover": 13928090
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 10248190
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 19283280
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "102800",
-                "turnover": 14742700
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "102700",
-                "turnover": 7234030
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "102800",
-                "turnover": 11745730
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 49111830
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "101700",
-                "turnover": 6431550
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "102900",
-                "turnover": 22529190
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "102800",
-                "turnover": 17473490
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "101800",
-                "turnover": 29698660
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 15138680
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "102800",
-                "turnover": 47406610
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 11513570
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "102800",
-                "turnover": 2585760
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "102000",
-                "turnover": 5817535
+                "date": "20260921",
+                "turnover": 267565785,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "102900",
-                "turnover": 22164385
+                "turnover": 1681527750,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 172049255
+                "date": "20260917",
+                "turnover": 27621670,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 36882685,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 24918410,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 72043540,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 32104230,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 45161040,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 67376630,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 44791030,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 16403460,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 73127050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 46948590,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 37845410,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 49752245,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 40380010,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 53620590,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 50108955,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 41944500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 36033610,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
-          "confirmed": true,
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -285,8 +165,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
               "publishedAt": "2026-09-18T16:51:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "policy",
@@ -299,15 +179,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 10
+            "entry": 5
           },
-          "score": 20,
+          "score": 15,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
+          "priceStatus": "미확인",
           "overheat": "보통"
         },
         {
@@ -318,124 +198,124 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "102900",
-            "fetchedAt": "2026-09-22T10:32:31.790298+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:25.312395+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 4375,
-            "changePct": 1.7442,
-            "return5dPct": 2.9412,
-            "distance20Pct": -1.6357,
-            "turnoverRatio": 0.175715,
-            "turnover": 64864505,
-            "baselineTurnover": 369145144.2,
+            "price": 4250,
+            "changePct": -1.1628,
+            "return5dPct": 0.0,
+            "distance20Pct": -4.3116,
+            "turnoverRatio": 0.214608,
+            "turnover": 149008165,
+            "baselineTurnover": 694327851,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 19806020
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 11594910
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 10341900
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "102900",
-                "turnover": 5357050
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 45152763
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 24268630
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 5773255620
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 541269680
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 285294454
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 100433557
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "102800",
-                "turnover": 70156450
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "102700",
-                "turnover": 58137840
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 113685995
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 130739785
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "102600",
-                "turnover": 82695865
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 34196020
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 19210020
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "102400",
-                "turnover": 13148975
+                "date": "20260921",
+                "turnover": 481026280,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 27555625
+                "turnover": 105615030,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 16601725
+                "date": "20260917",
+                "turnover": 71257920,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 45390330,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 130528090,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 258756578,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 247700675,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 187814350,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 122813720,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 193950225,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 198432592,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 453124553,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 1156079124,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 9211559267,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 137619210,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 141482163,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 583699048,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 80362035,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 24809515,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 54536315,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
           "confirmed": false,
           "hot": false,
@@ -445,9 +325,9 @@
               "ticker": "090470",
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900091",
-              "publishedAt": "2026-09-21T00:00:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 정정 전후 계약 내용 검증",
+              "publishedAt": "2026-09-21T10:45:00+09:00",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "contract",
@@ -479,124 +359,124 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:26.797098+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:24.489466+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 15760,
-            "changePct": 0.0635,
-            "return5dPct": -3.1941,
-            "distance20Pct": 3.2292,
-            "turnoverRatio": 0.175532,
-            "turnover": 153538645,
-            "baselineTurnover": 874706794,
+            "price": 15600,
+            "changePct": -0.9524,
+            "return5dPct": -4.1769,
+            "distance20Pct": 2.2347,
+            "turnoverRatio": 0.196466,
+            "turnover": 358964685,
+            "baselineTurnover": 1827112185,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 589668050
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 158028850
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 120333275
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 160628455
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 153024560
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 192621740
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 73648960
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 54977640
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 1458464255
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 324206480
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "102900",
-                "turnover": 198812080
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "102900",
-                "turnover": 61547465
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 3752264980
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 4621828935
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 1497102175
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 2403219070
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 725920460
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 304908320
+                "date": "20260921",
+                "turnover": 553877295,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "102900",
-                "turnover": 392936480
+                "turnover": 838212215,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 249993650
+                "date": "20260917",
+                "turnover": 728262450,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 1431480265,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 3674958475,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 3389208330,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 13145126055,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 4828272895,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 273560120,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 440624675,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 1624616225,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 2202146935,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 210468615,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 312960715,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 364283420,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 294912760,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 377320210,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 464488375,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 394360420,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 993103250,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
           "confirmed": false,
           "hot": false,
@@ -607,8 +487,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
               "publishedAt": "2026-09-18T17:10:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "contract",
@@ -640,8 +520,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900646",
           "publishedAt": "2026-09-18T16:51:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "policy",
@@ -653,8 +533,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900679",
           "publishedAt": "2026-09-18T17:10:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
@@ -665,9 +545,9 @@
           "ticker": "090470",
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900091",
-          "publishedAt": "2026-09-21T00:00:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 정정 전후 계약 내용 검증",
+          "publishedAt": "2026-09-21T10:45:00+09:00",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
@@ -693,7 +573,7 @@
           "channel": "DART",
           "label": "제이스로보틱스 이차전지 제조 인프라 공급계약",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900091",
-          "publishedAt": "2026-09-21T00:00:00+09:00",
+          "publishedAt": "2026-09-21T10:45:00+09:00",
           "summary": "이차전지 제조 인프라 및 샘플 생산 서비스 공급계약 원문을 확인했다. DART 공개 목록이 제공하는 공시일 기준이다."
         }
       ]
@@ -709,263 +589,182 @@
         {
           "name": "해성디에스",
           "market": "KR",
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:37.312401+09:00",
-            "adjustmentChecked": true,
-            "price": 61100,
-            "changePct": 8.5258,
-            "return5dPct": 26.7635,
-            "distance20Pct": 15.4246,
-            "turnoverRatio": 5.109558,
-            "turnover": 10457083150,
-            "baselineTurnover": 2046573102.5,
-            "baselineSessions": [
-              {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 984013000
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 990762900
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 1607404750
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 1140372150
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 624891350
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 799172250
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 1587794850
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 1692141850
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 1092436500
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 1357527100
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 1766437250
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 2644419050
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 1599214350
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 725174550
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 1354130800
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 758473050
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 10765847650
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 3074163100
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 1960243500
-              },
-              {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 4406842050
-              }
-            ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
-          },
+          "quote": {},
           "tags": [
-            "주도주",
-            "급등",
-            "추격주의"
+            "반응 미확인"
           ]
         },
         {
           "name": "LG전자",
           "market": "KR",
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:53.677006+09:00",
-            "adjustmentChecked": true,
-            "price": 215000,
-            "changePct": 6.1728,
-            "return5dPct": 6.4356,
-            "distance20Pct": 5.6901,
-            "turnoverRatio": 2.415411,
-            "turnover": 118386784250,
-            "baselineTurnover": 49013101947.5,
-            "baselineSessions": [
-              {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 49359362950
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 43630948550
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 42229726800
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 28999465300
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 47494762950
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 68487175000
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 35882626650
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 26977725250
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 30378189750
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 240505157250
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 49736201000
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 42163677000
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 54809495500
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 45401526850
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 37622831550
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 33762873150
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 31285007200
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 22808241000
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 22772027450
-              },
-              {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 25955017800
-              }
-            ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
-          },
+          "quote": {},
           "tags": [
-            "주도주"
+            "반응 미확인"
           ]
         }
       ],
       "candidates": [
+        {
+          "ticker": "064400",
+          "name": "LG씨엔에스",
+          "sector": "IT 서비스 · 엔터프라이즈 AI",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:31.909588+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
+            "adjustmentChecked": true,
+            "price": 71300,
+            "changePct": 2.5899,
+            "return5dPct": 0.4225,
+            "distance20Pct": -2.0806,
+            "turnoverRatio": 1.336149,
+            "turnover": 48839339600,
+            "baselineTurnover": 36552302928,
+            "baselineSessions": [
+              {
+                "date": "20260921",
+                "turnover": 29002225200,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "turnover": 28125697300,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "turnover": 25942527650,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 25362011250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 19853728000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 23383183400,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 27307512050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 38955010700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 42096721700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 35596000250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 46237214100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 35867298100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 38490045750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 36192818750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 34706875150,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 61436429950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 71831573000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 38296842500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 36449021000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 35913322750,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
+          },
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "enterprise-ai-064400-contract",
+              "ticker": "064400",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800320",
+              "publishedAt": "2026-09-22T15:19:00+09:00",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · OpenDART 계약 원문 및 DART 당일 목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "LG씨엔에스는 LG전자와 2,578억원 규모 Microsoft 엔터프라이즈 AI(Copilot) 계약을 체결했다. 최근 매출의 4.21%이며 계약기간은 2026-11-01부터 2031-10-31까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 5
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "보통"
+        },
         {
           "ticker": "066570",
           "name": "LG전자",
@@ -974,124 +773,124 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:53.677006+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:28.584405+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 215000,
-            "changePct": 6.1728,
-            "return5dPct": 6.4356,
-            "distance20Pct": 5.6901,
-            "turnoverRatio": 2.415411,
-            "turnover": 118386784250,
-            "baselineTurnover": 49013101947.5,
+            "price": 214500,
+            "changePct": 5.9259,
+            "return5dPct": 6.1881,
+            "distance20Pct": 5.4572,
+            "turnoverRatio": 2.554552,
+            "turnover": 337880491750,
+            "baselineTurnover": 132266041980,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 49359362950
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 43630948550
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 42229726800
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 28999465300
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 47494762950
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 68487175000
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 35882626650
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 26977725250
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 30378189750
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 240505157250
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 49736201000
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 42163677000
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 54809495500
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 45401526850
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 37622831550
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 33762873150
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 31285007200
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 22808241000
+                "date": "20260921",
+                "turnover": 100052922000,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 22772027450
+                "turnover": 167927025350,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 25955017800
+                "date": "20260917",
+                "turnover": 78910010650,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 78265111900,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 91644310000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 101764563800,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 142996281050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 136480875500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 97217886750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 125199377750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 366263429750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 84206416000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 95454932850,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 109602923500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 147972008750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 293731459200,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 107364470500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 103082969800,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 107099444900,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 110084419600,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
           "confirmed": true,
           "hot": false,
@@ -1102,8 +901,8 @@
               "source": "기업IR",
               "url": "https://blogs.nvidia.com/blog/dsx-ready-ai-factories-power-cooling/",
               "publishedAt": "2026-09-22T03:00:07+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · NVIDIA 공식 발표 및 연합뉴스 교차검증",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "product",
@@ -1113,13 +912,13 @@
           "earningsPeriods": [],
           "scores": {
             "issue": 5,
-            "leader": 20,
+            "leader": 0,
             "spread": 0,
             "fundamental": 0,
             "entry": 5
           },
-          "score": 30,
-          "stage": "확인",
+          "score": 10,
+          "stage": "탐색",
           "tags": [
             "WATCH"
           ],
@@ -1135,124 +934,124 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:48.067052+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:27.776921+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 4015,
-            "changePct": -0.2484,
-            "return5dPct": 5.2425,
-            "distance20Pct": 7.3386,
-            "turnoverRatio": 3.324601,
-            "turnover": 841380846,
-            "baselineTurnover": 253077277,
+            "price": 3920,
+            "changePct": -2.6087,
+            "return5dPct": 2.7523,
+            "distance20Pct": 4.9321,
+            "turnoverRatio": 2.083222,
+            "turnover": 1007225601,
+            "baselineTurnover": 483494240,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 283800495
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 224868153
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 202233935
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 450494435
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "102900",
-                "turnover": 195526017
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 290180917
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 184464987
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 1572637013
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 206120335
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 157019111
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "102700",
-                "turnover": 137169920
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 154232195
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 175713130
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 47132375
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 87015510
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 72771785
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 70649340
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 59422247
+                "date": "20260921",
+                "turnover": 576776165,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "102900",
-                "turnover": 64153290
+                "turnover": 149448376,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 425940350
+                "date": "20260917",
+                "turnover": 201208577,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 152069195,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 165759665,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 196039580,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 121246480,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 317949545,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 345914585,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 279322530,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 290743890,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 425722140,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 2215365620,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 501665857,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 517177772,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 615517622,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 649552320,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 561218539,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 797186127,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 590000210,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
           "confirmed": false,
           "hot": false,
@@ -1262,9 +1061,9 @@
               "ticker": "148780",
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922900097",
-              "publishedAt": "2026-09-22T00:00:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 단일판매·공급계약 원문 검증",
+              "publishedAt": "2026-09-22T09:56:00+09:00",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "contract",
@@ -1274,334 +1073,12 @@
           "earningsPeriods": [],
           "scores": {
             "issue": 5,
-            "leader": 20,
+            "leader": 0,
             "spread": 0,
             "fundamental": 0,
             "entry": 5
           },
-          "score": 30,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "보통"
-        },
-        {
-          "ticker": "204270",
-          "name": "제이앤티씨",
-          "sector": "TGV 유리기판",
-          "direct": false,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:42.775202+09:00",
-            "adjustmentChecked": true,
-            "price": 25150,
-            "changePct": -0.1984,
-            "return5dPct": 18.0751,
-            "distance20Pct": 17.9478,
-            "turnoverRatio": 1.734987,
-            "turnover": 15732127450,
-            "baselineTurnover": 9067575755.75,
-            "baselineSessions": [
-              {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 2530075315
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 4410428735
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 5448389925
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 4172235550
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 4165418960
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 2245017015
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 3042768200
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 3721108465
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 4456703690
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 4626011110
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 14809486275
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 21319134025
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 7326622550
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 17292102175
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 5720252600
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 7452709625
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 4472285550
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 10356124375
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 9239162425
-              },
-              {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 44545478550
-              }
-            ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
-          },
-          "confirmed": false,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "glass-substrate-204270-capex",
-              "ticker": "204270",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
-              "publishedAt": "2026-09-21T00:00:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 신규시설투자 원문 검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "capex",
-              "summary": "제이앤티씨는 TGV 유리기판 생산능력 확대를 위해 김천 신공장에 3,470억원을 투자하기로 했다. 자기자본의 140.08%이며 투자기간은 2027-01-01부터 2030-06-30까지다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 20,
-            "spread": 0,
-            "fundamental": 0,
-            "entry": 5
-          },
-          "score": 30,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "보통"
-        },
-        {
-          "ticker": "373220",
-          "name": "LG에너지솔루션",
-          "sector": "AI 데이터센터 전력 BESS",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:58.458161+09:00",
-            "adjustmentChecked": true,
-            "price": 351500,
-            "changePct": -0.142,
-            "return5dPct": -3.8304,
-            "distance20Pct": -2.7864,
-            "turnoverRatio": 0.671906,
-            "turnover": 21767177000,
-            "baselineTurnover": 32396177675,
-            "baselineSessions": [
-              {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 23748359250
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 26192917500
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 47234972500
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 18447788750
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 41236354000
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 45445704750
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 31548132250
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 53421588000
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 46176461750
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 18939995500
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 49676302750
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 18862391500
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 39714178250
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 21108329500
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 19473074250
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 20732768250
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 47498424750
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 19320761500
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 17491546000
-              },
-              {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 41653502500
-              }
-            ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
-          },
-          "confirmed": false,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "dsx-373220-product",
-              "ticker": "373220",
-              "source": "기업IR",
-              "url": "https://www.prnewswire.com/news-releases/lg-energy-solutions-battery-energy-storage-system-qualifies-as-nvidia-dsx-ready-bess-302884438.html",
-              "publishedAt": "2026-09-22T03:00:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · LG에너지솔루션 제공 보도자료와 NVIDIA 공식 발표 교차검증",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "product",
-              "summary": "LG에너지솔루션의 BESS가 NVIDIA DSX Ready 적격 솔루션으로 인정됐다. 이는 제품 적격성 확인이며 공급계약이나 매출 인식을 뜻하지 않는다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 20,
-            "spread": 0,
-            "fundamental": 0,
-            "entry": 5
-          },
-          "score": 30,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
@@ -1618,127 +1095,127 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:32:37.312401+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:26.125506+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 61100,
-            "changePct": 8.5258,
-            "return5dPct": 26.7635,
-            "distance20Pct": 15.4246,
-            "turnoverRatio": 5.109558,
-            "turnover": 10457083150,
-            "baselineTurnover": 2046573102.5,
+            "price": 59700,
+            "changePct": 6.0391,
+            "return5dPct": 23.8589,
+            "distance20Pct": 12.9292,
+            "turnoverRatio": 2.873293,
+            "turnover": 19389363200,
+            "baselineTurnover": 6748133642,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 984013000
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 990762900
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 1607404750
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 1140372150
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 624891350
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 799172250
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 1587794850
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 1692141850
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 1092436500
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 1357527100
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 1766437250
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 2644419050
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 1599214350
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 725174550
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 1354130800
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 758473050
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 10765847650
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 3074163100
+                "date": "20260921",
+                "turnover": 10752562150,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 1960243500
+                "turnover": 17863433100,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 4406842050
+                "date": "20260917",
+                "turnover": 7316351250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 31802400100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 3303902150,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 3241292100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 2519034950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 6779008900,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 6009970400,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 5609418950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 4348199950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 3956450700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 6043512100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 4957280800,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 2526446350,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 2129738050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 2351652650,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 3612686950,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 3519597400,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 6319733850,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
           "confirmed": true,
-          "hot": true,
+          "hot": false,
           "evidence": [
             {
               "id": "substrate-195870-capex",
@@ -1746,8 +1223,8 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
               "publishedAt": "2026-09-18T16:40:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "capex",
@@ -1757,20 +1234,341 @@
           "earningsPeriods": [],
           "scores": {
             "issue": 5,
-            "leader": 20,
+            "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 0
+            "entry": 5
           },
-          "score": 25,
-          "stage": "확인",
+          "score": 10,
+          "stage": "탐색",
           "tags": [
-            "WATCH",
-            "추격주의"
+            "WATCH"
           ],
           "matchedBoards": [],
           "priceStatus": "확인",
-          "overheat": "높음"
+          "overheat": "보통"
+        },
+        {
+          "ticker": "204270",
+          "name": "제이앤티씨",
+          "sector": "TGV 유리기판",
+          "direct": false,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:26.946063+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
+            "adjustmentChecked": true,
+            "price": 24850,
+            "changePct": -1.3889,
+            "return5dPct": 16.6667,
+            "distance20Pct": 16.6229,
+            "turnoverRatio": 2.347304,
+            "turnover": 47027216050,
+            "baselineTurnover": 20034563190,
+            "baselineSessions": [
+              {
+                "date": "20260921",
+                "turnover": 73756458150,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "turnover": 30268672475,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "turnover": 16056894200,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 14654106425,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 16986851575,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 15634681350,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 28465683975,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 26143827150,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 31113583300,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 24683604250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 20008630460,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 10658408840,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 8971105440,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 9806304640,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 5194835180,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 17105942795,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 9797223975,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 12296883750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 15459991745,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 13627574120,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
+          },
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "glass-substrate-204270-capex",
+              "ticker": "204270",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
+              "publishedAt": "2026-09-21T14:29:00+09:00",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "capex",
+              "summary": "제이앤티씨는 TGV 유리기판 생산능력 확대를 위해 김천 신공장에 3,470억원을 투자하기로 했다. 자기자본의 140.08%이며 투자기간은 2027-01-01부터 2030-06-30까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 5
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "보통"
+        },
+        {
+          "ticker": "373220",
+          "name": "LG에너지솔루션",
+          "sector": "AI 데이터센터 전력 BESS",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:29.426747+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
+            "adjustmentChecked": true,
+            "price": 350000,
+            "changePct": -0.5682,
+            "return5dPct": -4.2408,
+            "distance20Pct": -3.1812,
+            "turnoverRatio": 0.793676,
+            "turnover": 89347762000,
+            "baselineTurnover": 112574641150,
+            "baselineSessions": [
+              {
+                "date": "20260921",
+                "turnover": 111235316750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "turnover": 82620746750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "turnover": 63001829000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 110852630750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 122412326000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 67989803250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 108528482000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 147573663250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 159085798500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 138387404500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 64099418250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 104653592250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 154951735750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 148763882500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 124257940000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 159229687500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 89557476750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 158671139000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 63621725750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 71998224500,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
+          },
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "dsx-373220-product",
+              "ticker": "373220",
+              "source": "기업IR",
+              "url": "https://www.prnewswire.com/news-releases/lg-energy-solutions-battery-energy-storage-system-qualifies-as-nvidia-dsx-ready-bess-302884438.html",
+              "publishedAt": "2026-09-22T03:00:00+09:00",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "product",
+              "summary": "LG에너지솔루션의 BESS가 NVIDIA DSX Ready 적격 솔루션으로 인정됐다. 이는 제품 적격성 확인이며 공급계약이나 매출 인식을 뜻하지 않는다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 5
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "보통"
         }
       ],
       "evidence": [
@@ -1780,8 +1578,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800546",
           "publishedAt": "2026-09-18T16:40:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "capex",
@@ -1792,9 +1590,9 @@
           "ticker": "204270",
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
-          "publishedAt": "2026-09-21T00:00:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 신규시설투자 원문 검증",
+          "publishedAt": "2026-09-21T14:29:00+09:00",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "capex",
@@ -1805,13 +1603,26 @@
           "ticker": "148780",
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922900097",
-          "publishedAt": "2026-09-22T00:00:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 단일판매·공급계약 원문 검증",
+          "publishedAt": "2026-09-22T09:56:00+09:00",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
           "summary": "비큐AI는 국내 대기업 IT 플랫폼사와 AI RAG용 콘텐츠 공급 MCP 계약을 체결했다. 계약금액은 21억3,050만원으로 최근 매출의 12.52%, 계약기간은 2026-09-01부터 2029-08-31까지다."
+        },
+        {
+          "id": "enterprise-ai-064400-contract",
+          "ticker": "064400",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800320",
+          "publishedAt": "2026-09-22T15:19:00+09:00",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · OpenDART 계약 원문 및 DART 당일 목록 재검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "LG씨엔에스는 LG전자와 2,578억원 규모 Microsoft 엔터프라이즈 AI(Copilot) 계약을 체결했다. 최근 매출의 4.21%이며 계약기간은 2026-11-01부터 2031-10-31까지다."
         },
         {
           "id": "dsx-066570-product",
@@ -1819,8 +1630,8 @@
           "source": "기업IR",
           "url": "https://blogs.nvidia.com/blog/dsx-ready-ai-factories-power-cooling/",
           "publishedAt": "2026-09-22T03:00:07+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · NVIDIA 공식 발표 및 연합뉴스 교차검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "product",
@@ -1832,8 +1643,8 @@
           "source": "기업IR",
           "url": "https://www.prnewswire.com/news-releases/lg-energy-solutions-battery-energy-storage-system-qualifies-as-nvidia-dsx-ready-bess-302884438.html",
           "publishedAt": "2026-09-22T03:00:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · LG에너지솔루션 제공 보도자료와 NVIDIA 공식 발표 교차검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "product",
@@ -1866,15 +1677,22 @@
           "channel": "DART",
           "label": "제이앤티씨 TGV 유리기판 신공장 투자",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
-          "publishedAt": "2026-09-21T00:00:00+09:00",
+          "publishedAt": "2026-09-21T14:29:00+09:00",
           "summary": "TGV 유리기판 생산능력 확대를 위한 김천 신공장 투자 원문을 확인했다."
         },
         {
           "channel": "DART",
           "label": "비큐AI AI RAG 콘텐츠 공급 MCP 계약",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922900097",
-          "publishedAt": "2026-09-22T00:00:00+09:00",
+          "publishedAt": "2026-09-22T09:56:00+09:00",
           "summary": "국내 대기업 IT 플랫폼사 대상 AI RAG용 콘텐츠 공급 MCP 계약 원문을 확인했다. DART 공개 목록이 제공하는 공시일 기준이다."
+        },
+        {
+          "channel": "DART",
+          "label": "LG씨엔에스 Microsoft 엔터프라이즈 AI 계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800320",
+          "publishedAt": "2026-09-22T15:19:00+09:00",
+          "summary": "LG전자 대상 Microsoft Copilot 기반 엔터프라이즈 AI 계약의 금액과 기간을 원문 확인했다."
         }
       ]
     },
@@ -1889,127 +1707,7 @@
         {
           "name": "HD현대마린엔진",
           "market": "KR",
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:33:09.427760+09:00",
-            "adjustmentChecked": true,
-            "price": 50400,
-            "changePct": -1.3699,
-            "return5dPct": 1.3065,
-            "distance20Pct": -1.8739,
-            "turnoverRatio": 1.546354,
-            "turnover": 4428748700,
-            "baselineTurnover": 2863993162.5,
-            "baselineSessions": [
-              {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 3664694200
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 1819094300
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 1991023700
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 6472176750
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 2881954550
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 3620344600
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 1751781600
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 2401747875
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 1400727050
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 1110946650
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 2054450950
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 5867488800
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 1987505000
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 3107650300
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 2511645550
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 2530284950
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 2787298525
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 5578659950
-              },
-              {
-                "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 1894288250
-              },
-              {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 1846099700
-              }
-            ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
-          },
+          "quote": {},
           "tags": [
             "반응 미확인"
           ]
@@ -2024,124 +1722,124 @@
           "fundamental": 0,
           "quote": {
             "status": "verified",
-            "source": "KIS Developers 주식일별분봉·수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-time-dailychartprice",
-            "asOf": "2026-09-22T10:30:00+09:00",
-            "lastTradeTime": "103000",
-            "fetchedAt": "2026-09-22T10:33:09.427760+09:00",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:31.079201+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
             "adjustmentChecked": true,
-            "price": 50400,
-            "changePct": -1.3699,
-            "return5dPct": 1.3065,
-            "distance20Pct": -1.8739,
-            "turnoverRatio": 1.546354,
-            "turnover": 4428748700,
-            "baselineTurnover": 2863993162.5,
+            "price": 50000,
+            "changePct": -2.1526,
+            "return5dPct": 0.5025,
+            "distance20Pct": -2.6148,
+            "turnoverRatio": 1.133799,
+            "turnover": 9170896000,
+            "baselineTurnover": 8088644064,
             "baselineSessions": [
               {
-                "date": "20260825",
-                "lastTradeTime": "103000",
-                "turnover": 3664694200
-              },
-              {
-                "date": "20260826",
-                "lastTradeTime": "103000",
-                "turnover": 1819094300
-              },
-              {
-                "date": "20260827",
-                "lastTradeTime": "103000",
-                "turnover": 1991023700
-              },
-              {
-                "date": "20260828",
-                "lastTradeTime": "103000",
-                "turnover": 6472176750
-              },
-              {
-                "date": "20260831",
-                "lastTradeTime": "103000",
-                "turnover": 2881954550
-              },
-              {
-                "date": "20260901",
-                "lastTradeTime": "103000",
-                "turnover": 3620344600
-              },
-              {
-                "date": "20260902",
-                "lastTradeTime": "103000",
-                "turnover": 1751781600
-              },
-              {
-                "date": "20260903",
-                "lastTradeTime": "103000",
-                "turnover": 2401747875
-              },
-              {
-                "date": "20260904",
-                "lastTradeTime": "103000",
-                "turnover": 1400727050
-              },
-              {
-                "date": "20260907",
-                "lastTradeTime": "103000",
-                "turnover": 1110946650
-              },
-              {
-                "date": "20260908",
-                "lastTradeTime": "103000",
-                "turnover": 2054450950
-              },
-              {
-                "date": "20260909",
-                "lastTradeTime": "103000",
-                "turnover": 5867488800
-              },
-              {
-                "date": "20260910",
-                "lastTradeTime": "103000",
-                "turnover": 1987505000
-              },
-              {
-                "date": "20260911",
-                "lastTradeTime": "103000",
-                "turnover": 3107650300
-              },
-              {
-                "date": "20260914",
-                "lastTradeTime": "103000",
-                "turnover": 2511645550
-              },
-              {
-                "date": "20260915",
-                "lastTradeTime": "103000",
-                "turnover": 2530284950
-              },
-              {
-                "date": "20260916",
-                "lastTradeTime": "103000",
-                "turnover": 2787298525
-              },
-              {
-                "date": "20260917",
-                "lastTradeTime": "103000",
-                "turnover": 5578659950
+                "date": "20260921",
+                "turnover": 5485916950,
+                "noTradesAllDay": false
               },
               {
                 "date": "20260918",
-                "lastTradeTime": "103000",
-                "turnover": 1894288250
+                "turnover": 15329744350,
+                "noTradesAllDay": false
               },
               {
-                "date": "20260921",
-                "lastTradeTime": "103000",
-                "turnover": 1846099700
+                "date": "20260917",
+                "turnover": 11652817700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 8139597875,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 10125546325,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 9249386050,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 9085936900,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 13024398600,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 10018744600,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 5068014800,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 4177017700,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 3290295200,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 6237952350,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 7950356925,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 7865704550,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 6407427000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 10625146450,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 3909657000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 5353789100,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 8775430850,
+                "noTradesAllDay": false
               }
             ],
-            "baselineMethod": "최근20 KRX 영업일 각10:30 누적 거래대금 평균. 미체결분 직전누적 유지, 종일 거래량·대금0 검증일만0.",
-            "adjustmentBasis": "직전20거래일 수정/비수정 종가 일치 및 분할비율0",
-            "maBasis": "당일10:30 가격+직전19거래일 수정종가"
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
           },
           "confirmed": false,
           "hot": false,
@@ -2152,12 +1850,173 @@
               "source": "DART",
               "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
               "publishedAt": "2026-09-18T14:03:00+09:00",
-              "verifiedAt": "2026-09-22T10:17:43+09:00",
-              "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
               "status": "verified",
               "polarity": "positive",
               "kind": "contract",
               "summary": "HD현대마린엔진의 중국 Taizhou Sanfu Ship Engineering 대상 선박엔진 공급계약은 344억734만4천원, 최근 매출의 19.2%이며 종료일이 2026-11-15로 연장됐다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 5
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "보통"
+        },
+        {
+          "ticker": "329180",
+          "name": "HD현대중공업",
+          "sector": "운송장비·부품 · 선박 제조",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 16:00 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-09-22T16:07:32.723418+09:00",
+            "marketDataTime": "2026-09-22T15:30:00+09:00",
+            "lastTradeTime": "정규장 종가",
+            "adjustmentChecked": true,
+            "price": 453000,
+            "changePct": 0.5549,
+            "return5dPct": -0.1103,
+            "distance20Pct": -0.2532,
+            "turnoverRatio": 0.530568,
+            "turnover": 68193870000,
+            "baselineTurnover": 128530029677,
+            "baselineSessions": [
+              {
+                "date": "20260921",
+                "turnover": 95396998500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260918",
+                "turnover": 92573950500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260917",
+                "turnover": 130499710750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260916",
+                "turnover": 68473507500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260915",
+                "turnover": 137995563500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260914",
+                "turnover": 140569781250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260911",
+                "turnover": 342027176250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260910",
+                "turnover": 373147809750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260909",
+                "turnover": 130185594000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260908",
+                "turnover": 103846761750,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260907",
+                "turnover": 101229256000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260904",
+                "turnover": 80757764000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260903",
+                "turnover": 149543330250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260902",
+                "turnover": 106940801000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260901",
+                "turnover": 63437535000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260831",
+                "turnover": 74555313250,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260828",
+                "turnover": 106166785000,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260827",
+                "turnover": 84373005796,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260826",
+                "turnover": 74852910500,
+                "noTradesAllDay": false
+              },
+              {
+                "date": "20260825",
+                "turnover": 114027039000,
+                "noTradesAllDay": false
+              }
+            ],
+            "baselineMethod": "16:00 조회 기준 당일 정규장 누적 거래대금 ÷ 직전20 KRX 영업일 정규장 전체 거래대금 평균.",
+            "adjustmentBasis": "당일 포함 21거래일 수정/비수정 종가 일치, 분할비율0·정정사유 없음 확인.",
+            "maBasis": "2026-09-22 정규장 종가 + 직전19거래일 수정종가"
+          },
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "marine-329180-roro-contract",
+              "ticker": "329180",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800219",
+              "publishedAt": "2026-09-22T13:49:00+09:00",
+              "verifiedAt": "2026-09-22T16:10:59+09:00",
+              "reviewer": "Codex · OpenDART 계약 원문 및 DART 당일 목록 재검증",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "HD현대중공업은 유럽 소재 선사와 RORO선 2척, 3,362억원 규모 계약을 체결했다. 최근 매출의 1.91%이며 계약기간은 2026-09-21부터 2029-11-30까지다."
             }
           ],
           "earningsPeriods": [],
@@ -2185,8 +2044,8 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918900068",
           "publishedAt": "2026-09-18T09:27:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
@@ -2198,12 +2057,25 @@
           "source": "DART",
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
           "publishedAt": "2026-09-18T14:03:00+09:00",
-          "verifiedAt": "2026-09-22T10:17:43+09:00",
-          "reviewer": "Codex · OpenDART 원문 및 2026-09-22 공시목록 재검증",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · 원문 재수집 및 16:00 OpenDART 당일 339건 후속공시 대조",
           "status": "verified",
           "polarity": "positive",
           "kind": "contract",
           "summary": "HD현대마린엔진의 중국 Taizhou Sanfu Ship Engineering 대상 선박엔진 공급계약은 344억734만4천원, 최근 매출의 19.2%이며 종료일이 2026-11-15로 연장됐다."
+        },
+        {
+          "id": "marine-329180-roro-contract",
+          "ticker": "329180",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800219",
+          "publishedAt": "2026-09-22T13:49:00+09:00",
+          "verifiedAt": "2026-09-22T16:10:59+09:00",
+          "reviewer": "Codex · OpenDART 계약 원문 및 DART 당일 목록 재검증",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "HD현대중공업은 유럽 소재 선사와 RORO선 2척, 3,362억원 규모 계약을 체결했다. 최근 매출의 1.91%이며 계약기간은 2026-09-21부터 2029-11-30까지다."
         }
       ],
       "detection": [
@@ -2220,172 +2092,26 @@
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260918800219",
           "publishedAt": "2026-09-18T14:03:00+09:00",
           "summary": "기존 선박엔진 공급계약의 종료일 연장과 계약 존속을 재확인했다."
+        },
+        {
+          "channel": "DART",
+          "label": "HD현대중공업 유럽 선사 RORO선 2척 수주",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800219",
+          "publishedAt": "2026-09-22T13:49:00+09:00",
+          "summary": "유럽 선사 대상 RORO선 2척의 계약금액과 기간을 원문 확인했다."
         }
       ]
     }
   ],
-  "status": "시세 검증완료 · 실적 근거 미확인",
+  "status": "검증완료",
   "missing": [
-    "10:30 후보10개 전수시세와 최근20거래일 동시간 거래대금 검증. LS마린솔루션은 건설 업종 제외, 후보9개. 당일 DART목록92건에서 오전 후보 관련 새 취소·정정 없음. 미확인 실적은 점수에 반영하지 않음.",
-    "국내 반응주: LG전자 +6.17%·동시간 거래대금2.42배, 해성디에스 +8.53%·5.11배. 해성디에스 5거래일 +26.76%로 추격주의. 직접수혜 동반확산은 미확인. 해외 선행주 동시간 거래대금 미검증으로 해외 주도주 점수는 부여하지 않음.",
-    "공시 전수대조: OpenDART 2026-09-21~22 전체 375건을 수집하고 상장사 계약·투자·국책과제·취소·소송을 원문 대조했다. 건설·바이오, 자금조달, 단순 정정·관리 공시는 제외했다.",
-    "후보 재대조: 유라클·나우로보틱스·해성디에스·LS마린솔루션·HD현대마린엔진은 후속 취소·철회 공시가 없음을 확인했다. 넥사다이내믹스는 2026-09-21 전환사채·사모사채 무효 확인 소송 공시를 확인해 기존 AI 서버 공급 후보에서 제외했다.",
-    "단독 공시 보류: 나라스페이스테크놀로지의 67억300만원 규모 초소형위성 기반 우주자산 방호 국책과제는 원문 확인했으나 같은 이슈의 국내 직접수혜 확산 후보를 추가 검증하지 못해 이번 상위 이슈에서 보류했다.",
-    "광통신 탐지 보류: Coherent PhotonLink 발표와 오선 기사는 확인했으나 국내 상장사의 최근 직접 공급·고객 원문을 연결하지 못해 종목 후보로 만들지 않았다.",
-    "컨센서스 기준일: 이번 신규 이슈 후보에는 원문으로 확인된 2026Q3~2027Q2 컨센서스 상향 근거를 연결하지 않았다. 날짜를 추정하지 않고 실적 연결 점수를 0으로 유지한다.",
-    "유튜브시황2: 최근 10일 김종효·김구라 경제연구소·TomatoTV·박시동 시동위키·매불쇼와 삼프로 공식 채널을 재검색했다. 2026-09-21~22 새 영상은 페이지와 자막 트랙 표시까지 확인했지만 자막 원문 응답이 비어 제목만 대기 목록에 기록했고 추천점수에는 반영하지 않았다.",
-    "오선 국장 주요뉴스: 2026-09-22 09:59 기준 500건을 확인해 국내 관련 7건을 선별했다. LG에너지솔루션 DSX Ready는 NVIDIA·LG 공식 발표로 교차검증했고, 소문으로 표시된 중동 국부펀드 기사는 근거에서 제외했다.",
-    "유라클(088340): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "나우로보틱스(459510): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "제이스로보틱스(090470): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "해성디에스(195870): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "제이앤티씨(204270): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "비큐AI(148780): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "LG전자(066570): 컨센서스 기준일 20260407. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "LG에너지솔루션(373220): 컨센서스 기준일 20260827. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "LS마린솔루션(060370): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지.",
-    "HD현대마린엔진(071970): 컨센서스 기준일 미제공. KIS 및 FnGuide 대조 후에도 26Q3~27Q2 분기 연결 미검증; 오전 실적점수와 원문검증일 유지."
-  ],
-  "collectionAudit": [
-    {
-      "ticker": "088340",
-      "name": "유라클",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 6780,
-      "changePct": 0.5935,
-      "turnoverRatio": 3.071624,
-      "return5dPct": -3.1429,
-      "distance20Pct": -1.7249,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "459510",
-      "name": "나우로보틱스",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 15760,
-      "changePct": 0.0635,
-      "turnoverRatio": 0.175532,
-      "return5dPct": -3.1941,
-      "distance20Pct": 3.2292,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "090470",
-      "name": "제이스로보틱스",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 4375,
-      "changePct": 1.7442,
-      "turnoverRatio": 0.175715,
-      "return5dPct": 2.9412,
-      "distance20Pct": -1.6357,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "195870",
-      "name": "해성디에스",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 61100,
-      "changePct": 8.5258,
-      "turnoverRatio": 5.109558,
-      "return5dPct": 26.7635,
-      "distance20Pct": 15.4246,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "204270",
-      "name": "제이앤티씨",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 25150,
-      "changePct": -0.1984,
-      "turnoverRatio": 1.734987,
-      "return5dPct": 18.0751,
-      "distance20Pct": 17.9478,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "148780",
-      "name": "비큐AI",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 4015,
-      "changePct": -0.2484,
-      "turnoverRatio": 3.324601,
-      "return5dPct": 5.2425,
-      "distance20Pct": 7.3386,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "066570",
-      "name": "LG전자",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 215000,
-      "changePct": 6.1728,
-      "turnoverRatio": 2.415411,
-      "return5dPct": 6.4356,
-      "distance20Pct": 5.6901,
-      "quoteStatus": "검증완료",
-      "consensusDate": "20260407",
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "373220",
-      "name": "LG에너지솔루션",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 351500,
-      "changePct": -0.142,
-      "turnoverRatio": 0.671906,
-      "return5dPct": -3.8304,
-      "distance20Pct": -2.7864,
-      "quoteStatus": "검증완료",
-      "consensusDate": "20260827",
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    },
-    {
-      "ticker": "060370",
-      "name": "LS마린솔루션",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 33200,
-      "changePct": 1.8405,
-      "turnoverRatio": 0.868687,
-      "return5dPct": 2.3112,
-      "distance20Pct": 3.0096,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": true
-    },
-    {
-      "ticker": "071970",
-      "name": "HD현대마린엔진",
-      "priceDate": "2026-09-22T10:30:00+09:00",
-      "price": 50400,
-      "changePct": -1.3699,
-      "turnoverRatio": 1.546354,
-      "return5dPct": 1.3065,
-      "distance20Pct": -1.8739,
-      "quoteStatus": "검증완료",
-      "consensusDate": null,
-      "consensusStatus": "요청분기 실적연결 미검증",
-      "excluded": false
-    }
+    "16:00 후보 12개 전수 종가·수정주가·정규장 거래대금을 수집하고 직전20거래일 전체 정규장 거래대금과 같은 경과시각으로 대조했다. 가격 누락 0건, 기업행동·조정가격 불일치 0건. LS마린솔루션은 KIS 건설 업종 확인으로 표시 제외.",
+    "OpenDART 2026-09-22 당일 공시목록 339건을 전수 제목 대조하고 후보 DART 원문 10건을 재수집했다. 기존 후보의 새 취소·철회·부정 공시는 없었다.",
+    "LG씨엔에스(064400): 15:19 공시의 2,578억원 Microsoft 엔터프라이즈 AI 계약을 신규 직접수혜 근거로 추가했다. KIS 컨센서스 기준일은 미제공이며 26Q3~27Q2 실적 귀속은 원문에 없어 period와 펀더멘털 점수를 부여하지 않았다.",
+    "HD현대중공업(329180): 13:49 공시의 RORO선 2척 3,362억원 계약을 해상에너지·선박 이슈 후보에 추가했다. KIS 컨센서스 기준일 2026-08-28은 확인했으나 이번 계약의 26Q3~27Q2 실적 귀속은 원문에 없어 period와 펀더멘털 점수를 부여하지 않았다.",
+    "나래나노텍(137080): 15:22 디스플레이 제조장비 60억3,554만8천원 계약은 원문 확인했으나 같은 이슈의 국내 직접수혜 확산 2종목을 검증하지 못해 상위 이슈 후보에서 보류했다.",
+    "선도전기·한전산업·강원에너지·스피어 정정은 기존 계약의 기간 연장 또는 금액 변경이었다. 새 고객·신규 수주로 중복 계산하지 않았다.",
+    "컨센서스 기준일: LG전자 2026-04-07, LG에너지솔루션 2026-08-27, HD현대중공업 2026-08-28. 나머지 후보는 KIS 미제공. 원문으로 26Q3~27Q2 이슈 연결을 확인하지 못해 모든 이슈 후보의 실적 연결 점수는 0으로 유지했다.",
+    "오전 유튜브 탐지와 오선 국장 주요뉴스는 유지했다. 새 취소·부정 사실을 DART와 기업 공식 원문에서 재검토했으며 제목만 확인된 내용을 추천점수에 넣지 않았다."
   ]
 }
