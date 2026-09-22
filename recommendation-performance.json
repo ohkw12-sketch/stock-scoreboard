@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-22T16:11:44+09:00",
+  "generatedAt": "2026-09-22T16:27:47+09:00",
   "priceDate": "2026-09-22",
-  "recordCount": 607,
-  "cohortCount": 106,
+  "recordCount": 618,
+  "cohortCount": 109,
   "rows": [
     {
       "ticker": "439580",
@@ -21744,6 +21744,552 @@
       "elapsedSessions": 2
     },
     {
+      "ticker": "012630",
+      "name": "HDC",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 10,
+      "sector": "금융",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:무감점",
+        "가치성장:일부 가격 반응"
+      ],
+      "sourceRow": {
+        "ticker": "012630",
+        "name": "HDC",
+        "sector": "금융",
+        "growthRate": 20.9,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "fundamentalScore": 81.3,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 1519714183593.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 1350766652627.974,
+        "averageQuarterlyOperatingMarginPct": 15.279024480772488,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "일부 가격 반응",
+        "score": 60.59,
+        "averageTurnover20": 2749162955.0,
+        "financialSummary": "2026E 분기평균 매출 13,508억원 · 2026E 영업이익률 15.3% · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 27억원 · 누적 매출 +20.9%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "제2경춘국도(남양주-춘천) 도로건설공사(2공구) 계약을 체결했습니다. 계약금액은 1,403억원으로 최근 매출의 3.4%이며 계약은 2033-08-29까지 진행됩니다.",
+            "source": "DART · 2026-08-07",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260807800949"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 32.1,
+          "salesPersistence": 49.7,
+          "profitConversion": 81.3,
+          "revenueVisibility": 90,
+          "evidenceConfidence": 25.0,
+          "priceUnderreaction": 60,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-08-07",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 60.59,
+        "valueScore": 64.0,
+        "growthScore": 57.18,
+        "normalizedPOP": 1.9,
+        "normalizedPremiumPct": -18.5,
+        "valueConfidence": "B",
+        "riskPenalty": 0,
+        "riskWarnings": [],
+        "valueBasis": "2026E P/OP 1.9배 · 섹터 대비 18.5% 할인",
+        "fundamentalSourceDate": "2026-06-30",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 15.0,
+        "fourQuarterAverageOperatingMarginPct": 14.7,
+        "currentHalfAverageOperatingMarginPct": 14.7,
+        "currentQuarterAnnualizedPOP": 1.9,
+        "sectorNormalizedPOP": 2.3,
+        "consensusOnlyEvidence": false,
+        "rank": 10,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 25850.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "014680",
+      "name": "한솔케미칼",
+      "group": "순환(통합)",
+      "section": "p11",
+      "rank": 1,
+      "sector": "기초 화학물질 제조업",
+      "cohortId": "eb3928a8dd14a5d0e6bd5823e271a967ed5410a3c4b45eb7c26e2b831fbb5d73",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "rotation-entry-3.0",
+      "features": [
+        "관계:선행",
+        "순환진입",
+        "순환진입:③주도"
+      ],
+      "sourceRow": {
+        "rank": 1,
+        "name": "한솔케미칼",
+        "ticker": "014680",
+        "sector": "기초 화학물질 제조업",
+        "relation": "선행",
+        "sectorLeadLag": "선행",
+        "stockRs3Pct": 5.7,
+        "stockRs5Pct": 9.64,
+        "opGrowth": "미산출",
+        "value": "가격·수급 기준",
+        "sectorMedian": "섹터 RS5 +0.91%p",
+        "premium": "선행",
+        "marketState": "선도주 견인형 · ③주도",
+        "marketDetail": "3일 +4.65% · 5일 +10.84%",
+        "change": "엔진 신규",
+        "changeUntil": "2026-09-29",
+        "marks": [
+          "UP"
+        ],
+        "signal": "진입 검토",
+        "entryFit": "진입 검토",
+        "overheated": false,
+        "stockEntryScore": 32.5,
+        "priceDate": "2026-09-22",
+        "currentPrice": 225000.0,
+        "reason": "거래량 1.79배 · 종가 저항 +1.81% · 수급/실적/촉매 30.5/2.0/0.0 · 감점 0 · 확인",
+        "watchReasons": [],
+        "eligible": true,
+        "exclusionReasons": [],
+        "score": 32.5,
+        "scoreBlocks": {
+          "수급·차트": 30.5,
+          "실적·컨센서스": 1.99635,
+          "신규촉매·업황": 0
+        },
+        "penalty": 0,
+        "watchOnly": false,
+        "heatException": false,
+        "distributionWarning": false,
+        "volumeRatio": 1.7876,
+        "volumeGrade": "B",
+        "resistanceDistancePct": 1.81,
+        "closeBreakout": true,
+        "macdWeight": 0.75,
+        "evidenceIds": [
+          "dart:20260813001414"
+        ],
+        "evidenceStatus": "확인",
+        "detailTheme": "기초 화학물질 제조업",
+        "sectorRank": 1,
+        "rankInSector": 1,
+        "entryState": "진입 검토",
+        "ruleVersion": "rotation-entry-3.0",
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 225000.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "025560",
+      "name": "미래산업",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 2,
+      "sector": "반도체",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:무감점",
+        "가치성장:판정 불가"
+      ],
+      "sourceRow": {
+        "ticker": "025560",
+        "name": "미래산업",
+        "sector": "반도체",
+        "growthRate": 48.5,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "fundamentalScore": 100.0,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 30798429923.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 56617707875.413956,
+        "averageQuarterlyOperatingMarginPct": 46.314963285419694,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "보통",
+        "evidenceCount": 3,
+        "confidenceScore": 50.0,
+        "priceReflection": "판정 불가",
+        "score": 85.72,
+        "averageTurnover20": 2230455571.0,
+        "financialSummary": "2026E 분기평균 매출 566억원 · 2026E 영업이익률 46.3% · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 22억원 · 누적 매출 +48.5%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "반도체 검사 장비 공급 계약을 체결했습니다. 계약금액은 105억원으로 최근 매출의 20.7%이며 계약은 2027-04-10까지 진행됩니다.",
+            "source": "DART · 2026-07-29",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260729800496"
+          },
+          {
+            "kind": "수주",
+            "content": "반도체 검사 장비 공급 계약을 체결했습니다. 계약금액은 96억원으로 최근 매출의 18.9%이며 계약은 2026-12-31까지 진행됩니다.",
+            "source": "DART · 2026-08-20",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260820800177"
+          },
+          {
+            "kind": "수주",
+            "content": "반도체 검사 장비 공급 계약을 체결했습니다. 계약금액은 40억원으로 최근 매출의 7.8%이며 계약은 2026-09-30까지 진행됩니다.",
+            "source": "DART · 2026-07-30",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260730800221"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 80.4,
+          "salesPersistence": 73.2,
+          "profitConversion": 100.0,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 50.0,
+          "priceUnderreaction": 20,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-07-29",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 85.72,
+        "valueScore": 94.7,
+        "growthScore": 76.75,
+        "normalizedPOP": 1.7,
+        "normalizedPremiumPct": -83.2,
+        "valueConfidence": "B",
+        "riskPenalty": 0,
+        "riskWarnings": [],
+        "valueBasis": "2026E P/OP 1.7배 · 섹터 대비 83.2% 할인",
+        "fundamentalSourceDate": "2026-06-30",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 33.6,
+        "fourQuarterAverageOperatingMarginPct": 28.6,
+        "currentHalfAverageOperatingMarginPct": 28.6,
+        "currentQuarterAnnualizedPOP": 1.7,
+        "sectorNormalizedPOP": 10.0,
+        "consensusOnlyEvidence": false,
+        "rank": 2,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 6320.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "033500",
+      "name": "동성화인텍",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 3,
+      "sector": "기초 화학물질 제조업",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:무감점",
+        "가치성장:미반영 가능"
+      ],
+      "sourceRow": {
+        "ticker": "033500",
+        "name": "동성화인텍",
+        "sector": "기초 화학물질 제조업",
+        "growthRate": 32.8,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "fundamentalScore": 86.3,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 224533797658.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 199740651742.2253,
+        "averageQuarterlyOperatingMarginPct": 17.196795866166003,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "보통",
+        "evidenceCount": 4,
+        "confidenceScore": 57.1,
+        "priceReflection": "미반영 가능",
+        "score": 81.85,
+        "averageTurnover20": 1348103734.0,
+        "financialSummary": "2026E 분기평균 매출 1,997억원 · 2026E 영업이익률 17.2% · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 13억원 · 누적 매출 +32.8%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "LNG운반선의 초저온 보냉자재 공급계약을 체결했습니다. 계약금액은 1,513억원으로 최근 매출의 20.4%이며 계약은 2029-05-30까지 진행됩니다.",
+            "source": "DART · 2026-06-25",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260625900143"
+          },
+          {
+            "kind": "수주",
+            "content": "LNG운반선의 초저온 보냉자재 공급계약을 체결했습니다. 계약금액은 878억원으로 최근 매출의 11.8%이며 계약은 2028-05-09까지 진행됩니다.",
+            "source": "DART · 2026-04-08",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260408901137"
+          },
+          {
+            "kind": "수주",
+            "content": "LNG운반선의 초저온 보냉자재 공급계약을 체결했습니다. 계약금액은 720억원으로 최근 매출의 9.7%이며 계약은 2028-12-30까지 진행됩니다.",
+            "source": "DART · 2026-06-30",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630900111"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 62.3,
+          "salesPersistence": 59.8,
+          "profitConversion": 86.3,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 57.1,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-04-08",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 1,
+        "valueGrowthScore": 81.85,
+        "valueScore": 87.5,
+        "growthScore": 76.21,
+        "normalizedPOP": 3.5,
+        "normalizedPremiumPct": -47.0,
+        "valueConfidence": "C",
+        "riskPenalty": 0,
+        "riskWarnings": [],
+        "valueBasis": "2026E P/OP 3.5배 · 섹터 대비 47.0% 할인",
+        "fundamentalSourceDate": "2026-06-30",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 16.0,
+        "fourQuarterAverageOperatingMarginPct": 13.9,
+        "currentHalfAverageOperatingMarginPct": 13.9,
+        "currentQuarterAnnualizedPOP": 3.5,
+        "sectorNormalizedPOP": 6.7,
+        "consensusOnlyEvidence": false,
+        "rank": 3,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 16220.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
       "ticker": "036570",
       "name": "NC",
       "group": "성장",
@@ -21819,6 +22365,142 @@
       },
       "status": "추적 중",
       "elapsedSessions": 11
+    },
+    {
+      "ticker": "036570",
+      "name": "NC",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 17,
+      "sector": "인터넷/소프트웨어",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:미반영 가능",
+        "가치성장:위험감점"
+      ],
+      "sourceRow": {
+        "ticker": "036570",
+        "name": "NC",
+        "sector": "인터넷/소프트웨어",
+        "growthRate": 19.4,
+        "growthBasis": "2027E/2026E 매출",
+        "fundamentalScore": 89.8,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 770500860473.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 725025000000.0,
+        "averageQuarterlyOperatingMarginPct": 21.32340264128823,
+        "fundamentalSource": "KIS Developers 종목추정실적",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": false,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "미반영 가능",
+        "score": 50.83,
+        "averageTurnover20": 16749938800.0,
+        "financialSummary": "2026E 분기평균 매출 7,250억원 · 2026E 영업이익률 21.3% · KIS Developers 종목추정실적 · 20일 평균 거래대금 167억원 · 누적 매출 +19.4%",
+        "evidenceContents": [
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2026.12E에 매출 +92.5%·영업이익 +3,741%을 예상합니다.",
+            "source": "KIS Developers 종목추정실적 · 2026-08-12",
+            "url": "https://apiportal.koreainvestment.com/apiservice"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 100,
+          "salesPersistence": 48.5,
+          "profitConversion": 89.8,
+          "revenueVisibility": 60,
+          "evidenceConfidence": 25.0,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-08-12",
+        "lastVerified": "2026-09-22T10:22:39+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 50.83,
+        "valueScore": 57.0,
+        "growthScore": 74.66,
+        "normalizedPOP": 7.8,
+        "normalizedPremiumPct": 84.6,
+        "valueConfidence": "A",
+        "riskPenalty": 15,
+        "riskWarnings": [
+          "최근 분기 연환산 P/OP가 섹터 중앙보다 높음 -10",
+          "성장 근거가 컨센서스뿐임 -5"
+        ],
+        "valueBasis": "2026E P/OP 7.8배 · 섹터 대비 84.6% 프리미엄",
+        "fundamentalSourceDate": "2026-08-12",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": 33.4,
+        "latestQuarterOperatingMarginPct": 22.6,
+        "fourQuarterAverageOperatingMarginPct": 21.4,
+        "currentHalfAverageOperatingMarginPct": 21.4,
+        "currentQuarterAnnualizedPOP": 7.8,
+        "sectorNormalizedPOP": 4.2,
+        "consensusOnlyEvidence": true,
+        "rank": 17,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 223000.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
     },
     {
       "ticker": "039340",
@@ -22168,6 +22850,147 @@
       "elapsedSessions": 0
     },
     {
+      "ticker": "069620",
+      "name": "대웅제약",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 8,
+      "sector": "화장품",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:미반영 가능",
+        "가치성장:위험감점"
+      ],
+      "sourceRow": {
+        "ticker": "069620",
+        "name": "대웅제약",
+        "sector": "화장품",
+        "growthRate": -0.4,
+        "growthBasis": "2027E/2026E 매출",
+        "fundamentalScore": 89.4,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 448464138492.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 386100000000.0,
+        "averageQuarterlyOperatingMarginPct": 16.627816627816628,
+        "fundamentalSource": "KIS Developers 종목추정실적",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": false,
+        "confidence": "보통",
+        "evidenceCount": 2,
+        "confidenceScore": 43.0,
+        "priceReflection": "미반영 가능",
+        "score": 63.22,
+        "averageTurnover20": 2372211260.0,
+        "financialSummary": "2026E 분기평균 매출 3,861억원 · 2026E 영업이익률 16.6% · KIS Developers 종목추정실적 · 20일 평균 거래대금 24억원 · 누적 매출 -0.4%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "엔블로정 중동 8개국 수출 공급계약을 체결했습니다. 계약금액은 926억원으로 최근 매출의 5.9%이며 계약은 2036-06-25까지 진행됩니다.",
+            "source": "DART · 2026-06-26",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260626800586"
+          },
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2026.12E에 매출 +11%·영업이익 +26.1%을 예상합니다.",
+            "source": "KIS Developers 종목추정실적 · 2026-07-30",
+            "url": "https://apiportal.koreainvestment.com/apiservice"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 33.3,
+          "salesPersistence": 16.7,
+          "profitConversion": 89.4,
+          "revenueVisibility": 95,
+          "evidenceConfidence": 43.0,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-06-26",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 63.22,
+        "valueScore": 81.8,
+        "growthScore": 58.64,
+        "normalizedPOP": 4.9,
+        "normalizedPremiumPct": -42.7,
+        "valueConfidence": "A",
+        "riskPenalty": 7,
+        "riskWarnings": [
+          "내년 예상 영업이익 감소 -7"
+        ],
+        "valueBasis": "2026E P/OP 4.9배 · 섹터 대비 42.7% 할인",
+        "fundamentalSourceDate": "2026-07-30",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": -17.3,
+        "latestQuarterOperatingMarginPct": 15.2,
+        "fourQuarterAverageOperatingMarginPct": 10.5,
+        "currentHalfAverageOperatingMarginPct": 10.5,
+        "currentQuarterAnnualizedPOP": 4.9,
+        "sectorNormalizedPOP": 8.6,
+        "consensusOnlyEvidence": false,
+        "rank": 8,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 108800.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
       "ticker": "078340",
       "name": "컴투스",
       "group": "순환",
@@ -22262,6 +23085,567 @@
       },
       "status": "추적 중",
       "elapsedSessions": 7
+    },
+    {
+      "ticker": "086520",
+      "name": "에코프로",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 14,
+      "sector": "2차전지/ESS",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:미반영 가능",
+        "가치성장:위험감점"
+      ],
+      "sourceRow": {
+        "ticker": "086520",
+        "name": "에코프로",
+        "sector": "2차전지/ESS",
+        "growthRate": 0.4,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "fundamentalScore": 90.4,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 821509401406.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 804781466870.4486,
+        "averageQuarterlyOperatingMarginPct": 33.941993166888004,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "미반영 가능",
+        "score": 52.75,
+        "averageTurnover20": 51803224045.0,
+        "financialSummary": "2026E 분기평균 매출 8,048억원 · 2026E 영업이익률 33.9% · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 518억원 · 누적 매출 +0.4%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "De-NOx 시스템(SCR) 공급 계약을 체결했습니다. 계약금액은 240억원으로 최근 매출의 10.2%이며 계약은 2030-04-30까지 진행됩니다.",
+            "source": "DART · 2026-03-30",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260330901242"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 47.5,
+          "salesPersistence": 32.3,
+          "profitConversion": 90.4,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 25.0,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-03-30",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 1,
+        "valueGrowthScore": 52.75,
+        "valueScore": 65.1,
+        "growthScore": 64.41,
+        "normalizedPOP": 10.0,
+        "normalizedPremiumPct": 0.0,
+        "valueConfidence": "C",
+        "riskPenalty": 12,
+        "riskWarnings": [
+          "2026년 2분기 영업이익이 1분기보다 감소 -7",
+          "2026년 2분기 영업이익률이 1분기의 70% 미만 -5"
+        ],
+        "valueBasis": "2026E P/OP 10.0배 · 섹터 대비 0.0% 프리미엄",
+        "fundamentalSourceDate": "2026-06-30",
+        "operatingProfitDeclineStreak": 1,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 4.1,
+        "fourQuarterAverageOperatingMarginPct": 5.5,
+        "currentHalfAverageOperatingMarginPct": 5.5,
+        "currentQuarterAnnualizedPOP": 10.0,
+        "sectorNormalizedPOP": 10.0,
+        "consensusOnlyEvidence": false,
+        "rank": 14,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 80100.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "097230",
+      "name": "HJ중공업",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 4,
+      "sector": "조선",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:무감점",
+        "가치성장:판정 불가"
+      ],
+      "sourceRow": {
+        "ticker": "097230",
+        "name": "HJ중공업",
+        "sector": "조선",
+        "growthRate": 34.8,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "fundamentalScore": 89.8,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 729908000000.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 692449842767.227,
+        "averageQuarterlyOperatingMarginPct": 20.066257105183816,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "높음",
+        "evidenceCount": 6,
+        "confidenceScore": 66.7,
+        "priceReflection": "판정 불가",
+        "score": 81.0,
+        "averageTurnover20": 3278561683.0,
+        "financialSummary": "2026E 분기평균 매출 6,924억원 · 2026E 영업이익률 20.1% · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 33억원 · 누적 매출 +34.8%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "컨테이너선 4척 수주 계약을 체결했습니다. 계약금액은 6,790억원으로 최근 매출의 34%이며 계약은 2029-04-30까지 진행됩니다.",
+            "source": "DART · 2026-09-22",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260922800008"
+          },
+          {
+            "kind": "수주",
+            "content": "여수 천연가스발전소 건설공사 계약을 체결했습니다. 계약금액은 1,853억원으로 최근 매출의 9.8%이며 계약은 2029-04-29까지 진행됩니다.",
+            "source": "DART · 2026-01-16",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260116800164"
+          },
+          {
+            "kind": "수주",
+            "content": "제천~영월간 고속국도 건설공사(제3공구) 계약을 체결했습니다. 계약금액은 1,488억원으로 최근 매출의 7.4%이며 계약은 2032-04-18까지 진행됩니다.",
+            "source": "DART · 2026-06-30",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260630800913"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 72.5,
+          "salesPersistence": 61.6,
+          "profitConversion": 89.8,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 66.7,
+          "priceUnderreaction": 20,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-01-16",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 3,
+        "valueGrowthScore": 81.0,
+        "valueScore": 89.4,
+        "growthScore": 72.6,
+        "normalizedPOP": 2.4,
+        "normalizedPremiumPct": -59.8,
+        "valueConfidence": "B",
+        "riskPenalty": 0,
+        "riskWarnings": [],
+        "valueBasis": "2026E P/OP 2.4배 · 섹터 대비 59.8% 할인",
+        "fundamentalSourceDate": "2026-06-30",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 8.9,
+        "fourQuarterAverageOperatingMarginPct": 6.7,
+        "currentHalfAverageOperatingMarginPct": 6.7,
+        "currentQuarterAnnualizedPOP": 2.4,
+        "sectorNormalizedPOP": 6.1,
+        "consensusOnlyEvidence": false,
+        "rank": 4,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 15050.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "214450",
+      "name": "파마리서치",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 12,
+      "sector": "의료용품 및 기타 의약 관련제품 제조업",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:위험감점",
+        "가치성장:일부 가격 반응"
+      ],
+      "sourceRow": {
+        "ticker": "214450",
+        "name": "파마리서치",
+        "sector": "의료용품 및 기타 의약 관련제품 제조업",
+        "growthRate": 16.8,
+        "growthBasis": "2027E/2026E 매출",
+        "fundamentalScore": 91.0,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 178704799285.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 171525000000.0,
+        "averageQuarterlyOperatingMarginPct": 38.81358402565224,
+        "fundamentalSource": "KIS Developers 종목추정실적",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": false,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "priceReflection": "일부 가격 반응",
+        "score": 57.44,
+        "averageTurnover20": 43810326475.0,
+        "financialSummary": "2026E 분기평균 매출 1,715억원 · 2026E 영업이익률 38.8% · KIS Developers 종목추정실적 · 20일 평균 거래대금 438억원 · 누적 매출 +16.8%",
+        "evidenceContents": [
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2026.12E에 매출 +27.9%·영업이익 +24.2%을 예상합니다.",
+            "source": "KIS Developers 종목추정실적 · 2026-08-10",
+            "url": "https://apiportal.koreainvestment.com/apiservice"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 55.9,
+          "salesPersistence": 46.3,
+          "profitConversion": 91.0,
+          "revenueVisibility": 60,
+          "evidenceConfidence": 25.0,
+          "priceUnderreaction": 60,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-08-10",
+        "lastVerified": "2026-09-22T10:22:39+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 57.44,
+        "valueScore": 65.5,
+        "growthScore": 59.37,
+        "normalizedPOP": 12.6,
+        "normalizedPremiumPct": -18.7,
+        "valueConfidence": "C",
+        "riskPenalty": 5,
+        "riskWarnings": [
+          "성장 근거가 컨센서스뿐임 -5"
+        ],
+        "valueBasis": "2026E P/OP 12.6배 · 섹터 대비 18.7% 할인",
+        "fundamentalSourceDate": "2026-08-10",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": 19.2,
+        "latestQuarterOperatingMarginPct": 37.2,
+        "fourQuarterAverageOperatingMarginPct": 38.2,
+        "currentHalfAverageOperatingMarginPct": 38.2,
+        "currentQuarterAnnualizedPOP": 12.6,
+        "sectorNormalizedPOP": 15.5,
+        "consensusOnlyEvidence": true,
+        "rank": 12,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 324000.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
+    },
+    {
+      "ticker": "267250",
+      "name": "HD현대",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 7,
+      "sector": "금융",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:무감점",
+        "가치성장:미반영 가능"
+      ],
+      "sourceRow": {
+        "ticker": "267250",
+        "name": "HD현대",
+        "sector": "금융",
+        "growthRate": 14.3,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "fundamentalScore": 89.5,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 22409332760000.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 21821272903805.906,
+        "averageQuarterlyOperatingMarginPct": 20.0526602046737,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "높음",
+        "evidenceCount": 7,
+        "confidenceScore": 70.0,
+        "priceReflection": "미반영 가능",
+        "score": 70.45,
+        "averageTurnover20": 35825356625.0,
+        "financialSummary": "2026E 분기평균 매출 218,213억원 · 2026E 영업이익률 20.1% · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 358억원 · 누적 매출 +14.3%",
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "VLAC 6척 계약을 체결했습니다. 계약금액은 10,782억원으로 최근 매출의 13.4%이며 계약은 2029-12-20까지 진행됩니다.",
+            "source": "DART · 2026-05-21",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260521800367"
+          },
+          {
+            "kind": "수주",
+            "content": "LNGC 2척 계약을 체결했습니다. 계약금액은 7,485억원으로 최근 매출의 9.3%이며 계약은 2029-07-23까지 진행됩니다.",
+            "source": "DART · 2026-05-13",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260513800206"
+          },
+          {
+            "kind": "수주",
+            "content": "VLAC 3척 계약을 체결했습니다. 계약금액은 5,456억원으로 최근 매출의 6.8%이며 계약은 2030-05-31까지 진행됩니다.",
+            "source": "DART · 2026-07-13",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260713800204"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 53.0,
+          "salesPersistence": 44.2,
+          "profitConversion": 89.5,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 70.0,
+          "priceUnderreaction": 100,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-03-06",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 5,
+        "valueGrowthScore": 70.45,
+        "valueScore": 68.4,
+        "growthScore": 72.5,
+        "normalizedPOP": 0.9,
+        "normalizedPremiumPct": -59.3,
+        "valueConfidence": "B",
+        "riskPenalty": 0,
+        "riskWarnings": [],
+        "valueBasis": "2026E P/OP 0.9배 · 섹터 대비 59.3% 할인",
+        "fundamentalSourceDate": "2026-06-30",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 18.4,
+        "fourQuarterAverageOperatingMarginPct": 16.4,
+        "currentHalfAverageOperatingMarginPct": 16.4,
+        "currentQuarterAnnualizedPOP": 0.9,
+        "sectorNormalizedPOP": 2.3,
+        "consensusOnlyEvidence": false,
+        "rank": 7,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 207000.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
     },
     {
       "ticker": "267260",
@@ -22502,6 +23886,153 @@
       },
       "status": "추적 중",
       "elapsedSessions": 1
+    },
+    {
+      "ticker": "329180",
+      "name": "HD현대중공업",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 18,
+      "sector": "조선",
+      "cohortId": "6d674d25a36cc35e8ad2aea3e8858ba55cb4ed1512342da182426c4d377c8372",
+      "recommendationDate": "2026-09-22",
+      "publishedAt": "2026-09-22T16:27:47+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "080785498d62c047",
+      "ruleVersion": "value-growth-2.0",
+      "features": [
+        "가치성장",
+        "가치성장:위험감점",
+        "가치성장:일부 가격 반응"
+      ],
+      "sourceRow": {
+        "ticker": "329180",
+        "name": "HD현대중공업",
+        "sector": "조선",
+        "growthRate": 2.2,
+        "growthBasis": "2027E/2026E 매출",
+        "fundamentalScore": 83.2,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 6332155044000.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 6184175000000.0,
+        "averageQuarterlyOperatingMarginPct": 16.532924763610342,
+        "fundamentalSource": "KIS Developers 종목추정실적",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": false,
+        "confidence": "높음",
+        "evidenceCount": 6,
+        "confidenceScore": 69.7,
+        "priceReflection": "일부 가격 반응",
+        "score": 50.24,
+        "averageTurnover20": 126177401700.0,
+        "financialSummary": "2026E 분기평균 매출 61,842억원 · 2026E 영업이익률 16.5% · KIS Developers 종목추정실적 · 20일 평균 거래대금 1,262억원 · 누적 매출 +2.2%",
+        "evidenceContents": [
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2026.12E에 매출 +40.7%·영업이익 +100.7%을 예상합니다.",
+            "source": "KIS Developers 종목추정실적 · 2026-08-28",
+            "url": "https://apiportal.koreainvestment.com/apiservice"
+          },
+          {
+            "kind": "수주",
+            "content": "VLGC 8척 계약을 체결했습니다. 계약금액은 14,161억원으로 최근 매출의 8.1%이며 계약은 2030-06-30까지 진행됩니다.",
+            "source": "DART · 2026-06-01",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260601800384"
+          },
+          {
+            "kind": "수주",
+            "content": "엔진발전기 공급 계약을 체결했습니다. 계약금액은 9,560억원으로 최근 매출의 5.4%이며 계약은 2030-07-30까지 진행됩니다.",
+            "source": "DART · 2026-08-10",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260810800144"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 81.4,
+          "salesPersistence": 33.9,
+          "profitConversion": 83.2,
+          "revenueVisibility": 100,
+          "evidenceConfidence": 69.7,
+          "priceUnderreaction": 60,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-06-01",
+        "lastVerified": "2026-09-22T16:16:33+09:00",
+        "sourceDate": "2026-09-22",
+        "oldEvidenceCount": 1,
+        "valueGrowthScore": 50.24,
+        "valueScore": 47.9,
+        "growthScore": 72.58,
+        "normalizedPOP": 11.7,
+        "normalizedPremiumPct": 92.0,
+        "valueConfidence": "A",
+        "riskPenalty": 10,
+        "riskWarnings": [
+          "최근 분기 연환산 P/OP가 섹터 중앙보다 높음 -10"
+        ],
+        "valueBasis": "2026E P/OP 11.7배 · 섹터 대비 92.0% 프리미엄",
+        "fundamentalSourceDate": "2026-08-28",
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": 10.3,
+        "latestQuarterOperatingMarginPct": 16.4,
+        "fourQuarterAverageOperatingMarginPct": 15.9,
+        "currentHalfAverageOperatingMarginPct": 15.9,
+        "currentQuarterAnnualizedPOP": 11.7,
+        "sectorNormalizedPOP": 6.1,
+        "consensusOnlyEvidence": false,
+        "rank": 18,
+        "recommendationHistory": {
+          "firstDate": "2026-09-22",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-09-22",
+      "entryPrice": 455500.0,
+      "latestDate": "2026-09-22",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
     },
     {
       "ticker": "451760",
@@ -56703,10 +58234,10 @@
     {
       "group": "가치성장",
       "horizon": 1,
-      "total": 30,
+      "total": 40,
       "evaluated": 29,
       "uniqueStocks": 29,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 11,
       "meanReturnPct": -0.0532,
       "medianReturnPct": -0.6466,
       "winRatePct": 31.03
@@ -56714,10 +58245,10 @@
     {
       "group": "가치성장",
       "horizon": 5,
-      "total": 30,
+      "total": 40,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 30,
+      "waitingOrMissing": 40,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56725,10 +58256,10 @@
     {
       "group": "가치성장",
       "horizon": 20,
-      "total": 30,
+      "total": 40,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 30,
+      "waitingOrMissing": 40,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56736,10 +58267,10 @@
     {
       "group": "가치성장",
       "horizon": 60,
-      "total": 30,
+      "total": 40,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 30,
+      "waitingOrMissing": 40,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56747,10 +58278,10 @@
     {
       "group": "가치성장",
       "horizon": 120,
-      "total": 30,
+      "total": 40,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 30,
+      "waitingOrMissing": 40,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56813,10 +58344,10 @@
     {
       "group": "순환(통합)",
       "horizon": 1,
-      "total": 1,
+      "total": 2,
       "evaluated": 1,
       "uniqueStocks": 1,
-      "waitingOrMissing": 0,
+      "waitingOrMissing": 1,
       "meanReturnPct": 2.439,
       "medianReturnPct": 2.439,
       "winRatePct": 100.0
@@ -56824,10 +58355,10 @@
     {
       "group": "순환(통합)",
       "horizon": 5,
-      "total": 1,
+      "total": 2,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 2,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56835,10 +58366,10 @@
     {
       "group": "순환(통합)",
       "horizon": 20,
-      "total": 1,
+      "total": 2,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 2,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56846,10 +58377,10 @@
     {
       "group": "순환(통합)",
       "horizon": 60,
-      "total": 1,
+      "total": 2,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 2,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56857,10 +58388,10 @@
     {
       "group": "순환(통합)",
       "horizon": 120,
-      "total": 1,
+      "total": 2,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 2,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -56883,13 +58414,14 @@
   "priceCollection": {
     "source": "추천 종목 Yahoo 공급자 수정주가",
     "requested": 442,
-    "status": "일부 누락",
+    "status": "저장 수정주가 재사용",
     "covered": 441,
     "missingTickers": [
       "004920"
     ],
     "priceDate": "2026-09-22",
-    "checkedAt": "2026-09-22T07:17:56.677649+00:00"
+    "checkedAt": "2026-09-22T07:17:56.677649+00:00",
+    "networkRequests": 0
   },
   "feedback": {
     "version": "feedback-1.0",
@@ -57947,6 +59479,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "dd4348d1dd2928cd34bc2961707813236ce859ebb70834f42528345fff9e7eea"
+  }
 }
