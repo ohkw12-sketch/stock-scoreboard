@@ -291,6 +291,34 @@ class PriceAndSelectionTests(unittest.TestCase):
         self.assertTrue(s["fundamentals"]["upCore"])
         self.assertTrue(s["scenarios"]["up"]["ready"])
 
+    def test_relaxed_trend_and_supply_approach_qualify_without_breakout(self):
+        s=candidate();s["price"].update(close=99,ma20=98,ma60=102,rs20=-3,
+                                         volumeRatio=.8,breakout=False,distanceResistancePct=-8)
+        assess(s)
+        self.assertTrue(s["scenarios"]["up"]["early"])
+        self.assertTrue(s["scenarios"]["up"]["ready"])
+        self.assertFalse(s["scenarios"]["up"]["strongBreakout"])
+        self.assertEqual(choose([s],"up")["tickers"],[s["ticker"]])
+
+    def test_early_observation_stays_out_of_entry_when_resistance_is_distant(self):
+        s=candidate();s["price"].update(close=99,ma20=98,ma60=102,rs20=-3,
+                                         volumeRatio=.8,breakout=False,distanceResistancePct=-8.1)
+        assess(s)
+        self.assertTrue(s["scenarios"]["up"]["early"])
+        self.assertFalse(s["scenarios"]["up"]["ready"])
+        result=choose([s],"up")
+        self.assertEqual(result["earlyCount"],1)
+        self.assertEqual(result["earlyTickers"],[s["ticker"]])
+        self.assertEqual(result["watchTickers"],[s["ticker"]])
+
+    def test_breakout_volume_is_a_separate_strong_signal(self):
+        s=candidate();s["price"]["volumeRatio"]=1.5;assess(s)
+        self.assertTrue(s["scenarios"]["up"]["ready"])
+        self.assertTrue(s["scenarios"]["up"]["strongBreakout"])
+        self.assertFalse(s["scenarios"]["up"]["volume2x"])
+        s["price"]["volumeRatio"]=2;assess(s)
+        self.assertTrue(s["scenarios"]["up"]["volume2x"])
+
     def test_forward_growth_without_strong_actuals_is_not_an_up_pick(self):
         s=candidate();raw=raw_fundamentals();raw["op_quarter_previous"]=5e9
         points=forecast_index([consensus(),consensus("2027FY",op=450,sales=3500)],[],CUTOFF)

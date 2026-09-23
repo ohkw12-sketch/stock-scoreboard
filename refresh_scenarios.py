@@ -36,6 +36,7 @@ def validate(board, holdings):
     for key, scenario in board["scenarios"].items():
         tickers = scenario["tickers"]
         watch = scenario.get("watchTickers", [])
+        early = scenario.get("earlyTickers", [])
         from collections import Counter
         sectors = Counter(board["stocks"][t]["sector"] for t in tickers)
         if len(tickers) != len(set(tickers)) or len(sectors) > 5 or any(n > 3 for n in sectors.values()):
@@ -44,6 +45,9 @@ def validate(board, holdings):
         if (set(tickers) & set(watch) or len(watch) != len(set(watch))
                 or len(watch) > 20 or any(n > 3 for n in watch_sectors.values())):
             issues.append(f"{key}: 관찰 후보 중복·분산 규칙 불일치")
+        if key == "up" and (len(early) != len(set(early)) or len(early) > 20
+                            or any(not board["stocks"][t]["scenarios"]["up"]["early"] for t in early)):
+            issues.append("up: 선행 관찰 노출 불일치")
         for t in tickers:
             s = board["stocks"][t]
             if not (s["eligible"] or s["heatObservation"]):
@@ -52,6 +56,8 @@ def validate(board, holdings):
                 issues.append(f"{t}: {key} 카드에 대기 후보 노출")
             if key == "up" and not s["fundamentals"]["upCore"]:
                 issues.append(f"{t}: 성장 기준 미달 후보의 상승 카드 노출")
+            if key == "up" and not s["scenarios"]["up"]["early"]:
+                issues.append(f"{t}: 선행 추세 조건 없이 상승 진입 노출")
             if s["scenarios"][key]["ready"] and (s["blockers"] or not all(c["met"] for c in s["scenarios"][key]["checks"])):
                 issues.append(f"{t}: 조건 충족 표시 불일치")
         for t in watch:
@@ -81,7 +87,7 @@ def write_public_dataset(out, board, identity):
     generation = identity[:20]
     summary["meta"]["detailBase"] = f"scenario-stocks/{generation}"
     selected = {t for scenario in board["scenarios"].values()
-                for t in scenario["tickers"] + scenario.get("watchTickers", [])}
+                for t in scenario["tickers"] + scenario.get("watchTickers", []) + scenario.get("earlyTickers", [])}
     for ticker, stock in board["stocks"].items():
         shards[ticker[:2]][ticker] = stock
         small = {k: stock[k] for k in ("ticker", "name", "sector", "eligible", "heatObservation", "blockers")}
@@ -93,6 +99,8 @@ def write_public_dataset(out, board, identity):
             small["price"]["box"] = stock["price"].get("box")
             small["scenarios"] = {k: {field: value[field] for field in ("ready", "state", "waiting")}
                                   for k, value in stock["scenarios"].items()}
+            small["scenarios"]["up"].update({field: stock["scenarios"]["up"][field]
+                for field in ("early", "strongBreakout", "volume2x")})
         summary["stocks"][ticker] = small
     for prefix, stocks in shards.items():
         path = out / "scenario-stocks" / generation / f"{prefix}.json"
@@ -103,23 +111,24 @@ def write_public_dataset(out, board, identity):
     return {"indexBytes": (out / "scenario-public.test.json").stat().st_size, "detailShards": len(shards)}
 
 
-def refresh(root=ROOT, *, output_dir=None, cache_dir=None, old_board=None):
+def refresh(root=ROOT, *, output_dir=None, cache_dir=None, old_board=None, public_board_path=None):
     root = Path(root)
     out = Path(output_dir) if output_dir is not None else root / "test_output"
     cache = Path(cache_dir) if cache_dir is not None else root / "cache"
     sources = {"verifiedPointer": out / "verified_snapshot.json", "consensus": out / "forecast_engine/forecast_consensus.json",
         "guidance": out / "guidance.json", "observations": out / "forecast_engine/forecast_observations.json",
-        "evidence": out / "evidence_snapshot.json", "publicBoard": root / "data.json"}
+        "evidence": out / "evidence_snapshot.json", "publicBoard": Path(public_board_path) if public_board_path else root / "data.json"}
     before = {name: file_hash(path) for name, path in sources.items()}
     if not before["consensus"] or not before["verifiedPointer"]:
         raise ValueError("검증된 가격·전망 자료가 없습니다. 기존 수집기를 먼저 실행하세요.")
     prices, fundamentals, report = load_verified_frames(out, cache)
     pointer = read_json(sources["verifiedPointer"])
-    comparison_board = old_board or read_json(out / "data.test.json", {})
+    comparison_board = old_board or (read_json(sources["publicBoard"], {}) if public_board_path
+                                     else read_json(out / "data.test.json", {}))
     if not comparison_board:
-        comparison_board = read_json(root / "data.json", {})
+        comparison_board = read_json(sources["publicBoard"], {})
     # The public board remains the authority for immutable portfolio inputs.
-    portfolio = read_json(root / "data.json", {}).get("p3", {})
+    portfolio = read_json(sources["publicBoard"], {}).get("p3", {})
     comparison_board = dict(comparison_board, p3=portfolio)
     output = out / "scenario-board.test.json"
     previous = read_json(output)
@@ -158,9 +167,10 @@ def refresh(root=ROOT, *, output_dir=None, cache_dir=None, old_board=None):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=ROOT)
+    parser.add_argument("--public-board", type=Path, default=None)
     args = parser.parse_args()
     try:
-        result = refresh(args.root)
+        result = refresh(args.root, public_board_path=args.public_board)
     except Exception as exc:
         json_write(args.root / "test_output/scenario-refresh-status.json", {
             "status": "실패·이전유지", "attemptedAt": datetime.now(timezone.utc).isoformat(), "error": str(exc)})

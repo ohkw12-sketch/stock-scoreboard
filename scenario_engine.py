@@ -16,7 +16,7 @@ import statistics
 import numpy as np
 import pandas as pd
 
-VERSION = "scenario-research-1.6"
+VERSION = "scenario-research-1.7"
 USABLE = {"유효 컨센서스", "참고 컨센서스", "개별 추정치", "외부 집계 컨센서스"}
 RULES = {
     "minimumAnnualSales": 200_000_000_000, "minimumTurnover20": 1_000_000_000,
@@ -27,11 +27,13 @@ RULES = {
     "upActualMinGrowthPct": 25, "upActualMinDelta": 3_000_000_000,
     "upActualMinSalesGrowthPct": 10, "upActualMinMarginPct": 10,
     "upFundamentalDisplay": 20,
+    "upTrendMa60Floor": .97, "upRelative20Floor": -3,
+    "upVolumeFloor": .8, "upResistanceApproachPct": 8,
     "description": "상승은 예상·확정 이익 성장의 동시 확인부터 선별하고 가격은 진입 상태에만 사용. 전망이 있으면 약한 전망을 단일 분기 호조로 대체하지 않음. 지지·저항은 보유한 전 기간의 거래대금 집중 가격대와 돌파 이력을 요구. 종합점수·수주 건수 가점 없음.",
 }
 SCENARIOS = {
-    "up": {"title": "상승 시나리오", "subtitle": "예상·확정 이익 동반 성장 후 가격 진입 검토", "horizon": "기업 실적 6~12개월 · 진입 위치 20~60거래일",
-           "action": "추세·과거 거래 가격대 돌파·거래량이 함께 확인되는지 검토", "readyLabel": "조건 충족"},
+    "up": {"title": "상승 시나리오", "subtitle": "예상·확정 이익 동반 성장 후 추세·매물대 접근 확인", "horizon": "기업 실적 6~12개월 · 진입 위치 20~60거래일",
+           "action": "중기 추세 회복과 과거 큰 매물대 접근을 검토. 종가 돌파·거래량 증가는 별도 강신호", "readyLabel": "진입 검토"},
     "range": {"title": "박스권 시나리오", "subtitle": "반복 확인된 박스의 하단 접근", "horizon": "기업 실적 6~12개월 · 과거 거래 가격대 재확인",
               "action": "박스 하단 지지와 반등 확인 후 검토", "readyLabel": "조건 충족"},
     "down": {"title": "하락 시나리오", "subtitle": "보유 위험 점검과 상대적 방어력", "horizon": "보유 위험 점검 · 가격 흐름 20~60거래일",
@@ -603,11 +605,17 @@ def assess(stock):
                     "올해 하반기 예상 OP가 상반기의 2배를 넘는 경우 분기별 전망 근거 확인" if not f["h2BridgeVerified"] else
                     "금융업은 동일 영업이익 기준의 성장 순위에서 제외" if financial_sector else "")
     f["upCoreReason"] = core_waiting or "예상·확정 실적 동반 확인"
+    up_trend = bool(p["ma20"] and p["ma60"] and p["close"] >= p["ma20"]
+                    and p["close"] >= p["ma60"] * RULES["upTrendMa60Floor"])
+    up_relative = p.get("rs20") is not None and p["rs20"] >= RULES["upRelative20Floor"]
+    up_volume = p["volumeRatio"] is not None and p["volumeRatio"] >= RULES["upVolumeFloor"]
+    up_near_supply = bool(p["breakout"] or (extension is not None
+                          and -RULES["upResistanceApproachPct"] <= extension <= 0))
     up = [check("예상·확정 이익 동반 성장", f["upCore"], core_waiting),
-          check("중기 추세", p["ma60"] and p["ma20"] and p["close"] > p["ma20"] > p["ma60"], "종가 > 20일선 > 60일선 확인"),
-          check("시장 대비 강세", (p.get("rs20") or 0) > 0, "20일 시장 대비 수익률 양수 확인"),
-          check("큰 매물대 종가 돌파", p["breakout"], "과거 거래대금 집중 가격대를 거래량 동반 고가권 종가로 돌파 확인"),
-          check("거래량 확인", (p["volumeRatio"] or 0) >= 1.5, "최근 3일 / 직전 14일 거래량 1.5배 이상 확인")]
+          check("추세 회복", up_trend, "종가가 20일선 이상·60일선의 97% 이상인지 확인"),
+          check("시장 대비 낙폭 제한", up_relative, "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"),
+          check("큰 매물대 접근·돌파", up_near_supply, "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"),
+          check("거래량 유지", up_volume, "최근 3일 / 직전 14일 거래량 0.8배 이상 확인")]
     box = p.get("box")
     box_distance = pct(p["close"], box["low"]) if box else None
     ranged = [check("반복된 박스 상·하단 확인", bool(box), "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"),
@@ -630,6 +638,10 @@ def assess(stock):
         stock["scenarios"][key] = {"state": SCENARIOS[key]["readyLabel"] if base and all(c["met"] for c in checks) else "조건 대기",
             "ready": bool(base and all(c["met"] for c in checks)), "checks": checks,
             "waiting": blockers + [c["waiting"] for c in checks if not c["met"]]}
+    stock["scenarios"]["up"].update(
+        early=bool(base and f["upCore"] and up_trend and up_relative and up_volume),
+        strongBreakout=bool(base and f["upCore"] and p["breakout"] and (p["volumeRatio"] or 0) >= 1.5),
+        volume2x=bool(base and f["upCore"] and p["breakout"] and (p["volumeRatio"] or 0) >= 2))
     stock["nextChecks"] = ["다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
         "동일 기간 전망이 새로 발표되면 기존 수치와 비교", "가격 조건은 다음 완료 거래일에 다시 확인"]
     stock["invalidation"] = ["동일 기간 영업이익 전망 하향 시 개선 근거 재평가", "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
@@ -662,7 +674,14 @@ def choose(stocks, key):
         selected.append(s["ticker"])
     watch = []
     watch_count = 0
+    early_tickers = []
+    early_count = 0
     if key == "up":
+        early_candidates = [s for s in candidates if s["scenarios"]["up"]["early"]]
+        early_count = len(early_candidates)
+        early_candidates.sort(key=lambda s: (-(s["fundamentals"]["nextOPDelta"] or 0),
+                              -(s["fundamentals"]["latestOPDelta"] or 0), s["ticker"]))
+        early_tickers = [s["ticker"] for s in early_candidates[:RULES["upFundamentalDisplay"]]]
         watch_candidates = [s for s in candidates if s["eligible"] and not s["scenarios"]["up"]["ready"]]
         watch_count = len(watch_candidates)
         # Price proximity does not select or order companies. It only describes
@@ -681,7 +700,9 @@ def choose(stocks, key):
             if len(watch) >= RULES["upFundamentalDisplay"]:
                 break
     return {**SCENARIOS[key], "tickers": selected, "watchTickers": watch, "watchCount": watch_count,
+            "earlyTickers": early_tickers,
             "candidateCount": len(candidates),
+            "earlyCount": early_count,
             "readyCount": sum(s["scenarios"][key]["ready"] for s in candidates),
             "shownReadyCount": sum(s["scenarios"][key]["ready"] for s in candidates if s["ticker"] in selected)}
 

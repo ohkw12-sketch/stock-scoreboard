@@ -58,14 +58,23 @@ test('upside watch is a separate fundamentals-first comparison', {skip:!fs.exist
   const data=JSON.parse(fs.readFileSync(path.join(__dirname,'../test_output/scenario-public.test.json'),'utf8'));
   ui.setData(data);
   const ids=data.scenarios.up.watchTickers||[];
+  const early=data.scenarios.up.earlyTickers||[];
   assert.ok(ids.length<=20);
+  assert.ok(early.length<=20);
+  assert.ok(early.every(t=>data.stocks[t].scenarios.up.early));
+  assert.equal(early.length,data.scenarios.up.earlyCount);
   assert.ok(ids.every(t=>data.stocks[t].fundamentals.upCore && !data.stocks[t].scenarios.up.ready));
+  assert.ok(ids.every(t=>typeof data.stocks[t].scenarios.up.early==='boolean'));
+  assert.ok(data.scenarios.up.tickers.every(t=>data.stocks[t].scenarios.up.early));
   const deltas=ids.map(t=>data.stocks[t].fundamentals.nextOPDelta);
   assert.deepEqual(deltas,[...deltas].sort((a,b)=>b-a));
   const html=ui.renderView('scenarios');
-  assert.match(html,/가격 대기 · 기업 성장 우선후보/);
+  assert.match(html,/기업 성장 우선후보 · 가격 대기/);
   assert.match(html,/가격 조건은 순위에 반영하지 않습니다/);
+  assert.match(html,/선행 관찰/);
+  assert.match(html,/돌파와 거래량 1.5배·2배는 별도 강신호/);
   for(const ticker of ids)assert.match(html,new RegExp(`#stock/${ticker}`));
+  for(const ticker of early)assert.match(html,new RegExp(`#stock/${ticker}`));
 });
 
 function browserRuntime(fetch, hash='#overview'){
