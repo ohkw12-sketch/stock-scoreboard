@@ -56,7 +56,7 @@ class ValueGrowthTest(unittest.TestCase):
         self.assertEqual(result['rows'], [])
         self.assertEqual(result['dataStatus']['recentNegativeExcludedCount'], 1)
 
-    def test_sector_premium_and_seasonality_only_each_cost_five(self):
+    def test_sector_premium_costs_five_and_seasonality_only_costs_ten(self):
         value, growth_board, growth, fundamentals, prices = self.sources()
         value['_allRows'][0]['normalizedPOP'] = 11
         value['_allRows'][0]['sectorNormalizedPOP'] = 10
@@ -64,9 +64,9 @@ class ValueGrowthTest(unittest.TestCase):
         result = build_value_growth_board(value, growth_board, growth, fundamentals, prices,
                                           now=datetime(2026, 9, 19, tzinfo=KST))
         row = result['rows'][0]
-        self.assertEqual(row['riskPenalty'], 10)
+        self.assertEqual(row['riskPenalty'], 15)
         self.assertIn('당해연도 P/OP가 섹터 중앙보다 높음 -5', row['riskWarnings'])
-        self.assertIn('컨센서스·가이던스 없음·계절성 추정 -5', row['riskWarnings'])
+        self.assertIn('컨센서스·가이던스 없음·계절성 추정 -10', row['riskWarnings'])
         self.assertTrue(row['seasonalityEstimateOnly'])
 
     def test_final_display_is_capped_at_twenty_without_padding(self):
@@ -78,7 +78,9 @@ class ValueGrowthTest(unittest.TestCase):
     def test_market_interest_ranking_uses_growth_and_sector_attention_without_valuation(self):
         value, growth_board, growth, fundamentals, prices = self.sources()
         rotation = {'_allSectors': [{
-            'name': '검증', 'score': 90, 'rank': 1, 'stage': '②확산',
+            'name': '검증', 'score': 90, 'trendScore': 90, 'todayScore': 92,
+            'top20Days10': 8, 'trendState': '추세확인',
+            'rank': 1, 'stage': '②확산',
             'entryFit': '진입적합', 'riskGauge': 20,
         }]}
         result = build_value_growth_board(
@@ -86,11 +88,12 @@ class ValueGrowthTest(unittest.TestCase):
             now=datetime(2026, 9, 19, tzinfo=KST),
         )
         row = result['interestGrowth']['rows'][0]
-        self.assertEqual(row['interestGrowthScore'], 78)
+        self.assertEqual(row['interestGrowthScore'], 74)
         self.assertEqual(row['growthScore'], 70)
         self.assertEqual(row['sectorAttentionScore'], 90)
+        self.assertEqual(row['sectorTodayScore'], 92)
         self.assertFalse(row['valuationMetricsUsed'])
-        self.assertEqual(row['entryState'], '진입적합')
+        self.assertEqual(row['entryState'], '추세확인')
 
     def test_split_board_marks_names_present_in_both_top_lists(self):
         value, growth_board, growth, fundamentals, prices = self.sources()

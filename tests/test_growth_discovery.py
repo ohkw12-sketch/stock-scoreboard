@@ -181,11 +181,90 @@ class GrowthTest(unittest.TestCase):
         self.assertEqual(len(board['_audit']), 50)
         self.assertEqual(len(board['rows']), 10)
         self.assertEqual(set(board['rows'][0]['scoreComponents']), {
-            'eventScale', 'salesPersistence', 'profitConversion', 'revenueVisibility',
-            'evidenceConfidence', 'priceUnderreaction', 'financialSafety',
+            'eventScale', 'salesPersistence', 'profitConversion', 'marginAcceleration',
+            'industryIndicator', 'capacitySignal', 'revenueVisibility',
+            'evidenceConfidence', 'marketConfirmation', 'financialSafety',
         })
         self.assertEqual(board['rows'][0]['evidenceContents'][0]['source'], 'DART · 2026-04-01')
         self.assertIn('장비공급 계약을 체결했습니다', board['rows'][0]['evidenceContents'][0]['content'])
+
+    def test_current_year_margin_acceleration_is_explicit(self):
+        profile = fundamental_profile({
+            'value_fundamental_year': 2026,
+            'value_fundamental_complete': True,
+            'value_fundamental_sales': 400,
+            'value_fundamental_op': 40,
+            'value_fundamental_opm_pct': 10,
+            'value_fundamental_next_sales_growth_pct': 20,
+            'value_fundamental_q1_sales': 100,
+            'value_fundamental_q2_sales': 100,
+            'value_fundamental_q1_op': 5,
+            'value_fundamental_q2_op': 15,
+            'value_fundamental_average_quarterly_sales': 100,
+        })
+        self.assertEqual(profile['q1OperatingMarginPct'], 5)
+        self.assertEqual(profile['q2OperatingMarginPct'], 15)
+        self.assertEqual(profile['operatingMarginChangePp'], 10)
+        self.assertEqual(profile['operatingMarginAcceleration'], '개선')
+        self.assertGreater(profile['_marginAccelerationScore'], 50)
+
+    def test_industry_indicator_requires_explicit_product_link(self):
+        indicator = {
+            'eventId': 'trade-1', 'ticker': '@산업0', 'sector': '산업0',
+            'product': '반도체', 'kind': '수출통계', 'source': '산업통상부',
+            'sourceType': '산업통계', 'status': '유효', 'polarity': 'positive',
+            'firstPublished': '2026-08-01', 'publishedAt': '2026-08-01',
+            'lastVerified': '2026-09-05T09:00:00+09:00',
+            'materiality': 20, 'growthRate': 20, 'period': '2026-08',
+            'url': 'https://example.com/trade',
+        }
+        linked = build_growth_board(
+            prices(), pd.DataFrame(), [event()], {}, NOW,
+            sector_events=[indicator], sector_links={'trade-1': {'000001'}},
+        )
+        unlinked = build_growth_board(
+            prices(), pd.DataFrame(), [event()], {}, NOW,
+            sector_events=[indicator], sector_links={'trade-1': set()},
+        )
+        self.assertGreater(linked['rows'][0]['scoreComponents']['industryIndicator'], 50)
+        self.assertEqual(unlinked['rows'][0]['scoreComponents']['industryIndicator'], 50)
+        self.assertIn('2026-08 반도체 +20.0%', linked['rows'][0]['leadingIndicatorSummary'])
+
+    def test_capacity_is_confirmation_and_never_creates_candidate_alone(self):
+        capacity = event(
+            identity='capacity', kind='생산능력', polarity='positive', status='유효',
+            subject='신공장', equityRatio=30, capacityStage='증설 진행',
+            activeUntil='2027-12-31',
+        )
+        alone = build_growth_board(prices(), pd.DataFrame(), [capacity], {}, NOW)
+        together = build_growth_board(
+            prices(), pd.DataFrame(), [event(), capacity], {}, NOW,
+        )
+        self.assertEqual(alone['rows'], [])
+        self.assertGreater(together['rows'][0]['scoreComponents']['capacitySignal'], 50)
+        self.assertEqual(together['rows'][0]['expectationClusterCount'], 1)
+        self.assertIn('매출 연결 별도 확인', together['rows'][0]['capacitySignalSummary'])
+
+    def test_flow_and_price_volume_share_one_capped_market_component(self):
+        p = prices()
+        p['volume'] = 1000
+        flows = {
+            '000001': {
+                'asOfDate': '2026-09-04',
+                'foreignNet5': 500000000,
+                'institutionNet5': 500000000,
+                'foreignNet20': 1500000000,
+                'institutionNet20': 1500000000,
+            },
+        }
+        board = build_growth_board(
+            p, pd.DataFrame(), [event()], {}, NOW, investor_flows=flows,
+        )
+        row = board['rows'][0]
+        self.assertTrue(row['investorFlow']['available'])
+        self.assertGreater(row['scoreComponents']['marketConfirmation'], 50)
+        self.assertNotIn('investorFlow', row['scoreComponents'])
+        self.assertNotIn('priceVolume', row['scoreComponents'])
 
 
 if __name__ == '__main__':

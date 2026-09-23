@@ -32,6 +32,10 @@ def validate_html(html_path: Path, contract: dict) -> list[str]:
         headers = [th.get_text(" ", strip=True) for th in table.select("thead tr:last-child th")]
         if headers != table_contract["headers"]:
             errors.append(f"{name}: 제목/순서 변경 감지: {headers!r}")
+    for name, section_contract in contract.get("sections", {}).items():
+        container_id = section_contract.get("containerId")
+        if container_id and soup.find(id=container_id) is None:
+            errors.append(f"{name}: 컨테이너 #{container_id}가 없습니다.")
     start = html.find("function renderP2")
     end = html.find("function renderP3", start)
     renderer = html[start:end] if start >= 0 and end > start else ""
@@ -49,6 +53,21 @@ def validate_board(board: dict, contract: dict) -> list[str]:
     version = board.get("meta", {}).get("uiContractVersion")
     if version != contract["version"]:
         errors.append(f"data.json 화면 계약 버전이 {contract['version']}이 아닙니다: {version!r}")
+    for section_name, section_contract in contract.get("sections", {}).items():
+        rows = board.get(section_name, {}).get("sectors", [])
+        for index, row in enumerate(rows, start=1):
+            missing = [field for field in section_contract.get("fields", []) if field not in row]
+            if missing:
+                errors.append(
+                    f"{section_name} {index}행 필드 누락: {', '.join(missing)}"
+                )
+                continue
+            for field in section_contract.get("numericFields", []):
+                value = row.get(field)
+                if value is not None and not isinstance(value, (int, float)):
+                    errors.append(
+                        f"{section_name} {index}행 {field} 숫자 형식 변경 감지: {value!r}"
+                    )
     p2 = board.get("p2", {})
     value_tables = {
         "p2interest": p2.get("interestGrowth", {}).get("rows", []),

@@ -8,7 +8,8 @@ from pathlib import Path
 import pandas as pd
 
 from growth_discovery import KST, build_growth_board, collect_disclosures, collect_news_hints, number
-from growth_sources import collect_trade_evidence, consensus_evidence, product_exposure
+from growth_sources import (collect_investor_flows, collect_trade_evidence,
+                            consensus_evidence, product_exposure)
 from growth_documents import collect_verified_documents
 from youtube_content import collect_youtube_content
 from refresh_store import (json_write, read_json, run_lock, snapshot_files, public_fields, digest,
@@ -247,6 +248,9 @@ def rebuild(args, config):
         events, collection = collect_disclosures(config, set(prices.ticker), reuse=args.reuse_evidence)
         _, collection['news'] = collect_news_hints(config, sorted(set(prices['name'])), reuse=args.reuse_evidence)
         sector_events, collection['industryStatistics'] = collect_trade_evidence(config, reuse=args.reuse_evidence)
+        investor_flows, collection['investorFlows'] = collect_investor_flows(
+            config, prices, reuse=args.reuse_evidence,
+        )
         documents, collection['verifiedDocuments'] = collect_verified_documents(config, set(prices.ticker), reuse=args.reuse_evidence)
         collection['ir'] = collection['verifiedDocuments']
         consensus_status = report['fundamentals'].get('consensus', {})
@@ -260,7 +264,10 @@ def rebuild(args, config):
         links = {e['eventId']: product_exposure(listing, e) for e in sector_events}
         result = build_growth_board(
             prices, fundamentals, events, collection,
-            sector_events=sector_events, sector_links=links, config=config,
+            sector_events=sector_events,
+            sector_links=links,
+            investor_flows=investor_flows,
+            config=config,
         )
         growth_candidates = result.pop('_audit')
         json_write(out/'growth_audit.test.json', growth_candidates)
@@ -287,7 +294,13 @@ def rebuild(args, config):
     board.pop('growth', None)
     board['p3'] = isolated_section('p3', lambda: refresh_holdings(previous.get('p3', {}), prices, fundamentals),
                                    previous, states, context)
-    board['meta']['sourceSummary'] = f"가격 {report['latestPriceDate']} · 공시 {report['fundamentals'].get('asOfDate') or '미확인'} · 컨센서스 {report['fundamentals'].get('consensusAsOfDate') or '공급일 미확인'} · {report['runMode']}"
+    evidence_checked = str(collection.get('checkedAt') or collection.get('cacheReadAt') or '')[:10]
+    board['meta']['sourceSummary'] = (
+        f"가격 {report['latestPriceDate']} · 재무공시 "
+        f"{report['fundamentals'].get('asOfDate') or '미확인'} · 성장근거 "
+        f"{evidence_checked or '확인일 미상'} · 컨센서스 "
+        f"{report['fundamentals'].get('consensusAsOfDate') or '공급일 미확인'} · {report['runMode']}"
+    )
     board['meta']['uiContractVersion'] = load_contract()['version']
     board['meta']['audit'] = {'checkedAtKST': datetime.now(KST).strftime('%Y-%m-%d %H:%M'), 'sourceDate': report['latestPriceDate'],
                             'summary': report['runMode'] + ' · 구역별 검증 · 보유수량·평단 보존'}
@@ -295,8 +308,8 @@ def rebuild(args, config):
     board['meta']['runId'] = context['runId']
     board['meta']['refreshState'] = context
     board['meta']['note'] = (
-        '가치성장은 시장 관심·성장과 절대 저평가·성장을 별도 순위로 표시합니다. '
-        '시장 관심표에는 가치배수를 사용하지 않으며 점수와 신뢰도는 예측 확률이 아닙니다.'
+        '순환은 종목 추천 없이 5·10·20일 섹터 추세만 표시합니다. 가치성장은 시장 관심·성장과 '
+        '절대 저평가·성장을 분리하며, 종합추천은 가치성장·추세확인 섹터·비과열 교집합입니다.'
     )
     section_dir = out / 'sections'
     youtube_path = config['base_data_file'].parent/'youtube-market.json'
@@ -351,6 +364,15 @@ def rebuild(args, config):
     json_write(out/'collection_report.test.json', report)
     json_write(out/'refresh-status.test.json', {'runId': context['runId'], 'attemptedAt': generated,
         'sourceDate': report['latestPriceDate'], 'sections': states})
+    # Independent research uses the same verified inputs, never changes legacy
+    # rankings or portfolio inputs, and cannot block their validated refresh.
+    try:
+        from refresh_scenarios import refresh as refresh_scenarios
+        refresh_scenarios(config['base_data_file'].parent, output_dir=out,
+                          cache_dir=config['cache_dir'], old_board=board)
+    except Exception as exc:
+        json_write(out/'scenario-refresh-status.json', {'status': '실패·이전유지',
+            'attemptedAt': generated, 'priceDate': report['latestPriceDate'], 'error': str(exc)})
     print(json.dumps({'priceDate':report['latestPriceDate'], 'valueGrowthCount':len(p2.get('rows',[])),
                       'valueSourceCount':len(value_source.get('_allRows', [])),
                       'growthSourceCount':len(growth_candidates),

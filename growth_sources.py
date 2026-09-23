@@ -2,6 +2,7 @@
 import hashlib
 import json
 import re
+import time
 import urllib.parse
 import urllib.request
 from datetime import datetime
@@ -11,6 +12,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 
 from growth_discovery import KST, cached_source_status, day, fingerprint, json_write, number, read_json
+from kis_consensus import KisConsensusClient
 
 TRADE_PARSER_VERSION = 'motie-summary-v2'
 
@@ -182,6 +184,198 @@ def collect_trade_evidence(config, now=None, *, reuse=False):
     json_write(cache, combined)
     json_write(status_path, status)
     return combined, status
+
+
+def _kis_investor_signal(payload, ticker, latest, multiplier=1_000_000):
+    """Convert KIS's 30-session, KRW-million history into engine KRW totals."""
+    if str(payload.get('rt_cd', '')) != '0':
+        return None
+    rows = []
+    cutoff = latest.replace('-', '')
+    for row in payload.get('output') or []:
+        date = ''.join(ch for ch in str(row.get('stck_bsop_date') or '') if ch.isdigit())
+        foreign = number(row.get('frgn_ntby_tr_pbmn'))
+        institution = number(row.get('orgn_ntby_tr_pbmn'))
+        if len(date) != 8 or date > cutoff or foreign is None or institution is None:
+            continue
+        rows.append((date, foreign * multiplier, institution * multiplier))
+    rows.sort(reverse=True)
+    if len(rows) < 20:
+        return None
+    return {
+        'ticker': str(ticker).zfill(6),
+        'asOfDate': latest,
+        'foreignNet5': sum(row[1] for row in rows[:5]),
+        'institutionNet5': sum(row[2] for row in rows[:5]),
+        'foreignNet20': sum(row[1] for row in rows[:20]),
+        'institutionNet20': sum(row[2] for row in rows[:20]),
+    }
+
+
+def _collect_kis_investor_flows(config, prices, latest, checked):
+    """Fallback for KRX login failures, bounded to the liquid scoring universe."""
+    client = KisConsensusClient.from_environment()
+    if client is None:
+        return [], {'status': '설정필요', 'problem': 'KIS_APP_KEY/KIS_APP_SECRET 없음'}
+    liquid = prices.sort_values('date').groupby('ticker').tail(20).copy()
+    liquid['ticker'] = liquid['ticker'].astype(str).str.zfill(6)
+    liquid['_turnover'] = pd.to_numeric(liquid.get('value'), errors='coerce').fillna(0)
+    liquid = liquid.groupby('ticker')['_turnover'].mean().sort_values(ascending=False)
+    minimum = float(config.get('growth_minimum_average_turnover', 1_000_000_000))
+    limit = max(1, int(config.get('investor_flow_kis_max_requests', 1000)))
+    targets = liquid[liquid >= minimum].head(limit).index.tolist()
+    cached = read_json(Path(config['cache_dir']) / 'growth/investor_flows.json', {})
+    existing = {
+        str(row['ticker']).zfill(6): row for row in cached.get('signals', [])
+    } if cached.get('asOfDate') == latest else {}
+    pending = [ticker for ticker in targets if ticker not in existing]
+    pause = max(0.05, float(config.get('investor_flow_kis_pause_seconds', 0.06)))
+    multiplier = float(config.get('investor_flow_kis_amount_multiplier', 1_000_000))
+    complete, failures = list(existing.values()), []
+    try:
+        client.authenticate()
+    except Exception as exc:
+        return [], {'status': '수집실패', 'problem': f'KIS 인증 실패: {type(exc).__name__}'}
+    for ticker in pending:
+        try:
+            payload = client.fetch_investor_history(ticker)
+            signal = _kis_investor_signal(payload, ticker, latest, multiplier)
+            if signal is None:
+                raise ValueError('20-session investor history unavailable')
+            complete.append(signal)
+        except Exception as exc:
+            failures.append({'ticker': ticker, 'error': type(exc).__name__})
+        time.sleep(pause)
+    return complete, {
+        'source': 'KIS Developers 주식현재가 투자자',
+        'status': '정상' if complete and not failures else '부분수집' if complete else '수집실패',
+        'checkedAt': checked,
+        'asOfDate': latest,
+        'requestedCalls': len(pending),
+        'successfulCalls': len(pending) - len(failures),
+        'tickerCount': len(complete),
+        'failures': failures[:50],
+        'eligibleTickerCount': len(targets),
+        'cachedTickerCount': len(existing),
+        'scope': '20일 평균 거래대금 기준을 충족한 종목의 최근 5·20거래일 외국인·기관계 순매수 거래대금',
+        'problem': None if complete else 'KIS에서 20거래일 수급 이력을 확보하지 못함',
+    }
+
+
+def collect_investor_flows(config, prices, now=None, *, reuse=False):
+    """Prefer four KRX bulk calls, then fall back to the configured read-only KIS API."""
+    now = now or datetime.now(KST)
+    checked = now.isoformat(timespec='seconds')
+    cache = Path(config['cache_dir']) / 'growth/investor_flows.json'
+    status_path = cache.with_name('investor_flow_status.json')
+    previous = read_json(cache, {})
+    previous_status = read_json(
+        status_path, {'source': 'KRX 투자자별 순매수', 'status': '미수집'},
+    )
+    if prices.empty:
+        return {}, dict(previous_status, status='수집실패', problem='가격 기준일 없음')
+    dates = sorted(pd.to_datetime(prices['date']).dt.normalize().unique())
+    latest = pd.Timestamp(dates[-1]).strftime('%Y-%m-%d')
+    previous_signals = {
+        str(row['ticker']).zfill(6): row
+        for row in previous.get('signals', [])
+    } if previous.get('asOfDate') == latest else {}
+    if reuse:
+        status = cached_source_status(
+            previous_status, now, bool(previous_signals), '명시적 수급 캐시 재사용',
+        )
+        if not previous_signals:
+            status.update(status='미수집', problem='현재 가격 기준일과 일치하는 수급 캐시 없음')
+        return previous_signals, status
+    if len(dates) < 20:
+        return {}, {
+            'source': 'KRX 투자자별 순매수',
+            'status': '수집실패',
+            'checkedAt': checked,
+            'problem': '20거래일 가격 이력 부족',
+        }
+    try:
+        from pykrx import stock
+        import_failure = None
+    except ImportError:
+        stock = None
+        import_failure = {
+            'window': 'all', 'investor': 'all', 'error': 'pykrx 미설치',
+        }
+
+    boundaries = {
+        '5': pd.Timestamp(dates[-5]).strftime('%Y%m%d'),
+        '20': pd.Timestamp(dates[-20]).strftime('%Y%m%d'),
+    }
+    end = pd.Timestamp(dates[-1]).strftime('%Y%m%d')
+    fields = {
+        ('5', '외국인'): 'foreignNet5',
+        ('5', '기관합계'): 'institutionNet5',
+        ('20', '외국인'): 'foreignNet20',
+        ('20', '기관합계'): 'institutionNet20',
+    }
+    values, failures = {}, [import_failure] if import_failure else []
+    if stock is not None:
+        for (window, investor), field in fields.items():
+            try:
+                frame = stock.get_market_net_purchases_of_equities_by_ticker(
+                    boundaries[window], end, 'ALL', investor,
+                )
+                if frame is None or frame.empty:
+                    raise ValueError('empty response')
+                net_column = next(
+                    (column for column in frame.columns if '순매수거래대금' in str(column)),
+                    None,
+                )
+                if net_column is None:
+                    raise ValueError('net purchase value column unavailable')
+                for ticker, value in pd.to_numeric(frame[net_column], errors='coerce').items():
+                    if pd.isna(value):
+                        continue
+                    values.setdefault(str(ticker).zfill(6), {})[field] = float(value)
+            except Exception as exc:
+                failures.append({
+                    'window': window,
+                    'investor': investor,
+                    'error': type(exc).__name__,
+                })
+    complete = []
+    required = set(fields.values())
+    for ticker, row in values.items():
+        if required.issubset(row):
+            complete.append(dict(ticker=ticker, asOfDate=latest, **row))
+    status = {
+        'source': 'KRX 투자자별 순매수 via pykrx',
+        'status': '정상' if not failures and complete else '부분수집' if complete else '수집실패',
+        'checkedAt': checked,
+        'asOfDate': latest,
+        'requestedCalls': len(fields) if stock is not None else 0,
+        'successfulCalls': max(0, len(fields) - len(failures)) if stock is not None else 0,
+        'tickerCount': len(complete),
+        'failures': failures,
+        'scope': '최근 5·20거래일 외국인·기관합계 순매수거래대금; 성장근거의 시장확인에만 사용',
+    }
+    if complete and not failures:
+        json_write(cache, {'asOfDate': latest, 'signals': complete})
+        json_write(status_path, status)
+        return {row['ticker']: row for row in complete}, status
+    krx_status = status
+    kis_complete, kis_status = _collect_kis_investor_flows(config, prices, latest, checked)
+    if kis_complete:
+        kis_status['fallbackReason'] = 'KRX 로그인 또는 일괄 응답 실패'
+        kis_status['krxAttempt'] = {
+            'requestedCalls': krx_status['requestedCalls'],
+            'successfulCalls': krx_status['successfulCalls'],
+            'failures': krx_status['failures'],
+        }
+        json_write(cache, {'asOfDate': latest, 'signals': kis_complete})
+        json_write(status_path, kis_status)
+        return {row['ticker']: row for row in kis_complete}, kis_status
+    # A failed new request never relabels an older date as current.
+    status['problem'] = 'KRX와 KIS 모두 현재 가격 기준일의 20거래일 수급을 확보하지 못함'
+    status['kisFallback'] = kis_status
+    json_write(status_path, status)
+    return {}, status
 
 
 def product_exposure(listing, event):

@@ -29,11 +29,18 @@ from future_fundamentals import attach_future_fundamentals
 
 KST = timezone(timedelta(hours=9))
 EVENT_NAMES = re.compile(r'단일판매|공급계약|신규시설투자|영업.*전망|장래사업|기업설명회|투자판단')
-DISCLOSURE_PARSER_VERSION = 'dart-growth-v3'
+DISCLOSURE_PARSER_VERSION = 'dart-growth-v4'
 GROWTH_SCORE_WEIGHTS = {
-    'eventScale': .25, 'salesPersistence': .20, 'profitConversion': .15,
-    'revenueVisibility': .15, 'evidenceConfidence': .10,
-    'priceUnderreaction': .10, 'financialSafety': .05,
+    'eventScale': .20,
+    'salesPersistence': .15,
+    'profitConversion': .10,
+    'marginAcceleration': .15,
+    'industryIndicator': .10,
+    'capacitySignal': .05,
+    'revenueVisibility': .10,
+    'evidenceConfidence': .05,
+    'marketConfirmation': .05,
+    'financialSafety': .05,
 }
 
 
@@ -146,13 +153,30 @@ def parse_disclosure(item, markup, checked_at):
             event['sizePerYearProxy'] = round(annual_size, 2)  # scale proxy, NOT a revenue forecast
         event['excerpt'] = ' · '.join(str(x) for x in (subject, customer, end) if x)[:500]
     elif '신규시설투자' in title:
+        start = day(field(r'^시작일$'))
         end = day(field(r'^종료일$'))
         purpose = field(r'투자목적')
         amount = number(field(r'투자금액.*원|^투자금액$'))
         ratio = number(field(r'자기자본.*대비'))
-        event.update(kind='증설', subject=purpose, activeUntil=end, amount=amount,
-                     polarity='neutral', excerpt=(purpose or '')[:500])
-        # Capex alone does not prove demand; keep as a corroboration hint only.
+        usable = bool(purpose and end and amount is not None and amount > 0)
+        event.update(
+            kind='증설',
+            subject=purpose,
+            startAt=start,
+            activeUntil=end,
+            amount=amount,
+            equityRatio=ratio,
+            status='유효' if usable else '검토필요',
+            polarity='neutral',
+            factType='생산능력변화',
+            capacityStage=(
+                '가동·매출연결 확인' if usable and end < checked_at[:10]
+                else '증설 진행' if usable else '원문 검토'
+            ),
+            excerpt=(purpose or '')[:500],
+        )
+        # Capex alone does not prove demand. It can confirm another earnings
+        # expectation, but it cannot create a growth candidate by itself.
         event['eventId'] = fingerprint(event['ticker'], '증설', original or published, purpose)
     else:
         event['eventId'] = fingerprint(event['ticker'], title, original or published)
@@ -658,19 +682,30 @@ def fundamental_profile(row):
     q2_op = number(row.get('value_fundamental_q2_op'))
     sequential_growth = ((q2_sales / q1_sales - 1) * 100
                          if q1_sales is not None and q1_sales > 0 and q2_sales is not None else None)
-    growth = forecast_growth if forecast_growth is not None else sequential_growth
+    growth = forecast_growth
     if growth is not None:
         persistence = .85 * _score(growth, -20, 80) + 15 * int(growth > 0)
     else:
-        persistence = 0
+        # A sequential quarter change is not comparable with 27E/26E growth.
+        # Keep missing forward growth neutral and disclose the quarterly trend separately.
+        persistence = 50
     available = [value for value in (q1_op, q2_op) if value is not None]
     margin_score = None if margin is None else max(0, min(100, 50 + margin * 2))
     positive_quarters = 100 * sum(value > 0 for value in available) / len(available) if available else 50
     q1_margin = q1_op / q1_sales * 100 if q1_op is not None and q1_sales and q1_sales > 0 else None
     q2_margin = q2_op / q2_sales * 100 if q2_op is not None and q2_sales and q2_sales > 0 else None
-    margin_change_score = (max(0, min(100, 50 + (q2_margin - q1_margin) * 5))
-                           if q1_margin is not None and q2_margin is not None else 50)
-    quality = None if margin_score is None else .60 * margin_score + .25 * positive_quarters + .15 * margin_change_score
+    margin_change = (
+        q2_margin - q1_margin
+        if q1_margin is not None and q2_margin is not None else None
+    )
+    # Only current-year Q1 -> Q2 is used. Prior-year profit levels never enter
+    # this score; they remain seasonality ratios for the forecast fallback.
+    margin_acceleration = (
+        max(0, min(100, 50 + margin_change * 8
+                       + 15 * int(q1_op is not None and q1_op <= 0 < q2_op)))
+        if margin_change is not None else 50
+    )
+    quality = None if margin_score is None else .65 * margin_score + .35 * positive_quarters
     safety = 50 + 25 * int(op is not None and op > 0)
     if available:
         safety += 25 * int(all(value > 0 for value in available))
@@ -681,6 +716,19 @@ def fundamental_profile(row):
                     else f"{int(year)}년 2Q/1Q 매출" if year else "당해연도 분기 매출")
     return {'growthRate': round(growth, 1) if growth is not None else None,
             'growthBasis': growth_basis,
+            'growthComparable': forecast_growth is not None,
+            'quarterlyGrowthRate': (
+                round(sequential_growth, 1) if sequential_growth is not None else None
+            ),
+            'quarterlyGrowthBasis': f"{int(year)}년 2Q/1Q 매출" if year else "당해연도 2Q/1Q 매출",
+            'q1OperatingMarginPct': round(q1_margin, 1) if q1_margin is not None else None,
+            'q2OperatingMarginPct': round(q2_margin, 1) if q2_margin is not None else None,
+            'operatingMarginChangePp': round(margin_change, 1) if margin_change is not None else None,
+            'operatingMarginAcceleration': (
+                '개선' if margin_change is not None and margin_change > 0
+                else '둔화' if margin_change is not None and margin_change < 0
+                else '유지' if margin_change == 0 else '자료없음'
+            ),
             'fundamentalScore': round(quality, 1) if quality is not None else None,
             'fundamentalBasis': '당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님',
             'quarterlySales': round(q2_sales, 0) if q2_sales is not None else None,
@@ -693,24 +741,230 @@ def fundamental_profile(row):
             'seasonalityFallback': bool(row.get('value_fundamental_seasonality_used')),
             '_salesPersistenceScore': max(0, min(100, persistence)),
             '_profitConversionScore': quality or 0,
+            '_marginAccelerationScore': margin_acceleration,
             '_financialSafetyScore': max(0, min(100, safety)),
             '_q1SalesGrowth': None, '_q2SalesGrowth': sequential_growth}
 
 
 def revenue_visibility(events, today):
+    """Score contract visibility from annualized scale, not the full headline amount."""
     scores = []
     for event in events:
-        score = 35
-        score += 25 * int(event.get('activeUntil') is not None and event['activeUntil'] >= str(today))
-        score += 20 * int(number(event.get('amount')) is not None and number(event.get('revenueRatio')) is not None)
+        score = 30
+        score += 25 * int(
+            event.get('activeUntil') is not None and event['activeUntil'] >= str(today)
+        )
+        annualized_ratio = number(event.get('sizePerYearProxy'))
+        if annualized_ratio is not None:
+            score += 25 * _score(annualized_ratio, 0, 30) / 100
         score += 10 * int(bool(event.get('recurring')))
-        score += 10 * int(event.get('startAt') is not None and event['startAt'] <= str(today))
+        score += 10 * int(
+            event.get('startAt') is not None and event['startAt'] <= str(today)
+        )
         scores.append(min(100, score))
-    return min(100, (max(scores) if scores else 0) + max(0, len(events) - 1) * 5)
+    # Additional contracts help, but repeated filings cannot dominate the score.
+    return min(100, (max(scores) if scores else 0) + min(10, max(0, len(events) - 1) * 3))
 
 
 def underreaction_score(label):
     return {'미반영 가능': 100, '일부 가격 반응': 60, '판정 불가': 20, '큰 가격 반응': 0}.get(label, 20)
+
+
+def independent_evidence(events):
+    """Return one representative per underlying business event."""
+    grouped = {}
+    for event in sorted(events, key=lambda row: (
+        row.get('firstPublished', ''), row.get('publishedAt', ''), row.get('eventId', ''),
+    )):
+        key = event.get('independentEventId') or event.get('eventId')
+        previous = grouped.get(key)
+        if previous is None or number(event.get('materiality') or 0) >= number(previous.get('materiality') or 0):
+            merged = dict(event)
+            if previous:
+                merged['firstPublished'] = min(
+                    previous.get('firstPublished', merged.get('firstPublished', '')),
+                    merged.get('firstPublished', previous.get('firstPublished', '')),
+                )
+                merged['sourceTypes'] = sorted(set(
+                    previous.get('sourceTypes', [previous.get('sourceType')])
+                    + merged.get('sourceTypes', [merged.get('sourceType')])
+                ) - {None})
+            grouped[key] = merged
+        elif previous:
+            previous['sourceTypes'] = sorted(set(
+                previous.get('sourceTypes', [previous.get('sourceType')])
+                + event.get('sourceTypes', [event.get('sourceType')])
+            ) - {None})
+    return list(grouped.values())
+
+
+def industry_indicator_profile(ticker, sector_events, sector_links, today):
+    matched = []
+    for event in sector_events or []:
+        if ticker not in (sector_links or {}).get(event.get('eventId'), set()):
+            continue
+        if event.get('status') != '유효' or event.get('publishedAt', '') > str(today):
+            continue
+        age = (today - pd.Timestamp(event['firstPublished']).date()).days
+        if age <= 90:
+            matched.append(event)
+    if not matched:
+        return 50.0, [], '적용 가능한 공식 월별 산업지표 없음'
+    latest_period = max(str(event.get('period') or '') for event in matched)
+    latest = [event for event in matched if str(event.get('period') or '') == latest_period]
+    selected = max(latest, key=lambda event: abs(number(event.get('growthRate')) or 0))
+    growth = number(selected.get('growthRate'))
+    score = max(0, min(100, 50 + (growth or 0) * 1.5))
+    summary = (
+        f"{selected.get('period') or selected.get('publishedAt')} "
+        f"{selected.get('product') or selected.get('sector')} "
+        f"{growth:+.1f}%"
+    )
+    return round(score, 1), latest, summary
+
+
+def capacity_profile(events, today):
+    recent = []
+    for event in events:
+        if event.get('kind') not in {'증설', '생산능력'} or event.get('publishedAt', '') > str(today):
+            continue
+        age = (today - pd.Timestamp(event.get('firstPublished')).date()).days
+        end = pd.to_datetime(event.get('activeUntil'), errors='coerce')
+        completed_days = (pd.Timestamp(today) - end).days if pd.notna(end) else None
+        if age <= 730 and (completed_days is None or completed_days <= 180):
+            recent.append(event)
+    if not recent:
+        return 50.0, [], '확인된 생산능력 변화 없음'
+    selected = max(recent, key=lambda event: (
+        event.get('publishedAt', ''), number(event.get('equityRatio')) or 0,
+    ))
+    ratio = number(selected.get('equityRatio'))
+    progress = selected.get('status') == '유효'
+    score = 50 + 10 * int(progress) + min(25, max(0, ratio or 0) * .5)
+    summary = (
+        f"{selected.get('capacityStage') or '증설 확인'} · "
+        f"{selected.get('subject') or '시설투자'}"
+        + (f" · 자기자본 대비 {ratio:.1f}%" if ratio is not None else '')
+        + " · 매출 연결 별도 확인"
+    )
+    return round(max(0, min(100, score)), 1), [selected], summary
+
+
+def price_volume_profiles(prices):
+    """Current price/volume is confirmation only; it never creates a candidate."""
+    profiles = {}
+    if prices.empty or not {'ticker', 'date', 'close'}.issubset(prices.columns):
+        return profiles
+    raw = []
+    for ticker, group in prices.sort_values('date').groupby('ticker'):
+        close = pd.to_numeric(group['close'], errors='coerce')
+        valid = close.notna() & close.gt(0)
+        group, close = group.loc[valid], close.loc[valid]
+        if close.empty:
+            continue
+        current = float(close.iloc[-1])
+        ret20 = (current / float(close.iloc[-21]) - 1) * 100 if len(close) >= 21 else None
+        prior_high = float(close.iloc[-21:-1].max()) if len(close) >= 21 else None
+        breakout = bool(prior_high is not None and current > prior_high)
+        volume_multiple = None
+        if 'volume' in group and len(group) >= 25:
+            volume = pd.to_numeric(group['volume'], errors='coerce')
+            baseline = float(volume.iloc[-25:-5].mean())
+            volume_multiple = float(volume.tail(5).mean()) / baseline if baseline > 0 else None
+        raw.append({
+            'ticker': str(ticker).zfill(6),
+            'sector': str(group.iloc[-1].get('sector') or '미분류'),
+            'return20Pct': ret20,
+            'volumeMultiple5': volume_multiple,
+            'breakout20': breakout,
+        })
+    sector_returns = {}
+    for row in raw:
+        if row['return20Pct'] is not None:
+            sector_returns.setdefault(row['sector'], []).append(row['return20Pct'])
+    medians = {sector: float(np.median(values)) for sector, values in sector_returns.items()}
+    for row in raw:
+        relative = (
+            row['return20Pct'] - medians.get(row['sector'], row['return20Pct'])
+            if row['return20Pct'] is not None else None
+        )
+        score = 50
+        if relative is not None:
+            score += max(-20, min(20, relative * 1.5))
+        if row['volumeMultiple5'] is not None:
+            score += 15 if row['volumeMultiple5'] >= 2 else 8 if row['volumeMultiple5'] >= 1.3 else 0
+        score += 15 * int(row['breakout20'])
+        row.update(
+            relativeStrength20Pct=round(relative, 2) if relative is not None else None,
+            volumeMultiple5=round(row['volumeMultiple5'], 2) if row['volumeMultiple5'] is not None else None,
+            priceVolumeScore=round(max(0, min(100, score)), 1),
+        )
+        profiles[row['ticker']] = row
+    return profiles
+
+
+def investor_flow_profile(signal, average_turnover):
+    if not signal:
+        return {'available': False, 'score': None, 'label': '수급자료 없음',
+                'summary': '외국인·기관 수급자료 없음'}
+    foreign5 = number(signal.get('foreignNet5')) or 0
+    institution5 = number(signal.get('institutionNet5')) or 0
+    foreign20 = number(signal.get('foreignNet20')) or 0
+    institution20 = number(signal.get('institutionNet20')) or 0
+    total5, total20 = foreign5 + institution5, foreign20 + institution20
+    ratio20 = (
+        total20 / (average_turnover * 20) * 100
+        if average_turnover is not None and average_turnover > 0 else None
+    )
+    score = 50
+    score += 10 if total5 > 0 else -10 if total5 < 0 else 0
+    score += 15 if total20 > 0 else -15 if total20 < 0 else 0
+    score += 5 * int(foreign20 > 0) + 5 * int(institution20 > 0)
+    if ratio20 is not None:
+        score += max(-15, min(15, ratio20 * 3))
+    sustained = total5 > 0 and total20 > 0
+    label = '지속 순매수' if sustained else '순매수 전환' if total5 > 0 else '순매도' if total20 < 0 else '혼조'
+    summary = (
+        f"외국인·기관 합계 5일 {_eok(total5)} · 20일 {_eok(total20)} · {label}"
+    )
+    return {
+        'available': True,
+        'score': round(max(0, min(100, score)), 1),
+        'label': label,
+        'summary': summary,
+        'foreignNet5': foreign5,
+        'institutionNet5': institution5,
+        'foreignNet20': foreign20,
+        'institutionNet20': institution20,
+        'netFlowToTurnover20Pct': round(ratio20, 2) if ratio20 is not None else None,
+        'asOfDate': signal.get('asOfDate'),
+    }
+
+
+def market_confirmation(price_profile, flow_profile):
+    price_score = number((price_profile or {}).get('priceVolumeScore'))
+    flow_score = number((flow_profile or {}).get('score')) if flow_profile.get('available') else None
+    if price_score is None and flow_score is None:
+        score = 50.0
+    elif flow_score is None:
+        score = price_score
+    elif price_score is None:
+        score = flow_score
+    else:
+        # Flow and price/volume describe one market expectation, so the result
+        # is one capped component rather than two additive bonuses.
+        score = .60 * flow_score + .40 * price_score
+    pieces = [flow_profile.get('summary')] if flow_profile.get('available') else []
+    if price_profile:
+        relative = price_profile.get('relativeStrength20Pct')
+        volume = price_profile.get('volumeMultiple5')
+        pieces.append(
+            f"업종대비 20일 {relative:+.1f}%p" if relative is not None else "20일 상대강도 자료 부족"
+        )
+        if volume is not None:
+            pieces.append(f"최근 5일 거래량 {volume:.2f}배")
+        pieces.append('20일 고점 돌파' if price_profile.get('breakout20') else '20일 고점 미돌파')
+    return round(max(0, min(100, score)), 1), ' · '.join(pieces) or '시장 확인자료 없음'
 
 
 def _eok(value):
@@ -741,6 +995,10 @@ def evidence_contents(events, limit=3):
                 content += f". 계약금액은 {_eok(event['amount'])}"
             if number(event.get('revenueRatio')) is not None:
                 content += f"으로 최근 매출의 {_pct(event['revenueRatio']).lstrip('+')}"
+            if number(event.get('sizePerYearProxy')) is not None:
+                content += (
+                    f", 계약기간 기준 연환산 {_pct(event['sizePerYearProxy']).lstrip('+')}"
+                )
             if event.get('activeUntil'):
                 content += f"이며 계약은 {event['activeUntil']}까지 진행됩니다"
             content += '.'
@@ -755,6 +1013,14 @@ def evidence_contents(events, limit=3):
                 facts.append(f"영업이익 {_pct(event['opGrowth'])}")
             prefix = '회사 공식 가이던스를 기준으로 외부 추정치는' if event.get('guidanceUsed') else '외부 추정치는'
             content = f"{prefix} {period}에 {'·'.join(facts) or '실적 성장'}을 예상합니다."
+        elif kind in {'증설', '생산능력'}:
+            content = (
+                f"{event.get('subject') or '시설투자'} · "
+                f"{event.get('capacityStage') or '진행상태 확인 필요'}"
+            )
+            if number(event.get('equityRatio')) is not None:
+                content += f" · 자기자본 대비 {event['equityRatio']:.1f}%"
+            content += '. 매출 연결은 별도 확인이 필요합니다.'
         elif number(event.get('growthRate')) is not None:
             product = event.get('product') or event.get('sector') or '해당 품목'
             period = event.get('period') or event.get('publishedAt') or '최근 기간'
@@ -782,12 +1048,25 @@ def financial_summary(profile, average_turnover):
         parts.append(f"{year}E 분기평균 매출 {_eok(profile['averageQuarterlySales'])}")
     if profile.get('averageQuarterlyOperatingMarginPct') is not None:
         parts.append(f"{year}E 영업이익률 {profile['averageQuarterlyOperatingMarginPct']:.1f}%")
+    if profile.get('operatingMarginChangePp') is not None:
+        parts.append(
+            f"1Q→2Q 영업이익률 {profile['q1OperatingMarginPct']:.1f}%→"
+            f"{profile['q2OperatingMarginPct']:.1f}% "
+            f"({profile['operatingMarginChangePp']:+.1f}%p)"
+        )
     if profile.get('fundamentalSource'):
         parts.append(str(profile['fundamentalSource']))
     if average_turnover is not None:
         parts.append(f"20일 평균 거래대금 {_eok(average_turnover)}")
     if profile.get('growthRate') is not None:
-        parts.append(f"누적 매출 {profile['growthRate']:+g}%")
+        parts.append(
+            f"매출 성장 {profile['growthRate']:+g}% ({profile.get('growthBasis', '기준 미확인')})"
+        )
+    elif profile.get('quarterlyGrowthRate') is not None:
+        parts.append(
+            f"분기 흐름 {profile['quarterlyGrowthRate']:+g}% "
+            f"({profile.get('quarterlyGrowthBasis', '2Q/1Q')}; 순위 성장률 미사용)"
+        )
     return ' · '.join(parts)
 
 
@@ -802,12 +1081,17 @@ def market_restriction(stock):
 
 
 def build_growth_board(prices, fundamentals, events, source_status, now=None,
-                       sector_events=None, sector_links=None, config=None):
+                       sector_events=None, sector_links=None, investor_flows=None, config=None):
     now = now or datetime.now(KST)
     today = now.date()
     config = config or {}
-    minimum_average_quarterly_sales = float(config.get('selection_minimum_average_quarterly_sales', 0))
-    minimum_average_quarterly_margin = float(config.get('selection_minimum_average_quarterly_op_margin_pct', 0))
+    minimum_average_quarterly_sales = float(config.get(
+        'growth_minimum_average_quarterly_sales',
+        config.get('selection_minimum_average_quarterly_sales', 0),
+    ))
+    minimum_average_quarterly_margin = float(config.get(
+        'growth_minimum_average_quarterly_op_margin_pct', 0,
+    ))
     minimum_average_turnover = float(config.get('growth_minimum_average_turnover', 0))
     candidate_limit = int(config.get('growth_candidate_count', 50))
     excluded_tickers = {str(value).zfill(6) for value in config.get('growth_excluded_tickers', [])}
@@ -820,6 +1104,8 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
     fundamentals = attach_future_fundamentals(fundamentals, current_year=today.year)
     financials = {str(r['ticker']).zfill(6): r for r in fundamentals.to_dict('records')}
     response = PriceResponse(prices)
+    price_profiles = price_volume_profiles(prices)
+    investor_flows = investor_flows or {}
     grouped = {}
     for event in merge_events(events):
         if pd.Timestamp(event['firstPublished']).date() > today:
@@ -836,7 +1122,13 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
         if ticker in excluded_tickers or restriction:
             risk_excluded.add(ticker)
             continue
-        positives = [e for e in evidence if e['polarity'] == 'positive' and e['status'] == '유효']
+        corroboration_kinds = {'증설', '생산능력', '자본배분'}
+        positives = [
+            e for e in evidence
+            if e['polarity'] == 'positive'
+            and e['status'] == '유효'
+            and e.get('kind') not in corroboration_kinds
+        ]
         eligible, reactions = [], []
         recent_negative = any(e['polarity'] == 'negative' and (today - pd.Timestamp(e['publishedAt']).date()).days <= 90 for e in evidence)
         for event in positives:
@@ -847,7 +1139,7 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
                 eligible.append(event)
         if not eligible:
             continue
-        conf = confidence(eligible + [e for e in evidence if e['polarity'] == 'negative' and (today - pd.Timestamp(e['publishedAt']).date()).days <= 90])
+        eligible = independent_evidence(eligible)
         profile = fundamental_profile(financials.get(ticker, {}))
         average_turnover = number(turnover20.get(ticker))
         if minimum_average_quarterly_sales and (
@@ -864,32 +1156,96 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
             continue
         if minimum_average_turnover and (average_turnover is None or average_turnover < minimum_average_turnover):
             continue
+        industry_score, industry_events, industry_summary = industry_indicator_profile(
+            ticker, sector_events, sector_links, today,
+        )
+        capacity_score, capacity_events, capacity_summary = capacity_profile(evidence, today)
+        recent_negatives = [
+            e for e in evidence
+            if e['polarity'] == 'negative'
+            and (today - pd.Timestamp(e['publishedAt']).date()).days <= 90
+        ]
+        confidence_events = independent_evidence(eligible + industry_events) + recent_negatives
+        conf = confidence(confidence_events)
+        flow_profile = investor_flow_profile(investor_flows.get(ticker), average_turnover)
+        price_profile = price_profiles.get(ticker, {})
+        confirmation_score, confirmation_summary = market_confirmation(
+            price_profile, flow_profile,
+        )
         anchor = max(eligible, key=lambda e: e.get('materiality', 0))
         reaction = next(r for r in reactions if r['eventId'] == anchor['eventId'])
         materiality = max(e.get('materiality', 0) for e in eligible)
-        recent_negatives = [e for e in evidence if e['polarity'] == 'negative' and (today - pd.Timestamp(e['publishedAt']).date()).days <= 90]
+        margin_acceleration_score = profile.pop('_marginAccelerationScore')
+        margin_change = profile.get('operatingMarginChangePp')
+        margin_summary = (
+            f"1Q→2Q 영업이익률 {profile['q1OperatingMarginPct']:.1f}%→"
+            f"{profile['q2OperatingMarginPct']:.1f}% ({margin_change:+.1f}%p)"
+            if margin_change is not None else "1Q→2Q 영업이익률 자료 없음"
+        )
+        leading_indicator_score = (
+            .50 * margin_acceleration_score
+            + .35 * industry_score
+            + .15 * capacity_score
+        )
+        display_evidence = independent_evidence(eligible + industry_events + capacity_events)
         components = {
             'eventScale': materiality,
             'salesPersistence': profile.pop('_salesPersistenceScore'),
             'profitConversion': profile.pop('_profitConversionScore'),
+            'marginAcceleration': margin_acceleration_score,
+            'industryIndicator': industry_score,
+            'capacitySignal': capacity_score,
             'revenueVisibility': revenue_visibility(eligible, today),
             'evidenceConfidence': conf['score'],
-            'priceUnderreaction': underreaction_score(reaction['label']),
-            'financialSafety': max(0, profile.pop('_financialSafetyScore') - len(recent_negatives) * 20),
+            'marketConfirmation': confirmation_score,
+            'financialSafety': max(
+                0, profile.pop('_financialSafetyScore') - len(recent_negatives) * 20
+            ),
         }
         total = sum(GROWTH_SCORE_WEIGHTS[key] * value for key, value in components.items())
-        result = dict(ticker=ticker, name=stock['name'], sector=stock['sector'], **profile,
-                      confidence=conf['label'], evidenceCount=conf['evidenceCount'], confidenceScore=conf['score'],
-                      priceReflection=reaction['label'], score=round(total, 2),
-                      averageTurnover20=round(average_turnover, 0) if average_turnover is not None else None,
-                      financialSummary=financial_summary(profile, average_turnover),
-                      evidenceContents=evidence_contents(eligible),
-                      scoreComponents={key: round(value, 1) for key, value in components.items()},
-                      stage='초기 포착' if conf['evidenceCount'] == 1 else '근거 확대',
-                      firstPublished=min(e['firstPublished'] for e in eligible), lastVerified=max(e['lastVerified'] for e in eligible),
-                      sourceDate=str(response.latest.date()), oldEvidenceCount=sum((today-pd.Timestamp(e['firstPublished']).date()).days > 90 for e in eligible))
+        result = dict(
+            ticker=ticker,
+            name=stock['name'],
+            sector=stock['sector'],
+            **profile,
+            confidence=conf['label'],
+            evidenceCount=conf['evidenceCount'],
+            confidenceScore=conf['score'],
+            expectationClusterCount=len(eligible),
+            priceReflection=reaction['label'],
+            score=round(total, 2),
+            averageTurnover20=round(average_turnover, 0) if average_turnover is not None else None,
+            financialSummary=financial_summary(profile, average_turnover),
+            leadingIndicatorScore=round(leading_indicator_score, 1),
+            leadingIndicatorSummary=' · '.join(
+                [margin_summary, industry_summary, capacity_summary]
+            ),
+            marketConfirmationScore=confirmation_score,
+            marketConfirmationSummary=confirmation_summary,
+            industryIndicatorSummary=industry_summary,
+            capacitySignalSummary=capacity_summary,
+            investorFlow=flow_profile,
+            priceVolumeConfirmation=price_profile,
+            evidenceContents=evidence_contents(display_evidence),
+            scoreComponents={key: round(value, 1) for key, value in components.items()},
+            stage='초기 포착' if conf['evidenceCount'] == 1 else '근거 확대',
+            firstPublished=min(e['firstPublished'] for e in eligible),
+            lastVerified=max(e['lastVerified'] for e in eligible),
+            sourceDate=str(response.latest.date()),
+            oldEvidenceCount=sum(
+                (today - pd.Timestamp(e['firstPublished']).date()).days > 90
+                for e in eligible
+            ),
+        )
         candidates.append(result)
-        audited.append(dict(result, events=eligible, priceResponses=reactions, counterEvidence=[e for e in evidence if e['polarity']=='negative']))
+        audited.append(dict(
+            result,
+            events=display_evidence,
+            priceResponses=reactions,
+            counterEvidence=[
+                e for e in evidence if e['polarity'] == 'negative'
+            ],
+        ))
     candidates.sort(key=lambda r: (-r['score'], r['ticker']))
     pre_cut_count = len(candidates)
     candidates = candidates[:candidate_limit]
@@ -960,10 +1316,14 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
                 continue
             persistence = profile.pop('_salesPersistenceScore')
             quality = profile.pop('_profitConversionScore')
+            margin_acceleration = profile.pop('_marginAccelerationScore')
             safety = profile.pop('_financialSafetyScore')
             profile.pop('_q1SalesGrowth', None)
             profile.pop('_q2SalesGrowth', None)
-            member_score = .45*persistence + .35*quality + .20*safety
+            member_score = (
+                .35 * persistence + .25 * quality
+                + .25 * margin_acceleration + .15 * safety
+            )
             members.append(dict(ticker=ticker,name=stock['name'],sector=name,**profile,score=round(member_score,2),
                                 averageTurnover20=round(average_turnover, 0) if average_turnover is not None else None,
                                 exposureBasis='상장사 제품 정보 일치 + 실제 매출 성장; 기업별 수출액 미확인'))
@@ -1000,14 +1360,21 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
                                marketRiskFieldsAvailable=any(column in prices for column in (
                                    'is_management', 'is_suspended', 'is_delisting', 'management_issue',
                                    'trading_halt', 'trading_status', 'market_warning', 'listing_status')),
+                               investorFlowCoverageCount=sum(
+                                   bool(r.get('investorFlow', {}).get('available'))
+                                   for r in candidates
+                               ),
+                               signalStructure='예상실적·근거 → 실적·산업 선행검증 → 수급·주가 확인',
                                oldEvidenceUsed=sum(r['oldEvidenceCount'] for r in candidates)),
-            'methodVersion': 'growth-evidence-v3', 'updatedKST': now.strftime('%Y-%m-%d %H:%M'),
+            'methodVersion': 'growth-evidence-v4', 'updatedKST': now.strftime('%Y-%m-%d %H:%M'),
             'notice': (f'{today.year}년 전망 분기평균 매출 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원·'
                        f'예상 영업이익률 {minimum_average_quarterly_margin:g}%·'
                        f'20일 평균 거래대금 {minimum_average_turnover / 100_000_000:,.0f}억원 이상을 '
                        f'선조건으로 적용해 {candidate_limit}개 후보를 선별합니다. '
                        '컨센서스·가이던스가 없으면 1·2분기 실제치와 전년도 계절성 비율로 3·4분기를 추정하며, '
                        '전년도 절대 실적은 점수에 사용하지 않습니다. '
-                       '점수는 사건규모 25%, 매출성장 지속·가속 20%, 이익전환 15%, 매출가시성 15%, '
-                       '근거신뢰도 10%, 주가 미반영 10%, 확인 가능한 재무·희석위험 5%입니다.'),
+                       '예상실적·공시근거 60%, 당해연도 이익률 가속·공식 월별 산업지표·생산능력 변화 30%, '
+                       '외국인·기관 수급과 가격·거래량의 단일 시장확인 요인 5%, 재무안전 5%로 계산합니다. '
+                       '새 보조자료가 없다는 이유만으로 감점하지 않으며 같은 사업사건의 기사·공시·시장반응은 '
+                       '하나의 기대요인으로 묶습니다.'),
             '_audit': audited}

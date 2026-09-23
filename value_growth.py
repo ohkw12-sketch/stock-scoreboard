@@ -9,7 +9,7 @@ import pandas as pd
 
 
 KST = timezone(timedelta(hours=9))
-RULE_VERSION = "value-growth-split-3.0"
+RULE_VERSION = "value-growth-split-4.0"
 DISPLAY_LIMIT = 20
 
 
@@ -47,6 +47,49 @@ def _consensus_only(row: dict) -> bool:
     )
 
 
+def _price_metrics(prices: pd.DataFrame) -> dict[str, dict]:
+    """Return medium-term, non-chasing price checks for combined selection."""
+    metrics: dict[str, dict] = {}
+    if prices.empty or "ticker" not in prices or "close" not in prices:
+        return metrics
+    for ticker, group in prices.sort_values("date").groupby("ticker"):
+        closes = pd.to_numeric(group["close"], errors="coerce").dropna()
+        if closes.empty:
+            continue
+        current = float(closes.iloc[-1])
+        ret5 = (
+            (current / float(closes.iloc[-6]) - 1) * 100
+            if len(closes) >= 6 and closes.iloc[-6] > 0 else None
+        )
+        ma20 = float(closes.tail(20).mean()) if len(closes) >= 20 else None
+        previous_ma20 = float(closes.iloc[-21:-1].mean()) if len(closes) >= 21 else None
+        distance = (
+            (current / ma20 - 1) * 100 if ma20 is not None and ma20 > 0 else None
+        )
+        slope = (
+            (ma20 / previous_ma20 - 1) * 100
+            if ma20 is not None and previous_ma20 is not None and previous_ma20 > 0
+            else None
+        )
+        non_overheated = bool(
+            ret5 is not None
+            and distance is not None
+            and slope is not None
+            and ret5 <= 10
+            and distance <= 7
+            and distance >= -3
+            and slope > 0
+        )
+        metrics[str(ticker).zfill(6)] = {
+            "currentPrice": round(current, 2),
+            "fiveDayReturnPct": round(ret5, 2) if ret5 is not None else None,
+            "ma20DistancePct": round(distance, 2) if distance is not None else None,
+            "ma20SlopePct": round(slope, 2) if slope is not None else None,
+            "nonOverheated": non_overheated,
+        }
+    return metrics
+
+
 def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> tuple[int, list[str], dict]:
     op = [_number(fundamental.get(f"value_fundamental_q{quarter}_op")) for quarter in (1, 2)]
     sales = [_number(fundamental.get(f"value_fundamental_q{quarter}_sales")) for quarter in (1, 2)]
@@ -82,8 +125,8 @@ def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> 
         warnings.append("당해연도 P/OP가 섹터 중앙보다 높음 -5")
 
     if bool(value_row.get("seasonalityFallback")):
-        penalty += 5
-        warnings.append("컨센서스·가이던스 없음·계절성 추정 -5")
+        penalty += 10
+        warnings.append("컨센서스·가이던스 없음·계절성 추정 -10")
 
     if _consensus_only(growth_row):
         penalty += 5
@@ -118,6 +161,7 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
     financials = {str(row.get("ticker", "")).zfill(6): row for row in fundamentals.to_dict("records")}
     latest_prices = prices.sort_values("date").groupby("ticker").tail(1)
     latest = {str(row.get("ticker", "")).zfill(6): row for row in latest_prices.to_dict("records")}
+    price_checks = _price_metrics(prices)
     common = sorted(set(values) & set(growth))
     absolute_rows, exclusions = [], []
     for ticker in common:
@@ -161,6 +205,7 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             "fundamentalYear": value_row.get("fundamentalYear"),
             "seasonalityFallback": value_row.get("seasonalityFallback", False),
             "sectorAttentionUsed": False,
+            **price_checks.get(ticker, {}),
             **risk_metrics,
         })
         absolute_rows.append(row)
@@ -181,19 +226,28 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             continue
         sector_row = sectors.get(str(growth_row.get("sector", "")))
         growth_score = _number(growth_row.get("score"))
-        sector_score = _number((sector_row or {}).get("score"))
+        sector_score = _number(
+            (sector_row or {}).get("trendScore", (sector_row or {}).get("score"))
+        )
         if growth_score is None or sector_score is None:
             continue
-        interest_score = round(.60 * growth_score + .40 * sector_score, 2)
+        # Sector interest is deliberately capped at 20% because the rotation tab
+        # already exposes the same signal.  Company growth remains the main rank.
+        interest_score = round(.80 * growth_score + .20 * sector_score, 2)
         stage = str(sector_row.get("stage") or "")
+        trend_state = str(sector_row.get("trendState") or "관찰")
         entry_fit = str(sector_row.get("entryFit") or "관찰")
         risk_gauge = _number(sector_row.get("riskGauge")) or 0
-        if entry_fit == "추격금지" or stage == "⑥후반":
+        if stage == "⑥후반":
             entry_state = "추격주의"
         elif risk_gauge >= 70:
             entry_state = "과열주의"
+        elif trend_state in {"추세확인", "추세유지"}:
+            entry_state = trend_state
+        elif trend_state == "신규포착":
+            entry_state = "확인대기"
         else:
-            entry_state = entry_fit
+            entry_state = trend_state
         row = deepcopy(growth_row)
         row.pop("events", None)
         row.pop("priceResponses", None)
@@ -204,12 +258,17 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             "score": interest_score,
             "growthScore": round(growth_score, 2),
             "sectorAttentionScore": round(sector_score, 1),
+            "sectorTrendScore": round(sector_score, 1),
+            "sectorTodayScore": sector_row.get("todayScore"),
+            "sectorTop20Days10": sector_row.get("top20Days10"),
+            "sectorTrendState": trend_state,
             "sectorRank": sector_row.get("rank"),
             "sectorStage": stage,
             "sectorEntryFit": entry_fit,
             "sectorRiskGauge": round(risk_gauge, 1),
             "entryState": entry_state,
             "valuationMetricsUsed": False,
+            **price_checks.get(ticker, {}),
         })
         interest_rows.append(row)
     interest_rows.sort(key=lambda row: (-row["interestGrowthScore"], row["ticker"]))
@@ -228,12 +287,12 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
     source_date = next((row.get("sourceDate") for row in all_interest_rows if row.get("sourceDate")),
                        value_board.get("_meta", {}).get("asOfDate"))
     interest_method = (
-        "기업별 성장근거 60% + 해당 섹터 시장관심 40% · P/OP·PER·섹터 할인율은 사용하지 않음 · "
-        "과열·후반 섹터는 순위에서 숨기지 않고 진입상태로 표시"
+        "기업별 성장근거 80% + 해당 섹터 5·10·20일 추세 20% · 가치배수 제외 · "
+        "섹터 신호 중복을 줄이고 오늘 강도와 추세상태를 별도 표시"
     )
     absolute_method = (
-        "절대 P/OP와 당해연도 상반기 이익품질로 만든 가치점수 50% + 기업별 성장근거 50% "
-        "- 위험감점(최대 25점) · 섹터 상대가치와 시장관심은 사용하지 않음"
+        "P/OP 15배 이하·절대가치점수 60점 이상만 대상 · 금융·지주 제외 · "
+        "절대가치 50% + 기업별 성장근거 50% - 위험감점(최대 25점)"
     )
     return {
         "status": (
@@ -292,8 +351,8 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
         "sourceDate": source_date,
         "updatedKST": now.strftime("%Y-%m-%d %H:%M"),
         "notice": (
-            "두 표 모두 최소 매출·영업이익률과 검증된 성장근거를 요구합니다. 절대 저평가표는 "
-            "가이던스·컨센서스가 없고 계절성 추정만 사용하면 5점을 감점합니다."
+            "시장관심표는 성장용 완화 선조건과 동일 기간 성장률만 사용합니다. 절대 저평가표는 "
+            "엄격한 가치 선조건을 적용하며 계절성 추정만 사용하면 10점을 감점합니다."
         ),
         "_meta": {"asOfDate": source_date, "engineVersion": RULE_VERSION,
                   "projectType": "value-growth", "displayLimit": int(display_limit)},

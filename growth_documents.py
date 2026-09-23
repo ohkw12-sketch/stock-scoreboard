@@ -20,8 +20,11 @@ from urllib.parse import urlsplit
 from growth_discovery import (KST, cached_source_status, day, fingerprint, json_write,
                               merge_events, read_json)
 
-PARSER_VERSION = 'verified-growth-documents-v1'
-ALLOWED_KINDS = {'수주', '해외진출', '판매성장', '생산능력', '사업확장', '실적', 'IR'}
+PARSER_VERSION = 'verified-growth-documents-v2'
+ALLOWED_KINDS = {
+    '수주', '해외진출', '판매성장', '생산능력', '사업확장', '실적', 'IR',
+    '제품·고객', '비용정상화', '고객사·경쟁사', '정책', '자본배분',
+}
 
 
 def _timestamp(value, now):
@@ -71,6 +74,8 @@ def parse_verified_document(document, universe, now):
         kind, polarity, validity = fact.get('kind'), fact.get('polarity'), fact.get('validity')
         if kind not in ALLOWED_KINDS or polarity not in {'positive', 'neutral', 'negative'} or validity not in {'active', 'invalid', 'review'}:
             raise ValueError('검증된 사건 종류·방향·유효성 없음')
+        if kind == '고객사·경쟁사' and fact.get('relationshipVerified') is not True:
+            raise ValueError('고객사·경쟁사 근거는 실제 납품·거래 관계 확인이 필요함')
         first = day(fact.get('firstPublished')) or published
         until = day(fact.get('activeUntil'))
         if first > published:
@@ -87,7 +92,12 @@ def parse_verified_document(document, universe, now):
                            sourceType=source_type, url=url, kind=kind, polarity=polarity,
                            status=status, firstPublished=first, publishedAt=published,
                            fetchedAt=fetched_at, lastVerified=verified_at, activeUntil=until,
-                           factType='원문확인사실', materiality=0.0, excerpt=excerpt[:1000],
+                           factType='원문확인사실', materiality=0.0,
+                           subject=fact.get('subject') or excerpt[:240],
+                           relationshipVerified=fact.get('relationshipVerified'),
+                           reportedMetric=fact.get('reportedMetric'),
+                           reportedValue=fact.get('reportedValue'),
+                           excerpt=excerpt[:1000],
                            contentHash=content_hash, verifiedBy=verified['reviewer'],
                            parserVersion=PARSER_VERSION))
     return document_id, content_hash, events

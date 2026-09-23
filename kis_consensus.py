@@ -25,6 +25,8 @@ ESTIMATE_URL = "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/
 ESTIMATE_TR_ID = "HHKST668300C0"
 PRICE_URL = "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-price"
 PRICE_TR_ID = "FHKST01010100"
+INVESTOR_URL = "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-investor"
+INVESTOR_TR_ID = "FHKST01010900"
 
 
 def _number(value) -> float:
@@ -258,6 +260,26 @@ class KisConsensusClient:
             "content-type": "application/json", "authorization": f"Bearer {self.access_token}",
             "appkey": self.app_key, "appsecret": self.app_secret,
             "tr_id": PRICE_TR_ID, "custtype": "P",
+        })
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+                return json.load(response)
+        except urllib.error.HTTPError as exc:
+            if exc.code == 401:
+                self.access_token = None
+            raise
+
+    def fetch_investor_history(self, ticker: str) -> dict:
+        """Fetch the read-only 30-session foreign/institution trading history."""
+        if not self.access_token:
+            self.authenticate()
+        query = urllib.parse.urlencode({
+            "FID_COND_MRKT_DIV_CODE": "J", "FID_INPUT_ISCD": str(ticker).zfill(6),
+        })
+        request = urllib.request.Request(f"{INVESTOR_URL}?{query}", headers={
+            "content-type": "application/json", "authorization": f"Bearer {self.access_token}",
+            "appkey": self.app_key, "appsecret": self.app_secret,
+            "tr_id": INVESTOR_TR_ID, "custtype": "P",
         })
         try:
             with urllib.request.urlopen(request, timeout=self.timeout) as response:

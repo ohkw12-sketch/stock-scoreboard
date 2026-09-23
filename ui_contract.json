@@ -1,30 +1,51 @@
 {
-  "version": "2026-09-22.1",
-  "description": "사용자가 확정한 주식평가창 제목·순서·표시형식 계약. 명시적인 화면 변경 요청 없이는 수정하지 않는다.",
-  "tables": {
+  "version": "2026-09-23.1",
+  "description": "사용자가 확정한 섹터 추세·시장관심성장·절대가치성장과 선행검증·시장확인 표시 계약.",
+  "sections": {
     "p11": {
-      "tbodyId": "p11body",
-      "headers": [
-        "순위",
-        "종목",
-        "섹터관계",
-        "순환단계",
-        "상대강도",
-        "순환상태",
-        "핵심근거"
+      "containerId": "p11sectors",
+      "fields": [
+        "rank",
+        "name",
+        "trendScore",
+        "todayScore",
+        "score5",
+        "score10",
+        "score20",
+        "top20Days10",
+        "trendState",
+        "stage",
+        "rs5Pct",
+        "advanceRatioPct",
+        "riskGauge"
+      ],
+      "numericFields": [
+        "rank",
+        "trendScore",
+        "todayScore",
+        "score5",
+        "score10",
+        "score20",
+        "top20Days10",
+        "rs5Pct",
+        "advanceRatioPct",
+        "riskGauge"
       ]
-    },
+    }
+  },
+  "tables": {
     "p2interest": {
       "tbodyId": "p2interestbody",
       "headers": [
         "순위",
         "종목",
-        "시장관심점수",
+        "관심·성장점수",
         "성장근거",
-        "섹터관심",
+        "섹터추세",
+        "오늘강도",
+        "추세상태",
         "섹터단계",
-        "진입상태",
-        "성장률",
+        "매출성장률·기준",
         "주가 반영 판단",
         "신뢰도",
         "근거 실제 내용"
@@ -34,20 +55,29 @@
         "name",
         "interestGrowthScore",
         "growthScore",
-        "sectorAttentionScore",
+        "sectorTrendScore",
+        "sectorTodayScore",
+        "sectorTrendState",
         "sectorStage",
-        "entryState",
         "growthRate",
+        "growthBasis",
         "priceReflection",
         "confidence",
-        "evidenceContents"
+        "evidenceContents",
+        "leadingIndicatorScore",
+        "leadingIndicatorSummary",
+        "marketConfirmationScore",
+        "marketConfirmationSummary"
       ],
       "numericFields": [
         "rank",
         "interestGrowthScore",
         "growthScore",
-        "sectorAttentionScore",
-        "growthRate"
+        "sectorTrendScore",
+        "sectorTodayScore",
+        "growthRate",
+        "leadingIndicatorScore",
+        "marketConfirmationScore"
       ]
     },
     "p2": {
@@ -59,7 +89,7 @@
         "가치점수",
         "성장점수",
         "예상 P/OP",
-        "성장률",
+        "매출성장률·기준",
         "펀더멘털",
         "위험감점",
         "신뢰도",
@@ -73,10 +103,15 @@
         "growthScore",
         "normalizedPOP",
         "growthRate",
+        "growthBasis",
         "fundamentalScore",
         "riskPenalty",
         "confidence",
-        "evidenceContents"
+        "evidenceContents",
+        "leadingIndicatorScore",
+        "leadingIndicatorSummary",
+        "marketConfirmationScore",
+        "marketConfirmationSummary"
       ],
       "numericFields": [
         "rank",
@@ -86,7 +121,9 @@
         "normalizedPOP",
         "growthRate",
         "fundamentalScore",
-        "riskPenalty"
+        "riskPenalty",
+        "leadingIndicatorScore",
+        "marketConfirmationScore"
       ],
       "formats": [
         "정수",
@@ -95,7 +132,7 @@
         "최대 소수점 1자리 점수",
         "최대 소수점 2자리 점수",
         "배수",
-        "백분율",
+        "백분율·비교기간",
         "점수",
         "감점과 사유",
         "등급·근거수",
@@ -130,16 +167,6 @@
         "핵심판단",
         "행동",
         "기준일"
-      ]
-    },
-    "p11watch": {
-      "tbodyId": "p11watchbody",
-      "headers": [
-        "순위",
-        "종목",
-        "구분",
-        "관찰 이유",
-        "핵심근거"
       ]
     }
   }

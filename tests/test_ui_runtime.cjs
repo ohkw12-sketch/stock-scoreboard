@@ -143,15 +143,20 @@ function fixtures() {
       p1: {status:'진입 정상', rows:[{...common, entryState:'진입가능', signal:'매수', currentPrice:100,
         entryZone:'90~100', confirmation:'지지 확인', invalidationPrice:90, stopPct:-10, growth1Y:'+20%',
         consensus:'자료 확인', consensusDate:'2026-08', valueMultiple:'8배', reason:'검증 근거'}]},
-      p11: {status:'순환 정상', engine:{asOfDate:'2026-09-04', stockCount:1, sectorCount:1},
-        sectors:[{rank:1,name:'검증산업',stage:'확산',score:60,rs1Pct:1,rs3Pct:2,rs5Pct:3,
-          advanceRatioPct:60,rotationType:'확산',rotationStartDate:'2026-09-01',positionPct:40,riskGauge:20}],
-        rows:[{...common,relation:'선행',marketState:'확산',signal:'관찰',marketDetail:'+3%',reason:'검증'}]},
+      p11: {status:'순환 정상', projectType:'rotation-sector-trend',
+        engine:{asOfDate:'2026-09-04', stockCount:1, sectorCount:1},
+        sectors:[{rank:1,name:'검증산업',stage:'②확산',trendScore:67,todayScore:70,
+          score5:68,score10:66,score20:63,top20Days10:8,trendState:'추세확인',
+          rs1Pct:1,rs3Pct:2,rs5Pct:3,advanceRatioPct:60,rotationType:'확산',
+          rotationStartDate:'2026-09-01',positionPct:40,riskGauge:20}],
+        rows:[],watchCandidates:[]},
       p2: {status:'가치성장 정상', method:'가치 50% + 성장 50% - 위험감점', projectType:'value-growth',
         rows:[{...common,valueGrowthScore:72.5,valueScore:75,growthScore:70,riskPenalty:0,riskWarnings:[],
           valueBasis:'정상화 P/OP 8배 · 섹터 대비 20% 할인',growthRate:20,fundamentalScore:70,
           priceReflection:'미반영 가능',confidence:'보통',evidenceCount:2,
           financialSummary:'분기 매출 400억원 · 20일 평균 거래대금 20억원',
+          leadingIndicatorSummary:'1Q→2Q 영업이익률 10.0%→13.0% (+3.0%p) · 반도체 수출 +20%',
+          marketConfirmationSummary:'외국인·기관 20일 순매수 · 최근 5일 거래량 1.40배',
           evidenceContents:[{kind:'수주',content:'검증 장비 계약을 120억원 규모로 체결했으며 최근 매출의 15%입니다.',source:'DART · 2026-09-01',url:'https://dart.example/test'}]}]},
       p3: {status:'보유 정상',valuationBasis:'검증 종가',rows:[{...common,qty:10,avg:90,ret:'+11.11%',opGrowth:'+20%',
         recommendationHistory:undefined,valuePosition:'20% 할인',fairRange:'사용자 입력',drawdown3m:'-5%',judgment:'기존 판단',action:'보유',basis:'2026-09-04'}]},
@@ -200,16 +205,20 @@ test('actual page scripts render all independent boards and preserve locked head
   const {document, errors, requests} = await runtime();
   assert.equal(errors.length, 0);
   assert.equal(new Set(requests).size, 5);
-  for (const id of ['p11body','p2body','p3body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
+  for (const id of ['p2body','p3body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /검증종목/);
   assert.equal(document.getElementById('p1body'), null);
-  assert.equal(document.getElementById('p11body').rows[0].cells.length, 7);
-  for (const id of ['p11body','p2body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /2거래일 연속 추천/);
+  assert.equal(document.getElementById('p11body'), null);
+  assert.equal(document.getElementById('p11watchbody'), null);
+  assert.match(document.getElementById('p11sectors').innerHTML, /검증산업/);
+  for (const id of ['p2body','combinedbody']) assert.match(document.getElementById(id).innerHTML, /2거래일 연속 추천/);
   assert.doesNotMatch(document.getElementById('p3body').innerHTML, /거래일 연속 추천/);
   const contract = JSON.parse(fs.readFileSync(path.join(root, 'ui_contract.json'), 'utf8'));
   for (const table of Object.values(contract.tables)) {
     assert.deepEqual(document.table(table.tbodyId).headers.map(header => header.originalLabel), table.headers);
   }
   assert.match(document.getElementById('p2body').textContent, /분기 매출 400억원/);
+  assert.match(document.getElementById('p2body').textContent, /선행 검증 · 1Q→2Q 영업이익률/);
+  assert.match(document.getElementById('p2body').textContent, /시장 확인 · 외국인·기관 20일 순매수/);
   assert.match(document.getElementById('p2body').textContent, /검증 장비 계약을 120억원 규모로 체결/);
   assert.match(document.getElementById('p2body').textContent, /감점 없음/);
   assert.match(document.getElementById('p5body').innerHTML, /이 기간에 확인·등록된 발언 없음/);
@@ -361,28 +370,18 @@ test('date filter resets sorting metadata to match the new default rows', async 
 });
 
 
-test('rotation displays up to fifteen stocks and at most ten strength sectors', async () => {
+test('rotation displays only ten medium-term sector cards and no stock table', async () => {
   const data=fixtures(), p=data['data.json'].p11;
-  p.rows=Array.from({length:15},(_,i)=>({...p.rows[0],ticker:String(i),name:'종목'+i,rank:i+1,sector:'섹터'+Math.floor(i/3)}));
   p.sectors=Array.from({length:23},(_,i)=>({...p.sectors[0],name:'강도섹터'+i,rank:i+1}));
-  const {document}=await runtime({data});
-  assert.equal(document.getElementById('p11body').rows.length,15);
+  const {document,errors}=await runtime({data});
+  assert.equal(errors.length,0);
+  assert.equal(document.getElementById('p11body'),null);
+  assert.equal(document.getElementById('p11watchbody'),null);
   assert.match(document.getElementById('p11sectors').innerHTML,/강도섹터9</);
   assert.doesNotMatch(document.getElementById('p11sectors').innerHTML,/강도섹터10</);
   assert.equal((document.getElementById('p11sectors').innerHTML.match(/class="sector-card"/g)||[]).length,10);
-  assert.match(document.getElementById('p11method').textContent,/섹터당 최대 3종목/);
-});
-
-test('separate watch area badges candidates, escapes reasons and excludes duplicate entry', async()=>{
-  const data=fixtures(), p=data['data.json'].p11;
-  p.watchCandidates=[{ticker:'999999',name:'관찰종목',sector:'장비',watchOnly:true,watchReason:'<b>미달</b>',reason:'확인 필요'},
-                    {...p.rows[0],watchOnly:true}];
-  const {document,errors}=await runtime({data});
-  assert.equal(errors.length,0);
-  const html=document.getElementById('p11watchbody').innerHTML;
-  assert.match(html,/후보/); assert.match(html,/관찰종목/); assert.match(html,/&lt;b&gt;/);
-  assert.equal(document.getElementById('p11watchbody').rows.length,1);
-  assert.doesNotMatch(document.getElementById('p11body').innerHTML,/관찰종목/);
+  assert.match(document.getElementById('p11method').textContent,/5일 50%\+10일 30%\+20일 20%/);
+  assert.match(document.getElementById('p11method').textContent,/종목 추천 없음/);
 });
 
 test('holdings reasons render only sourced held names and escape assessment text', async () => {

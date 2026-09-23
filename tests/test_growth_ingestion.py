@@ -254,6 +254,25 @@ class IngestionTest(unittest.TestCase):
         self.assertEqual(retained[0]['status'], '상태확인필요')
         self.assertEqual(len(status['failures']), 1)
 
+    def test_customer_or_competitor_fact_requires_verified_supply_relationship(self):
+        fact = dict(
+            ticker='000001', independentEventId='customer-signal',
+            kind='고객사·경쟁사', polarity='positive', validity='active',
+            excerpt='유럽 고객과 장비 공급계약을 체결했습니다.',
+        )
+        path = self.growth / 'verified_documents_input.json'
+        json_write(path, {'documents': [document(facts=[fact])]})
+        events, status = collect_verified_documents(self.config, {'000001'}, NOW)
+        self.assertEqual(events, [])
+        self.assertIn('실제 납품·거래 관계', status['failures'][0]['error'])
+
+        fact['relationshipVerified'] = True
+        json_write(path, {'documents': [document(facts=[fact])]})
+        events, status = collect_verified_documents(self.config, {'000001'}, NOW)
+        self.assertEqual(status['status'], '정상')
+        self.assertTrue(events[0]['relationshipVerified'])
+        self.assertEqual(events[0]['kind'], '고객사·경쟁사')
+
     def test_missing_document_and_youtube_input_are_honestly_pending(self):
         with patch('urllib.request.urlopen', side_effect=AssertionError('network')):
             _, docs = collect_verified_documents(self.config, {'000001'}, NOW)

@@ -43,35 +43,41 @@ class RotationEngineTest(unittest.TestCase):
         self.assertGreaterEqual(self.prices["sector"].nunique(), 8)
         self.assertGreaterEqual(self.prices["ticker"].nunique(), 60)
 
-    def test_backward_compatible_p11(self):
+    def test_p11_is_sector_trend_only(self):
+        self.assertEqual(self.p11["projectType"], "rotation-sector-trend")
         self.assertTrue({"status", "events", "sectors", "rows"}.issubset(self.p11))
-        self.assertTrue({"rank", "name", "stage"}.issubset(self.p11["sectors"][0]))
-        legacy_row = {"rank", "name", "sector", "opGrowth", "value", "sectorMedian",
-                      "premium", "marketState", "marketDetail", "change", "changeUntil",
-                      "marks", "signal", "reason"}
-        self.assertLessEqual(len(self.p11["rows"]), 15)
-        for row in self.p11["rows"]:
-            self.assertTrue(legacy_row.issubset(row))
+        self.assertEqual(self.p11["rows"], [])
+        self.assertEqual(self.p11["watchCandidates"], [])
+        self.assertEqual(self.p11["_allRows"], [])
+        self.assertEqual(self.p11["_eligibility"], [])
 
-    def test_strength_board_is_independent_and_filters_active_sectors(self):
-        expected=[r['name'] for r in self.p11['_allSectors'] if r['score']>=58 and r['rs5Pct']>0 and r['stage'] not in ['X조기이탈','X종료']]
-        self.assertEqual([r['name'] for r in self.p11['sectors']],expected)
-        self.assertGreater(len(expected),0)
+    def test_strength_board_filters_medium_term_active_sectors(self):
+        expected = [
+            row['name'] for row in self.p11['_allSectors']
+            if row['trendScore'] >= self.config['rotation_public_min_score']
+            and row['rs5Pct'] > 0
+            and row['trendState'] != '이탈검토'
+            and row['stage'] not in ['X조기이탈', 'X종료']
+        ][:10]
+        self.assertEqual([row['name'] for row in self.p11['sectors']], expected)
+        self.assertGreater(len(expected), 0)
 
     def test_required_metrics_and_classifications(self):
         sector = self.p11["sectors"][0]
-        required = {"rs1Pct", "rs3Pct", "rs5Pct", "turnoverChangePct", "advanceRatioPct",
-                    "leaderStrengthPct", "rotationStartDate", "averageCycleDays",
-                    "elapsedBusinessDays", "positionPct", "riskGauge", "rotationType",
-                    "entryScore", "entryFit"}
+        required = {
+            "rs1Pct", "rs3Pct", "rs5Pct", "turnoverChangePct", "advanceRatioPct",
+            "leaderStrengthPct", "rotationStartDate", "averageCycleDays",
+            "elapsedBusinessDays", "positionPct", "riskGauge", "rotationType",
+            "entryScore", "entryFit", "trendScore", "todayScore", "score5",
+            "score10", "score20", "top20Days10", "trendState",
+        }
         self.assertTrue(required.issubset(sector))
-        self.assertTrue(all(row["relation"] in {"선행", "동행", "후행"} for row in self.p11["rows"]))
-        self.assertTrue(any("확산형" in sector["rotationType"] for sector in self.p11["sectors"]))
-        self.assertTrue(any("선도주" in sector["rotationType"] for sector in self.p11["sectors"]))
+        self.assertTrue(any("확산형" in row["rotationType"] for row in self.p11["sectors"]))
+        self.assertTrue(any("선도주" in row["rotationType"] for row in self.p11["sectors"]))
         valid_stages = {"①초기", "②확산", "③주도", "④눌림", "⑤재반등", "⑥후반", "X조기이탈", "X종료"}
-        self.assertTrue(all(sector["stage"] in valid_stages for sector in self.p11["sectors"]))
-        self.assertTrue(all(0 <= sector["positionPct"] <= 100 for sector in self.p11["sectors"]))
-        self.assertTrue(all(0 <= sector["riskGauge"] <= 100 for sector in self.p11["sectors"]))
+        self.assertTrue(all(row["stage"] in valid_stages for row in self.p11["sectors"]))
+        self.assertTrue(all(0 <= row["positionPct"] <= 100 for row in self.p11["sectors"]))
+        self.assertTrue(all(0 <= row["riskGauge"] <= 100 for row in self.p11["sectors"]))
 
     def test_json_serializable(self):
         json.dumps(self.p11, ensure_ascii=False)
@@ -101,18 +107,20 @@ class RotationEngineTest(unittest.TestCase):
         self.assertAlmostEqual(weights["rs1"] + weights["rs3"] + weights["rs5"], 0.34)
         self.assertEqual(weights["turnover_change"], 0.30)
 
-    def test_entry_ranks_only_rotation_candidates_with_equal_fundamental_weight(self):
-        rotation_pool = {row["ticker"] for row in self.p11["_legacyEntryRows"]}
-        self.assertTrue(all(row["ticker"] in rotation_pool for row in self.p1["rows"]))
+    def test_legacy_entry_builder_stays_separate_from_sector_trend_board(self):
+        self.assertEqual(self.p11["_legacyEntryRows"], [])
+        self.assertEqual(self.p11["rows"], [])
         for row in self.p1["rows"]:
             self.assertAlmostEqual(
-                row["entryScore"], (row["rotationScore"] + row["fundamentalScore"]) / 2, delta=0.11,
+                row["entryScore"],
+                (row["rotationScore"] + row["fundamentalScore"]) / 2,
+                delta=0.11,
             )
             self.assertTrue(row["fundamentalBasis"])
         scores = [row["entryScore"] for row in self.p1["_allRows"]]
         self.assertEqual(scores, sorted(scores, reverse=True))
 
-    def test_rotation_and_entry_add_the_four_quarter_filter_before_existing_scores(self):
+    def test_sector_trend_ignores_financial_gate_while_legacy_entry_keeps_it(self):
         fundamentals = self.fundamentals.copy()
         for quarter in (3, 4, 1, 2):
             fundamentals[f"normalized_sales_q{quarter}"] = 60_000_000_000
@@ -125,25 +133,36 @@ class RotationEngineTest(unittest.TestCase):
             selection_minimum_average_quarterly_sales=50_000_000_000,
             selection_minimum_average_quarterly_op_margin_pct=15,
         )
-        baseline = run_engine(self.prices, config, "unit-test-sample", fundamentals)
-        target = baseline["_legacyEntryRows"][0]["ticker"]
+        baseline_rotation = run_engine(
+            self.prices, config, "unit-test-sample", fundamentals,
+        )
+        baseline_entry = build_entry_board(
+            self.prices, baseline_rotation["_allSectors"], fundamentals, config,
+        )
+        target = baseline_entry["_allRows"][0]["ticker"]
         target_mask = fundamentals["ticker"].eq(target)
         for quarter in (3, 4, 1, 2):
             fundamentals.loc[target_mask, f"normalized_op_q{quarter}"] = 8_940_000_000
         fundamentals.loc[target_mask, "normalized_ttm_op"] = 35_760_000_000
 
-        filtered = run_engine(self.prices, config, "unit-test-sample", fundamentals)
-        self.assertNotIn(target, {row["ticker"] for row in filtered["_allRows"]})
-        rotation_audit = next(row for row in filtered["_eligibility"] if row["ticker"] == target)
-        self.assertEqual(rotation_audit["reason"], "분기 영업이익률 4개 평균 15% 미만")
-        entry = build_entry_board(self.prices, filtered["_allSectors"], fundamentals, config)
+        filtered_rotation = run_engine(
+            self.prices, config, "unit-test-sample", fundamentals,
+        )
+        self.assertEqual(
+            [row["name"] for row in filtered_rotation["_allSectors"]],
+            [row["name"] for row in baseline_rotation["_allSectors"]],
+        )
+        self.assertEqual(filtered_rotation["rows"], [])
+        entry = build_entry_board(
+            self.prices, filtered_rotation["_allSectors"], fundamentals, config,
+        )
         self.assertNotIn(target, {row["ticker"] for row in entry["_allRows"]})
-        entry_audit = next(row for row in entry["_eligibility"] if row["ticker"] == target)
-        self.assertEqual(entry_audit["reason"], "분기 영업이익률 4개 평균 15% 미만")
-        for row in entry["_allRows"]:
-            self.assertAlmostEqual(
-                row["entryScore"], (row["rotationScore"] + row["fundamentalScore"]) / 2, delta=0.11,
-            )
+        entry_audit = next(
+            row for row in entry["_eligibility"] if row["ticker"] == target
+        )
+        self.assertEqual(
+            entry_audit["reason"], "분기 영업이익률 4개 평균 15% 미만",
+        )
 
     def test_value_engine_uses_whole_fundamental_universe(self):
         self.assertEqual(len(self.fundamentals), self.prices["ticker"].nunique())
@@ -157,6 +176,14 @@ class RotationEngineTest(unittest.TestCase):
         self.assertEqual(self.p2["_absoluteRows"][0]["valueMode"], "absolute")
         self.assertIsNone(self.p2["_absoluteRows"][0]["sectorNormalizedPOP"])
         self.assertIsNone(self.p2["_absoluteRows"][0]["normalizedPremiumPct"])
+        self.assertTrue(all(
+            row["valueScore"] >= self.config["absolute_value_min_score"]
+            and row["normalizedPOP"] <= self.config["absolute_value_max_pop"]
+            and "금융" not in row["sector"]
+            and "홀딩스" not in row["name"]
+            and "지주" not in row["name"]
+            for row in self.p2["_absoluteRows"]
+        ))
         self.assertNotIn("turnaroundRows", self.p2)
         self.assertNotIn("T+", self.p2["status"])
         self.assertTrue(self.p2["dataStatus"]["forwardEstimateUsed"])

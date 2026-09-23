@@ -225,8 +225,133 @@ def learn_patterns(performance, *, cutoff_date):
 
 def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
     model = learn_patterns(performance, cutoff_date=source_date)
+    rotation = board.get('p11', {})
+    if rotation.get('projectType') == 'rotation-sector-trend':
+        active_sectors = {
+            row.get('name'): row for row in rotation.get('sectors', [])
+            if row.get('trendState') in {'추세확인', '추세유지'}
+            and row.get('stage') in {'②확산', '③주도'}
+            and float(row.get('riskGauge') or 0) < 70
+        }
+        p2 = board.get('p2', {})
+        interest_rows = {
+            row.get('ticker'): row
+            for row in p2.get('interestGrowth', {}).get('rows', [])
+            if row.get('ticker')
+        }
+        absolute_rows = {
+            row.get('ticker'): row
+            for row in p2.get('absoluteValueGrowth', {}).get('rows', p2.get('rows', []))
+            if row.get('ticker')
+        }
+        candidates, audit = [], []
+        for ticker in sorted(set(interest_rows) | set(absolute_rows)):
+            interest = interest_rows.get(ticker, {})
+            absolute = absolute_rows.get(ticker, {})
+            row = interest or absolute
+            sector = active_sectors.get(row.get('sector'))
+            reasons = []
+            if sector is None:
+                reasons.append('추세확인 ②확산·③주도 섹터 아님')
+            if not row.get('nonOverheated'):
+                reasons.append('5일 상승률·20일선 이격 또는 추세 조건 미충족')
+            row_date = row.get('sourceDate') or p2.get('sourceDate')
+            if row_date and row_date != source_date:
+                reasons.append('가격 기준일 불일치')
+            eligible = not reasons
+            audit.append({
+                'ticker': ticker,
+                'name': row.get('name'),
+                'sector': row.get('sector'),
+                'eligible': eligible,
+                'reasons': reasons,
+            })
+            if not eligible:
+                continue
+
+            tokens = ['가치성장', '섹터추세']
+            conditions = []
+            if interest:
+                tokens.append('시장관심성장')
+                conditions.append('시장관심성장')
+            if absolute:
+                tokens.append('절대가치성장')
+                conditions.append('절대가치성장')
+            tokens.extend([
+                f"섹터추세:{sector.get('trendState')}",
+                f"순환:{sector.get('stage')}",
+                '비과열',
+            ])
+            matches = [
+                pattern for pattern in model['patterns']
+                if pattern['score'] > 0
+                and pattern['meanReturnPct'] > 0
+                and set(pattern['pattern']).issubset(tokens)
+            ]
+            best = matches[0] if matches else None
+            project_scores = [
+                value for value in (
+                    interest.get('interestGrowthScore'),
+                    absolute.get('absoluteValueGrowthScore') or absolute.get('valueGrowthScore'),
+                )
+                if isinstance(value, (int, float)) and math.isfinite(value)
+            ]
+            project_score = max(project_scores) if project_scores else 0
+            candidates.append({
+                'ticker': ticker,
+                'name': row.get('name'),
+                'sector': row.get('sector'),
+                'currentProjectRank': min(
+                    float(value.get('rank') or 999) for value in (interest, absolute) if value
+                ),
+                'conditions': conditions + ['섹터추세', '비과열'],
+                'condition': ' + '.join(conditions + ['섹터추세', '비과열']),
+                'entryState': '추세확인·비과열',
+                'currentPrice': row.get('currentPrice'),
+                'combinedScore': round(project_score, 2),
+                'performanceScore': best['score'] if best else None,
+                'matchedPattern': best,
+                'features': sorted(set(tokens)),
+                'sourceDate': source_date,
+                'valueScore': absolute.get('valueScore'),
+                'growthScore': row.get('growthScore'),
+                'sectorRelation': sector.get('trendState'),
+                'sectorTrendScore': sector.get('trendScore'),
+                'sectorStage': sector.get('stage'),
+                'fiveDayReturnPct': row.get('fiveDayReturnPct'),
+                'ma20DistancePct': row.get('ma20DistancePct'),
+                'ma20SlopePct': row.get('ma20SlopePct'),
+            })
+        candidates.sort(key=lambda row: (
+            -len([value for value in row['conditions'] if value in {'시장관심성장', '절대가치성장'}]),
+            -row['combinedScore'],
+            row['currentProjectRank'],
+            row['ticker'],
+        ))
+        for rank, row in enumerate(candidates, 1):
+            row['rank'] = rank
+        return {
+            'schemaVersion': 1,
+            'ruleVersion': 'combined-trend-4.0',
+            'snapshotId': snapshot_id,
+            'generatedAt': generated_at,
+            'sourceDate': source_date,
+            'status': f"추세확인 섹터·가치성장·비과열 교집합 {len(candidates)}개",
+            'publicationState': 'preview',
+            'candidateCount': len(candidates),
+            'matchedCandidateCount': sum(row.get('matchedPattern') is not None for row in candidates),
+            'rows': candidates[:10],
+            '_audit': audit,
+            'feedback': model,
+            'notice': (
+                '가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 '
+                '최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · '
+                + model['notice']
+            ),
+        }
+
     members = defaultdict(dict)
-    integrated = board.get('p11', {}).get('projectType') == 'rotation-entry'
+    integrated = rotation.get('projectType') == 'rotation-entry'
     for key, public_key in (('p1','p1'), ('p11','p11'), ('valueGrowth','p2')):
         if integrated and key == 'p1':
             continue
@@ -237,33 +362,68 @@ def rank_recent(board, performance, *, source_date, generated_at, snapshot_id):
         if date and date != source_date:
             continue
         rows = list(section.get('rows',[]))
-        for r in rows:
-            if integrated and key == 'p11' and (r.get('watchOnly') or r.get('financialWatch') or r.get('entryState') != '진입 검토'):
+        for row in rows:
+            if integrated and key == 'p11' and (
+                row.get('watchOnly') or row.get('financialWatch')
+                or row.get('entryState') != '진입 검토'
+            ):
                 continue
-            if r.get('ticker'):
-                members[r['ticker']][key] = r
+            if row.get('ticker'):
+                members[row['ticker']][key] = row
     candidates = []
     for ticker, related in members.items():
         tokens = features(related)
-        matches = [p for p in model['patterns'] if p['score'] > 0 and p['meanReturnPct'] > 0 and set(p['pattern']).issubset(tokens)]
-        # One best supported pattern per candidate: overlapping patterns cannot stack points.
+        matches = [
+            pattern for pattern in model['patterns']
+            if pattern['score'] > 0 and pattern['meanReturnPct'] > 0
+            and set(pattern['pattern']).issubset(tokens)
+        ]
         best = matches[0] if matches else None
         row = next(iter(related.values()))
         entry = related.get('p11',{}) if integrated else related.get('p1',{})
-        candidates.append(dict(ticker=ticker, name=row['name'], sector=row.get('sector'),
-            currentProjectRank=mean([float(r.get('rank') or r.get('typeRank') or 999) for r in related.values()]),
-            conditions=[LABELS[k] for k in related], condition=' + '.join(LABELS[k] for k in related),
+        candidates.append(dict(
+            ticker=ticker, name=row['name'], sector=row.get('sector'),
+            currentProjectRank=mean([
+                float(item.get('rank') or item.get('typeRank') or 999)
+                for item in related.values()
+            ]),
+            conditions=[LABELS[key] for key in related],
+            condition=' + '.join(LABELS[key] for key in related),
             entryState=entry.get('entryState','진입 미충족'),
             currentPrice=entry.get('currentPrice') or row.get('currentPrice'),
-            combinedScore=best['score'] if best else None, matchedPattern=best,
-            features=tokens, sourceDate=source_date, valueScore=related.get('valueGrowth',{}).get('valueScore'),
+            combinedScore=best['score'] if best else None,
+            matchedPattern=best,
+            features=tokens,
+            sourceDate=source_date,
+            valueScore=related.get('valueGrowth',{}).get('valueScore'),
             growthScore=related.get('valueGrowth',{}).get('growthScore'),
-            sectorRelation=related.get('p11',{}).get('relation','미확인')))
-    candidates.sort(key=lambda r: (r['combinedScore'] is None, -(r['combinedScore'] or 0), -len(r['conditions']), r['currentProjectRank'], r['ticker']))
-    ranked = [r for r in candidates if r['combinedScore'] is not None]
-    for i,r in enumerate(ranked,1):
-        r['rank']=i
-    return dict(schemaVersion=1, ruleVersion='combined-feedback-3.0' if integrated else 'combined-feedback-2.0', snapshotId=snapshot_id,
-        generatedAt=generated_at, sourceDate=source_date, status=model['status'], publicationState='preview',
-        candidateCount=len(candidates), matchedCandidateCount=len(ranked), rows=ranked[:10], feedback=model,
-        notice='과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · 동점은 프로젝트 중복 수와 현재 순위 · 진입은 필수가 아니며 진입구분 별도 표시 · '+model['notice'])
+            sectorRelation=related.get('p11',{}).get('relation','미확인'),
+        ))
+    candidates.sort(key=lambda row: (
+        row['combinedScore'] is None,
+        -(row['combinedScore'] or 0),
+        -len(row['conditions']),
+        row['currentProjectRank'],
+        row['ticker'],
+    ))
+    ranked = [row for row in candidates if row['combinedScore'] is not None]
+    for rank, row in enumerate(ranked, 1):
+        row['rank'] = rank
+    return {
+        'schemaVersion': 1,
+        'ruleVersion': 'combined-feedback-3.0' if integrated else 'combined-feedback-2.0',
+        'snapshotId': snapshot_id,
+        'generatedAt': generated_at,
+        'sourceDate': source_date,
+        'status': model['status'],
+        'publicationState': 'preview',
+        'candidateCount': len(candidates),
+        'matchedCandidateCount': len(ranked),
+        'rows': ranked[:10],
+        'feedback': model,
+        'notice': (
+            '과거 평균·중앙 성과가 모두 양수인 공통조건만 추천 · '
+            '동점은 프로젝트 중복 수와 현재 순위 · 진입구분 별도 표시 · '
+            + model['notice']
+        ),
+    }

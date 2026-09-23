@@ -1,7 +1,8 @@
 """KOSPI+KOSDAQ whole-market scoreboard engine.
 
-The program never writes to data.json or deploys. It emits a test board with
-independent rotation (p11), actionable entry (p1), and value (p2) results.
+The program never writes to data.json or deploys. It emits test data with
+a sector-only medium-term rotation board (p11) and internal value sources.
+The legacy entry builder remains for historical tests; refresh_all retires public p1.
 """
 from __future__ import annotations
 
@@ -55,12 +56,20 @@ DEFAULTS = {
         "breadth": 0.20,
         "leader_strength": 0.16,
     },
+    "rotation_trend_weights": {"score5": 0.50, "score10": 0.30, "score20": 0.20},
+    "rotation_trend_min_score": 58.0,
+    "rotation_public_min_score": 55.0,
+    "rotation_persistence_top_rank": 20,
     "top_value_count": 15,
     "minimum_value_sector_peers": 2,
     "value_minimum_average_quarterly_sales": 50_000_000_000,
     "value_minimum_average_quarterly_op_margin_pct": 15.0,
+    "absolute_value_min_score": 60.0,
+    "absolute_value_max_pop": 15.0,
     "selection_minimum_average_quarterly_sales": 50_000_000_000,
     "selection_minimum_average_quarterly_op_margin_pct": 15.0,
+    "growth_minimum_average_quarterly_sales": 50_000_000_000,
+    "growth_minimum_average_quarterly_op_margin_pct": 0.0,
     "growth_minimum_average_turnover": 1_000_000_000,
     "growth_candidate_count": 50,
     "growth_excluded_tickers": [],
@@ -114,6 +123,11 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
     weights = config.get("rotation_weights", {})
     if set(weights) != required_weights or abs(sum(float(value) for value in weights.values()) - 1.0) > 1e-9:
         raise ValueError("rotation weights must contain all six factors and sum to 1")
+    trend_weights = config.get("rotation_trend_weights", {})
+    if set(trend_weights) != {"score5", "score10", "score20"} or abs(
+        sum(float(value) for value in trend_weights.values()) - 1.0
+    ) > 1e-9:
+        raise ValueError("rotation trend weights must contain score5/score10/score20 and sum to 1")
     if int(config["minimum_daily_turnover"]) <= 0:
         raise ValueError("minimum daily turnover must be positive")
     for key in ("value_minimum_average_quarterly_sales", "selection_minimum_average_quarterly_sales"):
@@ -122,6 +136,14 @@ def load_config(path: Path | None, mode_override: str | None) -> dict:
     for key in ("value_minimum_average_quarterly_op_margin_pct", "selection_minimum_average_quarterly_op_margin_pct"):
         if not np.isfinite(float(config[key])):
             raise ValueError(f"{key} must be finite")
+    if not 0 <= float(config["absolute_value_min_score"]) <= 100:
+        raise ValueError("absolute value minimum score must be between 0 and 100")
+    if float(config["absolute_value_max_pop"]) <= 0:
+        raise ValueError("absolute value maximum P/OP must be positive")
+    if int(config["growth_minimum_average_quarterly_sales"]) <= 0:
+        raise ValueError("growth minimum average quarterly sales must be positive")
+    if not np.isfinite(float(config["growth_minimum_average_quarterly_op_margin_pct"])):
+        raise ValueError("growth minimum average quarterly operating margin must be finite")
     if int(config["growth_minimum_average_turnover"]) <= 0:
         raise ValueError("growth minimum average turnover must be positive")
     if int(config["growth_candidate_count"]) <= 0:
@@ -1510,7 +1532,15 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         absolute_extreme & absolute_candidates["structure_warning"].eq(""),
         "structure_warning",
     ] = "1배 미만 배수 검증필요"
-    absolute_ranked = absolute_candidates.sort_values(
+    absolute_minimum_score = float(config.get("absolute_value_min_score", 60.0))
+    absolute_maximum_pop = float(config.get("absolute_value_max_pop", 15.0))
+    absolute_candidates["absolute_eligible"] = (
+        ~absolute_finance_like
+        & ~absolute_holding_like
+        & absolute_candidates["value_score"].ge(absolute_minimum_score)
+        & absolute_candidates["normalized_pop"].le(absolute_maximum_pop)
+    )
+    absolute_ranked = absolute_candidates[absolute_candidates["absolute_eligible"]].sort_values(
         ["value_score", "normalized_pop"], ascending=[False, True], na_position="last",
     ).copy()
     absolute_ranked["type_rank"] = np.arange(1, len(absolute_ranked) + 1)
@@ -1626,6 +1656,11 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "dataStatus": status | {
             "valueUniverseCount": len(data), "valueCandidateCount": candidate_count,
             "absoluteValueCandidateCount": len(absolute_rows),
+            "absoluteValueMinimumScore": absolute_minimum_score,
+            "absoluteValueMaximumPOP": absolute_maximum_pop,
+            "absoluteValueExcludedFinanceHoldingCount": int(
+                (absolute_finance_like | absolute_holding_like).sum()
+            ),
             "minimumAverageQuarterlySales": minimum_average_quarterly_sales,
             "minimumAverageQuarterlyOperatingMarginPct": minimum_average_quarterly_op_margin,
             "averageQuarterlySalesQualifiedCount": int(sales_qualified.sum()),
@@ -1973,6 +2008,7 @@ def build_entry_board(prices: pd.DataFrame, all_sectors: list[dict], fundamental
 
 def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
                fundamentals: pd.DataFrame | None = None) -> dict:
+    """Build a sector-only rotation board from persistent 5/10/20-day trends."""
     overrides = read_overrides(config["sector_overrides_file"])
     if overrides:
         prices["sector"] = prices.apply(lambda row: overrides.get(row["ticker"], row["sector"]), axis=1)
@@ -1981,48 +2017,141 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
     latest_date = history["date"].max()
     eligible = history.groupby("sector")["members"].max()
     eligible = eligible[eligible >= int(config["minimum_sector_members"])].index
-    history = history[history["sector"].isin(eligible)]
+    history = history[history["sector"].isin(eligible)].copy()
+
+    history["dailyRank"] = history.groupby("date")["composite"].rank(
+        method="min", ascending=False,
+    )
+    top_rank = int(config.get("rotation_persistence_top_rank", 20))
+    history["topRankFlag"] = history["dailyRank"].le(top_rank).astype(int)
+    history["score5"] = history.groupby("sector")["composite"].transform(
+        lambda values: values.rolling(5, min_periods=3).mean(),
+    )
+    history["score10"] = history.groupby("sector")["composite"].transform(
+        lambda values: values.rolling(10, min_periods=5).mean(),
+    )
+    history["score20"] = history.groupby("sector")["composite"].transform(
+        lambda values: values.rolling(20, min_periods=10).mean(),
+    )
+    history["top20Days10"] = history.groupby("sector")["topRankFlag"].transform(
+        lambda values: values.rolling(10, min_periods=1).sum(),
+    )
+    trend_weights = config["rotation_trend_weights"]
+    history["trendBaseScore"] = 100 * (
+        history["score5"] * float(trend_weights["score5"])
+        + history["score10"] * float(trend_weights["score10"])
+        + history["score20"] * float(trend_weights["score20"])
+    )
+    history["persistenceAdjustment"] = np.select(
+        [history["top20Days10"].ge(7), history["top20Days10"].le(3)],
+        [5.0, -5.0],
+        default=0.0,
+    )
+    history["trendScore"] = (
+        history["trendBaseScore"] + history["persistenceAdjustment"]
+    ).clip(0, 100)
+
+    trend_threshold = float(config.get("rotation_trend_min_score", 58.0))
     results = []
     for sector, group in history.groupby("sector"):
         group = group.sort_values("date").reset_index(drop=True)
         latest = group.iloc[-1]
         previous = group.iloc[-2] if len(group) > 1 else latest
-        start = infer_start(group, int(config["rotation_scan_min_days"]), int(config["rotation_scan_max_days"]))
+        start = infer_start(
+            group, int(config["rotation_scan_min_days"]), int(config["rotation_scan_max_days"]),
+        )
         elapsed = int((group["date"] >= start).sum())
-        completed = [length for length in episode_lengths(group.iloc[:-1], include_open=False) if length >= 3]
-        avg_cycle = int(round(float(np.median(completed)))) if len(completed) >= 2 else int(config["default_cycle_days"])
+        completed = [
+            length for length in episode_lengths(group.iloc[:-1], include_open=False) if length >= 3
+        ]
+        avg_cycle = (
+            int(round(float(np.median(completed))))
+            if len(completed) >= 2 else int(config["default_cycle_days"])
+        )
         avg_cycle = max(10, min(40, avg_cycle))
-        sector_prices = stock_data[(stock_data["sector"].eq(sector)) & (stock_data["date"] >= start)]
+        sector_prices = stock_data[
+            (stock_data["sector"].eq(sector)) & (stock_data["date"] >= start)
+        ]
         sector_curve = sector_prices.groupby("date")["close"].mean()
-        drawdown = float(1 - sector_curve.iloc[-1] / sector_curve.max()) if not sector_curve.empty else 0.0
+        drawdown = (
+            float(1 - sector_curve.iloc[-1] / sector_curve.max())
+            if not sector_curve.empty else 0.0
+        )
         stage, short_stage = classify_stage(latest, previous, elapsed, avg_cycle, drawdown)
         leader_led = latest["leader_strength"] >= 0.025 and latest["breadth"] < 0.58
         diffusion = latest["breadth"] >= 0.58 and latest["turnover_change"] > -0.05
-        rotation_type = "확산형+선도주" if leader_led and diffusion else "선도주 견인형" if leader_led else "확산형" if diffusion else "혼합/관찰"
+        rotation_type = (
+            "확산형+선도주" if leader_led and diffusion
+            else "선도주 견인형" if leader_led
+            else "확산형" if diffusion
+            else "혼합/관찰"
+        )
         concentration_risk = 18 if leader_led else 4
         risk = bounded(
-            min(35, elapsed / max(avg_cycle, 1) * 35) + min(30, drawdown * 250) +
-            concentration_risk + (18 if latest["rs3"] < 0 else 0)
+            min(35, elapsed / max(avg_cycle, 1) * 35)
+            + min(30, drawdown * 250)
+            + concentration_risk
+            + (18 if latest["rs3"] < 0 else 0)
         )
         position = bounded(elapsed / max(avg_cycle, 1) * 100)
-        stage_bonus = {
-            "①초기": 12, "②확산": 14, "③주도": 5, "④눌림": 3,
-            "⑤재반등": 12, "⑥후반": -16, "X조기이탈": -35, "X종료": -45,
-        }[stage]
-        entry_score = bounded(float(latest["composite"] * 75) + stage_bonus - risk * 0.22 +
-                              max(-8, min(8, float(latest["rs3"] * 180))))
-        if stage in {"①초기", "②확산", "⑤재반등"} and entry_score >= 55 and risk < 65:
-            entry_fit = "진입적합"
-        elif stage in {"④눌림", "③주도"} and entry_score >= 45 and risk < 72:
-            entry_fit = "눌림/분할"
-        elif stage == "⑥후반":
-            entry_fit = "추격금지"
+        recent_trend = group["trendScore"].dropna()
+        confirmed = (
+            len(recent_trend) >= 2
+            and bool(recent_trend.tail(2).ge(trend_threshold).all())
+            and bool(group["rs5"].tail(2).gt(0).all())
+        )
+        weakening = (
+            len(recent_trend) >= 4
+            and bool(recent_trend.tail(4).diff().dropna().lt(0).all())
+        )
+        breadth_falling = latest["breadth"] < previous["breadth"]
+        if latest["rs5"] <= 0 and breadth_falling:
+            trend_state = "이탈검토"
+        elif weakening:
+            trend_state = "추세약화"
+        elif confirmed and int(latest["top20Days10"]) >= 7:
+            trend_state = "추세유지"
+        elif confirmed:
+            trend_state = "추세확인"
+        elif float(latest["composite"] * 100) >= trend_threshold:
+            trend_state = "신규포착"
         else:
-            entry_fit = "제외/관찰"
+            trend_state = "관찰"
+
+        if trend_state in {"추세확인", "추세유지"} and stage in {"②확산", "③주도"}:
+            entry_fit = "추세확인"
+        elif trend_state == "신규포착":
+            entry_fit = "확인대기"
+        elif trend_state == "추세약화":
+            entry_fit = "추세약화"
+        elif trend_state == "이탈검토" or stage in {"X조기이탈", "X종료"}:
+            entry_fit = "이탈검토"
+        elif stage == "⑥후반":
+            entry_fit = "추격주의"
+        else:
+            entry_fit = "관찰"
+
+        slope3 = (
+            float(recent_trend.iloc[-1] - recent_trend.iloc[-4])
+            if len(recent_trend) >= 4 else 0.0
+        )
         results.append({
-            "name": sector, "stage": stage, "stageLabel": short_stage,
-            "rotationType": rotation_type, "score": round(float(latest["composite"] * 100), 1),
-            "entryScore": round(entry_score, 1), "entryFit": entry_fit,
+            "name": sector,
+            "stage": stage,
+            "stageLabel": short_stage,
+            "rotationType": rotation_type,
+            "score": round(float(latest["trendScore"]), 1),
+            "trendScore": round(float(latest["trendScore"]), 1),
+            "todayScore": round(float(latest["composite"] * 100), 1),
+            "score5": round(float(latest["score5"] * 100), 1),
+            "score10": round(float(latest["score10"] * 100), 1),
+            "score20": round(float(latest["score20"] * 100), 1),
+            "trendSlope3": round(slope3, 1),
+            "top20Days10": int(latest["top20Days10"]),
+            "persistenceAdjustment": round(float(latest["persistenceAdjustment"]), 1),
+            "trendState": trend_state,
+            "entryScore": round(float(latest["trendScore"]), 1),
+            "entryFit": entry_fit,
             "rs1Pct": round(float(latest["rs1"] * 100), 2),
             "rs3Pct": round(float(latest["rs3"] * 100), 2),
             "rs5Pct": round(float(latest["rs5"] * 100), 2),
@@ -2030,120 +2159,81 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
             "advanceRatioPct": round(float(latest["breadth"] * 100), 1),
             "leaderStrengthPct": round(float(latest["leader_strength"] * 100), 2),
             "rotationStartDate": pd.Timestamp(start).strftime("%Y-%m-%d"),
-            "averageCycleDays": avg_cycle, "elapsedBusinessDays": elapsed,
-            "positionPct": round(position, 1), "riskGauge": round(risk, 1),
-            "memberCount": int(latest["members"]), "drawdownPct": round(drawdown * 100, 2),
-            "raw_ret3": float(latest["ret3"]), "raw_ret5": float(latest["ret5"]),
+            "averageCycleDays": avg_cycle,
+            "elapsedBusinessDays": elapsed,
+            "positionPct": round(position, 1),
+            "riskGauge": round(risk, 1),
+            "memberCount": int(latest["members"]),
+            "drawdownPct": round(drawdown * 100, 2),
+            "raw_ret3": float(latest["ret3"]),
+            "raw_ret5": float(latest["ret5"]),
         })
-    sector_results = pd.DataFrame(results).sort_values(["score", "rs5Pct", "leaderStrengthPct"], ascending=False).reset_index(drop=True)
+
+    sector_results = pd.DataFrame(results).sort_values(
+        ["trendScore", "top20Days10", "rs5Pct"],
+        ascending=False,
+    ).reset_index(drop=True)
     sector_results["rank"] = np.arange(1, len(sector_results) + 1)
-    # Reuse the engine's active-rotation criteria, independent of stock selection.
-    top = sector_results[(sector_results['score'] >= 58) & (sector_results['rs5Pct'] > 0)
-        & ~sector_results['stage'].isin(['X조기이탈', 'X종료'])].copy()
-    minimum_average_sales = float(config.get("selection_minimum_average_quarterly_sales", 50_000_000_000))
-    minimum_average_margin = float(config.get("selection_minimum_average_quarterly_op_margin_pct", 15.0))
-    financial_profiles = reported_financial_prerequisites(
-        fundamentals if fundamentals is not None else pd.DataFrame(),
-        minimum_average_sales,
-        minimum_average_margin,
-    )
-    eligible_tickers = (
-        {ticker for ticker, profile in financial_profiles.items() if profile["eligible"]}
-        if fundamentals is not None else None
-    )
-    legacy_pool = rotation_rows(stock_data, sector_results, int(prices['ticker'].nunique()),
-        sector_cap=None, minimum_daily_turnover=int(config['minimum_daily_turnover']),
-        eligible_tickers=eligible_tickers)
-    rows, rotation_pool, rotation_audit = build_rotation(
-        prices, sector_results.to_dict('records'), legacy_pool if fundamentals is not None else [], config,
-        evidence_from_sources(fundamentals, config))
-    financial_watches, watch_evidence = improving_financial_watch(fundamentals, financial_profiles, latest_date)
-    watch_templates = rotation_rows(stock_data, sector_results, int(prices['ticker'].nunique()),
-        sector_cap=None, minimum_daily_turnover=int(config['minimum_daily_turnover']),
-        eligible_tickers=(eligible_tickers or set()) | set(financial_watches))
-    _, watch_pool, _ = build_rotation(prices, sector_results.to_dict('records'), watch_templates, config,
-        evidence_from_sources(fundamentals, config) + watch_evidence, financial_watches)
-    observations = select_watch_candidates(watch_pool, rows)
-    public_sectors = top.drop(columns=['raw_ret3', 'raw_ret5']).to_dict('records')
-    stage_counts = top["stage"].value_counts().to_dict()
+    public_minimum = float(config.get("rotation_public_min_score", 55.0))
+    public = sector_results[
+        sector_results["trendScore"].ge(public_minimum)
+        & sector_results["rs5Pct"].gt(0)
+        & ~sector_results["trendState"].eq("이탈검토")
+        & ~sector_results["stage"].isin(["X조기이탈", "X종료"])
+    ].head(10).copy()
+    public_sectors = public.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
+    stage_counts = public["stage"].value_counts().to_dict()
     status = (
-        f"전체시장 엔진: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
+        f"전체시장 섹터 추세: KOSPI+KOSDAQ {prices['ticker'].nunique():,}종목, "
         f"{len(sector_results):,}개 섹터 분석. 기준일 {latest_date:%Y-%m-%d}. "
-        f"4분기 평균 매출 {minimum_average_sales / 100_000_000:,.0f}억원·"
-        f"분기 영업이익률 평균 {minimum_average_margin:g}%는 진입 선조건. 관찰 후보는 아래 별도 표시. "
-        f"조건 통과 섹터 최대 5개, 섹터당 최대 3종목. 표시 종목 모두 진입 최소조건 통과. 부족하면 미충원."
+        "종목을 추천하지 않고 5·10·20일 순환 강도와 최근 10일 지속성만 표시합니다."
     )
     result = {
-        "status": status, "projectType": "rotation-entry", "ruleVersion": "rotation-entry-3.0",
+        "status": status,
+        "projectType": "rotation-sector-trend",
+        "ruleVersion": "rotation-sector-trend-4.0",
         "engine": {
-            "version": "2.0.0", "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
-            "asOfDate": latest_date.strftime("%Y-%m-%d"), "source": source_name,
-            "universe": ["KOSPI", "KOSDAQ"], "stockCount": int(prices["ticker"].nunique()),
-            "sectorCount": int(len(sector_results)), "lookbackTradingDays": int(prices["date"].nunique()),
-            "minimumAverageQuarterlySales": minimum_average_sales,
-            "minimumAverageQuarterlyOperatingMarginPct": minimum_average_margin,
-            "financialPrerequisiteQualifiedCount": (
-                len(eligible_tickers) if eligible_tickers is not None else None
-            ),
-            "startDateScanBusinessDays": [int(config["rotation_scan_min_days"]), int(config["rotation_scan_max_days"])],
+            "version": "4.0.0",
+            "generatedAtKST": datetime.now(KST).isoformat(timespec="seconds"),
+            "asOfDate": latest_date.strftime("%Y-%m-%d"),
+            "source": source_name,
+            "universe": ["KOSPI", "KOSDAQ"],
+            "stockCount": int(prices["ticker"].nunique()),
+            "sectorCount": int(len(sector_results)),
+            "lookbackTradingDays": int(prices["date"].nunique()),
+            "trendWeights": trend_weights,
+            "trendMinimumScore": trend_threshold,
+            "publicMinimumScore": public_minimum,
+            "persistenceWindowTradingDays": 10,
+            "persistenceTopRank": top_rank,
+            "startDateScanBusinessDays": [
+                int(config["rotation_scan_min_days"]),
+                int(config["rotation_scan_max_days"]),
+            ],
         },
         "sectors": public_sectors,
-        "rows": rows, "watchCandidates": observations, "watchRuleVersion": "rotation-watch-1.0",
+        "rows": [],
+        "watchCandidates": [],
         "events": [{
-            "name": "전체시장 순환매 엔진", "date": latest_date.strftime("%Y-%m-%d"),
-            "event": f"{prices['ticker'].nunique():,}종목 전수 구조로 섹터 상대강도·수급·확산·선도주 강도 계산",
-            "tone": "정보", "impact": "자동 산출 결과이며 투자 판단·주문 신호가 아닙니다.",
+            "name": "전체시장 섹터 추세 엔진",
+            "date": latest_date.strftime("%Y-%m-%d"),
+            "event": (
+                f"{prices['ticker'].nunique():,}종목을 이용해 섹터별 5·10·20일 순환 강도와 "
+                "최근 10일 상위권 지속성을 계산"
+            ),
+            "tone": "정보",
+            "impact": "종목 추천 없이 섹터 추세와 과열·약화 상태만 표시",
         }],
+        "stageCounts": stage_counts,
     }
     result["_allSectors"] = sector_results.to_dict("records")
-    result["_legacyEntryRows"] = legacy_pool
-    result["_allRows"] = legacy_pool
-    all_row_map = {row["ticker"]: row for row in result["_allRows"]}
-    result["_eligibility"] = [{
-        "ticker": item.ticker, "name": item.name, "sector": item.sector,
-        "eligible": item.ticker in all_row_map,
-        "score": all_row_map.get(item.ticker, {}).get("stockEntryScore"),
-        "priceDate": latest_date.strftime("%Y-%m-%d"),
-        "reason": "순환 후보 조건 통과" if item.ticker in all_row_map else (
-            "확정 4개 분기 재무 없음"
-            if fundamentals is not None and (
-                item.ticker not in financial_profiles or not financial_profiles[item.ticker]["complete"]
-            ) else
-            f"4분기 평균 매출액 {minimum_average_sales / 100_000_000:,.0f}억원 미만"
-            if fundamentals is not None and financial_profiles[item.ticker]["averageQuarterlySales"] < minimum_average_sales else
-            f"분기 영업이익률 4개 평균 {minimum_average_margin:g}% 미만"
-            if fundamentals is not None and financial_profiles[item.ticker]["averageQuarterlyOperatingMarginPct"] < minimum_average_margin else
-            "섹터·거래대금·가격 이력 조건 미충족"
-        ),
-    } for item in stock_data[stock_data["date"].eq(latest_date)].itertuples()]
-    previous_audit = {row['ticker']: row for row in result['_eligibility']}
-    displayed = {row['ticker']: row for row in rows}
-    for row in rotation_audit:
-        old = previous_audit.get(row['ticker'], {})
-        profile = financial_profiles.get(row['ticker'])
-        row['financialPrerequisite'] = profile
-        row['financialExclusionReasons'] = []
-        if fundamentals is not None:
-            if not profile or not profile['complete']:
-                row['financialExclusionReasons'].append('확정 4개 분기 재무 없음')
-            else:
-                if profile['averageQuarterlySales'] < minimum_average_sales:
-                    row['financialExclusionReasons'].append('4분기 평균 매출액 기준 미달')
-                if profile['averageQuarterlyOperatingMarginPct'] < minimum_average_margin:
-                    row['financialExclusionReasons'].append('4분기 평균 영업이익률 기준 미달')
-        if not old.get('eligible', False) and not row.get('financialWatch'):
-            row['reason'] = old.get('reason', row['reason'])
-        row['displayed'] = row['ticker'] in displayed
-        row['displayRank'] = displayed.get(row['ticker'], {}).get('rank')
-        row['selectionStage'] = (
-            '실적 선조건 탈락' if row['financialExclusionReasons'] and not row.get('financialWatch') else
-            '가격·섹터 조건 탈락' if not row['eligible'] else
-            '순위·분산 제한으로 미노출' if not row['displayed'] else
-            '진입 검토' if displayed[row['ticker']]['entryFit'] == '진입 검토' else '관찰'
-        )
-    result['_eligibility'] = rotation_audit
-    result['_allRows'] = rotation_pool
-    result["_meta"] = {"asOfDate": latest_date.strftime("%Y-%m-%d"), "engineVersion": "rotation-entry-3.0"}
+    result["_legacyEntryRows"] = []
+    result["_allRows"] = []
+    result["_eligibility"] = []
+    result["_meta"] = {
+        "asOfDate": latest_date.strftime("%Y-%m-%d"),
+        "engineVersion": "rotation-sector-trend-4.0",
+    }
     return result
 
 

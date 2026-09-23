@@ -198,14 +198,15 @@ class MarketRefreshTest(unittest.TestCase):
         p11 = run_engine(prices, self.config, "fixture", fundamentals)
         p1 = build_entry_board(prices, p11["_allSectors"], fundamentals, self.config)
         p2 = build_value_board(fundamentals, self.config, {"status": "정상"}, prices)
-        for section in (p1, p11, p2):
+        for section in (p1, p2):
             self.assertLessEqual(len(section["rows"]), 2)
-            if section is not p11:
-                self.assertGreater(len(section["_allRows"]), 2)
-            else:
-                self.assertGreaterEqual(len(section["_allRows"]), len(section["rows"]))
+            self.assertGreater(len(section["_allRows"]), 2)
             self.assertEqual(len(section["_eligibility"]), prices.ticker.nunique())
             self.assertTrue(all("score" in row for row in section["_eligibility"]))
+        self.assertEqual(p11["projectType"], "rotation-sector-trend")
+        self.assertEqual(p11["rows"], [])
+        self.assertEqual(p11["_allRows"], [])
+        self.assertEqual(p11["_eligibility"], [])
         _, board_path, _ = write_outputs(p1, p11, p2, {"latestPriceDate": "2026-08-27"}, self.config)
         board = json.loads(board_path.read_text(encoding="utf-8"))
         self.assertNotIn("_allRows", board["p1"])

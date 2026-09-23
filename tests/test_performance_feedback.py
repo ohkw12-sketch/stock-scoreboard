@@ -89,6 +89,55 @@ class FeedbackTest(unittest.TestCase):
         self.assertEqual(result['ruleVersion'],'combined-feedback-3.0')
         self.assertEqual(rank_recent(board,self.samples(),source_date='2026-09-03',generated_at='2026-09-03T18:00:00+09:00',snapshot_id='x')['rows'],[])
 
+    def test_sector_trend_combined_uses_union_intersection_and_anti_chase(self):
+        active = {
+            'name': '활성', 'trendState': '추세확인', 'stage': '②확산',
+            'riskGauge': 40, 'trendScore': 72,
+        }
+        inactive = {
+            'name': '관찰', 'trendState': '신규포착', 'stage': '①초기',
+            'riskGauge': 20, 'trendScore': 70,
+        }
+        base = {
+            'name': '통과', 'sector': '활성', 'rank': 1, 'growthScore': 70,
+            'nonOverheated': True, 'currentPrice': 100,
+            'fiveDayReturnPct': 5, 'ma20DistancePct': 2, 'ma20SlopePct': .3,
+            'sourceDate': '2026-09-03',
+        }
+        board = {
+            'p11': {
+                'projectType': 'rotation-sector-trend',
+                'sectors': [active, inactive],
+            },
+            'p2': {
+                'sourceDate': '2026-09-03',
+                'interestGrowth': {'rows': [
+                    dict(base, ticker='000001', interestGrowthScore=80),
+                    dict(base, ticker='000002', name='과열', interestGrowthScore=79,
+                         nonOverheated=False),
+                    dict(base, ticker='000003', name='비활성', sector='관찰',
+                         interestGrowthScore=78),
+                ]},
+                'absoluteValueGrowth': {'rows': [
+                    dict(base, ticker='000004', name='절대', valueGrowthScore=75,
+                         valueScore=80),
+                ]},
+            },
+        }
+        result = rank_recent(
+            board, {'rows': []}, source_date='2026-09-03',
+            generated_at='2026-09-03T18:00:00+09:00', snapshot_id='x',
+        )
+        self.assertEqual(result['ruleVersion'], 'combined-trend-4.0')
+        self.assertEqual(
+            {row['ticker'] for row in result['rows']}, {'000001', '000004'},
+        )
+        self.assertTrue(all(row['sectorRelation'] == '추세확인' for row in result['rows']))
+        self.assertTrue(all('비과열' in row['conditions'] for row in result['rows']))
+        rejected = {row['ticker']: row['reasons'] for row in result['_audit']}
+        self.assertIn('5일 상승률·20일선 이격 또는 추세 조건 미충족', rejected['000002'])
+        self.assertIn('추세확인 ②확산·③주도 섹터 아님', rejected['000003'])
+
     def test_insufficient_samples_not_fabricated(self):
         self.assertFalse(learn_patterns({'rows':self.samples()['rows'][:2]},cutoff_date='2026-09-03')['patterns'])
 
