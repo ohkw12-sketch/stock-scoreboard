@@ -288,7 +288,47 @@ class PriceAndSelectionTests(unittest.TestCase):
     def test_complete_scenario_conditions_can_qualify(self):
         s=assess(candidate())
         self.assertTrue(s["eligible"])
+        self.assertTrue(s["fundamentals"]["upCore"])
         self.assertTrue(s["scenarios"]["up"]["ready"])
+
+    def test_forward_growth_without_strong_actuals_is_not_an_up_pick(self):
+        s=candidate();raw=raw_fundamentals();raw["op_quarter_previous"]=5e9
+        points=forecast_index([consensus(),consensus("2027FY",op=450,sales=3500)],[],CUTOFF)
+        s["fundamentals"]=stock_fundamentals(raw,points,[],CUTOFF,"123456")
+        assess(s)
+        self.assertTrue(s["fundamentals"]["strongForward"])
+        self.assertFalse(s["fundamentals"]["strongActual"])
+        self.assertFalse(s["fundamentals"]["upCore"])
+        self.assertEqual(choose([s],"up")["candidateCount"],0)
+
+    def test_large_unexplained_h2_jump_needs_matching_quarter_forecasts(self):
+        s=candidate()
+        points=forecast_index([consensus(op=400),consensus("2027FY",op=600,sales=3500)],[],CUTOFF)
+        s["fundamentals"]=stock_fundamentals(raw_fundamentals(),points,[],CUTOFF,"123456")
+        assess(s)
+        self.assertFalse(s["fundamentals"]["h2BridgeVerified"])
+        self.assertFalse(s["fundamentals"]["upCore"])
+        points=forecast_index([consensus(op=400),consensus("2027FY",op=600,sales=3500),
+            consensus("2026Q3",op=140),consensus("2026Q4",op=140)],[],CUTOFF)
+        s["fundamentals"]=stock_fundamentals(raw_fundamentals(),points,[],CUTOFF,"123456")
+        assess(s)
+        self.assertTrue(s["fundamentals"]["h2BridgeVerified"])
+        self.assertTrue(s["fundamentals"]["upCore"])
+
+    def test_financial_sector_uses_a_separate_profit_basis(self):
+        s=assess(candidate(sector="금융"))
+        self.assertTrue(s["eligible"])
+        self.assertFalse(s["fundamentals"]["upCore"])
+        self.assertEqual(choose([s],"up")["candidateCount"],0)
+
+    def test_growth_watch_order_ignores_price_proximity(self):
+        near=candidate("111111","산업1");near["price"]["breakout"]=False;assess(near)
+        far=candidate("222222","산업2")
+        far["price"].update(breakout=False,volumeRatio=1,rs20=-2,ma20=110)
+        far["fundamentals"]["nextOPDelta"]=near["fundamentals"]["nextOPDelta"]+1e10
+        assess(far)
+        self.assertGreater(len(far["scenarios"]["up"]["waiting"]),len(near["scenarios"]["up"]["waiting"]))
+        self.assertEqual(choose([near,far],"up")["watchTickers"],["222222","111111"])
 
     def test_up_card_does_not_show_price_conditions_waiting(self):
         s=candidate();s["price"]["breakout"]=False;assess(s)

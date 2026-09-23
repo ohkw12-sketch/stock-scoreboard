@@ -32,11 +32,18 @@
 
   function scenarioCard(key, compact=false) {
     const c=data.scenarios[key],ids=compact?c.tickers.slice(0,3):c.tickers;
-    const watch=key==='up'?(compact?(c.watchTickers||[]).slice(0,2):(c.watchTickers||[])):[];
-    return `<section class="card scenario-card ${key}"><div class="scenario-head"><div class="scenario-number">SCENARIO 0${['up','range','down'].indexOf(key)+1}</div><h3>${esc(c.title)}</h3><p>${esc(c.subtitle)}</p><div class="scenario-count"><strong>${num(c.shownReadyCount)}</strong><span>${esc(c.readyLabel)} / 표시 후보 ${c.tickers.length}개</span></div><p>전체 ${num(c.candidateCount)}개 연구 후보 중 ${num(c.readyCount)}개 ${esc(c.readyLabel)}${key==='up'?` · 성장 확인·가격 대기 ${(c.watchTickers||[]).length}개`:''}</p></div>
+    const watch=key==='up'&&compact?(c.watchTickers||[]).slice(0,2):[];
+    return `<section class="card scenario-card ${key}"><div class="scenario-head"><div class="scenario-number">SCENARIO 0${['up','range','down'].indexOf(key)+1}</div><h3>${esc(c.title)}</h3><p>${esc(c.subtitle)}</p><div class="scenario-count"><strong>${num(c.shownReadyCount)}</strong><span>${esc(c.readyLabel)} / 표시 후보 ${c.tickers.length}개</span></div><p>전체 ${num(c.candidateCount)}개 연구 후보 중 ${num(c.readyCount)}개 ${esc(c.readyLabel)}${key==='up'?` · 기업 성장 우선후보 ${num((c.watchTickers||[]).length)}개`:''}</p></div>
       ${ids.map(t=>candidate(data.stocks[t],key)).join('')||empty('현재 표시할 후보가 없습니다','조건이 확인되면 이 영역에 나타납니다.')}
-      ${watch.length?`<div class="watch-heading"><b>실적 성장 확인 · 가격 조건 대기</b><span>진입 조건 통과 종목과 구분합니다</span></div>${watch.map(t=>candidate(data.stocks[t],key,true)).join('')}`:''}
-      <div class="card-foot">${compact?`<a href="#scenarios" data-scenario="${key}">후보 ${c.tickers.length}개${key==='up'?` · 성장 관찰 ${(c.watchTickers||[]).length}개`:''} 전체 보기 →</a>`:`<span class="muted">${esc(c.horizon)}</span>`}</div></section>`;
+      ${watch.length?`<div class="watch-heading"><b>기업 성장 우선후보 미리보기</b><span>가격 상태와 무관하게 이익 증가액 순서로 선정</span></div>${watch.map(t=>candidate(data.stocks[t],key,true)).join('')}`:''}
+      <div class="card-foot">${compact?`<a href="#scenarios" data-scenario="${key}">후보 ${c.tickers.length}개${key==='up'?` · 성장 우선후보 ${(c.watchTickers||[]).length}개`:''} 전체 보기 →</a>`:`<span class="muted">${esc(c.horizon)}</span>`}</div></section>`;
+  }
+
+  function growthLeaders() {
+    const c=data.scenarios.up, ids=c.watchTickers||[];
+    return `${section('가격 대기 · 기업 성장 우선후보', `<span class="muted">표시 ${num(ids.length)}개 · 전체 ${num(c.watchCount??ids.length)}개</span>`)}
+      <div class="card growth-leaders"><p class="market-note">올해·내년 예상 영업이익과 최근 확정 분기 실적이 모두 강한 기업 중 가격 조건을 기다리는 종목입니다. 예상 영업이익 증가액, 최근 확정 증가액 순으로 살펴봅니다. 가격 조건은 순위에 반영하지 않습니다. 최대 20개, 동일 섹터 최대 3개입니다.</p>
+      ${ids.length?`<div class="table-scroll"><table><thead><tr><th>기업</th><th class="num">내년 예상 OP 증가</th><th class="num">최근 분기 OP 증가</th><th class="num">최근 분기 마진</th><th>가격 상태</th></tr></thead><tbody>${ids.map((t,i)=>{const s=data.stocks[t],f=s.fundamentals,c=s.scenarios.up;return `<tr><td><span class="leader-rank">${i+1}</span>${stockLink(s)}</td><td class="num"><b>${eok(f.nextOPDelta)}</b><span class="cell-note">전년비 ${percent(f.nextOPGrowthPct)}</span></td><td class="num"><b>${eok(f.latestOPDelta)}</b><span class="cell-note">전년비 ${percent(f.latestOPGrowthPct)}</span></td><td class="num">${finite(f.latestMarginPct)?`${num(f.latestMarginPct,1)}%`:'미확인'}</td><td>${pill('가격 대기','amber')}<span class="cell-note">${esc(c.waiting.slice(0,2).join(' · ')||'다음 완료 거래일 확인')}</span></td></tr>`;}).join('')}</tbody></table></div>`:empty('현재 성장 우선후보가 없습니다','예상과 확정 실적을 함께 확인한 기업이 나올 때 표시합니다.')}</div>`;
   }
 
   function overview() {
@@ -54,8 +61,9 @@
     const keys=state.scenario==='all'?['up','range','down']:[state.scenario];
     return heading('THREE SCENARIOS','하나의 정답 대신, 세 가지 준비','시장 판단과 무관하게 모든 시나리오를 볼 수 있습니다. 조건 충족은 해당 환경의 연구 조건이며 매수 확정이 아닙니다.')+
       `<div class="toolbar"><div class="segmented" aria-label="시나리오 선택">${[['all','모두 보기'],['up','상승'],['range','박스권'],['down','하락']].map(([k,t])=>`<button data-scenario="${k}" aria-pressed="${state.scenario===k}">${t}</button>`).join('')}</div></div>
-      <div class="callout">최대 5개 섹터에서 섹터당 3개를 표시합니다. 각 카드에 전체 조건 충족 수와 실제 표시 수를 나눠 적었습니다. 화면 밖 종목과 탈락 이유는 <a href="#stocks">종목 탐색</a>에서 확인할 수 있습니다.</div>
+      <div class="callout">진입 조건 충족 종목은 최대 5개 섹터에서 섹터당 3개를 표시합니다. 상승의 기업 성장 우선후보는 아래에서 따로 비교합니다. 화면 밖 종목과 보류 이유는 <a href="#stocks">종목 탐색</a>에서 확인할 수 있습니다.</div>
       <div class="grid ${keys.length===3?'three':''} section-space">${keys.map(k=>scenarioCard(k)).join('')}</div>
+      ${keys.includes('up')?growthLeaders():''}
       ${section('판단을 바꿔야 하는 순간')}<div class="grid three"><div class="card"><h3>실적 근거가 바뀔 때</h3><p class="market-note">새 전망이 하향되거나 실제 이익이 기대를 뒷받침하지 못하면 기존 개선 가정을 재검토합니다.</p></div><div class="card"><h3>가격 조건이 무너질 때</h3><p class="market-note">지지선 종가 이탈과 돌파 실패를 구분해 확인합니다. 상승 중에도 긴 윗꼬리·종가 밀림은 진입 조건에서 제외합니다.</p></div><div class="card"><h3>확인할 자료가 없을 때</h3><p class="market-note">다음 발표 날짜와 기대치가 수집되지 않았다면 미확인으로 표시합니다. 예상 수치로 빈칸을 채우지 않습니다.</p></div></div>`;
   }
 

@@ -16,7 +16,7 @@ import statistics
 import numpy as np
 import pandas as pd
 
-VERSION = "scenario-research-1.5.1"
+VERSION = "scenario-research-1.6"
 USABLE = {"유효 컨센서스", "참고 컨센서스", "개별 추정치", "외부 집계 컨센서스"}
 RULES = {
     "minimumAnnualSales": 200_000_000_000, "minimumTurnover20": 1_000_000_000,
@@ -26,10 +26,11 @@ RULES = {
     "upForwardMinDelta": 5_000_000_000, "upForwardMinSalesGrowthPct": 5,
     "upActualMinGrowthPct": 25, "upActualMinDelta": 3_000_000_000,
     "upActualMinSalesGrowthPct": 10, "upActualMinMarginPct": 10,
-    "description": "상승은 실질 이익 성장부터 선별하고 가격 조건을 별도로 확인. 전망이 있으면 약한 전망을 단일 분기 호조로 대체하지 않음. 지지·저항은 보유한 전 기간의 거래대금 집중 가격대와 돌파 이력을 요구. 종합점수·수주 건수 가점 없음.",
+    "upFundamentalDisplay": 20,
+    "description": "상승은 예상·확정 이익 성장의 동시 확인부터 선별하고 가격은 진입 상태에만 사용. 전망이 있으면 약한 전망을 단일 분기 호조로 대체하지 않음. 지지·저항은 보유한 전 기간의 거래대금 집중 가격대와 돌파 이력을 요구. 종합점수·수주 건수 가점 없음.",
 }
 SCENARIOS = {
-    "up": {"title": "상승 시나리오", "subtitle": "실질 이익 성장 확인 후 가격 진입 검토", "horizon": "기업 실적 6~12개월 · 진입 위치 20~60거래일",
+    "up": {"title": "상승 시나리오", "subtitle": "예상·확정 이익 동반 성장 후 가격 진입 검토", "horizon": "기업 실적 6~12개월 · 진입 위치 20~60거래일",
            "action": "추세·과거 거래 가격대 돌파·거래량이 함께 확인되는지 검토", "readyLabel": "조건 충족"},
     "range": {"title": "박스권 시나리오", "subtitle": "반복 확인된 박스의 하단 접근", "horizon": "기업 실적 6~12개월 · 과거 거래 가격대 재확인",
               "action": "박스 하단 지지와 반등 확인 후 검토", "readyLabel": "조건 충족"},
@@ -491,6 +492,12 @@ def stock_fundamentals(raw, points, revisions, cutoff, ticker):
     previous_sales = number(raw.get("sales_quarter_previous")) if matched_period else None
     current_h1 = q1["op"] + q2["op"] if q1 and q2 else None
     implied_h2 = o0 - current_h1 if o0 is not None and current_h1 is not None else None
+    q3_op = points.get((ticker, f"{year}Q3"), {}).get("op", {}).get("value")
+    q4_op = points.get((ticker, f"{year}Q4"), {}).get("op", {}).get("value")
+    quarter_h2 = q3_op + q4_op if q3_op is not None and q4_op is not None else None
+    h2_bridge = bool(current_h1 is not None and current_h1 > 0 and implied_h2 is not None
+        and (implied_h2 <= current_h1 * 2 or (quarter_h2 is not None and implied_h2 > 0
+            and abs(quarter_h2 - implied_h2) <= implied_h2 * .2)))
     positive_forecast = bool(o0 is not None and o1 is not None and o1 > max(o0, 0) and s1 is not None and s0 is not None and s1 >= s0)
     actual_improving = bool(latest and previous_op is not None and previous_sales and latest["op"] > max(previous_op, 0) and latest["sales"] > previous_sales)
     latest_weak = bool(latest and (latest["op"] <= 0 or (pct(latest["op"], previous_op) is not None and pct(latest["op"], previous_op) < -20)))
@@ -540,6 +547,7 @@ def stock_fundamentals(raw, points, revisions, cutoff, ticker):
         "forwardPair": forward_pair, "opForecastPair": op_forecast_pair,
         "strongForward": strong_forward, "strongActual": strong_actual,
         "growthQualified": growth_qualified, "growthPath": growth_path,
+        "h2BridgeVerified": h2_bridge, "quarterH2OP": quarter_h2,
         "latestWeak": latest_weak, "forecastWeak": forecast_weak, "annualSales": s0, "annualOP": o0, "nextOP": o1,
         "annualMarginPct": margin0 * 100 if margin0 is not None else None,
         "nextMarginPct": margin1 * 100 if margin1 is not None else None,
@@ -547,6 +555,7 @@ def stock_fundamentals(raw, points, revisions, cutoff, ticker):
         "nextSalesGrowthPct": pct(s1, s0), "latestActualPeriod": latest["period"] if latest else None,
         "latestOPGrowthPct": latest_op_growth, "latestOPDelta": latest_op_delta,
         "latestSalesGrowthPct": latest_sales_growth,
+        "latestMarginPct": latest_margin * 100 if latest_margin is not None else None,
         "h2ImpliedOP": implied_h2, "h2RequiredVsH1Pct": pct(implied_h2, current_h1),
         "warnings": warnings, "forecastDates": sorted({p[k]["date"] for p in forecasts for k in ("sales", "op") if k in p}),
         "reportedSalesTTM": sum(x["sales"] for x in actual) if len(actual) == 4 else None,
@@ -586,10 +595,15 @@ def assess(stock):
         blockers.append("과열 관찰" if heat_exception else "추격 이격 과다")
     base = not blockers
     check = lambda name, ok, reason: {"name": name, "met": bool(ok), "waiting": reason}
-    growth_waiting = ("전망 성장 기준 확인: 올해 OP 100억원 이상, 내년 OP +25%·+50억원 이상, 매출 +5% 이상, 최근 실적 악화 없음"
-                      if f["opForecastPair"] else
-                      "전망 미확인: 최신 확정 분기 OP +25%·+30억원 이상, 매출 +10% 이상, OP마진 10% 이상 확인")
-    up = [check("실질 이익 성장", f["growthQualified"], growth_waiting),
+    financial_sector = bool(re.search(r"금융|은행|증권|보험", stock["sector"]))
+    f["upCore"] = bool(f["strongForward"] and f["strongActual"] and f["h2BridgeVerified"]
+                        and not financial_sector)
+    core_waiting = ("내년 매출·OP 전망의 충분한 증가 확인" if not f["strongForward"] else
+                    "최근 확정 분기 매출·OP 증가와 이익률 확인" if not f["strongActual"] else
+                    "올해 하반기 예상 OP가 상반기의 2배를 넘는 경우 분기별 전망 근거 확인" if not f["h2BridgeVerified"] else
+                    "금융업은 동일 영업이익 기준의 성장 순위에서 제외" if financial_sector else "")
+    f["upCoreReason"] = core_waiting or "예상·확정 실적 동반 확인"
+    up = [check("예상·확정 이익 동반 성장", f["upCore"], core_waiting),
           check("중기 추세", p["ma60"] and p["ma20"] and p["close"] > p["ma20"] > p["ma60"], "종가 > 20일선 > 60일선 확인"),
           check("시장 대비 강세", (p.get("rs20") or 0) > 0, "20일 시장 대비 수익률 양수 확인"),
           check("큰 매물대 종가 돌파", p["breakout"], "과거 거래대금 집중 가격대를 거래량 동반 고가권 종가로 돌파 확인"),
@@ -626,9 +640,13 @@ def assess(stock):
 def choose(stocks, key):
     # Evidence count, legacy scores and small-base percentage growth never rank.
     candidates = [s for s in stocks if (s["eligible"] or s["heatObservation"])
-                  and (key != "up" or s["fundamentals"]["growthQualified"])]
+                  and (key != "up" or s["fundamentals"]["upCore"])]
     def order(s):
         f, p, state = s["fundamentals"], s["price"], s["scenarios"][key]
+        if key == "up":
+            return (-int(state["ready"]), int(s["heatObservation"]),
+                    -(f["nextOPDelta"] or 0), -(f["latestOPDelta"] or 0),
+                    -((f["nextMarginPct"] or 0) - (f["annualMarginPct"] or 0)), s["ticker"])
         improved_margin = (f["nextMarginPct"] or 0) - (f["annualMarginPct"] or 0)
         return (-int(state["ready"]), int(s["heatObservation"]), -int(f["actualImproving"] and f["positiveForecast"]),
                 -sum(c["met"] for c in state["checks"]), -max(-20, min(20, improved_margin)), -(p.get("rs20") or 0), s["ticker"])
@@ -643,21 +661,26 @@ def choose(stocks, key):
         counts[sector] += 1
         selected.append(s["ticker"])
     watch = []
+    watch_count = 0
     if key == "up":
-        watch_candidates = [s for s in candidates if s["eligible"] and not s["scenarios"]["up"]["ready"]
-                            and sum(not c["met"] for c in s["scenarios"]["up"]["checks"]) == 1]
-        watch_candidates.sort(key=lambda s: (-int(s["fundamentals"]["strongForward"] and s["fundamentals"]["strongActual"]),
-                            -int(s["fundamentals"]["strongForward"]),
-                            -(s["fundamentals"]["nextOPDelta"] or 0),
-                            -(s["fundamentals"]["latestOPDelta"] or 0), s["ticker"]))
+        watch_candidates = [s for s in candidates if s["eligible"] and not s["scenarios"]["up"]["ready"]]
+        watch_count = len(watch_candidates)
+        # Price proximity does not select or order companies. It only describes
+        # their later entry state. The ordered shortlist is fundamentally led.
+        watch_candidates.sort(key=lambda s: (-(s["fundamentals"]["nextOPDelta"] or 0),
+                            -(s["fundamentals"]["latestOPDelta"] or 0),
+                            -((s["fundamentals"]["nextMarginPct"] or 0)
+                              - (s["fundamentals"]["annualMarginPct"] or 0)), s["ticker"]))
         counts = Counter()
         for s in watch_candidates:
             sector = s["sector"]
-            if counts[sector] >= RULES["maxPerSector"] or (sector not in counts and len(counts) >= RULES["maxSectors"]):
+            if counts[sector] >= RULES["maxPerSector"]:
                 continue
             counts[sector] += 1
             watch.append(s["ticker"])
-    return {**SCENARIOS[key], "tickers": selected, "watchTickers": watch,
+            if len(watch) >= RULES["upFundamentalDisplay"]:
+                break
+    return {**SCENARIOS[key], "tickers": selected, "watchTickers": watch, "watchCount": watch_count,
             "candidateCount": len(candidates),
             "readyCount": sum(s["scenarios"][key]["ready"] for s in candidates),
             "shownReadyCount": sum(s["scenarios"][key]["ready"] for s in candidates if s["ticker"] in selected)}

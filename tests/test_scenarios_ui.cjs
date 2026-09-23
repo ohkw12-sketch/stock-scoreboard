@@ -54,6 +54,20 @@ test('search and sector filters find stocks outside displayed candidate caps', {
   assert.deepEqual(ui.filteredStocks(),[]);
 });
 
+test('upside watch is a separate fundamentals-first comparison', {skip:!fs.existsSync(path.join(__dirname,'../test_output/scenario-public.test.json'))},()=>{
+  const data=JSON.parse(fs.readFileSync(path.join(__dirname,'../test_output/scenario-public.test.json'),'utf8'));
+  ui.setData(data);
+  const ids=data.scenarios.up.watchTickers||[];
+  assert.ok(ids.length<=20);
+  assert.ok(ids.every(t=>data.stocks[t].fundamentals.upCore && !data.stocks[t].scenarios.up.ready));
+  const deltas=ids.map(t=>data.stocks[t].fundamentals.nextOPDelta);
+  assert.deepEqual(deltas,[...deltas].sort((a,b)=>b-a));
+  const html=ui.renderView('scenarios');
+  assert.match(html,/가격 대기 · 기업 성장 우선후보/);
+  assert.match(html,/가격 조건은 순위에 반영하지 않습니다/);
+  for(const ticker of ids)assert.match(html,new RegExp(`#stock/${ticker}`));
+});
+
 function browserRuntime(fetch, hash='#overview'){
   const elements=new Map(),listeners=new Map();
   const element=id=>{if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',addEventListener(){},focus(){},insertAdjacentHTML(_where,text){this.innerHTML+=text;}});return elements.get(id);};

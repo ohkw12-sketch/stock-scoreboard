@@ -41,8 +41,8 @@ def validate(board, holdings):
         if len(tickers) != len(set(tickers)) or len(sectors) > 5 or any(n > 3 for n in sectors.values()):
             issues.append(f"{key}: 중복·분산 규칙 불일치")
         watch_sectors = Counter(board["stocks"][t]["sector"] for t in watch)
-        if (set(tickers) & set(watch) or len(watch) != len(set(watch)) or len(watch_sectors) > 5
-                or any(n > 3 for n in watch_sectors.values())):
+        if (set(tickers) & set(watch) or len(watch) != len(set(watch))
+                or len(watch) > 20 or any(n > 3 for n in watch_sectors.values())):
             issues.append(f"{key}: 관찰 후보 중복·분산 규칙 불일치")
         for t in tickers:
             s = board["stocks"][t]
@@ -50,15 +50,14 @@ def validate(board, holdings):
                 issues.append(f"{t}: 허용되지 않은 후보 노출")
             if key in ("up", "range") and not s["scenarios"][key]["ready"]:
                 issues.append(f"{t}: {key} 카드에 대기 후보 노출")
-            if key == "up" and not s["fundamentals"]["growthQualified"]:
+            if key == "up" and not s["fundamentals"]["upCore"]:
                 issues.append(f"{t}: 성장 기준 미달 후보의 상승 카드 노출")
             if s["scenarios"][key]["ready"] and (s["blockers"] or not all(c["met"] for c in s["scenarios"][key]["checks"])):
                 issues.append(f"{t}: 조건 충족 표시 불일치")
         for t in watch:
             s = board["stocks"][t]
-            if (key != "up" or not s["eligible"] or not s["fundamentals"]["growthQualified"]
-                    or s["scenarios"]["up"]["ready"]
-                    or sum(not c["met"] for c in s["scenarios"]["up"]["checks"]) != 1):
+            if (key != "up" or not s["eligible"] or not s["fundamentals"]["upCore"]
+                    or s["scenarios"]["up"]["ready"]):
                 issues.append(f"{t}: 성장 관찰·가격 대기 조건 불일치")
     for t, s in board["stocks"].items():
         if s["price"]["date"] > cutoff:
@@ -86,9 +85,9 @@ def write_public_dataset(out, board, identity):
     for ticker, stock in board["stocks"].items():
         shards[ticker[:2]][ticker] = stock
         small = {k: stock[k] for k in ("ticker", "name", "sector", "eligible", "heatObservation", "blockers")}
-        small["fundamentals"] = {k: stock["fundamentals"][k] for k in ("track", "growthPath", "growthQualified",
+        small["fundamentals"] = {k: stock["fundamentals"][k] for k in ("track", "growthPath", "growthQualified", "upCore",
             "annualOP", "nextOP", "nextOPGrowthPct", "nextOPDelta", "latestOPGrowthPct", "latestOPDelta",
-            "annualMarginPct", "forecastDates")}
+            "annualMarginPct", "nextMarginPct", "latestMarginPct", "forecastDates")}
         small["price"] = {k: stock["price"][k] for k in ("rs20", "volumeRatio", "drawdown60")}
         if ticker in selected:
             small["price"]["box"] = stock["price"].get("box")
