@@ -1,151 +1,19 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-trend-4.0",
-  "snapshotId": "8da5cc074651201c5d38bfd044dc997920b5db51b4004d2e669e2abfeee6ebe5",
-  "generatedAt": "2026-09-23T11:40:50+09:00",
-  "sourceDate": "2026-09-21",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
-  "candidateCount": 5,
+  "snapshotId": "2abb5eb63d1895107d61c69dff50544a920e7a0b1be433f92fd7f4406dc6f574",
+  "generatedAt": "2026-09-23T16:16:36+09:00",
+  "sourceDate": "2026-09-23",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "candidateCount": 1,
   "matchedCandidateCount": 0,
   "rows": [
-    {
-      "ticker": "440110",
-      "name": "파두",
-      "sector": "반도체",
-      "currentProjectRank": 1.0,
-      "conditions": [
-        "시장관심성장",
-        "섹터추세",
-        "비과열"
-      ],
-      "condition": "시장관심성장 + 섹터추세 + 비과열",
-      "entryState": "추세확인·비과열",
-      "currentPrice": 65500.0,
-      "combinedScore": 84.0,
-      "performanceScore": null,
-      "matchedPattern": null,
-      "features": [
-        "가치성장",
-        "비과열",
-        "섹터추세",
-        "섹터추세:추세유지",
-        "순환:②확산",
-        "시장관심성장"
-      ],
-      "sourceDate": "2026-09-21",
-      "valueScore": null,
-      "growthScore": 84.67,
-      "sectorRelation": "추세유지",
-      "sectorTrendScore": 81.3,
-      "sectorStage": "②확산",
-      "fiveDayReturnPct": 8.44,
-      "ma20DistancePct": 0.04,
-      "ma20SlopePct": 0.27,
-      "rank": 1,
-      "recommendationHistory": {
-        "firstDate": "2026-09-21",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
-    {
-      "ticker": "009150",
-      "name": "삼성전기",
-      "sector": "반도체",
-      "currentProjectRank": 4.0,
-      "conditions": [
-        "시장관심성장",
-        "섹터추세",
-        "비과열"
-      ],
-      "condition": "시장관심성장 + 섹터추세 + 비과열",
-      "entryState": "추세확인·비과열",
-      "currentPrice": 1429000.0,
-      "combinedScore": 76.88,
-      "performanceScore": null,
-      "matchedPattern": null,
-      "features": [
-        "가치성장",
-        "비과열",
-        "섹터추세",
-        "섹터추세:추세유지",
-        "순환:②확산",
-        "시장관심성장"
-      ],
-      "sourceDate": "2026-09-21",
-      "valueScore": null,
-      "growthScore": 75.78,
-      "sectorRelation": "추세유지",
-      "sectorTrendScore": 81.3,
-      "sectorStage": "②확산",
-      "fiveDayReturnPct": 6.88,
-      "ma20DistancePct": 3.01,
-      "ma20SlopePct": 0.4,
-      "rank": 2,
-      "recommendationHistory": {
-        "firstDate": "2026-09-21",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
-    {
-      "ticker": "007660",
-      "name": "이수페타시스",
-      "sector": "전자부품 제조업",
-      "currentProjectRank": 18.0,
-      "conditions": [
-        "시장관심성장",
-        "섹터추세",
-        "비과열"
-      ],
-      "condition": "시장관심성장 + 섹터추세 + 비과열",
-      "entryState": "추세확인·비과열",
-      "currentPrice": 110300.0,
-      "combinedScore": 70.4,
-      "performanceScore": null,
-      "matchedPattern": null,
-      "features": [
-        "가치성장",
-        "비과열",
-        "섹터추세",
-        "섹터추세:추세유지",
-        "순환:③주도",
-        "시장관심성장"
-      ],
-      "sourceDate": "2026-09-21",
-      "valueScore": null,
-      "growthScore": 66.4,
-      "sectorRelation": "추세유지",
-      "sectorTrendScore": 86.4,
-      "sectorStage": "③주도",
-      "fiveDayReturnPct": 2.7,
-      "ma20DistancePct": 0.52,
-      "ma20SlopePct": 0.44,
-      "rank": 3,
-      "recommendationHistory": {
-        "firstDate": "2026-09-21",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
     {
       "ticker": "098460",
       "name": "고영",
       "sector": "반도체",
-      "currentProjectRank": 19.0,
+      "currentProjectRank": 14.0,
       "conditions": [
         "시장관심성장",
         "섹터추세",
@@ -153,8 +21,8 @@
       ],
       "condition": "시장관심성장 + 섹터추세 + 비과열",
       "entryState": "추세확인·비과열",
-      "currentPrice": 28500.0,
-      "combinedScore": 70.27,
+      "currentPrice": 29150.0,
+      "combinedScore": 71.5,
       "performanceScore": null,
       "matchedPattern": null,
       "features": [
@@ -165,68 +33,24 @@
         "순환:②확산",
         "시장관심성장"
       ],
-      "sourceDate": "2026-09-21",
+      "sourceDate": "2026-09-23",
       "valueScore": null,
-      "growthScore": 67.51,
+      "growthScore": 68.22,
       "sectorRelation": "추세유지",
-      "sectorTrendScore": 81.3,
+      "sectorTrendScore": 84.6,
       "sectorStage": "②확산",
-      "fiveDayReturnPct": 5.17,
-      "ma20DistancePct": 1.52,
-      "ma20SlopePct": 0.22,
-      "rank": 4,
+      "fiveDayReturnPct": 6.78,
+      "ma20DistancePct": 3.85,
+      "ma20SlopePct": 0.09,
+      "rank": 1,
       "recommendationHistory": {
+        "kind": "recent",
+        "label": "최근 3거래일 중 2일 추천",
         "firstDate": "2026-09-21",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
-    {
-      "ticker": "441270",
-      "name": "파인엠텍",
-      "sector": "전자부품 제조업",
-      "currentProjectRank": 20.0,
-      "conditions": [
-        "시장관심성장",
-        "섹터추세",
-        "비과열"
-      ],
-      "condition": "시장관심성장 + 섹터추세 + 비과열",
-      "entryState": "추세확인·비과열",
-      "currentPrice": 8560.0,
-      "combinedScore": 70.06,
-      "performanceScore": null,
-      "matchedPattern": null,
-      "features": [
-        "가치성장",
-        "비과열",
-        "섹터추세",
-        "섹터추세:추세유지",
-        "순환:③주도",
-        "시장관심성장"
-      ],
-      "sourceDate": "2026-09-21",
-      "valueScore": null,
-      "growthScore": 65.98,
-      "sectorRelation": "추세유지",
-      "sectorTrendScore": 86.4,
-      "sectorStage": "③주도",
-      "fiveDayReturnPct": -7.06,
-      "ma20DistancePct": 1.19,
-      "ma20SlopePct": 1.11,
-      "rank": 5,
-      "recommendationHistory": {
-        "firstDate": "2026-09-21",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
+        "previousDate": "2026-09-21",
+        "recommendationDays": 2,
+        "spanTradingDays": 3,
+        "gapCalendarDays": 2
       }
     }
   ],
@@ -237,24 +61,7 @@
       "sector": "화장품",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
-      ]
-    },
-    {
-      "ticker": "000990",
-      "name": "DB하이텍",
-      "sector": "반도체",
-      "eligible": false,
-      "reasons": [
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "003160",
-      "name": "디아이",
-      "sector": "반도체",
-      "eligible": false,
-      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -277,18 +84,13 @@
       ]
     },
     {
-      "ticker": "007660",
-      "name": "이수페타시스",
-      "sector": "전자부품 제조업",
-      "eligible": true,
-      "reasons": []
-    },
-    {
       "ticker": "009150",
       "name": "삼성전기",
       "sector": "반도체",
-      "eligible": true,
-      "reasons": []
+      "eligible": false,
+      "reasons": [
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
     },
     {
       "ticker": "009520",
@@ -296,7 +98,8 @@
       "sector": "1차 철강 제조업",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
@@ -309,11 +112,22 @@
       ]
     },
     {
-      "ticker": "043260",
-      "name": "성호전자",
-      "sector": "전자부품 제조업",
+      "ticker": "033500",
+      "name": "동성화인텍",
+      "sector": "기초 화학물질 제조업",
       "eligible": false,
       "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "036570",
+      "name": "NC",
+      "sector": "인터넷/소프트웨어",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -327,13 +141,30 @@
       ]
     },
     {
-      "ticker": "051900",
-      "name": "LG생활건강",
-      "sector": "화장품",
+      "ticker": "058470",
+      "name": "리노공업",
+      "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "064760",
+      "name": "티씨케이",
+      "sector": "반도체",
+      "eligible": false,
+      "reasons": [
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "073490",
+      "name": "LIG아큐버",
+      "sector": "통신 및 방송 장비 제조업",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -342,6 +173,25 @@
       "sector": "반도체",
       "eligible": false,
       "reasons": [
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "092870",
+      "name": "엑시콘",
+      "sector": "반도체",
+      "eligible": false,
+      "reasons": [
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "097230",
+      "name": "HJ중공업",
+      "sector": "조선",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -367,24 +217,17 @@
       "sector": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
       "eligible": false,
       "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
-      "ticker": "131970",
-      "name": "두산테스나",
-      "sector": "반도체",
+      "ticker": "128940",
+      "name": "한미약품",
+      "sector": "바이오/제약",
       "eligible": false,
       "reasons": [
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "166090",
-      "name": "하나머티리얼즈",
-      "sector": "반도체",
-      "eligible": false,
-      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -408,8 +251,18 @@
       ]
     },
     {
-      "ticker": "240810",
-      "name": "원익IPS",
+      "ticker": "257720",
+      "name": "실리콘투",
+      "sector": "화장품",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "281820",
+      "name": "케이씨텍",
       "sector": "반도체",
       "eligible": false,
       "reasons": [
@@ -427,23 +280,27 @@
       ]
     },
     {
+      "ticker": "357780",
+      "name": "솔브레인",
+      "sector": "반도체",
+      "eligible": false,
+      "reasons": [
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
       "ticker": "440110",
       "name": "파두",
       "sector": "반도체",
-      "eligible": true,
-      "reasons": []
-    },
-    {
-      "ticker": "441270",
-      "name": "파인엠텍",
-      "sector": "전자부품 제조업",
-      "eligible": true,
-      "reasons": []
+      "eligible": false,
+      "reasons": [
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
     }
   ],
   "feedback": {
     "version": "feedback-1.0",
-    "cutoffDate": "2026-09-21",
+    "cutoffDate": "2026-09-23",
     "horizon": 5,
     "sampleCount": 379,
     "patterns": [
@@ -1500,21 +1357,19 @@
   },
   "notice": "가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-09-23T11:40:50+09:00",
-    "snapshotId": "8da5cc074651201c5d38bfd044dc997920b5db51b4004d2e669e2abfeee6ebe5",
-    "sourceCutoff": "2026-09-21",
-    "mode": "저장자료 재계산",
+    "generatedAt": "2026-09-23T16:16:36+09:00",
+    "snapshotId": "2abb5eb63d1895107d61c69dff50544a920e7a0b1be433f92fd7f4406dc6f574",
+    "sourceCutoff": "2026-09-23",
+    "mode": "증분 수집",
     "engineVersion": "787f76181bd15741",
-    "runId": "a85ca4c71a6f27be518f4534",
-    "evidenceSnapshotId": "3a24554fdbb033e8f6975129f76d7134f5b88cf9aa21e6de8b4c5643f87a1fee",
+    "runId": "a2693b71110cc3658bc639c8",
+    "evidenceSnapshotId": "df1382c695e4e88f502b2931d56985456b9cd57ec87a6e50c6d313023836245b",
     "status": "계산완료"
   },
-  "runId": "a85ca4c71a6f27be518f4534",
+  "runId": "a2693b71110cc3658bc639c8",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-09-23T11:54:49+09:00",
-  "observedPublishedAt": "2026-09-23T11:54:49+09:00"
+  }
 }
