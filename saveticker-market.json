@@ -3,40 +3,82 @@
   "meta": {
     "title": "오선 국장 주요뉴스",
     "status": "SaveTicker 오선 국장·매크로 시황 갱신",
-    "updatedKST": "2026-09-22 10:25",
-    "range": "09.21 18:49–09.22 10:25",
+    "updatedKST": "2026-09-23 10:07",
+    "range": "09.22 20:23–09.23 10:07",
     "sourceUrl": "https://saveticker.com/news",
     "source": "SaveTicker · 작성자 오선",
     "selectionRule": "국장 직접·국내 업종 영향 뉴스와 장전·마감 리포트, 금리·물가·경기·환율·원자재 매크로 시황을 함께 선별",
     "fetchedCount": 500,
-    "authorCount": 46,
-    "selectedCount": 6,
+    "authorCount": 38,
+    "selectedCount": 4,
     "directCount": 1,
-    "sectorCount": 2,
-    "macroCount": 3,
+    "sectorCount": 1,
+    "macroCount": 2,
     "windowHours": 36
   },
   "items": [
     {
-      "id": "news_O2zk2rxGPxpc",
-      "title": "SAVE 마감 리포트｜ 26년 09월 21일 (월) - 텍스트",
+      "id": "news_9Mf8a7VadZv3",
+      "title": "바킨 총재 \"인플레 압력 가라앉는 데 시간 걸릴 것\"",
       "scope": "매크로 시황",
       "tone": "확인",
       "sectors": [
-        "장전·마감 시황"
+        "중앙은행·금리",
+        "물가"
       ],
-      "marketImpact": "미국 시장의 방향과 금리·환율·원자재 움직임을 함께 확인합니다.",
-      "publishedKST": "2026-09-22 06:41",
-      "createdAt": "2026-09-22T06:41:30+09:00",
+      "marketImpact": "금리 경로와 긴축 강도의 변화는 주식의 할인율과 글로벌 자금 흐름에 연결됩니다. 물가의 방향과 예상치 대비 차이를 통화정책·실질금리 변화와 함께 확인합니다.",
+      "publishedKST": "2026-09-23 01:55",
+      "createdAt": "2026-09-23T01:55:45+09:00",
       "source": "SaveTicker",
       "author": "오선",
-      "viewCount": 7342,
+      "viewCount": 2681,
       "isRumor": false,
-      "importanceScore": 103.0,
-      "url": "https://saveticker.com/news/news_O2zk2rxGPxpc",
-      "summary": "금일 미국 증시는 상승 마감했습니다. 빅테크 랠리에 힘입어 증시는 8월 초 이후 최대 상승폭을 기록했습니다.",
+      "importanceScore": 79.3,
+      "url": "https://saveticker.com/news/news_9Mf8a7VadZv3",
+      "summary": "리치먼드 연은 바킨 총재는 공급 충격이 더는 일시적이지 않다며, 인플레이션 충격이 가라앉는 데 시간이 걸릴 수 있고 고물가가 고착화될 위험이…",
       "contentStatus": "본문 확인",
       "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_e3znJWhn01D4",
+      "title": "유가, 이란 협상 기대·사우디 송유관 재가동에 하락세",
+      "scope": "매크로 시황",
+      "tone": "주의",
+      "sectors": [
+        "원자재·지정학"
+      ],
+      "marketImpact": "에너지 공급과 지정학 변화가 물가·금리 및 기업 원가에 주는 영향을 확인합니다.",
+      "publishedKST": "2026-09-23 07:45",
+      "createdAt": "2026-09-23T07:45:57+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 4064,
+      "isRumor": true,
+      "importanceScore": 70.2,
+      "url": "https://saveticker.com/news/news_e3znJWhn01D4",
+      "summary": "공식 확정 전 보도입니다. 유가는 미국과 이란의 분쟁 종식 협상에 진전이 있다는 소식과 함께, 사우디아라비아가 핵심 동서 송유관 재가동을 추진하면서 하락세를 이어감 WTI 11월물은…",
+      "contentStatus": "본문 확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_0P8clJyuaUlV",
+      "title": "엔비디아 GPU 임대료 선물, 규제 심사에 발목…11월까지 연기",
+      "scope": "국내 섹터 영향",
+      "tone": "주의",
+      "sectors": [
+        "반도체"
+      ],
+      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다.",
+      "publishedKST": "2026-09-23 06:10",
+      "createdAt": "2026-09-23T06:10:31+09:00",
+      "source": "더인포메이션",
+      "author": "오선",
+      "viewCount": 7582,
+      "isRumor": true,
+      "importanceScore": 58.0,
+      "url": "https://saveticker.com/news/news_0P8clJyuaUlV",
+      "summary": "공식 확정 전 보도입니다. 더인포메이션 보도에 따르면, CME그룹이 추진 중인 엔비디아 GPU 임대료 기반 선물 상품 출시가 미국 상품선물거래위원회(CFTC)의 심사 연장으로 지연됨 CME는 당초 10월 5일 엔비디아 H100과 B200의 임대 가격을 기준으로 한 선물을 선보일 계획이었음",
+      "contentStatus": "본문 확인"
     },
     {
       "id": "news_GnnKuUwMyPrJ",
@@ -56,94 +98,15 @@
       "importanceScore": 101.0,
       "url": "https://saveticker.com/news/news_GnnKuUwMyPrJ",
       "summary": "LG에너지솔루션의 배터리 에너지저장장치(BESS)가 엔비디아의 ‘DSX Ready BESS’ 자격을 획득함",
-      "contentStatus": "본문 확인"
-    },
-    {
-      "id": "news_8h1MJiJvOkjL",
-      "title": "무살렘 총재, “인플레 잡으려면 추가 금리 인상 필요”",
-      "scope": "매크로 시황",
-      "tone": "확인",
-      "sectors": [
-        "중앙은행·금리",
-        "물가"
-      ],
-      "marketImpact": "금리 경로와 긴축 강도의 변화는 주식의 할인율과 글로벌 자금 흐름에 연결됩니다. 물가의 방향과 예상치 대비 차이를 통화정책·실질금리 변화와 함께 확인합니다.",
-      "publishedKST": "2026-09-22 03:25",
-      "createdAt": "2026-09-22T03:25:21+09:00",
-      "source": "SaveTicker",
-      "author": "오선",
-      "viewCount": 3967,
-      "isRumor": false,
-      "importanceScore": 80.5,
-      "url": "https://saveticker.com/news/news_8h1MJiJvOkjL",
-      "summary": "무살렘 세인트루이스 연은 총재는 추가 긴축이 없다면 18개월 뒤에도 인플레이션이 2% 목표를 크게 웃돌 가능성이 높다며, 기준금리를 더 올려야 할…",
-      "contentStatus": "본문 확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_j4I821bTVKwp",
-      "title": "메타 AI 에이전트 인기에 메타·AI 반도체주 급등…개인 AI 에이전트 기대 확산",
-      "scope": "국내 섹터 영향",
-      "tone": "확인",
-      "sectors": [
-        "반도체"
-      ],
-      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다.",
-      "publishedKST": "2026-09-22 02:54",
-      "createdAt": "2026-09-22T02:54:04+09:00",
-      "source": "블룸버그",
-      "author": "오선",
-      "viewCount": 8579,
-      "isRumor": false,
-      "importanceScore": 76.0,
-      "url": "https://saveticker.com/news/news_j4I821bTVKwp",
-      "summary": "메타의 새 AI 에이전트 ‘Muse(뮤즈)’가 미국 애플 앱스토어와 구글 플레이에서 무료 앱 1위에 올랐으며, 출시 후 6일간 90만2,000회 이상 다운로드됨 이는 같은 기간 기존 ‘Meta AI’ 앱의 다운로드 수(77만3,000회)를 약 17% 웃도는 수준이며, Muse는 왓츠앱에서도 이용할 수 있어 실제 이용자 수는 이보다",
-      "contentStatus": "본문 확인"
-    },
-    {
-      "id": "news_M8FVMx7JZgjS",
-      "title": "(카더라) 미국·중동 8개국, 에너지 인프라 재건 위한 100억달러 펀드 논의",
-      "scope": "매크로 시황",
-      "tone": "주의",
-      "sectors": [
-        "원자재·지정학"
-      ],
-      "marketImpact": "에너지 공급과 지정학 변화가 물가·금리 및 기업 원가에 주는 영향을 확인합니다.",
-      "publishedKST": "2026-09-22 04:12",
-      "createdAt": "2026-09-22T04:12:52+09:00",
-      "source": "월스트리트저널",
-      "author": "오선",
-      "viewCount": 5181,
-      "isRumor": true,
-      "importanceScore": 69.4,
-      "url": "https://saveticker.com/news/news_M8FVMx7JZgjS",
-      "summary": "공식 확정 전 관계자·문서 인용 보도입니다. 월스트리트저널은 관계자들과 관련 문서를 인용해, 트럼프 행정부가 이란과의 전쟁으로 파괴된 중동 에너지 인프라를 다시 짓고 핵심 원유·가스 수송로인 호르무즈 해협…",
-      "contentStatus": "본문 확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_kOX63yguaiZo",
-      "title": "코히런트, AI 데이터센터용 통합 광학 플랫폼 ‘포톤링크’ 출시",
-      "scope": "국내 섹터 영향",
-      "tone": "확인",
-      "sectors": [
-        "광통신·AI 네트워크"
-      ],
-      "marketImpact": "AI 데이터센터의 광연결 수요 확대는 국내 광통신 부품·장비 업종의 수요 기대에 연결될 수 있으나 국내 공급계약은 확인되지 않았습니다.",
-      "publishedKST": "2026-09-22 07:08",
-      "createdAt": "2026-09-22T07:08:46+09:00",
-      "source": "SaveTicker",
-      "author": "오선",
-      "viewCount": 3872,
-      "isRumor": false,
-      "importanceScore": 68.8,
-      "url": "https://saveticker.com/news/news_kOX63yguaiZo",
-      "summary": "코히런트가 차세대 AI 데이터센터용 통합 광학 솔루션 플랫폼인 ‘포톤링크(PhotonLink)’를 공식 출시함 포톤링크는 포토닉스(광자학) 기술과 정밀 조립, 테스트 역량을 결합해 완성형 광학 솔루션을 제공하며, CPO(공동 패키징 광학) 및 NPO(근접 패키징 광학)를 비롯해 칩 간(Chip-to-Chip) 연결을 지원함",
-      "contentStatus": "본문 확인"
+      "contentStatus": "이전 확인 자료·원래 날짜 유지",
+      "retained": true
     }
   ],
   "collection": {
-    "status": "부분수집·본문 미확인 포함",
-    "checkedAtKST": "2026-09-22T10:25:43+09:00"
+    "status": "부분갱신·국장 이전자료 포함",
+    "checkedAtKST": "2026-09-23T10:07:18+09:00",
+    "retainedIds": [
+      "news_GnnKuUwMyPrJ"
+    ]
   }
 }
