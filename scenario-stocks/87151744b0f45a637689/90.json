@@ -1,0 +1,6381 @@
+{
+  "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
+  "engineHash": "6ac091a6543afc5ccd6c5f6b68a915a968e8ac6edaa0c73f61df7f2b2fa3068c",
+  "stocks": {
+    "900070": {
+      "ticker": "900070",
+      "name": "글로벌에스엠",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 988.0,
+        "fetchedAt": "2026-09-28T20:40:00+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -1.002,
+        "r20": -2.7559,
+        "r60": -5.7252,
+        "ma20": 1001.15,
+        "ma60": 1007.0167,
+        "turnover20": 21986224.4,
+        "volume3": 15477.0,
+        "volumePrior14": 22334.9286,
+        "volumeRatio": 0.693,
+        "turnoverRatio": 0.6822,
+        "resistance": 1228.2889,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 930.8895,
+          "high": 1228.2889,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 152,
+          "lastDate": "2026-09-21",
+          "formedDate": "2026-02-11",
+          "formedIndex": 227,
+          "tradedValue": 63349721215.3363,
+          "sharePct": 69.3669,
+          "largestDailyVolumeRatio": 123.2845
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 1138.0,
+        "swingSupport": 950.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -19.5629,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -25.8815,
+        "closePosition": 0.7857,
+        "upperWick": 0.2143,
+        "change1": 0.1013,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 26549520192.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1047.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1026.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 1006.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 1033.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 1070.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 1046.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1028.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 1014.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1014.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1088.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1051.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 999.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1000.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1002.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 999.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1001.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 988.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1000.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 931.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 933.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 996.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 964.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 930.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1028.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 990.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 986.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 986.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 996.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1006.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 1003.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 998.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 996.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 1054.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1019.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1025.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1031.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1018.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1016.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1012.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1008.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 1025.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 1011.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 998.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 1007.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 1003.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1008.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1003.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 999.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1003.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1000.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1003.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 999.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 998.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1000.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 990.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 981.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 987.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 988.0
+          }
+        ],
+        "name": "글로벌에스엠",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": -2.12,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 22920455.0,
+            "op": 1384815.0,
+            "marginPct": 6.0418,
+            "date": "2025-12-01",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000207",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000207"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 23516756.0,
+            "op": 1588069.0,
+            "marginPct": 6.7529,
+            "date": "2026-04-30",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000458",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000207",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000458"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 23247136.0,
+            "op": 978419.0,
+            "marginPct": 4.2088,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001109",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001109"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 24624192.0,
+            "op": 1812519.0,
+            "marginPct": 7.3607,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001109",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001109"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": -11.5034,
+        "latestOPDelta": -235603.0,
+        "latestSalesGrowthPct": 6.7534,
+        "latestMarginPct": 7.3607,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 94308539.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": true,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": true,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": true,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": false,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일선 유지 여부 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900100": {
+      "ticker": "900100",
+      "name": "파이온엑스",
+      "sector": "자동차 부품 및 내장품 판매업",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 1096.0,
+        "fetchedAt": "2026-09-28T20:41:02+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -40.8207,
+        "r20": -39.1111,
+        "r60": -57.1875,
+        "ma20": 1806.15,
+        "ma60": 2019.95,
+        "turnover20": 274000125.9,
+        "volume3": 672858.6667,
+        "volumePrior14": 102323.7143,
+        "volumeRatio": 6.5758,
+        "turnoverRatio": 3.709,
+        "resistance": 1243.237,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 905.6308,
+          "high": 1243.237,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 125,
+          "lastDate": "2026-09-21",
+          "formedDate": "2025-09-30",
+          "formedIndex": 139,
+          "tradedValue": 62110223853.2893,
+          "sharePct": 28.3177,
+          "largestDailyVolumeRatio": 88.9986
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 2605.0,
+        "swingSupport": 801.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -11.843,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -70.6952,
+        "closePosition": 0.15,
+        "upperWick": 0.6167,
+        "change1": 5.2834,
+        "blowoff": true,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 5782550800.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 2660.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 2350.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 2135.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 2270.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 2300.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 2280.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 2200.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 2175.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 2005.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1838.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1883.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1930.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1965.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1999.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 2010.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 2090.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 2090.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 2715.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 3525.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 2670.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 2180.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1973.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1955.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1965.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 2550.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 2095.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 2245.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 2060.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 2050.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1913.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 1964.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 1976.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 1935.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 1926.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1780.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1882.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1777.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1858.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1800.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1811.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1809.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 2350.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 2005.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 2350.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 2165.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 2110.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 2080.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 2040.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 2150.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 2170.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1956.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1905.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1874.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1852.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1438.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 1120.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 801.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 1041.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 1096.0
+          }
+        ],
+        "name": "파이온엑스",
+        "sector": "자동차 부품 및 내장품 판매업",
+        "market": "KOSDAQ",
+        "rs20": -38.4752,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 743771.0,
+            "op": -1396926.0,
+            "marginPct": -187.8167,
+            "date": "2026-04-21",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421000342",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421000342"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 666184.0,
+            "op": -703987.0,
+            "marginPct": -105.6746,
+            "date": "2026-04-21",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421000356",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421000342",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260421000356"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 915925.0,
+            "op": -816373.0,
+            "marginPct": -89.131,
+            "date": "2026-08-27",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260827000641",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260827000641"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 1842139.0,
+            "op": -833093.0,
+            "marginPct": -45.2242,
+            "date": "2026-08-27",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260827000641",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260827000641"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": true,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": null,
+        "latestOPDelta": 554435.0,
+        "latestSalesGrowthPct": 34.4393,
+        "latestMarginPct": -45.2242,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "최근 분기 적자 또는 전년 대비 영업이익 20% 이상 감소",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 4168019.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기",
+        "당일 급등 후 종가 밀림"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": false,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": true,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "당일 급등 후 종가 밀림",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": false,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "당일 급등 후 종가 밀림",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": false,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": false,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "당일 급등 후 종가 밀림",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일선 유지 여부 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인",
+            "확정 실적·전망의 감소 위험 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900110": {
+      "ticker": "900110",
+      "name": "딥커머스",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 5380.0,
+        "fetchedAt": "2026-09-28T20:40:10+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -10.408,
+        "r20": -10.408,
+        "r60": -7.1613,
+        "ma20": 5886.25,
+        "ma60": 5864.75,
+        "turnover20": 18112356.5,
+        "volume3": 4367.0,
+        "volumePrior14": 3629.6429,
+        "volumeRatio": 1.2031,
+        "turnoverRatio": 1.1395,
+        "resistance": 18486.3223,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 17078.5043,
+          "high": 18486.3223,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 100,
+          "lastDate": "2026-01-08",
+          "formedDate": "2025-06-02",
+          "formedIndex": 57,
+          "tradedValue": 19256389419.75,
+          "sharePct": 5.6543,
+          "largestDailyVolumeRatio": 49.9106
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 7390.0,
+        "swingSupport": 5300.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -70.8974,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -27.1989,
+        "closePosition": 0.375,
+        "upperWick": 0.25,
+        "change1": -0.9208,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 19838351880.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 5975.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 6050.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 6000.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 6040.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 5970.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 6000.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 5855.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 6090.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 5820.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 5780.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 5900.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 6200.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 6250.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 6105.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 5510.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 5605.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 5555.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 5500.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 5500.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 5075.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 5450.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 5550.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 5430.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 5460.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 5685.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 5630.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 5505.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 5895.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 6340.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 6210.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 6195.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 6085.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 6040.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 6055.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 5990.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 5915.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 5930.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 6005.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 5740.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 5660.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 5440.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 5430.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 5380.0
+          }
+        ],
+        "name": "딥커머스",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": -9.7721,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 92074298.0,
+            "op": 17119666.0,
+            "marginPct": 18.5933,
+            "date": "2025-12-01",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000674",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000674"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 112891253.0,
+            "op": 17383061.0,
+            "marginPct": 15.3981,
+            "date": "2026-04-29",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429001114",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000674",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429001114"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 72135348.0,
+            "op": 8339958.0,
+            "marginPct": 11.5615,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001518",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001518"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 74361760.0,
+            "op": 12120733.0,
+            "marginPct": 16.2997,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001518",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001518"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": 15.3912,
+        "latestOPDelta": 1616697.0,
+        "latestSalesGrowthPct": -13.8855,
+        "latestMarginPct": 16.2997,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 351462659.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": false,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": true,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": false,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": false,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일선 유지 여부 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900120": {
+      "ticker": "900120",
+      "name": "씨엑스아이",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 1040.0,
+        "fetchedAt": "2026-09-28T20:41:30+09:00",
+        "source": "KIS",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": 0.0,
+        "r20": 0.0,
+        "r60": -7.6377,
+        "ma20": 1040.0,
+        "ma60": 1021.7667,
+        "turnover20": 0.0,
+        "volume3": 0.0,
+        "volumePrior14": 0.0,
+        "volumeRatio": null,
+        "turnoverRatio": null,
+        "resistance": 3816.4611,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 3009.2535,
+          "high": 3816.4611,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 82,
+          "lastDate": "2026-02-13",
+          "formedDate": "2025-08-06",
+          "formedIndex": 102,
+          "tradedValue": 49038749408.5238,
+          "sharePct": 48.1114,
+          "largestDailyVolumeRatio": 108.0784
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 1040.0,
+        "swingSupport": 1040.0,
+        "swingResistanceBasis": "20일 고점 대체",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -72.7496,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -20.3675,
+        "closePosition": 0.5,
+        "upperWick": 0,
+        "change1": 0.0,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 17336446400.0,
+        "trading": false,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1209.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1196.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 1199.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 1121.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 1136.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 1064.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1059.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 1081.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 1042.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1091.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1094.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1091.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1081.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1124.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1157.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1168.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1168.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1168.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1011.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 850.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 865.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 869.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 851.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 824.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 787.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 799.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 805.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 944.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 949.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 991.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 931.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 948.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 915.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 923.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 915.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 920.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 1040.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 1040.0
+          }
+        ],
+        "name": "씨엑스아이",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": 0.6359,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": null,
+        "latestOPGrowthPct": null,
+        "latestOPDelta": null,
+        "latestSalesGrowthPct": null,
+        "latestMarginPct": null,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": null,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [
+        {
+          "kind": "수주",
+          "title": "중의 AI 진단시스템 기술지원 서비스",
+          "date": "2026-07-27",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260727900691",
+          "fact": "중의 AI 진단시스템 기술지원 서비스 · 화메이하오롄의료과기(베이징)유한공사 · 2027-07-26",
+          "amount": 7301005300.0,
+          "salesRatioPct": 13.56,
+          "end": "2027-07-26",
+          "polarity": "positive",
+          "interpretation": "이익 기여액·인식 시점은 별도 확인. 사건 건수는 선정 가점으로 사용하지 않음."
+        }
+      ],
+      "blockers": [
+        "기준일 거래 없음",
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": true,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": true,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "기준일 거래 없음",
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": true,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "기준일 거래 없음",
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": true,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": false,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "기준일 거래 없음",
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "60일 고점 대비 낙폭 15% 이내 확인",
+            "확정 실적·전망의 감소 위험 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900140": {
+      "ticker": "900140",
+      "name": "엘브이엠씨홀딩스",
+      "sector": "자동차 판매업",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 1208.0,
+        "fetchedAt": "2026-09-28T20:40:37+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": 8.3408,
+        "r20": -1.6287,
+        "r60": -2.0276,
+        "ma20": 1174.45,
+        "ma60": 1209.3,
+        "turnover20": 470505567.85,
+        "volume3": 1037012.3333,
+        "volumePrior14": 259204.9286,
+        "volumeRatio": 4.0007,
+        "turnoverRatio": 4.104,
+        "resistance": 2088.12,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 1521.0823,
+          "high": 2088.12,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 271,
+          "lastDate": "2026-05-29",
+          "formedDate": "2025-10-14",
+          "formedIndex": 144,
+          "tradedValue": 338142074381.7833,
+          "sharePct": 76.7849,
+          "largestDailyVolumeRatio": 13.7221
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 1290.0,
+        "swingSupport": 1098.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -42.1489,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -9.1729,
+        "closePosition": 0.4758,
+        "upperWick": 0.5242,
+        "change1": 9.8182,
+        "blowoff": true,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 233434441856.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1249.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1201.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 1245.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 1255.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 1250.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 1193.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1230.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 1281.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 1236.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1227.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1272.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1272.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1210.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1206.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1207.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1234.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1202.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1203.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1161.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 1128.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 1186.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 1255.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1217.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1223.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1225.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 1214.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 1245.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 1281.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 1263.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 1263.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1238.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 1238.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 1230.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 1188.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 1209.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1197.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1244.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1236.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1227.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1228.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1265.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1260.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 1231.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 1197.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 1197.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 1207.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 1215.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1202.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1202.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 1204.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1190.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1135.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1123.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1109.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1115.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1115.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 1107.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 1107.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 1100.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 1208.0
+          }
+        ],
+        "name": "엘브이엠씨홀딩스",
+        "sector": "자동차 판매업",
+        "market": "KOSPI",
+        "rs20": -0.9927,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 60271129.0,
+            "op": 3818636.0,
+            "marginPct": 6.3358,
+            "date": "2025-11-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128001700",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128001700"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 73714489.0,
+            "op": 10295632.0,
+            "marginPct": 13.9669,
+            "date": "2026-04-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428000679",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128001700",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260428000679"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 88265804.0,
+            "op": 13539995.0,
+            "marginPct": 15.34,
+            "date": "2026-08-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001677",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001677"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 72621401.0,
+            "op": 12141602.0,
+            "marginPct": 16.719,
+            "date": "2026-08-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001677",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001677"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "실적 회복 확인",
+        "positiveForecast": false,
+        "actualImproving": true,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": 122.307,
+        "latestOPDelta": 6679965.0,
+        "latestSalesGrowthPct": 2.5523,
+        "latestMarginPct": 16.719,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 294872823.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "당일 급등 후 종가 밀림"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": true,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": true,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": true,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "당일 급등 후 종가 밀림",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": true,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "당일 급등 후 종가 밀림",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": false,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": true,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "당일 급등 후 종가 밀림",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일선 유지 여부 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900250": {
+      "ticker": "900250",
+      "name": "크리스탈신소재",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 1241.0,
+        "fetchedAt": "2026-09-28T20:40:57+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -0.4812,
+        "r20": 8.007,
+        "r60": -4.5385,
+        "ma20": 1195.9,
+        "ma60": 1142.3,
+        "turnover20": 96748604.5,
+        "volume3": 72713.3333,
+        "volumePrior14": 83257.8571,
+        "volumeRatio": 0.8734,
+        "turnoverRatio": 0.8969,
+        "resistance": 2952.9277,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 2328.3633,
+          "high": 2952.9277,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 107,
+          "lastDate": "2026-05-28",
+          "formedDate": "2026-04-22",
+          "formedIndex": 273,
+          "tradedValue": 82230340746.103,
+          "sharePct": 34.3285,
+          "largestDailyVolumeRatio": 27.485
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 1286.0,
+        "swingSupport": 1114.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -57.9739,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -20.1929,
+        "closePosition": 0.7586,
+        "upperWick": 0.2414,
+        "change1": 2.1399,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 44446416241.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1323.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1260.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 1225.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 1184.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 1137.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 1039.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1027.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 1070.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 1041.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1060.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1071.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1075.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1079.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1061.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1048.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1071.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1039.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1045.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 995.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 945.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 908.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 959.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1018.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1032.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1060.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 1055.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 1069.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 1389.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 1332.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 1276.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1210.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 1215.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 1169.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 1130.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 1159.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1195.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1160.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1166.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1174.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1149.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1156.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1190.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 1178.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 1173.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 1146.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 1154.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 1173.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1201.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1191.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 1178.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1185.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1185.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1189.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1204.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1247.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1230.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 1244.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 1238.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 1215.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 1241.0
+          }
+        ],
+        "name": "크리스탈신소재",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": 8.6429,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 141918336.0,
+            "op": 22538656.0,
+            "marginPct": 15.8814,
+            "date": "2025-12-01",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000476",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000476"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 54828826.0,
+            "op": 2597416.0,
+            "marginPct": 4.7373,
+            "date": "2026-08-26",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000757",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000757"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 90459063.0,
+            "op": 11919904.0,
+            "marginPct": 13.1771,
+            "date": "2026-08-26",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000757",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260826000757"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": true,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": -40.5202,
+        "latestOPDelta": -8120340.0,
+        "latestSalesGrowthPct": -0.8789,
+        "latestMarginPct": 13.1771,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "최근 분기 적자 또는 전년 대비 영업이익 20% 이상 감소",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": null,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": true,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": true,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": true,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": true,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": true,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": true,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": false,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "60일 고점 대비 낙폭 15% 이내 확인",
+            "확정 실적·전망의 감소 위험 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900260": {
+      "ticker": "900260",
+      "name": "로스웰",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 1941.0,
+        "fetchedAt": "2026-09-28T20:40:10+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -1.2214,
+        "r20": 17.3519,
+        "r60": 17.4939,
+        "ma20": 1845.7,
+        "ma60": 1710.7,
+        "turnover20": 47566536.7,
+        "volume3": 20863.0,
+        "volumePrior14": 28970.6429,
+        "volumeRatio": 0.7201,
+        "turnoverRatio": 0.7302,
+        "resistance": null,
+        "support": 1628.2798,
+        "resistanceBasis": "거래 집중 가격대 미확인",
+        "supportBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "resistanceZone": null,
+        "supportZone": {
+          "low": 1565.0517,
+          "high": 1628.2798,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 47,
+          "lastDate": "2026-03-03",
+          "formedDate": "2026-01-02",
+          "formedIndex": 199,
+          "tradedValue": 19347780222.9091,
+          "sharePct": 17.4662,
+          "largestDailyVolumeRatio": 34.6076
+        },
+        "box": null,
+        "swingResistance": 2110.0,
+        "swingSupport": 1812.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": "2026-03-04",
+        "distanceResistancePct": null,
+        "distanceSupportPct": 19.2056,
+        "rangeWidthPct": 4.04,
+        "drawdown60": -9.5105,
+        "closePosition": 0.6569,
+        "upperWick": 0.3431,
+        "change1": 1.7296,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 89343659346.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1666.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1640.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 1640.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 1638.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 1650.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 1622.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1651.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 1654.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 1653.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1654.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1695.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1633.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1590.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1608.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1591.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1601.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1634.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1605.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1653.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 1609.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 1628.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 1672.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1665.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1680.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1730.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 1689.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 1687.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 1628.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 1631.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 1632.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1648.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 1638.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 1615.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 1621.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 1618.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1635.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1659.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1671.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1640.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1654.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1649.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1650.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 1695.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 1729.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 1733.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 1755.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 1779.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1876.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1902.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 1910.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1936.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 2000.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1861.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1945.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1965.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1905.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 1871.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 1904.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 1908.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 1941.0
+          }
+        ],
+        "name": "로스웰",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": 17.9878,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 692204551.0,
+            "op": 9701353.0,
+            "marginPct": 1.4015,
+            "date": "2025-11-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128001253",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128001253"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 1852341167.0,
+            "op": 34788312.0,
+            "marginPct": 1.8781,
+            "date": "2026-04-29",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429000193",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128001253",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429000193"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 1239518485.0,
+            "op": 33373927.0,
+            "marginPct": 2.6925,
+            "date": "2026-08-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001357",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001357"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 1083097062.0,
+            "op": 26941159.0,
+            "marginPct": 2.4874,
+            "date": "2026-08-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001357",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260828001357"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "실적 회복 확인",
+        "positiveForecast": false,
+        "actualImproving": true,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": 141.2032,
+        "latestOPDelta": 15771673.0,
+        "latestSalesGrowthPct": 65.2772,
+        "latestMarginPct": 2.4874,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 4867161265.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": true,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": true,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": true,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": true,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": true,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": true,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": true,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 가격대 1,628원 종가 이탈 시 가격 조건 재평가"
+      ]
+    },
+    "900270": {
+      "ticker": "900270",
+      "name": "헝셩그룹",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 2730.0,
+        "fetchedAt": "2026-09-28T20:41:09+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -5.2083,
+        "r20": -22.9901,
+        "r60": -9.901,
+        "ma20": 3175.25,
+        "ma60": 2669.8333,
+        "turnover20": 3479107453.75,
+        "volume3": 102153.0,
+        "volumePrior14": 888068.6429,
+        "volumeRatio": 0.115,
+        "turnoverRatio": 0.0938,
+        "resistance": 12480.5796,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 11304.0454,
+          "high": 12480.5796,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 152,
+          "lastDate": "2025-11-03",
+          "formedDate": "2025-07-28",
+          "formedIndex": 95,
+          "tradedValue": 142220418739.5238,
+          "sharePct": 36.1509,
+          "largestDailyVolumeRatio": 35.098
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 4605.0,
+        "swingSupport": 2750.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -78.126,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -40.7166,
+        "closePosition": 0.5435,
+        "upperWick": 0.0217,
+        "change1": -1.2658,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 34020279930.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 3045.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 3000.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 3000.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 3215.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 2995.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 2790.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 2835.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 2855.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 2715.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 2590.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 2615.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 2605.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 2205.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 2100.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 2730.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 3545.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 3545.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 3770.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 3325.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 3500.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 3760.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 3530.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 3365.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 3195.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 2960.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 2895.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 3110.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 3565.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 3365.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 3120.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 2905.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 2880.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 3090.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 2905.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 2770.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 2765.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 2730.0
+          }
+        ],
+        "name": "헝셩그룹",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": -22.3542,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 151117607.0,
+            "op": 6987067.0,
+            "marginPct": 4.6236,
+            "date": "2025-12-01",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000712",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000712"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 165976189.0,
+            "op": -1072577.0,
+            "marginPct": -0.6462,
+            "date": "2026-04-30",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000392",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000712",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000392"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 104685240.0,
+            "op": -408938.0,
+            "marginPct": -0.3906,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001536",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001536"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 133505394.0,
+            "op": 50918.0,
+            "marginPct": 0.0381,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001536",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001536"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": null,
+        "latestOPDelta": 650944.0,
+        "latestSalesGrowthPct": -4.5165,
+        "latestMarginPct": 0.0381,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 555284430.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": false,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": false,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900290": {
+      "ticker": "900290",
+      "name": "GRT",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 3350.0,
+        "fetchedAt": "2026-09-28T20:39:48+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -3.1792,
+        "r20": -13.8817,
+        "r60": 14.3345,
+        "ma20": 3755.0,
+        "ma60": 3347.0,
+        "turnover20": 1007377047.0,
+        "volume3": 206496.3333,
+        "volumePrior14": 250020.2143,
+        "volumeRatio": 0.8259,
+        "turnoverRatio": 0.7481,
+        "resistance": 3764.7907,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 2910.3057,
+          "high": 3764.7907,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 259,
+          "lastDate": "2026-09-21",
+          "formedDate": "2026-01-29",
+          "formedIndex": 218,
+          "tradedValue": 306926305347.96,
+          "sharePct": 45.995,
+          "largestDailyVolumeRatio": 8.9609
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 4450.0,
+        "swingSupport": 3355.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -11.0176,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -24.7191,
+        "closePosition": 0.2857,
+        "upperWick": 0.0,
+        "change1": -1.034,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 310718144750.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 3060.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 2905.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 2965.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 2735.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 2600.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 2380.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 2555.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 2725.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 2510.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 2405.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 2420.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 2340.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 2190.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 2215.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 2215.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 2370.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 2580.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 2870.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 2960.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 3035.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 2730.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 3355.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 3600.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 3735.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 3810.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 3730.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 3895.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 3600.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 3600.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 3925.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 3860.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 3880.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 3625.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 3380.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 3540.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 3440.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 4005.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 4040.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 4045.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 3890.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 3900.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 4210.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 4200.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 4200.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 3925.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 3955.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 4005.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 3925.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 3710.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 3680.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 3645.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 3710.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 3645.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 3595.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 3460.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 3400.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 3670.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 3530.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 3385.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 3350.0
+          }
+        ],
+        "name": "GRT",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": -13.2458,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": null,
+        "latestOPGrowthPct": null,
+        "latestOPDelta": null,
+        "latestSalesGrowthPct": null,
+        "latestMarginPct": null,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": null,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": false,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": true,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": false,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": false,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인",
+            "확정 실적·전망의 감소 위험 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900300": {
+      "ticker": "900300",
+      "name": "오가닉티코스메틱",
+      "sector": "화장품",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 2905.0,
+        "fetchedAt": "2026-09-28T20:40:39+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -7.1885,
+        "r20": -16.2824,
+        "r60": 32.0455,
+        "ma20": 3404.25,
+        "ma60": 2651.9,
+        "turnover20": 1638121049.5,
+        "volume3": 51856.0,
+        "volumePrior14": 150059.3571,
+        "volumeRatio": 0.3456,
+        "turnoverRatio": 0.2921,
+        "resistance": 4401.6118,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 3206.3357,
+          "high": 4401.6118,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 21,
+          "lastDate": "2026-09-17",
+          "formedDate": "2026-08-27",
+          "formedIndex": 358,
+          "tradedValue": 76046451571.8038,
+          "sharePct": 8.8778,
+          "largestDailyVolumeRatio": 10.2113
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 4575.0,
+        "swingSupport": 2950.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -34.0014,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -36.5027,
+        "closePosition": 0.1087,
+        "upperWick": 0.7826,
+        "change1": -0.8532,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 59785181785.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 2270.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 2085.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 2710.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 2305.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 2080.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 2090.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1970.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 2050.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 2010.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1959.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1967.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 2040.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1867.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1826.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1827.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1844.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1750.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1712.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1561.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 2025.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 1670.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 1770.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1846.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1827.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1897.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 1920.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 1896.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 1955.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 2265.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 2940.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 3000.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 2845.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 2710.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 2605.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 2475.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 3215.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 3385.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 3925.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 3465.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 3470.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 3665.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 4220.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 4075.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 4060.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 3845.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 3630.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 3630.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 3500.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 3350.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 3230.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 3315.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 3370.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 3200.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 2995.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 3130.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 3000.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 3020.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 3015.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 2930.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 2905.0
+          }
+        ],
+        "name": "오가닉티코스메틱",
+        "sector": "화장품",
+        "market": "KOSDAQ",
+        "rs20": -15.6465,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 234456983.0,
+            "op": -142114095.0,
+            "marginPct": -60.6141,
+            "date": "2025-12-01",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000545",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000545"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 300932831.0,
+            "op": -24572003.0,
+            "marginPct": -8.1653,
+            "date": "2026-04-30",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430001581",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251201000545",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430001581"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 198826718.0,
+            "op": -31168875.0,
+            "marginPct": -15.6764,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001530",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001530"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 364555549.0,
+            "op": 65441255.0,
+            "marginPct": 17.951,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001530",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001530"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "실적 회복 확인",
+        "positiveForecast": false,
+        "actualImproving": true,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": null,
+        "latestOPDelta": 160821387.0,
+        "latestSalesGrowthPct": 55.7868,
+        "latestMarginPct": 17.951,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 1098772081.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [
+        {
+          "kind": "수주",
+          "title": "찻잎 판매계약",
+          "date": "2026-05-06",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260506900589",
+          "fact": "찻잎 판매계약 · 광주취통무역유한공사 · 2026-12-31",
+          "amount": 32591842560.0,
+          "salesRatioPct": 22.03,
+          "end": "2026-12-31",
+          "polarity": "positive",
+          "interpretation": "이익 기여액·인식 시점은 별도 확인. 사건 건수는 선정 가점으로 사용하지 않음."
+        },
+        {
+          "kind": "수주",
+          "title": "영아용 화장품 및 생필품, 신발 및 의류 판매계약",
+          "date": "2025-12-15",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251215901551",
+          "fact": "영아용 화장품 및 생필품, 신발 및 의류 판매계약 · 하남구주통의약유한공사 · 2026-12-31",
+          "amount": 20897281633.0,
+          "salesRatioPct": 12.68,
+          "end": "2026-12-31",
+          "polarity": "positive",
+          "interpretation": "이익 기여액·인식 시점은 별도 확인. 사건 건수는 선정 가점으로 사용하지 않음."
+        }
+      ],
+      "blockers": [
+        "연간 매출 2,000억원 미달·미확인"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": false,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": false,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "연간 매출 2,000억원 미달·미확인",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900310": {
+      "ticker": "900310",
+      "name": "컬러레이",
+      "sector": "화장품",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 2125.0,
+        "fetchedAt": "2026-09-28T20:40:54+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": 5.7214,
+        "r20": -1.1628,
+        "r60": 11.1402,
+        "ma20": 2148.5,
+        "ma60": 2048.1333,
+        "turnover20": 12766326.5,
+        "volume3": 3823.6667,
+        "volumePrior14": 4824.7143,
+        "volumeRatio": 0.7925,
+        "turnoverRatio": 0.7723,
+        "resistance": 3109.492,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 2761.1399,
+          "high": 3109.492,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 78,
+          "lastDate": "2026-04-29",
+          "formedDate": "2026-01-07",
+          "formedIndex": 202,
+          "tradedValue": 6102000923.6905,
+          "sharePct": 10.6974,
+          "largestDailyVolumeRatio": 20.6176
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 2325.0,
+        "swingSupport": 2005.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -31.6609,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -11.6424,
+        "closePosition": 0.5405,
+        "upperWick": 0.4595,
+        "change1": 0.9501,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 27217711875.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1920.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1961.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 2050.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 2030.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 2045.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 2025.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1990.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 2025.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 2030.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 2030.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 2015.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 2035.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 2015.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 2020.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 2020.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1980.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1941.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1941.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1715.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 1779.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 1712.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 1844.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1909.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1999.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1999.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 2005.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 2010.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 1986.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 2025.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 2105.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1980.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 2065.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 2170.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 2005.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 2050.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1957.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 2090.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 2110.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 2180.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 2150.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 2150.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 2200.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 2240.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 2240.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 2200.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 2170.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 2260.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 2200.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 2160.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 2170.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 2135.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 2140.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 2105.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 2110.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 2010.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 2105.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 2090.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 2055.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 2105.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 2125.0
+          }
+        ],
+        "name": "컬러레이",
+        "sector": "화장품",
+        "market": "KOSDAQ",
+        "rs20": -0.5269,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 70204766.0,
+            "op": 2627945.0,
+            "marginPct": 3.7433,
+            "date": "2025-11-21",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251121000337",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251121000337"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 33796076.0,
+            "op": -7575476.0,
+            "marginPct": -22.4153,
+            "date": "2026-04-22",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260422000692",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251121000337",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260422000692"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 60983372.0,
+            "op": 6974899.0,
+            "marginPct": 11.4374,
+            "date": "2026-08-25",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825000446",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825000446"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 47424036.0,
+            "op": 3240401.0,
+            "marginPct": 6.8328,
+            "date": "2026-08-25",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825000446",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260825000446"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": 63.2356,
+        "latestOPDelta": 1255294.0,
+        "latestSalesGrowthPct": -16.0478,
+        "latestMarginPct": 6.8328,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 212408250.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": true,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": true,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": false,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "당일 상승·일중 범위 상위 40% 종가 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": true,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": true,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "20일 시장 대비 성과가 음수인지 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    },
+    "900340": {
+      "ticker": "900340",
+      "name": "윙입푸드",
+      "sector": "금융",
+      "asOf": "2026-09-28",
+      "price": {
+        "date": "2026-09-28",
+        "close": 1259.0,
+        "fetchedAt": "2026-09-28T20:40:42+09:00",
+        "source": "yfinance",
+        "turnoverBasis": "close_times_volume",
+        "bars": 379,
+        "r5": -5.6929,
+        "r20": -17.8735,
+        "r60": -10.8357,
+        "ma20": 1390.35,
+        "ma60": 1362.4333,
+        "turnover20": 304643786.7,
+        "volume3": 61439.3333,
+        "volumePrior14": 265762.2143,
+        "volumeRatio": 0.2312,
+        "turnoverRatio": 0.2001,
+        "resistance": 3548.6276,
+        "support": null,
+        "resistanceBasis": "과거 거래대금 집중 가격대(일봉 추정)",
+        "supportBasis": "거래 집중 가격대 미확인",
+        "resistanceZone": {
+          "low": 3278.3834,
+          "high": 3548.6276,
+          "kind": "과거 거래대금 집중 가격대(일봉 추정)",
+          "days": 39,
+          "lastDate": "2026-01-27",
+          "formedDate": "2025-12-05",
+          "formedIndex": 182,
+          "tradedValue": 6089286608.8364,
+          "sharePct": 4.5454,
+          "largestDailyVolumeRatio": 18.7178
+        },
+        "supportZone": null,
+        "box": null,
+        "swingResistance": 1743.0,
+        "swingSupport": 1327.0,
+        "swingResistanceBasis": "20일 확인 스윙고점",
+        "breakout": false,
+        "breakoutDayVolumeRatio": null,
+        "breakoutDay": null,
+        "supportFlipDay": null,
+        "distanceResistancePct": -64.5215,
+        "distanceSupportPct": null,
+        "rangeWidthPct": null,
+        "drawdown60": -49.5391,
+        "closePosition": 0.78,
+        "upperWick": 0.22,
+        "change1": 1.7785,
+        "blowoff": false,
+        "extended": false,
+        "basisChange": false,
+        "marketCap": 44798659588.0,
+        "trading": true,
+        "chart": [
+          {
+            "date": "2026-07-01",
+            "close": 1353.0
+          },
+          {
+            "date": "2026-07-02",
+            "close": 1278.0
+          },
+          {
+            "date": "2026-07-03",
+            "close": 1256.0
+          },
+          {
+            "date": "2026-07-06",
+            "close": 1306.0
+          },
+          {
+            "date": "2026-07-07",
+            "close": 1301.0
+          },
+          {
+            "date": "2026-07-08",
+            "close": 1300.0
+          },
+          {
+            "date": "2026-07-09",
+            "close": 1275.0
+          },
+          {
+            "date": "2026-07-10",
+            "close": 1293.0
+          },
+          {
+            "date": "2026-07-13",
+            "close": 1264.0
+          },
+          {
+            "date": "2026-07-14",
+            "close": 1250.0
+          },
+          {
+            "date": "2026-07-15",
+            "close": 1294.0
+          },
+          {
+            "date": "2026-07-16",
+            "close": 1287.0
+          },
+          {
+            "date": "2026-07-20",
+            "close": 1211.0
+          },
+          {
+            "date": "2026-07-21",
+            "close": 1232.0
+          },
+          {
+            "date": "2026-07-22",
+            "close": 1204.0
+          },
+          {
+            "date": "2026-07-23",
+            "close": 1227.0
+          },
+          {
+            "date": "2026-07-24",
+            "close": 1194.0
+          },
+          {
+            "date": "2026-07-27",
+            "close": 1179.0
+          },
+          {
+            "date": "2026-07-28",
+            "close": 1090.0
+          },
+          {
+            "date": "2026-07-29",
+            "close": 977.0
+          },
+          {
+            "date": "2026-07-30",
+            "close": 973.0
+          },
+          {
+            "date": "2026-07-31",
+            "close": 1003.0
+          },
+          {
+            "date": "2026-08-03",
+            "close": 1037.0
+          },
+          {
+            "date": "2026-08-04",
+            "close": 1080.0
+          },
+          {
+            "date": "2026-08-05",
+            "close": 1159.0
+          },
+          {
+            "date": "2026-08-06",
+            "close": 1196.0
+          },
+          {
+            "date": "2026-08-07",
+            "close": 1554.0
+          },
+          {
+            "date": "2026-08-10",
+            "close": 2020.0
+          },
+          {
+            "date": "2026-08-11",
+            "close": 1820.0
+          },
+          {
+            "date": "2026-08-12",
+            "close": 1890.0
+          },
+          {
+            "date": "2026-08-13",
+            "close": 1705.0
+          },
+          {
+            "date": "2026-08-14",
+            "close": 1662.0
+          },
+          {
+            "date": "2026-08-18",
+            "close": 1558.0
+          },
+          {
+            "date": "2026-08-19",
+            "close": 1465.0
+          },
+          {
+            "date": "2026-08-20",
+            "close": 1410.0
+          },
+          {
+            "date": "2026-08-21",
+            "close": 1598.0
+          },
+          {
+            "date": "2026-08-24",
+            "close": 1450.0
+          },
+          {
+            "date": "2026-08-25",
+            "close": 1520.0
+          },
+          {
+            "date": "2026-08-26",
+            "close": 1535.0
+          },
+          {
+            "date": "2026-08-27",
+            "close": 1533.0
+          },
+          {
+            "date": "2026-08-28",
+            "close": 1505.0
+          },
+          {
+            "date": "2026-08-31",
+            "close": 1507.0
+          },
+          {
+            "date": "2026-09-01",
+            "close": 1510.0
+          },
+          {
+            "date": "2026-09-02",
+            "close": 1507.0
+          },
+          {
+            "date": "2026-09-03",
+            "close": 1426.0
+          },
+          {
+            "date": "2026-09-04",
+            "close": 1395.0
+          },
+          {
+            "date": "2026-09-07",
+            "close": 1418.0
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1349.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1489.0
+          },
+          {
+            "date": "2026-09-10",
+            "close": 1404.0
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1406.0
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1387.0
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1364.0
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1368.0
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1335.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1334.0
+          },
+          {
+            "date": "2026-09-21",
+            "close": 1320.0
+          },
+          {
+            "date": "2026-09-22",
+            "close": 1287.0
+          },
+          {
+            "date": "2026-09-23",
+            "close": 1237.0
+          },
+          {
+            "date": "2026-09-28",
+            "close": 1259.0
+          }
+        ],
+        "name": "윙입푸드",
+        "sector": "금융",
+        "market": "KOSDAQ",
+        "rs20": -17.2375,
+        "popCurrent": null,
+        "popNext": null
+      },
+      "fundamentals": {
+        "actuals": [
+          {
+            "period": "2025Q3",
+            "sales": 229563885.0,
+            "op": 217667.0,
+            "marginPct": 0.0948,
+            "date": "2025-11-28",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128002091",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128002091"
+            ]
+          },
+          {
+            "period": "2025Q4",
+            "sales": 233634611.0,
+            "op": 27292490.0,
+            "marginPct": 11.6817,
+            "date": "2026-04-29",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429001131",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251128002091",
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260429001131"
+            ]
+          },
+          {
+            "period": "2026Q1",
+            "sales": 219191036.0,
+            "op": 12698052.0,
+            "marginPct": 5.7931,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001473",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001473"
+            ]
+          },
+          {
+            "period": "2026Q2",
+            "sales": 217640756.0,
+            "op": 27238965.0,
+            "marginPct": 12.5156,
+            "date": "2026-08-31",
+            "source": "OpenDART 확정 실적",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001473",
+            "sources": [
+              "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260831001473"
+            ]
+          }
+        ],
+        "forecasts": [],
+        "revisions": [],
+        "track": "개선 근거 대기",
+        "positiveForecast": false,
+        "actualImproving": false,
+        "forwardPair": false,
+        "opForecastPair": false,
+        "strongForward": false,
+        "strongActual": false,
+        "growthQualified": false,
+        "growthPath": "확정 실적 성장 강도 부족·전망 미확인",
+        "h2BridgeVerified": false,
+        "quarterH2OP": null,
+        "latestWeak": false,
+        "forecastWeak": false,
+        "annualSales": null,
+        "annualOP": null,
+        "nextOP": null,
+        "annualMarginPct": null,
+        "nextMarginPct": null,
+        "nextOPGrowthPct": null,
+        "nextOPDelta": null,
+        "nextSalesGrowthPct": null,
+        "latestActualPeriod": "2026Q2",
+        "latestOPGrowthPct": 51.528,
+        "latestOPDelta": 9262774.0,
+        "latestSalesGrowthPct": -15.9348,
+        "latestMarginPct": 12.5156,
+        "h2ImpliedOP": null,
+        "h2RequiredVsH1Pct": null,
+        "warnings": [
+          "올해 외부 전망 미확인 · 실적자료로 별도 관찰",
+          "내년 외부 전망 미확인",
+          "동일 증권사·동일 기간의 전망 변경 비교자료 부족"
+        ],
+        "forecastDates": [],
+        "reportedSalesTTM": 900030288.0,
+        "durability": "연간 전망·단기 실적만으로 지속성 확정 불가",
+        "upCore": false,
+        "upCoreReason": "내년 매출·OP 전망의 충분한 증가 확인"
+      },
+      "evidence": [],
+      "blockers": [
+        "20일 평균 거래대금 10억원 미달·미확인",
+        "연간 매출 2,000억원 미달·미확인",
+        "실적·전망 개선 근거 대기"
+      ],
+      "heatObservation": false,
+      "eligible": false,
+      "scenarios": {
+        "up": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "예상·확정 이익 동반 성장",
+              "met": false,
+              "waiting": "내년 매출·OP 전망의 충분한 증가 확인"
+            },
+            {
+              "name": "추세 회복",
+              "met": false,
+              "waiting": "종가가 20일선 이상·60일선의 97% 이상인지 확인"
+            },
+            {
+              "name": "시장 대비 낙폭 제한",
+              "met": false,
+              "waiting": "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인"
+            },
+            {
+              "name": "큰 매물대 접근·돌파",
+              "met": false,
+              "waiting": "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인"
+            },
+            {
+              "name": "거래량 유지",
+              "met": false,
+              "waiting": "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "내년 매출·OP 전망의 충분한 증가 확인",
+            "종가가 20일선 이상·60일선의 97% 이상인지 확인",
+            "20일 성과가 전체 시장 중앙값보다 3%p 이상 뒤지지 않는지 확인",
+            "과거 거래대금 집중 가격대의 저항선 아래 8% 이내 또는 종가 돌파 확인",
+            "최근 3일 / 직전 14일 거래량 0.8배 이상 확인"
+          ],
+          "early": false,
+          "strongBreakout": false,
+          "volume2x": false
+        },
+        "range": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "반복된 박스 상·하단 확인",
+              "met": false,
+              "waiting": "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인"
+            },
+            {
+              "name": "현재 박스 하단",
+              "met": false,
+              "waiting": "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인"
+            },
+            {
+              "name": "저항 돌파 후 지지 유지",
+              "met": false,
+              "waiting": "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인"
+            },
+            {
+              "name": "하락 추세 진정",
+              "met": false,
+              "waiting": "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+            },
+            {
+              "name": "종가 회복",
+              "met": true,
+              "waiting": "당일 상승·일중 범위 상위 40% 종가 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "지지 전환 매물대와 두 차례 이상 반복된 상단·하단 전환 확인",
+            "종가가 박스 하단 위 3% 이내이면서 전체 박스 폭의 하위 25%인지 확인",
+            "과거 큰 매물대의 거래량 동반 돌파와 현재 지지 유지 확인",
+            "20일 수익률 -5% 이상·60일선 대비 -5% 이상 확인"
+          ]
+        },
+        "down": {
+          "state": "조건 대기",
+          "ready": false,
+          "checks": [
+            {
+              "name": "상대 방어",
+              "met": false,
+              "waiting": "20일 시장 대비 성과가 음수인지 확인"
+            },
+            {
+              "name": "중기 가격 유지",
+              "met": false,
+              "waiting": "60일선 유지 여부 확인"
+            },
+            {
+              "name": "낙폭 제한",
+              "met": false,
+              "waiting": "60일 고점 대비 낙폭 15% 이내 확인"
+            },
+            {
+              "name": "이익 훼손 점검",
+              "met": true,
+              "waiting": "확정 실적·전망의 감소 위험 확인"
+            }
+          ],
+          "waiting": [
+            "20일 평균 거래대금 10억원 미달·미확인",
+            "연간 매출 2,000억원 미달·미확인",
+            "실적·전망 개선 근거 대기",
+            "20일 시장 대비 성과가 음수인지 확인",
+            "60일선 유지 여부 확인",
+            "60일 고점 대비 낙폭 15% 이내 확인"
+          ]
+        }
+      },
+      "nextChecks": [
+        "다음 실적 발표에서 매출·영업이익과 기대치 차이 확인 (발표일 미수집)",
+        "동일 기간 전망이 새로 발표되면 기존 수치와 비교",
+        "가격 조건은 다음 완료 거래일에 다시 확인"
+      ],
+      "invalidation": [
+        "동일 기간 영업이익 전망 하향 시 개선 근거 재평가",
+        "확정 실적이 개선 전망을 뒷받침하지 못하면 보류",
+        "지지 전환 매물대 미확인 · 가격 방어 가정 보류"
+      ]
+    }
+  }
+}
