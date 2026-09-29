@@ -1,211 +1,74 @@
 {
-  "runId": "c7794eb99c2f7dc15350de97",
-  "attemptedAt": "2026-09-28T20:54:07+09:00",
-  "sourceDate": "2026-09-28",
+  "runId": "d19fae6b2a3983063c8bde98",
+  "attemptedAt": "2026-09-29T18:55:23+09:00",
+  "sourceDate": "2026-09-29",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97"
+      "runId": "d19fae6b2a3983063c8bde98"
     },
     "p1": {
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97",
+      "runId": "d19fae6b2a3983063c8bde98",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97"
+      "runId": "d19fae6b2a3983063c8bde98"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97",
-      "evidenceSnapshotId": "69a144e0694df09fad1a70501f3d231bdeac28b6d147f8674671533e6a569e85"
+      "runId": "d19fae6b2a3983063c8bde98",
+      "evidenceSnapshotId": "e296db357b2aa1369a6b376aaec1cef97082103554e9b9cc380b90c99527fe3a"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97",
-      "evidenceSnapshotId": "69a144e0694df09fad1a70501f3d231bdeac28b6d147f8674671533e6a569e85"
+      "runId": "d19fae6b2a3983063c8bde98",
+      "evidenceSnapshotId": "e296db357b2aa1369a6b376aaec1cef97082103554e9b9cc380b90c99527fe3a"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97",
-      "evidenceSnapshotId": "69a144e0694df09fad1a70501f3d231bdeac28b6d147f8674671533e6a569e85"
+      "runId": "d19fae6b2a3983063c8bde98",
+      "evidenceSnapshotId": "e296db357b2aa1369a6b376aaec1cef97082103554e9b9cc380b90c99527fe3a"
     },
     "combined": {
-      "generatedAt": "2026-09-28T20:54:07+09:00",
-      "snapshotId": "8d51a7e7815ebe4e50c9f7589f472bc33395d17e77a110da2ff7b3944ce8c07a",
-      "sourceCutoff": "2026-09-28",
-      "mode": "저장자료 재계산",
+      "generatedAt": "2026-09-29T18:55:23+09:00",
+      "snapshotId": "fbe57a929eb63942228e1bed0e79ce5c3de1deab2d7de25915f6f39c1802ab1b",
+      "sourceCutoff": "2026-09-29",
+      "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "c7794eb99c2f7dc15350de97",
-      "evidenceSnapshotId": "69a144e0694df09fad1a70501f3d231bdeac28b6d147f8674671533e6a569e85",
+      "runId": "d19fae6b2a3983063c8bde98",
+      "evidenceSnapshotId": "e296db357b2aa1369a6b376aaec1cef97082103554e9b9cc380b90c99527fe3a",
       "status": "계산완료"
-    }
-  },
-  "collectionAudit": {
-    "checkedAt": "2026-09-28T20:59:15+09:00",
-    "priceDate": "2026-09-28",
-    "requested": 2762,
-    "collected": 2759,
-    "missingStocks": [
-      {
-        "ticker": "008290",
-        "name": "원풍물산",
-        "market": "KOSDAQ",
-        "sector": "봉제의복 제조업",
-        "lastPriceDate": "2026-09-18",
-        "reason": "오늘 종가를 대체 시세원에서도 확인하지 못함; 이전 가격 기준일 보존",
-        "attemptedSources": [
-          "Yahoo Finance",
-          "KIS 현재가",
-          "KIS 일별 수정주가",
-          "KIS 일별 비수정주가"
-        ],
-        "checkedAt": "2026-09-28T20:47:51.847803+09:00"
-      },
-      {
-        "ticker": "046070",
-        "name": "코다코",
-        "market": "KOSDAQ",
-        "sector": "자동차",
-        "lastPriceDate": "2026-09-18",
-        "reason": "오늘 종가를 대체 시세원에서도 확인하지 못함; 이전 가격 기준일 보존",
-        "attemptedSources": [
-          "Yahoo Finance",
-          "KIS 현재가",
-          "KIS 일별 수정주가",
-          "KIS 일별 비수정주가"
-        ],
-        "checkedAt": "2026-09-28T20:47:52.473306+09:00"
-      },
-      {
-        "ticker": "082660",
-        "name": "코스나인",
-        "market": "KOSDAQ",
-        "sector": "화장품",
-        "lastPriceDate": "2026-09-18",
-        "reason": "오늘 종가를 대체 시세원에서도 확인하지 못함; 이전 가격 기준일 보존",
-        "attemptedSources": [
-          "Yahoo Finance",
-          "KIS 현재가",
-          "KIS 일별 수정주가",
-          "KIS 일별 비수정주가"
-        ],
-        "checkedAt": "2026-09-28T20:47:53.074045+09:00"
-      }
-    ],
-    "universeStatus": "KRX 종목목록 재조회 실패·기존 요청 명단 기준; 신규상장 포함 여부 미확인",
-    "financialPeriod": "2026-06-30",
-    "consensusDate": "2026-09-28",
-    "forecast": {
-      "status": "정상",
-      "checkedAt": "2026-09-28T20:59:13+09:00",
-      "forecastPoints": 892,
-      "annualForecastTickers": 412,
-      "currentNextYearPairs": 170,
-      "guidanceRows": 84,
-      "guidanceTickers": 81,
-      "policy": "같은 종목·기간·항목에서 최신 컨센서스와 회사 공식 가이던스 중 발표일이 더 최신인 값을 사용; 같은 날이면 가이던스 우선; 날짜·증권사 수 점수·가중치 없음"
-    },
-    "investorFlows": {
-      "source": "KIS Developers 주식현재가 투자자",
-      "status": "부분수집",
-      "checkedAt": "2026-09-28T20:47:38+09:00",
-      "asOfDate": "2026-09-28",
-      "requestedCalls": 894,
-      "successfulCalls": 888,
-      "tickerCount": 888,
-      "failures": [
-        {
-          "ticker": "386380",
-          "error": "ValueError"
-        },
-        {
-          "ticker": "0197V0",
-          "error": "ValueError"
-        },
-        {
-          "ticker": "411080",
-          "error": "HTTPError"
-        },
-        {
-          "ticker": "425420",
-          "error": "HTTPError"
-        },
-        {
-          "ticker": "065170",
-          "error": "HTTPError"
-        },
-        {
-          "ticker": "459510",
-          "error": "HTTPError"
-        }
-      ],
-      "eligibleTickerCount": 894,
-      "cachedTickerCount": 0,
-      "scope": "20일 평균 거래대금 기준을 충족한 종목의 최근 5·20거래일 외국인·기관계 순매수 거래대금",
-      "problem": null,
-      "fallbackReason": "KRX 로그인 또는 일괄 응답 실패",
-      "krxAttempt": {
-        "requestedCalls": 4,
-        "successfulCalls": 0,
-        "failures": [
-          {
-            "window": "5",
-            "investor": "외국인",
-            "error": "ValueError"
-          },
-          {
-            "window": "5",
-            "investor": "기관합계",
-            "error": "ValueError"
-          },
-          {
-            "window": "20",
-            "investor": "외국인",
-            "error": "ValueError"
-          },
-          {
-            "window": "20",
-            "investor": "기관합계",
-            "error": "ValueError"
-          }
-        ]
-      },
-      "cacheReadAt": "2026-09-28T20:55:14+09:00",
-      "cacheReason": "명시적 수급 캐시 재사용",
-      "networkRequests": 0,
-      "reused": true,
-      "sourceStatus": "부분수집"
     }
   }
 }
