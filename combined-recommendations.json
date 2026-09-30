@@ -4,8 +4,8 @@
   "snapshotId": "c48afdc63c4653c4a37f790cbf23e4584acf9c0757e073396073c11d46ec2569",
   "generatedAt": "2026-10-01T08:10:00+09:00",
   "sourceDate": "2026-09-30",
-  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
-  "publicationState": "prepared",
+  "status": "공개 확인 완료 · 추천 기록 보존",
+  "publicationState": "confirmed",
   "candidateCount": 0,
   "matchedCandidateCount": 0,
   "rows": [],
@@ -489,5 +489,7 @@
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  }
+  },
+  "lastPublicationCheckedAt": "2026-10-01T08:28:21+09:00",
+  "observedPublishedAt": "2026-10-01T08:28:21+09:00"
 }
