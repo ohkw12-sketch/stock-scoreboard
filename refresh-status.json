@@ -1,73 +1,73 @@
 {
-  "runId": "768c75d99f3cd5a8db4c8a6e",
-  "attemptedAt": "2026-09-30T20:28:07+09:00",
+  "runId": "176ee1525d1376128701880a",
+  "attemptedAt": "2026-09-30T20:54:34+09:00",
   "sourceDate": "2026-09-30",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e"
+      "runId": "176ee1525d1376128701880a"
     },
     "p1": {
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e",
+      "runId": "176ee1525d1376128701880a",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e"
+      "runId": "176ee1525d1376128701880a"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e",
-      "evidenceSnapshotId": "c085a5670a39e8a3b160b8f0135480af81fefa0a844699548be1c6acee69acdf"
+      "runId": "176ee1525d1376128701880a",
+      "evidenceSnapshotId": "2582346fc9ab51ceeac98c6c14be769d9e24ef53e299eedea4c7e5b594eba038"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e",
-      "evidenceSnapshotId": "c085a5670a39e8a3b160b8f0135480af81fefa0a844699548be1c6acee69acdf"
+      "runId": "176ee1525d1376128701880a",
+      "evidenceSnapshotId": "2582346fc9ab51ceeac98c6c14be769d9e24ef53e299eedea4c7e5b594eba038"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e",
-      "evidenceSnapshotId": "c085a5670a39e8a3b160b8f0135480af81fefa0a844699548be1c6acee69acdf"
+      "runId": "176ee1525d1376128701880a",
+      "evidenceSnapshotId": "2582346fc9ab51ceeac98c6c14be769d9e24ef53e299eedea4c7e5b594eba038"
     },
     "combined": {
-      "generatedAt": "2026-09-30T20:28:07+09:00",
-      "snapshotId": "f8448bbf7791c741c884d60f66910c6e4cf8dc06415e09cdd133de477567d148",
+      "generatedAt": "2026-09-30T20:54:34+09:00",
+      "snapshotId": "6edfb0405b01ff77d5378082b90d4e71e8f1c6624d0860854ec25befb996e2d4",
       "sourceCutoff": "2026-09-30",
       "mode": "증분 수집",
       "engineVersion": "787f76181bd15741",
-      "runId": "768c75d99f3cd5a8db4c8a6e",
-      "evidenceSnapshotId": "c085a5670a39e8a3b160b8f0135480af81fefa0a844699548be1c6acee69acdf",
+      "runId": "176ee1525d1376128701880a",
+      "evidenceSnapshotId": "2582346fc9ab51ceeac98c6c14be769d9e24ef53e299eedea4c7e5b594eba038",
       "status": "계산완료"
     }
   }

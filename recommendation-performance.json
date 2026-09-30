@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-09-30T20:28:07+09:00",
+  "generatedAt": "2026-09-30T20:54:34+09:00",
   "priceDate": "2026-09-30",
   "recordCount": 629,
   "cohortCount": 124,
@@ -59736,7 +59736,7 @@
       "044380"
     ],
     "priceDate": "2026-09-30",
-    "checkedAt": "2026-09-30T11:45:52.878995+00:00"
+    "checkedAt": "2026-09-30T12:08:49.548833+00:00"
   },
   "feedback": {
     "version": "feedback-1.0",
@@ -59978,5 +59978,5 @@
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
   },
-  "priceSnapshotId": "0b9783322313fba458e9bab0a2ffbc1043e639d2ea5c0ab40be502c5da413f5c"
+  "priceSnapshotId": "bbeb2c984b9b9c5240fd4d18e0fa6857af6c451f53e9f8202bd1d0b3f96658e8"
 }
