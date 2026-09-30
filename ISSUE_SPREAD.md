@@ -98,3 +98,16 @@ changePct, return5dPct, turnoverRatio, distance20Pct. 숫자는 백분율 단위
 `python preview_server.py --port 8765`로 로컬 보드를 열고 이슈 확산 탭을 선택한다.
 가격/컨센서스 전수 수집 테스트는 원자료 수집 실행 시 수행한다. 기능 테스트의 가상 종목을
 실제 issue-spread.json에 게시하지 않는다. 이 기능에는 실시간 구독 계약이나 주문 기능이 없다.
+
+## 지연 실행 승인 (2026-09-30)
+
+예약시각을 지났다는 이유만으로 건너뛰지 않는다. 정규장 종료 후에는
+`python issue_spread.py --slot 10:30 --mode close`로 종가 보완 후보를 만든다.
+검증 후 동일 옵션에 `--promote`를 추가한다. 10:30 보완은 확인·확산까지만 진행한다.
+장중 기본 모드의 30분 제한은 그대로 유지한다. 종가 모드에만 당일 15:30 확정 종가를
+허용하며 `asOf`는 실제 가격시각, `fetchedAt`은 실제 수집시각(실행 60분 이내)이다.
+quote에 `priceMode=close`, `turnoverBasis=full-session`, 당일 `turnover`, 직전 20 KRX
+거래일 각각의 `baselineSessions`(date=YYYYMMDD, turnover)를 기록한다.
+배율은 이 20일 평균으로 재검증한다. 휴장일·이전 날짜·불완전한 분모는 허용하지 않는다.
+실행시각을 과거로 바꾸거나 종가 시각을 수집시각으로 덮어쓰지 않는다.
+검증된 후보 전수 대조와 가격/컨센서스의 별도 날짜·상태는 `coverage`에 보관한다.

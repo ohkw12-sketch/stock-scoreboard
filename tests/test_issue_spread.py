@@ -94,3 +94,47 @@ class IssueTests(unittest.TestCase):
     def test_max_three_issues(self):
         p=fixture(); p['issues']=[dict(p['issues'][0],id=str(i)) for i in range(5)]
         self.assertEqual(len(build(p, {}, NOW,'15:00')['issues']),3)
+
+
+class CloseModeTests(unittest.TestCase):
+    def close_fixture(self):
+        import exchange_calendars as xc
+        p = fixture()
+        now = NOW.replace(hour=20)
+        p['asOf'] = now.isoformat()
+        dates = xc.get_calendar('XKRX').sessions_in_range('2026-08-01','2026-09-09')[-20:]
+        for r in p['issues'][0]['candidates'] + p['issues'][0]['leaders']:
+            r['quote'].update(asOf=NOW.replace(minute=30).isoformat(), fetchedAt=now.isoformat(),
+                priceMode='close', turnoverBasis='full-session', turnover=200,
+                baselineSessions=[dict(date=d.strftime('%Y%m%d'),turnover=100) for d in dates])
+        return p, now
+
+    def test_close_opt_in_keeps_real_timestamp_and_midday_stage(self):
+        p, now = self.close_fixture()
+        a = build(p,{},now,'10:30')
+        self.assertTrue(all(not r['quote'] for r in a['issues'][0]['candidates']))
+        b = build(p,{},now,'10:30',mode='close')
+        self.assertEqual(b['priceMode'],'close')
+        self.assertTrue(all(r['stage']=='확산' for r in b['issues'][0]['candidates']))
+        self.assertEqual(b['issues'][0]['candidates'][0]['quote']['asOf'],NOW.replace(minute=30).isoformat())
+        self.assertEqual(b['generatedAt'],now.isoformat())
+
+    def test_close_rejects_wrong_date_time_fetch_and_denominator(self):
+        for field,value in [('asOf',NOW.replace(day=9,minute=30).isoformat()),
+                ('asOf',NOW.replace(hour=20).isoformat()),
+                ('fetchedAt',NOW.replace(hour=21).isoformat()),
+                ('fetchedAt',NOW.replace(hour=18).isoformat()),
+                ('turnoverBasis','same-elapsed-time'),('turnoverRatio',999),
+                ('baselineSessions',[]),('priceMode','intraday')]:
+            with self.subTest(field=field,value=value):
+                p,now=self.close_fixture()
+                for r in p['issues'][0]['candidates']:r['quote'][field]=value
+                self.assertTrue(all(not r['quote'] for r in build(p,{},now,'10:30',mode='close')['issues'][0]['candidates']))
+
+    def test_close_rejects_before_close_and_missing_session(self):
+        p,now=self.close_fixture()
+        p['asOf']=NOW.isoformat()
+        self.assertTrue(all(not r['quote'] for r in build(p,{},NOW,'10:30',mode='close')['issues'][0]['candidates']))
+        p,now=self.close_fixture()
+        for r in p['issues'][0]['candidates']:r['quote']['baselineSessions'].pop()
+        self.assertTrue(all(not r['quote'] for r in build(p,{},now,'10:30',mode='close')['issues'][0]['candidates']))

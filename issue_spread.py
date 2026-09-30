@@ -50,11 +50,38 @@ def verified(fact, now):
             and now - checked <= timedelta(days=7))
 
 
-def quote(row, now, overseas=False):
+def close_quote_valid(q, at, now):
+    """A fetched timestamp cannot turn an old close into a current intraday quote."""
+    fetched = stamp(q.get('fetchedAt'))
+    local = now.astimezone(KST)
+    close = local.replace(hour=15, minute=30, second=0, microsecond=0)
+    if not (at == close and now >= close and fetched and close <= fetched <= now
+            and now-fetched <= timedelta(minutes=60)
+            and q.get('priceMode') == 'close' and q.get('turnoverBasis') == 'full-session'):
+        return False
+    if not trading_day(local):
+        return False
+    import exchange_calendars as xc
+    expected = [d.strftime('%Y%m%d') for d in xc.get_calendar('XKRX').sessions_in_range(
+        (local-timedelta(days=60)).date().isoformat(), local.date().isoformat())][-21:-1]
+    sessions = q.get('baselineSessions') or []
+    if len(sessions) != 20 or len(expected) != 20 or sorted(r.get('date', '') for r in sessions) != expected:
+        return False
+    if any(num(r.get('turnover')) is None or num(r['turnover']) < 0 for r in sessions):
+        return False
+    average = sum(num(r['turnover']) for r in sessions)/20
+    turnover, ratio = num(q.get('turnover')), num(q.get('turnoverRatio'))
+    return bool(average > 0 and turnover is not None and turnover > 0 and ratio is not None
+                and math.isclose(ratio, turnover/average, rel_tol=1e-5, abs_tol=1e-6))
+
+
+def quote(row, now, overseas=False, mode='intraday'):
     q = row.get('quote') or {}
     at = stamp(q.get('asOf'))
     age = timedelta(hours=18) if overseas else timedelta(minutes=30)
-    valid = (at and timedelta(0) <= now-at <= age and q.get('status') == 'verified'
+    fresh = (close_quote_valid(q, at, now) if mode == 'close' and not overseas
+             else at and timedelta(0) <= now-at <= age)
+    valid = (fresh and q.get('status') == 'verified'
              and q.get('source') and q.get('url') and q.get('adjustmentChecked') is True
              and all(num(q.get(k)) is not None for k in ('changePct', 'return5dPct', 'turnoverRatio', 'distance20Pct'))
              and q['turnoverRatio'] > 0)
@@ -84,11 +111,15 @@ def matching_boards(board, ticker, date):
     return matches
 
 
-def build(payload, board, now, slot):
+def build(payload, board, now, slot, mode='intraday'):
     if slot not in ('08:00', '10:30', '15:00'):
         raise ValueError('Unsupported scan slot')
+    if mode not in ('intraday', 'close'):
+        raise ValueError('Unsupported price mode')
     output = dict(schemaVersion=1, generatedAt=now.isoformat(), sourceDate=str(now.date()), slot=slot,
-                  weights=WEIGHTS, issues=[], status='검증완료', missing=payload.get('missing', []))
+                  weights=WEIGHTS, issues=[], status='검증완료', missing=payload.get('missing', []),
+                  priceMode=mode, scanLabel='장 마감 후 종가 보완스캔' if mode == 'close' else '장중 스캔',
+                  coverage=payload.get('coverage', {}))
     captured = stamp(payload.get('asOf'))
     if not captured or not timedelta(0) <= now-captured <= timedelta(minutes=60):
         output.update(status='수집실패', missing=['이번 실행의 이슈 원자료 없음 또는 만료'])
@@ -105,7 +136,7 @@ def build(payload, board, now, slot):
         leaders = []
         leader_ok = False
         for leader in issue.get('leaders', []):
-            q = quote(leader, now, leader.get('market') != 'KR')
+            q = quote(leader, now, leader.get('market') != 'KR', mode)
             confirmed = bool(q and q['changePct'] >= 2 and q['turnoverRatio'] >= 1.5)
             leader_ok |= confirmed
             hot = bool(q and (q['changePct'] >= 10 or q['return5dPct'] >= 25 or q['distance20Pct'] >= 20))
@@ -126,7 +157,7 @@ def build(payload, board, now, slot):
             earnings = [f for f in refs if f.get('kind') in ('earnings', 'consensus', 'contract', 'capex')
                         and f.get('period') in ('2026Q3', '2026Q4', '2027Q1', '2027Q2')]
             fundamental = min(30, 10 * len({f['kind'] for f in earnings}))
-            q = quote(row, now) if slot != '08:00' else {}
+            q = quote(row, now, mode=mode) if slot != '08:00' else {}
             confirmed = bool(q and q['changePct'] > 0 and q['turnoverRatio'] >= 1.5)
             hot = bool(q and (q['changePct'] >= 10 or q['return5dPct'] >= 25 or q['distance20Pct'] >= 20))
             candidates.append(dict(ticker=ticker, name=row.get('name', ticker), sector=sector,
@@ -169,13 +200,13 @@ def build(payload, board, now, slot):
     return output
 
 
-def refresh(board=None, now=None, slot=None, root=ROOT):
+def refresh(board=None, now=None, slot=None, root=ROOT, mode='intraday'):
     now = (now or datetime.now(KST)).astimezone(KST)
     if not trading_day(now):
         return None  # No reads of market inputs, writes, analyses, or notifications.
     slot = slot or ('08:00' if now.hour < 10 else '10:30' if now.hour < 15 else '15:00')
     try:
-        result = build(read_json(root/'cache/issue-input.json', {}), board or read_json(root/'data.json', {}), now, slot)
+        result = build(read_json(root/'cache/issue-input.json', {}), board or read_json(root/'data.json', {}), now, slot, mode)
     except (ValueError, TypeError, KeyError, AttributeError):
         result = dict(status='수집실패', issues=[], missing=['원자료 형식 검증 실패'], generatedAt=now.isoformat())
     previous = read_json(root/'issue-spread.json', {})
@@ -188,12 +219,13 @@ def refresh(board=None, now=None, slot=None, root=ROOT):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--slot', choices=['08:00', '10:30', '15:00'])
+    parser.add_argument('--mode', choices=['intraday', 'close'], default='intraday')
     parser.add_argument('--promote', action='store_true')
     args = parser.parse_args()
     if not trading_day(datetime.now(KST)):
         return
     with run_lock(ROOT/'cache'):
-        result = refresh(slot=args.slot)
+        result = refresh(slot=args.slot, mode=args.mode)
         if result is not None and args.promote:
             json_write(ROOT/'issue-spread.json', result)
 

@@ -26,3 +26,12 @@ test('issue content is escaped and source protocols are restricted',async()=>{
   assert.match(n.issuebody.innerHTML,/&lt;img/);
   assert.match(n.issuebody.innerHTML,/실적연결도/);
 });
+
+test('close scan distinguishes scheduled slot, actual run and full-session basis',async()=>{
+  const n=await render({status:'검증완료',priceMode:'close',scanLabel:'장 마감 후 종가 보완스캔',
+    generatedAt:'2026-09-30T20:50:00+09:00',slot:'10:30',sourceDate:'2026-09-30',issues:[]});
+  assert.match(n.issuestatus.textContent,/종가 보완스캔/);
+  assert.match(n.issuestatus.textContent,/실제 실행 2026-09-30T20:50/);
+  assert.match(n.issuestatus.textContent,/예약 10:30/);
+  assert.match(n.issuebody.innerHTML,/직전 20거래일 정규장 전체/);
+});
