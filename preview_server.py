@@ -17,6 +17,8 @@ FILES = {
          '/guidance.json': ('test_output/guidance.json', 'application/json'),
          '/issue-spread.js': ('issue-spread.js', 'text/javascript'),
          '/issue-spread.css': ('issue-spread.css', 'text/css'),
+         '/mobile.js': ('mobile.js', 'text/javascript'),
+         '/mobile.css': ('mobile.css', 'text/css'),
          '/issue-spread.json': ('test_output/issue-spread.test.json', 'application/json'),
          '/sampro.js': ('sampro.js', 'text/javascript'),
          '/sampro.css': ('sampro.css', 'text/css'),
