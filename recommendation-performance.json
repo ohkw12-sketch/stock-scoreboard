@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-10-01T16:13:11+09:00",
+  "generatedAt": "2026-10-01T16:38:21+09:00",
   "priceDate": "2026-10-01",
-  "recordCount": 629,
-  "cohortCount": 130,
+  "recordCount": 630,
+  "cohortCount": 133,
   "rows": [
     {
       "ticker": "031980",
@@ -28552,6 +28552,194 @@
       },
       "status": "추적 중",
       "elapsedSessions": 12
+    },
+    {
+      "ticker": "044450",
+      "name": "KSS해운",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 4,
+      "sector": "해상 운송업",
+      "cohortId": "8eba8e3d9b91e0b91909a59227333185ccb5ba737368e81b99813e2adc26bc92",
+      "recommendationDate": "2026-10-01",
+      "publishedAt": "2026-10-01T16:38:21+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "787f76181bd15741",
+      "ruleVersion": "value-growth-split-4.0",
+      "features": [
+        "가치성장",
+        "가치성장:위험감점",
+        "가치성장:일부 가격 반응"
+      ],
+      "sourceRow": {
+        "ticker": "044450",
+        "name": "KSS해운",
+        "sector": "해상 운송업",
+        "growthRate": null,
+        "growthBasis": "2026년 2Q/1Q 매출",
+        "growthComparable": false,
+        "quarterlyGrowthRate": 14.4,
+        "quarterlyGrowthBasis": "2026년 2Q/1Q 매출",
+        "q1OperatingMarginPct": 15.5,
+        "q2OperatingMarginPct": 20.0,
+        "operatingMarginChangePp": 4.6,
+        "operatingMarginAcceleration": "개선",
+        "fundamentalScore": 91.4,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 159897316515.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 155057369059.15823,
+        "averageQuarterlyOperatingMarginPct": 18.400559111691436,
+        "fundamentalSource": "2026년 1·2분기 실제 + 2025년 계절성",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": true,
+        "confidence": "초기",
+        "evidenceCount": 1,
+        "confidenceScore": 25.0,
+        "expectationClusterCount": 1,
+        "priceReflection": "일부 가격 반응",
+        "score": 72.5,
+        "averageTurnover20": 1702532864.0,
+        "financialSummary": "2026E 분기평균 매출 1,551억원 · 2026E 영업이익률 18.4% · 1Q→2Q 영업이익률 15.5%→20.0% (+4.6%p) · 2026년 1·2분기 실제 + 2025년 계절성 · 20일 평균 거래대금 17억원 · 분기 흐름 +14.4% (2026년 2Q/1Q 매출; 순위 성장률 미사용)",
+        "leadingIndicatorScore": 73.5,
+        "leadingIndicatorSummary": "1Q→2Q 영업이익률 15.5%→20.0% (+4.6%p) · 적용 가능한 공식 월별 산업지표 없음 · 증설 진행 · 중장기 선박확보(생산설비 증대) 및 영업력 확대 · 자기자본 대비 92.7% · 매출 연결 별도 확인",
+        "marketConfirmationScore": 86.6,
+        "marketConfirmationSummary": "외국인·기관 합계 5일 6억원 · 20일 9억원 · 지속 순매수 · 업종대비 20일 +16.9%p · 최근 5일 거래량 5.19배 · 20일 고점 미돌파",
+        "industryIndicatorSummary": "적용 가능한 공식 월별 산업지표 없음",
+        "capacitySignalSummary": "증설 진행 · 중장기 선박확보(생산설비 증대) 및 영업력 확대 · 자기자본 대비 92.7% · 매출 연결 별도 확인",
+        "investorFlow": {
+          "available": true,
+          "score": 87.7,
+          "label": "지속 순매수",
+          "summary": "외국인·기관 합계 5일 6억원 · 20일 9억원 · 지속 순매수",
+          "foreignNet5": 2647000000.0,
+          "institutionNet5": -2017000000.0,
+          "foreignNet20": 2902000000.0,
+          "institutionNet20": -2024000000.0,
+          "netFlowToTurnover20Pct": 2.58,
+          "asOfDate": "2026-10-01"
+        },
+        "priceVolumeConfirmation": {
+          "ticker": "044450",
+          "sector": "해상 운송업",
+          "return20Pct": 20.38152610441768,
+          "volumeMultiple5": 5.19,
+          "breakout20": false,
+          "relativeStrength20Pct": 16.91,
+          "priceVolumeScore": 85
+        },
+        "evidenceContents": [
+          {
+            "kind": "수주",
+            "content": "장기대선계약을 체결했습니다. 계약금액은 1,852억원으로 최근 매출의 33%, 계약기간 기준 연환산 6.6%이며 계약은 2034-05-31까지 진행됩니다.",
+            "source": "DART · 2026-04-30",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800893"
+          },
+          {
+            "kind": "증설",
+            "content": "중장기 선박확보(생산설비 증대) 및 영업력 확대 · 증설 진행 · 자기자본 대비 92.7%. 매출 연결은 별도 확인이 필요합니다.",
+            "source": "DART · 2026-04-30",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430800617"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 61.5,
+          "salesPersistence": 50,
+          "profitConversion": 91.4,
+          "marginAcceleration": 86.5,
+          "industryIndicator": 50.0,
+          "capacitySignal": 85,
+          "revenueVisibility": 60.5,
+          "evidenceConfidence": 25.0,
+          "marketConfirmation": 86.6,
+          "financialSafety": 100
+        },
+        "stage": "초기 포착",
+        "firstPublished": "2026-04-30",
+        "lastVerified": "2026-10-01T16:26:59+09:00",
+        "sourceDate": "2026-10-01",
+        "oldEvidenceCount": 1,
+        "valueGrowthScore": 72.5,
+        "absoluteValueGrowthScore": 72.5,
+        "valueScore": 97.2,
+        "growthScore": 67.8,
+        "normalizedPOP": 2.4,
+        "normalizedPremiumPct": null,
+        "valueConfidence": "C",
+        "riskPenalty": 10,
+        "riskWarnings": [
+          "컨센서스·가이던스 없음·계절성 추정 -10"
+        ],
+        "valueBasis": "2026E 절대 P/OP 2.4배 · 섹터 가치비교 제외",
+        "fundamentalSourceDate": "2026-06-30",
+        "sectorAttentionUsed": false,
+        "currentPrice": 11990.0,
+        "fiveDayReturnPct": 19.18,
+        "ma20DistancePct": 12.83,
+        "ma20SlopePct": 0.96,
+        "nonOverheated": false,
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": null,
+        "latestQuarterOperatingMarginPct": 20.0,
+        "fourQuarterAverageOperatingMarginPct": 17.7,
+        "currentHalfAverageOperatingMarginPct": 17.7,
+        "currentQuarterAnnualizedPOP": 2.4,
+        "sectorNormalizedPOP": null,
+        "consensusOnlyEvidence": false,
+        "seasonalityEstimateOnly": true,
+        "rank": 4,
+        "alsoInterestTop20": false,
+        "recommendationHistory": {
+          "firstDate": "2026-10-01",
+          "previousDate": null,
+          "recommendationDays": 1,
+          "spanTradingDays": 1,
+          "gapCalendarDays": null,
+          "kind": "new",
+          "label": "신규 추천"
+        }
+      },
+      "entryDate": "2026-10-01",
+      "entryPrice": 11990.0,
+      "latestDate": "2026-10-01",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
     },
     {
       "ticker": "047050",
@@ -59549,10 +59737,10 @@
     {
       "group": "가치성장",
       "horizon": 1,
-      "total": 44,
+      "total": 45,
       "evaluated": 44,
       "uniqueStocks": 44,
-      "waitingOrMissing": 0,
+      "waitingOrMissing": 1,
       "meanReturnPct": -0.2473,
       "medianReturnPct": -0.6856,
       "winRatePct": 29.55
@@ -59560,10 +59748,10 @@
     {
       "group": "가치성장",
       "horizon": 5,
-      "total": 44,
+      "total": 45,
       "evaluated": 40,
       "uniqueStocks": 40,
-      "waitingOrMissing": 4,
+      "waitingOrMissing": 5,
       "meanReturnPct": 2.7185,
       "medianReturnPct": -0.6697,
       "winRatePct": 45.0
@@ -59571,10 +59759,10 @@
     {
       "group": "가치성장",
       "horizon": 20,
-      "total": 44,
+      "total": 45,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 44,
+      "waitingOrMissing": 45,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -59582,10 +59770,10 @@
     {
       "group": "가치성장",
       "horizon": 60,
-      "total": 44,
+      "total": 45,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 44,
+      "waitingOrMissing": 45,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -59593,10 +59781,10 @@
     {
       "group": "가치성장",
       "horizon": 120,
-      "total": 44,
+      "total": 45,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 44,
+      "waitingOrMissing": 45,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -59729,14 +59917,15 @@
   "priceCollection": {
     "source": "추천 종목 Yahoo 공급자 수정주가",
     "requested": 452,
-    "status": "일부 누락",
+    "status": "저장 수정주가 재사용",
     "covered": 450,
     "missingTickers": [
       "004920",
       "044380"
     ],
     "priceDate": "2026-10-01",
-    "checkedAt": "2026-10-01T07:30:26.840032+00:00"
+    "checkedAt": "2026-10-01T07:30:26.840032+00:00",
+    "networkRequests": 0
   },
   "feedback": {
     "version": "feedback-1.0",
@@ -60372,6 +60561,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "2e5d1d34ced1c98b2b3612e357f046ef93de387afaf6e3afd701ba94939bb2f3"
+  }
 }
