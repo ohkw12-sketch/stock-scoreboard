@@ -138,3 +138,24 @@ class CloseModeTests(unittest.TestCase):
         p,now=self.close_fixture()
         for r in p['issues'][0]['candidates']:r['quote']['baselineSessions'].pop()
         self.assertTrue(all(not r['quote'] for r in build(p,{},now,'10:30',mode='close')['issues'][0]['candidates']))
+
+
+class PremarketTests(CloseModeTests):
+    def test_previous_close_is_display_only(self):
+        p, _ = self.close_fixture()
+        now = NOW.replace(day=11,hour=5)
+        p['asOf'] = now.isoformat()
+        for r in p['issues'][0]['candidates'] + p['issues'][0]['leaders']:
+            r['quote'].update(priceMode='premarket', fetchedAt=now.isoformat())
+        result = build(p, {}, now, '10:30', mode='premarket')
+        for r in result['issues'][0]['candidates']:
+            self.assertTrue(r['quote'])
+            self.assertEqual(r['stage'], '탐색')
+            self.assertEqual([r['scores'][k] for k in ('leader','spread','entry')], [0,0,0])
+        self.assertTrue(all(not r['quote'] for r in build(p,{},now,'10:30',mode='close')['issues'][0]['candidates']))
+        for field,value in [('asOf',now.isoformat()),('baselineSessions',[]),('turnoverRatio',999),('fetchedAt',(now+timedelta(hours=1)).isoformat())]:
+            bad=copy.deepcopy(p)
+            for r in bad['issues'][0]['candidates']: r['quote'][field]=value
+            self.assertTrue(all(not r['quote'] for r in build(bad,{},now,'10:30',mode='premarket')['issues'][0]['candidates']))
+        later=now.replace(hour=10);p['asOf']=later.isoformat()
+        self.assertTrue(all(not r['quote'] for r in build(p,{},later,'10:30',mode='premarket')['issues'][0]['candidates']))

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-02T20:24:27.406736+09:00",
-  "sourceDate": "2026-10-02",
-  "slot": "15:00",
+  "generatedAt": "2026-10-07T05:30:43.583862+09:00",
+  "sourceDate": "2026-10-07",
+  "slot": "10:30",
   "weights": {
     "issue": 20,
     "leader": 20,
@@ -26,24 +26,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.171725+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.043688+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 49000.0,
-            "changePct": 1.6598,
-            "return5dPct": 0.0,
-            "distance20Pct": -2.4973,
-            "turnoverRatio": 0.561988,
-            "turnover": 4804409650.0,
-            "baselineTurnover": 8548959818.75,
+            "price": 47700.0,
+            "changePct": -2.8513,
+            "return5dPct": -2.8513,
+            "distance20Pct": -4.9233,
+            "turnoverRatio": 1.201409,
+            "turnover": 10082160350.0,
+            "baselineTurnover": 8391944312.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 7950356925.0
-              },
               {
                 "date": "20260903",
                 "turnover": 6237952350.0
@@ -119,6 +115,10 @@
               {
                 "date": "20261001",
                 "turnover": 5009718600.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 4810046800.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -135,24 +135,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.426828+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.537551+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 426000.0,
-            "changePct": -1.2746,
-            "return5dPct": -3.4014,
-            "distance20Pct": -5.0432,
-            "turnoverRatio": 0.732557,
-            "turnover": 90336175000.0,
-            "baselineTurnover": 123316226187.5,
+            "price": 421500.0,
+            "changePct": -1.0563,
+            "return5dPct": -4.638,
+            "distance20Pct": -5.9047,
+            "turnoverRatio": 0.591046,
+            "turnover": 72399853250.0,
+            "baselineTurnover": 122494494037.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 106940801000.0
-              },
               {
                 "date": "20260903",
                 "turnover": 149543330250.0
@@ -228,6 +224,10 @@
               {
                 "date": "20261001",
                 "turnover": 57643765250.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 90506158000.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -244,24 +244,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:30.935003+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:14.802091+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 78700.0,
-            "changePct": 0.2548,
-            "return5dPct": -1.1307,
-            "distance20Pct": -5.1579,
-            "turnoverRatio": 0.745841,
-            "turnover": 41774355350.0,
-            "baselineTurnover": 56009739845.0,
+            "price": 77600.0,
+            "changePct": -1.5228,
+            "return5dPct": -3.0,
+            "distance20Pct": -5.985,
+            "turnoverRatio": 0.908081,
+            "turnover": 50394475300.0,
+            "baselineTurnover": 55495587562.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 52208254100.0
-              },
               {
                 "date": "20260903",
                 "turnover": 98383973250.0
@@ -337,6 +333,10 @@
               {
                 "date": "20261001",
                 "turnover": 47144949250.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 41925208450.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -358,24 +358,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:30.684738+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:14.461880+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 6250.0,
-            "changePct": 6.2925,
-            "return5dPct": 11.6071,
-            "distance20Pct": 6.2203,
-            "turnoverRatio": 1.788552,
-            "turnover": 29809953990.0,
-            "baselineTurnover": 16667085785.0,
+            "price": 6010.0,
+            "changePct": -3.6859,
+            "return5dPct": 5.4386,
+            "distance20Pct": 2.0893,
+            "turnoverRatio": 1.096723,
+            "turnover": 19428252770.0,
+            "baselineTurnover": 17714830007.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 8898939320.0
-              },
               {
                 "date": "20260903",
                 "turnover": 45643663760.0
@@ -451,12 +447,16 @@
               {
                 "date": "20261001",
                 "turnover": 18303633155.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 29853823760.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
             "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
           },
-          "confirmed": true,
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -495,15 +495,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 10,
-            "entry": 5
+            "entry": 0
           },
-          "score": 25,
+          "score": 20,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -516,24 +516,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:30.681376+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:14.527659+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 2145.0,
-            "changePct": 2.1429,
-            "return5dPct": 8.006,
-            "distance20Pct": 3.7334,
-            "turnoverRatio": 1.325773,
-            "turnover": 3707394629.0,
-            "baselineTurnover": 2796401499.75,
+            "price": 2050.0,
+            "changePct": -4.6512,
+            "return5dPct": -1.2048,
+            "distance20Pct": -0.8129,
+            "turnoverRatio": 1.52346,
+            "turnover": 4306158500.0,
+            "baselineTurnover": 2826565599.9,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 3113119636.0
-              },
               {
                 "date": "20260903",
                 "turnover": 5486452318.0
@@ -609,6 +605,10 @@
               {
                 "date": "20261001",
                 "turnover": 2355677616.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 3716401639.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -638,15 +638,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -659,24 +659,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:30.928362+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:14.741180+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 19930.0,
-            "changePct": 1.0649,
-            "return5dPct": -1.5802,
-            "distance20Pct": -4.0974,
-            "turnoverRatio": 0.560858,
-            "turnover": 37921046325.0,
-            "baselineTurnover": 67612503544.4,
+            "price": 19740.0,
+            "changePct": -1.1022,
+            "return5dPct": -1.791,
+            "distance20Pct": -4.5801,
+            "turnoverRatio": 0.764715,
+            "turnover": 51033199530.0,
+            "baselineTurnover": 66734885440.65,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 55671994970.0
-              },
               {
                 "date": "20260903",
                 "turnover": 151618409420.0
@@ -752,6 +748,10 @@
               {
                 "date": "20261001",
                 "turnover": 39284912915.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 38119632895.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -794,15 +794,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -815,24 +815,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:30.935003+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:14.802091+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 78700.0,
-            "changePct": 0.2548,
-            "return5dPct": -1.1307,
-            "distance20Pct": -5.1579,
-            "turnoverRatio": 0.745841,
-            "turnover": 41774355350.0,
-            "baselineTurnover": 56009739845.0,
+            "price": 77600.0,
+            "changePct": -1.5228,
+            "return5dPct": -3.0,
+            "distance20Pct": -5.985,
+            "turnoverRatio": 0.908081,
+            "turnover": 50394475300.0,
+            "baselineTurnover": 55495587562.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 52208254100.0
-              },
               {
                 "date": "20260903",
                 "turnover": 98383973250.0
@@ -908,6 +904,10 @@
               {
                 "date": "20261001",
                 "turnover": 47144949250.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 41925208450.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -936,15 +936,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -957,24 +957,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.171725+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.043688+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 49000.0,
-            "changePct": 1.6598,
-            "return5dPct": 0.0,
-            "distance20Pct": -2.4973,
-            "turnoverRatio": 0.561988,
-            "turnover": 4804409650.0,
-            "baselineTurnover": 8548959818.75,
+            "price": 47700.0,
+            "changePct": -2.8513,
+            "return5dPct": -2.8513,
+            "distance20Pct": -4.9233,
+            "turnoverRatio": 1.201409,
+            "turnover": 10082160350.0,
+            "baselineTurnover": 8391944312.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 7950356925.0
-              },
               {
                 "date": "20260903",
                 "turnover": 6237952350.0
@@ -1050,6 +1046,10 @@
               {
                 "date": "20261001",
                 "turnover": 5009718600.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 4810046800.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -1078,15 +1078,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -1099,24 +1099,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.205216+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.051764+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 9790.0,
-            "changePct": 4.1489,
-            "return5dPct": 2.5131,
-            "distance20Pct": -0.4525,
-            "turnoverRatio": 0.57811,
-            "turnover": 36250420.0,
-            "baselineTurnover": 62705063.25,
+            "price": 10130.0,
+            "changePct": 3.1568,
+            "return5dPct": 7.9957,
+            "distance20Pct": 2.8583,
+            "turnoverRatio": 0.503756,
+            "turnover": 28297910.0,
+            "baselineTurnover": 56173896.75,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 166873750.0
-              },
               {
                 "date": "20260903",
                 "turnover": 130500260.0
@@ -1192,6 +1188,10 @@
               {
                 "date": "20261001",
                 "turnover": 26656950.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 36250420.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -1220,15 +1220,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -1241,24 +1241,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.426828+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.537551+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 426000.0,
-            "changePct": -1.2746,
-            "return5dPct": -3.4014,
-            "distance20Pct": -5.0432,
-            "turnoverRatio": 0.732557,
-            "turnover": 90336175000.0,
-            "baselineTurnover": 123316226187.5,
+            "price": 421500.0,
+            "changePct": -1.0563,
+            "return5dPct": -4.638,
+            "distance20Pct": -5.9047,
+            "turnoverRatio": 0.591046,
+            "turnover": 72399853250.0,
+            "baselineTurnover": 122494494037.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 106940801000.0
-              },
               {
                 "date": "20260903",
                 "turnover": 149543330250.0
@@ -1334,6 +1330,10 @@
               {
                 "date": "20261001",
                 "turnover": 57643765250.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 90506158000.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -1388,15 +1388,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -1409,24 +1409,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.508825+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.326689+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 10100.0,
-            "changePct": -0.4926,
-            "return5dPct": -2.4155,
-            "distance20Pct": 0.8135,
-            "turnoverRatio": 0.437835,
-            "turnover": 213987890.0,
-            "baselineTurnover": 488741476.0,
+            "price": 10470.0,
+            "changePct": 2.8487,
+            "return5dPct": 1.6505,
+            "distance20Pct": 3.9928,
+            "turnoverRatio": 0.862478,
+            "turnover": 415268735.0,
+            "baselineTurnover": 481483508.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 363477030.0
-              },
               {
                 "date": "20260903",
                 "turnover": 294197580.0
@@ -1502,6 +1498,10 @@
               {
                 "date": "20261001",
                 "turnover": 300055230.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 218317670.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -1530,15 +1530,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         }
       ],
@@ -1810,24 +1810,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.759949+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.811104+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 6430.0,
-            "changePct": -0.7716,
-            "return5dPct": -4.1729,
-            "distance20Pct": -4.973,
-            "turnoverRatio": 0.416287,
-            "turnover": 59441220.0,
-            "baselineTurnover": 142788900.0,
+            "price": 6380.0,
+            "changePct": -0.6231,
+            "return5dPct": -4.6338,
+            "distance20Pct": -5.4395,
+            "turnoverRatio": 0.359586,
+            "turnover": 51733230.0,
+            "baselineTurnover": 143868690.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 37845410.0
-              },
               {
                 "date": "20260903",
                 "turnover": 46948590.0
@@ -1903,6 +1899,10 @@
               {
                 "date": "20261001",
                 "turnover": 44716600.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 59441220.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -1919,24 +1919,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.020062+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.087554+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 20800.0,
-            "changePct": 0.4831,
-            "return5dPct": -0.716,
-            "distance20Pct": -2.6673,
-            "turnoverRatio": 0.669486,
-            "turnover": 14630889500.0,
-            "baselineTurnover": 21853898550.9,
+            "price": 21200.0,
+            "changePct": 1.9231,
+            "return5dPct": 2.4155,
+            "distance20Pct": -0.7955,
+            "turnoverRatio": 0.819777,
+            "turnover": 17912956600.0,
+            "baselineTurnover": 21850999549.65,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 14923811425.0
-              },
               {
                 "date": "20260903",
                 "turnover": 11243374050.0
@@ -2012,6 +2008,10 @@
               {
                 "date": "20261001",
                 "turnover": 16943340875.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 14865831400.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -2033,24 +2033,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.676869+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.594917+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 22600.0,
-            "changePct": 8.134,
-            "return5dPct": 12.7182,
-            "distance20Pct": 19.0257,
-            "turnoverRatio": 2.007003,
-            "turnover": 12997025625.0,
-            "baselineTurnover": 6475836954.25,
+            "price": 22700.0,
+            "changePct": 1.7937,
+            "return5dPct": 12.0988,
+            "distance20Pct": 17.5709,
+            "turnoverRatio": 1.971949,
+            "turnover": 13405696300.0,
+            "baselineTurnover": 6798196039.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 6590611370.0
-              },
               {
                 "date": "20260903",
                 "turnover": 3083226540.0
@@ -2126,12 +2122,16 @@
               {
                 "date": "20261001",
                 "turnover": 6634127230.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 13037793075.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
             "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
           },
-          "confirmed": true,
+          "confirmed": false,
           "hot": false,
           "evidence": [
             {
@@ -2157,15 +2157,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 10,
-            "entry": 5
+            "entry": 0
           },
-          "score": 25,
+          "score": 20,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -2178,24 +2178,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.759949+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.811104+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 6430.0,
-            "changePct": -0.7716,
-            "return5dPct": -4.1729,
-            "distance20Pct": -4.973,
-            "turnoverRatio": 0.416287,
-            "turnover": 59441220.0,
-            "baselineTurnover": 142788900.0,
+            "price": 6380.0,
+            "changePct": -0.6231,
+            "return5dPct": -4.6338,
+            "distance20Pct": -5.4395,
+            "turnoverRatio": 0.359586,
+            "turnover": 51733230.0,
+            "baselineTurnover": 143868690.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 37845410.0
-              },
               {
                 "date": "20260903",
                 "turnover": 46948590.0
@@ -2271,6 +2267,10 @@
               {
                 "date": "20261001",
                 "turnover": 44716600.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 59441220.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -2299,15 +2299,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -2320,24 +2320,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:31.933697+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:15.887795+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 4070.0,
-            "changePct": -1.4528,
-            "return5dPct": -3.7825,
-            "distance20Pct": -5.3873,
-            "turnoverRatio": 0.109261,
-            "turnover": 73226780.0,
-            "baselineTurnover": 670198990.95,
+            "price": 4115.0,
+            "changePct": 1.6049,
+            "return5dPct": -0.9627,
+            "distance20Pct": -3.9449,
+            "turnoverRatio": 0.248812,
+            "turnover": 53087850.0,
+            "baselineTurnover": 213364929.6,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 9211559267.0
-              },
               {
                 "date": "20260903",
                 "turnover": 1156079124.0
@@ -2413,6 +2409,10 @@
               {
                 "date": "20261001",
                 "turnover": 48733795.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 74878040.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -2441,15 +2441,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -2462,24 +2462,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.020062+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.087554+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 20800.0,
-            "changePct": 0.4831,
-            "return5dPct": -0.716,
-            "distance20Pct": -2.6673,
-            "turnoverRatio": 0.669486,
-            "turnover": 14630889500.0,
-            "baselineTurnover": 21853898550.9,
+            "price": 21200.0,
+            "changePct": 1.9231,
+            "return5dPct": 2.4155,
+            "distance20Pct": -0.7955,
+            "turnoverRatio": 0.819777,
+            "turnover": 17912956600.0,
+            "baselineTurnover": 21850999549.65,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 14923811425.0
-              },
               {
                 "date": "20260903",
                 "turnover": 11243374050.0
@@ -2555,6 +2551,10 @@
               {
                 "date": "20261001",
                 "turnover": 16943340875.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 14865831400.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -2583,15 +2583,172 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
+          "overheat": "보통"
+        },
+        {
+          "ticker": "373170",
+          "name": "엠아이큐브솔루션",
+          "sector": "제조공정 소프트웨어",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:28:32.239813+09:00",
+            "priceMode": "premarket",
+            "turnoverBasis": "full-session",
+            "adjustmentChecked": true,
+            "price": 1925.0,
+            "changePct": 4.9046,
+            "return5dPct": 6.3536,
+            "distance20Pct": 0.3153,
+            "turnoverRatio": 0.246308,
+            "turnover": 227505376.0,
+            "baselineTurnover": 923662406.95,
+            "baselineSessions": [
+              {
+                "date": "20260903",
+                "turnover": 13727038998.0
+              },
+              {
+                "date": "20260904",
+                "turnover": 1952180272.0
+              },
+              {
+                "date": "20260907",
+                "turnover": 802116921.0
+              },
+              {
+                "date": "20260908",
+                "turnover": 454197920.0
+              },
+              {
+                "date": "20260909",
+                "turnover": 485817334.0
+              },
+              {
+                "date": "20260910",
+                "turnover": 98469257.0
+              },
+              {
+                "date": "20260911",
+                "turnover": 125391589.0
+              },
+              {
+                "date": "20260914",
+                "turnover": 134778854.0
+              },
+              {
+                "date": "20260915",
+                "turnover": 79935041.0
+              },
+              {
+                "date": "20260916",
+                "turnover": 72760606.0
+              },
+              {
+                "date": "20260917",
+                "turnover": 70160150.0
+              },
+              {
+                "date": "20260918",
+                "turnover": 108304941.0
+              },
+              {
+                "date": "20260921",
+                "turnover": 60600673.0
+              },
+              {
+                "date": "20260922",
+                "turnover": 52062796.0
+              },
+              {
+                "date": "20260923",
+                "turnover": 45166486.0
+              },
+              {
+                "date": "20260928",
+                "turnover": 31774225.0
+              },
+              {
+                "date": "20260929",
+                "turnover": 53906469.0
+              },
+              {
+                "date": "20260930",
+                "turnover": 21258181.0
+              },
+              {
+                "date": "20261001",
+                "turnover": 57404774.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 39922652.0
+              }
+            ],
+            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
+            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
+          },
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "dart-20261006900122",
+              "ticker": "373170",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900122",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "세영과 PCB 제조 지능화 설비 데이터 통합 AX선도모델 구축 21억5960만원 계약. 기간 2026-08-21~2028-02-20, 분기별 매출 미확인."
+            },
+            {
+              "id": "dart-20261006900123",
+              "ticker": "373170",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900123",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "현우산업과 PCB 제조공정 인공지능 전환 AX선도모델 구축 21억5960만원 계약. 기간 2026-08-21~2028-02-20, 세영 건과 별도 계약이나 같은 종류의 점수는 중복 가산하지 않는다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 10,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 10,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -2604,24 +2761,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.182232+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.150741+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 15870.0,
-            "changePct": 1.6005,
-            "return5dPct": 1.1472,
-            "distance20Pct": 2.3871,
-            "turnoverRatio": 0.309312,
-            "turnover": 563972600.0,
-            "baselineTurnover": 1823315634.25,
+            "price": 16450.0,
+            "changePct": 4.7104,
+            "return5dPct": 6.4036,
+            "distance20Pct": 5.2261,
+            "turnoverRatio": 0.712447,
+            "turnover": 1308081395.0,
+            "baselineTurnover": 1836041428.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 312960715.0
-              },
               {
                 "date": "20260903",
                 "turnover": 210468615.0
@@ -2697,6 +2850,10 @@
               {
                 "date": "20261001",
                 "turnover": 556519215.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 567476590.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -2725,15 +2882,15 @@
             "leader": 0,
             "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 15,
+          "score": 10,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         }
       ],
@@ -2855,6 +3012,34 @@
           "kind": "contract",
           "summary": "뉴로메카는 디아이씨로부터 19억8천만원 규모 자동화 설비 발주를 수령했다. 최근 매출의 10.45%이며 계약기간은 2026-09-30부터 2026-12-15까지다.",
           "period": "2026Q4"
+        },
+        {
+          "id": "dart-20261006900122",
+          "ticker": "373170",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900122",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "세영과 PCB 제조 지능화 설비 데이터 통합 AX선도모델 구축 21억5960만원 계약. 기간 2026-08-21~2028-02-20, 분기별 매출 미확인."
+        },
+        {
+          "id": "dart-20261006900123",
+          "ticker": "373170",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900123",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "현우산업과 PCB 제조공정 인공지능 전환 AX선도모델 구축 21억5960만원 계약. 기간 2026-08-21~2028-02-20, 세영 건과 별도 계약이나 같은 종류의 점수는 중복 가산하지 않는다."
         }
       ],
       "detection": [
@@ -2913,9 +3098,9 @@
       "id": "ai-infrastructure-supply-capex-20260922",
       "name": "AI 반도체·검사장비·데이터센터 전력 공급",
       "strength": 25,
-      "marketGrade": "A",
+      "marketGrade": "미확인",
       "fundamentalGrade": "미확인",
-      "spreadType": "섹터확산",
+      "spreadType": "개별반응·미확인",
       "leaders": [
         {
           "name": "해성디에스",
@@ -2924,24 +3109,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.242177+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.451994+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 65600.0,
-            "changePct": -1.3534,
-            "return5dPct": 7.1895,
-            "distance20Pct": 17.9008,
-            "turnoverRatio": 1.344908,
-            "turnover": 12396915050.0,
-            "baselineTurnover": 9217668410.0,
+            "price": 67200.0,
+            "changePct": 2.9096,
+            "return5dPct": 12.0,
+            "distance20Pct": 18.9275,
+            "turnoverRatio": 0.89831,
+            "turnover": 8616481650.0,
+            "baselineTurnover": 9591880052.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 4957280800.0
-              },
               {
                 "date": "20260903",
                 "turnover": 6043512100.0
@@ -3017,6 +3198,10 @@
               {
                 "date": "20261001",
                 "turnover": 10618746750.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 12441513650.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3033,24 +3218,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.978989+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.969182+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 215500.0,
-            "changePct": 1.8913,
-            "return5dPct": 3.11,
-            "distance20Pct": 4.5431,
-            "turnoverRatio": 0.606912,
-            "turnover": 83998326500.0,
-            "baselineTurnover": 138402862717.5,
+            "price": 233000.0,
+            "changePct": 7.8704,
+            "return5dPct": 8.6247,
+            "distance20Pct": 12.1136,
+            "turnoverRatio": 2.123705,
+            "turnover": 291258502000.0,
+            "baselineTurnover": 137146394917.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 109602923500.0
-              },
               {
                 "date": "20260903",
                 "turnover": 95454932850.0
@@ -3126,6 +3307,10 @@
               {
                 "date": "20261001",
                 "turnover": 89789569750.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 84473567500.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3142,24 +3327,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:34.329155+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.869179+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 20600.0,
-            "changePct": 0.2433,
-            "return5dPct": 27.082,
-            "distance20Pct": 27.7916,
-            "turnoverRatio": 1.249716,
-            "turnover": 36497208050.0,
-            "baselineTurnover": 29204413077.0,
+            "price": 21900.0,
+            "changePct": 7.3529,
+            "return5dPct": 33.8631,
+            "distance20Pct": 32.7474,
+            "turnoverRatio": 1.373921,
+            "turnover": 42514686075.0,
+            "baselineTurnover": 30944048683.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 2044703980.0
-              },
               {
                 "date": "20260903",
                 "turnover": 3148323125.0
@@ -3235,6 +3416,10 @@
               {
                 "date": "20261001",
                 "turnover": 191977831310.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 36837416100.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3253,24 +3438,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.438491+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.401490+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 1577000.0,
-            "changePct": 1.025,
-            "return5dPct": 4.645,
-            "distance20Pct": 10.1642,
-            "turnoverRatio": 0.911995,
-            "turnover": 747594589500.0,
-            "baselineTurnover": 819735582165.3,
+            "price": 1684000.0,
+            "changePct": 6.5149,
+            "return5dPct": 12.3416,
+            "distance20Pct": 16.2582,
+            "turnoverRatio": 1.581368,
+            "turnover": 1304906516569.0,
+            "baselineTurnover": 825175681990.3,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 669745713500.0
-              },
               {
                 "date": "20260903",
                 "turnover": 845469893500.0
@@ -3346,6 +3527,10 @@
               {
                 "date": "20261001",
                 "turnover": 973470352500.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 778547710000.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3362,24 +3547,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.525617+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.577230+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 209000.0,
-            "changePct": 1.4563,
-            "return5dPct": 1.7032,
-            "distance20Pct": 2.456,
-            "turnoverRatio": 0.766576,
-            "turnover": 60260476500.0,
-            "baselineTurnover": 78609922235.0,
+            "price": 217500.0,
+            "changePct": 3.8186,
+            "return5dPct": 6.357,
+            "distance20Pct": 5.9503,
+            "turnoverRatio": 1.355855,
+            "turnover": 105538172000.0,
+            "baselineTurnover": 77838845277.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 75823617650.0
-              },
               {
                 "date": "20260903",
                 "turnover": 99666374500.0
@@ -3455,6 +3636,10 @@
               {
                 "date": "20261001",
                 "turnover": 67005108600.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 60402078500.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3467,149 +3652,6 @@
       ],
       "candidates": [
         {
-          "ticker": "394280",
-          "name": "오픈엣지테크놀로지",
-          "sector": "AI 반도체 설계자산(IP)",
-          "direct": true,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 정규장 종가·일별 수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:57:51.329452+09:00",
-            "priceMode": "close",
-            "turnoverBasis": "full-session",
-            "adjustmentChecked": true,
-            "price": 10600.0,
-            "changePct": 1.7274,
-            "return5dPct": 8.2737,
-            "distance20Pct": 18.0072,
-            "turnoverRatio": 2.938636,
-            "turnover": 2621593055.0,
-            "baselineTurnover": 892112258.25,
-            "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 413114680.0
-              },
-              {
-                "date": "20260903",
-                "turnover": 732894015.0
-              },
-              {
-                "date": "20260904",
-                "turnover": 569674195.0
-              },
-              {
-                "date": "20260907",
-                "turnover": 475483000.0
-              },
-              {
-                "date": "20260908",
-                "turnover": 492433720.0
-              },
-              {
-                "date": "20260909",
-                "turnover": 325938935.0
-              },
-              {
-                "date": "20260910",
-                "turnover": 521935900.0
-              },
-              {
-                "date": "20260911",
-                "turnover": 363313225.0
-              },
-              {
-                "date": "20260914",
-                "turnover": 447881745.0
-              },
-              {
-                "date": "20260915",
-                "turnover": 320809100.0
-              },
-              {
-                "date": "20260916",
-                "turnover": 401149530.0
-              },
-              {
-                "date": "20260917",
-                "turnover": 753447195.0
-              },
-              {
-                "date": "20260918",
-                "turnover": 2094081470.0
-              },
-              {
-                "date": "20260921",
-                "turnover": 1064057065.0
-              },
-              {
-                "date": "20260922",
-                "turnover": 2456106455.0
-              },
-              {
-                "date": "20260923",
-                "turnover": 1440761385.0
-              },
-              {
-                "date": "20260928",
-                "turnover": 1019917260.0
-              },
-              {
-                "date": "20260929",
-                "turnover": 1008922535.0
-              },
-              {
-                "date": "20260930",
-                "turnover": 1287987135.0
-              },
-              {
-                "date": "20261001",
-                "turnover": 1652336620.0
-              }
-            ],
-            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
-            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
-          },
-          "confirmed": true,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "close-20261002900436",
-              "ticker": "394280",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261002900436",
-              "publishedAt": "2026-10-02T00:00:00+09:00",
-              "publishedAtPrecision": "date",
-              "verifiedAt": "2026-10-02T19:59:29.413105+09:00",
-              "reviewer": "Codex · 당일 DART 원문 검토",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "오픈엣지테크놀로지는 국내 AI 반도체 기업과 67억원 IP 라이선스 계약을 체결했다. 최근 매출 대비 41.7%, 유효기간은 2026-10-01~2029-09-30이다. 설계자산 인도 시점에 매출을 인식하나 해당 분기와 고객 이름은 공개되지 않았다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 20,
-            "fundamental": 0,
-            "entry": 10
-          },
-          "score": 35,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "확인",
-          "overheat": "보통"
-        },
-        {
           "ticker": "009150",
           "name": "삼성전기",
           "sector": "반도체 패키지기판",
@@ -3619,24 +3661,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.438491+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.401490+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 1577000.0,
-            "changePct": 1.025,
-            "return5dPct": 4.645,
-            "distance20Pct": 10.1642,
-            "turnoverRatio": 0.911995,
-            "turnover": 747594589500.0,
-            "baselineTurnover": 819735582165.3,
+            "price": 1684000.0,
+            "changePct": 6.5149,
+            "return5dPct": 12.3416,
+            "distance20Pct": 16.2582,
+            "turnoverRatio": 1.581368,
+            "turnover": 1304906516569.0,
+            "baselineTurnover": 825175681990.3,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 669745713500.0
-              },
               {
                 "date": "20260903",
                 "turnover": 845469893500.0
@@ -3712,6 +3750,10 @@
               {
                 "date": "20261001",
                 "turnover": 973470352500.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 778547710000.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3758,23 +3800,37 @@
               "polarity": "positive",
               "kind": "contract",
               "summary": "삼성전기는 글로벌 대형기업과 2,850억304만6,640원 규모의 MLCC 및 인덕터 공급계약을 체결했다. 최근 매출의 2.5%이며 공급기간은 2027-01-01부터 2027-12-31까지다."
+            },
+            {
+              "id": "dart-20261006800130",
+              "ticker": "009150",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800130",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "글로벌 대형기업에 2027년 MLCC 공급 계약 2856억1104만원. 고객·용도는 비공개이며 AI용 또는 특정 분기 실적으로 단정하지 않는다."
             }
           ],
           "earningsPeriods": [],
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -3787,24 +3843,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.525617+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.577230+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 209000.0,
-            "changePct": 1.4563,
-            "return5dPct": 1.7032,
-            "distance20Pct": 2.456,
-            "turnoverRatio": 0.766576,
-            "turnover": 60260476500.0,
-            "baselineTurnover": 78609922235.0,
+            "price": 217500.0,
+            "changePct": 3.8186,
+            "return5dPct": 6.357,
+            "distance20Pct": 5.9503,
+            "turnoverRatio": 1.355855,
+            "turnover": 105538172000.0,
+            "baselineTurnover": 77838845277.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 75823617650.0
-              },
               {
                 "date": "20260903",
                 "turnover": 99666374500.0
@@ -3880,6 +3932,10 @@
               {
                 "date": "20261001",
                 "turnover": 67005108600.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 60402078500.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -3907,17 +3963,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -3930,24 +3986,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.688812+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.665403+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 271500.0,
-            "changePct": 1.1173,
-            "return5dPct": 11.499,
-            "distance20Pct": 13.1722,
-            "turnoverRatio": 1.148933,
-            "turnover": 180534105250.0,
-            "baselineTurnover": 157131963062.5,
+            "price": 279000.0,
+            "changePct": 2.5735,
+            "return5dPct": 18.9765,
+            "distance20Pct": 14.6497,
+            "turnoverRatio": 0.830344,
+            "turnover": 135236382500.0,
+            "baselineTurnover": 162867984787.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 66342054250.0
-              },
               {
                 "date": "20260903",
                 "turnover": 73608076250.0
@@ -4023,6 +4075,10 @@
               {
                 "date": "20261001",
                 "turnover": 176557100000.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 181062488750.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -4043,23 +4099,37 @@
               "polarity": "positive",
               "kind": "contract",
               "summary": "한미반도체는 태국 지역에 78억7,404만8천원 규모 반도체 제조용 micro SAW & VISION PLACEMENT를 공급한다. 최근 매출의 1.37%이며 종료일은 2026-12-31이다."
+            },
+            {
+              "id": "dart-20261006800023",
+              "ticker": "042700",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800023",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "삼성전기로부터 AI 반도체 기판 제조용 대면적 MSVP 장비 244억8천만원을 수주했다. 계약 기간은 2026-10-02~2027-12-17이며 분기별 인식액은 미확인이다."
             }
           ],
           "earningsPeriods": [],
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -4072,24 +4142,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.773114+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.859072+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 72000.0,
-            "changePct": 1.8388,
-            "return5dPct": 3.7464,
-            "distance20Pct": 1.0385,
-            "turnoverRatio": 0.80776,
-            "turnover": 26104276600.0,
-            "baselineTurnover": 32316864130.0,
+            "price": 73800.0,
+            "changePct": 2.6426,
+            "return5dPct": 5.1282,
+            "distance20Pct": 3.4773,
+            "turnoverRatio": 1.403121,
+            "turnover": 44643309464.0,
+            "baselineTurnover": 31817138197.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 36192818750.0
-              },
               {
                 "date": "20260903",
                 "turnover": 38490045750.0
@@ -4165,6 +4231,10 @@
               {
                 "date": "20261001",
                 "turnover": 26801848550.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 26198300100.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -4191,17 +4261,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -4214,24 +4284,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.978989+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.969182+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 215500.0,
-            "changePct": 1.8913,
-            "return5dPct": 3.11,
-            "distance20Pct": 4.5431,
-            "turnoverRatio": 0.606912,
-            "turnover": 83998326500.0,
-            "baselineTurnover": 138402862717.5,
+            "price": 233000.0,
+            "changePct": 7.8704,
+            "return5dPct": 8.6247,
+            "distance20Pct": 12.1136,
+            "turnoverRatio": 2.123705,
+            "turnover": 291258502000.0,
+            "baselineTurnover": 137146394917.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 109602923500.0
-              },
               {
                 "date": "20260903",
                 "turnover": 95454932850.0
@@ -4307,6 +4373,10 @@
               {
                 "date": "20261001",
                 "turnover": 89789569750.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 84473567500.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -4333,17 +4403,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -4356,24 +4426,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.035964+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.146297+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 3990.0,
-            "changePct": 3.3679,
-            "return5dPct": 6.2583,
-            "distance20Pct": 3.9265,
-            "turnoverRatio": 0.430341,
-            "turnover": 170626030.0,
-            "baselineTurnover": 396490582.4,
+            "price": 4075.0,
+            "changePct": 2.3869,
+            "return5dPct": 6.1198,
+            "distance20Pct": 5.7,
+            "turnoverRatio": 0.537637,
+            "turnover": 204276695.0,
+            "baselineTurnover": 379952847.05,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 501665857.0
-              },
               {
                 "date": "20260903",
                 "turnover": 2215365620.0
@@ -4449,6 +4515,10 @@
               {
                 "date": "20261001",
                 "turnover": 168665580.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 170911150.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -4475,17 +4545,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -4498,24 +4568,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:57:51.588300+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.240430+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 11000.0,
-            "changePct": 3.7736,
-            "return5dPct": -2.1352,
-            "distance20Pct": -1.8076,
-            "turnoverRatio": 0.672641,
-            "turnover": 2165652500.0,
-            "baselineTurnover": 3219625992.25,
+            "price": 10860.0,
+            "changePct": 0.277,
+            "return5dPct": -0.6404,
+            "distance20Pct": -3.1827,
+            "turnoverRatio": 0.338256,
+            "turnover": 1071293790.0,
+            "baselineTurnover": 3167106790.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 3216168535.0
-              },
               {
                 "date": "20260903",
                 "turnover": 1881187210.0
@@ -4591,6 +4657,10 @@
               {
                 "date": "20261001",
                 "turnover": 1529807495.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 2165784500.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -4618,17 +4688,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -4641,24 +4711,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.242177+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.451994+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 65600.0,
-            "changePct": -1.3534,
-            "return5dPct": 7.1895,
-            "distance20Pct": 17.9008,
-            "turnoverRatio": 1.344908,
-            "turnover": 12396915050.0,
-            "baselineTurnover": 9217668410.0,
+            "price": 67200.0,
+            "changePct": 2.9096,
+            "return5dPct": 12.0,
+            "distance20Pct": 18.9275,
+            "turnoverRatio": 0.89831,
+            "turnover": 8616481650.0,
+            "baselineTurnover": 9591880052.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 4957280800.0
-              },
               {
                 "date": "20260903",
                 "turnover": 6043512100.0
@@ -4734,6 +4800,10 @@
               {
                 "date": "20261001",
                 "turnover": 10618746750.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 12441513650.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -4760,159 +4830,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
-          "overheat": "보통"
-        },
-        {
-          "ticker": "204270",
-          "name": "제이앤티씨",
-          "sector": "TGV 유리기판",
-          "direct": false,
-          "fundamental": 0,
-          "quote": {
-            "status": "verified",
-            "source": "KIS Developers 정규장 종가·일별 수정주가",
-            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.292141+09:00",
-            "priceMode": "close",
-            "turnoverBasis": "full-session",
-            "adjustmentChecked": true,
-            "price": 21750.0,
-            "changePct": -0.9112,
-            "return5dPct": -8.6134,
-            "distance20Pct": -1.5124,
-            "turnoverRatio": 0.753038,
-            "turnover": 18924764975.0,
-            "baselineTurnover": 25131219774.0,
-            "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 9806304640.0
-              },
-              {
-                "date": "20260903",
-                "turnover": 8971105440.0
-              },
-              {
-                "date": "20260904",
-                "turnover": 10658408840.0
-              },
-              {
-                "date": "20260907",
-                "turnover": 20008630460.0
-              },
-              {
-                "date": "20260908",
-                "turnover": 24683604250.0
-              },
-              {
-                "date": "20260909",
-                "turnover": 31113583300.0
-              },
-              {
-                "date": "20260910",
-                "turnover": 26143827150.0
-              },
-              {
-                "date": "20260911",
-                "turnover": 28465683975.0
-              },
-              {
-                "date": "20260914",
-                "turnover": 15634681350.0
-              },
-              {
-                "date": "20260915",
-                "turnover": 16986851575.0
-              },
-              {
-                "date": "20260916",
-                "turnover": 14654106425.0
-              },
-              {
-                "date": "20260917",
-                "turnover": 16056894200.0
-              },
-              {
-                "date": "20260918",
-                "turnover": 30268672475.0
-              },
-              {
-                "date": "20260921",
-                "turnover": 73756458150.0
-              },
-              {
-                "date": "20260922",
-                "turnover": 49850470100.0
-              },
-              {
-                "date": "20260923",
-                "turnover": 25593965575.0
-              },
-              {
-                "date": "20260928",
-                "turnover": 28534678575.0
-              },
-              {
-                "date": "20260929",
-                "turnover": 18604437950.0
-              },
-              {
-                "date": "20260930",
-                "turnover": 25739970200.0
-              },
-              {
-                "date": "20261001",
-                "turnover": 27092060850.0
-              }
-            ],
-            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
-            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
-          },
-          "confirmed": false,
-          "hot": false,
-          "evidence": [
-            {
-              "id": "glass-substrate-204270-capex",
-              "ticker": "204270",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
-              "publishedAt": "2026-09-21T14:29:00+09:00",
-              "verifiedAt": "2026-09-30T20:51:21.200248+09:00",
-              "reviewer": "Codex 예약 전수조사(원문 재검토)",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "capex",
-              "summary": "제이앤티씨는 TGV 유리기판 생산능력 확대를 위해 김천 신공장에 3,470억원을 투자하기로 했다. 자기자본의 140.08%이며 투자기간은 2027-01-01부터 2030-06-30까지다."
-            }
-          ],
-          "earningsPeriods": [],
-          "scores": {
-            "issue": 5,
-            "leader": 0,
-            "spread": 20,
-            "fundamental": 0,
-            "entry": 5
-          },
-          "score": 30,
-          "stage": "탐색",
-          "tags": [
-            "WATCH"
-          ],
-          "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -4925,24 +4853,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.550440+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.725993+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 383500.0,
-            "changePct": 0.9211,
-            "return5dPct": 1.5894,
-            "distance20Pct": 1.1006,
-            "turnoverRatio": 0.789073,
-            "turnover": 13465590250.0,
-            "baselineTurnover": 17065085637.5,
+            "price": 390000.0,
+            "changePct": 1.9608,
+            "return5dPct": 3.7234,
+            "distance20Pct": 2.7533,
+            "turnoverRatio": 0.933331,
+            "turnover": 15322243250.0,
+            "baselineTurnover": 16416722025.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 26452037500.0
-              },
               {
                 "date": "20260903",
                 "turnover": 17524744250.0
@@ -5018,6 +4942,10 @@
               {
                 "date": "20261001",
                 "turnover": 19905688500.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 13484765250.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -5044,17 +4972,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -5067,24 +4995,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:32.271221+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.816090+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 9910.0,
-            "changePct": 1.433,
-            "return5dPct": 6.6738,
-            "distance20Pct": 5.5434,
-            "turnoverRatio": 0.825134,
-            "turnover": 173897070.0,
-            "baselineTurnover": 210750223.5,
+            "price": 9710.0,
+            "changePct": -1.1202,
+            "return5dPct": 4.0729,
+            "distance20Pct": 3.3034,
+            "turnoverRatio": 0.802691,
+            "turnover": 171731920.0,
+            "baselineTurnover": 213945113.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 111156810.0
-              },
               {
                 "date": "20260903",
                 "turnover": 156250910.0
@@ -5160,6 +5084,10 @@
               {
                 "date": "20261001",
                 "turnover": 334585150.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 175054610.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -5186,17 +5114,17 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -5209,24 +5137,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.811087+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.004985+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 369000.0,
-            "changePct": 2.3578,
-            "return5dPct": 4.9787,
-            "distance20Pct": 2.4858,
-            "turnoverRatio": 0.736562,
-            "turnover": 76936749250.0,
-            "baselineTurnover": 104453815212.5,
+            "price": 388500.0,
+            "changePct": 4.717,
+            "return5dPct": 6.7308,
+            "distance20Pct": 7.5284,
+            "turnoverRatio": 1.69285,
+            "turnover": 170757252250.0,
+            "baselineTurnover": 100869709450.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 148763882500.0
-              },
               {
                 "date": "20260903",
                 "turnover": 154951735750.0
@@ -5302,6 +5226,10 @@
               {
                 "date": "20261001",
                 "turnover": 60177680250.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 77081767250.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -5328,17 +5256,160 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
-            "entry": 5
+            "entry": 0
           },
-          "score": 30,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
+          "overheat": "보통"
+        },
+        {
+          "ticker": "394280",
+          "name": "오픈엣지테크놀로지",
+          "sector": "AI 반도체 설계자산(IP)",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:16.328798+09:00",
+            "priceMode": "premarket",
+            "turnoverBasis": "full-session",
+            "adjustmentChecked": true,
+            "price": 10640.0,
+            "changePct": 0.4721,
+            "return5dPct": 8.1301,
+            "distance20Pct": 16.9231,
+            "turnoverRatio": 1.184633,
+            "turnover": 1187938605.0,
+            "baselineTurnover": 1002790302.5,
+            "baselineSessions": [
+              {
+                "date": "20260903",
+                "turnover": 732894015.0
+              },
+              {
+                "date": "20260904",
+                "turnover": 569674195.0
+              },
+              {
+                "date": "20260907",
+                "turnover": 475483000.0
+              },
+              {
+                "date": "20260908",
+                "turnover": 492433720.0
+              },
+              {
+                "date": "20260909",
+                "turnover": 325938935.0
+              },
+              {
+                "date": "20260910",
+                "turnover": 521935900.0
+              },
+              {
+                "date": "20260911",
+                "turnover": 363313225.0
+              },
+              {
+                "date": "20260914",
+                "turnover": 447881745.0
+              },
+              {
+                "date": "20260915",
+                "turnover": 320809100.0
+              },
+              {
+                "date": "20260916",
+                "turnover": 401149530.0
+              },
+              {
+                "date": "20260917",
+                "turnover": 753447195.0
+              },
+              {
+                "date": "20260918",
+                "turnover": 2094081470.0
+              },
+              {
+                "date": "20260921",
+                "turnover": 1064057065.0
+              },
+              {
+                "date": "20260922",
+                "turnover": 2456106455.0
+              },
+              {
+                "date": "20260923",
+                "turnover": 1440761385.0
+              },
+              {
+                "date": "20260928",
+                "turnover": 1019917260.0
+              },
+              {
+                "date": "20260929",
+                "turnover": 1008922535.0
+              },
+              {
+                "date": "20260930",
+                "turnover": 1287987135.0
+              },
+              {
+                "date": "20261001",
+                "turnover": 1652336620.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 2626675565.0
+              }
+            ],
+            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
+            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
+          },
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "close-20261002900436",
+              "ticker": "394280",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261002900436",
+              "publishedAt": "2026-10-02T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-02T19:59:29.413105+09:00",
+              "reviewer": "Codex · 당일 DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "오픈엣지테크놀로지는 국내 AI 반도체 기업과 67억원 IP 라이선스 계약을 체결했다. 최근 매출 대비 41.7%, 유효기간은 2026-10-01~2029-09-30이다. 설계자산 인도 시점에 매출을 인식하나 해당 분기와 고객 이름은 공개되지 않았다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "보통"
         },
         {
@@ -5351,24 +5422,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:34.014544+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.070011+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 42600.0,
-            "changePct": 2.6506,
-            "return5dPct": 15.9184,
-            "distance20Pct": 27.4781,
-            "turnoverRatio": 2.038126,
-            "turnover": 54845281375.0,
-            "baselineTurnover": 26909662482.5,
+            "price": 42800.0,
+            "changePct": 0.0,
+            "return5dPct": 18.3956,
+            "distance20Pct": 25.716,
+            "turnoverRatio": 1.380099,
+            "turnover": 34786297875.0,
+            "baselineTurnover": 25205656277.5,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 89040041025.0
-              },
               {
                 "date": "20260903",
                 "turnover": 30676535900.0
@@ -5444,12 +5511,16 @@
               {
                 "date": "20261001",
                 "turnover": 114084855900.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 54959916925.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
             "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
           },
-          "confirmed": true,
+          "confirmed": false,
           "hot": true,
           "evidence": [
             {
@@ -5471,18 +5542,18 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         },
         {
@@ -5495,24 +5566,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:34.063028+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.270281+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 8360.0,
-            "changePct": -0.4762,
-            "return5dPct": 28.2209,
-            "distance20Pct": 27.5849,
-            "turnoverRatio": 1.326142,
-            "turnover": 4042886570.0,
-            "baselineTurnover": 3048606916.0,
+            "price": 8750.0,
+            "changePct": 4.7904,
+            "return5dPct": 21.8663,
+            "distance20Pct": 30.9684,
+            "turnoverRatio": 1.623175,
+            "turnover": 5124603060.0,
+            "baselineTurnover": 3157147022.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 1881233680.0
-              },
               {
                 "date": "20260903",
                 "turnover": 1722186060.0
@@ -5588,6 +5655,10 @@
               {
                 "date": "20261001",
                 "turnover": 5460193560.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 4052035800.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -5614,18 +5685,18 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         },
         {
@@ -5638,24 +5709,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:34.267443+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.342447+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 7540.0,
-            "changePct": -1.1796,
-            "return5dPct": 7.4074,
-            "distance20Pct": 28.2804,
-            "turnoverRatio": 1.390476,
-            "turnover": 6427590680.0,
-            "baselineTurnover": 4622582666.1,
+            "price": 7920.0,
+            "changePct": 6.7385,
+            "return5dPct": 12.9815,
+            "distance20Pct": 31.0662,
+            "turnoverRatio": 1.342601,
+            "turnover": 6539760345.0,
+            "baselineTurnover": 4870964488.75,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 1479703007.0
-              },
               {
                 "date": "20260903",
                 "turnover": 1704250310.0
@@ -5731,6 +5798,10 @@
               {
                 "date": "20261001",
                 "turnover": 8629091115.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 6447339460.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -5757,18 +5828,161 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
+          "overheat": "높음"
+        },
+        {
+          "ticker": "204270",
+          "name": "제이앤티씨",
+          "sector": "TGV 유리기판",
+          "direct": false,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:17.544783+09:00",
+            "priceMode": "premarket",
+            "turnoverBasis": "full-session",
+            "adjustmentChecked": true,
+            "price": 26350.0,
+            "changePct": 20.595,
+            "return5dPct": 14.8148,
+            "distance20Pct": 17.1814,
+            "turnoverRatio": 3.026398,
+            "turnover": 77449728725.0,
+            "baselineTurnover": 25591388248.25,
+            "baselineSessions": [
+              {
+                "date": "20260903",
+                "turnover": 8971105440.0
+              },
+              {
+                "date": "20260904",
+                "turnover": 10658408840.0
+              },
+              {
+                "date": "20260907",
+                "turnover": 20008630460.0
+              },
+              {
+                "date": "20260908",
+                "turnover": 24683604250.0
+              },
+              {
+                "date": "20260909",
+                "turnover": 31113583300.0
+              },
+              {
+                "date": "20260910",
+                "turnover": 26143827150.0
+              },
+              {
+                "date": "20260911",
+                "turnover": 28465683975.0
+              },
+              {
+                "date": "20260914",
+                "turnover": 15634681350.0
+              },
+              {
+                "date": "20260915",
+                "turnover": 16986851575.0
+              },
+              {
+                "date": "20260916",
+                "turnover": 14654106425.0
+              },
+              {
+                "date": "20260917",
+                "turnover": 16056894200.0
+              },
+              {
+                "date": "20260918",
+                "turnover": 30268672475.0
+              },
+              {
+                "date": "20260921",
+                "turnover": 73756458150.0
+              },
+              {
+                "date": "20260922",
+                "turnover": 49850470100.0
+              },
+              {
+                "date": "20260923",
+                "turnover": 25593965575.0
+              },
+              {
+                "date": "20260928",
+                "turnover": 28534678575.0
+              },
+              {
+                "date": "20260929",
+                "turnover": 18604437950.0
+              },
+              {
+                "date": "20260930",
+                "turnover": 25739970200.0
+              },
+              {
+                "date": "20261001",
+                "turnover": 27092060850.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 19009674125.0
+              }
+            ],
+            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
+            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
+          },
+          "confirmed": false,
+          "hot": true,
+          "evidence": [
+            {
+              "id": "glass-substrate-204270-capex",
+              "ticker": "204270",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260921900243",
+              "publishedAt": "2026-09-21T14:29:00+09:00",
+              "verifiedAt": "2026-09-30T20:51:21.200248+09:00",
+              "reviewer": "Codex 예약 전수조사(원문 재검토)",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "capex",
+              "summary": "제이앤티씨는 TGV 유리기판 생산능력 확대를 위해 김천 신공장에 3,470억원을 투자하기로 했다. 자기자본의 140.08%이며 투자기간은 2027-01-01부터 2030-06-30까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH",
+            "추격주의"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         },
         {
@@ -5781,24 +5995,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.495217+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.554274+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 15580.0,
-            "changePct": 7.079,
-            "return5dPct": 13.8889,
-            "distance20Pct": 25.1758,
-            "turnoverRatio": 3.789031,
-            "turnover": 37950545095.0,
-            "baselineTurnover": 10015898143.5,
+            "price": 16380.0,
+            "changePct": 5.1348,
+            "return5dPct": 22.8807,
+            "distance20Pct": 28.8901,
+            "turnoverRatio": 2.5088,
+            "turnover": 28183704935.0,
+            "baselineTurnover": 11233937060.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 13635666265.0
-              },
               {
                 "date": "20260903",
                 "turnover": 7316317025.0
@@ -5874,12 +6084,16 @@
               {
                 "date": "20261001",
                 "turnover": 25786095755.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 37996444595.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
             "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
           },
-          "confirmed": true,
+          "confirmed": false,
           "hot": true,
           "evidence": [
             {
@@ -5900,18 +6114,162 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
+          "priceStatus": "전일 종가·장중 미확인",
+          "overheat": "높음"
+        },
+        {
+          "ticker": "323280",
+          "name": "태성",
+          "sector": "전자부품 제조장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:28:31.684308+09:00",
+            "priceMode": "premarket",
+            "turnoverBasis": "full-session",
+            "adjustmentChecked": true,
+            "price": 63000.0,
+            "changePct": 5.8824,
+            "return5dPct": 32.2141,
+            "distance20Pct": 27.4207,
+            "turnoverRatio": 1.24529,
+            "turnover": 23759012000.0,
+            "baselineTurnover": 19079092767.5,
+            "baselineSessions": [
+              {
+                "date": "20260903",
+                "turnover": 8271199400.0
+              },
+              {
+                "date": "20260904",
+                "turnover": 9771093900.0
+              },
+              {
+                "date": "20260907",
+                "turnover": 8466439125.0
+              },
+              {
+                "date": "20260908",
+                "turnover": 13941396650.0
+              },
+              {
+                "date": "20260909",
+                "turnover": 19555481300.0
+              },
+              {
+                "date": "20260910",
+                "turnover": 67926696800.0
+              },
+              {
+                "date": "20260911",
+                "turnover": 18070858900.0
+              },
+              {
+                "date": "20260914",
+                "turnover": 9594573125.0
+              },
+              {
+                "date": "20260915",
+                "turnover": 6840951600.0
+              },
+              {
+                "date": "20260916",
+                "turnover": 6692094975.0
+              },
+              {
+                "date": "20260917",
+                "turnover": 4797558550.0
+              },
+              {
+                "date": "20260918",
+                "turnover": 7627728900.0
+              },
+              {
+                "date": "20260921",
+                "turnover": 5956924700.0
+              },
+              {
+                "date": "20260922",
+                "turnover": 18679863650.0
+              },
+              {
+                "date": "20260923",
+                "turnover": 11743258725.0
+              },
+              {
+                "date": "20260928",
+                "turnover": 19278082725.0
+              },
+              {
+                "date": "20260929",
+                "turnover": 48182140725.0
+              },
+              {
+                "date": "20260930",
+                "turnover": 41797836000.0
+              },
+              {
+                "date": "20261001",
+                "turnover": 33859257900.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 20528417700.0
+              }
+            ],
+            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
+            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
+          },
+          "confirmed": false,
+          "hot": true,
+          "evidence": [
+            {
+              "id": "dart-20261006900667",
+              "ticker": "323280",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900667",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "국내 전기전자부품 제조사에 FC-BGA용 기계장치 68억9천만원 공급 계약. 기간 2026-10-02~2027-06-25, 종료일은 설치 완료 시기이나 변경 가능. 특정 고객이나 분기별 매출 미확인."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH",
+            "추격주의"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         },
         {
@@ -5924,24 +6282,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:33.752329+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.606797+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 53300.0,
-            "changePct": 7.8947,
-            "return5dPct": 13.2837,
-            "distance20Pct": 20.4724,
-            "turnoverRatio": 2.425001,
-            "turnover": 110619149950.0,
-            "baselineTurnover": 45616122786.25,
+            "price": 58800.0,
+            "changePct": 12.0,
+            "return5dPct": 27.5488,
+            "distance20Pct": 29.3658,
+            "turnoverRatio": 1.169381,
+            "turnover": 59058291800.0,
+            "baselineTurnover": 50503897275.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 13043005775.0
-              },
               {
                 "date": "20260903",
                 "turnover": 9116203600.0
@@ -6017,12 +6371,16 @@
               {
                 "date": "20261001",
                 "turnover": 28071537725.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 110798495550.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
             "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
           },
-          "confirmed": true,
+          "confirmed": false,
           "hot": true,
           "evidence": [
             {
@@ -6043,18 +6401,306 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "확인",
+          "priceStatus": "전일 종가·장중 미확인",
+          "overheat": "높음"
+        },
+        {
+          "ticker": "348210",
+          "name": "넥스틴",
+          "sector": "반도체 검사장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:28:31.953475+09:00",
+            "priceMode": "premarket",
+            "turnoverBasis": "full-session",
+            "adjustmentChecked": true,
+            "price": 41200.0,
+            "changePct": 8.1365,
+            "return5dPct": 22.9851,
+            "distance20Pct": 23.5475,
+            "turnoverRatio": 1.734843,
+            "turnover": 5243396675.0,
+            "baselineTurnover": 3022404666.25,
+            "baselineSessions": [
+              {
+                "date": "20260903",
+                "turnover": 2283020600.0
+              },
+              {
+                "date": "20260904",
+                "turnover": 2782393625.0
+              },
+              {
+                "date": "20260907",
+                "turnover": 3027768225.0
+              },
+              {
+                "date": "20260908",
+                "turnover": 3328180900.0
+              },
+              {
+                "date": "20260909",
+                "turnover": 6174536325.0
+              },
+              {
+                "date": "20260910",
+                "turnover": 14030604550.0
+              },
+              {
+                "date": "20260911",
+                "turnover": 4867745525.0
+              },
+              {
+                "date": "20260914",
+                "turnover": 1607909725.0
+              },
+              {
+                "date": "20260915",
+                "turnover": 1089399575.0
+              },
+              {
+                "date": "20260916",
+                "turnover": 1851386100.0
+              },
+              {
+                "date": "20260917",
+                "turnover": 931910150.0
+              },
+              {
+                "date": "20260918",
+                "turnover": 1660729000.0
+              },
+              {
+                "date": "20260921",
+                "turnover": 1038870025.0
+              },
+              {
+                "date": "20260922",
+                "turnover": 2047665500.0
+              },
+              {
+                "date": "20260923",
+                "turnover": 1019155950.0
+              },
+              {
+                "date": "20260928",
+                "turnover": 1665562500.0
+              },
+              {
+                "date": "20260929",
+                "turnover": 1756377650.0
+              },
+              {
+                "date": "20260930",
+                "turnover": 2585781775.0
+              },
+              {
+                "date": "20261001",
+                "turnover": 3759140875.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 2939954750.0
+              }
+            ],
+            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
+            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
+          },
+          "confirmed": false,
+          "hot": true,
+          "evidence": [
+            {
+              "id": "dart-20261006900146",
+              "ticker": "348210",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "SK하이닉스에 Wafer Inspection System 254억4천만원 공급 계약. 기간 2026-10-03~2027-11-25, 종료일은 장비 납품과 대금 지급 기한 포함이며 분기별 매출 미확인."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH",
+            "추격주의"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "전일 종가·장중 미확인",
+          "overheat": "높음"
+        },
+        {
+          "ticker": "412350",
+          "name": "레이저쎌",
+          "sector": "반도체 본딩장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {
+            "status": "verified",
+            "source": "KIS Developers 정규장 종가·일별 수정주가",
+            "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:28:31.391974+09:00",
+            "priceMode": "premarket",
+            "turnoverBasis": "full-session",
+            "adjustmentChecked": true,
+            "price": 6900.0,
+            "changePct": -4.6961,
+            "return5dPct": 15.0,
+            "distance20Pct": 25.603,
+            "turnoverRatio": 2.251308,
+            "turnover": 5477633245.0,
+            "baselineTurnover": 2433089294.3,
+            "baselineSessions": [
+              {
+                "date": "20260903",
+                "turnover": 4643269479.0
+              },
+              {
+                "date": "20260904",
+                "turnover": 1543830960.0
+              },
+              {
+                "date": "20260907",
+                "turnover": 1095312430.0
+              },
+              {
+                "date": "20260908",
+                "turnover": 1036049200.0
+              },
+              {
+                "date": "20260909",
+                "turnover": 833603445.0
+              },
+              {
+                "date": "20260910",
+                "turnover": 1093885424.0
+              },
+              {
+                "date": "20260911",
+                "turnover": 467762483.0
+              },
+              {
+                "date": "20260914",
+                "turnover": 703280716.0
+              },
+              {
+                "date": "20260915",
+                "turnover": 487289350.0
+              },
+              {
+                "date": "20260916",
+                "turnover": 445270282.0
+              },
+              {
+                "date": "20260917",
+                "turnover": 6907491377.0
+              },
+              {
+                "date": "20260918",
+                "turnover": 2344517470.0
+              },
+              {
+                "date": "20260921",
+                "turnover": 967732255.0
+              },
+              {
+                "date": "20260922",
+                "turnover": 1861100635.0
+              },
+              {
+                "date": "20260923",
+                "turnover": 1184565410.0
+              },
+              {
+                "date": "20260928",
+                "turnover": 3977041560.0
+              },
+              {
+                "date": "20260929",
+                "turnover": 2023577765.0
+              },
+              {
+                "date": "20260930",
+                "turnover": 7059257735.0
+              },
+              {
+                "date": "20261001",
+                "turnover": 4040937985.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 5946009925.0
+              }
+            ],
+            "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
+            "baselineMethod": "당일 정규장 전체 거래대금 / 직전 20 KRX 거래일 정규장 전체 거래대금 평균"
+          },
+          "confirmed": false,
+          "hot": true,
+          "evidence": [
+            {
+              "id": "dart-20261006900672",
+              "ticker": "412350",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900672",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "TechnoAlpha에 Laser Probe Bonder 6억1929만7800원 공급 계약. 기간 2026-10-02~2027-05-30, 계약금 50%·납기 후 40%·검수 후 10% 지급. 분기별 매출 미확인."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH",
+            "추격주의"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         },
         {
@@ -6067,24 +6713,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:34.329155+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.869179+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 20600.0,
-            "changePct": 0.2433,
-            "return5dPct": 27.082,
-            "distance20Pct": 27.7916,
-            "turnoverRatio": 1.249716,
-            "turnover": 36497208050.0,
-            "baselineTurnover": 29204413077.0,
+            "price": 21900.0,
+            "changePct": 7.3529,
+            "return5dPct": 33.8631,
+            "distance20Pct": 32.7474,
+            "turnoverRatio": 1.373921,
+            "turnover": 42514686075.0,
+            "baselineTurnover": 30944048683.0,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 2044703980.0
-              },
               {
                 "date": "20260903",
                 "turnover": 3148323125.0
@@ -6160,6 +6802,10 @@
               {
                 "date": "20261001",
                 "turnover": 191977831310.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 36837416100.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -6200,18 +6846,18 @@
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         },
         {
@@ -6224,24 +6870,20 @@
             "status": "verified",
             "source": "KIS Developers 정규장 종가·일별 수정주가",
             "url": "https://openapi.koreainvestment.com:9443/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice",
-            "asOf": "2026-10-02T15:30:00+09:00",
-            "marketDataTime": "2026-10-02T15:30:00+09:00",
-            "fetchedAt": "2026-10-02T19:56:34.514728+09:00",
-            "priceMode": "close",
+            "asOf": "2026-10-06T15:30:00+09:00",
+            "marketDataTime": "2026-10-06T15:30:00+09:00",
+            "fetchedAt": "2026-10-07T05:27:18.893520+09:00",
+            "priceMode": "premarket",
             "turnoverBasis": "full-session",
             "adjustmentChecked": true,
-            "price": 4110.0,
-            "changePct": 0.3663,
-            "return5dPct": 30.0633,
-            "distance20Pct": 24.0848,
-            "turnoverRatio": 0.560805,
-            "turnover": 4427136547.0,
-            "baselineTurnover": 7894246809.65,
+            "price": 4315.0,
+            "changePct": 4.8603,
+            "return5dPct": 28.806,
+            "distance20Pct": 26.3081,
+            "turnoverRatio": 1.108739,
+            "turnover": 8988666796.0,
+            "baselineTurnover": 8107110666.3,
             "baselineSessions": [
-              {
-                "date": "20260902",
-                "turnover": 202819659.0
-              },
               {
                 "date": "20260903",
                 "turnover": 159439948.0
@@ -6317,6 +6959,10 @@
               {
                 "date": "20261001",
                 "turnover": 6785690028.0
+              },
+              {
+                "date": "20261002",
+                "turnover": 4460096792.0
               }
             ],
             "adjustmentBasis": "수정·비수정 21거래일 대조: 기업행동 및 가격 차이 없음",
@@ -6337,24 +6983,38 @@
               "polarity": "positive",
               "kind": "contract",
               "summary": "테라뷰는 Covalent Metrology와 13억6,146만4천원 규모 검사장비 공급계약을 체결했다. 최근 매출의 17.39%이며 계약기간은 2026-09-25부터 2027-01-20까지다."
+            },
+            {
+              "id": "dart-20261006900517",
+              "ticker": "950250",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900517",
+              "publishedAt": "2026-10-06T00:00:00+09:00",
+              "publishedAtPrecision": "date",
+              "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+              "reviewer": "Codex DART 원문 검토",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "AI 반도체 설계·클라우드 해외 고객의 검사장비 조건부 계약 10억7321만5천원. 2027-02-18은 최종 대금 기한이며 선적 또는 용역 착수 전 구매주문 변경·해지가 가능하다. 해당 분기 매출은 확인되지 않았다."
             }
           ],
           "earningsPeriods": [],
           "scores": {
             "issue": 5,
             "leader": 0,
-            "spread": 20,
+            "spread": 0,
             "fundamental": 0,
             "entry": 0
           },
-          "score": 25,
+          "score": 5,
           "stage": "탐색",
           "tags": [
             "WATCH",
             "추격주의"
           ],
           "matchedBoards": [],
-          "priceStatus": "미확인",
+          "priceStatus": "전일 종가·장중 미확인",
           "overheat": "높음"
         }
       ],
@@ -6664,6 +7324,90 @@
           "summary": "씨이랩은 태진티엔에스와 21억8,900만원 AI 인프라 구축 계약을 체결했다. 최근 매출 대비 21.30%, 기간은 2026-10-02~2027-12-31이다. 납품·검수 후 지급 조건이며 분기별 실적 인식은 미확인이다."
         },
         {
+          "id": "dart-20261006800023",
+          "ticker": "042700",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800023",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "삼성전기로부터 AI 반도체 기판 제조용 대면적 MSVP 장비 244억8천만원을 수주했다. 계약 기간은 2026-10-02~2027-12-17이며 분기별 인식액은 미확인이다."
+        },
+        {
+          "id": "dart-20261006900517",
+          "ticker": "950250",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900517",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "AI 반도체 설계·클라우드 해외 고객의 검사장비 조건부 계약 10억7321만5천원. 2027-02-18은 최종 대금 기한이며 선적 또는 용역 착수 전 구매주문 변경·해지가 가능하다. 해당 분기 매출은 확인되지 않았다."
+        },
+        {
+          "id": "dart-20261006800130",
+          "ticker": "009150",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006800130",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "글로벌 대형기업에 2027년 MLCC 공급 계약 2856억1104만원. 고객·용도는 비공개이며 AI용 또는 특정 분기 실적으로 단정하지 않는다."
+        },
+        {
+          "id": "dart-20261006900672",
+          "ticker": "412350",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900672",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "TechnoAlpha에 Laser Probe Bonder 6억1929만7800원 공급 계약. 기간 2026-10-02~2027-05-30, 계약금 50%·납기 후 40%·검수 후 10% 지급. 분기별 매출 미확인."
+        },
+        {
+          "id": "dart-20261006900667",
+          "ticker": "323280",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900667",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "국내 전기전자부품 제조사에 FC-BGA용 기계장치 68억9천만원 공급 계약. 기간 2026-10-02~2027-06-25, 종료일은 설치 완료 시기이나 변경 가능. 특정 고객이나 분기별 매출 미확인."
+        },
+        {
+          "id": "dart-20261006900146",
+          "ticker": "348210",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261006900146",
+          "publishedAt": "2026-10-06T00:00:00+09:00",
+          "publishedAtPrecision": "date",
+          "verifiedAt": "2026-10-07T05:29:39.551482+09:00",
+          "reviewer": "Codex DART 원문 검토",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "SK하이닉스에 Wafer Inspection System 254억4천만원 공급 계약. 기간 2026-10-03~2027-11-25, 종료일은 장비 납품과 대금 지급 기한 포함이며 분기별 매출 미확인."
+        },
+        {
           "id": "dsx-066570-product",
           "ticker": "066570",
           "source": "기업IR",
@@ -6849,480 +7593,427 @@
   ],
   "status": "검증완료",
   "missing": [
-    "10월 2일 정규장 종가 기준 33종목 전수 검증. 거래대금은 직전 20 KRX 거래일 정규장 전체 평균 대비이며 장중 10:30 반응을 재현한 자료가 아닙니다.",
-    "당일 DART 769건을 대조하고 AI IP·인프라 신규 계약과 삼성중공업 LNG선 추가 수주를 원문 확인했습니다. 건설·바이오 관련 공시는 후보에서 제외했습니다.",
-    "팬오션·뉴로메카의 기존 검증된 계약 연결과 기준일을 유지했습니다. 신규 계약의 분기별 실적·컨센서스 연결은 미확인으로 가산하지 않았습니다.",
-    "이번 보완은 이슈 확산 전용입니다. 유튜브 탐지 기록은 기존 공개일을 유지하며 점수에 반영하지 않습니다."
+    "장 시작 전 탐지: 10월 6일 정규장 종가 37종목을 전수 확인했습니다. 10월 7일 장중 반응·섹터 확산 확인 또는 진입 추천이 아닙니다.",
+    "10월 6일~수집 시점 DART 540건을 대조하고 신규 계약 8건을 원문 확인했습니다. 기존 검증 사실의 확인일은 변경하지 않았습니다.",
+    "LG전자 10월 6일 해명: 베어로보틱스 해외 상장은 결정된 바 없음. 상장 기대를 추천 근거에 가산하지 않습니다.",
+    "건설·바이오는 제외했습니다. BESS 변압기 등 기존 AI 이슈와 직접 연결되지 않은 계약은 추가하지 않았습니다.",
+    "분기 실적·컨센서스 및 유튜브 탐지는 이번 실행에서 새로 갱신하지 않았습니다. 기존 기준일을 유지하며 미확인 실적은 가산하지 않습니다."
   ],
-  "priceMode": "close",
-  "scanLabel": "장 마감 후 종가 보완스캔",
+  "priceMode": "premarket",
+  "scanLabel": "장 시작 전 전일 종가 탐지",
   "coverage": {
-    "requestedCount": 33,
-    "collectedCount": 33,
+    "requestedCount": 37,
+    "collectedCount": 37,
     "missingStocks": [],
     "rows": [
       {
-        "ticker": "003160",
-        "name": "디아이",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "ticker": "028670",
+        "name": "팬오션",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:34.014544+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:34.157888+09:00",
+        "fetchedAt": "2026-10-07T05:27:14.461880+09:00",
+        "consensusDate": "20260827",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "005880",
         "name": "대한해운",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:30.681376+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:14.527659+09:00",
         "consensusDate": "20260824",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:34.462033+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "009150",
-        "name": "삼성전기",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.438491+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260407",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:34.766246+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "010120",
-        "name": "LS ELECTRIC",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.525617+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260827",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:35.076180+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "010140",
         "name": "삼성중공업",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:30.928362+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:14.741180+09:00",
         "consensusDate": "20260828",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:35.342087+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "025560",
-        "name": "미래산업",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:34.063028+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:35.621727+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "028670",
-        "name": "팬오션",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:30.684738+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260827",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:35.910229+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "032580",
-        "name": "피델릭스",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:34.267443+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:36.178864+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "042660",
         "name": "한화오션",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:30.935003+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:14.802091+09:00",
         "consensusDate": "20260828",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:36.463370+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "042700",
-        "name": "한미반도체",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.688812+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:36.778204+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "064400",
-        "name": "LG씨엔에스",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.773114+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:37.069835+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "066570",
-        "name": "LG전자",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.978989+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260407",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:37.373701+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "071970",
         "name": "HD현대마린엔진",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.171725+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:15.043688+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:37.670831+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "088340",
-        "name": "유라클",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.759949+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:37.990983+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "090470",
-        "name": "제이스로보틱스",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.933697+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:38.281128+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "101970",
         "name": "우양에이치씨",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.205216+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:15.051764+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:38.571323+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "148780",
-        "name": "비큐AI",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.035964+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:38.835003+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "189330",
-        "name": "씨이랩",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:57:51.588300+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": null,
-        "consensusFallback": null
-      },
-      {
-        "ticker": "195870",
-        "name": "해성디에스",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.242177+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:39.138694+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "204270",
-        "name": "제이앤티씨",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.292141+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:39.422787+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "253590",
-        "name": "네오셈",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.495217+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:39.733137+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "307950",
-        "name": "현대오토에버",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.550440+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260811",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:40.028999+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "319400",
-        "name": "현대무벡스",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.020062+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:40.543511+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "327260",
-        "name": "RF머트리얼즈",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.752329+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260811",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:40.842551+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "329180",
         "name": "HD현대중공업",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.426828+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:15.537551+09:00",
         "consensusDate": "20260828",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:41.101909+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "348340",
-        "name": "뉴로메카",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.676869+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:41.368978+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "348350",
-        "name": "위드텍",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.271221+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:41.661709+09:00",
-        "consensusFallback": null
-      },
-      {
-        "ticker": "373220",
-        "name": "LG에너지솔루션",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
-        "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:33.811087+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
-        "consensusDate": "20260827",
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:41.957923+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "377480",
         "name": "마음AI",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:31.508825+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:15.326689+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:42.213646+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
-        "ticker": "394280",
-        "name": "오픈엣지테크놀로지",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "ticker": "348340",
+        "name": "뉴로메카",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:57:51.329452+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:15.594917+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "088340",
+        "name": "유라클",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:15.811104+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "090470",
+        "name": "제이스로보틱스",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:15.887795+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "319400",
+        "name": "현대무벡스",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.087554+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "459510",
         "name": "나우로보틱스",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:32.182232+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:16.150741+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:42.503107+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "394280",
+        "name": "오픈엣지테크놀로지",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.328798+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "009150",
+        "name": "삼성전기",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.401490+09:00",
+        "consensusDate": "20260407",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "010120",
+        "name": "LS ELECTRIC",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.577230+09:00",
+        "consensusDate": "20260827",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "042700",
+        "name": "한미반도체",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.665403+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "064400",
+        "name": "LG씨엔에스",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.859072+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "066570",
+        "name": "LG전자",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:16.969182+09:00",
+        "consensusDate": "20260407",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "148780",
+        "name": "비큐AI",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:17.146297+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "189330",
+        "name": "씨이랩",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:17.240430+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "195870",
+        "name": "해성디에스",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:17.451994+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "204270",
+        "name": "제이앤티씨",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:17.544783+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "307950",
+        "name": "현대오토에버",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:17.725993+09:00",
+        "consensusDate": "20260811",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "348350",
+        "name": "위드텍",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:17.816090+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "373220",
+        "name": "LG에너지솔루션",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:18.004985+09:00",
+        "consensusDate": "20260827",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "003160",
+        "name": "디아이",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:18.070011+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "025560",
+        "name": "미래산업",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:18.270281+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "032580",
+        "name": "피델릭스",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:18.342447+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "253590",
+        "name": "네오셈",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:18.554274+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "327260",
+        "name": "RF머트리얼즈",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:27:18.606797+09:00",
+        "consensusDate": "20260811",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "490470",
         "name": "세미파이브",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:34.329155+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:18.869179+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:42.814069+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       },
       {
         "ticker": "950250",
         "name": "테라뷰",
-        "priceDate": "2026-10-02",
-        "priceAsOf": "2026-10-02T15:30:00+09:00",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
         "priceStatus": "verified",
-        "fetchedAt": "2026-10-02T19:56:34.514728+09:00",
-        "priceSource": "KIS Developers 정규장 종가·일별 수정주가",
+        "fetchedAt": "2026-10-07T05:27:18.893520+09:00",
         "consensusDate": null,
-        "consensusStatus": "이전 기준일 보존·이번 종가 보완에서 분기 실적 새 가산 없음",
-        "consensusPreviousCheck": "2026-10-01T16:11:43.117197+09:00",
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "412350",
+        "name": "레이저쎌",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:28:31.391974+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "323280",
+        "name": "태성",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:28:31.684308+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "348210",
+        "name": "넥스틴",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:28:31.953475+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
+        "consensusFallback": null
+      },
+      {
+        "ticker": "373170",
+        "name": "엠아이큐브솔루션",
+        "priceDate": "2026-10-06",
+        "priceAsOf": "2026-10-06T15:30:00+09:00",
+        "priceStatus": "verified",
+        "fetchedAt": "2026-10-07T05:28:32.239813+09:00",
+        "consensusDate": null,
+        "consensusStatus": "이번 장전 탐지에서 새 컨센서스 미수집·기존 기준일 보존",
         "consensusFallback": null
       }
     ],
-    "disclosureCount": 769,
-    "excluded": [
-      {
-        "ticker": "103590",
-        "name": "일진전기",
-        "reason": "신규 계약에 송전망 설치·공사 포함, 직접 데이터센터 연결 미확인"
-      },
-      {
-        "ticker": "207940",
-        "name": "삼성바이오로직스",
-        "reason": "바이오 제외"
-      },
-      {
-        "ticker": "068330",
-        "name": "일신바이오",
-        "reason": "바이오 제외"
-      },
-      {
-        "ticker": "200230",
-        "name": "텔콘RF제약",
-        "reason": "제약·바이오 전반 제외"
-      },
-      {
-        "ticker": "036190",
-        "name": "금화피에스시",
-        "reason": "기계배관 설치 건설공사"
-      },
-      {
-        "ticker": "277880",
-        "name": "티에스아이",
-        "reason": "기존 이차전지 믹싱계약 납기 연장, 새 AI 확산 연결 미확인"
-      }
-    ]
+    "disclosureCount": 540
   }
 }

@@ -35,3 +35,11 @@ test('close scan distinguishes scheduled slot, actual run and full-session basis
   assert.match(n.issuestatus.textContent,/예약 10:30/);
   assert.match(n.issuebody.innerHTML,/직전 20거래일 정규장 전체/);
 });
+
+
+test('premarket states previous close is not intraday confirmation',async()=>{
+ const n=await render({status:'검증완료',priceMode:'premarket',scanLabel:'장 시작 전 전일 종가 탐지',slot:'10:30',issues:[]});
+ assert.match(n.issuebody.innerHTML,/최신 완료 거래일 종가/);
+ assert.match(n.issuebody.innerHTML,/오늘 장중 반응/);
+ assert.doesNotMatch(n.issuebody.innerHTML,/당일 정규장 종가 기준/);
+});

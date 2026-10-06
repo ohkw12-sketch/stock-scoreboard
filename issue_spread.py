@@ -50,14 +50,20 @@ def verified(fact, now):
             and now - checked <= timedelta(days=7))
 
 
-def close_quote_valid(q, at, now):
+def close_quote_valid(q, at, now, premarket=False):
     """A fetched timestamp cannot turn an old close into a current intraday quote."""
     fetched = stamp(q.get('fetchedAt'))
     local = now.astimezone(KST)
+    if premarket:
+        import exchange_calendars as xc
+        if local.hour >= 9 or not trading_day(local):
+            return False
+        previous = xc.get_calendar('XKRX').previous_session(local.date().isoformat()).date()
+        local = datetime.combine(previous, datetime.min.time(), tzinfo=KST)
     close = local.replace(hour=15, minute=30, second=0, microsecond=0)
     if not (at == close and now >= close and fetched and close <= fetched <= now
             and now-fetched <= timedelta(minutes=60)
-            and q.get('priceMode') == 'close' and q.get('turnoverBasis') == 'full-session'):
+            and q.get('priceMode') == ('premarket' if premarket else 'close') and q.get('turnoverBasis') == 'full-session'):
         return False
     if not trading_day(local):
         return False
@@ -79,13 +85,13 @@ def quote(row, now, overseas=False, mode='intraday'):
     q = row.get('quote') or {}
     at = stamp(q.get('asOf'))
     age = timedelta(hours=18) if overseas else timedelta(minutes=30)
-    fresh = (close_quote_valid(q, at, now) if mode == 'close' and not overseas
+    fresh = (close_quote_valid(q, at, now, mode == 'premarket') if mode in ('close', 'premarket') and not overseas
              else at and timedelta(0) <= now-at <= age)
     valid = (fresh and q.get('status') == 'verified'
              and q.get('source') and q.get('url') and q.get('adjustmentChecked') is True
              and all(num(q.get(k)) is not None for k in ('changePct', 'return5dPct', 'turnoverRatio', 'distance20Pct'))
              and q['turnoverRatio'] > 0)
-    if not overseas:
+    if not overseas and mode != 'premarket':
         valid = valid and at.astimezone(KST).date() == now.astimezone(KST).date()
     return q if valid else {}
 
@@ -114,11 +120,11 @@ def matching_boards(board, ticker, date):
 def build(payload, board, now, slot, mode='intraday'):
     if slot not in ('08:00', '10:30', '15:00'):
         raise ValueError('Unsupported scan slot')
-    if mode not in ('intraday', 'close'):
+    if mode not in ('intraday', 'close', 'premarket'):
         raise ValueError('Unsupported price mode')
     output = dict(schemaVersion=1, generatedAt=now.isoformat(), sourceDate=str(now.date()), slot=slot,
                   weights=WEIGHTS, issues=[], status='검증완료', missing=payload.get('missing', []),
-                  priceMode=mode, scanLabel='장 마감 후 종가 보완스캔' if mode == 'close' else '장중 스캔',
+                  priceMode=mode, scanLabel='장 마감 후 종가 보완스캔' if mode == 'close' else '장 시작 전 전일 종가 탐지' if mode == 'premarket' else '장중 스캔',
                   coverage=payload.get('coverage', {}))
     captured = stamp(payload.get('asOf'))
     if not captured or not timedelta(0) <= now-captured <= timedelta(minutes=60):
@@ -137,7 +143,7 @@ def build(payload, board, now, slot, mode='intraday'):
         leader_ok = False
         for leader in issue.get('leaders', []):
             q = quote(leader, now, leader.get('market') != 'KR', mode)
-            confirmed = bool(q and q['changePct'] >= 2 and q['turnoverRatio'] >= 1.5)
+            confirmed = bool(mode != 'premarket' and q and q['changePct'] >= 2 and q['turnoverRatio'] >= 1.5)
             leader_ok |= confirmed
             hot = bool(q and (q['changePct'] >= 10 or q['return5dPct'] >= 25 or q['distance20Pct'] >= 20))
             leaders.append(dict(name=leader.get('name'), market=leader.get('market'), quote=q,
@@ -158,7 +164,7 @@ def build(payload, board, now, slot, mode='intraday'):
                         and f.get('period') in ('2026Q3', '2026Q4', '2027Q1', '2027Q2')]
             fundamental = min(30, 10 * len({f['kind'] for f in earnings}))
             q = quote(row, now, mode=mode) if slot != '08:00' else {}
-            confirmed = bool(q and q['changePct'] > 0 and q['turnoverRatio'] >= 1.5)
+            confirmed = bool(mode != 'premarket' and q and q['changePct'] > 0 and q['turnoverRatio'] >= 1.5)
             hot = bool(q and (q['changePct'] >= 10 or q['return5dPct'] >= 25 or q['distance20Pct'] >= 20))
             candidates.append(dict(ticker=ticker, name=row.get('name', ticker), sector=sector,
                 direct=direct, fundamental=fundamental, quote=q, confirmed=confirmed, hot=hot,
@@ -167,6 +173,8 @@ def build(payload, board, now, slot, mode='intraday'):
         spread = min(20, breadth * 5) if breadth >= 2 else 0
         for r in candidates:
             entry = (0 if r['hot'] else 10 if r['confirmed'] and r['quote']['changePct'] <= 5 else 5) if r['quote'] else 0
+            if mode == 'premarket':
+                entry = 0
             scores = dict(issue=strength, leader=20 if leader_ok else 0, spread=spread,
                           fundamental=r['fundamental'], entry=entry)
             score = sum(scores.values())
@@ -184,7 +192,7 @@ def build(payload, board, now, slot, mode='intraday'):
             elif stage != '최종선정':
                 tags += ['WATCH']
             r.update(scores=scores, score=score, stage=stage, tags=tags, matchedBoards=matches,
-                     priceStatus='확인' if r['confirmed'] else '미확인',
+                     priceStatus='전일 종가·장중 미확인' if mode == 'premarket' and r['quote'] else '확인' if r['confirmed'] else '미확인',
                      overheat='높음' if r['hot'] else '보통' if r['quote'] else '미확인')
         candidates.sort(key=lambda r: (r['stage'] != '최종선정', r['hot'], -r['score'], r['ticker']))
         output['issues'].append(dict(id=issue['id'], name=issue.get('name', issue['id']), strength=strength*5,
@@ -219,7 +227,7 @@ def refresh(board=None, now=None, slot=None, root=ROOT, mode='intraday'):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--slot', choices=['08:00', '10:30', '15:00'])
-    parser.add_argument('--mode', choices=['intraday', 'close'], default='intraday')
+    parser.add_argument('--mode', choices=['intraday', 'close', 'premarket'], default='intraday')
     parser.add_argument('--promote', action='store_true')
     args = parser.parse_args()
     if not trading_day(datetime.now(KST)):
