@@ -3,191 +3,44 @@
   "meta": {
     "title": "오선 국장 주요뉴스",
     "status": "SaveTicker 오선 국장·매크로 시황 갱신",
-    "updatedKST": "2026-10-02 20:26",
-    "range": "10.02 02:54–10.02 20:26",
+    "updatedKST": "2026-10-07 06:06",
+    "range": "10.07 01:13–10.07 06:06",
     "sourceUrl": "https://saveticker.com/news",
     "source": "SaveTicker · 작성자 오선",
     "selectionRule": "국장 직접·국내 업종 영향 뉴스와 장전·마감 리포트, 금리·물가·경기·환율·원자재 매크로 시황을 함께 선별",
-    "fetchedCount": 500,
-    "authorCount": 44,
-    "selectedCount": 8,
+    "fetchedCount": 200,
+    "authorCount": 3,
+    "selectedCount": 1,
     "directCount": 0,
-    "sectorCount": 2,
-    "macroCount": 6,
+    "sectorCount": 0,
+    "macroCount": 1,
     "windowHours": 36
   },
   "items": [
     {
-      "id": "news_yAMQXHuqHd7a",
-      "title": "EU “필요하면 원유시장 공동 대응”",
+      "id": "news__QDFxMgUrJCI",
+      "title": "트럼프 “호르무즈 원유 수송, 전쟁 이전 수준 회복”",
       "scope": "매크로 시황",
-      "tone": "확인",
+      "tone": "긍정",
       "sectors": [
         "원자재·지정학"
       ],
       "marketImpact": "에너지 공급과 지정학 변화가 물가·금리 및 기업 원가에 주는 영향을 확인합니다.",
-      "publishedKST": "2026-10-02 19:31",
-      "createdAt": "2026-10-02T19:31:55+09:00",
+      "publishedKST": "2026-10-07 04:17",
+      "createdAt": "2026-10-07T04:17:43+09:00",
       "source": "SaveTicker",
       "author": "오선",
-      "viewCount": 6416,
+      "viewCount": 3217,
       "isRumor": false,
-      "importanceScore": 90.7,
-      "url": "https://saveticker.com/news/news_yAMQXHuqHd7a",
-      "summary": "EU 대변인은 IEA 조율 아래 비축유 방출을 포함한 원유시장 공동 대응에 나설 준비가 돼 있다며, 다만 실제 비축유 방출은 IEA가…",
+      "importanceScore": 81.9,
+      "url": "https://saveticker.com/news/news__QDFxMgUrJCI",
+      "summary": "트럼프 대통령은 이란 경제가 심각하게 악화됐다고 주장하면서, 호르무즈 해협을 통한 원유 수송은 최근 며칠 사이 크게 회복돼 일부 시점에는 전쟁…",
       "contentStatus": "본문 확인",
       "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_vcvZo3Fr4eZf",
-      "title": "9월 비농업 취업자수/실업률 - 기관별 예상치",
-      "scope": "매크로 시황",
-      "tone": "확인",
-      "sectors": [
-        "경기·고용"
-      ],
-      "marketImpact": "경기와 고용의 둔화 또는 회복이 기업 실적과 정책 기대에 미치는 영향을 확인합니다.",
-      "publishedKST": "2026-10-02 07:56",
-      "createdAt": "2026-10-02T07:56:18+09:00",
-      "source": "SaveTicker",
-      "author": "오선",
-      "viewCount": 13088,
-      "isRumor": false,
-      "importanceScore": 87.6,
-      "url": "https://saveticker.com/news/news_vcvZo3Fr4eZf",
-      "summary": "9월 비농업 취업자수/실업률 - 기관별 예상치",
-      "contentStatus": "목록 미리보기·본문 미확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_QonD2csjMMpJ",
-      "title": "핌코 “국채 금리 급등, 인플레보다 AI 자금 수요가 원인”",
-      "scope": "매크로 시황",
-      "tone": "부정",
-      "sectors": [
-        "물가",
-        "채권·환율"
-      ],
-      "marketImpact": "물가의 방향과 예상치 대비 차이를 통화정책·실질금리 변화와 함께 확인합니다. 국채 금리와 통화 움직임은 성장주 평가와 국가 간 자금 이동의 주요 변수입니다.",
-      "publishedKST": "2026-10-02 17:16",
-      "createdAt": "2026-10-02T17:16:28+09:00",
-      "source": "블룸버그",
-      "author": "오선",
-      "viewCount": 4253,
-      "isRumor": false,
-      "importanceScore": 82.0,
-      "url": "https://saveticker.com/news/news_QonD2csjMMpJ",
-      "summary": "핌코의 크리스천 스트라케 사장은 블룸버그TV 인터뷰에서, 최근 글로벌 채권 금리와 실질금리를 밀어 올린 핵심 동력은 인플레이션 우려가 아니라 하이퍼스케일러와 AI…",
-      "contentStatus": "본문 확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_qhPIG7Ovs9AE",
-      "title": "마이클 하트넷, “달러·국채 금리 고점 확인 전까지 시장 불안 이어질 것”",
-      "scope": "매크로 시황",
-      "tone": "확인",
-      "sectors": [
-        "채권·환율"
-      ],
-      "marketImpact": "국채 금리와 통화 움직임은 성장주 평가와 국가 간 자금 이동의 주요 변수입니다.",
-      "publishedKST": "2026-10-02 17:57",
-      "createdAt": "2026-10-02T17:57:15+09:00",
-      "source": "SaveTicker",
-      "author": "오선",
-      "viewCount": 3423,
-      "isRumor": false,
-      "importanceScore": 81.8,
-      "url": "https://saveticker.com/news/news_qhPIG7Ovs9AE",
-      "summary": "뱅크오브아메리카(BofA)의 마이클 하트넷은 최근 강세를 보인 미 달러화가 고점을 찍고, 20여 년 만의 최고 수준으로 치솟은 국채 금리가 진정될 때까지…",
-      "contentStatus": "본문 확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_2Owe05yhlFr3",
-      "title": "유로존 인플레 3년래 최고…다만 10월 ECB 인상 가능성은 후퇴",
-      "scope": "매크로 시황",
-      "tone": "확인",
-      "sectors": [
-        "중앙은행·금리",
-        "물가"
-      ],
-      "marketImpact": "금리 경로와 긴축 강도의 변화는 주식의 할인율과 글로벌 자금 흐름에 연결됩니다. 물가의 방향과 예상치 대비 차이를 통화정책·실질금리 변화와 함께 확인합니다.",
-      "publishedKST": "2026-10-02 19:01",
-      "createdAt": "2026-10-02T19:01:56+09:00",
-      "source": "블룸버그",
-      "author": "오선",
-      "viewCount": 2271,
-      "isRumor": false,
-      "importanceScore": 81.3,
-      "url": "https://saveticker.com/news/news_2Owe05yhlFr3",
-      "summary": "유로존의 9월 소비자물가지수(CPI)가 전년 동월 대비 3.8% 상승해 시장 예상치(3.7%)를 웃돌며 3년 만에 최고치를 기록함 이란 전쟁 장기화로 원유와 천연가스…",
-      "contentStatus": "본문 확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news__SLGks_SPdw7",
-      "title": "뱅크오브아메리카 “채권에 자금 유입…장기채 매수세 확대”",
-      "scope": "매크로 시황",
-      "tone": "긍정",
-      "sectors": [
-        "수급·금융환경"
-      ],
-      "marketImpact": "만기·자금 흐름과 금융여건에 따른 단기 변동성 및 위험 선호 변화를 확인합니다.",
-      "publishedKST": "2026-10-02 16:51",
-      "createdAt": "2026-10-02T16:51:40+09:00",
-      "source": "SaveTicker",
-      "author": "오선",
-      "viewCount": 2984,
-      "isRumor": false,
-      "importanceScore": 81.1,
-      "url": "https://saveticker.com/news/news__SLGks_SPdw7",
-      "summary": "뱅크오브아메리카(BofA)에 따르면 분기 말 효과로 머니마켓펀드에서 1,180억 달러가 대거 빠져나간 반면, 채권 펀드에는 188억 달러가 유입되며 투자자들이 채권을 다시 사들이기…",
-      "contentStatus": "본문 확인",
-      "summaryKind": "원문 발췌"
-    },
-    {
-      "id": "news_Nutrj2PYI50D",
-      "title": "아마존, 데이터센터 지역에 5년간 10억 달러 투자",
-      "scope": "국내 섹터 영향",
-      "tone": "확인",
-      "sectors": [
-        "전력기기·냉각"
-      ],
-      "marketImpact": "국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
-      "publishedKST": "2026-10-02 18:05",
-      "createdAt": "2026-10-02T18:05:29+09:00",
-      "source": "월스트리트저널",
-      "author": "오선",
-      "viewCount": 7105,
-      "isRumor": false,
-      "importanceScore": 70.4,
-      "url": "https://saveticker.com/news/news_Nutrj2PYI50D",
-      "summary": "아마존은 AI 데이터센터 건설에 대한 지역사회의 반발이 커지자 지지를 확보하기 위해 향후 5년간 데이터센터가 들어서는 지역에 10억 달러 이상을 추가 투자하기로 함 AWS의 맷 가먼 CEO는 이 자금을 교육·직업훈련·수자원 보존 등에 투입하고, 데이터센터의 전력·용수 사용량과 효율도 매년 공개하겠다고 밝힘",
-      "contentStatus": "본문 확인"
-    },
-    {
-      "id": "news_QgTQ45qMvxLd",
-      "title": "(카더라) 아마존, 80억 달러 엔비디아 칩 자산 분리 추진…SPV 활용 검토",
-      "scope": "국내 섹터 영향",
-      "tone": "확인",
-      "sectors": [
-        "반도체"
-      ],
-      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다.",
-      "publishedKST": "2026-10-02 15:37",
-      "createdAt": "2026-10-02T15:37:00+09:00",
-      "source": "파이낸셜타임스",
-      "author": "오선",
-      "viewCount": 5948,
-      "isRumor": true,
-      "importanceScore": 64.2,
-      "url": "https://saveticker.com/news/news_QgTQ45qMvxLd",
-      "summary": "파이낸셜타임스는 관계자를 인용해, 아마존이 약 80억 달러 규모의 엔비디아 최첨단 AI 칩을 외부 투자자들이 자금을 대는 특수목적법인(SPV)에 넘겨 재무제표에서 떼어내는 방안을 검토 중이라고 보도함 아마존은 해당 법인이 부채를 발행하거나 최대 10%의 지분을 매각해 자금을 조달하면, 이곳으로 넘긴 칩을 다시 빌려 쓰는 ‘자산 경량화’ 방식을 활용할 수 있음",
-      "contentStatus": "본문 확인"
     }
   ],
   "collection": {
-    "status": "부분수집·본문 미확인 포함",
-    "checkedAtKST": "2026-10-02T20:26:38+09:00"
+    "status": "정상",
+    "checkedAtKST": "2026-10-07T06:06:44+09:00"
   }
 }
