@@ -3,44 +3,125 @@
   "meta": {
     "title": "오선 국장 주요뉴스",
     "status": "SaveTicker 오선 국장·매크로 시황 갱신",
-    "updatedKST": "2026-10-07 06:06",
-    "range": "10.07 01:13–10.07 06:06",
+    "updatedKST": "2026-10-07 20:22",
+    "range": "10.07 14:03–10.07 20:22",
     "sourceUrl": "https://saveticker.com/news",
     "source": "SaveTicker · 작성자 오선",
     "selectionRule": "국장 직접·국내 업종 영향 뉴스와 장전·마감 리포트, 금리·물가·경기·환율·원자재 매크로 시황을 함께 선별",
     "fetchedCount": 200,
-    "authorCount": 3,
-    "selectedCount": 1,
-    "directCount": 0,
-    "sectorCount": 0,
-    "macroCount": 1,
+    "authorCount": 22,
+    "selectedCount": 5,
+    "directCount": 1,
+    "sectorCount": 2,
+    "macroCount": 2,
     "windowHours": 36
   },
   "items": [
     {
-      "id": "news__QDFxMgUrJCI",
-      "title": "트럼프 “호르무즈 원유 수송, 전쟁 이전 수준 회복”",
+      "id": "news_p1zCuQzNrWoH",
+      "title": "삼성전자 사상 최대 실적 전망…투자자 관심은 ‘지속 가능성’",
+      "scope": "국장 직접",
+      "tone": "확인",
+      "sectors": [
+        "반도체·전자"
+      ],
+      "marketImpact": "국내 삼성 계열·SK 반도체·전자 기업을 직접 언급한 뉴스입니다.",
+      "publishedKST": "2026-10-07 15:36",
+      "createdAt": "2026-10-07T15:36:49+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 14038,
+      "isRumor": false,
+      "importanceScore": 110.3,
+      "url": "https://saveticker.com/news/news_p1zCuQzNrWoH",
+      "summary": "삼성전자가 이번 주 목요일 3분기 사상 최대 실적을 발표할 것으로 예상되나, 시장의 관심은 당장의 호실적보다 메모리 수요와 고가격 기조가 2027~2028년까지 유지될 수 있을지에 집중됨",
+      "contentStatus": "본문 확인"
+    },
+    {
+      "id": "news_9CH4GZRDyV4p",
+      "title": "이란 공격 확대에 유가 상승…유럽 디젤 가격도 6% 급등",
       "scope": "매크로 시황",
-      "tone": "긍정",
+      "tone": "혼합",
       "sectors": [
         "원자재·지정학"
       ],
       "marketImpact": "에너지 공급과 지정학 변화가 물가·금리 및 기업 원가에 주는 영향을 확인합니다.",
-      "publishedKST": "2026-10-07 04:17",
-      "createdAt": "2026-10-07T04:17:43+09:00",
-      "source": "SaveTicker",
+      "publishedKST": "2026-10-07 18:49",
+      "createdAt": "2026-10-07T18:49:19+09:00",
+      "source": "블룸버그",
       "author": "오선",
-      "viewCount": 3217,
+      "viewCount": 9510,
       "isRumor": false,
-      "importanceScore": 81.9,
-      "url": "https://saveticker.com/news/news__QDFxMgUrJCI",
-      "summary": "트럼프 대통령은 이란 경제가 심각하게 악화됐다고 주장하면서, 호르무즈 해협을 통한 원유 수송은 최근 며칠 사이 크게 회복돼 일부 시점에는 전쟁…",
+      "importanceScore": 84.3,
+      "url": "https://saveticker.com/news/news_9CH4GZRDyV4p",
+      "summary": "유가는 호르무즈 해협 내 이란의 선박 공격 증가와 중동산 원유 공급 회복세를 저울질하며 등락 끝에 상승함 중동의 원유 수송량은 전쟁…",
       "contentStatus": "본문 확인",
       "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_piBkdbRJyHwo",
+      "title": "BofA “채권, 수십 년 만에 주식과 경쟁할 만큼 매력적”",
+      "scope": "매크로 시황",
+      "tone": "확인",
+      "sectors": [
+        "채권·환율"
+      ],
+      "marketImpact": "국채 금리와 통화 움직임은 성장주 평가와 국가 간 자금 이동의 주요 변수입니다.",
+      "publishedKST": "2026-10-07 18:37",
+      "createdAt": "2026-10-07T18:37:27+09:00",
+      "source": "블룸버그",
+      "author": "오선",
+      "viewCount": 4407,
+      "isRumor": false,
+      "importanceScore": 82.6,
+      "url": "https://saveticker.com/news/news_piBkdbRJyHwo",
+      "summary": "뱅크오브아메리카(BofA)의 사비타 수브라마니안은 미국 10년물 국채 금리가 5%를 웃돌면서, 수십 년 만에 처음으로 채권이 주식의 실질적인 경쟁 상대로 부상했다고 진단함…",
+      "contentStatus": "본문 확인",
+      "summaryKind": "원문 발췌"
+    },
+    {
+      "id": "news_FV61mw5c4oVZ",
+      "title": "마이크론 대만 노조, 성과급 갈등에 파업 가결",
+      "scope": "국내 섹터 영향",
+      "tone": "확인",
+      "sectors": [
+        "반도체"
+      ],
+      "marketImpact": "삼성전자·SK하이닉스와 국내 반도체 장비·소재주의 수요 및 경쟁 구도에 영향을 줄 수 있습니다.",
+      "publishedKST": "2026-10-07 18:25",
+      "createdAt": "2026-10-07T18:25:38+09:00",
+      "source": "로이터",
+      "author": "오선",
+      "viewCount": 13819,
+      "isRumor": false,
+      "importanceScore": 78.3,
+      "url": "https://saveticker.com/news/news_FV61mw5c4oVZ",
+      "summary": "마이크의 최대 생산 거점인 대만의 타오위안 공장 노동조합이 성과급 제도를 둘러싼 갈등으로 투표 참여 조합원 99%의 찬성을 얻어 파업권을 확보했다고 밝힘 대만은 AI 서버의 핵심 부품인 마이크론 D램과 고대역폭메모리(HBM)를 생산하는 핵심 기지로, 실제 파업에 돌입할 경우 가뜩이나 빠듯한 메모리 반도체 공급 우려가 더 커질 수 있음",
+      "contentStatus": "본문 확인"
+    },
+    {
+      "id": "news_rUJD7b4Oyeds",
+      "title": "블루아울, 보험 자금 확대 나선다…데이터센터 투자도 자신감",
+      "scope": "국내 섹터 영향",
+      "tone": "긍정",
+      "sectors": [
+        "전력기기·냉각"
+      ],
+      "marketImpact": "국내 변압기·전력기기·냉각 설비 기업의 수주 기대와 투자 속도에 연결됩니다.",
+      "publishedKST": "2026-10-07 16:37",
+      "createdAt": "2026-10-07T16:37:52+09:00",
+      "source": "파이낸셜타임스",
+      "author": "오선",
+      "viewCount": 2547,
+      "isRumor": false,
+      "importanceScore": 67.7,
+      "url": "https://saveticker.com/news/news_rUJD7b4Oyeds",
+      "summary": "최근 사모대출(사모신용) 시장 혼란의 중심에 섰던 블루아울이 장기 자금원인 보험 자금의 운용 규모를 본격적으로 늘릴 계획이라고 밝힘 더그 오스트로버 공동 CEO는 FT·레이섬앤왓킨스 사모자본 서밋에서 \"운용 자본이 충분하지 않다\"며 보험 자금 운용을 적극 확대하겠다고 밝힘",
+      "contentStatus": "본문 확인"
     }
   ],
   "collection": {
     "status": "정상",
-    "checkedAtKST": "2026-10-07T06:06:44+09:00"
+    "checkedAtKST": "2026-10-07T20:22:50+09:00"
   }
 }
