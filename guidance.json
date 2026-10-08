@@ -1,7 +1,7 @@
 {
   "status": {
     "status": "정상",
-    "checked_at": "2026-10-08T08:10:33.817690+09:00",
+    "checked_at": "2026-10-08T16:10:53.444087+09:00",
     "failures": [],
     "from": "2025-09-03",
     "to": "2026-10-08",
@@ -1726,10 +1726,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 602200000000.0,
-        "operating_profit": 148700000000.0,
-        "as_of": "2026-07-29",
-        "source": "개별 추정치"
+        "sales": 604986000000.0,
+        "operating_profit": 153571000000.0,
+        "as_of": "2026-10-07",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,

@@ -1,19 +1,19 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-trend-4.0",
-  "snapshotId": "5a32b3b2d87a3f504fea7bcf0c0a3b06656571942b498b4f36109b6a563fb4c1",
-  "generatedAt": "2026-10-08T08:27:29+09:00",
-  "sourceDate": "2026-10-07",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
-  "candidateCount": 2,
+  "snapshotId": "79fcdcf6c3399d73feed1afdc66093badce4be1945b30bf62136a8978778704c",
+  "generatedAt": "2026-10-08T20:14:32+09:00",
+  "sourceDate": "2026-10-08",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "candidateCount": 1,
   "matchedCandidateCount": 0,
   "rows": [
     {
       "ticker": "003670",
       "name": "포스코퓨처엠",
       "sector": "2차전지/ESS",
-      "currentProjectRank": 9.0,
+      "currentProjectRank": 7.0,
       "conditions": [
         "시장관심성장",
         "섹터추세",
@@ -21,84 +21,50 @@
       ],
       "condition": "시장관심성장 + 섹터추세 + 비과열",
       "entryState": "추세확인·비과열",
-      "currentPrice": 190100.0,
-      "combinedScore": 70.94,
+      "currentPrice": 191300.0,
+      "combinedScore": 72.82,
       "performanceScore": null,
       "matchedPattern": null,
       "features": [
         "가치성장",
         "비과열",
         "섹터추세",
-        "섹터추세:추세확인",
+        "섹터추세:추세유지",
         "순환:③주도",
         "시장관심성장"
       ],
-      "sourceDate": "2026-10-07",
+      "sourceDate": "2026-10-08",
       "valueScore": null,
-      "growthScore": 70.18,
-      "sectorRelation": "추세확인",
-      "sectorTrendScore": 74.0,
+      "growthScore": 70.38,
+      "sectorRelation": "추세유지",
+      "sectorTrendScore": 82.6,
       "sectorStage": "③주도",
-      "fiveDayReturnPct": 8.38,
-      "ma20DistancePct": 2.7,
-      "ma20SlopePct": 0.18,
+      "fiveDayReturnPct": 6.99,
+      "ma20DistancePct": 3.07,
+      "ma20SlopePct": 0.23,
       "rank": 1,
       "recommendationHistory": {
+        "kind": "consecutive",
+        "label": "2거래일 연속 추천",
         "firstDate": "2026-10-07",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
-      }
-    },
-    {
-      "ticker": "393890",
-      "name": "더블유씨피",
-      "sector": "2차전지/ESS",
-      "currentProjectRank": 17.0,
-      "conditions": [
-        "시장관심성장",
-        "섹터추세",
-        "비과열"
-      ],
-      "condition": "시장관심성장 + 섹터추세 + 비과열",
-      "entryState": "추세확인·비과열",
-      "currentPrice": 10310.0,
-      "combinedScore": 68.78,
-      "performanceScore": null,
-      "matchedPattern": null,
-      "features": [
-        "가치성장",
-        "비과열",
-        "섹터추세",
-        "섹터추세:추세확인",
-        "순환:③주도",
-        "시장관심성장"
-      ],
-      "sourceDate": "2026-10-07",
-      "valueScore": null,
-      "growthScore": 67.47,
-      "sectorRelation": "추세확인",
-      "sectorTrendScore": 74.0,
-      "sectorStage": "③주도",
-      "fiveDayReturnPct": 2.79,
-      "ma20DistancePct": 2.2,
-      "ma20SlopePct": 0.12,
-      "rank": 2,
-      "recommendationHistory": {
-        "firstDate": "2026-10-07",
-        "previousDate": null,
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": null,
-        "kind": "new",
-        "label": "신규 추천"
+        "previousDate": "2026-10-07",
+        "recommendationDays": 2,
+        "spanTradingDays": 2,
+        "gapCalendarDays": 1
       }
     }
   ],
   "_audit": [
+    {
+      "ticker": "003160",
+      "name": "디아이",
+      "sector": "반도체",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
     {
       "ticker": "003670",
       "name": "포스코퓨처엠",
@@ -131,23 +97,14 @@
       "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
       "ticker": "009150",
       "name": "삼성전기",
       "sector": "반도체",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "009520",
-      "name": "포스코엠텍",
-      "sector": "1차 철강 제조업",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님"
@@ -164,11 +121,12 @@
       ]
     },
     {
-      "ticker": "033500",
-      "name": "동성화인텍",
-      "sector": "기초 화학물질 제조업",
+      "ticker": "031980",
+      "name": "피에스케이홀딩스",
+      "sector": "특수 목적용 기계 제조업",
       "eligible": false,
       "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -193,13 +151,12 @@
       ]
     },
     {
-      "ticker": "044450",
-      "name": "KSS해운",
-      "sector": "해상 운송업",
+      "ticker": "042700",
+      "name": "한미반도체",
+      "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -222,19 +179,18 @@
       ]
     },
     {
-      "ticker": "089030",
-      "name": "테크윙",
-      "sector": "반도체",
+      "ticker": "073490",
+      "name": "LIG아큐버",
+      "sector": "통신 및 방송 장비 제조업",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
-      "ticker": "099440",
-      "name": "스맥",
-      "sector": "특수 목적용 기계 제조업",
+      "ticker": "089030",
+      "name": "테크윙",
+      "sector": "반도체",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -257,7 +213,8 @@
       "sector": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
@@ -268,15 +225,6 @@
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "218410",
-      "name": "RFHIC",
-      "sector": "통신 및 방송 장비 제조업",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -319,16 +267,9 @@
       ]
     },
     {
-      "ticker": "393890",
-      "name": "더블유씨피",
-      "sector": "2차전지/ESS",
-      "eligible": true,
-      "reasons": []
-    },
-    {
-      "ticker": "439260",
-      "name": "대한조선",
-      "sector": "조선",
+      "ticker": "440110",
+      "name": "파두",
+      "sector": "반도체",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -336,8 +277,8 @@
       ]
     },
     {
-      "ticker": "440110",
-      "name": "파두",
+      "ticker": "490470",
+      "name": "세미파이브",
       "sector": "반도체",
       "eligible": false,
       "reasons": [
@@ -348,7 +289,7 @@
   ],
   "feedback": {
     "version": "feedback-1.0",
-    "cutoffDate": "2026-10-07",
+    "cutoffDate": "2026-10-08",
     "horizon": 20,
     "sampleCount": 191,
     "patterns": [
@@ -1101,21 +1042,19 @@
   },
   "notice": "가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-10-08T08:27:29+09:00",
-    "snapshotId": "5a32b3b2d87a3f504fea7bcf0c0a3b06656571942b498b4f36109b6a563fb4c1",
-    "sourceCutoff": "2026-10-07",
+    "generatedAt": "2026-10-08T20:14:32+09:00",
+    "snapshotId": "79fcdcf6c3399d73feed1afdc66093badce4be1945b30bf62136a8978778704c",
+    "sourceCutoff": "2026-10-08",
     "mode": "저장자료 재계산",
     "engineVersion": "787f76181bd15741",
-    "runId": "dfe2b33ed0a85d11166de777",
-    "evidenceSnapshotId": "efaba5331d8633f03d71600eebc241dfe85e22b5446f4cc61836fb55efebcabc",
+    "runId": "bbbae5fc0054cd925073676e",
+    "evidenceSnapshotId": "2f3563f382861cd37ac4f08ba018fea1c3444bb7785707d1828d3a23587d5387",
     "status": "계산완료"
   },
-  "runId": "dfe2b33ed0a85d11166de777",
+  "runId": "bbbae5fc0054cd925073676e",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-10-08T08:37:11+09:00",
-  "observedPublishedAt": "2026-10-08T08:37:11+09:00"
+  }
 }
