@@ -7720,12 +7720,10 @@
       ]
     }
   ],
-  "status": "검증완료",
+  "status": "시세 시각 추가검증 보류·10월 13일 게시값 유지",
   "missing": [
-    "10월 13일 정규장 종가 37종목 전수 검증. 거래대금은 최근 20거래일 정규장 전체 평균 대비이며 10:30 장중 반응의 재현이 아닙니다.",
-    "LS ELECTRIC·LS머트리얼즈의 데이터센터 연료전지 계약, 테라뷰·피델릭스·플리토 계약과 HD현대중공업 기존 계약 정정을 반영했습니다. 동일 FPU 계약의 구버전 중복 근거는 제외했습니다.",
-    "건설·바이오 제외를 유지했습니다. 다른 설비 계약을 AI 직접 수혜로 임의 연결하지 않았습니다. 기존 근거의 검증일을 일괄 변경하지 않았으며 미확인 분기 실적·컨센서스와 유튜브에 새 점수를 가산하지 않았습니다.",
-    "컨센서스 26종목은 KIS·FnGuide 재조회 후 새 기준일을 확보하지 못해 이전 검증값과 날짜를 유지하고 사유를 기록했습니다."
+    "이번 지연 실행에서 16:00 장중 가격·동일 경과시각 거래대금 분모를 복원하지 못했습니다. 동시 게시된 10월 13일 종가 보완스캔의 기존 값과 원래 날짜를 보존합니다.",
+    "이전 게시 시세는 KIS J 일별 자료를 23:19경 수집해 15:30 정규장으로 표시한 값입니다. 이 공급원은 장후 거래를 포함할 수 있어 정규장 시각은 추가 검증 보류이며, 이번 검증본으로 확정하지 않습니다."
   ],
   "priceMode": "close",
   "scanLabel": "장 마감 후 종가 보완스캔",
@@ -8299,5 +8297,493 @@
       }
     ],
     "disclosureCount": 455
+  },
+  "attemptedAt": "2026-10-14T00:50:35+09:00",
+  "lastAttemptAudit": {
+    "attemptedAt": "2026-10-14T00:31:38+09:00",
+    "slot": "15:00",
+    "requested": 42,
+    "dailyPricesCollected": 42,
+    "consensusUnknown": 19,
+    "status": "장중 시각·거래대금 검증 실패",
+    "sourceReview": {
+      "checkedAt": "2026-10-13T23:29:09+09:00",
+      "disclosuresScanned": 1017,
+      "newOrCorrectedFactsReviewed": 8,
+      "scope": "2026-10-09~2026-10-13 DART 원문; 기존 검증일 유지; 신규·정정 사건 중복 제거",
+      "unverifiedQuarterAllocations": false
+    }
+  },
+  "attemptCoverage": {
+    "rows": [
+      {
+        "ticker": "028670",
+        "name": "팬오션",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:30:16+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "005880",
+        "name": "대한해운",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:31:51+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "010140",
+        "name": "삼성중공업",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:31:38+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "042660",
+        "name": "한화오션",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:34:53+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "071970",
+        "name": "HD현대마린엔진",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:35:15+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "101970",
+        "name": "우양에이치씨",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:33:47+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "329180",
+        "name": "HD현대중공업",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:28:29+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "377480",
+        "name": "마음AI",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:48+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "348340",
+        "name": "뉴로메카",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:27:42+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "088340",
+        "name": "유라클",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:32:12+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "090470",
+        "name": "제이스로보틱스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:32:34+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "319400",
+        "name": "현대무벡스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:27:53+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "459510",
+        "name": "나우로보틱스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:34:56+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "477850",
+        "name": "마키나락스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:29:16+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "452450",
+        "name": "피아이이",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:32:19+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "003160",
+        "name": "디아이",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:31:12+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "009150",
+        "name": "삼성전기",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:31:26+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "010120",
+        "name": "LS ELECTRIC",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:31:37+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "025560",
+        "name": "미래산업",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:30:00+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "032580",
+        "name": "피델릭스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:30:11+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "042700",
+        "name": "한미반도체",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:34:53+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "064400",
+        "name": "LG씨엔에스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:35:41+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "066570",
+        "name": "LG전자",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:34:56+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "148780",
+        "name": "비큐AI",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:26+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "189330",
+        "name": "씨이랩",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:27:47+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "195870",
+        "name": "해성디에스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:27:18+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "204270",
+        "name": "제이앤티씨",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:27:24+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "253590",
+        "name": "네오셈",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:26:59+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "300080",
+        "name": "플리토",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:59+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "307950",
+        "name": "현대오토에버",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:26:33+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "323280",
+        "name": "태성",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:28:24+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "327260",
+        "name": "RF머트리얼즈",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:28:25+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "348350",
+        "name": "위드텍",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:27:46+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "373220",
+        "name": "LG에너지솔루션",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:37+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "394280",
+        "name": "오픈엣지테크놀로지",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:17+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "412350",
+        "name": "레이저쎌",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:26:33+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "490470",
+        "name": "세미파이브",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:30:24+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "950250",
+        "name": "테라뷰",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:47+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": null,
+        "consensusStatus": "KIS 및 증권사·FnGuide 대체 조회 후 사용 가능한 연간 전망 미확보",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "005930",
+        "name": "삼성전자",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:31:52+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "147760",
+        "name": "피엠티",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:25:25+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "417200",
+        "name": "LS머트리얼즈",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:26:42+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      },
+      {
+        "ticker": "064290",
+        "name": "인텍플러스",
+        "priceDate": "2026-10-13",
+        "priceAsOf": "2026-10-13T20:00:00+09:00",
+        "sourceFetchedAt": "2026-10-13T23:35:41+09:00",
+        "priceStatus": "일별 가격 확보·장중 시각 미복원",
+        "consensusDate": "2026-10-12",
+        "consensusStatus": "원문 기준일 보존·연간 전망; 분기 배분 없음",
+        "issueValidation": "시세 경과 30분 초과 및 예약 경과시각 거래대금 미복원"
+      }
+    ]
+  },
+  "marketTimeValidation": {
+    "status": "보류",
+    "regularCloseVerified": false,
+    "requestedSlot": "16:00",
+    "reason": "일별 장후 포함 공급원과 정규장·장중 시각 구분을 이번 실행에서 검증하지 못함"
   }
 }
