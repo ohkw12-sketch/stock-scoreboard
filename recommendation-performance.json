@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-10-13T23:34:56+09:00",
+  "generatedAt": "2026-10-14T00:02:55+09:00",
   "priceDate": "2026-10-13",
   "recordCount": 632,
-  "cohortCount": 154,
+  "cohortCount": 157,
   "rows": [
     {
       "ticker": "042510",
@@ -60115,14 +60115,15 @@
   "priceCollection": {
     "source": "추천 종목 Yahoo 공급자 수정주가",
     "requested": 454,
-    "status": "일부 누락",
+    "status": "저장 수정주가 재사용",
     "covered": 452,
     "missingTickers": [
       "044380",
       "072770"
     ],
     "priceDate": "2026-10-13",
-    "checkedAt": "2026-10-13T14:52:13.794585+00:00"
+    "checkedAt": "2026-10-13T14:52:13.794585+00:00",
+    "networkRequests": 0
   },
   "feedback": {
     "version": "feedback-1.0",
@@ -61061,6 +61062,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "bcb6944fd392064c5f87ac51b571bdb45a05363a5451ac14cbcd5fc6cef9bdef"
+  }
 }
