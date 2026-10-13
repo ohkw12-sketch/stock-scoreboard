@@ -1,10 +1,10 @@
 {
   "status": {
     "status": "정상",
-    "checked_at": "2026-10-08T16:10:53.444087+09:00",
+    "checked_at": "2026-10-13T23:34:10.978838+09:00",
     "failures": [],
-    "from": "2025-09-03",
-    "to": "2026-10-08",
+    "from": "2025-09-08",
+    "to": "2026-10-13",
     "excluded": [
       {
         "reason": "자회사 한세모빌리티 수주 목표만 제시; 매출·영업이익 미제공",
@@ -1726,10 +1726,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 604986000000.0,
-        "operating_profit": 153571000000.0,
-        "as_of": "2026-10-07",
-        "source": "외부 집계 컨센서스"
+        "sales": 602200000000.0,
+        "operating_profit": 148700000000.0,
+        "as_of": "2026-07-29",
+        "source": "개별 추정치"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2072,9 +2072,7 @@
         "sales": null,
         "operating_profit": null
       },
-      "tags": [
-        "NEW"
-      ],
+      "tags": [],
       "comparison_status": "컨센서스 기간·회계기준 확인 필요",
       "fetch_status": "정상"
     },
@@ -2565,7 +2563,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "200470",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 222500000000.0,
+        "operating_profit": 16800000000.0,
+        "as_of": "2026-10-12",
+        "source": "개별 추정치"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -3496,6 +3503,52 @@
       "fetch_status": "정상"
     },
     {
+      "ticker": "384470",
+      "name": "코어라인소프트",
+      "period": "2026",
+      "period_start": "2026-01-01",
+      "period_end": "2026-12-31",
+      "basis": "consolidated",
+      "amount_unit": "원",
+      "published_at": "2026-10-13",
+      "receipt": "20261013900671",
+      "is_correction": false,
+      "source": "OpenDART",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261013900671",
+      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "opm": {
+        "low": -136.11111111111111,
+        "high": -136.11111111111111,
+        "mid": -136.11111111111111
+      },
+      "sales": {
+        "low": 7200000000.0,
+        "high": 7200000000.0,
+        "mid": 7200000000.0
+      },
+      "operating_profit": {
+        "low": -9800000000.0,
+        "high": -9800000000.0,
+        "mid": -9800000000.0
+      },
+      "active": true,
+      "revision": 1,
+      "changes": {
+        "sales": "신규",
+        "operating_profit": "신규"
+      },
+      "consensus": null,
+      "guidance_vs_consensus_gap": {
+        "sales": null,
+        "operating_profit": null
+      },
+      "tags": [
+        "NEW"
+      ],
+      "comparison_status": "컨센서스 기간·회계기준 확인 필요",
+      "fetch_status": "정상"
+    },
+    {
       "ticker": "408920",
       "name": "메쎄이상",
       "period": "2026",
@@ -3757,8 +3810,8 @@
   ],
   "gap_threshold": 0.05,
   "coverage": {
-    "activeRows": 82,
-    "activeTickers": 79,
+    "activeRows": 83,
+    "activeTickers": 80,
     "comparableRows": 0
   },
   "policy": "가이던스와 외부 컨센서스를 함께 표시. 같은 종목·기간·항목에서 최신 컨센서스와 가이던스 중 발표일이 더 최신인 값을 사용하고 같은 날이면 가이던스를 우선. 날짜·증권사 수 점수·가중치 없음. 가치 원점수에는 미반영."

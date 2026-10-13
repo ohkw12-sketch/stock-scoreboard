@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "meta": {
     "title": "오선 국장 주요뉴스",
-    "status": "SaveTicker 오선 국장·매크로 시황 갱신",
+    "status": "갱신 실패·이전 자료 유지",
     "updatedKST": "2026-10-08 08:31",
     "range": "10.08 03:00–10.08 08:31",
     "sourceUrl": "https://saveticker.com/news",
@@ -145,7 +145,8 @@
     }
   ],
   "collection": {
-    "status": "정상",
-    "checkedAtKST": "2026-10-08T08:31:16+09:00"
+    "status": "실패·이전유지",
+    "checkedAtKST": "2026-10-13T23:51:44+09:00",
+    "reason": "HTTPError"
   }
 }
