@@ -1,225 +1,74 @@
 {
-  "runId": "4359895fefd2d92bde1dabe9",
-  "attemptedAt": "2026-10-14T00:21:34+09:00",
+  "runId": "21c93bc6ce41165c86cedba0",
+  "attemptedAt": "2026-10-15T08:29:37+09:00",
   "sourceDate": "2026-10-13",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9"
+      "runId": "21c93bc6ce41165c86cedba0"
     },
     "p1": {
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9",
+      "runId": "21c93bc6ce41165c86cedba0",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9"
+      "runId": "21c93bc6ce41165c86cedba0"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9",
-      "evidenceSnapshotId": "98a007b7e7df6dbbab40378102782a4c01d4962309ead618ae3fd4c2cef4609d"
+      "runId": "21c93bc6ce41165c86cedba0",
+      "evidenceSnapshotId": "04bd9e936cddd0ef782e1e627890cedea1a1b72e0a1feb07246be32cd5700ad1"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9",
-      "evidenceSnapshotId": "98a007b7e7df6dbbab40378102782a4c01d4962309ead618ae3fd4c2cef4609d"
+      "runId": "21c93bc6ce41165c86cedba0",
+      "evidenceSnapshotId": "04bd9e936cddd0ef782e1e627890cedea1a1b72e0a1feb07246be32cd5700ad1"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9",
-      "evidenceSnapshotId": "98a007b7e7df6dbbab40378102782a4c01d4962309ead618ae3fd4c2cef4609d"
+      "runId": "21c93bc6ce41165c86cedba0",
+      "evidenceSnapshotId": "04bd9e936cddd0ef782e1e627890cedea1a1b72e0a1feb07246be32cd5700ad1"
     },
     "combined": {
-      "generatedAt": "2026-10-14T00:21:34+09:00",
-      "snapshotId": "6c742f38af9b977f14568293f0339beb5887d0f2e3683faf50759792bc899230",
+      "generatedAt": "2026-10-15T08:29:37+09:00",
+      "snapshotId": "fe3f07c78333080e7785b19279cc43126fd28038dfe269d59d5cf2dafe0bbd60",
       "sourceCutoff": "2026-10-13",
       "mode": "저장자료 재계산",
       "engineVersion": "787f76181bd15741",
-      "runId": "4359895fefd2d92bde1dabe9",
-      "evidenceSnapshotId": "98a007b7e7df6dbbab40378102782a4c01d4962309ead618ae3fd4c2cef4609d",
+      "runId": "21c93bc6ce41165c86cedba0",
+      "evidenceSnapshotId": "04bd9e936cddd0ef782e1e627890cedea1a1b72e0a1feb07246be32cd5700ad1",
       "status": "계산완료"
     }
-  },
-  "sourceAudit": {
-    "priceDate": "2026-10-13",
-    "requested": 2761,
-    "rawPricesCollected": 2761,
-    "analysisCount": 2757,
-    "excludedAbnormalStocks": [
-      {
-        "ticker": "001470",
-        "name": "삼부토건",
-        "date": "2026-09-01",
-        "retAdjusted": 15.772334293948127
-      },
-      {
-        "ticker": "005110",
-        "name": "한창",
-        "date": "2026-10-02",
-        "retAdjusted": -0.9106858054226475
-      },
-      {
-        "ticker": "005110",
-        "name": "한창",
-        "date": "2026-10-13",
-        "retAdjusted": -0.6944444444444444
-      },
-      {
-        "ticker": "066790",
-        "name": "씨씨에스",
-        "date": "2026-08-04",
-        "retAdjusted": 0.4768921634293368
-      },
-      {
-        "ticker": "312610",
-        "name": "에이에프더블류",
-        "date": "2026-09-29",
-        "retAdjusted": -0.4078947368421053
-      }
-    ],
-    "consensusDatesKnown": 484,
-    "priceAndConsensusDatesSeparate": true,
-    "industryStatistics": {
-      "status": "부분수집",
-      "source": "산업통상부 공식 본문 대체 검증",
-      "checkedAt": "2026-10-14T00:21:31+09:00",
-      "activeCount": 5,
-      "latestPeriod": "2026-09",
-      "missingProducts": [
-        "바이오헬스(사용자 제외 대상)"
-      ],
-      "alternateRecoveredURL": "https://www.motir.go.kr/kor/article/ATCL3f49a5a8c/172254/view"
-    },
-    "investorFlows": {
-      "status": "부분수집",
-      "asOfDate": "2026-10-13",
-      "requestedCalls": 937,
-      "successfulCalls": 929,
-      "failures": [
-        {
-          "ticker": "266690",
-          "error": "ValueError",
-          "name": "덕산넵코어스",
-          "listingDate": "2026-09-30",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "486510",
-          "error": "ValueError",
-          "name": "글로벌테크놀로지",
-          "listingDate": "2026-09-29",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "468670",
-          "error": "ValueError",
-          "name": "브릴스",
-          "listingDate": "2026-10-01",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "0035S0",
-          "error": "ValueError",
-          "name": "빅웨이브로보틱스",
-          "listingDate": "2026-09-29",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "0161M0",
-          "error": "ValueError",
-          "name": "네오사피엔스",
-          "listingDate": "2026-09-21",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "0010S0",
-          "error": "ValueError",
-          "name": "와이즈플래닛컴퍼니",
-          "listingDate": "2026-09-23",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "0200G0",
-          "error": "ValueError",
-          "name": "한국제17호스팩",
-          "listingDate": "2026-09-22",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        },
-        {
-          "ticker": "0209J0",
-          "error": "ValueError",
-          "name": "KB제34호스팩",
-          "listingDate": "2026-09-22",
-          "priceDate": "2026-10-13",
-          "reason": "신규상장 종목의 최근 20거래일 수급 원자료 부족; KRX와 KIS 재시도 후 중립 처리"
-        }
-      ]
-    },
-    "issueAttempt": {
-      "attemptedAt": "2026-10-14T00:31:38+09:00",
-      "slot": "15:00",
-      "requested": 42,
-      "dailyPricesCollected": 42,
-      "consensusUnknown": 19,
-      "status": "장중 시각·거래대금 검증 실패",
-      "sourceReview": {
-        "checkedAt": "2026-10-13T23:29:09+09:00",
-        "disclosuresScanned": 1017,
-        "newOrCorrectedFactsReviewed": 8,
-        "scope": "2026-10-09~2026-10-13 DART 원문; 기존 검증일 유지; 신규·정정 사건 중복 제거",
-        "unverifiedQuarterAllocations": false
-      }
-    },
-    "constructionAndBioExcluded": true,
-    "latestIssueSourceDatePreserved": "2026-10-13",
-    "absoluteLegalIndustryExclusions": [
-      {
-        "ticker": "004800",
-        "name": "효성",
-        "reason": "KIND 실제 업종·회사 유형에 따른 금융·지주 절대 저평가 제외",
-        "officialIndustry": "기타 금융업",
-        "source": "KIND 상장법인 목록",
-        "url": "https://kind.krx.co.kr/corpgeneral/corpList.do?method=searchCorpList&currentPageSize=3000&pageIndex=1&orderMode=3&orderStat=D&searchType=13"
-      }
-    ],
-    "preservedPriorCohorts": 157
   }
 }
