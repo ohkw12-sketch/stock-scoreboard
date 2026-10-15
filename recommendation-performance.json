@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-10-15T16:44:41+09:00",
+  "generatedAt": "2026-10-15T16:51:37+09:00",
   "priceDate": "2026-10-15",
-  "recordCount": 633,
-  "cohortCount": 163,
+  "recordCount": 634,
+  "cohortCount": 166,
   "rows": [
     {
       "ticker": "042510",
@@ -12761,6 +12761,192 @@
       },
       "status": "추적 중",
       "elapsedSessions": 13
+    },
+    {
+      "ticker": "298040",
+      "name": "효성중공업",
+      "group": "가치성장",
+      "section": "valueGrowth",
+      "rank": 8,
+      "sector": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
+      "cohortId": "8716b8fc77ddd4ebcd37c4c50d941b60b149ee1592198185ac02368022270814",
+      "recommendationDate": "2026-10-15",
+      "publishedAt": "2026-10-15T16:51:37+09:00",
+      "recordBasis": "사이트 공개 확인",
+      "sourceCommit": null,
+      "engineVersion": "787f76181bd15741",
+      "ruleVersion": "value-growth-split-4.0",
+      "features": [
+        "가치성장",
+        "가치성장:무감점",
+        "가치성장:판정 불가"
+      ],
+      "sourceRow": {
+        "ticker": "298040",
+        "name": "효성중공업",
+        "sector": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
+        "growthRate": 34.5,
+        "growthBasis": "2027E/2026E 매출",
+        "growthComparable": true,
+        "quarterlyGrowthRate": 24.2,
+        "quarterlyGrowthBasis": "2026년 2Q/1Q 매출",
+        "q1OperatingMarginPct": 11.2,
+        "q2OperatingMarginPct": 15.7,
+        "operatingMarginChangePp": 4.5,
+        "operatingMarginAcceleration": "개선",
+        "fundamentalScore": 88.4,
+        "fundamentalBasis": "당해연도 예상 영업이익률·1Q/2Q 실제 흑자; 재무건전성 종합점수 아님",
+        "quarterlySales": 1686977905843.0,
+        "reportedFourQuarterComplete": true,
+        "futureFundamentalComplete": true,
+        "averageQuarterlySales": 1832500000000.0,
+        "averageQuarterlyOperatingMarginPct": 16.098226466575717,
+        "fundamentalSource": "증권사 리포트",
+        "fundamentalYear": 2026,
+        "seasonalityFallback": false,
+        "confidence": "보통",
+        "evidenceCount": 3,
+        "confidenceScore": 53.0,
+        "expectationClusterCount": 3,
+        "priceReflection": "판정 불가",
+        "score": 64.33,
+        "averageTurnover20": 128345656350.0,
+        "financialSummary": "2026E 분기평균 매출 18,325억원 · 2026E 영업이익률 16.1% · 1Q→2Q 영업이익률 11.2%→15.7% (+4.5%p) · 증권사 리포트 · 20일 평균 거래대금 1,283억원 · 매출 성장 +34.5% (2027E/2026E 매출)",
+        "leadingIndicatorScore": 67.8,
+        "leadingIndicatorSummary": "1Q→2Q 영업이익률 11.2%→15.7% (+4.5%p) · 적용 가능한 공식 월별 산업지표 없음 · 확인된 생산능력 변화 없음",
+        "marketConfirmationScore": 24.0,
+        "marketConfirmationSummary": "외국인·기관 합계 5일 -2,111억원 · 20일 -5,345억원 · 순매도 · 업종대비 20일 -26.0%p · 최근 5일 거래량 2.03배 · 20일 고점 미돌파",
+        "industryIndicatorSummary": "적용 가능한 공식 월별 산업지표 없음",
+        "capacitySignalSummary": "확인된 생산능력 변화 없음",
+        "investorFlow": {
+          "available": true,
+          "score": 10,
+          "label": "순매도",
+          "summary": "외국인·기관 합계 5일 -2,111억원 · 20일 -5,345억원 · 순매도",
+          "foreignNet5": -162817000000.0,
+          "institutionNet5": -48327000000.0,
+          "foreignNet20": -359443000000.0,
+          "institutionNet20": -175093000000.0,
+          "netFlowToTurnover20Pct": -20.82,
+          "asOfDate": "2026-10-15"
+        },
+        "priceVolumeConfirmation": {
+          "ticker": "298040",
+          "sector": "전동기, 발전기 및 전기 변환 · 공급 · 제어 장치 제조업",
+          "return20Pct": -36.05466012613875,
+          "volumeMultiple5": 2.03,
+          "breakout20": false,
+          "relativeStrength20Pct": -25.97,
+          "priceVolumeScore": 45
+        },
+        "evidenceContents": [
+          {
+            "kind": "컨센서스",
+            "content": "외부 추정치는 2027.12E에 매출 +34.5%·영업이익 +50%을 예상합니다.",
+            "source": "증권사 리포트·공개 집계 컨센서스 · 2026-08-10",
+            "url": "https://stock.naver.com/research/company/93497"
+          },
+          {
+            "kind": "수주",
+            "content": "765kV Transformer Purchase Agreement 계약을 체결했습니다. 계약금액은 2,201억원으로 최근 매출의 3.7%, 계약기간 기준 연환산 1.5%이며 계약은 2029-02-28까지 진행됩니다.",
+            "source": "DART · 2026-09-15",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915800147"
+          },
+          {
+            "kind": "수주",
+            "content": "345kV Transformer Purchase Agreement 계약을 체결했습니다. 계약금액은 1,665억원으로 최근 매출의 2.8%, 계약기간 기준 연환산 1.4%이며 계약은 2028-08-31까지 진행됩니다.",
+            "source": "DART · 2026-09-15",
+            "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260915800149"
+          }
+        ],
+        "scoreComponents": {
+          "eventScale": 69.0,
+          "salesPersistence": 61.3,
+          "profitConversion": 88.4,
+          "marginAcceleration": 85.6,
+          "industryIndicator": 50.0,
+          "capacitySignal": 50.0,
+          "revenueVisibility": 72.2,
+          "evidenceConfidence": 53.0,
+          "marketConfirmation": 24.0,
+          "financialSafety": 100
+        },
+        "stage": "근거 확대",
+        "firstPublished": "2026-08-10",
+        "lastVerified": "2026-10-15T16:25:00+09:00",
+        "sourceDate": "2026-10-15",
+        "oldEvidenceCount": 0,
+        "valueGrowthScore": 64.33,
+        "absoluteValueGrowthScore": 64.33,
+        "valueScore": 60.4,
+        "growthScore": 68.27,
+        "normalizedPOP": 14.4,
+        "normalizedPremiumPct": null,
+        "valueConfidence": "C",
+        "riskPenalty": 0,
+        "riskWarnings": [],
+        "valueBasis": "2026E 절대 P/OP 14.4배 · 섹터 가치비교 제외",
+        "fundamentalSourceDate": "2026-08-10",
+        "sectorAttentionUsed": false,
+        "currentPrice": 1825000.0,
+        "fiveDayReturnPct": -29.48,
+        "ma20DistancePct": -31.13,
+        "ma20SlopePct": -1.9,
+        "nonOverheated": false,
+        "operatingProfitDeclineStreak": 0,
+        "nextYearOperatingProfitGrowthPct": 50.0,
+        "latestQuarterOperatingMarginPct": 15.7,
+        "fourQuarterAverageOperatingMarginPct": 13.4,
+        "currentHalfAverageOperatingMarginPct": 13.4,
+        "currentQuarterAnnualizedPOP": 14.4,
+        "sectorNormalizedPOP": null,
+        "consensusOnlyEvidence": false,
+        "seasonalityEstimateOnly": false,
+        "rank": 8,
+        "alsoInterestTop20": false,
+        "priceDate": "2026-10-15",
+        "priceSourceFetchedAt": "2026-10-15T16:02:39+09:00",
+        "priceSession": "공급자 일별 스냅샷·장후 포함 가능"
+      },
+      "entryDate": "2026-10-15",
+      "entryPrice": 1825000.0,
+      "latestDate": "2026-10-15",
+      "currentReturnPct": 0.0,
+      "maxDrawdownPct": 0,
+      "horizons": {
+        "1": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "5": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "20": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "60": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        },
+        "120": {
+          "status": "기간 미도래",
+          "returnPct": null,
+          "excessPct": null,
+          "exitDate": null
+        }
+      },
+      "status": "추적 중",
+      "elapsedSessions": 0
     },
     {
       "ticker": "001680",
@@ -60123,10 +60309,10 @@
     {
       "group": "가치성장",
       "horizon": 1,
-      "total": 46,
+      "total": 47,
       "evaluated": 46,
       "uniqueStocks": 46,
-      "waitingOrMissing": 0,
+      "waitingOrMissing": 1,
       "meanReturnPct": -0.5533,
       "medianReturnPct": -0.6959,
       "winRatePct": 28.26
@@ -60134,10 +60320,10 @@
     {
       "group": "가치성장",
       "horizon": 5,
-      "total": 46,
+      "total": 47,
       "evaluated": 45,
       "uniqueStocks": 45,
-      "waitingOrMissing": 1,
+      "waitingOrMissing": 2,
       "meanReturnPct": 2.8507,
       "medianReturnPct": -0.2658,
       "winRatePct": 48.89
@@ -60145,10 +60331,10 @@
     {
       "group": "가치성장",
       "horizon": 20,
-      "total": 46,
+      "total": 47,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 46,
+      "waitingOrMissing": 47,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -60156,10 +60342,10 @@
     {
       "group": "가치성장",
       "horizon": 60,
-      "total": 46,
+      "total": 47,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 46,
+      "waitingOrMissing": 47,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
@@ -60167,10 +60353,10 @@
     {
       "group": "가치성장",
       "horizon": 120,
-      "total": 46,
+      "total": 47,
       "evaluated": 0,
       "uniqueStocks": 0,
-      "waitingOrMissing": 46,
+      "waitingOrMissing": 47,
       "meanReturnPct": null,
       "medianReturnPct": null,
       "winRatePct": null
