@@ -51,6 +51,15 @@ class GrowthTest(unittest.TestCase):
         self.assertEqual(board['rows'], [])
         self.assertEqual(board['sectors'], [])
 
+    def test_public_growth_excludes_construction_and_bio_by_official_industry(self):
+        p = prices(3)
+        p.loc[p.ticker.eq('000001'), ['sector', 'listing_industry']] = ['반도체', '의약품 제조업']
+        p.loc[p.ticker.eq('000002'), ['sector', 'listing_industry']] = ['산업재', '종합 건설업']
+        p.loc[p.ticker.eq('000003'), ['sector', 'listing_industry']] = ['반도체', '전자부품 제조업']
+        events = [event(ticker=f'{i:06d}', identity=str(i), published='2026-09-03') for i in range(1, 4)]
+        board = build_growth_board(p, pd.DataFrame(), events, {}, NOW)
+        self.assertEqual([row['ticker'] for row in board['rows']], ['000003'])
+
     def test_old_unreacted_event_survives(self):
         board = build_growth_board(prices(), pd.DataFrame(), [event()], {}, NOW)
         self.assertEqual(len(board['rows']),1)

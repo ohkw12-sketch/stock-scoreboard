@@ -26,6 +26,7 @@ from bs4 import BeautifulSoup
 
 from dart_fundamentals import _api_key, _request_bytes, _request_json
 from future_fundamentals import attach_future_fundamentals
+from sector_exclusions import attach_listing_metadata, public_sector_exclusion_mask
 
 KST = timezone(timedelta(hours=9))
 EVENT_NAMES = re.compile(r'단일판매|공급계약|신규시설투자|영업.*전망|장래사업|기업설명회|투자판단')
@@ -1096,6 +1097,10 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
     candidate_limit = int(config.get('growth_candidate_count', 50))
     excluded_tickers = {str(value).zfill(6) for value in config.get('growth_excluded_tickers', [])}
     risk_excluded = set()
+    prices = attach_listing_metadata(prices, config)
+    public_sector_excluded = set(
+        prices.loc[public_sector_exclusion_mask(prices), 'ticker'].astype(str).str.zfill(6)
+    )
     latest = prices.sort_values('date').groupby('ticker').tail(1).set_index('ticker')
     if 'value' in prices:
         turnover20 = prices.sort_values('date').groupby('ticker').tail(20).groupby('ticker')['value'].mean()
@@ -1119,7 +1124,7 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
             continue
         stock = latest.loc[ticker]
         restriction = market_restriction(stock)
-        if ticker in excluded_tickers or restriction:
+        if ticker in excluded_tickers or ticker in public_sector_excluded or restriction:
             risk_excluded.add(ticker)
             continue
         corroboration_kinds = {'증설', '생산능력', '자본배분'}
@@ -1293,7 +1298,7 @@ def build_growth_board(prices, fundamentals, events, source_status, now=None,
             if pd.Timestamp(stock['date']) != response.latest:
                 continue
             restriction = market_restriction(stock)
-            if ticker in excluded_tickers or restriction:
+            if ticker in excluded_tickers or ticker in public_sector_excluded or restriction:
                 risk_excluded.add(ticker)
                 continue
             profile = fundamental_profile(financials.get(ticker, {}))

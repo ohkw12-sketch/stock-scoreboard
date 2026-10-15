@@ -1,10 +1,10 @@
 {
   "status": {
     "status": "정상",
-    "checked_at": "2026-10-15T16:04:44.095166+09:00",
+    "checked_at": "2026-10-16T08:07:27.490602+09:00",
     "failures": [],
-    "from": "2025-09-10",
-    "to": "2026-10-15",
+    "from": "2025-09-11",
+    "to": "2026-10-16",
     "excluded": [
       {
         "reason": "자회사 한세모빌리티 수주 목표만 제시; 매출·영업이익 미제공",
@@ -603,10 +603,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 12766940000000.0,
-        "operating_profit": 1360645000000.0,
-        "as_of": "2026-10-12",
-        "source": "외부 집계 컨센서스"
+        "sales": null,
+        "operating_profit": 1307300000000.0,
+        "as_of": "2026-02-02",
+        "source": "개별 추정치"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1735,10 +1735,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 597714000000.0,
-        "operating_profit": 150086000000.0,
-        "as_of": "2026-10-12",
-        "source": "외부 집계 컨센서스"
+        "sales": 602200000000.0,
+        "operating_profit": 148700000000.0,
+        "as_of": "2026-07-29",
+        "source": "개별 추정치"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3241,16 +3241,7 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": {
-        "ticker": "307950",
-        "period": "2026",
-        "basis": null,
-        "amount_unit": "원",
-        "sales": 4840420000000.0,
-        "operating_profit": 282320000000.0,
-        "as_of": "2026-10-12",
-        "source": "외부 집계 컨센서스"
-      },
+      "consensus": null,
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -3381,10 +3372,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 24728053000000.0,
-        "operating_profit": 4045526000000.0,
-        "as_of": "2026-10-12",
-        "source": "외부 집계 컨센서스"
+        "sales": null,
+        "operating_profit": 3315800000000.0,
+        "as_of": "2026-02-10",
+        "source": "개별 추정치"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,

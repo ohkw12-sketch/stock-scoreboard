@@ -189,6 +189,24 @@ class RotationEngineTest(unittest.TestCase):
         self.assertTrue(self.p2["dataStatus"]["forwardEstimateUsed"])
         self.assertFalse(self.p2["dataStatus"]["priorYearAbsoluteValuesUsed"])
 
+    def test_absolute_value_excludes_official_finance_and_public_banned_sectors(self):
+        source_rows = self.p2["_absoluteRows"][:3]
+        self.assertEqual(len(source_rows), 3)
+        tickers = [row["ticker"] for row in source_rows]
+        frame = self.fundamentals[self.fundamentals["ticker"].isin(tickers)].copy()
+        price_rows = self.prices[self.prices["ticker"].isin(tickers)].copy()
+        labels = {
+            tickers[0]: ("효성", "전력기기", "기타 금융업"),
+            tickers[1]: ("에스티팜", "반도체", "의약품 제조업"),
+            tickers[2]: ("허용기업", "반도체", "전자부품 제조업"),
+        }
+        for ticker, (name, sector, industry) in labels.items():
+            mask = frame["ticker"].eq(ticker)
+            frame.loc[mask, ["name", "sector", "listing_industry"]] = [name, sector, industry]
+        board = build_value_board(frame, self.config, {"status": "정상"}, price_rows)
+        self.assertEqual({row["name"] for row in board["_absoluteRows"]}, {"허용기업"})
+        self.assertGreaterEqual(board["dataStatus"]["publicSectorExcludedCount"], 1)
+
     def test_value_engine_applies_current_year_sales_and_margin_prerequisites(self):
         def fundamental(ticker, name, quarterly_sales, quarterly_margins):
             sales = list(quarterly_sales)

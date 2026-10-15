@@ -28,6 +28,11 @@ from kis_consensus import KisConsensusClient, collect_kis_consensus
 from rotation_rules import build_rotation, evidence_from_sources, improving_financial_watch, select_watch_candidates
 from reported_financials import add_four_quarter_metrics
 from future_fundamentals import attach_future_fundamentals
+from sector_exclusions import (
+    attach_listing_metadata,
+    finance_holding_masks,
+    public_sector_exclusion_mask,
+)
 
 
 ROOT = Path(__file__).resolve().parent
@@ -1430,7 +1435,9 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         data["normalized_pop"].replace([np.inf, -np.inf], np.nan).notna()
         & data["normalized_pop"].between(0.1, 300)
     )
-    valid = sales_qualified & margin_qualified & valid_multiple
+    public_sector_excluded = public_sector_exclusion_mask(data)
+    data["public_sector_excluded"] = public_sector_excluded
+    valid = sales_qualified & margin_qualified & valid_multiple & ~public_sector_excluded
     minimum_peers = int(config.get("minimum_value_sector_peers", 2))
     stats = data[valid].groupby("sector")["normalized_pop"].agg(["median", "count"])
     data["sector_normalized_pop"] = data["sector"].map(stats["median"] if not stats.empty else {})
@@ -1461,11 +1468,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
     # Missing consensus/guidance is not a penalty.  The source grade is shown
     # for audit, while a complete seasonal estimate receives the same weight.
     candidates["confidence_multiplier"] = 1.0
-    holding_like = (
-        candidates["name"].astype(str).str.contains("홀딩스|지주", regex=True, na=False)
-        | candidates["sector"].astype(str).str.contains("회사 본부|경영 컨설팅", regex=True, na=False)
-    )
-    finance_like = candidates["sector"].astype(str).str.contains("금융", regex=False, na=False)
+    finance_like, holding_like = finance_holding_masks(candidates)
     candidates["structure_multiplier"] = np.select(
         [finance_like, holding_like], [0.75, 0.80], default=1.00,
     )
@@ -1503,15 +1506,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         + absolute_candidates["normalization_quality"] * (30.0 / 65.0)
     )
     absolute_candidates["confidence_multiplier"] = 1.0
-    absolute_holding_like = (
-        absolute_candidates["name"].astype(str).str.contains("홀딩스|지주", regex=True, na=False)
-        | absolute_candidates["sector"].astype(str).str.contains(
-            "회사 본부|경영 컨설팅", regex=True, na=False,
-        )
-    )
-    absolute_finance_like = absolute_candidates["sector"].astype(str).str.contains(
-        "금융", regex=False, na=False,
-    )
+    absolute_finance_like, absolute_holding_like = finance_holding_masks(absolute_candidates)
     absolute_candidates["structure_multiplier"] = np.select(
         [absolute_finance_like, absolute_holding_like], [0.75, 0.80], default=1.00,
     )
@@ -1613,6 +1608,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
         "priceDate": str(item.price_date)[:10] if pd.notna(item.price_date) else None,
         "reason": "가치 조건 통과" if item.ticker in score_map else (
             "가격·시가총액 없음" if not np.isfinite(item.market_cap) else
+            "건설·바이오/제약 제외 업종" if item.public_sector_excluded else
             "당해연도 전망 또는 계절성 추정 불가" if not item.normalized_complete else
             f"당해연도 분기평균 매출액 {minimum_average_quarterly_sales / 100_000_000:,.0f}억원 미만"
             if item.average_quarterly_sales < minimum_average_quarterly_sales else
@@ -1661,6 +1657,7 @@ def _build_current_value_board(data: pd.DataFrame, config: dict, status: dict) -
             "absoluteValueExcludedFinanceHoldingCount": int(
                 (absolute_finance_like | absolute_holding_like).sum()
             ),
+            "publicSectorExcludedCount": int(public_sector_excluded.sum()),
             "minimumAverageQuarterlySales": minimum_average_quarterly_sales,
             "minimumAverageQuarterlyOperatingMarginPct": minimum_average_quarterly_op_margin,
             "averageQuarterlySalesQualifiedCount": int(sales_qualified.sum()),
@@ -1689,7 +1686,7 @@ def build_value_board(fundamentals: pd.DataFrame, config: dict, status: dict,
     if fundamentals.empty:
         return {"status": f"가치 엔진 미갱신: {status.get('problem', '자료 없음')}",
                 "rows": [], "_allRows": [], "_eligibility": [], "dataStatus": status}
-    data = fundamentals.copy()
+    data = attach_listing_metadata(fundamentals, config)
     numeric_columns = (
         "sales_1y_growth", "op_1y_growth", "sales_current", "sales_previous", "op_current", "op_previous",
         "sales_quarter_current", "sales_quarter_previous", "op_quarter_current", "op_quarter_previous",
