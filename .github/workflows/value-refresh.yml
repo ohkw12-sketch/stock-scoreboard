@@ -17,5 +17,5 @@ jobs:
     uses: ./.github/workflows/cloud-refresh.yml
     with:
       mode: ${{ inputs.mode }}
-      slot: auto
+      slot: full
     secrets: inherit

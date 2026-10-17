@@ -1,12 +1,13 @@
 """Trusted scheduling, verification and promotion around the AI evidence collector."""
 import argparse
+import copy
 import json
 import os
 import subprocess
 import sys
 import time
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 
 from growth_discovery import KST
@@ -24,6 +25,9 @@ def run(*args):
 
 
 def slot_for(schedule, requested, now):
+    if requested == 'full':
+        # A manual full refresh must never become the 10:30 issue-only scan.
+        return '08:00' if now.astimezone(KST).hour < 9 else '15:00'
     if requested in ('08:00', '10:30', '15:00'):
         return requested
     mapping = {'0 23 * * 0-4': '08:00', '30 1 * * 1-5': '10:30', '0 6 * * 1-5': '15:00'}
@@ -47,17 +51,53 @@ def verify():
     print(json.dumps(result))
 
 
+def validate_review(review, slot, now):
+    def recent(value):
+        try:
+            checked = datetime.fromisoformat(value)
+            return checked.tzinfo is not None and timedelta(0) <= now - checked <= timedelta(minutes=90)
+        except (TypeError, ValueError):
+            return False
+    if review.get('slot') != slot or not recent(review.get('checkedAt')):
+        raise RuntimeError('Current-slot AI review report is missing or stale')
+    notice = review.get('krxNotice', {})
+    from urllib.parse import urlparse
+    host = urlparse(str(notice.get('url', ''))).hostname or ''
+    if (notice.get('status') != 'open' or not recent(notice.get('checkedAt'))
+            or not (host == 'krx.co.kr' or host.endswith('.krx.co.kr'))):
+        raise RuntimeError('Current official KRX closure-notice review is required')
+
+
+def retain_holding_inputs(previous, candidate):
+    before = previous.get('p3', {})
+    after = candidate.get('p3', {})
+    identity = lambda row: row.get('ticker') or row.get('name')
+    old_rows = {identity(row): row for row in before.get('rows', [])}
+    new_rows = {identity(row): row for row in after.get('rows', [])}
+    if old_rows.keys() != new_rows.keys():
+        raise RuntimeError('Automatic refresh changed the holdings roster')
+    for key, row in new_rows.items():
+        for field in ('qty', 'avg', 'judgment', 'action', 'fairRange', 'holdingInput', 'previousAssessment'):
+            if field in old_rows[key]:
+                row[field] = copy.deepcopy(old_rows[key][field])
+    if 'assessments' in before:
+        after['assessments'] = copy.deepcopy(before['assessments'])
+    return candidate
+
+
 def build(slot):
     review = read_json(ROOT/'test_output/cloud-review.json', {})
-    today = str(datetime.now(KST).date())
-    if review.get('slot') != slot or not str(review.get('checkedAt', '')).startswith(today):
-        raise RuntimeError('Current-slot AI review report is missing')
+    now = datetime.now(KST)
+    if not trading_day(now):
+        raise RuntimeError('KRX closed: no collection or publication')
+    validate_review(review, slot, now)
     # Collector may only write evidence and candidates, never source or public boards.
     subprocess.run(['git', 'diff', '--exit-code', 'HEAD', '--', '.'], cwd=ROOT, check=True)
     unexpected = subprocess.check_output(['git', 'ls-files', '--others', '--exclude-standard'], cwd=ROOT, text=True)
     if unexpected.strip():
         raise RuntimeError('Unexpected collector files outside ignored evidence/output directories')
-    if slot == '08:00':
+    previous = read_json(ROOT/'data.json', {})
+    if slot != '10:30':
         try:
             run('youtube_refresh.py', '--force')
             candidate = ROOT/'test_output/youtube-market.test.json'
@@ -71,11 +111,17 @@ def build(slot):
             json_write(ROOT/'youtube-market.json', prior)
     if slot != '10:30':
         run('refresh_forecasts.py')
-        run('refresh_all.py', '--config', 'config.kis.example.json', '--issue-slot', slot)
+        run('refresh_all.py', '--config', 'config.kis.example.json', '--full-refresh', '--issue-slot', slot)
+        candidate = ROOT/'test_output/data.test.json'
+        json_write(candidate, retain_holding_inputs(previous, read_json(candidate, {})))
         run('promote_sections.py', '--sections', 'p1', 'p11', 'p2', 'p3', 'meta',
             '--youtube', '--research', '--allow-partial')
         run('refresh_forecasts.py', '--publish-only')
-    run('issue_spread.py', '--slot', slot, '--promote')
+        status = ROOT/'test_output/refresh-status.test.json'
+        if status.exists():
+            json_write(ROOT/'refresh-status.json', read_json(status))
+    mode = 'premarket' if datetime.now(KST).hour < 9 else 'close' if datetime.now(KST).hour >= 20 else 'intraday'
+    run('issue_spread.py', '--slot', slot, '--mode', mode, '--promote')
     sampro = ROOT/'test_output/sections/sampro-market.json'
     if sampro.exists():
         try:

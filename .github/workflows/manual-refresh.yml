@@ -1,15 +1,9 @@
-name: 주식평가 수동 실행
+name: 모바일·PC 전체 갱신
 
-run-name: PC·모바일 실행 · ${{ inputs.slot || 'auto' }}
+run-name: 주식평가창 전체 조사·갱신·배포
 
 on:
   workflow_dispatch:
-    inputs:
-      slot:
-        description: '실행 단계 (auto는 현재 한국시간에 맞춤)'
-        type: choice
-        options: [auto, '08:00', '10:30', '15:00']
-        default: auto
 
 permissions:
   contents: write
@@ -19,5 +13,5 @@ jobs:
     uses: ./.github/workflows/cloud-refresh.yml
     with:
       mode: refresh
-      slot: ${{ inputs.slot || 'auto' }}
+      slot: full
     secrets: inherit
