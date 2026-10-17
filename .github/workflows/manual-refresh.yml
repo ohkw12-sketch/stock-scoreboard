@@ -1,6 +1,6 @@
-name: 모바일 주식평가 실행
+name: 주식평가 수동 실행
 
-run-name: 모바일 실행 · ${{ inputs.slot || 'auto' }}
+run-name: PC·모바일 실행 · ${{ inputs.slot || 'auto' }}
 
 on:
   workflow_dispatch:
