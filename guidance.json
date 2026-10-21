@@ -1,10 +1,10 @@
 {
   "status": {
     "status": "정상",
-    "checked_at": "2026-10-16T08:07:27.490602+09:00",
+    "checked_at": "2026-10-21T16:26:52.545348+09:00",
     "failures": [],
-    "from": "2025-09-11",
-    "to": "2026-10-16",
+    "from": "2025-09-16",
+    "to": "2026-10-21",
     "excluded": [
       {
         "reason": "자회사 한세모빌리티 수주 목표만 제시; 매출·영업이익 미제공",
@@ -149,10 +149,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 27238500000000.0,
-        "operating_profit": 833600000000.0,
-        "as_of": "2026-07-20",
-        "source": "개별 추정치"
+        "sales": 26935086000000.0,
+        "operating_profit": 863086000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -238,10 +238,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 3520850000000.0,
-        "operating_profit": 180000000000.0,
-        "as_of": "2026-08-14",
-        "source": "유효 컨센서스"
+        "sales": 3467919999999.9995,
+        "operating_profit": 169800000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -291,10 +291,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 3100000000000.0,
-        "operating_profit": 120000000000.0,
-        "as_of": "2026-05-28",
-        "source": "개별 추정치"
+        "sales": 2926800000000.0,
+        "operating_profit": 131300000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -339,7 +339,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "004090",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 818400000000.0,
+        "operating_profit": 27300000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -388,10 +397,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 2477600000000.0,
-        "operating_profit": 178400000000.0,
-        "as_of": "2026-10-06",
-        "source": "개별 추정치"
+        "sales": 2498616500000.0,
+        "operating_profit": 169683500000.0,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -436,7 +445,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "005300",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4092585000000.0,
+        "operating_profit": 197662000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -472,7 +490,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "005810",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 563500000000.0,
+        "operating_profit": 138750000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -513,10 +540,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 11400000000000.0,
-        "operating_profit": 405900000000.0,
-        "as_of": "2026-09-21",
-        "source": "개별 추정치"
+        "sales": 11155721500000.0,
+        "operating_profit": 407212000000.0,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -558,10 +585,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 34635500000000.0,
-        "operating_profit": 6524000000000.0,
-        "as_of": "2026-08-25",
-        "source": "참고 컨센서스"
+        "sales": 34801000000000.0,
+        "operating_profit": 6250518000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -603,10 +630,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": null,
-        "operating_profit": 1307300000000.0,
-        "as_of": "2026-02-02",
-        "source": "개별 추정치"
+        "sales": 12760500000000.0,
+        "operating_profit": 1358795000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -767,7 +794,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "017800",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 2630000000000.0,
+        "operating_profit": 214000000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -816,10 +852,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 5672300000000.0,
-        "operating_profit": 1007050000000.0,
-        "as_of": "2026-08-10",
-        "source": "참고 컨센서스"
+        "sales": 5693467000000.0,
+        "operating_profit": 1000333000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -869,10 +905,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 10800000000000.0,
-        "operating_profit": 977600000000.0,
-        "as_of": "2026-09-21",
-        "source": "개별 추정치"
+        "sales": 10742625000000.0,
+        "operating_profit": 979743000000.0,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -914,10 +950,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 45800000000000.0,
-        "operating_profit": 3750000000000.0,
-        "as_of": "2026-09-23",
-        "source": "참고 컨센서스"
+        "sales": 45779122000000.0,
+        "operating_profit": 3791981000000.0,
+        "as_of": "2026-10-20",
+        "source": "유효 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -967,10 +1003,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 407500000000.0,
-        "operating_profit": 68000000000.0,
-        "as_of": "2026-02-25",
-        "source": "개별 추정치"
+        "sales": 387000000000.0,
+        "operating_profit": 48775000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1065,10 +1101,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 15576000000000.0,
-        "operating_profit": 1126350000000.0,
-        "as_of": "2026-08-07",
-        "source": "참고 컨센서스"
+        "sales": 15386428000000.0,
+        "operating_profit": 1149450000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1154,10 +1190,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 7570000000000.0,
-        "operating_profit": 397500000000.0,
-        "as_of": "2026-02-25",
-        "source": "개별 추정치"
+        "sales": 18391638000000.0,
+        "operating_profit": 1127750000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1243,10 +1279,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 8377000000000.0,
-        "operating_profit": 977000000000.0,
-        "as_of": "2026-05-22",
-        "source": "개별 추정치"
+        "sales": 8276271000000.001,
+        "operating_profit": 1015052000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1333,10 +1369,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 196300000000.0,
-        "operating_profit": 27500000000.0,
-        "as_of": "2026-06-15",
-        "source": "개별 추정치"
+        "sales": 179170000000.0,
+        "operating_profit": 19820000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1458,10 +1494,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 8082500000000.0,
-        "operating_profit": 794100000000.0,
-        "as_of": "2026-07-20",
-        "source": "개별 추정치"
+        "sales": 8076080000000.0,
+        "operating_profit": 835890000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1503,10 +1539,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": null,
-        "operating_profit": 538000000000.0,
-        "as_of": "2026-02-06",
-        "source": "참고 컨센서스"
+        "sales": 5296315000000.0,
+        "operating_profit": 341785000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1543,7 +1579,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "051910",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 56562350000000.0,
+        "operating_profit": 1500200000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -1592,10 +1637,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 352500000000.0,
-        "operating_profit": 104700000000.0,
-        "as_of": "2026-10-14",
-        "source": "개별 추정치"
+        "sales": 349920000000.0,
+        "operating_profit": 106090000000.00002,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1637,10 +1682,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 1400300000000.0,
-        "operating_profit": 103600000000.0,
-        "as_of": "2026-01-08",
-        "source": "개별 추정치"
+        "sales": 1363000000000.0,
+        "operating_profit": 123000000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1690,10 +1735,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": null,
-        "operating_profit": 309900000000.0,
-        "as_of": "2026-02-11",
-        "source": "개별 추정치"
+        "sales": 3922300000000.0,
+        "operating_profit": 510567000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1735,10 +1780,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 602200000000.0,
-        "operating_profit": 148700000000.0,
-        "as_of": "2026-07-29",
-        "source": "개별 추정치"
+        "sales": 593129000000.0,
+        "operating_profit": 148929000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -1775,7 +1820,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "073240",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 5032080000000.0,
+        "operating_profit": 601840000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -1943,7 +1997,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "081660",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4712067000000.0,
+        "operating_profit": 626650000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -1987,7 +2050,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "086280",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 33224106000000.0,
+        "operating_profit": 2135711000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -2036,10 +2108,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 3160000000000.0,
-        "operating_profit": 355100000000.0,
-        "as_of": "2026-07-02",
-        "source": "개별 추정치"
+        "sales": 3048740000000.0,
+        "operating_profit": 349450000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2120,7 +2192,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "093320",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 176200000000.0,
+        "operating_profit": 36000000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -2161,10 +2242,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 650000000000.0,
-        "operating_profit": 60900000000.0,
-        "as_of": "2026-08-13",
-        "source": "유효 컨센서스"
+        "sales": 645763000000.0,
+        "operating_profit": 57388000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2209,7 +2290,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "103140",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 6143760000000.0,
+        "operating_profit": 424453000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -2302,10 +2392,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 138400000000.0,
-        "operating_profit": 29100000000.0,
-        "as_of": "2026-09-11",
-        "source": "개별 추정치"
+        "sales": 137880000000.0,
+        "operating_profit": 28739999999.999996,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2435,10 +2525,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": null,
-        "operating_profit": 79150000000.0,
-        "as_of": "2026-06-24",
-        "source": "참고 컨센서스"
+        "sales": 29115775000000.0,
+        "operating_profit": 388592000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2579,8 +2669,8 @@
         "amount_unit": "원",
         "sales": 222500000000.0,
         "operating_profit": 16800000000.0,
-        "as_of": "2026-10-12",
-        "source": "개별 추정치"
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2617,7 +2707,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "204320",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 9836622000000.0,
+        "operating_profit": 403617000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -2634,34 +2733,34 @@
       "period_end": "2026-12-31",
       "basis": "consolidated",
       "amount_unit": "원",
-      "published_at": "2026-01-21",
-      "receipt": "20260121800501",
-      "is_correction": false,
+      "published_at": "2026-10-21",
+      "receipt": "20261021800395",
+      "is_correction": true,
       "source": "OpenDART",
-      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260121800501",
-      "report_name": "연결재무제표기준영업실적등에대한전망(공정공시)              ",
+      "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021800395",
+      "report_name": "[기재정정]연결재무제표기준영업실적등에대한전망(공정공시)              ",
       "opm": null,
       "sales": {
-        "low": 5320000000000.0,
-        "high": 5320000000000.0,
-        "mid": 5320000000000.0
+        "low": 5468400000000.0,
+        "high": 5468400000000.0,
+        "mid": 5468400000000.0
       },
       "operating_profit": null,
       "active": true,
-      "revision": 1,
+      "revision": 2,
       "changes": {
-        "sales": "신규",
-        "operating_profit": "신규"
+        "sales": "상향",
+        "operating_profit": "확인불가"
       },
       "consensus": {
         "ticker": "207940",
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 5428700000000.0,
-        "operating_profit": 2470900000000.0,
-        "as_of": "2026-07-24",
-        "source": "참고 컨센서스"
+        "sales": 5427857000000.0,
+        "operating_profit": 2452107000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2703,10 +2802,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 426300000000.0,
-        "operating_profit": 186100000000.0,
-        "as_of": "2026-09-30",
-        "source": "개별 추정치"
+        "sales": 429330000000.0,
+        "operating_profit": 187213500000.0,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -2844,10 +2943,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 9313200000000.0,
-        "operating_profit": 795600000000.0,
-        "as_of": "2026-03-16",
-        "source": "개별 추정치"
+        "sales": 9382517000000.0,
+        "operating_profit": 831250000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3013,10 +3112,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 746550000000.0,
-        "operating_profit": 354900000000.0,
-        "as_of": "2026-08-13",
-        "source": "참고 컨센서스"
+        "sales": 752300000000.0,
+        "operating_profit": 349520000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3058,10 +3157,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 4592600000000.0,
-        "operating_profit": 1232500000000.0,
-        "as_of": "2026-06-11",
-        "source": "개별 추정치"
+        "sales": 4640422000000.0,
+        "operating_profit": 1204989000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3111,10 +3210,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 9152300000000.0,
-        "operating_profit": 614300000000.0,
-        "as_of": "2026-02-19",
-        "source": "개별 추정치"
+        "sales": 9408900000000.0,
+        "operating_profit": 774067000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3201,10 +3300,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 4000000000000.0,
-        "operating_profit": 540400000000.0,
-        "as_of": "2026-09-21",
-        "source": "개별 추정치"
+        "sales": 3920382499999.9995,
+        "operating_profit": 531738000000.0,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3241,7 +3340,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "307950",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 4853753000000.0,
+        "operating_profit": 282187000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
@@ -3282,10 +3390,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 1553500000000.0,
-        "operating_profit": 55300000000.0,
-        "as_of": "2026-09-14",
-        "source": "개별 추정치"
+        "sales": 1518840000000.0,
+        "operating_profit": 55000000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3327,10 +3435,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 679500000000.0,
-        "operating_profit": 125700000000.0,
-        "as_of": "2026-04-30",
-        "source": "개별 추정치"
+        "sales": 695900000000.0,
+        "operating_profit": 143233000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3372,10 +3480,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": null,
-        "operating_profit": 3315800000000.0,
-        "as_of": "2026-02-10",
-        "source": "개별 추정치"
+        "sales": 24644205000000.0,
+        "operating_profit": 3997450000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3419,8 +3527,8 @@
         "amount_unit": "원",
         "sales": 555600000000.0,
         "operating_profit": -75350000000.0,
-        "as_of": "2026-07-27",
-        "source": "참고 컨센서스"
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3498,10 +3606,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 7100000000000.0,
-        "operating_profit": 604800000000.0,
-        "as_of": "2026-09-21",
-        "source": "개별 추정치"
+        "sales": 7043686000000.0,
+        "operating_profit": 581203000000.0,
+        "as_of": "2026-10-20",
+        "source": "참고 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3597,10 +3705,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 87900000000.0,
-        "operating_profit": 24300000000.0,
-        "as_of": "2026-08-28",
-        "source": "개별 추정치"
+        "sales": 92700000000.0,
+        "operating_profit": 23900000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3678,10 +3786,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 2425200000000.0,
-        "operating_profit": 436900000000.0,
-        "as_of": "2026-09-17",
-        "source": "참고 컨센서스"
+        "sales": 2370764000000.0,
+        "operating_profit": 410272999999.99994,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3731,10 +3839,10 @@
         "period": "2026",
         "basis": null,
         "amount_unit": "원",
-        "sales": 118800000000.0,
-        "operating_profit": 28500000000.0,
-        "as_of": "2026-05-12",
-        "source": "개별 추정치"
+        "sales": 111200000000.0,
+        "operating_profit": 25800000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
       },
       "guidance_vs_consensus_gap": {
         "sales": null,
@@ -3807,7 +3915,16 @@
         "sales": "신규",
         "operating_profit": "신규"
       },
-      "consensus": null,
+      "consensus": {
+        "ticker": "488280",
+        "period": "2026",
+        "basis": null,
+        "amount_unit": "원",
+        "sales": 12200000000.0,
+        "operating_profit": -4800000000.0,
+        "as_of": "2026-10-20",
+        "source": "외부 집계 컨센서스"
+      },
       "guidance_vs_consensus_gap": {
         "sales": null,
         "operating_profit": null
