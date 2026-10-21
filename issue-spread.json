@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-19T09:36:12.319599+09:00",
-  "sourceDate": "2026-10-19",
+  "generatedAt": "2026-10-21T16:12:21.282362+09:00",
+  "sourceDate": "2026-10-21",
   "slot": "08:00",
   "weights": {
     "issue": 20,
@@ -1994,6 +1994,47 @@
           "overheat": "미확인"
         },
         {
+          "ticker": "086390",
+          "name": "유니테스트",
+          "sector": "반도체 메모리 검사장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "dart-086390-test-equipment-20261021",
+              "ticker": "086390",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900152",
+              "publishedAt": "2026-10-21T00:00:00+09:00",
+              "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
+              "reviewer": "Codex scheduled source review",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "유니테스트가 SK하이닉스와 162억2,600만원 규모 반도체 검사장비 공급계약을 체결했다. 최근 매출 대비 14.72%이며 계약기간은 2027년 2월 12일까지다."
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
           "ticker": "148780",
           "name": "비큐AI",
           "sector": "AI RAG 콘텐츠·데이터",
@@ -2513,6 +2554,47 @@
               "kind": "contract",
               "summary": "오픈엣지테크놀로지는 국내 AI 반도체 기업과 67억원 IP 라이선스 계약을 체결했다. 최근 매출 대비 41.7%, 유효기간은 2026-10-01~2029-09-30이다. 설계자산 인도 시점에 매출을 인식하나 해당 분기와 고객 이름은 공개되지 않았다.",
               "previousVerifiedAt": "2026-10-08T08:06:19+09:00"
+            }
+          ],
+          "earningsPeriods": [],
+          "scores": {
+            "issue": 5,
+            "leader": 0,
+            "spread": 0,
+            "fundamental": 0,
+            "entry": 0
+          },
+          "score": 5,
+          "stage": "탐색",
+          "tags": [
+            "WATCH"
+          ],
+          "matchedBoards": [],
+          "priceStatus": "미확인",
+          "overheat": "미확인"
+        },
+        {
+          "ticker": "396470",
+          "name": "워트",
+          "sector": "반도체 초정밀 온습도 제어장비",
+          "direct": true,
+          "fundamental": 0,
+          "quote": {},
+          "confirmed": false,
+          "hot": false,
+          "evidence": [
+            {
+              "id": "dart-396470-thc-20261021",
+              "ticker": "396470",
+              "source": "DART",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900241",
+              "publishedAt": "2026-10-21T00:00:00+09:00",
+              "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
+              "reviewer": "Codex scheduled source review",
+              "status": "verified",
+              "polarity": "positive",
+              "kind": "contract",
+              "summary": "워트가 SK하이닉스와 8억5,946만원 규모 초정밀 온습도 제어장비 공급계약을 체결했다. 최근 매출 대비 5.65%이며 계약기간은 2027년 2월 28일까지다."
             }
           ],
           "earningsPeriods": [],
@@ -3407,6 +3489,32 @@
           "summary": "새마을금고중앙회 계정계 최신화 구축 2,910억4,500만원 계약. 2026-10-15~2029-02-14, 진행에 따라 청구·지급한다. 금융 IT 구축 계약으로 확인했으며 기존 Microsoft AI 계약과 별도 사건이고 AI 전용 매출·분기 실적을 추정하지 않는다."
         },
         {
+          "id": "dart-086390-test-equipment-20261021",
+          "ticker": "086390",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900152",
+          "publishedAt": "2026-10-21T00:00:00+09:00",
+          "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
+          "reviewer": "Codex scheduled source review",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "유니테스트가 SK하이닉스와 162억2,600만원 규모 반도체 검사장비 공급계약을 체결했다. 최근 매출 대비 14.72%이며 계약기간은 2027년 2월 12일까지다."
+        },
+        {
+          "id": "dart-396470-thc-20261021",
+          "ticker": "396470",
+          "source": "DART",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900241",
+          "publishedAt": "2026-10-21T00:00:00+09:00",
+          "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
+          "reviewer": "Codex scheduled source review",
+          "status": "verified",
+          "polarity": "positive",
+          "kind": "contract",
+          "summary": "워트가 SK하이닉스와 8억5,946만원 규모 초정밀 온습도 제어장비 공급계약을 체결했다. 최근 매출 대비 5.65%이며 계약기간은 2027년 2월 28일까지다."
+        },
+        {
           "id": "dsx-066570-product",
           "ticker": "066570",
           "source": "기업IR",
@@ -3680,25 +3788,63 @@
           "url": "https://apps.3protv.com/news/view/6436",
           "publishedAt": "2026-10-16T01:56:00+09:00",
           "summary": "삼프로TV 뉴스3+ 원문은 코어위브 자금조달 위험과 TSMC의 첨단공정 실적, D램 가격 상승을 함께 다뤘다. 수요와 자금조달 위험을 구분하는 탐지 자료로만 사용했다."
+        },
+        {
+          "channel": "DART",
+          "label": "유니테스트 SK하이닉스 반도체 검사장비 공급계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900152",
+          "publishedAt": "2026-10-21T00:00:00+09:00",
+          "summary": "162억2,600만원 규모 반도체 검사장비 공급계약과 최근 매출 대비 14.72%를 원문 확인했다."
+        },
+        {
+          "channel": "DART",
+          "label": "워트 SK하이닉스 초정밀 온습도 제어장비 공급계약",
+          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900241",
+          "publishedAt": "2026-10-21T00:00:00+09:00",
+          "summary": "8억5,946만원 규모 초정밀 온습도 제어장비 공급계약과 최근 매출 대비 5.65%를 원문 확인했다."
+        },
+        {
+          "channel": "Reuters",
+          "label": "미국 AI·반도체주 반등과 데이터센터 부채 위험",
+          "url": "https://uk.marketscreener.com/news/ai-stocks-bounce-back-after-bruising-selloff-coreweave-gets-goldman-upgrade-ce785cdbda8df120",
+          "publishedAt": "2026-10-19T00:00:00-04:00",
+          "summary": "Reuters는 AI·반도체주가 급락 뒤 반등했지만 코어위브 부채 부담과 하이퍼스케일러 실적이 다음 확인 변수라고 보도했다. 해외 시장 탐지에만 사용하고 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "삼프로TV 공식 뉴스룸",
+          "label": "미국 데이터센터 건설 지연과 AI 자금조달 위험",
+          "url": "https://apps.3protv.com/news/view/6442",
+          "publishedAt": "2026-10-20T09:54:00+09:00",
+          "summary": "삼프로TV 뉴스3+ 원문은 미국 대형 데이터센터 프로젝트 지연·철회와 전력망·인허가·자금조달 위험을 다뤘다. 수요와 실제 완공 가능성을 구분하는 탐지 자료로만 사용했다."
+        },
+        {
+          "channel": "AP",
+          "label": "미국 기술주 반등 뒤 한국 증시 동반 반등",
+          "url": "https://apnews.com/article/stocks-markets-rates-oil-earnings-ai-4fa93685cd49e51e7ff0d840fdd38b0d",
+          "publishedAt": "2026-10-21T00:00:00+09:00",
+          "summary": "AP는 미국 기술주 반등 뒤 코스피가 장중 3%대 상승했지만 금리와 AI 투자 수익성 우려가 남아 있다고 보도했다. 시장 방향 탐지에만 사용했다."
         }
       ]
     }
   ],
   "status": "검증완료",
   "missing": [
-    "장 시작 전 08:00 단계로 국내 당일 등락·동일 경과시각 거래대금은 점수에 반영하지 않았다.",
-    "김종효·박시동 지정 채널의 2026-10-09~10-19 공개 영상은 검색했지만 신규 공개 자막 원문을 확보하지 못해 제목만으로 추천하지 않았다.",
+    "08:00 규칙으로 계산해 국내 당일 등락·동일 경과시각 거래대금은 이슈 추천점수에 반영하지 않았다.",
+    "김종효·박시동 지정 채널의 2026-10-11~10-21 공개 영상을 확인했으나 신규 공개 자막 원문을 확보하지 못해 제목만으로 추천하지 않았다.",
     "SaveTicker 오선 공개 뉴스 수집은 HTTP 오류로 실패해 2026-10-08 검증본과 원래 날짜를 유지했다.",
-    "KRX 종목 목록 원본은 로그인 정보 부재로 실패했고 pykrx 대체 경로도 불완전해 기존 전수 목록과 yfinance·KIS 보완으로 2026-10-16 종가를 검증했다."
+    "KRX 종목 목록 원본은 로그인 정보 부재로 실패했고 pykrx 대체 경로도 실패해 전수 목록과 yfinance·KIS 보완으로 2026-10-21 종가를 검증했다.",
+    "DART 전수 대조 중 009540·089890·126340·413390 문서 수집이 실패했고 0158S0·179880은 corp code 매핑이 없어 누락 이름·사유를 수집 보고서에 남겼다.",
+    "CJ대한통운·혜인·서한의 데이터센터 건설 공시는 확인했지만 건설 전반 제외 기준에 따라 이슈 후보와 추천점수에서 제외했다.",
+    "필에너지의 2차전지 조립설비 계약은 거래정지 관련 공시가 함께 확인돼 후보로 승격하지 않았다."
   ],
   "priceMode": "intraday",
   "scanLabel": "장중 스캔",
   "coverage": {
-    "krxCalendar": "XKRX 2026-10-19 session",
+    "krxCalendar": "XKRX 2026-10-21 session",
     "krxNotice": "https://global.krx.co.kr/contents/GLB/05/0501/0501110000/GLB0501110000.jsp",
-    "priceDate": "2026-10-16",
-    "dartRequestedTickers": 2762,
-    "dartCheckedAt": "2026-10-19T09:24:21+09:00",
-    "researchCheckedAt": "2026-10-19T09:34:26.922482+09:00"
+    "priceDate": "2026-10-21",
+    "dartRequestedTickers": 2763,
+    "dartCheckedAt": "2026-10-21T15:54:38+09:00",
+    "researchCheckedAt": "2026-10-21T16:10:22.845808+09:00"
   }
 }

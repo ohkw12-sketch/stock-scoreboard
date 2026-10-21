@@ -1,61 +1,14 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-trend-4.0",
-  "snapshotId": "3cc2f6aa4ee9aefa6796d24a58867af88a5e98b41dddf9a221ed5e5c67c5e724",
-  "generatedAt": "2026-10-19T09:19:34+09:00",
-  "sourceDate": "2026-10-16",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
-  "candidateCount": 1,
+  "snapshotId": "75366c406ae29bfcbc244b5bc0b7df642e36f8914405ac54208a0f98324ae614",
+  "generatedAt": "2026-10-21T15:50:04+09:00",
+  "sourceDate": "2026-10-21",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
+  "candidateCount": 0,
   "matchedCandidateCount": 0,
-  "rows": [
-    {
-      "ticker": "044450",
-      "name": "KSS해운",
-      "sector": "해상 운송업",
-      "currentProjectRank": 7.0,
-      "conditions": [
-        "시장관심성장",
-        "절대가치성장",
-        "섹터추세",
-        "비과열"
-      ],
-      "condition": "시장관심성장 + 절대가치성장 + 섹터추세 + 비과열",
-      "entryState": "추세확인·비과열",
-      "currentPrice": 12200.0,
-      "combinedScore": 71.4,
-      "performanceScore": null,
-      "matchedPattern": null,
-      "features": [
-        "가치성장",
-        "비과열",
-        "섹터추세",
-        "섹터추세:추세확인",
-        "순환:②확산",
-        "시장관심성장",
-        "절대가치성장"
-      ],
-      "sourceDate": "2026-10-16",
-      "valueScore": 97.2,
-      "growthScore": 65.59,
-      "sectorRelation": "추세확인",
-      "sectorTrendScore": 75.7,
-      "sectorStage": "②확산",
-      "fiveDayReturnPct": -1.69,
-      "ma20DistancePct": 5.47,
-      "ma20SlopePct": 0.96,
-      "rank": 1,
-      "recommendationHistory": {
-        "firstDate": "2026-10-16",
-        "previousDate": "2026-09-07",
-        "recommendationDays": 1,
-        "spanTradingDays": 1,
-        "gapCalendarDays": 39,
-        "kind": "return",
-        "label": "39일 만의 재추천"
-      }
-    }
-  ],
+  "rows": [],
   "_audit": [
     {
       "ticker": "003670",
@@ -83,14 +36,13 @@
       "sector": "2차전지/ESS",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
-      "ticker": "005930",
-      "name": "삼성전자",
-      "sector": "반도체",
+      "ticker": "007660",
+      "name": "이수페타시스",
+      "sector": "전자부품 제조업",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -133,8 +85,7 @@
       "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -153,26 +104,17 @@
       "sector": "인터넷/소프트웨어",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "039440",
-      "name": "에스티아이",
-      "sector": "특수 목적용 기계 제조업",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
       "ticker": "044450",
       "name": "KSS해운",
       "sector": "해상 운송업",
-      "eligible": true,
-      "reasons": []
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님"
+      ]
     },
     {
       "ticker": "071970",
@@ -182,6 +124,15 @@
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "096770",
+      "name": "SK이노베이션",
+      "sector": "석유 정제품 제조업",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -210,7 +161,8 @@
       "sector": "기타 전기장비 제조업",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
@@ -219,7 +171,8 @@
       "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
@@ -233,22 +186,12 @@
       ]
     },
     {
-      "ticker": "272210",
-      "name": "한화시스템",
-      "sector": "전자부품 제조업",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
-      ]
-    },
-    {
       "ticker": "281820",
       "name": "케이씨텍",
       "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -278,6 +221,15 @@
       "eligible": false,
       "reasons": [
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "353200",
+      "name": "대덕전자",
+      "sector": "전자부품 제조업",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -313,7 +265,7 @@
   ],
   "feedback": {
     "version": "feedback-1.0",
-    "cutoffDate": "2026-10-16",
+    "cutoffDate": "2026-10-21",
     "horizon": 20,
     "sampleCount": 378,
     "patterns": [
@@ -1370,21 +1322,19 @@
   },
   "notice": "가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-10-19T09:19:34+09:00",
-    "snapshotId": "3cc2f6aa4ee9aefa6796d24a58867af88a5e98b41dddf9a221ed5e5c67c5e724",
-    "sourceCutoff": "2026-10-16",
+    "generatedAt": "2026-10-21T15:50:04+09:00",
+    "snapshotId": "75366c406ae29bfcbc244b5bc0b7df642e36f8914405ac54208a0f98324ae614",
+    "sourceCutoff": "2026-10-21",
     "mode": "증분 수집",
     "engineVersion": "a5ade97e94ee26dc",
-    "runId": "75638e10ace53b51db90aa24",
-    "evidenceSnapshotId": "09bb19d201320fe8602bbbd264e72c4147d9831c639cc40cdf25a0cfd9e1da5c",
+    "runId": "ad5b8ef6a6c54e00550f9ccd",
+    "evidenceSnapshotId": "e959e6123dec2d23dcf3ebb22413f7bd678cb99d96d2e7fd4490a6a5489ce360",
     "status": "계산완료"
   },
-  "runId": "75638e10ace53b51db90aa24",
+  "runId": "ad5b8ef6a6c54e00550f9ccd",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-10-19T09:38:48+09:00",
-  "observedPublishedAt": "2026-10-19T09:38:48+09:00"
+  }
 }
