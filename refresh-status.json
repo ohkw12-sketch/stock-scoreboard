@@ -1,74 +1,4044 @@
 {
-  "runId": "28ab1db1268ef15a7b7302ea",
-  "attemptedAt": "2026-10-27T09:17:44+09:00",
-  "sourceDate": "2026-10-26",
+  "runId": "2a7f48e0245300031b789b74",
+  "attemptedAt": "2026-10-27T16:33:04+09:00",
+  "sourceDate": "2026-10-27",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea"
+      "runId": "2a7f48e0245300031b789b74"
     },
     "p1": {
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea",
+      "runId": "2a7f48e0245300031b789b74",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea"
+      "runId": "2a7f48e0245300031b789b74"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea",
-      "evidenceSnapshotId": "a3e07c23b8904e1603a792335cc702219f153b9f03a5a26128e4322539087cbf"
+      "runId": "2a7f48e0245300031b789b74",
+      "evidenceSnapshotId": "fb01b6db8688ec07e0acecee3c5ebcb87987fe8ef3a63d748eed57b1250db8da"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea",
-      "evidenceSnapshotId": "a3e07c23b8904e1603a792335cc702219f153b9f03a5a26128e4322539087cbf"
+      "runId": "2a7f48e0245300031b789b74",
+      "evidenceSnapshotId": "fb01b6db8688ec07e0acecee3c5ebcb87987fe8ef3a63d748eed57b1250db8da"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea",
-      "evidenceSnapshotId": "a3e07c23b8904e1603a792335cc702219f153b9f03a5a26128e4322539087cbf"
+      "runId": "2a7f48e0245300031b789b74",
+      "evidenceSnapshotId": "fb01b6db8688ec07e0acecee3c5ebcb87987fe8ef3a63d748eed57b1250db8da"
     },
     "combined": {
-      "generatedAt": "2026-10-27T09:17:44+09:00",
-      "snapshotId": "f399e2c144cde3bb6fc5ba6943b88e127852c110ba8670ac97ebb57d04b1a94c",
-      "sourceCutoff": "2026-10-26",
-      "mode": "증분 수집",
+      "generatedAt": "2026-10-27T16:33:04+09:00",
+      "snapshotId": "54f7ce89f771421485d3bd188123e00458ff0d14039cd4cd3455862b32e9ea05",
+      "sourceCutoff": "2026-10-27",
+      "mode": "저장자료 재계산",
       "engineVersion": "a5ade97e94ee26dc",
-      "runId": "28ab1db1268ef15a7b7302ea",
-      "evidenceSnapshotId": "a3e07c23b8904e1603a792335cc702219f153b9f03a5a26128e4322539087cbf",
+      "runId": "2a7f48e0245300031b789b74",
+      "evidenceSnapshotId": "fb01b6db8688ec07e0acecee3c5ebcb87987fe8ef3a63d748eed57b1250db8da",
       "status": "계산완료"
     }
+  },
+  "sourceAudit": {
+    "checkedAt": "2026-10-27T16:37:55+09:00",
+    "priceDate": "2026-10-27",
+    "requested": 2765,
+    "rawPricesCollected": 2765,
+    "analysisCount": 2758,
+    "priceCollectedFrom": "2026-10-27T16:03:25+09:00",
+    "priceCollectedUntil": "2026-10-27T16:20:10+09:00",
+    "excludedAbnormalStocks": [
+      {
+        "ticker": "001470",
+        "name": "삼부토건",
+        "date": "2026-09-01",
+        "retAdjusted": 15.772334293948127
+      },
+      {
+        "ticker": "004415",
+        "name": "서울식품우",
+        "date": "2026-10-21",
+        "retAdjusted": -0.4473684210526315
+      },
+      {
+        "ticker": "004415",
+        "name": "서울식품우",
+        "date": "2026-10-22",
+        "retAdjusted": -0.37857142857142856
+      },
+      {
+        "ticker": "011155",
+        "name": "CJ씨푸드1우",
+        "date": "2026-10-26",
+        "retAdjusted": -0.5310167310167311
+      },
+      {
+        "ticker": "032685",
+        "name": "소프트센우",
+        "date": "2026-10-20",
+        "retAdjusted": -0.4363636363636364
+      },
+      {
+        "ticker": "032685",
+        "name": "소프트센우",
+        "date": "2026-10-22",
+        "retAdjusted": -0.5226917057902973
+      },
+      {
+        "ticker": "032685",
+        "name": "소프트센우",
+        "date": "2026-10-23",
+        "retAdjusted": 0.45245901639344255
+      },
+      {
+        "ticker": "032685",
+        "name": "소프트센우",
+        "date": "2026-10-26",
+        "retAdjusted": -0.5534988713318285
+      },
+      {
+        "ticker": "032685",
+        "name": "소프트센우",
+        "date": "2026-10-27",
+        "retAdjusted": -0.6996966632962589
+      },
+      {
+        "ticker": "066790",
+        "name": "씨씨에스",
+        "date": "2026-08-04",
+        "retAdjusted": 0.4768921634293368
+      },
+      {
+        "ticker": "250030",
+        "name": "진코스텍",
+        "date": "2026-10-15",
+        "retAdjusted": -0.465474060822898
+      },
+      {
+        "ticker": "312610",
+        "name": "에이에프더블류",
+        "date": "2026-09-29",
+        "retAdjusted": -0.4078947368421053
+      }
+    ],
+    "historicalActionRecovery": {
+      "checkedAt": "2026-10-27T16:25:27+09:00",
+      "requested": 12,
+      "recovered": 11,
+      "rows": [
+        {
+          "ticker": "000300",
+          "name": "DH오토넥스",
+          "status": "recovered",
+          "records": 366,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "001840",
+          "name": "이화공영",
+          "status": "recovered",
+          "records": 351,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "009310",
+          "name": "참엔지니어링",
+          "status": "recovered",
+          "records": 351,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "074610",
+          "name": "이엔플러스",
+          "status": "recovered",
+          "records": 351,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "106080",
+          "name": "케이이엠텍",
+          "status": "recovered",
+          "records": 351,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "119650",
+          "name": "KC코트렐",
+          "status": "recovered",
+          "records": 366,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "145210",
+          "name": "다이나믹디자인",
+          "status": "recovered",
+          "records": 351,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "101970",
+          "name": "우양에이치씨",
+          "status": "unverified-old-interval",
+          "reason": "Exact historical overlap unavailable",
+          "errors": []
+        },
+        {
+          "ticker": "182400",
+          "name": "엔케이젠바이오텍코리아",
+          "status": "recovered",
+          "records": 366,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "241820",
+          "name": "피씨엘",
+          "status": "recovered",
+          "records": 366,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "245620",
+          "name": "EDGC",
+          "status": "recovered",
+          "records": 366,
+          "scaleFactor": 1.0,
+          "errors": []
+        },
+        {
+          "ticker": "352770",
+          "name": "셀레스트라",
+          "status": "recovered",
+          "records": 351,
+          "scaleFactor": 1.0,
+          "errors": []
+        }
+      ],
+      "remainingAbnormalIntervals": [
+        {
+          "ticker": "000300",
+          "name": "DH오토넥스",
+          "date": "2026-01-14"
+        },
+        {
+          "ticker": "001840",
+          "name": "이화공영",
+          "date": "2026-01-23"
+        },
+        {
+          "ticker": "009310",
+          "name": "참엔지니어링",
+          "date": "2026-05-11"
+        },
+        {
+          "ticker": "074610",
+          "name": "이엔플러스",
+          "date": "2025-12-29"
+        },
+        {
+          "ticker": "101970",
+          "name": "우양에이치씨",
+          "date": "2025-03-28"
+        },
+        {
+          "ticker": "106080",
+          "name": "케이이엠텍",
+          "date": "2026-04-16"
+        },
+        {
+          "ticker": "119650",
+          "name": "KC코트렐",
+          "date": "2025-05-30"
+        },
+        {
+          "ticker": "145210",
+          "name": "다이나믹디자인",
+          "date": "2026-07-24"
+        },
+        {
+          "ticker": "182400",
+          "name": "엔케이젠바이오텍코리아",
+          "date": "2025-07-22"
+        },
+        {
+          "ticker": "241820",
+          "name": "피씨엘",
+          "date": "2025-10-17"
+        },
+        {
+          "ticker": "245620",
+          "name": "EDGC",
+          "date": "2026-06-12"
+        },
+        {
+          "ticker": "352770",
+          "name": "셀레스트라",
+          "date": "2025-04-28"
+        }
+      ],
+      "performanceExcludedTickers": [
+        "000300",
+        "001840",
+        "009310",
+        "074610",
+        "101970",
+        "106080",
+        "119650",
+        "145210",
+        "182400",
+        "241820",
+        "245620",
+        "352770"
+      ]
+    },
+    "businessMetadata": {
+      "checkedAt": "2026-10-27T16:31:26+09:00",
+      "requested": 2765,
+      "directKINDMatched": 2605,
+      "columnContract": "회사명/업종/주요제품/상장일/결산월/대표자/홈페이지/지역",
+      "sampleIndustry": "기타 금융업",
+      "newListings": [
+        {
+          "ticker": "0015M0",
+          "name": "디티에스",
+          "listingDate": "2026-10-23"
+        },
+        {
+          "ticker": "0205H0",
+          "name": "에스케이증권제14호기업인수목적",
+          "listingDate": "2026-10-27"
+        }
+      ],
+      "priorIncorrectMappingDiscarded": true
+    },
+    "reportedFinancials": {
+      "source": "OpenDART 공시실적",
+      "asOfDate": "2026-09-30",
+      "requested": 2765,
+      "collected": 2606,
+      "normalizedCollected": 2427,
+      "attemptedThisRun": 2649,
+      "disclosureScan": {
+        "status": "정상",
+        "checkedThrough": "2026-10-27",
+        "changedCompanies": 4,
+        "overlapDays": 3,
+        "pages": 1
+      }
+    },
+    "consensusFullSweep": {
+      "status": "정상",
+      "source": "KIS + 증권사 리포트·FnGuide + 회사 공식 가이던스",
+      "asOfDate": "2026-10-27",
+      "attempted": 2765,
+      "collected": 130,
+      "cachedCoverage": 140,
+      "unknownProviderDateCount": 0,
+      "monthPrecisionCount": 0,
+      "unavailable": 2635,
+      "deferred": 0,
+      "failed": 0,
+      "problem": null,
+      "forecastIntegratedTickers": 612,
+      "guidancePreferredTickers": 3
+    },
+    "alternateConsensus": {
+      "requested": 2765,
+      "usable": 691,
+      "failed": [
+        {
+          "ticker": "0126Z0",
+          "name": "삼성에피스홀딩스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0009K0",
+          "name": "에임드바이오",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00680K",
+          "name": "미래에셋증권2우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0158S0",
+          "name": "엘리스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0220W0",
+          "name": "한화머시너리앤서비스홀딩스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00104K",
+          "name": "CJ4우(전환)",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00088K",
+          "name": "한화3우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0013Y0",
+          "name": "엠에스바이오",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0015M0",
+          "name": "디티에스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0120G0",
+          "name": "삼양바이오팜",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "02826K",
+          "name": "삼성물산우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0035S0",
+          "name": "빅웨이브로보틱스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0030R0",
+          "name": "대신밸류리츠",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "03473K",
+          "name": "SK우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0011T0",
+          "name": "채비",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0008Z0",
+          "name": "에스엔시스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0001A0",
+          "name": "덕양에너젠",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00279K",
+          "name": "아모레퍼시픽홀딩스3우C",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0082N0",
+          "name": "카나프테라퓨틱스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0088M0",
+          "name": "메쥬",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0015G0",
+          "name": "그린광학",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0007C0",
+          "name": "아크릴",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0015N0",
+          "name": "아로마티카",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0039P0",
+          "name": "매드업",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0161M0",
+          "name": "네오사피엔스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0017J0",
+          "name": "세미티에스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0010S0",
+          "name": "와이즈플래닛컴퍼니",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "37550L",
+          "name": "DL이앤씨2우(전환)",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0011A0",
+          "name": "액스비스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0007J0",
+          "name": "인벤테라",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "33626K",
+          "name": "두산퓨얼셀1우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0117P0",
+          "name": "피스피스스튜디오",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0218L0",
+          "name": "네오뷰",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0015S0",
+          "name": "페스카로",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0156T0",
+          "name": "에이치엘지노믹스",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0155E0",
+          "name": "해치텍",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0004V0",
+          "name": "엔비알모션",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0220WL",
+          "name": "한화머시너리앤서비스홀딩스3우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "35320K",
+          "name": "대덕전자1우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "28513K",
+          "name": "SK케미칼우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0013V0",
+          "name": "삼진식품",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "37550K",
+          "name": "DL이앤씨우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0010V0",
+          "name": "제이피아이헬스케어",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0010F0",
+          "name": "보원케미칼",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "33637K",
+          "name": "솔루스첨단소재1우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "33626L",
+          "name": "두산퓨얼셀2우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00499K",
+          "name": "롯데지주우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0197V0",
+          "name": "엔에이치스팩34호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0200G0",
+          "name": "한국제17호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0205H0",
+          "name": "에스케이증권제14호기업인수목적",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0072Z0",
+          "name": "KB제33호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0130H0",
+          "name": "엔에이치스팩33호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0101C0",
+          "name": "하나36호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0044K0",
+          "name": "삼성스팩10호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0115H0",
+          "name": "삼성스팩13호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0165X0",
+          "name": "메리츠제2호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0099W0",
+          "name": "미래에셋비전스팩11호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "18064K",
+          "name": "한진칼우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0209J0",
+          "name": "KB제34호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0134X0",
+          "name": "대신밸런스제20호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0164H0",
+          "name": "한국제16호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "45226K",
+          "name": "한화갤러리아우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0096B0",
+          "name": "삼성스팩12호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00806K",
+          "name": "대덕1우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0097F0",
+          "name": "미래에셋비전스팩10호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0093G0",
+          "name": "미래에셋비전스팩8호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0099X0",
+          "name": "IBKS제25호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0037T0",
+          "name": "KB제32호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0054V0",
+          "name": "엔에이치스팩32호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0091W0",
+          "name": "신영스팩11호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0131D0",
+          "name": "키움히어로제2호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0041L0",
+          "name": "하나35호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0088D0",
+          "name": "메리츠제1호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0132G0",
+          "name": "교보20호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "00781K",
+          "name": "코리아써키트2우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0071M0",
+          "name": "삼성스팩11호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0105P0",
+          "name": "유진스팩12호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0129K0",
+          "name": "신한제18호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0096D0",
+          "name": "미래에셋비전스팩9호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "38380K",
+          "name": "LX홀딩스1우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0098T0",
+          "name": "교보19호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0004Y0",
+          "name": "디비금융제14호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0130D0",
+          "name": "신한제17호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0041B0",
+          "name": "교보18호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0068Y0",
+          "name": "비엔케이제3호스팩",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "0041J0",
+          "name": "엘에스스팩1호",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "33637L",
+          "name": "솔루스첨단소재2우B",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "03481K",
+          "name": "해성산업1우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "26490K",
+          "name": "크라운제과우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        },
+        {
+          "ticker": "36328K",
+          "name": "티와이홀딩스우",
+          "reason": "ValueError",
+          "attempts": 3,
+          "retainedConsensusDate": null
+        }
+      ],
+      "previousDatesPreserved": true
+    },
+    "growthDisclosureCoverage": {
+      "originalDocsRequested": 270,
+      "originalDocsCollected": 270,
+      "newVerifiedFacts": 14,
+      "negativeReviews": [],
+      "correctionReviews": [
+        {
+          "ticker": "267260",
+          "receipt": "20261027800235",
+          "decision": "verified-business-original",
+          "summary": "HD현대일렉트릭은 배전반·배전변압기 공장 및 자동화 설비 등에 1,980억원을 투자한다. 예정기간 2026-11-01~2029-06-30이며 AI 데이터센터 관련 대형 프로젝트와 패키지 발주 대응을 원문에 명시했다. 분기별 매출·이익과 2027Q2 이전 가동은 미확인이므로 만들지 않았다."
+        },
+        {
+          "ticker": "267260",
+          "receipt": "20261027800226",
+          "decision": "verified-business-original",
+          "summary": "2026Q3 잠정 연결 매출 11,799억원·영업이익 2,845억원으로 YoY +18.5%/+15.1%, QoQ +3.3%/-0.9%다. 잠정치이며 설비투자와 같은 사건의 기대를 중복 합산하지 않는다."
+        },
+        {
+          "ticker": "095340",
+          "receipt": "20261027900053",
+          "decision": "verified-business-original",
+          "summary": "ISC는 2026년 연결 매출 약 3,050억원(3,000~3,100억원), 영업이익 약 1,000억원(950~1,050억원)을 전망했다. AI 반도체 테스트 소켓·장비소재 및 고부가 믹스를 원문 근거로 제시했다. 연간 목표이며 Q4 확정치로 바꾸지 않았다. 문서 말미 전분기 비교표의 단위 불일치는 사용하지 않는다."
+        },
+        {
+          "ticker": "095340",
+          "receipt": "20261027900052",
+          "decision": "verified-business-original",
+          "summary": "ISC 2026Q3 잠정 연결 매출 71,775백만원·영업이익 21,842백만원. YoY +11.2%/+25.4%, QoQ -1.6%/+2.4%이며 순이익은 YoY -8.2%다. 전망 공시와 당기 잠정실적을 구분했다."
+        },
+        {
+          "ticker": "252990",
+          "receipt": "20261027900118",
+          "decision": "verified-business-original",
+          "summary": "샘씨엔에스 2026Q3 잠정 매출 32,211백만원·영업이익 11,173백만원, YoY +54.6%/+105.9%, QoQ +3.0%/+17.2%다. 누적 영업이익은 28,381백만원이며 잠정치다."
+        },
+        {
+          "ticker": "218410",
+          "receipt": "20261027900110",
+          "decision": "verified-business-original",
+          "summary": "RFHIC 2026Q3 잠정 연결 매출 71,079백만원·영업이익 21,671백만원으로 YoY +75.52%/+194.33%, QoQ +38.02%/+93.73%다. 2027년 분기별 이익은 원문에 없어 추정하지 않았다."
+        },
+        {
+          "ticker": "319660",
+          "receipt": "20261023900529",
+          "decision": "verified-business-original",
+          "summary": "피에스케이는 용인 반도체클러스터 캠퍼스 토지 포함 생산능력 확대에 1,800억원을 투자한다. 2026-10-23~2028-05-31 예정, 자금 약 80% 외부차입 계획이다. 완공 예정과 실적 기여 시점을 혼동하지 않았다."
+        },
+        {
+          "ticker": "114810",
+          "receipt": "20261023900344",
+          "decision": "verified-business-original",
+          "summary": "한솔아이원스는 오창 신공장 생산능력 확충에 토지 제외 건물·설비 등 1,260억원을 투자한다. 예정기간 2026-10-23~2028-02-29, 자기자본 대비 59.92%이며 인허가·공정에 따라 변경될 수 있다. 고객·분기 이익은 미확인이다."
+        },
+        {
+          "ticker": "114810",
+          "receipt": "20261023900330",
+          "decision": "verified-business-original",
+          "summary": "한솔아이원스 2026Q3 잠정 연결 매출 64,981백만원·영업이익 12,378백만원, YoY +26.86%/+31.96%, QoQ +20.92%/+88.67%. 누적 영업이익은 YoY -14.21%로 함께 검토했다."
+        },
+        {
+          "ticker": "420770",
+          "receipt": "20261023900460",
+          "decision": "verified-business-original",
+          "summary": "기가비스 반도체 기판 검사장비 계약은 469억3,700만원이며 한국 기판 제조회사 대상 개별 PO 합계다. 기간 2026-10-22~2027-12-31, 고객 실명은 비공개다. 특정 고객·AI용도·분기 매출 배분을 만들지 않았다."
+        },
+        {
+          "ticker": "189330",
+          "receipt": "20261027900266",
+          "decision": "verified-business-original",
+          "summary": "씨이랩은 나라스페이스테크놀로지에 NVIDIA DGX 시스템을 17억5천만원에 공급한다. 계약기간 2026-10-27~2030-06-01에는 검수 후 3년 하자보수 기간이 포함된다. 2030년까지 납품 매출이 분산된다고 해석하지 않았다."
+        },
+        {
+          "ticker": "001440",
+          "receipt": "20261027800037",
+          "decision": "verified-business-original",
+          "summary": "대한전선은 자회사 Taihan Netherlands B.V.에 독일향 380kV 초고압 케이블·악세서리를 114,696,891,181원에 공급한다. 기간 2026-10-26~2030-08-14다. 자회사 내부 공급계약을 연결 기준 외부 신규수주와 중복 합산하지 않으며 분기별 이익은 미확인이다."
+        },
+        {
+          "ticker": "071970",
+          "receipt": "20261026800199",
+          "decision": "verified-business-original",
+          "summary": "HD현대마린엔진은 제이오션중공업과 302억88만원 선박엔진 공급계약을 체결했다. 기간은 2026-10-23~2028-06-10, 최근 매출 대비 7.5%다. 10월22일 공시한 중국 고객 계약과 구분하고 분기별 이익은 배분하지 않았다."
+        },
+        {
+          "ticker": "042660",
+          "receipt": "20261027800240",
+          "decision": "verified-business-original",
+          "summary": "한화오션 2026Q3 잠정 연결 매출 34,139억원·영업이익 4,857억원으로 YoY +12.9%/+67.6%, QoQ -37.3%/-34.0%다. 순이익 YoY -46.1%도 함께 검토했다."
+        },
+        {
+          "ticker": "347700",
+          "receipt": "20261027900367",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "스피어 기존 2026-01-11 특수합금 계약의 종료일을 11월6일에서 12월14일로 연장. 납품 78.6%, 대금 31.2%; 26억4,973만3,654원 전체를 신규수주로 더하지 않는다. 비공개 고객 실명은 만들지 않는다."
+        },
+        {
+          "ticker": "171090",
+          "receipt": "20261026900168",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "선익시스템 2025년 OLED 연구용 장비 계약 이행과 대금100% 수취 완료. 72억76만5천원→80억85만원 표시는 원 계약 잔금 반영이며 공급범위·총액 변화가 아니다. 신규수주로 계산하지 않는다."
+        },
+        {
+          "ticker": "402490",
+          "receipt": "20261023900904",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "그린리소스 서남 IBAD 26억7,600만원 기존계약 납기 2026-10-23→2027-04-23, 진행인식22→28개월로 연장. 새 수주나 이익 상향으로 취급하지 않는다."
+        },
+        {
+          "ticker": "011070",
+          "receipt": "20261027800388",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "LG이노텍 Q3 매출6,367,124백만원 YoY18.6% 증가이나 OP94,847백만원 YoY-53.4%, QoQ-61.4%. 단순 외형성장을 이익 가속으로 보지 않는다."
+        },
+        {
+          "ticker": "272210",
+          "receipt": "20261027800302",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "한화시스템 Q3 매출831,598백만원·OP99,150백만원 YoY30.1%/60.5% 증가이나 QoQ-6.3%/-19.1%, 순익3,837백만원 YoY-97.5%, 누적순손실39,172백만원. 일방적 성장점수로 합산하지 않는다."
+        },
+        {
+          "ticker": "327260",
+          "receipt": "20261027900133",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "RF머트리얼즈 Q3 매출24,754백만원·OP4,871백만원 YoY69.68%/157.59% 증가이나 QoQ-1.22%/-7.92%로 혼합 신호."
+        },
+        {
+          "ticker": "094360",
+          "receipt": "20261027900168",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "칩스앤미디어 Q3 매출7,162백만원·OP1,657백만원 YoY8.2%/8.7%, QoQ1.0%/47.1%. 순손실605백만원과 로열티26.5% 감소를 누락하지 않는다."
+        },
+        {
+          "ticker": "322000",
+          "receipt": "20261026800392",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "HD현대에너지솔루션 Q3 매출150,759백만원·OP20,442백만원 YoY24.5%/39.3% 증가이나 QoQ-8.7%/-43.4%, 순익YoY-6.8%."
+        },
+        {
+          "ticker": "443060",
+          "receipt": "20261026800212",
+          "decision": "neutral-correction-or-mixed-results",
+          "summary": "HD현대마린솔루션 Q3 매출6,501억원·OP957억원 YoY26.7%/2.2%, QoQ12.0%/-1.9%, 순익YoY-59.1%. OP 가속으로 단정하지 않는다."
+        }
+      ],
+      "noInventedQuarterAllocation": true
+    },
+    "investorFlows": {
+      "source": "KIS Developers 일자별 투자자 원자료·현재일 및 20거래일 전수 확인",
+      "status": "부분수집",
+      "checkedAt": "2026-10-27T16:26:31+09:00",
+      "asOfDate": "2026-10-27",
+      "requestedCalls": 893,
+      "successfulCalls": 884,
+      "tickerCount": 884,
+      "eligibleTickerCount": 893,
+      "failures": [
+        {
+          "ticker": "0013Y0",
+          "name": "엠에스바이오",
+          "listingDate": "2026-10-22",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929",
+            "20260930",
+            "20261001",
+            "20261002",
+            "20261006",
+            "20261007",
+            "20261008",
+            "20261012",
+            "20261013",
+            "20261014",
+            "20261015",
+            "20261016",
+            "20261019",
+            "20261020",
+            "20261021"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "0158S0",
+          "name": "엘리스",
+          "listingDate": "2026-10-20",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929",
+            "20260930",
+            "20261001",
+            "20261002",
+            "20261006",
+            "20261007",
+            "20261008",
+            "20261012",
+            "20261013",
+            "20261014",
+            "20261015",
+            "20261016",
+            "20261019"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "0015M0",
+          "name": "디티에스",
+          "listingDate": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929",
+            "20260930",
+            "20261001",
+            "20261002",
+            "20261006",
+            "20261007",
+            "20261008",
+            "20261012",
+            "20261013",
+            "20261014",
+            "20261015",
+            "20261016",
+            "20261019",
+            "20261020",
+            "20261021",
+            "20261022"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "0205H0",
+          "name": "에스케이증권제14호기업인수목적",
+          "listingDate": "2026-10-27",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929",
+            "20260930",
+            "20261001",
+            "20261002",
+            "20261006",
+            "20261007",
+            "20261008",
+            "20261012",
+            "20261013",
+            "20261014",
+            "20261015",
+            "20261016",
+            "20261019",
+            "20261020",
+            "20261021",
+            "20261022",
+            "20261023",
+            "20261026"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "0035S0",
+          "name": "빅웨이브로보틱스",
+          "listingDate": "2026-09-29",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "179880",
+          "name": "멜콘",
+          "listingDate": "2026-10-15",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929",
+            "20260930",
+            "20261001",
+            "20261002",
+            "20261006",
+            "20261007",
+            "20261008",
+            "20261012",
+            "20261013",
+            "20261014"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "486510",
+          "name": "글로벌테크놀로지",
+          "listingDate": "2026-09-29",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "266690",
+          "name": "덕산넵코어스",
+          "listingDate": "2026-09-30",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929"
+          ],
+          "latestAvailableDate": "20261027"
+        },
+        {
+          "ticker": "468670",
+          "name": "브릴스",
+          "listingDate": "2026-10-01",
+          "priceDate": "2026-10-27",
+          "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
+          "missingDates": [
+            "20260928",
+            "20260929",
+            "20260930"
+          ],
+          "latestAvailableDate": "20261027"
+        }
+      ],
+      "scope": "현재일 포함 KRX 20거래일 실제 날짜 대조; 5·20일 외국인·기관 순매수, 제공 시점 잠정 자료"
+    },
+    "noTradeQuoteStates": {
+      "requested": 114,
+      "checked": 114,
+      "rows": [
+        {
+          "ticker": "000300",
+          "name": "DH오토넥스",
+          "checkedAt": "2026-10-27T16:22:00+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "001470",
+          "name": "삼부토건",
+          "checkedAt": "2026-10-27T16:22:01+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "001570",
+          "name": "금양",
+          "checkedAt": "2026-10-27T16:22:01+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "001770",
+          "name": "SHD",
+          "checkedAt": "2026-10-27T16:22:01+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "001840",
+          "name": "이화공영",
+          "checkedAt": "2026-10-27T16:22:01+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "002410",
+          "name": "범양건영",
+          "checkedAt": "2026-10-27T16:22:02+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "002785",
+          "name": "진흥기업우B",
+          "checkedAt": "2026-10-27T16:22:02+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "002787",
+          "name": "진흥기업2우B",
+          "checkedAt": "2026-10-27T16:22:02+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "008600",
+          "name": "윌비스",
+          "checkedAt": "2026-10-27T16:22:02+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "009310",
+          "name": "참엔지니어링",
+          "checkedAt": "2026-10-27T16:22:03+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "009440",
+          "name": "KC그린홀딩스",
+          "checkedAt": "2026-10-27T16:22:03+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "011000",
+          "name": "진원생명과학",
+          "checkedAt": "2026-10-27T16:22:03+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "011810",
+          "name": "STX",
+          "checkedAt": "2026-10-27T16:22:03+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "012340",
+          "name": "뉴인텍",
+          "checkedAt": "2026-10-27T16:22:04+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "02",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "015020",
+          "name": "이스타코",
+          "checkedAt": "2026-10-27T16:22:04+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "015260",
+          "name": "에이엔피",
+          "checkedAt": "2026-10-27T16:22:04+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "02",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "016790",
+          "name": "현대사료",
+          "checkedAt": "2026-10-27T16:22:04+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "017040",
+          "name": "광명전기",
+          "checkedAt": "2026-10-27T16:22:05+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "018000",
+          "name": "유니슨",
+          "checkedAt": "2026-10-27T16:22:05+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "019490",
+          "name": "엑시큐어하이트론",
+          "checkedAt": "2026-10-27T16:22:05+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "020760",
+          "name": "일진디스플",
+          "checkedAt": "2026-10-27T16:22:05+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "022220",
+          "name": "티케이지애강",
+          "checkedAt": "2026-10-27T16:22:06+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "023440",
+          "name": "제이스코홀딩스",
+          "checkedAt": "2026-10-27T16:22:06+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "025870",
+          "name": "신라에스지",
+          "checkedAt": "2026-10-27T16:22:06+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "027830",
+          "name": "대성창투",
+          "checkedAt": "2026-10-27T16:22:06+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "030350",
+          "name": "드래곤플라이",
+          "checkedAt": "2026-10-27T16:22:07+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "031860",
+          "name": "디에이치엑스컴퍼니",
+          "checkedAt": "2026-10-27T16:22:07+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "033050",
+          "name": "제이엠아이",
+          "checkedAt": "2026-10-27T16:22:07+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "035290",
+          "name": "골드앤에스",
+          "checkedAt": "2026-10-27T16:22:07+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "035620",
+          "name": "바른손이앤에이",
+          "checkedAt": "2026-10-27T16:22:08+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "036690",
+          "name": "코맥스",
+          "checkedAt": "2026-10-27T16:22:08+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "037330",
+          "name": "인지디스플레",
+          "checkedAt": "2026-10-27T16:22:08+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "041590",
+          "name": "플래스크",
+          "checkedAt": "2026-10-27T16:22:08+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "043100",
+          "name": "알파AI",
+          "checkedAt": "2026-10-27T16:22:09+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "043220",
+          "name": "티에스넥스젠",
+          "checkedAt": "2026-10-27T16:22:09+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "043340",
+          "name": "에쎈테크",
+          "checkedAt": "2026-10-27T16:22:09+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "043610",
+          "name": "KT지니뮤직",
+          "checkedAt": "2026-10-27T16:22:09+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "044180",
+          "name": "KD",
+          "checkedAt": "2026-10-27T16:22:10+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "044380",
+          "name": "주연테크",
+          "checkedAt": "2026-10-27T16:22:10+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "047400",
+          "name": "유니온머티리얼",
+          "checkedAt": "2026-10-27T16:22:10+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "049180",
+          "name": "셀루메드",
+          "checkedAt": "2026-10-27T16:22:10+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "050090",
+          "name": "비케이홀딩스",
+          "checkedAt": "2026-10-27T16:22:11+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "052770",
+          "name": "아이톡시",
+          "checkedAt": "2026-10-27T16:22:11+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "054180",
+          "name": "메디콕스",
+          "checkedAt": "2026-10-27T16:22:11+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "058450",
+          "name": "한주에이알티",
+          "checkedAt": "2026-10-27T16:22:11+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "064090",
+          "name": "인크레더블버즈",
+          "checkedAt": "2026-10-27T16:22:12+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "065420",
+          "name": "에스아이리소스",
+          "checkedAt": "2026-10-27T16:22:12+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "065570",
+          "name": "삼영이엔씨",
+          "checkedAt": "2026-10-27T16:22:12+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "066410",
+          "name": "버킷스튜디오",
+          "checkedAt": "2026-10-27T16:22:12+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "066790",
+          "name": "씨씨에스",
+          "checkedAt": "2026-10-27T16:22:13+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "067770",
+          "name": "세진티에스",
+          "checkedAt": "2026-10-27T16:22:13+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "068240",
+          "name": "다원시스",
+          "checkedAt": "2026-10-27T16:22:13+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "068940",
+          "name": "셀피글로벌",
+          "checkedAt": "2026-10-27T16:22:13+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "069460",
+          "name": "대호에이엘",
+          "checkedAt": "2026-10-27T16:22:14+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "072770",
+          "name": "멤레이비티",
+          "checkedAt": "2026-10-27T16:22:14+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "073190",
+          "name": "듀오백",
+          "checkedAt": "2026-10-27T16:22:14+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "02",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "073640",
+          "name": "테라사이언스",
+          "checkedAt": "2026-10-27T16:22:14+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "074610",
+          "name": "이엔플러스",
+          "checkedAt": "2026-10-27T16:22:15+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "079970",
+          "name": "투비소프트",
+          "checkedAt": "2026-10-27T16:22:15+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "080720",
+          "name": "한국유니온제약",
+          "checkedAt": "2026-10-27T16:22:15+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "087260",
+          "name": "모바일어플라이언스",
+          "checkedAt": "2026-10-27T16:22:15+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "089150",
+          "name": "케이씨티",
+          "checkedAt": "2026-10-27T16:22:16+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "095910",
+          "name": "에스에너지",
+          "checkedAt": "2026-10-27T16:22:16+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "097780",
+          "name": "에코볼트",
+          "checkedAt": "2026-10-27T16:22:16+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "106080",
+          "name": "케이이엠텍",
+          "checkedAt": "2026-10-27T16:22:16+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "119650",
+          "name": "KC코트렐",
+          "checkedAt": "2026-10-27T16:22:17+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "121800",
+          "name": "비덴트",
+          "checkedAt": "2026-10-27T16:22:17+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "143210",
+          "name": "핸즈코퍼레이션",
+          "checkedAt": "2026-10-27T16:22:17+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "145210",
+          "name": "다이나믹디자인",
+          "checkedAt": "2026-10-27T16:22:17+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "182400",
+          "name": "엔케이젠바이오텍코리아",
+          "checkedAt": "2026-10-27T16:22:18+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "183490",
+          "name": "엔지켐생명과학",
+          "checkedAt": "2026-10-27T16:22:18+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "203400",
+          "name": "에이비온",
+          "checkedAt": "2026-10-27T16:22:18+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "205100",
+          "name": "엑셈",
+          "checkedAt": "2026-10-27T16:22:18+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "206400",
+          "name": "베노티앤알",
+          "checkedAt": "2026-10-27T16:22:19+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "210120",
+          "name": "빅텐츠",
+          "checkedAt": "2026-10-27T16:22:19+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "214610",
+          "name": "롤링스톤",
+          "checkedAt": "2026-10-27T16:22:19+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "217480",
+          "name": "에스디생명공학",
+          "checkedAt": "2026-10-27T16:22:19+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "225430",
+          "name": "케이엠제약",
+          "checkedAt": "2026-10-27T16:22:20+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "229000",
+          "name": "젠큐릭스",
+          "checkedAt": "2026-10-27T16:22:20+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "234920",
+          "name": "자이글",
+          "checkedAt": "2026-10-27T16:22:20+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "241820",
+          "name": "피씨엘",
+          "checkedAt": "2026-10-27T16:22:20+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "244460",
+          "name": "올리패스",
+          "checkedAt": "2026-10-27T16:22:21+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "245620",
+          "name": "EDGC",
+          "checkedAt": "2026-10-27T16:22:21+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "checkedAt": "2026-10-27T16:22:21+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "246720",
+          "name": "아스타",
+          "checkedAt": "2026-10-27T16:22:21+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "258830",
+          "name": "세종메디칼",
+          "checkedAt": "2026-10-27T16:22:22+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "263050",
+          "name": "유틸렉스",
+          "checkedAt": "2026-10-27T16:22:22+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "276040",
+          "name": "스코넥",
+          "checkedAt": "2026-10-27T16:22:22+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "284620",
+          "name": "카이노스메드",
+          "checkedAt": "2026-10-27T16:22:22+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "288330",
+          "name": "파라택시스코리아",
+          "checkedAt": "2026-10-27T16:22:23+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "288980",
+          "name": "모아데이타",
+          "checkedAt": "2026-10-27T16:22:23+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "289010",
+          "name": "아이스크림에듀",
+          "checkedAt": "2026-10-27T16:22:23+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "290560",
+          "name": "파라택시스이더리움",
+          "checkedAt": "2026-10-27T16:22:23+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "291810",
+          "name": "핀텔",
+          "checkedAt": "2026-10-27T16:22:24+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "294090",
+          "name": "이오플로우",
+          "checkedAt": "2026-10-27T16:22:24+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "304840",
+          "name": "피플바이오",
+          "checkedAt": "2026-10-27T16:22:24+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "305090",
+          "name": "마이크로디지탈",
+          "checkedAt": "2026-10-27T16:22:24+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "308100",
+          "name": "형지글로벌",
+          "checkedAt": "2026-10-27T16:22:25+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "02",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "309710",
+          "name": "아이티켐",
+          "checkedAt": "2026-10-27T16:22:25+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "312610",
+          "name": "에이에프더블류",
+          "checkedAt": "2026-10-27T16:22:25+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "313760",
+          "name": "캐리",
+          "checkedAt": "2026-10-27T16:22:25+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "340930",
+          "name": "성원에너텍",
+          "checkedAt": "2026-10-27T16:22:26+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "348950",
+          "name": "제이알글로벌리츠",
+          "checkedAt": "2026-10-27T16:22:26+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "352770",
+          "name": "셀레스트라",
+          "checkedAt": "2026-10-27T16:22:26+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "377460",
+          "name": "큐에이드",
+          "checkedAt": "2026-10-27T16:22:26+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "380540",
+          "name": "옵티코어",
+          "checkedAt": "2026-10-27T16:22:27+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "393970",
+          "name": "대진첨단소재",
+          "checkedAt": "2026-10-27T16:22:27+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "412540",
+          "name": "제일엠앤에스",
+          "checkedAt": "2026-10-27T16:22:27+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "418250",
+          "name": "시큐레터",
+          "checkedAt": "2026-10-27T16:22:27+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "418620",
+          "name": "E8",
+          "checkedAt": "2026-10-27T16:22:28+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "Y"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "468760",
+          "name": "유진스팩10호",
+          "checkedAt": "2026-10-27T16:22:28+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "482520",
+          "name": "교보16호스팩",
+          "checkedAt": "2026-10-27T16:22:28+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "482680",
+          "name": "미래에셋비전스팩7호",
+          "checkedAt": "2026-10-27T16:22:28+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        },
+        {
+          "ticker": "489480",
+          "name": "키움제11호스팩",
+          "checkedAt": "2026-10-27T16:22:29+09:00",
+          "priceDate": "2026-10-27",
+          "dailyVolume": 0,
+          "providerFlags": {
+            "iscd_stat_cls_code": "58",
+            "temp_stop_yn": "N",
+            "grmn_rate_cls_code": " ",
+            "vi_cls_code": "N",
+            "ovtm_vi_cls_code": "N",
+            "mrkt_warn_cls_code": "00",
+            "mang_issu_cls_code": "N"
+          },
+          "suspensionConfirmed": false,
+          "status": "공급자 상태 재조회·정지 여부 단정 안함"
+        }
+      ],
+      "policy": "KIS 정지 플래그 미확인은 거래 가능 확인이 아님; 무거래 종목 신규 추천 제외",
+      "officialCurrentHalts": [
+        {
+          "ticker": "278650",
+          "name": "HLB바이오스텝",
+          "receipt": "20261023000908",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000908/20261023001729/70835.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "conditional-warning-only-not-confirmed-halt",
+          "summary": ":: 70835_매매거래정지 예고 매매거래정지 예고 다음 종목은 현재 투자경고종목으로서 주가가 추가 상승할 경우 매매거래가 정지될 수 있으니, 투자에 주의하시기 바랍니다. +-----------------------------------------------------------------------------------------------+ | 1. 대상종목          | HLB바이오스텝                 | 보통주                                 | +-----------------------------------------------------------------------------------------------+ | 2. 정지예고일        | 2026년 10월 26일(D)                                                    | +-----------------------------------------------------------------------------------------------+ |                      |                                                                        | | 3. 매매거래정지 여부 | 위 종목은 2026년 10월 26일(D)의 종가가 10월 22일(D-2)종가 대비 40% 이상| |                      | 상승하고 투자경고종목 지정전일 종가보다 높은 경우 10월 27일(1일간)     | |                      | 매매거래가 정지됨(투자경고종목 지정중인 경우에 한함).                  | |                      |                                                                        | +-----------------------------------------------------------------------------------------------+ | 4. 근거규정          | 시장감시규정 제5조의3 및 같은 규정 시행세칙 제3조의5                   | +-----------------------------------------------------------------------------------------------+ |                      |                                                                        | |                      | 주가가 일정기간 급등하는 등 투자유의가 필요한 종목은                   | | 5. 시장경보제도 개요 | \"투자주의종목 -> 투자경고종목 -> 투자위험종목\" 단계로 시장경보종목으로 | |                      | 지정되며, 투자경고·위험종목 단계에서 매매거래가 정지될 수 있습니다.   | |                      | 시장경보종목에 대한 자세한 내용은 한국거래소 홈페이지                  | |                      | (\"krx.co.kr -> 시장감시 -> 시장경보/투자유의안내\" 또는                 | |                      | \"surveillance.krx.co.kr -> 시장감시위원회 -> 시장경보/투자유의안내\")   | |                      | 에서 확인하실 수 있습니다.                                             | +-----------------------------------------------------------------------------------------------+"
+        },
+        {
+          "ticker": "101530",
+          "name": "해태제과식품",
+          "receipt": "20261023001023",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/001023/20261023001927/68054.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "resumed-as-of-current-session",
+          "summary": "매매거래정지 및 정지해제 1.종목명 해태제과식품주식회사 주권 2.매매거래정지일 - 3.매매거래정지해제일 2026년10월26일 09:00 부터 4.매매거래정지(해제)사유 - 상장적격성 실질심사관련 기업심사위원회 심의대상 제외 결정 5.근거규정 유가증권시장 상장규정 제153조 6.기타 투자판단에 참고할 사항 유가증권시장 업무규정 시행세칙 제54조의 규정에 따라 매매거래정지 해제일의 장개시전 시간외시장 매매거래는 성립되지 않음"
+        },
+        {
+          "ticker": "035620",
+          "name": "바른손이앤에이",
+          "receipt": "20261023001010",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/001010/20261023001895/70798.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 (주)바른손이앤에이 보통주 2.변경사유 투자자 보호 3.정지기간 가.변경전 2026년 10월 23일~\r\n- 나.변경후 2026년 10월 23일~\r\n가처분 신청에 대한 법원 결정 등 사정 변경시까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "035620",
+          "name": "바른손이앤에이",
+          "receipt": "20261023001003",
+          "url": "https://kind.krx.co.kr/external/2026/10/22/000772/20261022001806/70769.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)바른손이앤에이 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A035620 18,609,918 1999-08-13 3.액면가(원) 500 4.상장주선인 신한투자증권 주식회사 5.상장폐지사유 주가 미달 6.정리매매기간 시작일 - 만료일 - 7.상장폐지일 - 8.근거규정 코스닥시장상장규정 제23조 및 제54조 9.기타 정리매매기간 및 상장폐지일은 추후 안내할 예정입니다."
+        },
+        {
+          "ticker": "070300",
+          "name": "퀀텀레일",
+          "receipt": "20261023001015",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/001015/20261023001909/70797.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "expired-intraday-halt",
+          "summary": "주권매매거래정지 1.대상종목 (주)퀀텀레일 보통주 2.정지사유 자본감소 3.정지기간 가.정지일시 2026-10-23 18:12:00 나.만료일시 장종료시까지 4.근거규정 코스닥시장공시규정 제37조 및 동규정시행세칙 제18조 5.기타 코스닥시장업무규정시행세칙 제26조의 규정에 의거 매매거래 재개일의 \r\n장개시전 시간외매매는 성립되지 않습니다."
+        },
+        {
+          "ticker": "035620",
+          "name": "바른손이앤에이",
+          "receipt": "20261023000998",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000998/20261023000934/70631.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": ":: 70631_기타 주요경영사항(자율공시) 기타 경영사항(자율공시) 1. 제목 상장폐지결정 등 효력정지 가처분 신청 2. 주요내용 회사는 서울남부지방법원에 상장폐지결정 등 효력정지 가처분을 신청하였으며, 구체적인 내용은 아래와 같습니다. 사건명: 2026카합1650 상장페지결정 등 효력정지 채권자: 주식회사 바른손이앤에이 채무자: 주식회사 한국거래소 [신청취지] 1. 채권자와 채무자 사이의 본안판결 확정 시까지 채무자가 2026. 10. 22. 채권자 발행 주권에 대하여 한 상장폐지결정의 효력을 정지한다. 2. 채무자는 위 주권에 대한 정리매매절차를 진행하여서는 아니 된다. 3. 채권자와 채무자 사이의 본안판결 확정 시까지 채무자가 채권자 발행 기명식 보통주식(종목코드 035620)에 대하여 한 다음 각 관리종목 지정의 효력을 정지한다. 가. 2026. 8. 6.자 코스닥시장 상장규정 제53조 제1항 제5호(시가총액 미달)를 이유로 한 관리종목 지정 나. 2026. 8. 13.자 같은 규정 제53조 제1항 제5호의2(주가 미달)를 이유로 한 관리종목 지정 4.소송비용은 채무자가 부담한다. 3. 결정(확인)일자 2026-10-23 4. 기타 투자판단에 참고할 사항 - 상기 3. 결정(확인)일자는 서울남부지방법원에 본 사건을 접수한 일자입니다. ※ 관련공시 2026-10-22 상장폐지 2026-10-22 주권매매거래정지 2026-10-22 관리종목지정사유추가(상장폐지사유발생) 2026-08-12 관리종목지정사유추가(주가 미달) 2026-08-05 관리종목지정(시가총액 미달)"
+        },
+        {
+          "ticker": "101670",
+          "name": "하이드로리튬",
+          "receipt": "20261023000896",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000896/20261023001265/70780.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-delisting-risk",
+          "summary": ":: 70780_기타시장안내 기타시장안내 제목 : ㈜하이드로리튬 보통주 주가 미달에 따른 상장폐지 우려 관련 안내 (주)하이드로리튬 보통주는 ‘26.08.31자로 종가가 1,000원 미달인 상태가 연속하여 30일(매매거래일 기준) 동안 계속되어 관리종목으로 지정되었습니다. (코스닥시장 상장규정 제53조) 상기 사유로 관리종목으로 지정된 후 90일(매매거래일 기준) 이내에 해당 보통주식의 종가가 1,000원 이상인 상태가 연속하여 45일 이상 계속되지 못하는 경우 상장폐지 사유에 해당됩니다. (코스닥시장 상장규정 제54조) 이와 관련하여 ‘26.10.23(정규장 종료후) 현재 동사 보통주의 관리종목 지정 후 경과일수 및 종가요건 충족일수 등은 아래와 같습니다. - 관리종목 지정 후 경과일수 : 36일 - 1,000원 이상 연속충족일수 : 0일(해제요건 : 연속하여 45일 이상) 따라서 동사 보통주의 종가가 1,000원 미만인 일수가 10일 연속 계속되는 경우, 상장폐지가 될 수 있습니다. 그 외에도 관리종목 지정 해제사유 발생이 불가능한 것으로 확정된 경우, 상장폐지가 될 수 있으므로 투자에 각별히 유의하시기 바랍니다. ※ 또한, 코스닥시장 상장규정 제54조제1항제13호나목 또는 다목에 해당하는 주식병합 또는 자본금 감소 절차를 완료한 경우에는 매매거래정지 및 상장폐지가 될 수 있으므로 투자에 각별히 유의하시기 바랍니다."
+        },
+        {
+          "ticker": "015260",
+          "name": "에이엔피",
+          "receipt": "20261023000886",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000886/20261023001698/68054.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "매매거래정지 및 정지해제 1.종목명 (주)에이엔피 주권 2.매매거래정지일 2026년10월26일 부터 3.매매거래정지해제일 - 4.매매거래정지(해제)사유 - 상장폐지 사유발생(주가 미달) 5.근거규정 유가증권시장상장규정 제153조 6.기타 투자판단에 참고할 사항 -"
+        },
+        {
+          "ticker": "015260",
+          "name": "에이엔피",
+          "receipt": "20261023000894",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000894/20261023001712/68051.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)에이엔피 2.상장폐지 주권 종류 및 주식수 주권종류 주식수 단축코드 보통주 47,116,894 A015260 3.상장폐지 사유 보통주 주가수준미달 4.상장폐지 예고기간 시작일 - - 종료일 - 5.정리매매 허용기간 시작일 - - 종료일 - 6.상장폐지일 - 7.근거규정 유가증권시장상장규정 제48조 및 제9조 8.기타 투자판단에 참고할 사항 주가 미달 사유 상장폐지 관련 가처분 소송이 진행중인 바, 유사 분쟁 확산에 따른 기업·투자자의 불확실성 증대 가능성을 고려하여 정리매매 등 후속 절차는 해당 가처분 신청에 대한 법원 결정 등 사정 변경시까지 유예됨을 알려드립니다."
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "receipt": "20261023000923",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000923/20261023001748/70799.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지해제 1.대상종목 (주)에스엘에스바이오 보통주 2.해제사유 상장폐지에 따른 정리매매 개시 3.해제일시 2026-10-27 - 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 * 상장폐지 내역\r\n - 상장폐지 사유 : 기업의 계속성 및 경영의 투명성 등을 종합적으로 \r\n                         고려하여 상장폐지기준에 해당한다고 결정\r\n - 정리매매기간 : 2026.10.27 ~ 2026.11.04(7매매일)\r\n - 상장폐지일 : 2026.11.05"
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "receipt": "20261023000921",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000921/20261023001746/70769.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)에스엘에스바이오 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A246250 15,348,206 2023-10-20 3.액면가(원) 500 4.상장주선인 하나증권주식회사 5.상장폐지사유 기업의 계속성 및 경영의 투명성 등을 종합적으로 고려하여 상장폐지기준에 해당한다고 결정 6.정리매매기간 시작일 2026-10-27 만료일 2026-11-04 7.상장폐지일 2026-11-05 8.근거규정 코스닥시장 상장규정 제23조 및 제56조 9.기타 * 정리매매기간중 매매거래방식\r\n - 가격제한폭 없이 09:00~15:30까지 매 30분 간격으로 단일가격에 의한\r\n   개별경쟁매매 실시\r\n - 매매거래체결시 시간외매매 가능\r\n   (다만, 시간외접속매매(16-20시) 거래 대상 제외)\r\n - 관련규정 : 코스닥시장 업무규정 제23조"
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "receipt": "20261023000872",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000872/20261023001346/70780.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": ":: 70780_기타시장안내 기타시장안내 제목 : (주)에스엘에스바이오에 대한 코스닥시장위원회 개최 결과 및 상장폐지 결정 안내 '25.09.08 기업심사위원회는 심의·의결을 거쳐 동사 주권의 상장폐지를 결정한 바 있으며, 동 상장폐지 결정에 대해 동사는 '25.09.29 이의신청을 하였습니다. 동사는 '25.10.31 코스닥시장위원회의 심의·의결을 통하여 '26.08.31까지 개선기간을 부여받은 바 있으며, '26.09.21 개선계획 이행내역서를 제출하였습니다. 이와 관련하여 거래소는 '26.10.23 코스닥시장위원회를 개최하였으며, 코스닥시장위원회는 동사 주권에 대해 상장폐지 여부를 심의한 결과, 상장폐지로 의결하였습니다."
+        },
+        {
+          "ticker": "289010",
+          "name": "아이스크림에듀",
+          "receipt": "20261023000841",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000841/20261023001609/70798.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 (주)아이스크림에듀 보통주 2.변경사유 투자자 보호 3.정지기간 가.변경전 2026년 10월 23일~ 나.변경후 2026년 10월 23일~\r\n가처분 신청에 대한 법원 결정 등 사정 변경시까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "289010",
+          "name": "아이스크림에듀",
+          "receipt": "20261023000838",
+          "url": "https://kind.krx.co.kr/external/2026/10/22/000776/20261022001810/70769.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)아이스크림에듀 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A289010 13,945,256 2019-07-11 3.액면가(원) 500 4.상장주선인 대신증권(주) 5.상장폐지사유 주가 미달 6.정리매매기간 시작일 - 만료일 - 7.상장폐지일 - 8.근거규정 코스닥시장상장규정 제23조 및 제54조 9.기타 정리매매기간 및 상장폐지일은 추후 안내할 예정입니다."
+        },
+        {
+          "ticker": "022220",
+          "name": "티케이지애강",
+          "receipt": "20261023000840",
+          "url": "https://kind.krx.co.kr/external/2026/10/22/000764/20261022001784/70769.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 티케이지애강(주) 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A022220 51,794,579 2006-04-11 3.액면가(원) 500 4.상장주선인 한국투자증권(주) 5.상장폐지사유 주가 미달 6.정리매매기간 시작일 - 만료일 - 7.상장폐지일 - 8.근거규정 코스닥시장상장규정 제23조 및 제54조 9.기타 정리매매기간 및 상장폐지일은 추후 안내할 예정입니다."
+        },
+        {
+          "ticker": "022220",
+          "name": "티케이지애강",
+          "receipt": "20261023000835",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000835/20261023001604/70798.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 티케이지애강(주) 보통주 2.변경사유 투자자 보호 3.정지기간 가.변경전 2026년 10월 23일~\r\n- 나.변경후 2026년 10월 23일~\r\n가처분 신청에 대한 법원 결정 등 사정 변경시까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "012340",
+          "name": "뉴인텍",
+          "receipt": "20261023000812",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000812/20261023001550/70798.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 (주)뉴인텍 보통주 2.변경사유 투자자 보호 3.정지기간 가.변경전 2026년 10월 23일~\r\n\r\n- 나.변경후 2026년 10월 23일~\r\n\r\n가처분 신청에 대한 법원 결정 등 사정 변경시까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "012340",
+          "name": "뉴인텍",
+          "receipt": "20261023000823",
+          "url": "https://kind.krx.co.kr/external/2026/10/22/000777/20261022001811/70769.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)뉴인텍 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A012340 22,044,793 1997-02-12 3.액면가(원) 500 4.상장주선인 SK증권(주) 5.상장폐지사유 주가 미달 6.정리매매기간 시작일 - 만료일 - 7.상장폐지일 - 8.근거규정 코스닥시장상장규정 제23조 및 제54조 9.기타 정리매매기간 및 상장폐지일은 추후 안내할 예정입니다."
+        },
+        {
+          "ticker": "308100",
+          "name": "형지글로벌",
+          "receipt": "20261023000803",
+          "url": "https://kind.krx.co.kr/external/2026/10/22/000762/20261022001783/70769.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)형지글로벌 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A308100 25,819,998 2019-06-10 3.액면가(원) 500 4.상장주선인 엔에이치투자증권(주) 5.상장폐지사유 주가 미달 6.정리매매기간 시작일 - 만료일 - 7.상장폐지일 - 8.근거규정 코스닥시장상장규정 제23조 및 제54조 9.기타 정리매매기간 및 상장폐지일은 추후 안내할 예정입니다."
+        },
+        {
+          "ticker": "308100",
+          "name": "형지글로벌",
+          "receipt": "20261023000796",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000796/20261023001520/70798.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 (주)형지글로벌 보통주 2.변경사유 투자자 보호 3.정지기간 가.변경전 2026년 10월 23일~\r\n- 나.변경후 2026년 10월 23일~\r\n가처분 신청에 대한 법원 결정 등 사정 변경시까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "308100",
+          "name": "형지글로벌",
+          "receipt": "20261023000761",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000761/20261023001464/70631.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": ":: 70631_기타 주요경영사항(자율공시) 기타 경영사항(자율공시) 1. 제목 상장폐지결정 등 효력정지 가처분 신청 2. 주요내용 회사는 서울남부지방법원에 상장폐지결정 등 효력정지 가처분을 신청하였으며, 구체적인 내용은 아래와 같습니다. 사건명: 2026카합1625 관리종목지정결정 효력정지가처분 채권자: 주식회사 형지글로벌 채무자: 주식회사 한국거래소 [신청취지] 1. 채권자와 채무자 사이의 상장폐지결정 무효 확인 등 본안판결 확정시까지 채무자의 2026.10.22.자 채권자 발행 주권에 대한 상장폐지결정의 효력을 정지한다 2. 채무자는 위 주권에 대한 정리매매절차를 진행하여서는 아니된다. 3. 소송비용은 채무자가 부담한다. 라는 재판을 구합니다. 3. 결정(확인)일자 2026-10-23 4. 기타 투자판단에 참고할 사항 - 상기 3. 결정(확인)일자는 서울남부지방법원에 본 사건을 접수한 일자입니다. - 회사는 2026년 10월 14일 관리종목지정 결정 효력정지 가처분신청서을 제출하였습니다. 2026년 10월 23일 신청취지 및 신청이유의 변경신청서를 제출하였습니다. ※ 관련공시 2026-10-15 관리종목지정(시가총액 미달, 주가 미달) 2026-10-22 상장폐지 2026-10-22 주권매매거래정지"
+        },
+        {
+          "ticker": "012340",
+          "name": "뉴인텍",
+          "receipt": "20261023000783",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000783/20261021000649/70631.htm",
+          "publishedAt": "2026-10-23",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": ":: 70631_기타 주요경영사항(자율공시) 기타 경영사항(자율공시) 1. 제목 상장폐지결정 등 효력정지 가처분 신청 2. 주요내용 회사는 서울남부지방법원에 상장폐지결정의 효력정지 및 정리매매절차 진행 금지 등을 구하는 신청취지의 신청서를 제출하였으며, 구체적인 내용은 아래와 같습니다. 사건명: 2026카합1647 상장폐지결정 효력정지 가처문신청 채권자: 주식회사 뉴인텍 채무자: 주식회사 한국거래소 [신청취지] 1. 채권자와 채무자 사이의 본안판결 확정시까지 채무자 가 2026. 10. 22. 채권자 발행 주권에 대하여 한 상장폐 지결정의 효력을 정지한다. 2.채무자는 위 주권에 대한 정리매매절차를 진행하여서는 아니 된다. 3.소송비용은 채무자가 부담한다. 3. 결정(확인)일자 2026-10-23 4. 기타 투자판단에 참고할 사항 - 상기 3. 결정(확인)일자는 서울남부지방법원에 본 사건을 접수한 일자입니다. - 2026년 10월 22일 회사 발행 주식에 대한 상장폐지결정이 이루어짐에 따라, 회사는 2026년 10월 23일 상장폐지결정의 효력정지 및 정리매매절차 진행 금지등을 구하는 신청취지의 신청서를 제출하였습니다. ※ 관련공시 2026-10-22 상장폐지 2026-10-22 관리종목지정사유추가(상장폐지사유 발생)"
+        },
+        {
+          "ticker": "052770",
+          "name": "아이톡시",
+          "receipt": "20261026000775",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000775/20261026001830/70798.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 (주)아이톡시 보통주 2.변경사유 상장폐지 사유 발생 3.정지기간 가.변경전 2026년 03월 23일 17:24:00~\r\n\r\n1. 2025사업연도 감사의견 상장폐지 사유 관련\r\n - 개선기간 종료(차기 사업보고서 법정제출기한의 다음날부터 10일) 후\r\n   상장폐지여부 결정일까지\r\n\r\n2. 상장적격성 실질심사 관련\r\n - 상장폐지사유 해당여부에 관한 결정일까지 나.변경후 2026년 03월 23일 17:24:00~\r\n\r\n1. 2025사업연도 감사의견 상장폐지 사유 관련\r\n - 개선기간 종료(차기 사업보고서 법정제출기한의 다음날부터 10일) 후\r\n   상장폐지여부 결정일까지\r\n\r\n2. 상장적격성 실질심사 관련\r\n - 상장폐지에 대한 이의신청기간 만료일 또는 \r\n   이의신청에 대한 상장폐지여부 결정일까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "087260",
+          "name": "모바일어플라이언스",
+          "receipt": "20261026000772",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000772/20261026001828/70798.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 기간변경 1.대상종목 모바일어플라이언스 주식회사 보통주 2.변경사유 상장폐지 사유 발생 3.정지기간 가.변경전 2026년 07월 21일~\r\n\r\n상장폐지사유 해당여부에 관한 결정일까지 나.변경후 2026년 07월 21일~\r\n\r\n상장폐지에 대한 이의신청기간 만료일 또는 이의신청에 대한 상장폐지여부 결정일까지 4.근거규정 코스닥시장상장규정 제18조 및 동규정시행세칙 제19조 5.기타 -"
+        },
+        {
+          "ticker": "087260",
+          "name": "모바일어플라이언스",
+          "receipt": "20261026000771",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000771/20261026001827/70747.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "관리종목 지정사유추가 1.대상종목 모바일어플라이언스 주권 보통주 2.추가지정사유 - 상장폐지사유 발생 3.추가지정일 2026-10-27 4.근거규정 코스닥시장상장규정 제53조 및 동규정시행세칙 제58조(별표 10) 5.추가지정 후 관리종목 지정현황 - 상장폐지사유 발생 - 상장적격성 실질심사 대상 결정 6.기타 -"
+        },
+        {
+          "ticker": "376930",
+          "name": "노을",
+          "receipt": "20261026000762",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000762/20261026001814/70780.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-delisting-risk",
+          "summary": ":: 70780_기타시장안내 기타시장안내 제목 : ㈜노을 보통주 주가 미달에 따른 상장폐지 우려 관련 안내 (주)노을 보통주는 ‘26.08.13자로 종가가 1,000원 미달인 상태가 연속하여 30일(매매거래일 기준) 동안 계속되어 관리종목으로 지정되었습니다. (코스닥시장 상장규정 제53조) 상기 사유로 관리종목으로 지정된 후 90일(매매거래일 기준) 이내에 해당 보통주식의 종가가 1,000원 이상인 상태가 연속하여 45일 이상 계속되지 못하는 경우 상장폐지 사유에 해당됩니다. (코스닥시장 상장규정 제54조) 이와 관련하여 ‘26.10.26(정규장 종료후) 현재 동사 보통주의 관리종목 지정 후 경과일수 및 종가요건 충족일수 등은 아래와 같습니다. - 관리종목 지정 후 경과일수 : 36일 - 1,000원 이상 연속충족일수 : 32일(해제요건 : 연속하여 45일 이상) 따라서 종가 미달 관련 관리종목 지정 후 경과일수 46일(매매거래일)부터 종가 1,000원 미달 사실이 발생할 경우 상장폐지가 될 수 있고, 종가 1,000원 이상 연속 충족일수가 45일 이상일 경우 관리종목 해제사유가 발생할 수 있으니 투자에 각별히 유의하시기 바랍니다. ※ 또한, 코스닥시장 상장규정 제54조제1항제13호나목 또는 다목에 해당하는 주식병합 또는 자본금 감소 절차를 완료한 경우에는 매매거래정지 및 상장폐지가 될 수 있으므로 투자에 각별히 유의하시기 바랍니다."
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "receipt": "20261026000684",
+          "url": "https://kind.krx.co.kr/external/2026/10/23/000921/20261023001746/70769.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "상장폐지 1.회사명 (주)에스엘에스바이오 2.주권종류 및 발행주식수 주권종류 단축코드 주식수(주) 상장일 보통주 A246250 15,348,206 2023-10-20 3.액면가(원) 500 4.상장주선인 하나증권주식회사 5.상장폐지사유 기업의 계속성 및 경영의 투명성 등을 종합적으로 고려하여 상장폐지기준에 해당한다고 결정 6.정리매매기간 시작일 2026-10-27 만료일 2026-11-04 7.상장폐지일 2026-11-05 8.근거규정 코스닥시장 상장규정 제23조 및 제56조 9.기타 * 정리매매기간중 매매거래방식\r\n - 가격제한폭 없이 09:00~15:30까지 매 30분 간격으로 단일가격에 의한\r\n   개별경쟁매매 실시\r\n - 매매거래체결시 시간외매매 가능\r\n   (다만, 시간외접속매매(16-20시) 거래 대상 제외)\r\n - 관련규정 : 코스닥시장 업무규정 제23조"
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "receipt": "20261026000652",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000652/20261026001579/70797.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": "주권매매거래정지 1.대상종목 (주)에스엘에스바이오 보통주 2.정지사유 투자자 보호 3.정지기간 가.정지일시 2026-10-27 - 나.만료일시 상장폐지결정 등 효력정지 가처분신청에 대한 법원의 결정 확인시까지 4.근거규정 코스닥시장업무규정 제25조 및 동규정시행세칙 제30조 5.기타 -"
+        },
+        {
+          "ticker": "246250",
+          "name": "에스엘에스바이오",
+          "receipt": "20261026000644",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000644/20261026000934/70631.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "exclude-active-official-halt",
+          "summary": ":: 70631_기타 주요경영사항(자율공시) 기타 경영사항(자율공시) 1. 제목 상장폐지결정 등 효력정지 가처분 신청 2. 주요내용 회사는 서울남부지방법원에 상장폐지결정 효력정지 가처분을 신청하였으며, 구체적인 내용은 아래와 같습니다. - 아 래 - 사건명: 서울남부지방법원 2026카합1657 [전자]상장폐지결정 등 효력정지 가처분 채권자: 주식회사 에스엘에스바이오 채무자: 주식회사 한국거래소 [신청 취지] 1. 채무자가 2026. 10. 23. 채권자의 발행주권에 대하여 한 상장폐지결정의 효력을 본안판결 확정시까지 정지한다. 2. 채무자는 위 주권에 대한 정리매매절차를 진행하여서는 아니 된다. 3. 소송비용은 채무자가 부담한다. 라는 결정을 구합니다. 3. 결정(확인)일자 2026-10-26 4. 기타 투자판단에 참고할 사항 - 상기 3. 결정(확인)일자는 서울남부지방법원에 본 사건을 접수한 일자입니다. ※ 관련공시 2026-10-23 상장폐지 2026-10-23 주권매매거래정지해제(상장폐지에 따른 정리매매 개시)"
+        },
+        {
+          "ticker": "215790",
+          "name": "이노인스트루먼트",
+          "receipt": "20261026000428",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000428/20261026001157/70799.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "resumed-as-of-current-session",
+          "summary": "주권매매거래정지해제 1.대상종목 (주)이노인스트루먼트 보통주 2.해제사유 액면병합 주권 변경상장 3.해제일시 2026-10-27 - 4.근거규정 코스닥시장업무규정 제25조 및 동규정시행세칙 제30조 5.기타 코스닥시장업무규정시행세칙 제26조의 규정에 의거 매매거래 재개일의 \r\n장개시전 시간외매매는 성립되지 않습니다."
+        },
+        {
+          "ticker": "058820",
+          "name": "CMG제약",
+          "receipt": "20261026000414",
+          "url": "https://kind.krx.co.kr/external/2026/10/26/000414/20261026001117/70799.htm",
+          "publishedAt": "2026-10-26",
+          "priceDate": "2026-10-27",
+          "decision": "resumed-as-of-current-session",
+          "summary": "주권매매거래정지해제 1.대상종목 (주)CMG제약 보통주 2.해제사유 액면병합 주권 변경상장 3.해제일시 2026-10-27 - 4.근거규정 코스닥시장업무규정 제25조 및 동규정시행세칙 제30조 5.기타 코스닥시장업무규정시행세칙 제26조의 규정에 의거 매매거래 재개일의 \r\n장개시전 시간외매매는 성립되지 않습니다."
+        }
+      ]
+    },
+    "candidateRiskReview": [
+      {
+        "ticker": "003670",
+        "name": "포스코퓨처엠",
+        "receipt": "20260821800175",
+        "decision": "keep-historical-cancellation-original-date",
+        "checkedAt": "2026-10-27T16:36:25+09:00",
+        "firstEventDate": "2025-08-08",
+        "firstDisclosureDate": "2025-08-11",
+        "amendmentDate": "2026-08-21",
+        "summary": "2025-08-08 솔라엣지 ESS 사업 종료에 따른 기존 계약해지의 상대방을 유보기한 경과 후 공개한 정정이다. 2026년 신규 해지로 보지 않고 원 계약 무효 이력을 유지한다. 90일 신규 부정 근거 시계를 재설정하지 않는다."
+      }
+    ],
+    "issueQuoteValidation": {
+      "requested": 58,
+      "verified": 48,
+      "missing": [
+        {
+          "ticker": "005930",
+          "name": "삼성전자",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261008 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": null
+        },
+        {
+          "ticker": "126340",
+          "name": "비나텍",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261019 144200; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": null
+        },
+        {
+          "ticker": "148780",
+          "name": "비큐AI",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261027 151700; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": null
+        },
+        {
+          "ticker": "351320",
+          "name": "넥사다이내믹스",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261027 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": "2026-10-22T15:30:00+09:00"
+        },
+        {
+          "ticker": "373220",
+          "name": "LG에너지솔루션",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261008 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": null
+        },
+        {
+          "ticker": "394280",
+          "name": "오픈엣지테크놀로지",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261027 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": "2026-10-22T15:30:00+09:00"
+        },
+        {
+          "ticker": "420770",
+          "name": "기가비스",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20260928 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": null
+        },
+        {
+          "ticker": "101970",
+          "name": "우양에이치씨",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261027 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": "2026-10-22T15:30:00+09:00"
+        },
+        {
+          "ticker": "377480",
+          "name": "마음AI",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261027 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": "2026-10-22T15:30:00+09:00"
+        },
+        {
+          "ticker": "090470",
+          "name": "제이스로보틱스",
+          "reason": "직전 20거래일 정규장 종가 분봉 미제공: 20261015 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
+          "retainedAsOf": null
+        }
+      ]
+    },
+    "constructionAndBioExcluded": true,
+    "priceAndConsensusDatesSeparate": true,
+    "riskReviewDigests": {
+      "risk-originals.json": "aab299f8121c0cb51b2a6b7dafd48ba320f8abff6cc98dd3c30299783697fc90",
+      "review-decisions.json": "90238c0086f8e5da5b0147a6e18e648a6ad224bd0550f05ec7075308d33fc0d7",
+      "candidate-audit.json": "37aa9b2813c21c84d6033739021e0dba8f0d7d73bd568ebf8dbfe2d3d98d80ba"
+    },
+    "officialKINDWholeMarketScan": {
+      "currentDay": "2026-10-27",
+      "currentDayRecords": 209,
+      "previousDayRecords": 456,
+      "october23Records": 492,
+      "riskOriginals": 31,
+      "allRiskOriginalsCollected": true,
+      "sourceURL": "https://kind.krx.co.kr/disclosure/todaydisclosure.do?method=searchTodayDisclosureMain"
+    },
+    "disclosureFallback": [
+      {
+        "dartReceipt": "20261027000266",
+        "source": "KIND same filing original",
+        "kindReceipt": "20261027000448",
+        "url": "https://kind.krx.co.kr/external/2026/10/27/000448/20261027001170/10800.htm",
+        "bodyLength": 6022,
+        "status": "recovered",
+        "scope": "증권발행실적·추천 성장 근거로 사용하지 않음"
+      }
+    ],
+    "priorIssueOriginalRecheck": {
+      "requested": 82,
+      "collected": 82,
+      "failed": 0
+    },
+    "issueAlternateRetry": [
+      {
+        "ticker": "005930",
+        "date": "20261008",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "090470",
+        "date": "20261015",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "101970",
+        "date": "20261027",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "126340",
+        "date": "20261019",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "148780",
+        "date": "20261027",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "189330",
+        "date": "20261027",
+        "recovered": true,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": true,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "351320",
+        "date": "20261027",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "373220",
+        "date": "20261008",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "377480",
+        "date": "20261027",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "394280",
+        "date": "20261027",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      },
+      {
+        "ticker": "420770",
+        "date": "20260928",
+        "recovered": false,
+        "attempts": [
+          {
+            "hour": "160000",
+            "past": "N",
+            "closingBarPresent": false,
+            "status": "0"
+          },
+          {
+            "hour": "160000",
+            "past": "Y",
+            "closingBarPresent": false,
+            "status": "0"
+          }
+        ]
+      }
+    ]
   }
 }
