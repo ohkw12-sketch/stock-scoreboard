@@ -163,6 +163,44 @@ class MarketRefreshTest(unittest.TestCase):
         self.assertEqual(report["qualityStatus"], "정상")
         self.assertEqual(report["suspendedTickerCount"], 1)
 
+    def test_kis_full_history_recovery_keeps_raw_and_adjusted_prices_separate(self):
+        ticker = "0158S0"
+        dates = pd.to_datetime(["2026-10-20", "2026-10-21"])
+        self.loader._history = pd.DataFrame([
+            {"date": day, "ticker": ticker, "name": "엘리스", "market": "KOSDAQ",
+             "sector": "소프트웨어", "open": 1000, "high": 1100, "low": 900,
+             "close": 1000, "adjusted_close": 500, "volume": 10, "value": 10000}
+            for day in dates
+        ])
+        listing = pd.DataFrame([{
+            "ticker": ticker, "name": "엘리스", "market": "KOSDAQ", "sector": "소프트웨어",
+        }])
+
+        class Client:
+            def authenticate(self):
+                return None
+
+            def fetch_daily_prices(self, _ticker, _start, _end, adjusted=True):
+                closes = ["500", "550"] if adjusted else ["1000", "1100"]
+                return {"rt_cd": "0", "output2": [
+                    {"stck_bsop_date": day.strftime("%Y%m%d"), "stck_clpr": close,
+                     "stck_oprc": close, "stck_hgpr": close, "stck_lwpr": close,
+                     "acml_vol": "10", "acml_tr_pbmn": str(int(close) * 10)}
+                    for day, close in zip(dates, closes)
+                ]}
+
+        info = {"expectedCompletedSession": "2026-10-21"}
+        with patch("rotation_screener.KisConsensusClient.from_environment", return_value=Client()), \
+                patch("rotation_screener.completed_session_info", return_value=info), \
+                patch("rotation_screener.time.sleep"):
+            repaired, recovered = self.loader._repair_history_with_kis(
+                pd.DataFrame(), listing, {ticker}
+            )
+        self.assertEqual(recovered, {ticker})
+        self.assertEqual(repaired["close"].tolist(), [1000, 1100])
+        self.assertEqual(repaired["adjusted_close"].tolist(), [500, 550])
+        self.assertEqual(set(repaired["adjusted_basis"]), {"KIS adjusted"})
+
     def test_q3_cumulative_without_forecast_cannot_become_seasonal_estimate(self):
         prices, _ = attach_market_snapshot(generate_sample_market(), self.config)
         fundamentals = generate_sample_fundamentals(prices)

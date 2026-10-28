@@ -724,6 +724,106 @@ class MarketDataLoader:
             return normalize_prices(pd.concat([frame, pd.DataFrame(recovered)], ignore_index=True))
         return frame
 
+    def _repair_history_with_kis(
+            self, frame: pd.DataFrame, listing: pd.DataFrame, tickers: set[str]
+    ) -> tuple[pd.DataFrame, set[str]]:
+        """Replace unresolved short listing histories with dated KIS raw/adjusted rows.
+
+        yfinance does not expose every new KRX alphanumeric symbol.  A changed
+        adjusted scale therefore needs a second *full-history* provider, not a
+        latest-close patch, before the old cache may be discarded.
+        """
+        if not tickers or self._history is None or self._history.empty:
+            return frame, set()
+        client = KisConsensusClient.from_environment()
+        if client is None:
+            return frame, set()
+        try:
+            client.authenticate()
+        except Exception as exc:
+            log(f"KIS history recovery unavailable: {type(exc).__name__}")
+            return frame, set()
+
+        identity = listing.drop_duplicates("ticker").set_index("ticker")
+        target = pd.Timestamp(completed_session_info()["expectedCompletedSession"])
+        recovered_tickers: set[str] = set()
+        recovered_parts: list[pd.DataFrame] = []
+
+        def number(row: dict, key: str) -> float:
+            try:
+                return float(str(row.get(key) or "").replace(",", ""))
+            except ValueError:
+                return np.nan
+
+        for ticker in sorted(tickers):
+            old = normalize_prices(self._history[self._history["ticker"].eq(ticker)])
+            if old.empty or ticker not in identity.index:
+                continue
+            start = pd.Timestamp(old["date"].min()).strftime("%Y-%m-%d")
+            end = target.strftime("%Y-%m-%d")
+            try:
+                raw_payload = client.fetch_daily_prices(ticker, start, end, adjusted=False)
+                time.sleep(float(self.config.get("kis_price_pause_seconds", 0.06)))
+                adjusted_payload = client.fetch_daily_prices(ticker, start, end, adjusted=True)
+                if str(raw_payload.get("rt_cd", "")) != "0" or str(adjusted_payload.get("rt_cd", "")) != "0":
+                    continue
+                raw_by_date = {
+                    str(row.get("stck_bsop_date", "")): row
+                    for row in raw_payload.get("output2", []) if row.get("stck_bsop_date")
+                }
+                adjusted_by_date = {
+                    str(row.get("stck_bsop_date", "")): row
+                    for row in adjusted_payload.get("output2", []) if row.get("stck_bsop_date")
+                }
+                common_dates = sorted(set(raw_by_date) & set(adjusted_by_date))
+                item = identity.loc[ticker]
+                rows = []
+                for date_text in common_dates:
+                    raw_row, adjusted_row = raw_by_date[date_text], adjusted_by_date[date_text]
+                    close = number(raw_row, "stck_clpr")
+                    adjusted_close = number(adjusted_row, "stck_clpr")
+                    if not np.isfinite(close) or close <= 0 or not np.isfinite(adjusted_close) or adjusted_close <= 0:
+                        continue
+                    open_price = number(raw_row, "stck_oprc")
+                    high, low = number(raw_row, "stck_hgpr"), number(raw_row, "stck_lwpr")
+                    volume, value = number(raw_row, "acml_vol"), number(raw_row, "acml_tr_pbmn")
+                    no_trade = not np.isfinite(volume) or volume <= 0
+                    if no_trade:
+                        open_price = high = low = volume = value = 0.0
+                    rows.append({
+                        "date": pd.to_datetime(date_text, format="%Y%m%d"),
+                        "ticker": ticker, "name": item["name"], "market": item["market"],
+                        "sector": item["sector"],
+                        "open": 0.0 if no_trade else (open_price if open_price > 0 else close),
+                        "high": 0.0 if no_trade else (high if high > 0 else close),
+                        "low": 0.0 if no_trade else (low if low > 0 else close),
+                        "close": close, "adjusted_close": adjusted_close,
+                        "volume": volume if np.isfinite(volume) else 0.0,
+                        "value": value if np.isfinite(value) and value > 0 else close * max(volume, 0.0),
+                        "price_date_verified": True, "price_source": "KIS",
+                        "price_basis": "unadjusted", "adjusted_basis": "KIS adjusted",
+                        "value_basis": "actual" if np.isfinite(value) and value > 0 else "close_times_volume",
+                        "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
+                    })
+                stock_repair = normalize_prices(pd.DataFrame(rows)) if rows else pd.DataFrame()
+                old_dates = set(pd.to_datetime(old["date"]).dt.normalize())
+                new_dates = set(pd.to_datetime(stock_repair["date"]).dt.normalize()) if not stock_repair.empty else set()
+                if old_dates and old_dates.issubset(new_dates):
+                    recovered_parts.append(stock_repair)
+                    recovered_tickers.add(ticker)
+            except Exception as exc:
+                self.refresh_plan.setdefault("kisHistoryFailures", []).append({
+                    "ticker": ticker, "error": type(exc).__name__,
+                })
+            time.sleep(float(self.config.get("kis_price_pause_seconds", 0.06)))
+
+        if not recovered_parts:
+            return frame, set()
+        retained = frame[~frame["ticker"].isin(recovered_tickers)] if "ticker" in frame else pd.DataFrame()
+        repaired = pd.concat([retained, *recovered_parts], ignore_index=True)
+        log(f"KIS full-history recovery: {len(recovered_tickers)} tickers repaired")
+        return normalize_prices(repaired), recovered_tickers
+
     def _pykrx(self) -> pd.DataFrame:
         try:
             from pykrx import stock
@@ -934,6 +1034,13 @@ class MarketDataLoader:
             finally:
                 self._requested_tickers, self.config["force_full_prices"] = prior_selection, prior_force
                 self._history_repair_active = False
+            unresolved = set(self.refresh_plan.get("unresolvedHistoryCorrections", []))
+            frame, kis_recovered = self._repair_history_with_kis(frame, listing, unresolved)
+            if kis_recovered:
+                self._replaced_history_tickers.update(kis_recovered)
+                unresolved -= kis_recovered
+                self.refresh_plan["fullHistoryCorrectionTickers"] = sorted(self._replaced_history_tickers)
+                self.refresh_plan["unresolvedHistoryCorrections"] = sorted(unresolved)
         frame = self._repair_close_with_kis(frame, selected)
         return frame
 
