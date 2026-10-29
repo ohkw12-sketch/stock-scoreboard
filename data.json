@@ -1,27 +1,27 @@
 {
   "meta": {
     "audit": {
-      "checkedAtKST": "2026-10-29 16:36",
+      "checkedAtKST": "2026-10-30 08:22",
       "sourceDate": "2026-10-29",
-      "summary": "실제 가격 2,765종목 전수 수집·분석 2,759종목·컨센서스 전수 및 대체 조회·보유수량·평단 보존"
+      "summary": "저장자료 재계산 · 구역별 검증 · 보유수량·평단 보존"
     },
     "changeUntil": "2026-09-09",
-    "masterBasis": "2026-10-29 일별 원시 시세 · 16:03~16:18 수집 · 장후 거래 포함 가능",
+    "masterBasis": "2026-10-29 KRX 마감 전체시장 엔진",
     "nextTradingDay": "거래소 개장일 확인 후 확정",
-    "note": "순환은 종목 추천 없이 5·10·20일 섹터 추세만 표시합니다. 가치성장은 시장 관심·성장과 절대 저평가·성장을 분리하며, 종합추천은 가치성장·추세확인 섹터·비과열 교집합입니다. 가격·일별 거래대금은 표시한 시각에 수집한 장후 포함 가능 일별 스냅샷입니다. 이슈의 15:30 정규장 분봉 종가 및 같은 경과시각 거래대금과 구분합니다. 미제공 자료는 원래 기준일·이전 검증값·실패 사유를 보존합니다.",
-    "sourceSummary": "가격 2026-10-29 16:03~16:18 전수 수집 · 재무공시 종목별 원래 기준일 보존 · 최신 잠정실적·수주 원문 2026-10-29 · 컨센서스 원래 기준일 별도 보존",
+    "note": "순환은 종목 추천 없이 5·10·20일 섹터 추세만 표시합니다. 가치성장은 시장 관심·성장과 절대 저평가·성장을 분리하며, 종합추천은 가치성장·추세확인 섹터·비과열 교집합입니다.",
+    "sourceSummary": "가격 2026-10-29 · 재무공시 2026-09-30 · 성장근거 2026-10-30 · 컨센서스 2026-10-29 · 저장자료 재계산",
     "title": "주식평가창",
-    "updatedKST": "2026-10-29 16:36",
+    "updatedKST": "2026-10-30 08:22",
     "uiContractVersion": "2026-09-23.1",
-    "runId": "448d7a961d3f8aa68a3ed626",
+    "runId": "37b4b899f441f30940783a20",
     "refreshState": {
-      "generatedAt": "2026-10-29T16:34:51+09:00",
-      "snapshotId": "63b6570be4277c34056ac11b3759c704591ffdb5edd046dce824fdb14712d672",
+      "generatedAt": "2026-10-30T08:20:20+09:00",
+      "snapshotId": "4a823cdfad14ab82894c1eedc474a4e47632dbfdd14beca6fb4e5d1673f1ed76",
       "sourceCutoff": "2026-10-29",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "448d7a961d3f8aa68a3ed626",
-      "evidenceSnapshotId": "c60434f0df2141111b7f57641268dc82f1a14f6d253776bb75a2000b105d9ed0"
+      "runId": "37b4b899f441f30940783a20",
+      "evidenceSnapshotId": "e9674b58fff82afabdc068fb88376985b8c02c72043c0d8b60497e763ebfed89"
     },
     "priceSession": "장후 포함 가능 일별 시세; 이슈의 실제 15:30 정규장 종가와 별도",
     "rawPriceCollectedCount": 2765,
@@ -100,7 +100,7 @@
     "ruleVersion": "rotation-sector-trend-4.0",
     "engine": {
       "version": "4.0.0",
-      "generatedAtKST": "2026-10-29T16:36:00+09:00",
+      "generatedAtKST": "2026-10-30T08:21:34+09:00",
       "asOfDate": "2026-10-29",
       "source": "KIS current daily original collection",
       "universe": [
@@ -187,7 +187,7 @@
         "riskGauge": 53.5,
         "memberCount": 3,
         "drawdownPct": 0.0,
-        "rank": 2
+        "rank": 3
       },
       {
         "name": "인터넷/소프트웨어",
@@ -219,7 +219,7 @@
         "riskGauge": 63.3,
         "memberCount": 237,
         "drawdownPct": 2.54,
-        "rank": 3
+        "rank": 5
       },
       {
         "name": "의료용 기기 제조업",
@@ -251,7 +251,7 @@
         "riskGauge": 60.4,
         "memberCount": 66,
         "drawdownPct": 2.75,
-        "rank": 4
+        "rank": 6
       },
       {
         "name": "사진장비 및 광학기기 제조업",
@@ -283,7 +283,7 @@
         "riskGauge": 37.6,
         "memberCount": 12,
         "drawdownPct": 0.86,
-        "rank": 5
+        "rank": 7
       },
       {
         "name": "자동차",
@@ -315,7 +315,7 @@
         "riskGauge": 31.0,
         "memberCount": 102,
         "drawdownPct": 1.01,
-        "rank": 6
+        "rank": 12
       },
       {
         "name": "여행사 및 기타 여행보조 서비스업",
@@ -347,7 +347,7 @@
         "riskGauge": 43.1,
         "memberCount": 6,
         "drawdownPct": 1.65,
-        "rank": 7
+        "rank": 14
       },
       {
         "name": "특수 목적용 기계 제조업",
@@ -379,7 +379,7 @@
         "riskGauge": 37.3,
         "memberCount": 108,
         "drawdownPct": 3.52,
-        "rank": 8
+        "rank": 16
       },
       {
         "name": "플라스틱제품 제조업",
@@ -411,39 +411,39 @@
         "riskGauge": 60.7,
         "memberCount": 40,
         "drawdownPct": 2.9,
-        "rank": 9
+        "rank": 17
       },
       {
-        "name": "금융 지원 서비스업",
-        "stage": "③주도",
-        "stageLabel": "주도",
+        "name": "토목 건설업",
+        "stage": "⑤재반등",
+        "stageLabel": "재반등",
         "rotationType": "선도주 견인형",
-        "score": 56.8,
-        "trendScore": 56.8,
-        "todayScore": 78.1,
-        "score5": 69.2,
-        "score10": 57.9,
-        "score20": 49.2,
-        "trendSlope3": 9.9,
+        "score": 57.3,
+        "trendScore": 57.3,
+        "todayScore": 78.0,
+        "score5": 69.7,
+        "score10": 60.5,
+        "score20": 46.2,
+        "trendSlope3": 7.1,
         "top20Days10": 3,
         "persistenceAdjustment": -5.0,
         "trendState": "신규포착",
-        "entryScore": 56.8,
+        "entryScore": 57.3,
         "entryFit": "확인대기",
-        "rs1Pct": 1.21,
-        "rs3Pct": 0.27,
-        "rs5Pct": 2.14,
-        "turnoverChangePct": 79.3,
-        "advanceRatioPct": 31.8,
-        "leaderStrengthPct": 5.27,
-        "rotationStartDate": "2026-10-23",
+        "rs1Pct": 1.24,
+        "rs3Pct": 0.05,
+        "rs5Pct": 0.49,
+        "turnoverChangePct": 29.8,
+        "advanceRatioPct": 38.5,
+        "leaderStrengthPct": 9.02,
+        "rotationStartDate": "2026-10-21",
         "averageCycleDays": 10,
-        "elapsedBusinessDays": 5,
-        "positionPct": 50.0,
-        "riskGauge": 35.5,
-        "memberCount": 88,
-        "drawdownPct": 0.0,
-        "rank": 10
+        "elapsedBusinessDays": 7,
+        "positionPct": 70.0,
+        "riskGauge": 50.2,
+        "memberCount": 13,
+        "drawdownPct": 3.07,
+        "rank": 19
       }
     ],
     "rows": [],
@@ -458,36 +458,27 @@
       }
     ],
     "stageCounts": {
-      "⑤재반등": 1,
-      "③주도": 6,
-      "④눌림": 3
+      "③주도": 5,
+      "④눌림": 3,
+      "⑤재반등": 2
     },
-    "exclusionPolicy": "사용자 건설·바이오 전반 제외",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-10-29T16:34:51+09:00",
-      "snapshotId": "63b6570be4277c34056ac11b3759c704591ffdb5edd046dce824fdb14712d672",
+      "generatedAt": "2026-10-30T08:20:20+09:00",
+      "snapshotId": "4a823cdfad14ab82894c1eedc474a4e47632dbfdd14beca6fb4e5d1673f1ed76",
       "sourceCutoff": "2026-10-29",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "448d7a961d3f8aa68a3ed626"
+      "runId": "37b4b899f441f30940783a20"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
       "gapCalendarDays": 7,
       "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-    },
-    "dataFinality": {
-      "priceDate": "2026-10-29",
-      "fetchedFrom": "2026-10-29T16:03:26+09:00",
-      "fetchedUntil": "2026-10-29T16:18:20+09:00",
-      "regularCloseSeparated": false,
-      "source": "KIS 수정·비수정 일별 시세 원본",
-      "flowBasis": "공급자 일별 누적 거래대금 스냅샷; 이슈의 같은 경과시각 배율과 구분"
     }
   },
   "p2": {
-    "status": "시장관심·성장 20개 · 절대 저평가·성장 10개 표시",
+    "status": "시장관심·성장 49개 중 20개 · 절대 저평가·성장 10개 중 10개 표시",
     "method": "서로 다른 목적을 한 점수에 섞지 않고 시장 관심과 절대 저평가를 위·아래 두 표로 분리",
     "rows": [
       {
@@ -582,7 +573,7 @@
         },
         "stage": "근거 확대",
         "firstPublished": "2026-10-08",
-        "lastVerified": "2026-10-29T16:03:21.009070+09:00",
+        "lastVerified": "2026-10-30T08:21:36+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 84.22,
@@ -613,9 +604,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 1,
         "alsoInterestTop20": true,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:03:26+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "3거래일 연속 추천",
+          "firstDate": "2026-10-27",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 3,
+          "spanTradingDays": 3,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "025560",
@@ -703,7 +700,7 @@
         },
         "stage": "근거 확대",
         "firstPublished": "2026-08-20",
-        "lastVerified": "2026-10-29T12:36:20+09:00",
+        "lastVerified": "2026-10-30T08:21:36+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 78.55,
@@ -736,9 +733,15 @@
         "seasonalityEstimateOnly": true,
         "rank": 2,
         "alsoInterestTop20": true,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:07:47+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "20거래일 연속 추천",
+          "firstDate": "2026-09-21",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 20,
+          "spanTradingDays": 20,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "329180",
@@ -832,7 +835,7 @@
         },
         "stage": "근거 확대",
         "firstPublished": "2026-08-10",
-        "lastVerified": "2026-10-29T16:05:21+09:00",
+        "lastVerified": "2026-10-30T08:21:36+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 75.01,
@@ -863,9 +866,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 3,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:03:33+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "2거래일 연속 추천",
+          "firstDate": "2026-10-28",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 2,
+          "spanTradingDays": 2,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "071970",
@@ -891,11 +900,11 @@
         "fundamentalYear": 2026,
         "seasonalityFallback": false,
         "confidence": "높음",
-        "evidenceCount": 7,
-        "confidenceScore": 73.0,
-        "expectationClusterCount": 7,
+        "evidenceCount": 6,
+        "confidenceScore": 69.7,
+        "expectationClusterCount": 6,
         "priceReflection": "판정 불가",
-        "score": 74.53,
+        "score": 74.44,
         "averageTurnover20": 11613777812.0,
         "financialSummary": "2026E 분기평균 매출 1,483억원 · 2026E 영업이익률 25.1% · 1Q→2Q 영업이익률 24.4%→24.4% (+0.0%p) · FnGuide 공개 집계 · 20일 평균 거래대금 116억원 · 매출 성장 +27.1% (2027E/2026E 매출)",
         "leadingIndicatorScore": 50.1,
@@ -953,19 +962,19 @@
           "industryIndicator": 50.0,
           "capacitySignal": 50.0,
           "revenueVisibility": 84.5,
-          "evidenceConfidence": 73.0,
+          "evidenceConfidence": 69.7,
           "marketConfirmation": 30.2,
           "financialSafety": 100
         },
         "stage": "근거 확대",
-        "firstPublished": "2026-07-31",
-        "lastVerified": "2026-10-29T16:03:28.119846+09:00",
+        "firstPublished": "2026-08-21",
+        "lastVerified": "2026-10-30T08:21:36+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
-        "valueGrowthScore": 74.53,
-        "absoluteValueGrowthScore": 74.53,
+        "valueGrowthScore": 74.44,
+        "absoluteValueGrowthScore": 74.44,
         "valueScore": 83.1,
-        "growthScore": 65.95,
+        "growthScore": 65.78,
         "normalizedPOP": 8.3,
         "normalizedPremiumPct": null,
         "valueConfidence": "C",
@@ -990,9 +999,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 4,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:04:53+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "14거래일 연속 추천",
+          "firstDate": "2026-10-01",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 14,
+          "spanTradingDays": 14,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "170920",
@@ -1080,7 +1095,7 @@
         },
         "stage": "초기 포착",
         "firstPublished": "2026-10-28",
-        "lastVerified": "2026-10-29T12:01:51+09:00",
+        "lastVerified": "2026-10-30T08:06:10+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 72.65,
@@ -1113,9 +1128,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 5,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:06:11+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "3거래일 연속 추천",
+          "firstDate": "2026-10-27",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 3,
+          "spanTradingDays": 3,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "119850",
@@ -1209,7 +1230,7 @@
         },
         "stage": "근거 확대",
         "firstPublished": "2026-08-03",
-        "lastVerified": "2026-10-29T12:36:20+09:00",
+        "lastVerified": "2026-10-30T08:21:36+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 70.73,
@@ -1240,9 +1261,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 6,
         "alsoInterestTop20": true,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:05:49+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "3거래일 연속 추천",
+          "firstDate": "2026-10-27",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 3,
+          "spanTradingDays": 3,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "388210",
@@ -1330,7 +1357,7 @@
         },
         "stage": "초기 포착",
         "firstPublished": "2026-10-28",
-        "lastVerified": "2026-10-29T12:01:51+09:00",
+        "lastVerified": "2026-10-30T08:06:10+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 66.12,
@@ -1363,9 +1390,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 7,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:05:37+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "recent",
+          "label": "최근 7거래일 중 4일 추천",
+          "firstDate": "2026-10-21",
+          "previousDate": "2026-10-27",
+          "recommendationDays": 4,
+          "spanTradingDays": 7,
+          "gapCalendarDays": 2
+        }
       },
       {
         "ticker": "003160",
@@ -1447,7 +1480,7 @@
         },
         "stage": "초기 포착",
         "firstPublished": "2026-10-28",
-        "lastVerified": "2026-10-29T12:01:51+09:00",
+        "lastVerified": "2026-10-30T08:06:10+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 65.02,
@@ -1480,9 +1513,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 8,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:04:51+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "3거래일 연속 추천",
+          "firstDate": "2026-10-27",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 3,
+          "spanTradingDays": 3,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "166090",
@@ -1570,7 +1609,7 @@
         },
         "stage": "초기 포착",
         "firstPublished": "2026-10-28",
-        "lastVerified": "2026-10-29T12:01:51+09:00",
+        "lastVerified": "2026-10-30T08:06:10+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 64.63,
@@ -1603,9 +1642,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 9,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:05:05+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "3거래일 연속 추천",
+          "firstDate": "2026-10-27",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 3,
+          "spanTradingDays": 3,
+          "gapCalendarDays": 1
+        }
       },
       {
         "ticker": "171090",
@@ -1693,7 +1738,7 @@
         },
         "stage": "초기 포착",
         "firstPublished": "2026-10-28",
-        "lastVerified": "2026-10-29T12:01:51+09:00",
+        "lastVerified": "2026-10-30T08:06:10+09:00",
         "sourceDate": "2026-10-29",
         "oldEvidenceCount": 0,
         "valueGrowthScore": 53.23,
@@ -1727,9 +1772,15 @@
         "seasonalityEstimateOnly": false,
         "rank": 10,
         "alsoInterestTop20": false,
-        "priceDate": "2026-10-29",
-        "priceSourceFetchedAt": "2026-10-29T16:05:15+09:00",
-        "priceSession": "공급자 일별 시세·장후 포함 가능"
+        "recommendationHistory": {
+          "kind": "consecutive",
+          "label": "3거래일 연속 추천",
+          "firstDate": "2026-10-27",
+          "previousDate": "2026-10-28",
+          "recommendationDays": 3,
+          "spanTradingDays": 3,
+          "gapCalendarDays": 1
+        }
       }
     ],
     "interestGrowth": {
@@ -1828,7 +1879,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-12",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 77.65,
@@ -1850,10 +1901,7 @@
           "ma20SlopePct": -2.59,
           "nonOverheated": false,
           "rank": 1,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:17+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "347700",
@@ -1947,7 +1995,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-09-23",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 76.37,
@@ -1969,10 +2017,7 @@
           "ma20SlopePct": -0.11,
           "nonOverheated": false,
           "rank": 2,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:04+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "025560",
@@ -2060,7 +2105,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-20",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 74.9,
@@ -2082,10 +2127,7 @@
           "ma20SlopePct": 0.27,
           "nonOverheated": false,
           "rank": 3,
-          "alsoAbsoluteTop20": true,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:07:47+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": true
         },
         {
           "ticker": "403870",
@@ -2167,7 +2209,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 73.8,
@@ -2189,10 +2231,7 @@
           "ma20SlopePct": -1.38,
           "nonOverheated": false,
           "rank": 4,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:04+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "441270",
@@ -2280,7 +2319,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 71.71,
@@ -2302,10 +2341,7 @@
           "ma20SlopePct": -0.01,
           "nonOverheated": false,
           "rank": 5,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:06:28+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "200470",
@@ -2387,7 +2423,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 71.2,
@@ -2409,10 +2445,7 @@
           "ma20SlopePct": 0.96,
           "nonOverheated": false,
           "rank": 6,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:06:10+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "052460",
@@ -2494,7 +2527,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 70.56,
@@ -2516,10 +2549,7 @@
           "ma20SlopePct": 0.55,
           "nonOverheated": false,
           "rank": 7,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:10:22+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "119850",
@@ -2613,7 +2643,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-03",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 70.06,
@@ -2635,10 +2665,7 @@
           "ma20SlopePct": -2.33,
           "nonOverheated": false,
           "rank": 8,
-          "alsoAbsoluteTop20": true,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:49+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": true
         },
         {
           "ticker": "232140",
@@ -2726,7 +2753,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-27",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 69.72,
@@ -2748,10 +2775,7 @@
           "ma20SlopePct": -0.3,
           "nonOverheated": false,
           "rank": 9,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:00+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "005930",
@@ -2845,7 +2869,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-10-08",
-          "lastVerified": "2026-10-29T16:03:21.009070+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 68.54,
@@ -2867,10 +2891,7 @@
           "ma20SlopePct": -0.88,
           "nonOverheated": false,
           "rank": 10,
-          "alsoAbsoluteTop20": true,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:26+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": true
         },
         {
           "ticker": "131970",
@@ -2952,7 +2973,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 67.95,
@@ -2974,10 +2995,7 @@
           "ma20SlopePct": 0.0,
           "nonOverheated": false,
           "rank": 11,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:34+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "353200",
@@ -3087,10 +3105,7 @@
           "ma20SlopePct": 0.26,
           "nonOverheated": true,
           "rank": 12,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:54+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "332570",
@@ -3172,7 +3187,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 67.02,
@@ -3194,10 +3209,7 @@
           "ma20SlopePct": -1.35,
           "nonOverheated": false,
           "rank": 13,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:06:49+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "073490",
@@ -3285,7 +3297,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-09-03",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 66.25,
@@ -3307,10 +3319,7 @@
           "ma20SlopePct": -0.94,
           "nonOverheated": false,
           "rank": 14,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:08:02+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "009150",
@@ -3404,7 +3413,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-09-01",
-          "lastVerified": "2026-10-29T16:03:28.479967+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 66.2,
@@ -3426,10 +3435,7 @@
           "ma20SlopePct": -0.9,
           "nonOverheated": false,
           "rank": 15,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:27+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "031980",
@@ -3511,7 +3517,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 65.69,
@@ -3533,10 +3539,7 @@
           "ma20SlopePct": 0.36,
           "nonOverheated": false,
           "rank": 16,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:02+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "003670",
@@ -3630,7 +3633,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-09-22",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 65.31,
@@ -3652,10 +3655,7 @@
           "ma20SlopePct": -0.4,
           "nonOverheated": false,
           "rank": 17,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:40+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "293490",
@@ -3737,7 +3737,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 65.06,
@@ -3759,10 +3759,7 @@
           "ma20SlopePct": 0.87,
           "nonOverheated": false,
           "rank": 18,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:54+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "043260",
@@ -3844,7 +3841,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 64.6,
@@ -3866,10 +3863,7 @@
           "ma20SlopePct": 0.93,
           "nonOverheated": true,
           "rank": 19,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:26+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         },
         {
           "ticker": "039030",
@@ -3951,7 +3945,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "interestGrowthScore": 64.56,
@@ -3973,10 +3967,7 @@
           "ma20SlopePct": -0.86,
           "nonOverheated": false,
           "rank": 20,
-          "alsoAbsoluteTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:56+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoAbsoluteTop20": false
         }
       ]
     },
@@ -4076,7 +4067,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-10-08",
-          "lastVerified": "2026-10-29T16:03:21.009070+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 84.22,
@@ -4106,10 +4097,7 @@
           "consensusOnlyEvidence": false,
           "seasonalityEstimateOnly": false,
           "rank": 1,
-          "alsoInterestTop20": true,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:26+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": true
         },
         {
           "ticker": "025560",
@@ -4197,7 +4185,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-20",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 78.55,
@@ -4229,10 +4217,7 @@
           "consensusOnlyEvidence": false,
           "seasonalityEstimateOnly": true,
           "rank": 2,
-          "alsoInterestTop20": true,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:07:47+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": true
         },
         {
           "ticker": "329180",
@@ -4326,7 +4311,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-10",
-          "lastVerified": "2026-10-29T16:05:21+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 75.01,
@@ -4356,10 +4341,7 @@
           "consensusOnlyEvidence": false,
           "seasonalityEstimateOnly": false,
           "rank": 3,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:03:33+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         },
         {
           "ticker": "071970",
@@ -4385,11 +4367,11 @@
           "fundamentalYear": 2026,
           "seasonalityFallback": false,
           "confidence": "높음",
-          "evidenceCount": 7,
-          "confidenceScore": 73.0,
-          "expectationClusterCount": 7,
+          "evidenceCount": 6,
+          "confidenceScore": 69.7,
+          "expectationClusterCount": 6,
           "priceReflection": "판정 불가",
-          "score": 74.53,
+          "score": 74.44,
           "averageTurnover20": 11613777812.0,
           "financialSummary": "2026E 분기평균 매출 1,483억원 · 2026E 영업이익률 25.1% · 1Q→2Q 영업이익률 24.4%→24.4% (+0.0%p) · FnGuide 공개 집계 · 20일 평균 거래대금 116억원 · 매출 성장 +27.1% (2027E/2026E 매출)",
           "leadingIndicatorScore": 50.1,
@@ -4447,19 +4429,19 @@
             "industryIndicator": 50.0,
             "capacitySignal": 50.0,
             "revenueVisibility": 84.5,
-            "evidenceConfidence": 73.0,
+            "evidenceConfidence": 69.7,
             "marketConfirmation": 30.2,
             "financialSafety": 100
           },
           "stage": "근거 확대",
-          "firstPublished": "2026-07-31",
-          "lastVerified": "2026-10-29T16:03:28.119846+09:00",
+          "firstPublished": "2026-08-21",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
-          "valueGrowthScore": 74.53,
-          "absoluteValueGrowthScore": 74.53,
+          "valueGrowthScore": 74.44,
+          "absoluteValueGrowthScore": 74.44,
           "valueScore": 83.1,
-          "growthScore": 65.95,
+          "growthScore": 65.78,
           "normalizedPOP": 8.3,
           "normalizedPremiumPct": null,
           "valueConfidence": "C",
@@ -4483,10 +4465,7 @@
           "consensusOnlyEvidence": false,
           "seasonalityEstimateOnly": false,
           "rank": 4,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:53+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         },
         {
           "ticker": "170920",
@@ -4574,7 +4553,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 72.65,
@@ -4606,10 +4585,7 @@
           "consensusOnlyEvidence": true,
           "seasonalityEstimateOnly": false,
           "rank": 5,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:06:11+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         },
         {
           "ticker": "119850",
@@ -4703,7 +4679,7 @@
           },
           "stage": "근거 확대",
           "firstPublished": "2026-08-03",
-          "lastVerified": "2026-10-29T12:36:20+09:00",
+          "lastVerified": "2026-10-30T08:21:36+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 70.73,
@@ -4733,10 +4709,7 @@
           "consensusOnlyEvidence": false,
           "seasonalityEstimateOnly": false,
           "rank": 6,
-          "alsoInterestTop20": true,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:49+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": true
         },
         {
           "ticker": "388210",
@@ -4824,7 +4797,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 66.12,
@@ -4856,10 +4829,7 @@
           "consensusOnlyEvidence": true,
           "seasonalityEstimateOnly": false,
           "rank": 7,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:37+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         },
         {
           "ticker": "003160",
@@ -4941,7 +4911,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 65.02,
@@ -4973,10 +4943,7 @@
           "consensusOnlyEvidence": true,
           "seasonalityEstimateOnly": false,
           "rank": 8,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:04:51+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         },
         {
           "ticker": "166090",
@@ -5064,7 +5031,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 64.63,
@@ -5096,10 +5063,7 @@
           "consensusOnlyEvidence": true,
           "seasonalityEstimateOnly": false,
           "rank": 9,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:05+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         },
         {
           "ticker": "171090",
@@ -5187,7 +5151,7 @@
           },
           "stage": "초기 포착",
           "firstPublished": "2026-10-28",
-          "lastVerified": "2026-10-29T12:01:51+09:00",
+          "lastVerified": "2026-10-30T08:06:10+09:00",
           "sourceDate": "2026-10-29",
           "oldEvidenceCount": 0,
           "valueGrowthScore": 53.23,
@@ -5220,10 +5184,7 @@
           "consensusOnlyEvidence": true,
           "seasonalityEstimateOnly": false,
           "rank": 10,
-          "alsoInterestTop20": false,
-          "priceDate": "2026-10-29",
-          "priceSourceFetchedAt": "2026-10-29T16:05:15+09:00",
-          "priceSession": "공급자 일별 시세·장후 포함 가능"
+          "alsoInterestTop20": false
         }
       ]
     },
@@ -5251,9 +5212,9 @@
       },
       "evidence": {
         "source": "OpenDART 공시 원문",
-        "checkedAt": "2026-10-29T12:36:20+09:00",
-        "status": "부분수집",
-        "requestedTickers": 2765,
+        "checkedAt": "2026-10-30T08:21:36+09:00",
+        "status": "정상",
+        "requestedTickers": 2759,
         "requestedTickerSet": [
           "000020",
           "000040",
@@ -5358,7 +5319,6 @@
           "001450",
           "001460",
           "001465",
-          "001470",
           "001500",
           "001510",
           "001515",
@@ -5520,7 +5480,6 @@
           "004370",
           "004380",
           "004410",
-          "004415",
           "004430",
           "004440",
           "004450",
@@ -5567,6 +5526,7 @@
           "005385",
           "005387",
           "005389",
+          "0053F0",
           "005420",
           "005430",
           "005440",
@@ -5760,7 +5720,6 @@
           "011080",
           "011090",
           "011150",
-          "011155",
           "011170",
           "011200",
           "011210",
@@ -6062,7 +6021,6 @@
           "032620",
           "032640",
           "032680",
-          "032685",
           "032750",
           "032790",
           "032800",
@@ -6486,7 +6444,6 @@
           "066620",
           "066670",
           "066700",
-          "066790",
           "066900",
           "066910",
           "066970",
@@ -7316,7 +7273,6 @@
           "248170",
           "249420",
           "250000",
-          "250030",
           "250060",
           "250930",
           "251120",
@@ -7513,7 +7469,6 @@
           "311320",
           "311390",
           "311690",
-          "312610",
           "313760",
           "314130",
           "314140",
@@ -8021,52 +7976,28 @@
           "950250",
           "950260"
         ],
-        "universeVersion": "ad24bbe31c0dc64104f4688e",
-        "failures": [
-          {
-            "ticker": "0013Y0",
-            "period": [
-              "2025-09-24",
-              "2026-10-21"
-            ],
-            "error": "DART 법인코드 매핑 없음; 신규 종목 과거 공시 미검증"
-          },
-          {
-            "ticker": "0015M0",
-            "period": [
-              "2025-09-24",
-              "2026-10-21"
-            ],
-            "error": "DART 법인코드 매핑 없음; 신규 종목 과거 공시 미검증"
-          },
-          {
-            "ticker": "0205H0",
-            "period": [
-              "2025-09-24",
-              "2026-10-21"
-            ],
-            "error": "DART 법인코드 매핑 없음; 신규 종목 과거 공시 미검증"
-          }
-        ],
+        "universeVersion": "fce123bfffed356d57354de4",
+        "failures": [],
         "documentsFailed": [],
-        "reviewOnlyCount": 6103,
-        "documentsDownloaded": 23,
-        "documentsReparsed": 211,
-        "parsedCacheHits": 6374,
+        "reviewOnlyCount": 6094,
+        "documentsDownloaded": 26,
+        "documentsReparsed": 49,
+        "parsedCacheHits": 6549,
         "backfillTickers": [
           "0013Y0",
           "0015M0",
+          "0053F0",
           "0205H0"
         ],
-        "indexedReports": 12688,
-        "retainedIndexReports": 12697,
-        "parsedDocuments": 6585,
-        "ledgerCount": 4981,
-        "evidenceTickers": 633,
-        "historyStart": "2025-09-24",
-        "incrementalStart": "2026-10-21",
-        "scannedThrough": "2026-10-29",
-        "completedTickers": 2762,
+        "indexedReports": 12692,
+        "retainedIndexReports": 12749,
+        "parsedDocuments": 6598,
+        "ledgerCount": 5113,
+        "evidenceTickers": 637,
+        "historyStart": "2025-09-25",
+        "incrementalStart": "2026-10-22",
+        "scannedThrough": "2026-10-30",
+        "completedTickers": 2759,
         "completedTickerSet": [
           "000020",
           "000040",
@@ -8164,13 +8095,13 @@
           "001380",
           "001390",
           "0013V0",
+          "0013Y0",
           "001420",
           "001430",
           "001440",
           "001450",
           "001460",
           "001465",
-          "001470",
           "001500",
           "001510",
           "001515",
@@ -8183,6 +8114,7 @@
           "001560",
           "001570",
           "0015G0",
+          "0015M0",
           "0015N0",
           "0015S0",
           "001620",
@@ -8331,7 +8263,6 @@
           "004370",
           "004380",
           "004410",
-          "004415",
           "004430",
           "004440",
           "004450",
@@ -8378,6 +8309,7 @@
           "005385",
           "005387",
           "005389",
+          "0053F0",
           "005420",
           "005430",
           "005440",
@@ -8571,7 +8503,6 @@
           "011080",
           "011090",
           "011150",
-          "011155",
           "011170",
           "011200",
           "011210",
@@ -8747,6 +8678,7 @@
           "020180",
           "020400",
           "020560",
+          "0205H0",
           "020710",
           "020760",
           "0209J0",
@@ -8872,7 +8804,6 @@
           "032620",
           "032640",
           "032680",
-          "032685",
           "032750",
           "032790",
           "032800",
@@ -9296,7 +9227,6 @@
           "066620",
           "066670",
           "066700",
-          "066790",
           "066900",
           "066910",
           "066970",
@@ -10126,7 +10056,6 @@
           "248170",
           "249420",
           "250000",
-          "250030",
           "250060",
           "250930",
           "251120",
@@ -10323,7 +10252,6 @@
           "311320",
           "311390",
           "311690",
-          "312610",
           "313760",
           "314130",
           "314140",
@@ -10831,40 +10759,19 @@
           "950250",
           "950260"
         ],
-        "missingTickers": [
-          "0013Y0",
-          "0015M0",
-          "0205H0"
-        ],
-        "afternoonVerification": {
-          "checkedAt": "2026-10-29T16:33:21+09:00",
-          "requestedOriginals": 158,
-          "dartDirectOriginals": 151,
-          "kindFallbackOriginals": 7,
-          "manualReviewedDecisions": 19,
-          "unreviewedNewOriginalsNeutral": true,
-          "originalDatesPreserved": true,
-          "sourceRecheckCount": 26
-        },
-        "cacheReadAt": "2026-10-29T16:36:01+09:00",
-        "cacheReason": "명시적 원자료 재사용",
-        "networkRequests": 0,
-        "reused": true,
-        "sourceStatus": "부분수집",
+        "missingTickers": [],
         "news": {
-          "status": "미수집",
+          "status": "설정필요",
           "source": "NAVER 뉴스",
-          "cacheReadAt": "2026-10-29T16:36:02+09:00",
-          "cacheReason": "명시적 원자료 재사용",
-          "networkRequests": 0,
-          "reused": true,
-          "sourceStatus": "미수집",
-          "problem": "재사용할 검증 원자료 없음"
+          "checkedAt": null,
+          "attemptedAt": "2026-10-30T08:22:22+09:00",
+          "hints": 0,
+          "problem": "뉴스 검색 키 미설정; 기존 검증대기 큐 보존, 신규 뉴스 근거 없음"
         },
         "industryStatistics": {
           "status": "수집실패",
           "source": "산업통상부 월간 수출입 동향(KDI)",
-          "checkedAt": "2026-10-29T12:37:04+09:00",
+          "checkedAt": "2026-10-30T08:22:22+09:00",
           "scope": "HTML 본문에 품목별 증가율이 명시된 통계만; 전 품목·전 지역 아님",
           "historyGaps": [
             {
@@ -10921,217 +10828,99 @@
             "화장품"
           ],
           "documentsDownloaded": 1,
-          "parsedCacheHits": 4,
-          "cacheReadAt": "2026-10-29T16:36:02+09:00",
-          "cacheReason": "명시적 원자료 재사용",
-          "networkRequests": 0,
-          "reused": true,
-          "sourceStatus": "수집실패"
+          "parsedCacheHits": 4
         },
         "investorFlows": {
-          "source": "KIS Developers 일자별 투자자 원자료·현재일 및 20거래일 전수 확인",
+          "source": "KIS Developers 주식현재가 투자자",
           "status": "부분수집",
-          "checkedAt": "2026-10-29T16:28:55+09:00",
+          "checkedAt": "2026-10-30T08:22:29+09:00",
           "asOfDate": "2026-10-29",
-          "requestedCalls": 888,
-          "successfulCalls": 881,
+          "requestedCalls": 7,
+          "successfulCalls": 0,
           "tickerCount": 881,
-          "eligibleTickerCount": 888,
           "failures": [
             {
               "ticker": "0053F0",
-              "name": "티앤이코리아",
-              "listingDate": "2026-10-29",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930",
-                "20261001",
-                "20261002",
-                "20261006",
-                "20261007",
-                "20261008",
-                "20261012",
-                "20261013",
-                "20261014",
-                "20261015",
-                "20261016",
-                "20261019",
-                "20261020",
-                "20261021",
-                "20261022",
-                "20261023",
-                "20261026",
-                "20261027",
-                "20261028"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             },
             {
               "ticker": "0013Y0",
-              "name": "엠에스바이오",
-              "listingDate": "2026-10-22",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930",
-                "20261001",
-                "20261002",
-                "20261006",
-                "20261007",
-                "20261008",
-                "20261012",
-                "20261013",
-                "20261014",
-                "20261015",
-                "20261016",
-                "20261019",
-                "20261020",
-                "20261021"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             },
             {
               "ticker": "0158S0",
-              "name": "엘리스",
-              "listingDate": "2026-10-20",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930",
-                "20261001",
-                "20261002",
-                "20261006",
-                "20261007",
-                "20261008",
-                "20261012",
-                "20261013",
-                "20261014",
-                "20261015",
-                "20261016",
-                "20261019"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             },
             {
               "ticker": "0015M0",
-              "name": "디티에스",
-              "listingDate": "2026-10-23",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930",
-                "20261001",
-                "20261002",
-                "20261006",
-                "20261007",
-                "20261008",
-                "20261012",
-                "20261013",
-                "20261014",
-                "20261015",
-                "20261016",
-                "20261019",
-                "20261020",
-                "20261021",
-                "20261022"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             },
             {
               "ticker": "179880",
-              "name": "멜콘",
-              "listingDate": "2026-10-15",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930",
-                "20261001",
-                "20261002",
-                "20261006",
-                "20261007",
-                "20261008",
-                "20261012",
-                "20261013",
-                "20261014"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             },
             {
               "ticker": "468670",
-              "name": "브릴스",
-              "listingDate": "2026-10-01",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             },
             {
               "ticker": "0205H0",
-              "name": "에스케이증권제14호기업인수목적",
-              "listingDate": "2026-10-27",
-              "priceDate": "2026-10-29",
-              "reason": "같은 기준일의 20거래일 수급 이력 부족; KRX 및 KIS 재조회 후 중립 처리",
-              "missingDates": [
-                "20260930",
-                "20261001",
-                "20261002",
-                "20261006",
-                "20261007",
-                "20261008",
-                "20261012",
-                "20261013",
-                "20261014",
-                "20261015",
-                "20261016",
-                "20261019",
-                "20261020",
-                "20261021",
-                "20261022",
-                "20261023",
-                "20261026"
-              ],
-              "latestAvailableDate": "20261029"
+              "error": "ValueError"
             }
           ],
-          "scope": "현재일 포함 KRX 20거래일 실제 날짜 대조; 5·20일 외국인·기관 순매수, 제공 시점 잠정 자료",
-          "cacheReadAt": "2026-10-29T16:36:02+09:00",
-          "cacheReason": "명시적 수급 캐시 재사용",
-          "networkRequests": 0,
-          "reused": true,
-          "sourceStatus": "부분수집"
+          "eligibleTickerCount": 887,
+          "cachedTickerCount": 881,
+          "scope": "20일 평균 거래대금 기준을 충족한 종목의 최근 5·20거래일 외국인·기관계 순매수 거래대금",
+          "problem": null,
+          "fallbackReason": "KRX 로그인 또는 일괄 응답 실패",
+          "krxAttempt": {
+            "requestedCalls": 4,
+            "successfulCalls": 0,
+            "failures": [
+              {
+                "window": "5",
+                "investor": "외국인",
+                "error": "ValueError"
+              },
+              {
+                "window": "5",
+                "investor": "기관합계",
+                "error": "ValueError"
+              },
+              {
+                "window": "20",
+                "investor": "외국인",
+                "error": "ValueError"
+              },
+              {
+                "window": "20",
+                "investor": "기관합계",
+                "error": "ValueError"
+              }
+            ]
+          }
         },
         "verifiedDocuments": {
           "source": "검증 뉴스·IR 원문",
-          "status": "캐시유지",
+          "status": "정상",
           "checkedAt": "2026-10-08T16:14:01+09:00",
-          "processedAt": "2026-10-29T12:39:12+09:00",
+          "processedAt": "2026-10-30T08:22:33+09:00",
           "networkRequests": 0,
           "documentCount": 3,
           "eventCount": 4,
           "failures": [],
-          "scope": "제공된 검증 원문만; 뉴스·IR 전수 수집 또는 신규 원문 접근 권한을 의미하지 않음",
-          "cacheReadAt": "2026-10-29T16:36:02+09:00",
-          "cacheReason": "명시적 원자료 재사용",
-          "reused": true,
-          "sourceStatus": "정상"
+          "scope": "제공된 검증 원문만; 뉴스·IR 전수 수집 또는 신규 원문 접근 권한을 의미하지 않음"
         },
         "ir": {
           "source": "검증 뉴스·IR 원문",
-          "status": "캐시유지",
+          "status": "정상",
           "checkedAt": "2026-10-08T16:14:01+09:00",
-          "processedAt": "2026-10-29T12:39:12+09:00",
+          "processedAt": "2026-10-30T08:22:33+09:00",
           "networkRequests": 0,
           "documentCount": 3,
           "eventCount": 4,
           "failures": [],
-          "scope": "제공된 검증 원문만; 뉴스·IR 전수 수집 또는 신규 원문 접근 권한을 의미하지 않음",
-          "cacheReadAt": "2026-10-29T16:36:02+09:00",
-          "cacheReason": "명시적 원자료 재사용",
-          "reused": true,
-          "sourceStatus": "정상"
+          "scope": "제공된 검증 원문만; 뉴스·IR 전수 수집 또는 신규 원문 접근 권한을 의미하지 않음"
         },
         "consensus": {
           "status": "정상",
@@ -11145,31 +10934,28 @@
         "minimumAverageQuarterlyOperatingMarginPct": 0.0,
         "minimumAverageTurnover": 1000000000.0,
         "candidateLimit": 50,
-        "marketRiskExcludedCount": 177,
+        "marketRiskExcludedCount": 145,
         "marketRiskFieldsAvailable": false,
         "investorFlowCoverageCount": 50,
         "signalStructure": "예상실적·근거 → 실적·산업 선행검증 → 수급·주가 확인",
         "oldEvidenceUsed": 0
-      },
-      "legalIndustryExcludedCount": 0,
-      "finalRiskReviewAt": "2026-10-29T16:38:00+09:00",
-      "finalRiskExcludedCount": 0
+      }
     },
     "ruleVersion": "value-growth-split-4.0",
     "methodVersion": "value-growth-split-4.0",
     "projectType": "value-growth",
     "sourceDate": "2026-10-29",
-    "updatedKST": "2026-10-29 16:36",
+    "updatedKST": "2026-10-30 08:22",
     "notice": "시장관심표는 성장용 완화 선조건과 동일 기간 성장률만 사용합니다. 절대 저평가표는 엄격한 가치 선조건을 적용하며 계절성 추정만 사용하면 10점을 감점합니다.",
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-10-29T16:34:51+09:00",
-      "snapshotId": "63b6570be4277c34056ac11b3759c704591ffdb5edd046dce824fdb14712d672",
+      "generatedAt": "2026-10-30T08:20:20+09:00",
+      "snapshotId": "4a823cdfad14ab82894c1eedc474a4e47632dbfdd14beca6fb4e5d1673f1ed76",
       "sourceCutoff": "2026-10-29",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "448d7a961d3f8aa68a3ed626",
-      "evidenceSnapshotId": "c60434f0df2141111b7f57641268dc82f1a14f6d253776bb75a2000b105d9ed0"
+      "runId": "37b4b899f441f30940783a20",
+      "evidenceSnapshotId": "e9674b58fff82afabdc068fb88376985b8c02c72043c0d8b60497e763ebfed89"
     },
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
@@ -11180,7 +10966,7 @@
   "p3": {
     "events": [],
     "exposure": {
-      "basis": "2026-10-29 일별 시세 × 기존 보유수량",
+      "basis": "2026-10-29 검증 종가 × 기존 보유수량",
       "sectors": [
         {
           "name": "PCB·기판·광학",
@@ -11260,7 +11046,7 @@
       {
         "action": "근거 확인",
         "avg": 1716000,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 1521000.0,
         "drawdown3m": "-21.40%",
         "fairRange": "별도 산정 안 함",
@@ -11272,7 +11058,7 @@
         "qty": 3,
         "ret": "-11.36%",
         "sector": "메모리",
-        "special": "실적 2026-06-30 · 시세 1,521,000원",
+        "special": "실적 2026-06-30 · 종가 1,521,000원",
         "tag": "H",
         "valuePosition": "42.3% 할인",
         "previousAssessment": {
@@ -11294,7 +11080,7 @@
       {
         "action": "근거 확인",
         "avg": 54331,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 73100.0,
         "drawdown3m": "-18.78%",
         "fairRange": "별도 산정 안 함",
@@ -11306,7 +11092,7 @@
         "qty": 89,
         "ret": "+34.55%",
         "sector": "PCB/패키지기판",
-        "special": "실적 2026-06-30 · 시세 73,100원",
+        "special": "실적 2026-06-30 · 종가 73,100원",
         "tag": "H",
         "valuePosition": "12.4% 프리미엄",
         "previousAssessment": {
@@ -11328,7 +11114,7 @@
       {
         "action": "근거 확인",
         "avg": 566000,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 345500.0,
         "drawdown3m": "-51.34%",
         "fairRange": "별도 산정 안 함",
@@ -11340,7 +11126,7 @@
         "qty": 6,
         "ret": "-38.96%",
         "sector": "광학/FC-BGA",
-        "special": "실적 2026-06-30 · 시세 345,500원",
+        "special": "실적 2026-06-30 · 종가 345,500원",
         "tag": "H",
         "valuePosition": "53.4% 할인",
         "previousAssessment": {
@@ -11362,7 +11148,7 @@
       {
         "action": "확인 대기",
         "avg": 175800,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 117700.0,
         "drawdown3m": "-37.19%",
         "fairRange": "별도 산정 안 함",
@@ -11374,7 +11160,7 @@
         "qty": 13,
         "ret": "-33.05%",
         "sector": "반도체 전공정",
-        "special": "실적 2026-06-30 · 시세 117,700원",
+        "special": "실적 2026-06-30 · 종가 117,700원",
         "tag": "H",
         "valuePosition": "119.5% 프리미엄",
         "previousAssessment": {
@@ -11396,7 +11182,7 @@
       {
         "action": "근거 확인",
         "avg": 74300,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 56000.0,
         "drawdown3m": "-39.78%",
         "fairRange": "별도 산정 안 함",
@@ -11408,7 +11194,7 @@
         "qty": 22,
         "ret": "-24.63%",
         "sector": "변압기/전선",
-        "special": "실적 2026-06-30 · 시세 56,000원",
+        "special": "실적 2026-06-30 · 종가 56,000원",
         "tag": "H",
         "valuePosition": "22.7% 할인",
         "previousAssessment": {
@@ -11430,7 +11216,7 @@
       {
         "action": "근거 확인",
         "avg": 787000,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 439500.0,
         "drawdown3m": "-48.54%",
         "fairRange": "별도 산정 안 함",
@@ -11442,7 +11228,7 @@
         "qty": 2,
         "ret": "-44.16%",
         "sector": "전력기기/변압기",
-        "special": "실적 2026-06-30 · 시세 439,500원",
+        "special": "실적 2026-06-30 · 종가 439,500원",
         "tag": "H",
         "valuePosition": "12.1% 프리미엄",
         "previousAssessment": {
@@ -11464,7 +11250,7 @@
       {
         "action": "근거 확인",
         "avg": 145862,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 119300.0,
         "drawdown3m": "-26.36%",
         "fairRange": "별도 산정 안 함",
@@ -11476,7 +11262,7 @@
         "qty": 29,
         "ret": "-18.21%",
         "sector": "반도체 장비",
-        "special": "실적 2026-06-30 · 시세 119,300원",
+        "special": "실적 2026-06-30 · 종가 119,300원",
         "tag": "H",
         "valuePosition": "72.1% 프리미엄",
         "previousAssessment": {
@@ -11498,7 +11284,7 @@
       {
         "action": "근거 확인",
         "avg": 98600,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 137400.0,
         "drawdown3m": "-14.66%",
         "fairRange": "별도 산정 안 함",
@@ -11510,7 +11296,7 @@
         "qty": 40,
         "ret": "+39.35%",
         "sector": "AI PCB/패키지기판",
-        "special": "실적 2026-06-30 · 시세 137,400원",
+        "special": "실적 2026-06-30 · 종가 137,400원",
         "tag": "H",
         "valuePosition": "136.5% 프리미엄",
         "previousAssessment": {
@@ -11532,7 +11318,7 @@
       {
         "action": "확인 대기",
         "avg": 28143,
-        "basis": "2026-10-29 일별 시세",
+        "basis": "2026-10-29 검증 종가",
         "close": 13640.0,
         "drawdown3m": "-33.46%",
         "fairRange": "별도 산정 안 함",
@@ -11544,7 +11330,7 @@
         "qty": 185,
         "ret": "-51.53%",
         "sector": "방산/정밀제어",
-        "special": "실적 2026-06-30 · 시세 13,640원",
+        "special": "실적 2026-06-30 · 종가 13,640원",
         "tag": "H",
         "valuePosition": "61.8% 할인",
         "previousAssessment": {
@@ -11589,8 +11375,8 @@
         "drawdown3m": "-19.97%",
         "opGrowth": "+1191.4% 실제",
         "valuePosition": "49.6% 할인",
-        "special": "실적 2026-06-30 · 시세 230,500원",
-        "basis": "2026-10-29 일별 시세",
+        "special": "실적 2026-06-30 · 종가 230,500원",
+        "basis": "2026-10-29 검증 종가",
         "priceChange": "가격·공시 수치 재계산",
         "priceSourceFetchedAt": "2026-10-29T16:03:26+09:00",
         "priceSession": "공급자 일별 시세·장후 포함 가능",
@@ -11622,8 +11408,8 @@
         "drawdown3m": "-24.37%",
         "opGrowth": "+74.3% 실제",
         "valuePosition": "425.9% 프리미엄",
-        "special": "실적 2026-06-30 · 시세 1,285,000원",
-        "basis": "2026-10-29 일별 시세",
+        "special": "실적 2026-06-30 · 종가 1,285,000원",
+        "basis": "2026-10-29 검증 종가",
         "priceChange": "가격·공시 수치 재계산",
         "priceSourceFetchedAt": "2026-10-29T16:03:27+09:00",
         "priceSession": "공급자 일별 시세·장후 포함 가능",
@@ -11655,8 +11441,8 @@
         "drawdown3m": "-49.20%",
         "opGrowth": "+86.8% 실제",
         "valuePosition": "0.0% 프리미엄",
-        "special": "실적 2026-06-30 · 시세 50,500원",
-        "basis": "2026-10-29 일별 시세",
+        "special": "실적 2026-06-30 · 종가 50,500원",
+        "basis": "2026-10-29 검증 종가",
         "priceChange": "가격·공시 수치 재계산",
         "priceSourceFetchedAt": "2026-10-29T16:03:39+09:00",
         "priceSession": "공급자 일별 시세·장후 포함 가능",
@@ -11688,8 +11474,8 @@
         "drawdown3m": "-24.49%",
         "opGrowth": "+427.3% 실제",
         "valuePosition": "10.9% 프리미엄",
-        "special": "실적 2026-06-30 · 시세 260,500원",
-        "basis": "2026-10-29 일별 시세",
+        "special": "실적 2026-06-30 · 종가 260,500원",
+        "basis": "2026-10-29 검증 종가",
         "priceChange": "가격·공시 수치 재계산",
         "priceSourceFetchedAt": "2026-10-29T16:04:13+09:00",
         "priceSession": "공급자 일별 시세·장후 포함 가능",
@@ -11721,8 +11507,8 @@
         "drawdown3m": "-4.70%",
         "opGrowth": "+242.4% 실제",
         "valuePosition": "87.2% 할인",
-        "special": "실적 2026-06-30 · 시세 7,090원",
-        "basis": "2026-10-29 일별 시세",
+        "special": "실적 2026-06-30 · 종가 7,090원",
+        "basis": "2026-10-29 검증 종가",
         "priceChange": "가격·공시 수치 재계산",
         "priceSourceFetchedAt": "2026-10-29T16:09:05+09:00",
         "priceSession": "공급자 일별 시세·장후 포함 가능",
@@ -11730,7 +11516,7 @@
       }
     ],
     "status": "보유 14/14종목 가격·공시 재평가 · 실거래·보유수량 변경 없음",
-    "valuationBasis": "보유수량·평균매입가 유지 · 2026-10-29 수집시점 시세 · 총매입 44,659,886원 · 총평가 40,083,100원",
+    "valuationBasis": "보유수량·평균매입가 유지 · 2026-10-29 종가 · 총매입 44,659,886원 · 총평가 40,083,100원",
     "refreshStatus": {
       "priceDate": "2026-10-29",
       "updated": 14,
@@ -11739,13 +11525,13 @@
     },
     "refreshState": {
       "status": "계산완료",
-      "generatedAt": "2026-10-29T16:34:51+09:00",
-      "snapshotId": "63b6570be4277c34056ac11b3759c704591ffdb5edd046dce824fdb14712d672",
+      "generatedAt": "2026-10-30T08:20:20+09:00",
+      "snapshotId": "4a823cdfad14ab82894c1eedc474a4e47632dbfdd14beca6fb4e5d1673f1ed76",
       "sourceCutoff": "2026-10-29",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "448d7a961d3f8aa68a3ed626",
-      "evidenceSnapshotId": "c60434f0df2141111b7f57641268dc82f1a14f6d253776bb75a2000b105d9ed0"
+      "runId": "37b4b899f441f30940783a20",
+      "evidenceSnapshotId": "e9674b58fff82afabdc068fb88376985b8c02c72043c0d8b60497e763ebfed89"
     },
     "holdingsUpdatedAt": "2026-09-21",
     "holdingsSelectionRule": "동일 종목은 낮은 매입단가 행 전체 선택, 수량 합산하지 않음",
