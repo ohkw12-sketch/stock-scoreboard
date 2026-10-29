@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-28T11:18:55.429781+09:00",
-  "sourceDate": "2026-10-28",
+  "generatedAt": "2026-10-29T12:46:23.404566+09:00",
+  "sourceDate": "2026-10-29",
   "slot": "08:00",
   "weights": {
     "issue": 20,
@@ -570,26 +570,12 @@
           "ticker": "086390",
           "name": "유니테스트",
           "sector": "반도체 메모리 검사장비",
-          "direct": true,
+          "direct": false,
           "fundamental": 0,
           "quote": {},
           "confirmed": false,
           "hot": false,
-          "evidence": [
-            {
-              "id": "dart-086390-test-equipment-20261021",
-              "ticker": "086390",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900152",
-              "publishedAt": "2026-10-21T00:00:00+09:00",
-              "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
-              "reviewer": "Codex scheduled source review",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "유니테스트가 SK하이닉스와 162억2,600만원 규모 반도체 검사장비 공급계약을 체결했다. 최근 매출 대비 14.72%이며 계약기간은 2027년 2월 12일까지다."
-            }
-          ],
+          "evidence": [],
           "earningsPeriods": [],
           "scores": {
             "issue": 10,
@@ -653,26 +639,12 @@
           "ticker": "126340",
           "name": "비나텍",
           "sector": "데이터센터 전력부품",
-          "direct": true,
+          "direct": false,
           "fundamental": 0,
           "quote": {},
           "confirmed": false,
           "hot": false,
-          "evidence": [
-            {
-              "id": "verified-20261021900383",
-              "ticker": "126340",
-              "source": "KIND",
-              "url": "https://kind.krx.co.kr/external/2026/10/21/000383/20261021000456/70370.htm",
-              "publishedAt": "2026-10-21T15:53:00+09:00",
-              "verifiedAt": "2026-10-21T16:12:15+09:00",
-              "reviewer": "Codex KIND 실제 공시·거래정지 본문 검토",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "비나텍은 SANMINA CORPORATION과 데이터센터용 슈퍼커패시터 119,474,738,573원 공급계약을 체결했다. 인도 공급이며 2026-10-21~2027-12-23 계약이다. 같은 날 15:53부터 장 종료까지 거래정지 공시가 있어 신규 공시 이후 주가 반응·진입을 확인했다고 표시하지 않는다."
-            }
-          ],
+          "evidence": [],
           "earningsPeriods": [],
           "scores": {
             "issue": 10,
@@ -1156,26 +1128,12 @@
           "ticker": "396470",
           "name": "워트",
           "sector": "반도체 초정밀 온습도 제어장비",
-          "direct": true,
+          "direct": false,
           "fundamental": 0,
           "quote": {},
           "confirmed": false,
           "hot": false,
-          "evidence": [
-            {
-              "id": "dart-396470-thc-20261021",
-              "ticker": "396470",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900241",
-              "publishedAt": "2026-10-21T00:00:00+09:00",
-              "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
-              "reviewer": "Codex scheduled source review",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "워트가 SK하이닉스와 8억5,946만원 규모 초정밀 온습도 제어장비 공급계약을 체결했다. 최근 매출 대비 5.65%이며 계약기간은 2027년 2월 28일까지다."
-            }
-          ],
+          "evidence": [],
           "earningsPeriods": [],
           "scores": {
             "issue": 10,
@@ -1257,34 +1215,6 @@
           "confirmed": false,
           "hot": false,
           "evidence": [
-            {
-              "id": "verified-20261021900346",
-              "ticker": "420770",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900346",
-              "publishedAt": "2026-10-21T00:00:00+09:00",
-              "publishedAtPrecision": "date",
-              "verifiedAt": "2026-10-21T16:12:15+09:00",
-              "reviewer": "Codex 실제 공시 본문 검토",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "기가비스는 싱가포르 반도체 기판 제조회사 대상 11,399,024,157원 검사·수리장비 계약의 종료일을 2026-10-27에서 2027-01-29로 변경했다. 대금 80% 입금 완료이며 신규 수주가 아니다."
-            },
-            {
-              "id": "verified-20261021900335",
-              "ticker": "420770",
-              "source": "DART",
-              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900335",
-              "publishedAt": "2026-10-21T00:00:00+09:00",
-              "publishedAtPrecision": "date",
-              "verifiedAt": "2026-10-21T16:12:15+09:00",
-              "reviewer": "Codex 실제 공시 본문 검토",
-              "status": "verified",
-              "polarity": "positive",
-              "kind": "contract",
-              "summary": "기가비스는 싱가포르 반도체 기판 제조회사 대상 15,375,583,022원 검사·수리장비 계약의 종료일을 2026-11-27에서 2027-01-29로 변경했다. 대금 80% 입금 완료이며 별도 신규 수주로 더하지 않는다."
-            },
             {
               "id": "verified-20261023900460",
               "ticker": "420770",
@@ -1401,32 +1331,6 @@
       ],
       "evidence": [
         {
-          "id": "dart-086390-test-equipment-20261021",
-          "ticker": "086390",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900152",
-          "publishedAt": "2026-10-21T00:00:00+09:00",
-          "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
-          "reviewer": "Codex scheduled source review",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "유니테스트가 SK하이닉스와 162억2,600만원 규모 반도체 검사장비 공급계약을 체결했다. 최근 매출 대비 14.72%이며 계약기간은 2027년 2월 12일까지다."
-        },
-        {
-          "id": "dart-396470-thc-20261021",
-          "ticker": "396470",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900241",
-          "publishedAt": "2026-10-21T00:00:00+09:00",
-          "verifiedAt": "2026-10-21T16:09:49.718179+09:00",
-          "reviewer": "Codex scheduled source review",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "워트가 SK하이닉스와 8억5,946만원 규모 초정밀 온습도 제어장비 공급계약을 체결했다. 최근 매출 대비 5.65%이며 계약기간은 2027년 2월 28일까지다."
-        },
-        {
           "id": "dart-20261022800677",
           "ticker": "353200",
           "source": "DART",
@@ -1481,34 +1385,6 @@
           "polarity": "neutral",
           "kind": "contract",
           "summary": "워트의 삼성전자 기흥 THC 8억3,200만원 계약은 고객 요청에 따라 납기를 2026-10-31에서 2026-12-17로 연장했다. 원 수주일은 2026-06-25이며 신규 계약이 아니다. 10월21일 SK하이닉스 계약과는 상대방·금액이 다른 별도 계약이다."
-        },
-        {
-          "id": "verified-20261021900346",
-          "ticker": "420770",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900346",
-          "publishedAt": "2026-10-21T00:00:00+09:00",
-          "publishedAtPrecision": "date",
-          "verifiedAt": "2026-10-21T16:12:15+09:00",
-          "reviewer": "Codex 실제 공시 본문 검토",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "기가비스는 싱가포르 반도체 기판 제조회사 대상 11,399,024,157원 검사·수리장비 계약의 종료일을 2026-10-27에서 2027-01-29로 변경했다. 대금 80% 입금 완료이며 신규 수주가 아니다."
-        },
-        {
-          "id": "verified-20261021900335",
-          "ticker": "420770",
-          "source": "DART",
-          "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261021900335",
-          "publishedAt": "2026-10-21T00:00:00+09:00",
-          "publishedAtPrecision": "date",
-          "verifiedAt": "2026-10-21T16:12:15+09:00",
-          "reviewer": "Codex 실제 공시 본문 검토",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "기가비스는 싱가포르 반도체 기판 제조회사 대상 15,375,583,022원 검사·수리장비 계약의 종료일을 2026-11-27에서 2027-01-29로 변경했다. 대금 80% 입금 완료이며 별도 신규 수주로 더하지 않는다."
         },
         {
           "id": "verified-20261027800235",
@@ -1682,19 +1558,6 @@
           "polarity": "positive",
           "kind": "contract",
           "summary": "대한전선은 자회사 Taihan Netherlands B.V.에 독일향 380kV 초고압 케이블·악세서리를 114,696,891,181원에 공급한다. 기간 2026-10-26~2030-08-14다. 자회사 내부 공급계약을 연결 기준 외부 신규수주와 중복 합산하지 않으며 분기별 이익은 미확인이다."
-        },
-        {
-          "id": "verified-20261021900383",
-          "ticker": "126340",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/10/21/000383/20261021000456/70370.htm",
-          "publishedAt": "2026-10-21T15:53:00+09:00",
-          "verifiedAt": "2026-10-21T16:12:15+09:00",
-          "reviewer": "Codex KIND 실제 공시·거래정지 본문 검토",
-          "status": "verified",
-          "polarity": "positive",
-          "kind": "contract",
-          "summary": "비나텍은 SANMINA CORPORATION과 데이터센터용 슈퍼커패시터 119,474,738,573원 공급계약을 체결했다. 인도 공급이며 2026-10-21~2027-12-23 계약이다. 같은 날 15:53부터 장 종료까지 거래정지 공시가 있어 신규 공시 이후 주가 반응·진입을 확인했다고 표시하지 않는다."
         }
       ],
       "detection": [

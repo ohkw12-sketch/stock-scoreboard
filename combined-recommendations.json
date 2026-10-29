@@ -1,25 +1,15 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-trend-4.0",
-  "snapshotId": "73ed1122b8f3882b5cf65402d52caa97d97fc3bbbf5df418a8df082f6ed7a89a",
-  "generatedAt": "2026-10-28T10:49:20+09:00",
-  "sourceDate": "2026-10-27",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
+  "snapshotId": "bd18784b5c4e0d6849acbd2a641dd00a788b6078ea561fa8a3d1ca09ad9c90f8",
+  "generatedAt": "2026-10-29T12:32:11+09:00",
+  "sourceDate": "2026-10-28",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
   "candidateCount": 0,
   "matchedCandidateCount": 0,
   "rows": [],
   "_audit": [
-    {
-      "ticker": "000660",
-      "name": "SK하이닉스",
-      "sector": "반도체",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
     {
       "ticker": "003160",
       "name": "디아이",
@@ -61,23 +51,12 @@
       ]
     },
     {
-      "ticker": "014620",
-      "name": "성광벤드",
-      "sector": "1차 철강 제조업",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
       "ticker": "025560",
       "name": "미래산업",
       "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -86,8 +65,7 @@
       "sector": "특수 목적용 기계 제조업",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -101,12 +79,21 @@
       ]
     },
     {
+      "ticker": "043260",
+      "name": "성호전자",
+      "sector": "전자부품 제조업",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님"
+      ]
+    },
+    {
       "ticker": "052460",
       "name": "아이크래프트",
       "sector": "인터넷/소프트웨어",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
@@ -126,15 +113,6 @@
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "097520",
-      "name": "엠씨넥스",
-      "sector": "영상 및 음향기기 제조업",
-      "eligible": false,
-      "reasons": [
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -209,19 +187,18 @@
       ]
     },
     {
-      "ticker": "281820",
-      "name": "케이씨텍",
-      "sector": "반도체",
+      "ticker": "293490",
+      "name": "카카오게임즈",
+      "sector": "인터넷/소프트웨어",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
-      "ticker": "293490",
-      "name": "카카오게임즈",
-      "sector": "인터넷/소프트웨어",
+      "ticker": "329180",
+      "name": "HD현대중공업",
+      "sector": "조선",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -244,18 +221,16 @@
       "sector": "인터넷/소프트웨어",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
-      "ticker": "388210",
-      "name": "씨엠티엑스",
-      "sector": "반도체",
+      "ticker": "353200",
+      "name": "대덕전자",
+      "sector": "전자부품 제조업",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -290,9 +265,9 @@
   ],
   "feedback": {
     "version": "feedback-1.0",
-    "cutoffDate": "2026-10-27",
+    "cutoffDate": "2026-10-28",
     "horizon": 20,
-    "sampleCount": 533,
+    "sampleCount": 537,
     "patterns": [
       {
         "pattern": [
@@ -1259,23 +1234,6 @@
       },
       {
         "pattern": [
-          "가치성장:미반영 가능",
-          "가치성장:위험감점"
-        ],
-        "label": "가치성장 미반영 가능 + 가치성장 위험감점",
-        "horizon": 20,
-        "sampleCount": 8,
-        "recommendationDays": 3,
-        "meanReturnPct": -12.701,
-        "medianReturnPct": -8.589,
-        "winRatePct": 12.5,
-        "score": -3.8174,
-        "status": "초기 관찰",
-        "archiveSampleCount": 0,
-        "rank": 57
-      },
-      {
-        "pattern": [
           "가치성장",
           "진입"
         ],
@@ -1289,7 +1247,7 @@
         "score": -3.916,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 58
+        "rank": 57
       },
       {
         "pattern": [
@@ -1306,7 +1264,7 @@
         "score": -3.916,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 59
+        "rank": 58
       },
       {
         "pattern": [
@@ -1324,7 +1282,7 @@
         "score": -3.9296,
         "status": "누적 관찰",
         "archiveSampleCount": 10,
-        "rank": 60
+        "rank": 59
       },
       {
         "pattern": [
@@ -1341,7 +1299,7 @@
         "score": -3.9296,
         "status": "누적 관찰",
         "archiveSampleCount": 10,
-        "rank": 61
+        "rank": 60
       },
       {
         "pattern": [
@@ -1358,7 +1316,7 @@
         "score": -4.0157,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 62
+        "rank": 61
       },
       {
         "pattern": [
@@ -1376,7 +1334,7 @@
         "score": -4.089,
         "status": "누적 관찰",
         "archiveSampleCount": 11,
-        "rank": 63
+        "rank": 62
       },
       {
         "pattern": [
@@ -1393,7 +1351,7 @@
         "score": -4.089,
         "status": "누적 관찰",
         "archiveSampleCount": 11,
-        "rank": 64
+        "rank": 63
       },
       {
         "pattern": [
@@ -1410,7 +1368,7 @@
         "score": -4.1118,
         "status": "누적 관찰",
         "archiveSampleCount": 22,
-        "rank": 65
+        "rank": 64
       },
       {
         "pattern": [
@@ -1427,7 +1385,7 @@
         "score": -4.1734,
         "status": "누적 관찰",
         "archiveSampleCount": 18,
-        "rank": 66
+        "rank": 65
       },
       {
         "pattern": [
@@ -1444,6 +1402,23 @@
         "score": -4.4761,
         "status": "누적 관찰",
         "archiveSampleCount": 12,
+        "rank": 66
+      },
+      {
+        "pattern": [
+          "가치성장:미반영 가능",
+          "가치성장:위험감점"
+        ],
+        "label": "가치성장 미반영 가능 + 가치성장 위험감점",
+        "horizon": 20,
+        "sampleCount": 9,
+        "recommendationDays": 4,
+        "meanReturnPct": -13.826,
+        "medianReturnPct": -9.641,
+        "winRatePct": 11.11,
+        "score": -4.5669,
+        "status": "초기 관찰",
+        "archiveSampleCount": 0,
         "rank": 67
       },
       {
@@ -1839,23 +1814,6 @@
       },
       {
         "pattern": [
-          "가치성장:위험감점",
-          "가치성장:큰 가격 반응"
-        ],
-        "label": "가치성장 위험감점 + 가치성장 큰 가격 반응",
-        "horizon": 20,
-        "sampleCount": 3,
-        "recommendationDays": 2,
-        "meanReturnPct": -27.196,
-        "medianReturnPct": -26.862,
-        "winRatePct": 0.0,
-        "score": -6.199,
-        "status": "초기 관찰",
-        "archiveSampleCount": 0,
-        "rank": 91
-      },
-      {
-        "pattern": [
           "관계:선행",
           "순환:⑤재반등",
           "진입"
@@ -1870,7 +1828,7 @@
         "score": -6.4776,
         "status": "누적 관찰",
         "archiveSampleCount": 7,
-        "rank": 92
+        "rank": 91
       },
       {
         "pattern": [
@@ -1886,24 +1844,7 @@
         "score": -6.5156,
         "status": "누적 관찰",
         "archiveSampleCount": 14,
-        "rank": 93
-      },
-      {
-        "pattern": [
-          "가치성장:무감점",
-          "가치성장:미반영 가능"
-        ],
-        "label": "가치성장 무감점 + 가치성장 미반영 가능",
-        "horizon": 20,
-        "sampleCount": 3,
-        "recommendationDays": 2,
-        "meanReturnPct": -29.076,
-        "medianReturnPct": -28.344,
-        "winRatePct": 0.0,
-        "score": -6.5408,
-        "status": "초기 관찰",
-        "archiveSampleCount": 0,
-        "rank": 94
+        "rank": 92
       },
       {
         "pattern": [
@@ -1919,7 +1860,7 @@
         "score": -6.7242,
         "status": "누적 관찰",
         "archiveSampleCount": 20,
-        "rank": 95
+        "rank": 93
       },
       {
         "pattern": [
@@ -1937,7 +1878,7 @@
         "score": -6.7515,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 96
+        "rank": 94
       },
       {
         "pattern": [
@@ -1955,7 +1896,7 @@
         "score": -6.7515,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 97
+        "rank": 95
       },
       {
         "pattern": [
@@ -1972,7 +1913,7 @@
         "score": -6.7515,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 98
+        "rank": 96
       },
       {
         "pattern": [
@@ -1989,7 +1930,7 @@
         "score": -6.7672,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 99
+        "rank": 97
       },
       {
         "pattern": [
@@ -2007,23 +1948,7 @@
         "score": -6.7672,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 100
-      },
-      {
-        "pattern": [
-          "가치성장:미반영 가능"
-        ],
-        "label": "가치성장 미반영 가능",
-        "horizon": 20,
-        "sampleCount": 11,
-        "recommendationDays": 3,
-        "meanReturnPct": -17.167,
-        "medianReturnPct": -12.984,
-        "winRatePct": 9.09,
-        "score": -6.801,
-        "status": "누적 관찰",
-        "archiveSampleCount": 0,
-        "rank": 101
+        "rank": 98
       },
       {
         "pattern": [
@@ -2039,7 +1964,7 @@
         "score": -6.8478,
         "status": "누적 관찰",
         "archiveSampleCount": 6,
-        "rank": 102
+        "rank": 99
       },
       {
         "pattern": [
@@ -2056,7 +1981,7 @@
         "score": -6.8478,
         "status": "누적 관찰",
         "archiveSampleCount": 6,
-        "rank": 103
+        "rank": 100
       },
       {
         "pattern": [
@@ -2072,7 +1997,7 @@
         "score": -6.9252,
         "status": "누적 관찰",
         "archiveSampleCount": 12,
-        "rank": 104
+        "rank": 101
       },
       {
         "pattern": [
@@ -2089,7 +2014,7 @@
         "score": -7.1168,
         "status": "초기 관찰",
         "archiveSampleCount": 1,
-        "rank": 105
+        "rank": 102
       },
       {
         "pattern": [
@@ -2106,7 +2031,7 @@
         "score": -7.1168,
         "status": "초기 관찰",
         "archiveSampleCount": 1,
-        "rank": 106
+        "rank": 103
       },
       {
         "pattern": [
@@ -2122,7 +2047,7 @@
         "score": -7.3758,
         "status": "누적 관찰",
         "archiveSampleCount": 5,
-        "rank": 107
+        "rank": 104
       },
       {
         "pattern": [
@@ -2139,7 +2064,7 @@
         "score": -7.414,
         "status": "누적 관찰",
         "archiveSampleCount": 10,
-        "rank": 108
+        "rank": 105
       },
       {
         "pattern": [
@@ -2155,23 +2080,24 @@
         "score": -7.4373,
         "status": "누적 관찰",
         "archiveSampleCount": 13,
-        "rank": 109
+        "rank": 106
       },
       {
         "pattern": [
+          "가치성장:위험감점",
           "가치성장:큰 가격 반응"
         ],
-        "label": "가치성장 큰 가격 반응",
+        "label": "가치성장 위험감점 + 가치성장 큰 가격 반응",
         "horizon": 20,
         "sampleCount": 4,
-        "recommendationDays": 2,
-        "meanReturnPct": -26.338,
+        "recommendationDays": 3,
+        "meanReturnPct": -19.683,
         "medianReturnPct": -26.586,
-        "winRatePct": 0.0,
+        "winRatePct": 25.0,
         "score": -7.596,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 110
+        "rank": 107
       },
       {
         "pattern": [
@@ -2188,7 +2114,7 @@
         "score": -7.6728,
         "status": "누적 관찰",
         "archiveSampleCount": 80,
-        "rank": 111
+        "rank": 108
       },
       {
         "pattern": [
@@ -2204,7 +2130,7 @@
         "score": -7.7345,
         "status": "누적 관찰",
         "archiveSampleCount": 80,
-        "rank": 112
+        "rank": 109
       },
       {
         "pattern": [
@@ -2220,24 +2146,7 @@
         "score": -7.7739,
         "status": "누적 관찰",
         "archiveSampleCount": 108,
-        "rank": 113
-      },
-      {
-        "pattern": [
-          "가치성장:위험감점",
-          "가치성장:일부 가격 반응"
-        ],
-        "label": "가치성장 위험감점 + 가치성장 일부 가격 반응",
-        "horizon": 20,
-        "sampleCount": 19,
-        "recommendationDays": 3,
-        "meanReturnPct": -11.233,
-        "medianReturnPct": -12.281,
-        "winRatePct": 15.79,
-        "score": -8.046,
-        "status": "누적 관찰",
-        "archiveSampleCount": 0,
-        "rank": 114
+        "rank": 110
       },
       {
         "pattern": [
@@ -2254,7 +2163,7 @@
         "score": -8.2286,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 115
+        "rank": 111
       },
       {
         "pattern": [
@@ -2271,7 +2180,7 @@
         "score": -8.2286,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 116
+        "rank": 112
       },
       {
         "pattern": [
@@ -2288,7 +2197,24 @@
         "score": -8.2286,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 117
+        "rank": 113
+      },
+      {
+        "pattern": [
+          "가치성장:위험감점",
+          "가치성장:일부 가격 반응"
+        ],
+        "label": "가치성장 위험감점 + 가치성장 일부 가격 반응",
+        "horizon": 20,
+        "sampleCount": 20,
+        "recommendationDays": 4,
+        "meanReturnPct": -12.374,
+        "medianReturnPct": -12.677,
+        "winRatePct": 15.0,
+        "score": -8.4512,
+        "status": "누적 관찰",
+        "archiveSampleCount": 0,
+        "rank": 114
       },
       {
         "pattern": [
@@ -2305,7 +2231,24 @@
         "score": -8.472,
         "status": "누적 관찰",
         "archiveSampleCount": 0,
-        "rank": 118
+        "rank": 115
+      },
+      {
+        "pattern": [
+          "가치성장:무감점",
+          "가치성장:미반영 가능"
+        ],
+        "label": "가치성장 무감점 + 가치성장 미반영 가능",
+        "horizon": 20,
+        "sampleCount": 4,
+        "recommendationDays": 3,
+        "meanReturnPct": -29.594,
+        "medianReturnPct": -29.746,
+        "winRatePct": 0.0,
+        "score": -8.4987,
+        "status": "초기 관찰",
+        "archiveSampleCount": 0,
+        "rank": 116
       },
       {
         "pattern": [
@@ -2322,7 +2265,7 @@
         "score": -8.6556,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 119
+        "rank": 117
       },
       {
         "pattern": [
@@ -2339,7 +2282,23 @@
         "score": -8.6556,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 120
+        "rank": 118
+      },
+      {
+        "pattern": [
+          "가치성장:큰 가격 반응"
+        ],
+        "label": "가치성장 큰 가격 반응",
+        "horizon": 20,
+        "sampleCount": 5,
+        "recommendationDays": 3,
+        "meanReturnPct": -20.499,
+        "medianReturnPct": -26.309,
+        "winRatePct": 20.0,
+        "score": -8.7698,
+        "status": "초기 관찰",
+        "archiveSampleCount": 0,
+        "rank": 119
       },
       {
         "pattern": [
@@ -2356,7 +2315,7 @@
         "score": -8.7913,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 121
+        "rank": 120
       },
       {
         "pattern": [
@@ -2373,7 +2332,7 @@
         "score": -8.8819,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
-        "rank": 122
+        "rank": 121
       },
       {
         "pattern": [
@@ -2389,7 +2348,7 @@
         "score": -8.9025,
         "status": "누적 관찰",
         "archiveSampleCount": 0,
-        "rank": 123
+        "rank": 122
       },
       {
         "pattern": [
@@ -2397,15 +2356,15 @@
         ],
         "label": "가치성장 위험감점",
         "horizon": 20,
-        "sampleCount": 31,
-        "recommendationDays": 3,
-        "meanReturnPct": -12.833,
-        "medianReturnPct": -12.281,
-        "winRatePct": 12.9,
-        "score": -9.2854,
+        "sampleCount": 34,
+        "recommendationDays": 4,
+        "meanReturnPct": -13.29,
+        "medianReturnPct": -12.632,
+        "winRatePct": 14.71,
+        "score": -9.7613,
         "status": "누적 관찰",
         "archiveSampleCount": 0,
-        "rank": 124
+        "rank": 123
       },
       {
         "pattern": [
@@ -2413,15 +2372,15 @@
         ],
         "label": "가치성장 일부 가격 반응",
         "horizon": 20,
-        "sampleCount": 22,
-        "recommendationDays": 3,
-        "meanReturnPct": -12.804,
-        "medianReturnPct": -13.622,
-        "winRatePct": 13.64,
-        "score": -9.3651,
+        "sampleCount": 23,
+        "recommendationDays": 4,
+        "meanReturnPct": -13.728,
+        "medianReturnPct": -14.171,
+        "winRatePct": 13.04,
+        "score": -9.8767,
         "status": "누적 관찰",
         "archiveSampleCount": 0,
-        "rank": 125
+        "rank": 124
       },
       {
         "pattern": [
@@ -2429,15 +2388,15 @@
         ],
         "label": "가치성장 무감점",
         "horizon": 20,
-        "sampleCount": 9,
-        "recommendationDays": 2,
-        "meanReturnPct": -21.183,
-        "medianReturnPct": -22.75,
-        "winRatePct": 11.11,
-        "score": -10.7762,
-        "status": "초기 관찰",
+        "sampleCount": 10,
+        "recommendationDays": 3,
+        "meanReturnPct": -22.179,
+        "medianReturnPct": -23.257,
+        "winRatePct": 10.0,
+        "score": -11.6287,
+        "status": "누적 관찰",
         "archiveSampleCount": 0,
-        "rank": 126
+        "rank": 125
       },
       {
         "pattern": [
@@ -2454,6 +2413,22 @@
         "score": -11.915,
         "status": "초기 관찰",
         "archiveSampleCount": 0,
+        "rank": 126
+      },
+      {
+        "pattern": [
+          "가치성장:미반영 가능"
+        ],
+        "label": "가치성장 미반영 가능",
+        "horizon": 20,
+        "sampleCount": 13,
+        "recommendationDays": 4,
+        "meanReturnPct": -18.678,
+        "medianReturnPct": -22.75,
+        "winRatePct": 7.69,
+        "score": -12.8585,
+        "status": "누적 관찰",
+        "archiveSampleCount": 0,
         "rank": 127
       },
       {
@@ -2462,12 +2437,12 @@
         ],
         "label": "가치성장",
         "horizon": 20,
-        "sampleCount": 40,
-        "recommendationDays": 3,
-        "meanReturnPct": -14.712,
-        "medianReturnPct": -15.687,
-        "winRatePct": 12.5,
-        "score": -12.5498,
+        "sampleCount": 44,
+        "recommendationDays": 4,
+        "meanReturnPct": -15.31,
+        "medianReturnPct": -17.546,
+        "winRatePct": 13.64,
+        "score": -14.2967,
         "status": "누적 관찰",
         "archiveSampleCount": 0,
         "rank": 128
@@ -2478,21 +2453,19 @@
   },
   "notice": "가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-10-28T10:49:20+09:00",
-    "snapshotId": "73ed1122b8f3882b5cf65402d52caa97d97fc3bbbf5df418a8df082f6ed7a89a",
-    "sourceCutoff": "2026-10-27",
+    "generatedAt": "2026-10-29T12:32:11+09:00",
+    "snapshotId": "bd18784b5c4e0d6849acbd2a641dd00a788b6078ea561fa8a3d1ca09ad9c90f8",
+    "sourceCutoff": "2026-10-28",
     "mode": "증분 수집",
     "engineVersion": "011c1d50afe6ac82",
-    "runId": "47d896c11e19f869307be2e7",
-    "evidenceSnapshotId": "d655c64b6be6a09d767a8dd549675db77e670b4673f2a7c34672f215dbc27578",
+    "runId": "2b8b4ea0d2d95c828e0398d4",
+    "evidenceSnapshotId": "92a129d23baa09576116cf72df6d36b04f9ae95ded6401d7d01c9aa463c77d5e",
     "status": "계산완료"
   },
-  "runId": "47d896c11e19f869307be2e7",
+  "runId": "2b8b4ea0d2d95c828e0398d4",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-10-28T11:21:20+09:00",
-  "observedPublishedAt": "2026-10-28T11:21:20+09:00"
+  }
 }
