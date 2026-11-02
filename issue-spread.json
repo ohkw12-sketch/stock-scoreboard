@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-30T08:27:39.521829+09:00",
-  "sourceDate": "2026-10-30",
+  "generatedAt": "2026-11-02T10:05:37.734551+09:00",
+  "sourceDate": "2026-11-02",
   "slot": "08:00",
   "weights": {
     "issue": 20,
@@ -1863,6 +1863,41 @@
           "url": "https://www.youtube.com/watch?v=zW81_LvxDls",
           "publishedAt": "2026-10-29T00:00:00+09:00",
           "summary": "공개 자막 전체를 확인해 장기 메모리 계약과 HBM 수요 전망, 삼성전자 주주환원 불확실성을 함께 탐지했다. 사실 검증이 필요한 전망으로 분리했고 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "유튜브시황1",
+          "label": "김종효 10월 30일 태양광·석유화학·방산 실적 조건 점검",
+          "url": "https://www.youtube.com/watch?v=YZjCwm415d0",
+          "publishedAt": "2026-10-30T00:00:00+09:00",
+          "summary": "공개 자막 전체를 확인해 태양광·석유화학은 4분기 구조조정 속도와 미국 선거 이후 데이터센터 전력 수요를, 방산은 신규 수주·매출 인식·현지화·환율을 확인할 조건으로 기록했다. 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "유튜브시황1",
+          "label": "박시동 10월 30일 메모리 장기계약·삼성전자 주주환원 점검",
+          "url": "https://www.youtube.com/watch?v=p-ZSFg_k9rU",
+          "publishedAt": "2026-10-30T00:00:00+09:00",
+          "summary": "공개 자막 전체를 확인해 SK하이닉스의 장기계약과 공급 가시성, 삼성전자의 계약·주주환원 구체성 부족을 함께 탐지했다. 전망과 사실을 구분했고 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "유튜브시황1",
+          "label": "김종효 11월 1일 미국 기술주 조정과 국내 반도체 수급 점검",
+          "url": "https://www.youtube.com/watch?v=vTjjHdpDANA",
+          "publishedAt": "2026-11-01T00:00:00+09:00",
+          "summary": "공개 자막 전체를 확인해 미국 기술주 조정과 국내 반도체 실적을 구분하고, 미국 중간선거 전후 변동성과 외국인 수급을 위험 조건으로 기록했다. 불명확한 숫자와 추천 발언은 제외했다."
+        },
+        {
+          "channel": "유튜브시황2",
+          "label": "오선의 미국증시 10월 30일 마감 요약",
+          "url": "https://www.youtube.com/watch?v=T5Py6jmHkjg",
+          "publishedAt": "2026-10-30T00:00:00+09:00",
+          "summary": "공개 자막을 확인해 미국 기술주 급락과 AI 투자 수익성·현금흐름 우려를 이슈 탐지에만 사용했다. 자동자막의 지수·가격 숫자는 원문 확인 불확실로 제외했고 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "삼프로TV 공식 뉴스룸",
+          "label": "메모리 가격 상승과 AI 기업 현금흐름 격차",
+          "url": "https://apps.3protv.com/news/view/6482",
+          "publishedAt": "2026-11-02T09:12:02+09:00",
+          "summary": "삼프로TV 뉴스3+ 원문은 메모리 가격 상승이 국내 메모리 공급자에는 수혜지만 PC·서버 업체에는 원가 부담이며, AI 투자 평가는 매출보다 수익성과 잉여현금흐름 확인 단계로 옮겨갔다고 정리했다. 탐지에만 사용했다."
         }
       ]
     },
@@ -2340,6 +2375,20 @@
           "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20261027800037",
           "publishedAt": "2026-10-27T00:00:00+09:00",
           "summary": "독일 지역 380kV급 초고압 케이블 계약의 금액·기간·최근 매출 대비 비율을 원문 확인했다. 고객사와 분기별 실적 인식 시점은 공개되지 않았다."
+        },
+        {
+          "channel": "삼프로TV 공식 뉴스룸",
+          "label": "한화 미국 중형상륙함 첫 계약과 추가 옵션",
+          "url": "https://apps.3protv.com/news/view/6482",
+          "publishedAt": "2026-11-02T09:12:02+09:00",
+          "summary": "삼프로TV 뉴스3+ 원문에서 미국 필리조선소의 중형상륙함 1척 계약과 추가 3척 옵션을 확인했다. 옵션을 확정 수주로 계산하지 않고 착공·인도·원가·마진 확인 조건으로만 기록했다."
+        },
+        {
+          "channel": "삼프로TV 공식 뉴스룸",
+          "label": "OPEC+ 생산 동결과 중동 유가 위험",
+          "url": "https://apps.3protv.com/news/view/6482",
+          "publishedAt": "2026-11-02T09:12:02+09:00",
+          "summary": "삼프로TV 뉴스3+ 원문에서 OPEC+ 12월 생산 동결과 호르무즈 해협 긴장을 확인했다. 유가·환율·업종별 원가 위험 탐지에만 사용했다."
         }
       ]
     },
@@ -2650,6 +2699,13 @@
           "url": "https://www.agilityrobotics.com/content/agility-robotics-to-livestream-analyst-investor-day-today",
           "publishedAt": "2026-10-06T00:00:00-04:00",
           "summary": "Agility Robotics 공식 IR에서 Digit 5의 6만5천시간 이상 실운영과 3억달러 이상 다년 주문을 확인했다. 국내 종목 추천점수에는 반영하지 않았다."
+        },
+        {
+          "channel": "삼프로TV 공식 뉴스룸",
+          "label": "삼성·현대차·LG 로봇과 피지컬 AI 경쟁",
+          "url": "https://apps.3protv.com/news/view/6482",
+          "publishedAt": "2026-11-02T09:12:02+09:00",
+          "summary": "삼프로TV 뉴스3+ 원문은 국내 대기업이 로봇과 피지컬 AI 투자를 확대하고 통합 제어 소프트웨어와 운영 플랫폼이 경쟁의 핵심이라고 정리했다. 양산·외부 고객·수주 확인 전에는 추천점수에 반영하지 않았다."
         }
       ]
     }
@@ -2661,10 +2717,11 @@
     "시세·동시각 배율 검증 보류: 한솔아이원스, 삼성전자, 피델릭스, 비나텍, 씨이랩, 넥사다이내믹스, LG에너지솔루션, 우양에이치씨, 제이스로보틱스",
     "10월 30일 장 전 종가는 최신 완료 거래일인 10월 29일 검증 종가를 사용했고, 장중 가격확인은 탐색으로 남겼다.",
     "오선 국장 주요뉴스는 접근 실패로 이전 검증판을 유지했고 신규 사실을 추천점수에 넣지 않았다.",
-    "투자자 수급 신규 호출은 실패해 이전 검증 캐시를 보존하고 부분수집 상태를 명시했다."
+    "투자자 수급 신규 호출은 실패해 이전 검증 캐시를 보존하고 부분수집 상태를 명시했다.",
+    "11월 2일 유튜브시황1·2와 삼프로 뉴스룸 신규 원문은 이슈 탐지에만 사용했고 불확실한 자동자막 숫자·옵션 수주·추천 발언은 점수에서 제외했다."
   ],
-  "priceMode": "premarket",
-  "scanLabel": "장 시작 전 전일 종가 탐지",
+  "priceMode": "intraday",
+  "scanLabel": "장중 스캔",
   "coverage": {
     "requestedCount": 59,
     "collectedCount": 50,
@@ -3278,16 +3335,16 @@
       }
     ],
     "sourceReview": {
-      "checkedAt": "2026-10-30T08:26:56+09:00",
-      "originalDocsRequested": 158,
-      "originalDocsCollected": 158,
+      "checkedAt": "2026-11-02T09:56:14+09:00",
+      "originalDocsRequested": 169,
+      "originalDocsCollected": 169,
       "newVerifiedFacts": 0,
       "noInventedQuarterAllocation": true,
       "dartRequestedTickers": 2759,
       "dartMissingTickers": 0,
-      "youtubeVerifiedVideos": 12,
+      "youtubeVerifiedVideos": 15,
       "youtubePendingVideos": 3,
-      "samproVerifiedArticles": 8,
+      "samproVerifiedArticles": 15,
       "saveTickerStatus": "실패·이전유지",
       "investorFlowStatus": "부분수집·이전검증값포함"
     },
