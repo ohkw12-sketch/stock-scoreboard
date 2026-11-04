@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-trend-4.0",
-  "snapshotId": "cfc87fcd5eb0f1c70a04f45e468164dee6df3ec39f7f749393f23a9d2d1a6ae4",
-  "generatedAt": "2026-11-04T11:28:43+09:00",
+  "snapshotId": "85498686ba2f4385b231e808f496f561a6763ae632dcb68904e5a6d979291ca0",
+  "generatedAt": "2026-11-04T16:27:07+09:00",
   "sourceDate": "2026-11-04",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
   "candidateCount": 0,
   "matchedCandidateCount": 0,
   "rows": [],
@@ -76,8 +76,7 @@
       "sector": "인터넷/소프트웨어",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+        "추세확인 ②확산·③주도 섹터 아님"
       ]
     },
     {
@@ -94,6 +93,16 @@
       "ticker": "073490",
       "name": "LIG아큐버",
       "sector": "통신 및 방송 장비 제조업",
+      "eligible": false,
+      "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
+      ]
+    },
+    {
+      "ticker": "082740",
+      "name": "한화엔진",
+      "sector": "일반 목적용 기계 제조업",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -164,16 +173,6 @@
       "ticker": "218410",
       "name": "RFHIC",
       "sector": "통신 및 방송 장비 제조업",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "222800",
-      "name": "심텍",
-      "sector": "반도체",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -2441,21 +2440,19 @@
   },
   "notice": "가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-11-04T11:28:43+09:00",
-    "snapshotId": "cfc87fcd5eb0f1c70a04f45e468164dee6df3ec39f7f749393f23a9d2d1a6ae4",
+    "generatedAt": "2026-11-04T16:27:07+09:00",
+    "snapshotId": "85498686ba2f4385b231e808f496f561a6763ae632dcb68904e5a6d979291ca0",
     "sourceCutoff": "2026-11-04",
     "mode": "저장자료 재계산",
     "engineVersion": "011c1d50afe6ac82",
-    "runId": "11ac11e5b8207b69bc1591e8",
-    "evidenceSnapshotId": "28ac2fb431733eb9698c644d2b0ed730ad13d3f0b3f17f6d965bbd019f08e9b1",
+    "runId": "cc1a537333e1f3e54f845a57",
+    "evidenceSnapshotId": "b3b066d2e5095846ceaf12ca7e2731fd79845f9dfaab7050faf6425fe4c12afc",
     "status": "계산완료"
   },
-  "runId": "11ac11e5b8207b69bc1591e8",
+  "runId": "cc1a537333e1f3e54f845a57",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-11-04T11:45:00+09:00",
-  "observedPublishedAt": "2026-11-04T11:45:00+09:00"
+  }
 }
