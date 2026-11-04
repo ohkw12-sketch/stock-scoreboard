@@ -5537,7 +5537,6 @@
     "recommendationContinuitySessionCheck": {
       "checkedAt": "2026-11-04T11:41:19+09:00",
       "preservedPublishedCohorts": 202,
-      "unpublishedDatesNotInvented": true,
       "rows": [
         {
           "ticker": "005930",
@@ -5550,7 +5549,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-11-02",
             "2026-11-03"
           ]
@@ -5566,7 +5565,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-11-02",
             "2026-11-03"
           ]
@@ -5599,7 +5598,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-10-12",
             "2026-10-14",
             "2026-10-19",
@@ -5631,7 +5630,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-10-12",
             "2026-10-14",
             "2026-10-19",
@@ -5651,7 +5650,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-11-02",
             "2026-11-03"
           ]
@@ -5667,7 +5666,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-11-02",
             "2026-11-03"
           ]
@@ -5683,7 +5682,7 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-11-02",
             "2026-11-03"
           ]
@@ -5699,12 +5698,14 @@
             "2026-10-30",
             "2026-11-04"
           ],
-          "missingPublicationSessions": [
+          "missingSourceDateSessions": [
             "2026-11-02",
             "2026-11-03"
           ]
         }
-      ]
+      ],
+      "missingSourceDatesNotImputed": true,
+      "publicationBasisNote": "기존 11월2일 오전 게시분의 가격·추천 기준일은10월30일이다. 여기의 공백은 추천 기준일 공백이며 실제 게시시각은 추천 원장에 별도 보존한다."
     }
   }
 }

@@ -10853,7 +10853,7 @@
     "recommendationHistoryPolicy": {
       "version": "recommendation-history-1.0",
       "gapCalendarDays": 7,
-      "basis": "실제 게시 확인된 추천 기준일과 KRX 영업일 대조; 미게시 영업일을 연속 추천으로 세지 않음",
+      "basis": "실제 게시 확인된 추천 기준일과 KRX 영업일 대조; 기준일 공백을 연속 추천으로 세지 않음",
       "tradingSessionGapsRespected": true
     }
   },
