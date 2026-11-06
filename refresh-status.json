@@ -1,78 +1,78 @@
 {
-  "runId": "552f97c6180abc9a53a9212c",
-  "attemptedAt": "2026-11-05T16:32:34+09:00",
+  "runId": "43065b609536d6a34e173e9d",
+  "attemptedAt": "2026-11-06T13:17:43+09:00",
   "sourceDate": "2026-11-05",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c"
+      "runId": "43065b609536d6a34e173e9d"
     },
     "p1": {
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c",
+      "runId": "43065b609536d6a34e173e9d",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c"
+      "runId": "43065b609536d6a34e173e9d"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c",
-      "evidenceSnapshotId": "ebd7d47541aa0b72224a022c7656e5a071c19fefe7898f0a9509d989bade3e55"
+      "runId": "43065b609536d6a34e173e9d",
+      "evidenceSnapshotId": "af532bb9d5ac573bb6e729874ad70dbde42a9544040ba5bd558b4398aae1421c"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c",
-      "evidenceSnapshotId": "ebd7d47541aa0b72224a022c7656e5a071c19fefe7898f0a9509d989bade3e55"
+      "runId": "43065b609536d6a34e173e9d",
+      "evidenceSnapshotId": "af532bb9d5ac573bb6e729874ad70dbde42a9544040ba5bd558b4398aae1421c"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c",
-      "evidenceSnapshotId": "ebd7d47541aa0b72224a022c7656e5a071c19fefe7898f0a9509d989bade3e55"
+      "runId": "43065b609536d6a34e173e9d",
+      "evidenceSnapshotId": "af532bb9d5ac573bb6e729874ad70dbde42a9544040ba5bd558b4398aae1421c"
     },
     "combined": {
-      "generatedAt": "2026-11-05T16:32:34+09:00",
-      "snapshotId": "dbd767c5843c1b7fe8fabf3a13c63819ed8e55d3ab573dcb02a9470bf1aaf825",
+      "generatedAt": "2026-11-06T13:17:43+09:00",
+      "snapshotId": "8852d6d4f115df22f8e5030068e60efa54b6473c82480e5d64d59a2d7628cbdc",
       "sourceCutoff": "2026-11-05",
       "mode": "저장자료 재계산",
       "engineVersion": "011c1d50afe6ac82",
-      "runId": "552f97c6180abc9a53a9212c",
-      "evidenceSnapshotId": "ebd7d47541aa0b72224a022c7656e5a071c19fefe7898f0a9509d989bade3e55",
+      "runId": "43065b609536d6a34e173e9d",
+      "evidenceSnapshotId": "af532bb9d5ac573bb6e729874ad70dbde42a9544040ba5bd558b4398aae1421c",
       "status": "계산완료"
     }
   },
   "sourceAudit": {
-    "checkedAt": "2026-11-05T16:37:12+09:00",
+    "checkedAt": "2026-11-06T13:24:31+09:00",
     "priceDate": "2026-11-05",
     "requested": 2769,
     "rawPricesCollected": 2769,
@@ -5401,7 +5401,26 @@
       "mainDailyPricesMayIncludeAfterMarket": true,
       "currentDayPerformanceProvisional": true
     },
-    "morningMediaPolicy": "이전 검증된 오전 영상·삼프로·유튜브시황2 내용과 원래 날짜를 보존; 이번 실행은 영상 원문 재검증으로 표시하지 않음",
+    "morningMediaPolicy": {
+      "status": "원문 확인 영상만 탐지 반영",
+      "youtubeScoreContribution": 0,
+      "samproScoreContribution": 0,
+      "saveTickerScoreContribution": 0,
+      "review": {
+        "checkedAt": "2026-11-06T13:07:33+09:00",
+        "status": "원문확인",
+        "verifiedVideos": [
+          "https://www.youtube.com/watch?v=q3AWEXZ5IfE",
+          "https://www.youtube.com/watch?v=z5HWyKgjnRM",
+          "https://www.youtube.com/watch?v=wsCQm5RNrBM"
+        ],
+        "scoreContribution": 0,
+        "pending": [
+          "핀플 11월 5일 다중 패널 영상은 김종효 발언 구간 분리 확인 대기",
+          "11월 6일 12시에 만나요 생방송은 공개 자막 없음"
+        ]
+      }
+    },
     "sourceHashes": {
       "manual-source-review.json": "dc4851b617886a351aaff995ddf5822f552ed3c44ffa8ea9a5df69021dbe799e",
       "disclosure-retry-audit.json": "8349235052e2d95ad98000e6aebae0170221a279ad9dbc0e0e6a9f1f06e881ec",
@@ -5555,13 +5574,206 @@
       ]
     },
     "guidanceStatus": {
-      "status": "정상",
-      "checked_at": "2026-11-05T16:31:03.113369+09:00",
-      "failures": [],
-      "from": "2026-11-05",
-      "to": "2026-11-05",
-      "excluded": []
+      "status": "부분실패·이전자료유지",
+      "checked_at": "2026-11-06T13:06:27.055341+09:00",
+      "failures": [
+        {
+          "ticker": "016450",
+          "name": "한세예스24홀딩스",
+          "receipt": "20261028800166",
+          "published_at": "20261028",
+          "reason": "ValueError",
+          "status": "원문확인필요"
+        },
+        {
+          "ticker": "016450",
+          "name": "한세예스24홀딩스",
+          "receipt": "20261028800168",
+          "published_at": "20261028",
+          "reason": "ValueError",
+          "status": "원문확인필요"
+        },
+        {
+          "ticker": "005380",
+          "name": "현대자동차",
+          "receipt": "20261029800240",
+          "published_at": "20261029",
+          "reason": "ValueError",
+          "status": "원문확인필요"
+        }
+      ],
+      "from": "2025-10-02",
+      "to": "2026-11-06",
+      "excluded": [
+        {
+          "reason": "자회사 한세모빌리티 수주 목표만 제시; 매출·영업이익 미제공",
+          "document_name": "20251029800126.xml",
+          "sha256": "bcc5c8f05c25ee55a8c64d8dcc2a48ab1d3a57392f27527714bda0d3d4650914",
+          "reviewed_at": "2026-09-21T18:23:17.084771+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20251029800126",
+          "receipt": "20251029800126",
+          "ticker": "016450",
+          "name": "한세예스24홀딩스"
+        },
+        {
+          "reason": "판매대수 목표만 제시; 매출·영업이익 미제공",
+          "document_name": "20260105800035.xml",
+          "sha256": "400e9fe2f4b90597467c36ae463a17e0d01660cbafdf9e1989b193c2e12f15e1",
+          "reviewed_at": "2026-09-21T18:23:17.085274+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800035",
+          "receipt": "20260105800035",
+          "ticker": "000270",
+          "name": "기아"
+        },
+        {
+          "reason": "판매대수 목표만 제시; 매출·영업이익 미제공",
+          "document_name": "20260105800384.xml",
+          "sha256": "465717c70197c9a8044e4a4451c02450f906f7bda5110afe3bfe2b8277d2499c",
+          "reviewed_at": "2026-09-21T18:23:17.085274+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800384",
+          "receipt": "20260105800384",
+          "ticker": "005380",
+          "name": "현대자동차"
+        },
+        {
+          "reason": "수주 목표만 제시; 매출·영업이익 미제공",
+          "document_name": "20260105800697.xml",
+          "sha256": "49b1130457c84c20e080d0c19a9dc56165d98b5e21b130d9ba4647b00e2fae69",
+          "reviewed_at": "2026-09-21T18:23:17.085776+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260105800697",
+          "receipt": "20260105800697",
+          "ticker": "009540",
+          "name": "HD한국조선해양"
+        },
+        {
+          "reason": "판매량 목표만 제시; 매출·영업이익 미제공",
+          "document_name": "20260130800409.xml",
+          "sha256": "5dc68121746d325006a743d3ff171eba0bb86afae081bff20d55bfe5a54a4add",
+          "reviewed_at": "2026-09-21T18:23:17.085776+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260130800409",
+          "receipt": "20260130800409",
+          "ticker": "004020",
+          "name": "현대제철"
+        },
+        {
+          "reason": "당기순이익 목표만 제시; 매출·영업이익 미제공",
+          "document_name": "20260205800766.xml",
+          "sha256": "0b9793a17a9bfa639bf2e2651e55925a7af9f4df87e29be470222694dd3ab8ea",
+          "reviewed_at": "2026-09-21T18:23:17.086275+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260205800766",
+          "receipt": "20260205800766",
+          "ticker": "175330",
+          "name": "JB금융지주"
+        },
+        {
+          "reason": "PUBG IP 두 자릿수 성장 전망; 금액 범위 미제공",
+          "document_name": "20260209800895.xml",
+          "sha256": "07242e938dc2a0f64d86583dd3ca7f9d6041fd2dd4af0c52c890dce8e2c76695",
+          "reviewed_at": "2026-09-21T18:23:17.086275+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209800895",
+          "receipt": "20260209800895",
+          "ticker": "259960",
+          "name": "크래프톤"
+        },
+        {
+          "reason": "판매량 등 사업계획; 매출·영업이익 금액 미제공",
+          "document_name": "20260209801331.xml",
+          "sha256": "022c49629d86e0937af80ee6ed7f62118da29818d2c1e393c06e9793225c51cd",
+          "reviewed_at": "2026-09-21T18:23:17.086778+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260209801331",
+          "receipt": "20260209801331",
+          "ticker": "010130",
+          "name": "고려아연"
+        },
+        {
+          "reason": "톡비즈 광고 두 자릿수 성장 목표; 전체 회사 금액 가이던스 아님",
+          "document_name": "20260212800074.xml",
+          "sha256": "e7fb490e7e47430a813d2af87f0971675e03511bce63f546aba40ae850eb4fec",
+          "reviewed_at": "2026-09-21T18:23:17.086778+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260212800074",
+          "receipt": "20260212800074",
+          "ticker": "035720",
+          "name": "카카오"
+        },
+        {
+          "reason": "첨부서류만 정정; DART 뷰어 확인. 연결된 원 공시 20260512900569 숫자 유지",
+          "document_name": "20260512900617.viewer.html",
+          "sha256": "b5ba80542b4aaf5e50f99d6826aaafd663b7e0f2d60c43021242dac12f6e6062",
+          "reviewed_at": "2026-09-21T18:23:17.096304+09:00",
+          "source_url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260512900617",
+          "receipt": "20260512900617",
+          "ticker": "263750",
+          "name": "펄어비스"
+        }
+      ]
     },
-    "actualInputCollectionBeforeRebuild": true
+    "actualInputCollectionBeforeRebuild": true,
+    "youtubeOriginalReview": {
+      "status": "부분갱신",
+      "checkedAt": "2026-11-06T13:04:27+09:00",
+      "contentThrough": "2026-11-06",
+      "verifiedVideoCount": 21,
+      "pendingCount": 4,
+      "scoreContribution": 0
+    },
+    "saveTickerStatus": {
+      "status": "원문수집실패·이전자료유지",
+      "checkedAt": null,
+      "contentThrough": "2026-10-08 08:31",
+      "scoreContribution": 0
+    }
+  },
+  "currentAttempt": {
+    "status": "부분실패·검증자료재사용",
+    "attemptedAt": "2026-11-06T13:17:43+09:00",
+    "completedAt": "2026-11-06T13:24:31+09:00",
+    "priceSource": "오늘 수집한 전체시장 스냅샷·KIS 누락 복구",
+    "priceDate": "2026-11-05",
+    "coverage": 0.9986,
+    "excludedAbnormalStocks": [
+      {
+        "ticker": "001470",
+        "name": "삼부토건",
+        "market": "KOSPI",
+        "sector": "토목 건설업",
+        "lastPriceDate": null,
+        "reason": "공급자 조정가격 일일변동 35% 초과; 원인 확인 전 순위·성과 제외, 원시 가격 보존"
+      },
+      {
+        "ticker": "066790",
+        "name": "씨씨에스",
+        "market": "KOSDAQ",
+        "sector": "텔레비전 방송업",
+        "lastPriceDate": null,
+        "reason": "공급자 조정가격 일일변동 35% 초과; 원인 확인 전 순위·성과 제외, 원시 가격 보존"
+      },
+      {
+        "ticker": "250030",
+        "name": "진코스텍",
+        "market": "KOSDAQ",
+        "sector": "기타 화학제품 제조업",
+        "lastPriceDate": null,
+        "reason": "공급자 조정가격 일일변동 35% 초과; 원인 확인 전 순위·성과 제외, 원시 가격 보존"
+      },
+      {
+        "ticker": "312610",
+        "name": "에이에프더블류",
+        "market": "KOSDAQ",
+        "sector": "1차 비철금속 제조업",
+        "lastPriceDate": null,
+        "reason": "공급자 조정가격 일일변동 35% 초과; 원인 확인 전 순위·성과 제외, 원시 가격 보존"
+      }
+    ],
+    "failedAreas": [
+      "DART 신규 원문 전수수집이 장시간 응답하지 않아 이전 검증 실적·근거 유지",
+      "회사 가이던스 검증 3건 실패로 이전 공개 guidance 유지",
+      "SaveTicker 신규 원문 수집 실패로 2026-10-08 검증본 유지"
+    ],
+    "preserved": [
+      "기존 검증 DART 실적·위험 근거",
+      "보유수량·평단·사용자 판단",
+      "삼프로 기존 검증본",
+      "가이던스 기존 검증본"
+    ]
   }
 }
