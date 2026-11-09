@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "ruleVersion": "combined-trend-4.0",
-  "snapshotId": "57662989507e1cbb1451096cf8f873f54888efa73467b2b2ff46c65dbee9b8d7",
-  "generatedAt": "2026-11-09T09:02:11+09:00",
-  "sourceDate": "2026-11-06",
-  "status": "공개 확인 완료 · 추천 기록 보존",
-  "publicationState": "confirmed",
+  "snapshotId": "5990ee72a60a432c8fc476e4442d8300b35f2cf8e59b7928b415a8dd4e82873c",
+  "generatedAt": "2026-11-09T16:28:13+09:00",
+  "sourceDate": "2026-11-09",
+  "status": "공개 확인 대기 · 성과 기록은 사이트 반영 확인 후 시작",
+  "publicationState": "prepared",
   "candidateCount": 0,
   "matchedCandidateCount": 0,
   "rows": [],
@@ -56,6 +56,7 @@
       "sector": "금융",
       "eligible": false,
       "reasons": [
+        "추세확인 ②확산·③주도 섹터 아님",
         "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
@@ -80,9 +81,9 @@
       ]
     },
     {
-      "ticker": "042700",
-      "name": "한미반도체",
-      "sector": "반도체",
+      "ticker": "036930",
+      "name": "주성엔지니어링",
+      "sector": "특수 목적용 기계 제조업",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -90,12 +91,13 @@
       ]
     },
     {
-      "ticker": "052460",
-      "name": "아이크래프트",
-      "sector": "인터넷/소프트웨어",
+      "ticker": "042700",
+      "name": "한미반도체",
+      "sector": "반도체",
       "eligible": false,
       "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님"
+        "추세확인 ②확산·③주도 섹터 아님",
+        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
       ]
     },
     {
@@ -132,16 +134,6 @@
       "ticker": "073490",
       "name": "LIG아큐버",
       "sector": "통신 및 방송 장비 제조업",
-      "eligible": false,
-      "reasons": [
-        "추세확인 ②확산·③주도 섹터 아님",
-        "5일 상승률·20일선 이격 또는 추세 조건 미충족"
-      ]
-    },
-    {
-      "ticker": "082740",
-      "name": "한화엔진",
-      "sector": "일반 목적용 기계 제조업",
       "eligible": false,
       "reasons": [
         "추세확인 ②확산·③주도 섹터 아님",
@@ -291,7 +283,7 @@
   ],
   "feedback": {
     "version": "feedback-1.0",
-    "cutoffDate": "2026-11-06",
+    "cutoffDate": "2026-11-09",
     "horizon": 20,
     "sampleCount": 538,
     "patterns": [
@@ -2479,21 +2471,19 @@
   },
   "notice": "가치성장 상위 종목 중 ②확산·③주도 추세확인 섹터에 속하고 최근 5일 10% 이하·20일선 이격 -3~+7%·20일선 상승 조건을 모두 통과한 종목만 표시 · 동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님",
   "refreshState": {
-    "generatedAt": "2026-11-09T09:02:11+09:00",
-    "snapshotId": "57662989507e1cbb1451096cf8f873f54888efa73467b2b2ff46c65dbee9b8d7",
-    "sourceCutoff": "2026-11-06",
+    "generatedAt": "2026-11-09T16:28:13+09:00",
+    "snapshotId": "5990ee72a60a432c8fc476e4442d8300b35f2cf8e59b7928b415a8dd4e82873c",
+    "sourceCutoff": "2026-11-09",
     "mode": "저장자료 재계산",
     "engineVersion": "3ec9d7857c3977a5",
-    "runId": "76ead49d611a9c22c0679c30",
-    "evidenceSnapshotId": "2e36bb4f66585aaca031d4a242a467daa52b613a26864c8bea3d91515a45119b",
+    "runId": "5287db642a1e411132358d9c",
+    "evidenceSnapshotId": "4952141318d66f34a3b8ae0c548dc32d31134456306029fa155ec9338486a089",
     "status": "계산완료"
   },
-  "runId": "76ead49d611a9c22c0679c30",
+  "runId": "5287db642a1e411132358d9c",
   "recommendationHistoryPolicy": {
     "version": "recommendation-history-1.0",
     "gapCalendarDays": 7,
     "basis": "검증 후 공개된 프로젝트별 추천일; 순위 변동 미사용"
-  },
-  "lastPublicationCheckedAt": "2026-11-09T09:07:56+09:00",
-  "observedPublishedAt": "2026-11-09T09:07:56+09:00"
+  }
 }
