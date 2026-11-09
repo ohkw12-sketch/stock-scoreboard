@@ -7381,6 +7381,13 @@
       "to": "2026-11-09",
       "excluded": []
     },
-    "actualInputCollectionBeforeRebuild": true
+    "actualInputCollectionBeforeRebuild": true,
+    "publicationRetry": {
+      "checkedAt": "2026-11-09T16:40:33+09:00",
+      "initialCommit": "81989c3bae439915e4123c8250db797bfcd3c413",
+      "previousPublicRunId": "76ead49d611a9c22c0679c30",
+      "initialResult": "원격 main 반영 확인 후 공개 데이터 대조 불일치",
+      "policy": "동일 실행의 검증된 결과로 기존 GitHub 연결에서 한 차례 재시도"
+    }
   }
 }
