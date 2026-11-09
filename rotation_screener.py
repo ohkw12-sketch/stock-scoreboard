@@ -2279,12 +2279,17 @@ def run_engine(prices: pd.DataFrame, config: dict, source_name: str,
     ).reset_index(drop=True)
     sector_results["rank"] = np.arange(1, len(sector_results) + 1)
     public_minimum = float(config.get("rotation_public_min_score", 55.0))
+    public_sector_excluded = public_sector_exclusion_mask(
+        sector_results.rename(columns={"name": "sector"})
+    )
     public = sector_results[
         sector_results["trendScore"].ge(public_minimum)
         & sector_results["rs5Pct"].gt(0)
         & ~sector_results["trendState"].eq("이탈검토")
         & ~sector_results["stage"].isin(["X조기이탈", "X종료"])
+        & ~public_sector_excluded
     ].head(10).copy()
+    public["rank"] = np.arange(1, len(public) + 1)
     public_sectors = public.drop(columns=["raw_ret3", "raw_ret5"]).to_dict("records")
     stage_counts = public["stage"].value_counts().to_dict()
     status = (

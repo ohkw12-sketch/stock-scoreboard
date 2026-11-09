@@ -15,6 +15,7 @@ from rotation_screener import (
     generate_sample_fundamentals, generate_sample_market, load_config, run_engine,
 )
 from rotation_screener import normalize_prices
+from sector_exclusions import PUBLIC_SECTOR_PATTERN
 
 
 class RotationEngineTest(unittest.TestCase):
@@ -58,9 +59,14 @@ class RotationEngineTest(unittest.TestCase):
             and row['rs5Pct'] > 0
             and row['trendState'] != '이탈검토'
             and row['stage'] not in ['X조기이탈', 'X종료']
+            and not PUBLIC_SECTOR_PATTERN.search(row['name'])
         ][:10]
         self.assertEqual([row['name'] for row in self.p11['sectors']], expected)
         self.assertGreater(len(expected), 0)
+        self.assertTrue(all(not PUBLIC_SECTOR_PATTERN.search(row['name'])
+                            for row in self.p11['sectors']))
+        self.assertEqual([row['rank'] for row in self.p11['sectors']],
+                         list(range(1, len(expected) + 1)))
 
     def test_required_metrics_and_classifications(self):
         sector = self.p11["sectors"][0]
