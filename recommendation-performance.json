@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "evaluationVersion": "performance-2.0",
-  "generatedAt": "2026-11-11T09:55:12+09:00",
+  "generatedAt": "2026-11-11T10:09:11+09:00",
   "priceDate": "2026-11-10",
   "recordCount": 641,
-  "cohortCount": 226,
+  "cohortCount": 229,
   "rows": [
     {
       "ticker": "053800",
@@ -63976,6 +63976,5 @@
     ],
     "status": "과거 성과 기반 초기 순위",
     "notice": "동일 기간 완료 성과만 사용 · 현재 추천 가격일 이전 결과만 반영 · 종목 중복 가중 방지 · 소표본 중앙값 축소 · 과거 규칙·저장본 포함, 별도 미래 검증 전 · 상승확률/예상수익률 아님"
-  },
-  "priceSnapshotId": "98ae90ccda134dff982872bdd5b23d5aba98ccd33ec59f366ed69edb4a27ef79"
+  }
 }
