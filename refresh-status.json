@@ -1,84 +1,84 @@
 {
-  "runId": "0a9b58c59e6dee1e00fea8c6",
-  "attemptedAt": "2026-11-12T16:27:54+09:00",
+  "runId": "c294c906a50b3a74eff49471",
+  "attemptedAt": "2026-11-13T08:21:34+09:00",
   "sourceDate": "2026-11-12",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6"
+      "runId": "c294c906a50b3a74eff49471"
     },
     "p1": {
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6",
+      "runId": "c294c906a50b3a74eff49471",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6"
+      "runId": "c294c906a50b3a74eff49471"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6",
-      "evidenceSnapshotId": "33e1d4c05167bc700214ce6afa7d9e58d64e6d77832a79c31774de0cfc000ea2"
+      "runId": "c294c906a50b3a74eff49471",
+      "evidenceSnapshotId": "f6422560d53ee60c57fe697d9635bb820c0272fbbe41c5e9a864b31179838a1c"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6",
-      "evidenceSnapshotId": "33e1d4c05167bc700214ce6afa7d9e58d64e6d77832a79c31774de0cfc000ea2"
+      "runId": "c294c906a50b3a74eff49471",
+      "evidenceSnapshotId": "f6422560d53ee60c57fe697d9635bb820c0272fbbe41c5e9a864b31179838a1c"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6",
-      "evidenceSnapshotId": "33e1d4c05167bc700214ce6afa7d9e58d64e6d77832a79c31774de0cfc000ea2"
+      "runId": "c294c906a50b3a74eff49471",
+      "evidenceSnapshotId": "f6422560d53ee60c57fe697d9635bb820c0272fbbe41c5e9a864b31179838a1c"
     },
     "combined": {
-      "generatedAt": "2026-11-12T16:27:54+09:00",
-      "snapshotId": "7eaa7f39c5c3632e3316638183d7aae5346343d0b6282e3aded7cb985cdff592",
+      "generatedAt": "2026-11-13T08:21:34+09:00",
+      "snapshotId": "5e56ef3255fde9ceb8eddef44284967c2b881bbd6c9c2b5463db0b49ee683b46",
       "sourceCutoff": "2026-11-12",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "0a9b58c59e6dee1e00fea8c6",
-      "evidenceSnapshotId": "33e1d4c05167bc700214ce6afa7d9e58d64e6d77832a79c31774de0cfc000ea2",
+      "runId": "c294c906a50b3a74eff49471",
+      "evidenceSnapshotId": "f6422560d53ee60c57fe697d9635bb820c0272fbbe41c5e9a864b31179838a1c",
       "status": "계산완료"
     }
   },
   "sourceAudit": {
-    "checkedAt": "2026-11-12T16:32:56+09:00",
+    "checkedAt": "2026-11-13T08:38:18+09:00",
     "priceDate": "2026-11-12",
     "requested": 2770,
     "rawPricesCollected": 2770,
-    "analysisCount": 2765,
-    "priceCollectedFrom": "2026-11-12T16:04:54+09:00",
-    "priceCollectedUntil": "2026-11-12T16:17:59+09:00",
+    "analysisCount": 2764,
+    "priceCollectedFrom": "2026-11-13T08:26:49+09:00",
+    "priceCollectedUntil": "2026-11-13T08:26:49+09:00",
     "excludedAbnormalStocks": [
       {
         "ticker": "001470",
@@ -314,40 +314,41 @@
       "priorIncorrectMappingDiscarded": true
     },
     "reportedFinancials": {
+      "status": "정상",
       "source": "OpenDART 공시실적",
       "asOfDate": "2026-09-30",
       "requested": 2770,
-      "collected": 2605,
+      "collected": 2606,
+      "coverageRatio": 0.9408,
+      "quarterRequested": 2770,
+      "quarterCollected": 2547,
+      "quarterCoverageRatio": 0.9195,
+      "normalizedRequested": 2770,
       "normalizedCollected": 2427,
-      "attemptedThisRun": 2535,
+      "normalizedCoverageRatio": 0.8762,
+      "attemptedThisRun": 51,
+      "periodCache": {
+        "httpRequests": 39,
+        "companyPeriodsRequested": 259
+      },
       "disclosureScan": {
         "status": "정상",
-        "checkedThrough": "2026-11-12",
-        "changedCompanies": 109,
+        "checkedThrough": "2026-11-13",
+        "changedCompanies": 52,
         "overlapDays": 3,
-        "pages": 3
+        "pages": 4
       },
-      "checkedAt": "2026-11-12T16:06:52+09:00"
+      "problem": null,
+      "checkedAt": "2026-11-13T08:26:49+09:00"
     },
     "consensusFullSweep": {
       "status": "정상",
       "source": "KIS + 증권사 리포트·FnGuide + 회사 공식 가이던스",
       "asOfDate": "2026-11-12",
-      "attempted": 2770,
-      "collected": 130,
       "cachedCoverage": 140,
-      "unknownProviderDateCount": 0,
-      "monthPrecisionCount": 0,
-      "unavailable": 2640,
-      "deferred": 0,
-      "failed": 0,
-      "problem": null,
-      "actualOriginalsCollected": 2770,
-      "actualFetchedFrom": "2026-11-12T16:06:21+09:00",
-      "actualFetchedUntil": "2026-11-12T16:17:28+09:00",
-      "actualPerStockFetchTimesAligned": true,
-      "forecastIntegratedTickers": 621,
-      "guidancePreferredTickers": 3
+      "forecastIndexCheckedAt": "2026-11-13T08:20:46+09:00",
+      "forecastIndexStatus": "정상·한경 607종목·네이버 1,122종목 목록 확인",
+      "guidanceIntegration": "부분실패로 이전 공개값 유지"
     },
     "alternateConsensus": {
       "requested": 2770,
@@ -2772,7 +2773,9 @@
       ],
       "scope": "현재일 포함 KRX 20거래일 실제 날짜 대조; 5·20일 외국인·기관 순매수, 제공 시점 잠정 자료",
       "retainedPriorSignalsCount": 0,
-      "previousVerifiedBasisDate": "2026-11-11"
+      "previousVerifiedBasisDate": "2026-11-11",
+      "cacheReadAt": "2026-11-13T08:26:49+09:00",
+      "publicBasisDate": "2026-11-12"
     },
     "noTradeQuoteStates": {
       "requested": 106,
@@ -5756,241 +5759,13 @@
       }
     ],
     "issueQuoteValidation": {
-      "requested": 75,
-      "verified": 54,
-      "missing": [
-        {
-          "ticker": "396470",
-          "name": "워트",
-          "reason": "삼성전자 THC 장비 8.32억원 계약의 종료일이 고객 요청에 따라 10월 31일에서 12월 17일로 연기됐습니다. 10월 30일 별도 장비 계약과 구분했습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "440110",
-          "name": "파두",
-          "reason": "기존 기업용 SSD 컨트롤러 계약 중 일부 물량의 납기 조정으로 종료일이 12월 30일에서 2027년 1월 30일로 변경됐습니다. 70% 선급금은 9월 30일 수령했습니다. 11월 6일 별도 계약은 이 정정과 구분했습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "025560",
-          "name": "미래산업",
-          "reason": "미래산업 105.236505억원의 3건 묶음 계약에서 한 장비 납기가 2026-10-15에서 2027-01-25로 연기됐다. 후속 공시에서 해당 납기 회복을 확인하지 못해 신규 추천을 보류한다. 장비별 매출 배분은 공시되지 않았다.",
-          "retainedAsOf": "2026-11-09T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-09",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "032580",
-          "name": "피델릭스",
-          "reason": "공식 거래정지·관리위험 또는 유효 부정 공시로 신규 진입 판단 보류",
-          "retainedAsOf": "2026-10-27T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-10-27",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "064290",
-          "name": "인텍플러스",
-          "reason": "기존 해외 반도체 장비 계약 약 219.27억원의 납기 종료일이 2027년 5월 14일에서 7월 30일로 연기됐습니다. 11월 9일 새 계약과 구분했습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "089890",
-          "name": "코세스",
-          "reason": "Bloom Energy 자동화 장비 500.68억원 계약의 종료일이 11월 2일에서 2027년 3월 6일로 연기됐습니다. 7월 별도 계약 1,504.2억원도 2027년 10월 23일로 연장됐습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "126340",
-          "name": "비나텍",
-          "reason": "정규장 15:30 종가 분봉 미제공: 20261019 144200; 공급자 기본·대체 조회 조건 재시도 후 보류",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": null,
-          "consensusDate": "2026-10-19",
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "253590",
-          "name": "네오셈",
-          "reason": "종속회사 대상 GEN6 SSD 검사장비 85.34억원 계약의 납기가 8월 31일에서 12월 31일로 연기됐습니다. 그룹 내부 계약을 외부 연결매출로 합산하지 않았습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "300080",
-          "name": "플리토",
-          "reason": "플리토 AI 언어모델 데이터 공급 기존 계약의 실제 납품 완료 기준 금액이 237.83억원에서 193.16억원으로 18.79% 감소했다.",
-          "retainedAsOf": "2026-11-09T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-09",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "351320",
-          "name": "넥사다이내믹스",
-          "reason": "사모 전환사채·사채 무효 확인 본안소송을 확인했습니다. 9월 22일 가처분 기각은 별개 절차이고, 10월 21일 공시는 불성실공시법인 지정 유예입니다.",
-          "retainedAsOf": "2026-10-22T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-10-22",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "373220",
-          "name": "LG에너지솔루션",
-          "reason": "11월 3일 불성실공시법인 지정과 제재금 800만원을 확인했습니다. 벌점 0이며 거래정지 공시는 아닙니다.",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": null,
-          "consensusDate": "2026-10-12",
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "412350",
-          "name": "레이저쎌",
-          "reason": "레이저쎌 기존 LPB_s 장비 계약 6.5억원의 3.5억원 수령을 확인했다. 고객사 사정으로 잔금 3억원 지급과 종료일이 2027년 6월 30일로 연기됐다.",
-          "retainedAsOf": "2026-11-09T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-09",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "420770",
-          "name": "기가비스",
-          "reason": "반도체 기판업체 장비 90.35억원 계약의 종료일이 2026년 10월 30일에서 2027년 10월 30일로 변경됐습니다. 고객 검수·잔금 수령 일정 반영이며 현재까지 70% 수령을 공시했습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "082740",
-          "name": "한화엔진",
-          "reason": "한화엔진 창원 선박엔진 생산설비 공시 투자액 802억원→718.773억원(-10.38%), 준공 예정 2026-09-30→2026-12-31. 후속 공시에서 일정 회복·감액 해소를 확인하지 못해 진행 중인 CAPEX 하향·지연을 반영한다.",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": null,
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "042660",
-          "name": "한화오션",
-          "reason": "해지한 선박건조계약 관련 10억달러(공시 환산 1조3,703억원) SIAC 손해배상 청구가 진행 중입니다. 확정 손실로 보지 않습니다.",
-          "retainedAsOf": "2026-10-29T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-10-29",
-          "consensusDate": "2026-10-12",
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "071970",
-          "name": "HD현대마린엔진",
-          "reason": "기존 중국 조선소 선박엔진 344.07억원 계약이 선적 일정에 따라 9월 26일에서 11월 15일로 연장됐습니다. 11월 9일 삼성중공업 계약은 별건입니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "090470",
-          "name": "제이스로보틱스",
-          "reason": "정규장 15:30 종가 분봉 미제공: 20261015 151900; 공급자 기본·대체 조회 조건 재시도 후 보류",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": null,
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "282880",
-          "name": "코윈로보틱스",
-          "reason": "서진시스템 ESS 자동화 204억원 계약이 2027년 5월 31일로 연기됐습니다. 260억원 별도 자동화 계약도 2027년 7월 31일로 연기됐습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-11",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "319400",
-          "name": "현대무벡스",
-          "reason": "미주 물류 자동화 776.83억원 계약의 종료일이 10월 15일에서 12월 31일로 연기됐습니다. 금액이나 고객 이름의 추가 확인은 없었습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "455180",
-          "name": "케이지에이",
-          "reason": "기존 이차전지 장비 26.56억원 계약 종료일이 2026년 9월 30일에서 2027년 1월 31일로 연기됐습니다. 11월 6일 물류자동화 계약은 별건입니다.",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": null,
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-02-27",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "459510",
-          "name": "나우로보틱스",
-          "reason": "로봇·자동화설비 기존 계약 종료일이 9월 30일에서 11월 30일로 변경됐습니다. 공시일 기준 이행률은 88.6%였습니다.",
-          "retainedAsOf": "2026-11-11T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-12",
-          "retainedPriceDate": "2026-11-11",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        }
-      ]
+      "slot": "08:00",
+      "status": "장전 탐색·게시 보류",
+      "reason": "2026-11-13 정규장 15:30 현재 분봉과 동시각 거래대금이 없어 2026-11-12 검증값을 오늘 장중값으로 게시하지 않음",
+      "requested": 76,
+      "verifiedPriorClose": 55,
+      "withheldCurrentSession": 21,
+      "publicFileRetained": true
     },
     "constructionAndBioExcluded": true,
     "priceAndConsensusDatesSeparate": true,
@@ -6000,77 +5775,10 @@
       "candidate-audit.json": "59c391869704bb2c9168269a636c9dd8488d74f4afb28521e515d0256f39e617"
     },
     "recommendationContinuitySessionCheck": {
-      "checkedAt": "2026-11-12T16:33:11+09:00",
-      "rows": [
-        {
-          "ticker": "005930",
-          "before": "11거래일 연속 추천",
-          "after": "최근 13거래일 중 11일 추천",
-          "confirmedSourceDates": [
-            "2026-10-27",
-            "2026-10-28",
-            "2026-10-29",
-            "2026-10-30",
-            "2026-11-04",
-            "2026-11-05",
-            "2026-11-06",
-            "2026-11-09",
-            "2026-11-10",
-            "2026-11-11",
-            "2026-11-12"
-          ],
-          "missingSourceDateSessions": [
-            "2026-11-02",
-            "2026-11-03"
-          ]
-        },
-        {
-          "ticker": "003160",
-          "before": "11거래일 연속 추천",
-          "after": "최근 13거래일 중 11일 추천",
-          "confirmedSourceDates": [
-            "2026-10-27",
-            "2026-10-28",
-            "2026-10-29",
-            "2026-10-30",
-            "2026-11-04",
-            "2026-11-05",
-            "2026-11-06",
-            "2026-11-09",
-            "2026-11-10",
-            "2026-11-11",
-            "2026-11-12"
-          ],
-          "missingSourceDateSessions": [
-            "2026-11-02",
-            "2026-11-03"
-          ]
-        },
-        {
-          "ticker": "166090",
-          "before": "11거래일 연속 추천",
-          "after": "최근 13거래일 중 11일 추천",
-          "confirmedSourceDates": [
-            "2026-10-27",
-            "2026-10-28",
-            "2026-10-29",
-            "2026-10-30",
-            "2026-11-04",
-            "2026-11-05",
-            "2026-11-06",
-            "2026-11-09",
-            "2026-11-10",
-            "2026-11-11",
-            "2026-11-12"
-          ],
-          "missingSourceDateSessions": [
-            "2026-11-02",
-            "2026-11-03"
-          ]
-        }
-      ],
-      "missingSourceDatesNotImputed": true,
-      "publicationBasisNote": "추천 기준일과 실제 게시시각을 구분하며 실제 게시시각은 원장에 보존"
+      "status": "검증완료",
+      "sourceDate": "2026-11-12",
+      "checkedAt": "2026-11-13T08:38:18+09:00",
+      "publicationPending": true
     },
     "kindDisclosureIndex": {
       "checkedAt": "2026-11-12T16:03:44+09:00",
@@ -8294,21 +8002,7 @@
       "originalPublicationDatesPreserved": true,
       "originalsManuallyReverified": 35
     },
-    "intradayPolicy": {
-      "boardPriceDate": "2026-11-12",
-      "boardCollectionWindow": [
-        "2026-11-12T16:04:54+09:00",
-        "2026-11-12T16:17:59+09:00"
-      ],
-      "issueComparisonTime": "15:30",
-      "issuePriorSessions": 20,
-      "closeSourceFetchFreshnessMinutes": 60,
-      "normalIntradayQuoteFreshnessMinutes": 30,
-      "performanceAsOfDate": "2026-11-12",
-      "currentDailySnapshotFinality": "장후 포함 수집시점 잠정",
-      "investorFlowCollectedDate": "2026-11-12",
-      "currentDayInvestorFlowFailuresNeutral": true
-    },
+    "intradayPolicy": "08:00 장전 국내 가격은 탐색으로만 보존하고, 당일 15:30 분봉·거래대금 검증 전 issue-spread.json을 승격하지 않음",
     "priceBasisPolicy": {
       "slotKST": "16:00",
       "issueRegularClose": "15:30",
@@ -8316,7 +8010,31 @@
       "mainDailyPricesMayIncludeAfterMarket": true,
       "currentDayPerformanceProvisional": true
     },
-    "morningMediaPolicy": "이전 검증된 오전 영상·삼프로·유튜브시황2 내용과 원래 날짜를 보존; 이번 실행은 영상 원문 재검증으로 표시하지 않음",
+    "morningMediaPolicy": {
+      "youtube": {
+        "status": "원문확인",
+        "checkedAt": "2026-11-13T08:17:23+09:00",
+        "verifiedVideoCount": 21,
+        "newlyReviewed": [
+          "fh5ShTWSyTY",
+          "NYn0DDQqZoE",
+          "PsF4rQJP13s"
+        ],
+        "recommendationScoreApplied": false
+      },
+      "sampro": {
+        "status": "당일 기사 미게시·이전 공개값 유지",
+        "checkedAt": "2026-11-13T08:38:18+09:00",
+        "lastPublicEdition": null,
+        "recommendationScoreApplied": false
+      },
+      "saveticker": {
+        "status": "실패·이전유지",
+        "checkedAt": "2026-11-13T08:38:18+09:00",
+        "reason": "공식 API가 2026-10-08 이전 페이지만 반환해 오늘 결과로 승격하지 않음",
+        "recommendationScoreApplied": false
+      }
+    },
     "sourceHashes": {
       "manual-source-review.json": "95eb2758d37865565782149834cf9aebfdba7c3b4c60fd6ed1fe876e342286d1",
       "disclosure-retry-audit.json": "6796dd6e47c4842c9b3ecd8603b6a054d132917c684624702aa3c787fa3a969c",
@@ -8569,88 +8287,11 @@
       ]
     },
     "incrementalDisclosureReview": {
-      "checkedAt": "2026-11-12T16:21:24+09:00",
-      "totalGlobalIndexed": 699,
-      "rows": [
-        {
-          "ticker": "267850",
-          "name": "아시아나IDT",
-          "receipt": "20261112800713",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/11/12/000713/20261110000427/91370.htm",
-          "verifiedAt": "2026-11-12T16:12:16+09:00",
-          "sourceSHA256": "ae556b672a9b264cdf9b3198e414c9fe818ffb16fe5165975bcb1b18079d5808",
-          "polarity": "neutral",
-          "kind": "review",
-          "period": null,
-          "summary": "기존 계약의 아시아나IDT 귀속분이 174.02억원에서 197.23207933억원으로 증액됐습니다."
-        },
-        {
-          "ticker": "003540",
-          "name": "대신증권",
-          "receipt": "20261112800767",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/11/12/000767/20261112000503/99626.htm",
-          "verifiedAt": "2026-11-12T16:12:16+09:00",
-          "sourceSHA256": "93dc995e122c2f9bcfcc9c8d12abfd834245a03809ef10b0093c9b790a0e3d36",
-          "polarity": "neutral",
-          "kind": "earnings",
-          "period": "2026Q3",
-          "summary": "2026Q3 연결 잠정 매출 2,004,412백만원, 영업이익 -2,230백만원."
-        },
-        {
-          "ticker": "114190",
-          "name": "강원에너지",
-          "receipt": "20261112900760",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/11/12/000760/20261112000297/70370.htm",
-          "verifiedAt": "2026-11-12T16:12:16+09:00",
-          "sourceSHA256": "7d14a0592e7927be77767b9893198cbb7cd306b9586ed6ca7989ca0b04b5ffe8",
-          "polarity": "neutral",
-          "kind": "review",
-          "period": null,
-          "summary": "기존 광양 양극재 수세설비 계약금액이 234.87억원에서 237.69억원으로 증액됐습니다."
-        },
-        {
-          "ticker": "432720",
-          "receipt": "20261112900830",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/11/12/000830/20261112000996/70370.htm",
-          "verifiedAt": "2026-11-12T16:21:24+09:00",
-          "sourceSHA256": "d03854fd2b970e8785164bc9aa7c78a7f4dabcb2ed258674820ec35b18ae678d",
-          "polarity": "neutral",
-          "kind": "contract",
-          "period": "",
-          "summary": "SK하이닉스 기존 반도체 IP 라이선스 계약 금액을 24.2352억원에서 39.2199588억원으로 증액 정정했습니다. 종료일은 2027-03-16이며 분기 실적 배분은 확인되지 않았습니다."
-        },
-        {
-          "ticker": "282720",
-          "receipt": "20261112900751",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/11/12/000751/20261112000818/70370.htm",
-          "verifiedAt": "2026-11-12T16:21:24+09:00",
-          "sourceSHA256": "faccb1e1be2758830cf9e51533d9375e2332a78f31d3bb812b715b5e92f02222",
-          "polarity": "neutral",
-          "kind": "contract",
-          "period": "",
-          "summary": "기존 새울 3·4호기 전기설치 건설 공사 금액을 615.7444억원에서 628.06897억원으로 정정했습니다."
-        },
-        {
-          "ticker": "263750",
-          "receipt": "20261112900686",
-          "source": "KIND",
-          "url": "https://kind.krx.co.kr/external/2026/11/12/000686/20261111000292/70956.htm",
-          "verifiedAt": "2026-11-12T16:21:24+09:00",
-          "sourceSHA256": "e16a9dd45bee9f1fcb097f01049ca0e34d5f5dfa4e93228cfc29994253b522d3",
-          "polarity": "neutral",
-          "kind": "earnings",
-          "period": "2026Q3",
-          "summary": "펄어비스 연결 계속사업 기준 3분기 잠정 매출 101,503백만원, 영업이익 20,665백만원입니다. 영업이익은 전년 동기 대비 9.0% 감소했습니다."
-        }
-      ],
-      "unreviewed": [],
-      "finalIndexCheckedAt": "2026-11-12T16:28:27.567681+09:00",
-      "finalIndexCount": 724
+      "status": "정상",
+      "checkedThrough": "2026-11-13",
+      "changedCompanies": 52,
+      "overlapDays": 3,
+      "pages": 4
     },
     "lateCandidateBusinessFilings": {
       "checkedAt": "2026-11-12T16:31:46+09:00",
@@ -8736,13 +8377,31 @@
       "reviewedSourceCutoff": "2026-11-12T16:28:27.567681+09:00"
     },
     "guidanceStatus": {
-      "status": "정상",
-      "checked_at": "2026-11-12T16:26:19.628824+09:00",
-      "failures": [],
-      "from": "2026-11-12",
-      "to": "2026-11-12",
-      "excluded": []
+      "status": "부분실패·이전자료유지",
+      "checkedAt": "2026-11-13T08:21:18+09:00",
+      "history": 162,
+      "active": 92,
+      "failures": 3,
+      "publicFileRetained": true
     },
-    "actualInputCollectionBeforeRebuild": true
+    "actualInputCollectionBeforeRebuild": {
+      "status": "완료",
+      "priceUniverse": 2770,
+      "priceCoverageRatio": 1.0,
+      "fundamentalsCollected": 2606,
+      "marketSource": "yfinance+FinanceDataReader+gap-recovery",
+      "checkedAt": "2026-11-13T08:26:49+09:00"
+    },
+    "valueGrowthRiskExclusions": {
+      "status": "최근 90일 유효 부정 근거 제외",
+      "removed": [
+        "파두",
+        "미래산업",
+        "한화엔진",
+        "HD현대마린엔진"
+      ],
+      "interestPublished": 17,
+      "absolutePublished": 7
+    }
   }
 }
