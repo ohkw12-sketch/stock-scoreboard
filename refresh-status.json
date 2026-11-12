@@ -1,78 +1,78 @@
 {
-  "runId": "e0aa4fcf497623f47700aba4",
-  "attemptedAt": "2026-11-11T16:26:12+09:00",
+  "runId": "7d267d8aa49eeff956cd92a7",
+  "attemptedAt": "2026-11-12T10:23:24+09:00",
   "sourceDate": "2026-11-11",
   "sections": {
     "p11": {
       "status": "계산완료",
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4"
+      "runId": "7d267d8aa49eeff956cd92a7"
     },
     "p1": {
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4",
+      "runId": "7d267d8aa49eeff956cd92a7",
       "status": "통합 종료"
     },
     "valueSource": {
       "status": "계산완료",
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4"
+      "runId": "7d267d8aa49eeff956cd92a7"
     },
     "growthSource": {
       "status": "계산완료",
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4",
-      "evidenceSnapshotId": "e62edf2f4ad3359f718fa8d20513ef20d854f11cbd6c6b3b13b5e2176c3d6813"
+      "runId": "7d267d8aa49eeff956cd92a7",
+      "evidenceSnapshotId": "30f52208fa7d61ded351caa232a30f81428caa5ffdfa016997eeecbe700dee1a"
     },
     "p2": {
       "status": "계산완료",
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4",
-      "evidenceSnapshotId": "e62edf2f4ad3359f718fa8d20513ef20d854f11cbd6c6b3b13b5e2176c3d6813"
+      "runId": "7d267d8aa49eeff956cd92a7",
+      "evidenceSnapshotId": "30f52208fa7d61ded351caa232a30f81428caa5ffdfa016997eeecbe700dee1a"
     },
     "p3": {
       "status": "계산완료",
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4",
-      "evidenceSnapshotId": "e62edf2f4ad3359f718fa8d20513ef20d854f11cbd6c6b3b13b5e2176c3d6813"
+      "runId": "7d267d8aa49eeff956cd92a7",
+      "evidenceSnapshotId": "30f52208fa7d61ded351caa232a30f81428caa5ffdfa016997eeecbe700dee1a"
     },
     "combined": {
-      "generatedAt": "2026-11-11T16:26:12+09:00",
-      "snapshotId": "f3a4ab47d96a0def3c5354d6c8d9cbeb78b975861e61a789c80b7d55646e80e2",
+      "generatedAt": "2026-11-12T10:23:24+09:00",
+      "snapshotId": "59ac50dda887c9abd0498f8382195f5c71591872611e409ea7512b6d177df74d",
       "sourceCutoff": "2026-11-11",
-      "mode": "저장자료 재계산",
+      "mode": "증분 수집",
       "engineVersion": "3ec9d7857c3977a5",
-      "runId": "e0aa4fcf497623f47700aba4",
-      "evidenceSnapshotId": "e62edf2f4ad3359f718fa8d20513ef20d854f11cbd6c6b3b13b5e2176c3d6813",
+      "runId": "7d267d8aa49eeff956cd92a7",
+      "evidenceSnapshotId": "30f52208fa7d61ded351caa232a30f81428caa5ffdfa016997eeecbe700dee1a",
       "status": "계산완료"
     }
   },
   "sourceAudit": {
-    "checkedAt": "2026-11-11T16:31:17+09:00",
+    "checkedAt": "2026-11-12T10:27:45+09:00",
     "priceDate": "2026-11-11",
     "requested": 2769,
     "rawPricesCollected": 2769,
@@ -314,51 +314,28 @@
       "priorIncorrectMappingDiscarded": true
     },
     "reportedFinancials": {
+      "status": "정상",
       "source": "OpenDART 공시실적",
       "asOfDate": "2026-09-30",
       "requested": 2769,
       "collected": 2605,
-      "normalizedCollected": 2426,
-      "attemptedThisRun": 2605,
+      "normalizedCollected": 2427,
+      "quarterCollected": 2545,
+      "attemptedThisRun": 48,
       "disclosureScan": {
         "status": "정상",
-        "checkedThrough": "2026-11-11",
-        "changedCompanies": 30,
+        "checkedThrough": "2026-11-12",
+        "changedCompanies": 45,
         "overlapDays": 3,
-        "pages": 1
-      },
-      "checkedAt": "2026-11-11T16:12:15.493215+09:00",
-      "financialPeriodCounts": {
-        "2026-09-30": 82,
-        "2026-06-30": 2473,
-        "2026-03-31": 24,
-        "2025-12-31": 20,
-        "2025-09-30": 4,
-        "2025-03-31": 2
-      },
-      "withoutVerifiedFinancials": 164,
-      "rawAttemptCount": 3999,
-      "rawAttemptDigest": "a6f7989a019eef2bde93df31c9c6c01693f882f42c6970e5f6ef7bbd3f438d51"
+        "pages": 2
+      }
     },
     "consensusFullSweep": {
       "status": "정상",
       "source": "KIS + 증권사 리포트·FnGuide + 회사 공식 가이던스",
-      "asOfDate": "2026-11-11",
-      "attempted": 2769,
-      "collected": 130,
+      "asOfDate": "2026-11-12",
       "cachedCoverage": 140,
-      "unknownProviderDateCount": 0,
-      "monthPrecisionCount": 0,
-      "unavailable": 2639,
-      "deferred": 0,
-      "failed": 0,
-      "problem": null,
-      "actualOriginalsCollected": 2769,
-      "actualFetchedFrom": "2026-11-11T16:06:08+09:00",
-      "actualFetchedUntil": "2026-11-11T16:17:16+09:00",
-      "actualPerStockFetchTimesAligned": true,
-      "forecastIntegratedTickers": 618,
-      "guidancePreferredTickers": 2
+      "newlyFetchedCount": 0
     },
     "alternateConsensus": {
       "requested": 2769,
@@ -4907,131 +4884,81 @@
       }
     ],
     "issueQuoteValidation": {
-      "requested": 71,
-      "verified": 60,
+      "status": "검증실패·이전공개유지",
+      "requested": 72,
+      "verified": 61,
+      "candidateCount": 71,
       "missing": [
-        {
-          "ticker": "025560",
-          "name": "미래산업",
-          "reason": "미래산업 105.236505억원의 3건 묶음 계약에서 한 장비 납기가 2026-10-15에서 2027-01-25로 연기됐다. 후속 공시에서 해당 납기 회복을 확인하지 못해 신규 추천을 보류한다. 장비별 매출 배분은 공시되지 않았다.",
-          "retainedAsOf": "2026-11-09T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": "2026-11-09",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "032580",
-          "name": "피델릭스",
-          "reason": "공식 거래정지·관리위험 또는 유효 부정 공시로 신규 진입 판단 보류",
-          "retainedAsOf": "2026-10-27T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": "2026-10-27",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-10",
-          "priceAndConsensusDatesSeparate": true
-        },
         {
           "ticker": "126340",
           "name": "비나텍",
           "reason": "정규장 15:30 종가 분봉 미제공: 20261019 144200; 공급자 기본·대체 조회 조건 재시도 후 보류",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": null,
-          "consensusDate": "2026-10-19",
-          "brokerConsensusDate": "2026-11-10",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "300080",
-          "name": "플리토",
-          "reason": "플리토 AI 언어모델 데이터 공급 기존 계약의 실제 납품 완료 기준 금액이 237.83억원에서 193.16억원으로 18.79% 감소했다.",
-          "retainedAsOf": "2026-11-09T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": "2026-11-09",
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-10",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "351320",
-          "name": "넥사다이내믹스",
-          "reason": "사모 전환사채·사채 무효 확인 본안소송을 확인했습니다. 9월 22일 가처분 기각은 별개 절차이고, 10월 21일 공시는 불성실공시법인 지정 유예입니다.",
-          "retainedAsOf": "2026-10-22T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": "2026-10-22",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "373220",
-          "name": "LG에너지솔루션",
-          "reason": "11월 3일 불성실공시법인 지정과 제재금 800만원을 확인했습니다. 벌점 0이며 거래정지 공시는 아닙니다.",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": null,
-          "consensusDate": "2026-10-12",
-          "brokerConsensusDate": "2026-11-10",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "412350",
-          "name": "레이저쎌",
-          "reason": "레이저쎌 기존 LPB_s 장비 계약 6.5억원의 3.5억원 수령을 확인했다. 고객사 사정으로 잔금 3억원 지급과 종료일이 2027년 6월 30일로 연기됐다.",
-          "retainedAsOf": "2026-11-09T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": "2026-11-09",
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "082740",
-          "name": "한화엔진",
-          "reason": "한화엔진 창원 선박엔진 생산설비 공시 투자액 802억원→718.773억원(-10.38%), 준공 예정 2026-09-30→2026-12-31. 후속 공시에서 일정 회복·감액 해소를 확인하지 못해 진행 중인 CAPEX 하향·지연을 반영한다.",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": null,
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-11-10",
-          "priceAndConsensusDatesSeparate": true
-        },
-        {
-          "ticker": "042660",
-          "name": "한화오션",
-          "reason": "해지한 선박건조계약 관련 10억달러(공시 환산 1조3,703억원) SIAC 손해배상 청구가 진행 중입니다. 확정 손실로 보지 않습니다.",
-          "retainedAsOf": "2026-10-29T15:30:00+09:00",
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": "2026-10-29",
-          "consensusDate": "2026-10-12",
-          "brokerConsensusDate": "2026-11-10",
-          "priceAndConsensusDatesSeparate": true
+          "status": "quote-unverified"
         },
         {
           "ticker": "090470",
           "name": "제이스로보틱스",
           "reason": "정규장 15:30 종가 분봉 미제공: 20261015; 공급자 기본·대체 조회 조건 재시도 후 보류",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": null,
-          "consensusDate": null,
-          "brokerConsensusDate": null,
-          "priceAndConsensusDatesSeparate": true
+          "status": "quote-unverified"
         },
         {
           "ticker": "455180",
           "name": "케이지에이",
           "reason": "정규장 15:30 종가 분봉 미제공: 20261021 151800; 공급자 기본·대체 조회 조건 재시도 후 보류",
-          "retainedAsOf": null,
-          "attemptedPriceDate": "2026-11-11",
-          "retainedPriceDate": null,
-          "consensusDate": null,
-          "brokerConsensusDate": "2026-02-27",
-          "priceAndConsensusDatesSeparate": true
+          "status": "quote-unverified"
+        },
+        {
+          "ticker": "025560",
+          "name": "미래산업",
+          "reason": "미래산업 105.236505억원의 3건 묶음 계약에서 한 장비 납기가 2026-10-15에서 2027-01-25로 연기됐다. 후속 공시에서 해당 납기 회복을 확인하지 못해 신규 추천을 보류한다. 장비별 매출 배분은 공시되지 않았다.",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "300080",
+          "name": "플리토",
+          "reason": "플리토 AI 언어모델 데이터 공급 기존 계약의 실제 납품 완료 기준 금액이 237.83억원에서 193.16억원으로 18.79% 감소했다.",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "412350",
+          "name": "레이저쎌",
+          "reason": "레이저쎌 기존 LPB_s 장비 계약 6.5억원의 3.5억원 수령을 확인했다. 고객사 사정으로 잔금 3억원 지급과 종료일이 2027년 6월 30일로 연기됐다.",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "032580",
+          "name": "피델릭스",
+          "reason": "공식 거래정지·관리위험 또는 유효 부정 공시로 신규 진입 판단 보류",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "351320",
+          "name": "넥사다이내믹스",
+          "reason": "사모 전환사채·사채 무효 확인 본안소송을 확인했습니다. 9월 22일 가처분 기각은 별개 절차이고, 10월 21일 공시는 불성실공시법인 지정 유예입니다.",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "373220",
+          "name": "LG에너지솔루션",
+          "reason": "11월 3일 불성실공시법인 지정과 제재금 800만원을 확인했습니다. 벌점 0이며 거래정지 공시는 아닙니다.",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "082740",
+          "name": "한화엔진",
+          "reason": "한화엔진 창원 선박엔진 생산설비 공시 투자액 802억원→718.773억원(-10.38%), 준공 예정 2026-09-30→2026-12-31. 후속 공시에서 일정 회복·감액 해소를 확인하지 못해 진행 중인 CAPEX 하향·지연을 반영한다.",
+          "status": "risk-reviewed-entry-withheld"
+        },
+        {
+          "ticker": "042660",
+          "name": "한화오션",
+          "reason": "해지한 선박건조계약 관련 10억달러(공시 환산 1조3,703억원) SIAC 손해배상 청구가 진행 중입니다. 확정 손실로 보지 않습니다.",
+          "status": "risk-reviewed-entry-withheld"
         }
-      ]
+      ],
+      "priceDate": "2026-11-12",
+      "generatedAt": "2026-11-12T10:31:49.421749+09:00",
+      "reason": "08:00 장전 탐색에서 61개 가격이 모두 2026-11-11 정규장 종가여서 당일 장중가로 게시하지 않고 이전 공개값을 유지함"
     },
     "constructionAndBioExcluded": true,
     "priceAndConsensusDatesSeparate": true,
@@ -6550,27 +6477,20 @@
     },
     "intradayPolicy": {
       "boardPriceDate": "2026-11-11",
-      "boardCollectionWindow": [
-        "2026-11-11T16:04:14+09:00",
-        "2026-11-11T16:17:19+09:00"
-      ],
-      "issueComparisonTime": "15:30",
-      "issuePriorSessions": 20,
-      "closeSourceFetchFreshnessMinutes": 60,
-      "normalIntradayQuoteFreshnessMinutes": 30,
-      "performanceAsOfDate": "2026-11-11",
-      "currentDailySnapshotFinality": "장후 포함 수집시점 잠정",
-      "investorFlowCollectedDate": "2026-11-11",
-      "currentDayInvestorFlowFailuresNeutral": true
+      "issueComparisonTime": "08:00 장전 탐색",
+      "result": "당일 장중가 없음·issue-spread 미승격"
     },
     "priceBasisPolicy": {
-      "slotKST": "16:00",
-      "issueRegularClose": "15:30",
-      "issueTurnoverBasis": "full-session",
-      "mainDailyPricesMayIncludeAfterMarket": true,
-      "currentDayPerformanceProvisional": true
+      "slotKST": "08:00",
+      "dailyBoardPriceDate": "2026-11-11",
+      "issuePriceDate": "2026-11-12",
+      "issuePromoted": false
     },
-    "morningMediaPolicy": "이전 검증된 오전 영상·삼프로·유튜브시황2 내용과 원래 날짜를 보존; 이번 실행은 영상 원문 재검증으로 표시하지 않음",
+    "morningMediaPolicy": {
+      "status": "검증완료",
+      "youtubeAndSamproUsedFor": "이슈 탐지 전용",
+      "recommendationScoreApplied": false
+    },
     "sourceHashes": {
       "manual-source-review.json": "f79ba09ddeb2f392fa88f7ab7777b8d741be1b0e88c9617c14e8da5171ca89ca",
       "disclosure-retry-audit.json": "f373a65cfb8518e38002f49258419a258b12cd56b79c9c9d4ce59adfde1911d9",
@@ -6947,43 +6867,41 @@
       "finalIndexCount": 431
     },
     "guidanceStatus": {
-      "status": "정상",
-      "checked_at": "2026-11-11T16:25:21.560104+09:00",
-      "failures": [],
-      "from": "2026-11-11",
-      "to": "2026-11-11",
-      "excluded": [],
-      "sourceRecoveries": [
-        {
-          "ticker": "046890",
-          "receipt": "20261111900481",
-          "alternate": "KIND",
-          "reason": "동일 공시 원문 대조"
-        }
-      ],
-      "explicitRangesReviewed": [
-        {
-          "ticker": "036570",
-          "receipt": "20261111800334",
-          "period": "2027",
-          "sales": {
-            "low": 3200000000000.0,
-            "high": 3400000000000.0,
-            "mid": 3300000000000.0
-          }
-        },
-        {
-          "ticker": "046890",
-          "receipt": "20261111900481",
-          "period": "2026Q4",
-          "sales": {
-            "low": 270000000000.0,
-            "high": 290000000000.0,
-            "mid": 280000000000.0
-          }
-        }
-      ]
+      "status": "검증실패·이전공개유지",
+      "failureCount": 3,
+      "reason": "가이던스 수집이 완전히 검증되지 않아 이전 공개 파일을 유지함"
     },
-    "actualInputCollectionBeforeRebuild": true
+    "actualInputCollectionBeforeRebuild": true,
+    "mediaStatus": {
+      "youtube": {
+        "status": "검증완료",
+        "contentThrough": "2026-11-12",
+        "verifiedVideoCount": 19,
+        "candidateCount": 6,
+        "newVideoIds": [
+          "tVgsP5jFOgU",
+          "2I8v5lnijHw",
+          "xCh6K1ORk1Y",
+          "WIUU4dDUFpo"
+        ],
+        "recommendationScoreApplied": false
+      },
+      "sampro": {
+        "status": "검증완료",
+        "sourceArticleId": 6515,
+        "sourceDate": "2026-11-12",
+        "editionCount": 24,
+        "recommendationScoreApplied": false
+      },
+      "saveticker": {
+        "status": "갱신실패·이전공개유지",
+        "reason": "원문 검증 실패"
+      }
+    },
+    "performancePriceCoverage": {
+      "priceDate": "2026-11-11",
+      "requested": 459,
+      "covered": 459
+    }
   }
 }
