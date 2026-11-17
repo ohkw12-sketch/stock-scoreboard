@@ -194,7 +194,44 @@ def merge_events(events):
         if prior:
             first = min(prior['firstPublished'], event['firstPublished'])
             refs = sorted({r for r in prior.get('receipts', [prior.get('receipt')]) + [event.get('receipt')] if r})
-            groups[key] = dict(event, firstPublished=first, receipts=refs)
+            merged = dict(event, firstPublished=first, receipts=refs)
+            # A contract correction is not automatically fresh positive evidence.
+            # If the corrected filing reduces the amount, or delays completion
+            # without increasing the amount, retain it as active counter-evidence.
+            # This comparison uses the original and corrected DART facts for the
+            # same eventId, so separate later contracts are not affected.
+            if event.get('correction') and event.get('kind') == '수주':
+                prior_amount = prior.get('amount')
+                current_amount = event.get('amount')
+                amount_reduced = (
+                    isinstance(prior_amount, (int, float))
+                    and isinstance(current_amount, (int, float))
+                    and current_amount < prior_amount
+                )
+                amount_increased = (
+                    isinstance(prior_amount, (int, float))
+                    and isinstance(current_amount, (int, float))
+                    and current_amount > prior_amount
+                )
+                prior_end = day(prior.get('activeUntil'))
+                current_end = day(event.get('activeUntil'))
+                completion_delayed = (
+                    prior_end is not None and current_end is not None
+                    and current_end > prior_end
+                )
+                if amount_reduced or (completion_delayed and not amount_increased):
+                    reasons = []
+                    if amount_reduced:
+                        reasons.append('계약금액 감소')
+                    if completion_delayed:
+                        reasons.append('계약 종료일 연기')
+                    merged.update(
+                        polarity='negative', status='유효', factType='계약정정위험',
+                        correctionRiskReason=' · '.join(reasons),
+                        previousAmount=prior_amount,
+                        previousActiveUntil=prior.get('activeUntil'),
+                    )
+            groups[key] = merged
         else:
             groups[key] = dict(event, receipts=[event['receipt']] if event.get('receipt') else [])
     # If a correction/cancellation cannot be matched confidently, quarantine

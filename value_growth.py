@@ -9,7 +9,7 @@ import pandas as pd
 
 
 KST = timezone(timedelta(hours=9))
-RULE_VERSION = "value-growth-split-4.0"
+RULE_VERSION = "value-growth-split-4.1"
 DISPLAY_LIMIT = 20
 
 
@@ -36,6 +36,53 @@ def _recent_valid_negatives(row: dict, today) -> list[dict]:
                 and published is not None and 0 <= (today - published).days <= 90):
             result.append(event)
     return result
+
+
+def _recent_verified_holds(risk_holds: list[dict] | None, today) -> dict[str, dict]:
+    """Return recent primary-source risk holds keyed by ticker.
+
+    These holds supplement the growth ledger when the original filing predates the
+    rolling DART history window.  They enforce the existing 90-day negative gate;
+    they do not change any ranking weight or score.
+    """
+    result: dict[str, dict] = {}
+    active_decisions = {
+        "withhold-entry-while-timeline-risk-active",
+        "exclude-active-negative",
+    }
+    for hold in risk_holds or []:
+        if (hold.get("decision") not in active_decisions
+                and hold.get("status") != "risk-reviewed-entry-withheld"):
+            continue
+        ticker = str(hold.get("ticker", "")).zfill(6)
+        receipt = str(hold.get("receipt") or "")
+        published = _day(receipt[:8] if len(receipt) >= 8 else None)
+        if published is None:
+            published = _day(
+                hold.get("publishedAt") or hold.get("verifiedAt")
+                or hold.get("latestOriginalCheckedAt")
+            )
+        if not ticker or published is None or not 0 <= (today - published).days <= 90:
+            continue
+        result[ticker] = hold
+    return result
+
+
+def _exclusion(ticker: str, name: str | None, negatives: list[dict], hold: dict | None) -> dict:
+    if hold:
+        return {
+            "ticker": ticker,
+            "name": name or hold.get("name"),
+            "reason": hold.get("reason") or "최근 90일 원문 검증 위험보류",
+            "evidenceCount": max(1, len(negatives)),
+            "riskSource": hold.get("source") or "검증 원문",
+            "receipt": hold.get("receipt"),
+            "url": hold.get("url"),
+        }
+    return {
+        "ticker": ticker, "name": name,
+        "reason": "최근 90일 유효 부정 근거", "evidenceCount": len(negatives),
+    }
 
 
 def _consensus_only(row: dict) -> bool:
@@ -151,7 +198,8 @@ def _risk(fundamental: dict, price: dict, value_row: dict, growth_row: dict) -> 
 def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit: list[dict],
                              fundamentals: pd.DataFrame, prices: pd.DataFrame,
                              rotation_board: dict | None = None, *, now: datetime | None = None,
-                             display_limit: int = DISPLAY_LIMIT) -> dict:
+                             display_limit: int = DISPLAY_LIMIT,
+                             risk_holds: list[dict] | None = None) -> dict:
     """Build separate market-interest and absolute-value growth rankings."""
     now = now or datetime.now(KST)
     today = now.date()
@@ -162,16 +210,17 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
     latest_prices = prices.sort_values("date").groupby("ticker").tail(1)
     latest = {str(row.get("ticker", "")).zfill(6): row for row in latest_prices.to_dict("records")}
     price_checks = _price_metrics(prices)
+    verified_holds = _recent_verified_holds(risk_holds, today)
     common = sorted(set(values) & set(growth))
     absolute_rows, exclusions = [], []
     for ticker in common:
         value_row, growth_row = values[ticker], growth[ticker]
         negatives = _recent_valid_negatives(growth_row, today)
-        if negatives:
-            exclusions.append({
-                "ticker": ticker, "name": growth_row.get("name") or value_row.get("name"),
-                "reason": "최근 90일 유효 부정 근거", "evidenceCount": len(negatives),
-            })
+        hold = verified_holds.get(ticker)
+        if negatives or hold:
+            exclusions.append(_exclusion(
+                ticker, growth_row.get("name") or value_row.get("name"), negatives, hold,
+            ))
             continue
         value_score, growth_score = _number(value_row.get("valueScore")), _number(growth_row.get("score"))
         if value_score is None or growth_score is None:
@@ -218,11 +267,11 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
     interest_exclusions, interest_rows = [], []
     for ticker, growth_row in growth.items():
         negatives = _recent_valid_negatives(growth_row, today)
-        if negatives:
-            interest_exclusions.append({
-                "ticker": ticker, "name": growth_row.get("name"),
-                "reason": "최근 90일 유효 부정 근거", "evidenceCount": len(negatives),
-            })
+        hold = verified_holds.get(ticker)
+        if negatives or hold:
+            interest_exclusions.append(_exclusion(
+                ticker, growth_row.get("name"), negatives, hold,
+            ))
             continue
         sector_row = sectors.get(str(growth_row.get("sector", "")))
         growth_score = _number(growth_row.get("score"))
@@ -332,6 +381,7 @@ def build_value_growth_board(value_board: dict, growth_board: dict, growth_audit
             "finalCandidateCount": len(all_rows),
             "interestCandidateCount": len(all_interest_rows),
             "interestRecentNegativeExcludedCount": len(interest_exclusions),
+            "verifiedRiskHoldCount": len(verified_holds),
             "commonTop20Count": len(common_top),
             "displayLimit": int(display_limit),
             "valuePrerequisites": {

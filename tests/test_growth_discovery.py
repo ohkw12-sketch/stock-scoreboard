@@ -97,6 +97,32 @@ class GrowthTest(unittest.TestCase):
         self.assertEqual(merged[0]['firstPublished'],'2026-04-01')
         self.assertEqual(confidence(merged)['evidenceCount'],1)
 
+    def test_adverse_contract_correction_becomes_counter_evidence(self):
+        original = event(amount=100, activeUntil='2026-12-30')
+        correction = event(
+            receipt='b', publishedAt='2026-09-01', correction=True,
+            amount=90, activeUntil='2027-01-30',
+        )
+        merged = merge_events([original, correction])
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]['polarity'], 'negative')
+        self.assertEqual(merged[0]['status'], '유효')
+        self.assertEqual(merged[0]['factType'], '계약정정위험')
+        self.assertEqual(merged[0]['previousAmount'], 100)
+        self.assertEqual(merged[0]['previousActiveUntil'], '2026-12-30')
+        self.assertIn('계약금액 감소', merged[0]['correctionRiskReason'])
+        self.assertIn('계약 종료일 연기', merged[0]['correctionRiskReason'])
+        self.assertEqual(confidence(merged)['evidenceCount'], 0)
+
+    def test_contract_delay_with_higher_amount_remains_positive(self):
+        original = event(amount=100, activeUntil='2026-12-30')
+        correction = event(
+            receipt='b', publishedAt='2026-09-01', correction=True,
+            amount=110, activeUntil='2027-01-30',
+        )
+        merged = merge_events([original, correction])
+        self.assertEqual(merged[0]['polarity'], 'positive')
+
     def test_confidence_increases_with_independent_information(self):
         self.assertGreater(confidence([event(),event(identity='b')])['score'],confidence([event()])['score'])
 

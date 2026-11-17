@@ -282,8 +282,14 @@ def rebuild(args, config):
     def value_growth_section():
         if states['valueSource']['status'] != '계산완료' or states['growthSource']['status'] != '계산완료':
             raise RuntimeError('가치 또는 성장 원본 계산 실패로 가치성장 계산을 보류했습니다.')
+        issue_input = read_json(config['cache_dir']/'issue-input.json', {})
+        source_review = issue_input.get('sourceReview', {})
+        if not source_review.get('candidateRiskHolds'):
+            source_review = issue_input.get('coverage', {}).get('sourceReview', {})
+        risk_holds = source_review.get('candidateRiskHolds', [])
         return build_value_growth_board(
             value_source, growth_source, growth_candidates, fundamentals, prices, p11,
+            risk_holds=risk_holds,
         )
     p2 = isolated_section('p2', value_growth_section, previous, states, context)
     json_write(out/'value_source.test.json', public_fields(value_source))

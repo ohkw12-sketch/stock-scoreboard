@@ -56,6 +56,35 @@ class ValueGrowthTest(unittest.TestCase):
         self.assertEqual(result['rows'], [])
         self.assertEqual(result['dataStatus']['recentNegativeExcludedCount'], 1)
 
+    def test_recent_verified_risk_hold_uses_same_negative_gate(self):
+        sources = self.sources()
+        result = build_value_growth_board(
+            *sources,
+            now=datetime(2026, 9, 19, tzinfo=KST),
+            risk_holds=[{
+                'ticker': '000001', 'name': '후보0', 'receipt': '20260901000001',
+                'decision': 'withhold-entry-while-timeline-risk-active',
+                'reason': '계약 종료일 연기', 'source': 'DART',
+            }],
+        )
+        self.assertEqual(result['rows'], [])
+        self.assertEqual(result['interestGrowth']['rows'], [])
+        self.assertEqual(result['excludedRows'][0]['reason'], '계약 종료일 연기')
+        self.assertEqual(result['dataStatus']['verifiedRiskHoldCount'], 1)
+
+    def test_stale_verified_risk_hold_does_not_exclude(self):
+        sources = self.sources()
+        result = build_value_growth_board(
+            *sources,
+            now=datetime(2026, 9, 19, tzinfo=KST),
+            risk_holds=[{
+                'ticker': '000001', 'receipt': '20260101000001',
+                'decision': 'exclude-active-negative', 'reason': '오래된 보류',
+            }],
+        )
+        self.assertEqual(len(result['rows']), 1)
+        self.assertEqual(result['dataStatus']['verifiedRiskHoldCount'], 0)
+
     def test_sector_premium_costs_five_and_seasonality_only_costs_ten(self):
         value, growth_board, growth, fundamentals, prices = self.sources()
         value['_allRows'][0]['normalizedPOP'] = 11
