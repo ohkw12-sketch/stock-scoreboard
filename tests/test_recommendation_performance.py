@@ -208,6 +208,21 @@ class RecommendationPerformanceTest(unittest.TestCase):
                                     observed_at='2026-09-04T19:00:00+09:00', engine_version='global')
         self.assertEqual([c['section'] for c in ledger['cohorts']], ['p1'])
 
+    def test_section_only_publication_records_verified_section_across_meta_run(self):
+        board = self.board()
+        board['meta'] = {'runId': 'old-run'}
+        board['p1']['refreshState'] = {'runId': 'old-run', 'status': '계산완료'}
+        board['p2'] = copy.deepcopy(board['p1'])
+        board['p2'].update(projectType='value-growth', generatedAt='2026-09-04T18:30:00+09:00')
+        board['p2']['refreshState'] = {'runId': 'new-p2-run', 'status': '계산완료'}
+        ledger = record_publication(
+            empty_ledger(), board, {}, ['000001'],
+            observed_at='2026-09-04T19:00:00+09:00', engine_version='global',
+            sections={'p2'},
+        )
+        self.assertEqual([c['section'] for c in ledger['cohorts']], ['valueGrowth'])
+        self.assertEqual(ledger['cohorts'][0]['runId'], 'new-p2-run')
+
     def test_no_records_has_no_fabricated_return(self):
         result = self.result(empty_ledger())
         self.assertEqual(result['recordCount'], 0)

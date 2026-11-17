@@ -27,7 +27,8 @@ def empty_ledger():
     return {'schemaVersion': 1, 'cohorts': [], 'universes': {}}
 
 
-def record_publication(ledger, board, combined, universe, *, observed_at, engine_version):
+def record_publication(ledger, board, combined, universe, *, observed_at, engine_version,
+                       sections=None):
     """Call only AFTER verifying the exact generation on the deployed site. Idempotent by section generation."""
     import copy
     ledger = copy.deepcopy(ledger)
@@ -37,14 +38,19 @@ def record_publication(ledger, board, combined, universe, *, observed_at, engine
     ledger['universes'].setdefault(universe_id, members)
     p2 = board.get('p2', {})
     p2_key = 'valueGrowth' if p2.get('projectType') == 'value-growth' else 'p2'
-    sections = [('p1', board.get('p1', {})), ('p11', board.get('p11', {})), (p2_key, p2)]
+    requested = set(sections) if sections is not None else None
+    section_rows = [('p1', 'p1', board.get('p1', {})),
+                    ('p11', 'p11', board.get('p11', {})),
+                    ('p2', p2_key, p2)]
     if board.get('growth'):
-        sections.append(('growth', board['growth']))
-    sections.append(('combined', combined))
-    for key, section in sections:
+        section_rows.append(('growth', 'growth', board['growth']))
+    section_rows.append(('combined', 'combined', combined))
+    for public_key, key, section in section_rows:
+        if requested is not None and public_key not in requested and key not in requested:
+            continue
         state = section.get('refreshState', {})
         current_run = board.get('meta', {}).get('runId')
-        if current_run and state.get('runId') != current_run:
+        if requested is None and current_run and state.get('runId') != current_run:
             continue
         generated = section.get('generatedAt') or state.get('generatedAt')
         if not generated or state.get('status') == '실패·이전유지':
