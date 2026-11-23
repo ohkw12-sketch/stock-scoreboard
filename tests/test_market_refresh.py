@@ -141,10 +141,16 @@ class MarketRefreshTest(unittest.TestCase):
         }])
 
         class Client:
+            def __init__(self):
+                self.calls = 0
+
             def authenticate(self):
                 return None
 
             def fetch_daily_prices(self, *_args, **_kwargs):
+                self.calls += 1
+                if self.calls == 1:
+                    return {"rt_cd": "1", "msg1": "일시적 제한", "output2": []}
                 return {"rt_cd": "0", "output2": [{
                     "stck_bsop_date": "20260911", "stck_clpr": "27600",
                     "stck_oprc": "27800", "stck_hgpr": "27800", "stck_lwpr": "27800",
@@ -152,7 +158,9 @@ class MarketRefreshTest(unittest.TestCase):
                 }]}
 
         info = {"expectedCompletedSession": "2026-09-11"}
-        with patch("rotation_screener.KisConsensusClient.from_environment", return_value=Client()), \
+        client = Client()
+        self.config["kis_price_retry_pause_seconds"] = 0
+        with patch("rotation_screener.KisConsensusClient.from_environment", return_value=client), \
                 patch("rotation_screener.completed_session_info", return_value=info):
             repaired = self.loader._repair_close_with_kis(frame, listing)
         row = repaired.loc[(repaired["ticker"].eq("000325")) & repaired["date"].eq(target)].iloc[0]
@@ -162,6 +170,41 @@ class MarketRefreshTest(unittest.TestCase):
         report = audit_market_data(repaired, self.config, "fixture")
         self.assertEqual(report["qualityStatus"], "정상")
         self.assertEqual(report["suspendedTickerCount"], 1)
+        self.assertEqual(client.calls, 2)
+
+    def test_kis_recovery_replaces_invalid_latest_ohlc(self):
+        target = pd.Timestamp("2026-09-11")
+        frame = pd.DataFrame([{
+            "date": target, "ticker": "000001", "name": "검증종목",
+            "market": "KOSPI", "sector": "검증", "open": 1000,
+            "high": 900, "low": 800, "close": 1100, "volume": 10, "value": 11000,
+        }])
+        listing = pd.DataFrame([{
+            "ticker": "000001", "name": "검증종목", "market": "KOSPI", "sector": "검증",
+        }])
+
+        class Client:
+            def authenticate(self):
+                return None
+
+            def fetch_daily_prices(self, *_args, **_kwargs):
+                return {"rt_cd": "0", "output2": [{
+                    "stck_bsop_date": "20260911", "stck_clpr": "1100",
+                    "stck_oprc": "1000", "stck_hgpr": "1200", "stck_lwpr": "900",
+                    "acml_vol": "10", "acml_tr_pbmn": "11000",
+                }]}
+
+        info = {"expectedCompletedSession": "2026-09-11"}
+        with patch("rotation_screener.KisConsensusClient.from_environment", return_value=Client()), \
+                patch("rotation_screener.completed_session_info", return_value=info):
+            repaired = self.loader._repair_close_with_kis(frame, listing)
+        rows = repaired.loc[repaired["ticker"].eq("000001") & repaired["date"].eq(target)]
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows.iloc[0][["open", "high", "low", "close"]].tolist(), [1000, 1200, 900, 1100])
+        self.config["_requested_universe"] = listing.to_dict("records")
+        report = audit_market_data(repaired, self.config, "fixture")
+        self.assertEqual(report["qualityStatus"], "정상")
+        self.assertEqual(report["invalidPriceTickers"], [])
 
     def test_kis_full_history_recovery_keeps_raw_and_adjusted_prices_separate(self):
         ticker = "0158S0"

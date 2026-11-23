@@ -100,6 +100,9 @@ DEFAULTS = {
     "minimum_dart_fundamental_coverage_ratio": 0.65,
     "kis_consensus_batch_size": 250,
     "kis_consensus_priority_count": 120,
+    "kis_price_pause_seconds": 0.12,
+    "kis_price_retry_attempts": 5,
+    "kis_price_retry_pause_seconds": 0.8,
     "kis_consensus_pause_seconds": 0.12,
     "maximum_unclassified_ratio": 0.08,
     "minimum_latest_coverage_ratio": 0.98,
@@ -663,11 +666,26 @@ class MarketDataLoader:
         return set(joined.loc[close_changed | adjustment_changed, "ticker"])
 
     def _repair_close_with_kis(self, frame: pd.DataFrame, listing: pd.DataFrame) -> pd.DataFrame:
-        """Fill only missing completed-session quotes through KIS read-only prices."""
+        """Replace missing or invalid completed-session quotes with KIS raw prices."""
         target = pd.Timestamp(completed_session_info()["expectedCompletedSession"])
-        session_tickers = set(frame.loc[frame["date"].eq(target), "ticker"])
+        session_rows = frame.loc[frame["date"].eq(target)].copy()
+        session_tickers = set(session_rows["ticker"])
         all_tickers = set(listing["ticker"])
-        if all_tickers.issubset(session_tickers):
+        if session_rows.empty:
+            invalid_tickers = set()
+        else:
+            ohlc_invalid = (
+                session_rows[["open", "high", "low", "close", "volume", "value"]].isna().any(axis=1)
+                | session_rows["high"].lt(session_rows["low"])
+                | session_rows["close"].gt(session_rows["high"])
+                | session_rows["close"].lt(session_rows["low"])
+                | session_rows["volume"].lt(0)
+                | session_rows["value"].lt(0)
+            )
+            suspended = session_rows[["open", "high", "low", "volume"]].eq(0).all(axis=1)
+            invalid_tickers = set(session_rows.loc[ohlc_invalid & ~suspended, "ticker"])
+        repair_tickers = (all_tickers - session_tickers) | invalid_tickers
+        if not repair_tickers:
             return frame
         client = KisConsensusClient.from_environment()
         if client is None:
@@ -679,13 +697,28 @@ class MarketDataLoader:
             return frame
         identity = listing.drop_duplicates("ticker").set_index("ticker")
         recovered = []
-        for ticker in sorted(all_tickers - session_tickers):
+        unrecovered = []
+        for ticker in sorted(repair_tickers):
+            payload, quote = {}, {}
+            retry_attempts = max(1, int(self.config.get("kis_price_retry_attempts", 5)))
+            retry_pause = max(0.0, float(self.config.get("kis_price_retry_pause_seconds", 0.8)))
+            for attempt in range(retry_attempts):
+                try:
+                    payload = client.fetch_daily_prices(
+                        ticker, str(target.date()), str(target.date()), adjusted=False,
+                    )
+                    quote = next((r for r in payload.get("output2", [])
+                                  if r.get("stck_bsop_date") == target.strftime("%Y%m%d")), {})
+                    if str(payload.get("rt_cd", "")) == "0" and quote:
+                        break
+                except Exception:
+                    payload, quote = {}, {}
+                if attempt + 1 < retry_attempts:
+                    time.sleep(retry_pause * (attempt + 1))
+            if str(payload.get("rt_cd", "")) != "0" or not quote:
+                unrecovered.append(ticker)
+                continue
             try:
-                payload = client.fetch_daily_prices(ticker, str(target.date()), str(target.date()), adjusted=False)
-                quote = next((r for r in payload.get("output2", [])
-                              if r.get("stck_bsop_date") == target.strftime("%Y%m%d")), {})
-                if str(payload.get("rt_cd", "")) != "0":
-                    continue
                 def number(key):
                     try:
                         return float(str(quote.get(key) or "").replace(",", ""))
@@ -717,11 +750,18 @@ class MarketDataLoader:
                     "fetched_at": datetime.now(KST).isoformat(timespec="seconds"),
                 })
             except Exception:
+                unrecovered.append(ticker)
                 continue
             time.sleep(float(self.config.get("kis_price_pause_seconds", 0.06)))
+        if unrecovered:
+            log(f"KIS close recovery unresolved after retries: {','.join(unrecovered)}")
         if recovered:
-            log(f"KIS close recovery: {len(recovered)} missing quotes repaired")
-            return normalize_prices(pd.concat([frame, pd.DataFrame(recovered)], ignore_index=True))
+            repaired_tickers = {row["ticker"] for row in recovered}
+            retained = frame.loc[
+                ~(frame["date"].eq(target) & frame["ticker"].isin(repaired_tickers))
+            ]
+            log(f"KIS close recovery: {len(recovered)} missing/invalid quotes repaired")
+            return normalize_prices(pd.concat([retained, pd.DataFrame(recovered)], ignore_index=True))
         return frame
 
     def _repair_history_with_kis(
